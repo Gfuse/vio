@@ -116,6 +116,7 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
     usleep(100000);
 }
 
+
 void VoNode::processUserActions()
 {
   char input = remote_input_.c_str()[0];
