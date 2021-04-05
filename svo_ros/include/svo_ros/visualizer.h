@@ -48,19 +48,11 @@ class Visualizer
 public:
   ros::NodeHandle pnh_;
   size_t trace_id_;
-  size_t img_pub_level_;
-  size_t img_pub_nth_;
-  size_t dense_pub_nth_;
   ros::Publisher pub_frames_;
   ros::Publisher pub_points_;
   ros::Publisher pub_pose_;
   ros::Publisher pub_info_;
-  ros::Publisher pub_dense_;
-  image_transport::Publisher pub_images_;
   tf::TransformBroadcaster br_;
-  bool publish_world_in_cam_frame_;
-  bool publish_map_every_frame_;
-  ros::Duration publish_points_display_time_;
   SE3 T_world_from_vision_;
 
   Visualizer();
@@ -78,13 +70,8 @@ public:
       const set<FramePtr>& core_kfs,
       const Map& map);
 
-  void publishMapRegion(set<FramePtr> frames);
-
   void removeDeletedPts(const Map& map);
 
-  void displayKeyframeWithMps(const FramePtr& frame, int ts);
-
-  void exportToDense(const FramePtr& frame);
 };
 
 } // end namespace svo
