@@ -1,15 +1,16 @@
 <launch>
 
-  <node pkg="svo_ros" type="vo" name="svo" clear_params="true" output="screen">
+  <node pkg="vio_svo" type="vo" name="vio" clear_params="true" output="screen">
 
     <!-- Camera topic to subscribe to -->
     <param name="cam_topic" value="/CoreNode/grey_img" type="str" />
+    <param name="imu_topic" value="/SensorNode/imu" type="str" />
     
     <!-- Camera calibration file -->
-    <rosparam file="$(find svo_ros)/param/camera_pinhole.yaml" />
+    <rosparam file="$(find vio_svo)/param/camera_pinhole.yaml" />
 
     <!-- Default parameter settings: choose between vo_fast and vo_accurate -->
-    <rosparam file="$(find svo_ros)/param/px30.yaml" />
+    <rosparam file="$(find vio_svo)/param/px30.yaml" />
     
     <!-- Initial camera orientation, make it point downwards -->
     <param name="init_rx" value="0.00" />

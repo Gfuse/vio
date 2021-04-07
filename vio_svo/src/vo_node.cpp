@@ -17,7 +17,7 @@
 #include <string>
 #include <svo/frame_handler_mono.h>
 #include <svo/map.h>
-#include <svo_ros/visualizer.h>
+#include <vio_svo/visualizer.h>
 #include <vikit/params_helper.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
@@ -44,40 +44,45 @@ public:
       vk::AbstractCamera* cam_;
       FILE* logtime;
       bool quit_;
+      boost::thread* vio_th;
       VoNode();
       ~VoNode();
       void imgCb(const sensor_msgs::ImageConstPtr& msg);
+      void imuCb(const sensor_msgs::ImuPtr& imu);
+      void vio();
 };
 
 VoNode::VoNode() :
       vo_(NULL),
-      publish_markers_(vk::getParam<bool>("svo/publish_markers", true)),
+      publish_markers_(vk::getParam<bool>("vio/publish_markers", true)),
       cam_(NULL),
       quit_(false)
 {
       // Create Camera
-      if(!vk::camera_loader::loadFromRosNs("svo", cam_))
+      if(!vk::camera_loader::loadFromRosNs("vio", cam_))
         throw std::runtime_error("Camera model not correctly specified.");
-
       // Get initial position and orientation
       visualizer_.T_world_from_vision_ = Sophus::SE3(
-          vk::rpy2dcm(Vector3d(vk::getParam<double>("svo/init_rx", 0.0),
-                               vk::getParam<double>("svo/init_ry", 0.0),
-                               vk::getParam<double>("svo/init_rz", 0.0))),
-          Eigen::Vector3d(vk::getParam<double>("svo/init_tx", 0.0),
-                          vk::getParam<double>("svo/init_ty", 0.0),
-                          vk::getParam<double>("svo/init_tz", 0.0)));
-
+          vk::rpy2dcm(Vector3d(vk::getParam<double>("vio/init_rx", 0.0),
+                               vk::getParam<double>("vio/init_ry", 0.0),
+                               vk::getParam<double>("vio/init_rz", 0.0))),
+          Eigen::Vector3d(vk::getParam<double>("vio/init_tx", 0.0),
+                          vk::getParam<double>("vio/init_ty", 0.0),
+                          vk::getParam<double>("vio/init_tz", 0.0)));
       // Init VO and start
       vo_ = new svo::FrameHandlerMono(cam_);
       vo_->start();
       logtime = fopen((std::string(getenv("HOME"))+"/Project/time.txt").c_str(), "w+");
+    vio_th=new boost::thread(&VoNode::vio,this);
 
 }
 
 VoNode::~VoNode()
 {
+    quit_=true;
     fclose(logtime);
+    vio_th->join();
+    delete vio_th;
     delete logtime;
     delete vo_;
     delete cam_;
@@ -85,44 +90,53 @@ VoNode::~VoNode()
 
 void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 {
-    auto start=std::chrono::steady_clock::now();
       try {
-          cv::Mat img;
-          img = cv_bridge::toCvShare(msg, "mono8")->image;
+          ROS_INFO("image back");
+          auto start=std::chrono::steady_clock::now();
+          cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
           vo_->addImage(img, msg->header.stamp.toSec());
           visualizer_.publishMinimal(img, vo_->lastFrame(), *vo_, msg->header.stamp.toSec());
-
-
           if(publish_markers_ && vo_->stage() != FrameHandlerBase::STAGE_PAUSED)
               visualizer_.visualizeMarkers(vo_->lastFrame(), vo_->coreKeyframes(), vo_->map());
-
           if(vo_->stage() == FrameHandlerMono::STAGE_PAUSED)
               usleep(100000);
           fprintf(logtime, "%s\n",std::to_string(std::chrono::duration<double>(std::chrono::steady_clock::now()-start).count()).c_str());
+
       } catch (cv_bridge::Exception& e) {
         ROS_ERROR("cv_bridge exception: %s", e.what());
       }
+}
+void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
+    ROS_INFO("imu back");
+}
+void VoNode::vio(){
+    ros::NodeHandle nh;
+    std::cout << "create vo_node" << std::endl;
+    // subscribe to cam msgs
+    image_transport::ImageTransport it(nh);
+    image_transport::Subscriber it_sub = it.subscribe(vk::getParam<std::string>("vio/cam_topic", "camera/image_raw"), 5, &svo::VoNode::imgCb, this);
+    // start processing callbacks
+    while(ros::ok() && !quit_)
+    {
+        ros::spinOnce();
+        // TODO check when last image was processed. when too long ago. publish warning that no msgs are received!
+    }
+
 }
 } // namespace svo
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "svo");
-  ros::NodeHandle nh;
-  std::cout << "create vo_node" << std::endl;
+  ros::init(argc, argv, "vio");
   svo::VoNode vo_node;
-
-  // subscribe to cam msgs
-  image_transport::ImageTransport it(nh);
-  image_transport::Subscriber it_sub = it.subscribe(vk::getParam<std::string>("svo/cam_topic", "camera/image_raw"), 5, &svo::VoNode::imgCb, &vo_node);
-
+  ros::NodeHandle nh;
+  ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),10,&svo::VoNode::imuCb, &vo_node);
   // start processing callbacks
   while(ros::ok() && !vo_node.quit_)
   {
-    ros::spinOnce();
-    // TODO check when last image was processed. when too long ago. publish warning that no msgs are received!
+      ros::spinOnce();
+      // TODO check when last image was processed. when too long ago. publish warning that no msgs are received!
   }
-
   printf("SVO terminated.\n");
   return 0;
 }

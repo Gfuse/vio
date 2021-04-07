@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>svo_ros</name>
+  <name>vio_svo</name>
   <version>0.1.0</version>
   <description>
     Monocular Visual Odometry - ROS Nodes
