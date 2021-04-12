@@ -30,13 +30,14 @@
 
 namespace svo {
 
-FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam) :
+FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Sophus::SE3& SE_init) :
   FrameHandlerBase(),
   cam_(cam),
   reprojector_(cam_, map_),
   depth_filter_(NULL)
 {
   initialize();
+  imu_integPtr_=std::make_unique<Imu_Integration>(SE_init);
 }
 
 void FrameHandlerMono::initialize()
@@ -159,6 +160,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // pose optimization subject to change for adding IMU
   SVO_START_TIMER("pose_optimizer");
   size_t sfba_n_edges_final;
+  if(!imu_integPtr_->predict(new_frame_,sfba_n_edges_final))
+        return RESULT_FAILURE;
+  /*
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
       Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
@@ -167,6 +171,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SVO_LOG4(sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
   SVO_DEBUG_STREAM("PoseOptimizer:\t ErrInit = "<<sfba_error_init<<"px\t thresh = "<<sfba_thresh);
   SVO_DEBUG_STREAM("PoseOptimizer:\t ErrFin. = "<<sfba_error_final<<"px\t nObsFin. = "<<sfba_n_edges_final);
+   */
   if(sfba_n_edges_final < 20)
     return RESULT_FAILURE;
 

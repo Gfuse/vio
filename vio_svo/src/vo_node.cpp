@@ -30,6 +30,7 @@
 #include <vikit/abstract_camera.h>
 #include <vikit/camera_loader.h>
 #include <vikit/user_input_thread.h>
+#include <svo/frame.h>
 
 
 namespace svo {
@@ -44,12 +45,12 @@ public:
       vk::AbstractCamera* cam_;
       FILE* logtime;
       bool quit_;
-      boost::thread* vio_th;
+      boost::thread* imu_th;
       VoNode();
       ~VoNode();
       void imgCb(const sensor_msgs::ImageConstPtr& msg);
       void imuCb(const sensor_msgs::ImuPtr& imu);
-      void vio();
+      void imu();
 };
 
 VoNode::VoNode() :
@@ -70,10 +71,10 @@ VoNode::VoNode() :
                           vk::getParam<double>("vio/init_ty", 0.0),
                           vk::getParam<double>("vio/init_tz", 0.0)));
       // Init VO and start
-      vo_ = new svo::FrameHandlerMono(cam_);
+      vo_ = new svo::FrameHandlerMono(cam_,visualizer_.T_world_from_vision_);
       vo_->start();
-      logtime = fopen((std::string(getenv("HOME"))+"/Project/time.txt").c_str(), "w+");
-    vio_th=new boost::thread(&VoNode::vio,this);
+    imu_th=new boost::thread(&VoNode::imu,this);
+    logtime = fopen((std::string(getenv("HOME"))+"/Project/time.txt").c_str(), "w+");
 
 }
 
@@ -81,8 +82,8 @@ VoNode::~VoNode()
 {
     quit_=true;
     fclose(logtime);
-    vio_th->join();
-    delete vio_th;
+    imu_th->join();
+    delete imu_th;
     delete logtime;
     delete vo_;
     delete cam_;
@@ -91,7 +92,6 @@ VoNode::~VoNode()
 void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 {
       try {
-          ROS_INFO("image back");
           auto start=std::chrono::steady_clock::now();
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
           vo_->addImage(img, msg->header.stamp.toSec());
@@ -107,9 +107,17 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
       }
 }
 void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
-    ROS_INFO("imu back");
+    float imu_in[7];
+    imu_in[0] = imu->angular_velocity.x;
+    imu_in[1] = imu->angular_velocity.y;
+    imu_in[2] = imu->angular_velocity.z;
+    imu_in[3] = imu->linear_acceleration.x;
+    imu_in[4] = imu->linear_acceleration.y;
+    imu_in[5] = imu->linear_acceleration.z;
+    imu_in[6] = imu->header.stamp.sec;
+    vo_->imu_integPtr_->update(imu_in);
 }
-void VoNode::vio(){
+void VoNode::imu(){
     ros::NodeHandle nh;
     std::cout << "create vo_node" << std::endl;
     // subscribe to cam msgs
@@ -119,7 +127,6 @@ void VoNode::vio(){
     while(ros::ok() && !quit_)
     {
         ros::spinOnce();
-        // TODO check when last image was processed. when too long ago. publish warning that no msgs are received!
     }
 
 }

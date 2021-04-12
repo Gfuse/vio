@@ -22,6 +22,7 @@
 #include <svo/frame_handler_base.h>
 #include <svo/reprojector.h>
 #include <svo/initialization.h>
+#include <svo/imu_integration.h>
 
 namespace svo {
 
@@ -31,7 +32,7 @@ class FrameHandlerMono : public FrameHandlerBase
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   
-  FrameHandlerMono(vk::AbstractCamera* cam);
+  FrameHandlerMono(vk::AbstractCamera* cam,Sophus::SE3& SE_init);
   virtual ~FrameHandlerMono();
 
   /// Provide an image.
@@ -59,6 +60,7 @@ public:
       const SE3& T_kf_f,
       const cv::Mat& img,
       const double timestamp);
+  std::unique_ptr<Imu_Integration> imu_integPtr_;  //Integration of IMU
 
 protected:
   vk::AbstractCamera* cam_;                     //!< Camera model, can be ATAN, Pinhole or Ocam (see vikit).
@@ -69,6 +71,7 @@ protected:
   vector< pair<FramePtr,size_t> > overlap_kfs_; //!< All keyframes with overlapping field of view. the paired number specifies how many common mappoints are observed TODO: why vector!?
   initialization::KltHomographyInit klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
+
 
   /// Initialize the visual odometry algorithm.
   virtual void initialize();

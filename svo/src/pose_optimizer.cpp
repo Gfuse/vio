@@ -49,6 +49,7 @@ void optimizeGaussNewton(
   {
     if((*it)->point == NULL)
       continue;
+    //Reprojection error
     Vector2d e = vk::project2d((*it)->f)
                - vk::project2d(frame->T_f_w_ * (*it)->point->pos_);
     e *= 1.0 / (1<<(*it)->level);

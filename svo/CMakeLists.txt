@@ -14,6 +14,8 @@ CMAKE_MINIMUM_REQUIRED (VERSION 2.8.3)
 SET(CMAKE_BUILD_TYPE Release) # Release, RelWithDebInfo
 SET(CMAKE_VERBOSE_MAKEFILE OFF)
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMakeModules/")
+set(CMAKE_C_STANDARD 14)
+set(CMAKE_CXX_STANDARD 14)
 
 # Set definitions
 IF(TRACE)
@@ -33,7 +35,7 @@ ENDIF()
 # Set build flags. Set IS_ARM on odroid board as environment variable
 SET(CMAKE_CXX_FLAGS "-Wall -D_LINUX -D_REENTRANT -march=native -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unknown-pragmas")
 IF(DEFINED ENV{ARM_ARCHITECTURE})
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpu=neon -march=armv7-a")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
 ELSE()
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmmx -msse -msse -msse2 -msse3 -mssse3")
 ENDIF()
@@ -50,11 +52,13 @@ FIND_PACKAGE(Eigen REQUIRED)
 FIND_PACKAGE(Sophus REQUIRED)
 FIND_PACKAGE(fast REQUIRED)
 FIND_PACKAGE(Boost REQUIRED COMPONENTS thread system)
+FIND_PACKAGE(GTSAM REQUIRED)
 
+set(GTSAM_INCLUDE_DIRS "${GTSAM_INCLUDE_DIR}")
 IF(USE_ROS)
   FIND_PACKAGE(catkin REQUIRED COMPONENTS roscpp roslib cmake_modules vikit_common vikit_ros)
   catkin_package(
-      DEPENDS Eigen OpenCV Sophus Boost fast
+      DEPENDS Eigen OpenCV Sophus Boost fast GTSAM
       CATKIN_DEPENDS roscpp roslib vikit_common vikit_ros
       INCLUDE_DIRS include
       LIBRARIES svo
@@ -72,7 +76,7 @@ INCLUDE_DIRECTORIES(
   ${OpenCV_INCLUDE_DIRS}
   ${Sophus_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
-  ${fast_INCLUDE_DIRS}
+  ${fast_INCLUDE_DIRS} ${GTSAM_INCLUDE_DIR}
 )
 
 # Set link libraries
@@ -82,7 +86,6 @@ LIST(APPEND LINK_LIBS
   ${Boost_LIBRARIES}
   ${fast_LIBRARIES}
 )
-
 IF(USE_ROS)
   INCLUDE_DIRECTORIES(${catkin_INCLUDE_DIRS})
   LIST(APPEND LINK_LIBS ${catkin_LIBRARIES})
@@ -106,7 +109,7 @@ LIST(APPEND SOURCEFILES
   src/feature_detection.cpp
   src/depth_filter.cpp
   src/config.cpp
-  src/sparse_img_align.cpp)
+  src/sparse_img_align.cpp src/imu_integration.cpp)
 
 # Add g2o if available
 IF(HAVE_G2O)
@@ -124,7 +127,9 @@ ENDIF(HAVE_G2O)
 
 # Create svo library
 ADD_LIBRARY(svo SHARED ${SOURCEFILES})
-TARGET_LINK_LIBRARIES(svo ${LINK_LIBS})
+TARGET_LINK_LIBRARIES(svo ${LINK_LIBS} gtsam)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 
 ################################################################################
 # TESTS
