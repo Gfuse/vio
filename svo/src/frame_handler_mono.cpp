@@ -160,7 +160,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // pose optimization subject to change for adding IMU
   SVO_START_TIMER("pose_optimizer");
   size_t sfba_n_edges_final;
-  if(!imu_integPtr_->predict(new_frame_,sfba_n_edges_final))
+  if(!imu_integPtr_->predict(new_frame_,sfba_n_edges_final,Config::poseOptimThresh()))
         return RESULT_FAILURE;
   /*
   double sfba_thresh, sfba_error_init, sfba_error_final;

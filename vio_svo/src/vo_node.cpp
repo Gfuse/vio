@@ -22,6 +22,7 @@
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
 #include <std_msgs/String.h>
+#include <geometry_msgs/PoseStamped.h>
 #include <message_filters/synchronizer.h>
 #include <image_transport/image_transport.h>
 #include <boost/thread.hpp>
@@ -49,7 +50,8 @@ public:
       VoNode();
       ~VoNode();
       void imgCb(const sensor_msgs::ImageConstPtr& msg);
-      void imuCb(const sensor_msgs::ImuPtr& imu);
+      //void imuCb(const sensor_msgs::ImuPtr& imu);
+      void imuCb(const geometry_msgs::PoseStamped& imu);
       void imu();
 };
 
@@ -106,15 +108,22 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
         ROS_ERROR("cv_bridge exception: %s", e.what());
       }
 }
-void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
-    float imu_in[7];
-    imu_in[0] = imu->angular_velocity.x;
+void VoNode::imuCb(const geometry_msgs::PoseStamped &imu) {
+    float imu_in[6];
+    /*imu_in[0] = imu->angular_velocity.x;
     imu_in[1] = imu->angular_velocity.y;
     imu_in[2] = imu->angular_velocity.z;
     imu_in[3] = imu->linear_acceleration.x;
     imu_in[4] = imu->linear_acceleration.y;
     imu_in[5] = imu->linear_acceleration.z;
     imu_in[6] = imu->header.stamp.sec;
+     */
+    imu_in[0] = imu.pose.position.z;
+    imu_in[1] = imu.pose.position.x;
+    imu_in[2] = imu.pose.position.y+9.8;
+    imu_in[3] = imu.pose.orientation.z;
+    imu_in[4] = imu.pose.orientation.x;
+    imu_in[5] = imu.pose.orientation.y;
     vo_->imu_integPtr_->update(imu_in);
 }
 void VoNode::imu(){
@@ -137,11 +146,12 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "vio");
   svo::VoNode vo_node;
   ros::NodeHandle nh;
-  ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),10,&svo::VoNode::imuCb, &vo_node);
+  ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),1,&svo::VoNode::imuCb, &vo_node);
   // start processing callbacks
   while(ros::ok() && !vo_node.quit_)
   {
       ros::spinOnce();
+      usleep(1000);
       // TODO check when last image was processed. when too long ago. publish warning that no msgs are received!
   }
   printf("SVO terminated.\n");

@@ -99,19 +99,20 @@ class Imu_Integration{
 public:
     Imu_Integration(Sophus::SE3& SE_init);
     ~Imu_Integration();
-    bool reset();
+    bool reset(gtsam::Values& result);
     bool update(float* imu= nullptr);
-    bool predict(boost::shared_ptr<svo::Frame>&,std::size_t&);
+    bool predict(boost::shared_ptr<svo::Frame>&,std::size_t&,const double reproj_thresh);
 private:
     std::shared_ptr<gtsam::NavState> statePtr;
     std::shared_ptr<gtsam::imuBias::ConstantBias> imu_biasPtr;
-    std::unique_ptr<gtsam::Values> valuesPtr;
-    std::unique_ptr<gtsam::NonlinearFactorGraph> graphPtr;
+    std::shared_ptr<gtsam::Values> valuesPtr;
+    std::shared_ptr<gtsam::NonlinearFactorGraph> graphPtr;
     boost::shared_ptr<gtsam::PreintegratedCombinedMeasurements::Params> parameterPtr;
-    std::shared_ptr<gtsam::PreintegrationType> preintegratedPtr;
+    std::shared_ptr<gtsam::PreintegratedCombinedMeasurements> preintegratedPtr;
     boost::shared_ptr<gtsam::noiseModel::Isotropic> ProjectNoisePtr;
-    boost::shared_ptr<gtsam::Cal3_S2> cameraPtr;
-    std::uint32_t t_1=1e-18;
+    std::chrono::steady_clock::time_point t_1;
     std::uint32_t imu_factor_id=0;
+    double imu_mean=0.0;
+    bool syn=false;
 };
 #endif //SVO_IMU_INTEGRATION_H
