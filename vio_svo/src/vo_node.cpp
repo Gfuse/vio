@@ -50,8 +50,7 @@ public:
       VoNode();
       ~VoNode();
       void imgCb(const sensor_msgs::ImageConstPtr& msg);
-      //void imuCb(const sensor_msgs::ImuPtr& imu);
-      void imuCb(const geometry_msgs::PoseStamped& imu);
+      void imuCb(const sensor_msgs::ImuPtr& imu);
       void imu();
 };
 
@@ -108,22 +107,15 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
         ROS_ERROR("cv_bridge exception: %s", e.what());
       }
 }
-void VoNode::imuCb(const geometry_msgs::PoseStamped &imu) {
-    float imu_in[6];
-    /*imu_in[0] = imu->angular_velocity.x;
-    imu_in[1] = imu->angular_velocity.y;
-    imu_in[2] = imu->angular_velocity.z;
-    imu_in[3] = imu->linear_acceleration.x;
-    imu_in[4] = imu->linear_acceleration.y;
-    imu_in[5] = imu->linear_acceleration.z;
-    imu_in[6] = imu->header.stamp.sec;
-     */
-    imu_in[0] = imu.pose.position.z;
-    imu_in[1] = imu.pose.position.x;
-    imu_in[2] = imu.pose.position.y+9.8;
-    imu_in[3] = imu.pose.orientation.z;
-    imu_in[4] = imu.pose.orientation.x;
-    imu_in[5] = imu.pose.orientation.y;
+void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
+    double imu_in[7];
+    imu_in[0] = imu->linear_acceleration.x;
+    imu_in[1] = imu->linear_acceleration.y;
+    imu_in[2] = imu->linear_acceleration.z;
+    imu_in[3] = imu->angular_velocity.x;
+    imu_in[4] = imu->angular_velocity.y;
+    imu_in[5] = imu->angular_velocity.z;
+    imu_in[6] = imu->header.stamp.toNSec();
     vo_->imu_integPtr_->update(imu_in);
 }
 void VoNode::imu(){

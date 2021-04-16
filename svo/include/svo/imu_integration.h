@@ -100,7 +100,7 @@ public:
     Imu_Integration(Sophus::SE3& SE_init);
     ~Imu_Integration();
     bool reset(gtsam::Values& result);
-    bool update(float* imu= nullptr);
+    bool update(double* imu= nullptr);
     bool predict(boost::shared_ptr<svo::Frame>&,std::size_t&,const double reproj_thresh);
 private:
     std::shared_ptr<gtsam::NavState> statePtr;
@@ -112,7 +112,7 @@ private:
     boost::shared_ptr<gtsam::noiseModel::Isotropic> ProjectNoisePtr;
     std::chrono::steady_clock::time_point t_1;
     std::uint32_t imu_factor_id=0;
-    double imu_mean=0.0;
+    std::uint64_t imu_stamp=0.0;
     bool syn=false;
 };
 #endif //SVO_IMU_INTEGRATION_H
