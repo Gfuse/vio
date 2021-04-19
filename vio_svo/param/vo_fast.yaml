@@ -1,3 +1,6 @@
-grid_size: 30
-max_n_kfs: 10
-loba_num_iter: 0
+svo:
+  grid_size: 30
+  max_n_kfs: 10
+  loba_num_iter: 0
+  quality_min_fts: 20
+  quality_max_drop_fts: 50

@@ -108,14 +108,13 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
       }
 }
 void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
-    double imu_in[7];
+    double imu_in[6];
     imu_in[0] = imu->linear_acceleration.x;
     imu_in[1] = imu->linear_acceleration.y;
     imu_in[2] = imu->linear_acceleration.z;
     imu_in[3] = imu->angular_velocity.x;
     imu_in[4] = imu->angular_velocity.y;
     imu_in[5] = imu->angular_velocity.z;
-    imu_in[6] = imu->header.stamp.toNSec();
     vo_->imu_integPtr_->update(imu_in);
 }
 void VoNode::imu(){
@@ -123,7 +122,7 @@ void VoNode::imu(){
     std::cout << "create vo_node" << std::endl;
     // subscribe to cam msgs
     image_transport::ImageTransport it(nh);
-    image_transport::Subscriber it_sub = it.subscribe(vk::getParam<std::string>("vio/cam_topic", "camera/image_raw"), 5, &svo::VoNode::imgCb, this);
+    image_transport::Subscriber it_sub = it.subscribe(vk::getParam<std::string>("vio/cam_topic", "camera/image_raw"), 1, &svo::VoNode::imgCb, this);
     // start processing callbacks
     while(ros::ok() && !quit_)
     {

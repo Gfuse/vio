@@ -66,9 +66,9 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   overlap_kfs_.clear();
 
   // create new frame
-  SVO_START_TIMER("pyramid_creation");
+  //SVO_START_TIMER("pyramid_creation");
   new_frame_.reset(new Frame(cam_, img.clone(), timestamp));
-  SVO_STOP_TIMER("pyramid_creation");
+  //SVO_STOP_TIMER("pyramid_creation");
 
   // process frame
   UpdateResult res = RESULT_FAILURE;
@@ -133,23 +133,15 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_ = last_frame_->T_f_w_;
 
   // sparse image align
-  SVO_START_TIMER("sparse_img_align");
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::GaussNewton, false, false);
   size_t img_align_n_tracked = img_align.run(last_frame_, new_frame_);
-  SVO_STOP_TIMER("sparse_img_align");
-  SVO_LOG(img_align_n_tracked);
-  SVO_DEBUG_STREAM("Img Align:\t Tracked = " << img_align_n_tracked);
+  std::cout<<"Img Align:\t Tracked = "<<img_align_n_tracked<<'\n';
 
   // map reprojection & feature alignment
-  SVO_START_TIMER("reproject");
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  SVO_STOP_TIMER("reproject");
-  const size_t repr_n_new_references = reprojector_.n_matches_;
-  const size_t repr_n_mps = reprojector_.n_trials_;
-  SVO_LOG2(repr_n_mps, repr_n_new_references);
-  SVO_DEBUG_STREAM("Reprojection:\t nPoints = "<<repr_n_mps<<"\t \t nMatches = "<<repr_n_new_references);
-  if(repr_n_new_references < Config::qualityMinFts())
+  std::cout<<"Reprojection:\t nPoints = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_<<'\n';
+  if(reprojector_.n_matches_< Config::qualityMinFts())
   {
     SVO_WARN_STREAM_THROTTLE(1.0, "Not enough matched features.");
     new_frame_->T_f_w_ = last_frame_->T_f_w_; // reset to avoid crazy pose jumps
@@ -158,22 +150,12 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
 
   // pose optimization subject to change for adding IMU
-  SVO_START_TIMER("pose_optimizer");
   size_t sfba_n_edges_final;
   if(!imu_integPtr_->predict(new_frame_,sfba_n_edges_final,Config::poseOptimThresh()))
         return RESULT_FAILURE;
-  /*
-  double sfba_thresh, sfba_error_init, sfba_error_final;
-  pose_optimizer::optimizeGaussNewton(
-      Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
-      new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  SVO_STOP_TIMER("pose_optimizer");
-  SVO_LOG4(sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  SVO_DEBUG_STREAM("PoseOptimizer:\t ErrInit = "<<sfba_error_init<<"px\t thresh = "<<sfba_thresh);
-  SVO_DEBUG_STREAM("PoseOptimizer:\t ErrFin. = "<<sfba_error_final<<"px\t nObsFin. = "<<sfba_n_edges_final);
-   */
-  if(sfba_n_edges_final < 20)
-    return RESULT_FAILURE;
+  std::cout<<"reprojected point after opmization: "<<sfba_n_edges_final<<'\n';
+  //if(sfba_n_edges_final < 20)
+  //  return RESULT_FAILURE;
 
   // structure optimization
   SVO_START_TIMER("point_optimizer");
@@ -183,6 +165,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // select keyframe
   core_kfs_.insert(new_frame_);
   setTrackingQuality(sfba_n_edges_final);
+  std::cout<<"teracking quality: "<<tracking_quality_<<'\n';
   if(tracking_quality_ == TRACKING_INSUFFICIENT)
   {
     new_frame_->T_f_w_ = last_frame_->T_f_w_; // reset to avoid crazy pose jumps

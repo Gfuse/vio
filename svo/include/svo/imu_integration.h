@@ -11,13 +11,14 @@
 #include <gtsam/navigation/ImuBias.h>
 #include <gtsam/inference/Symbol.h>
 #include <gtsam/slam/ProjectionFactor.h>
+#include <gtsam/nonlinear/ISAM2.h>
 #include <sophus/se3.h>
 #include <svo/frame.h>
 
 using gtsam::symbol_shorthand::B;  // Bias  (ax,ay,az,gx,gy,gz)
 using gtsam::symbol_shorthand::V;  // Vel   (xdot,ydot,zdot)
 using gtsam::symbol_shorthand::P;  // Pose3 (x,y,z,r,p,y)
-using gtsam::symbol_shorthand::F;  // Feature
+using gtsam::symbol_shorthand::C;  // Camera pose
 
 //https://stackoverflow.com/questions/24881799/get-index-in-c11-foreach-loop
 // Wrapper class
@@ -99,7 +100,7 @@ class Imu_Integration{
 public:
     Imu_Integration(Sophus::SE3& SE_init);
     ~Imu_Integration();
-    bool reset(gtsam::Values& result);
+    bool reset(gtsam::ISAM2& optimizer,boost::shared_ptr<svo::Frame>& new_frame);
     bool update(double* imu= nullptr);
     bool predict(boost::shared_ptr<svo::Frame>&,std::size_t&,const double reproj_thresh);
 private:
@@ -112,7 +113,8 @@ private:
     boost::shared_ptr<gtsam::noiseModel::Isotropic> ProjectNoisePtr;
     std::chrono::steady_clock::time_point t_1;
     std::uint32_t imu_factor_id=0;
-    std::uint64_t imu_stamp=0.0;
+    uint imu_n=0;
+    std::shared_ptr<gtsam::ISAM2Params> optimizerParamPtr;
     bool syn=false;
 };
 #endif //SVO_IMU_INTEGRATION_H

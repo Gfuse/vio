@@ -9,28 +9,25 @@
 #include "svo/point.h"
 #include "svo/svoVisionFactor.h"
 #include <gtsam/nonlinear/Marginals.h>
+#include <gtsam/geometry/Pose3.h>
 
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
-    statePtr=std::make_shared<gtsam::NavState>(gtsam::Pose3(gtsam::Rot3(SE_init.rotation_matrix()),SE_init.translation()),
-                                               gtsam::Vector3(0.0,0.0,0.0));
-    imu_biasPtr=std::make_shared<gtsam::imuBias::ConstantBias>(gtsam::Vector3(1e-8,1e-8,1e-8),gtsam::Vector3(1e-8,1e-8,1e-8));
-    valuesPtr=std::make_shared<gtsam::Values>();
-    valuesPtr->insert(P(0),statePtr->pose());
-    valuesPtr->insert(V(0),statePtr->v());
-    valuesPtr->insert(B(0),*imu_biasPtr);
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();
-    graphPtr->addPrior(P(0),statePtr->pose(),gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 0.01, 0.01, 0.01, 0.01, 0.01, 0.01).finished()));
-    graphPtr->addPrior(V(0),statePtr->v(),gtsam::noiseModel::Isotropic::Sigma(3, 0.01));
-    graphPtr->addPrior(B(0),*imu_biasPtr,gtsam::noiseModel::Isotropic::Sigma(6, 1e-4));
+    valuesPtr=std::make_shared<gtsam::Values>();
     parameterPtr = gtsam::PreintegratedCombinedMeasurements::Params::MakeSharedD();// TODO check the IMU frame
-    parameterPtr->accelerometerCovariance=gtsam::I_3x3 * 1e-3; // acc white noise in continuous
-    parameterPtr->gyroscopeCovariance=gtsam::I_3x3 * 1e-3; // gyro white noise in continuous
-    parameterPtr->integrationCovariance=gtsam::I_3x3 * 1e-8; // integration uncertainty continuous
-    parameterPtr->biasAccCovariance = gtsam::I_3x3 * 1e-8;   // acc bias in continuous
-    parameterPtr->biasOmegaCovariance = gtsam::I_3x3 * 1e-8;  // gyro bias in continuous
-    parameterPtr->biasAccOmegaInt = gtsam::I_6x6 * 1e-5; // error in the bias used for preintegration
+    parameterPtr->accelerometerCovariance=gtsam::I_3x3 * 1e-4; // acc white noise in continuous
+    parameterPtr->gyroscopeCovariance=gtsam::I_3x3 * 1e-4; // gyro white noise in continuous
+    parameterPtr->integrationCovariance=gtsam::I_3x3 * 1e-1; // integration uncertainty continuous
+    parameterPtr->biasAccCovariance = gtsam::I_3x3 * 1e-1;   // acc bias in continuous
+    parameterPtr->biasOmegaCovariance = gtsam::I_3x3 * 1e-1;  // gyro bias in continuous
+    parameterPtr->biasAccOmegaInt = gtsam::I_6x6 * 1e-2; // error in the bias used for preintegration
+    imu_biasPtr=std::make_shared<gtsam::imuBias::ConstantBias>(gtsam::Vector3(1e-8,1e-8,1e-8),gtsam::Vector3(1e-8,1e-8,1e-8));
     preintegratedPtr = std::make_shared<gtsam::PreintegratedCombinedMeasurements>(parameterPtr,*imu_biasPtr);
-    ProjectNoisePtr = gtsam::noiseModel::Isotropic::Sigma(2, 1e-8); // TODO change the noise used for projection
+    ProjectNoisePtr = gtsam::noiseModel::Isotropic::Sigma(2, 1e-8); // the noise used for projection
+    optimizerParamPtr=std::make_shared<gtsam::ISAM2Params>();
+    optimizerParamPtr->relinearizeThreshold = 0.1;
+    optimizerParamPtr->relinearizeSkip = 1;
+    optimizerParamPtr->evaluateNonlinearError=true;
     assert(preintegratedPtr);
 }
 Imu_Integration::~Imu_Integration(){
@@ -38,48 +35,66 @@ Imu_Integration::~Imu_Integration(){
 }
 bool Imu_Integration::update(double* imu){
     if(syn)return false;
-    if(imu[6]>imu_stamp){
-        auto in=std::chrono::steady_clock::now();
-        if(std::chrono::duration<double>(in-t_1).count()>20.0){
-            t_1=in;
-            imu_stamp=imu[6];
-        }else{
-            preintegratedPtr->integrateMeasurement(Eigen::Vector3d(imu[0],imu[1],imu[2]),Eigen::Vector3d(imu[3],imu[4],imu[5]),std::chrono::duration<double>(in-t_1).count());
-            t_1=in;
-            imu_stamp=imu[6];
-        }
-        return true;
+    if(imu_factor_id<1)return false;
+    auto in=std::chrono::steady_clock::now();
+    if(std::chrono::duration<double>(in-t_1).count()>20.0){
+        t_1=in;
+        preintegratedPtr->integrateMeasurement(Eigen::Vector3d(imu[0],imu[1],imu[2]),Eigen::Vector3d(imu[3],imu[4],imu[5]),0.005);
+    }else{
+        preintegratedPtr->integrateMeasurement(Eigen::Vector3d(imu[0],imu[1],imu[2]),Eigen::Vector3d(imu[3],imu[4],imu[5]),std::chrono::duration<double>(in-t_1).count());
+        t_1=in;
+        ++imu_n;
     }
-    return false;
+    return true;
 
 }
-bool Imu_Integration::reset(gtsam::Values& result){
+bool Imu_Integration::reset(gtsam::ISAM2& optimizer,boost::shared_ptr<svo::Frame>& new_frame){
+    gtsam::Values result = optimizer.calculateEstimate();
     // Overwrite the beginning of the preintegration for the next step.
     statePtr=std::make_shared<gtsam::NavState>(result.at<gtsam::Pose3>(P(imu_factor_id)), result.at<gtsam::Vector3>(V(imu_factor_id)));
     imu_biasPtr=std::make_shared<gtsam::imuBias::ConstantBias>(result.at<gtsam::imuBias::ConstantBias>(B(imu_factor_id)));
     preintegratedPtr->resetIntegrationAndSetBias(*imu_biasPtr);
-    //graphPtr->resize(0);
-    //valuesPtr->erase(P(imu_factor_id-1));
-    //valuesPtr->erase(V(imu_factor_id-1));
-    //valuesPtr->erase(B(imu_factor_id-1));
-    //t_1=std::chrono::steady_clock::now();
+    ++imu_factor_id;
+    syn=false;
+    new_frame->T_f_w_=Sophus::SE3(statePtr->R(),statePtr->t());
+    new_frame->Cov_=optimizer.marginalCovariance(P(imu_factor_id-1));
+    graphPtr->resize(0);
+    valuesPtr->clear();
+    valuesPtr->insert(P(imu_factor_id-1),statePtr->pose());
+    valuesPtr->insert(V(imu_factor_id-1),statePtr->v());
+    valuesPtr->insert(B(imu_factor_id-1),*imu_biasPtr);
+    graphPtr->addPrior(P(imu_factor_id-1),statePtr->pose(),optimizer.marginalCovariance(P(imu_factor_id-1)));
+    graphPtr->addPrior(V(imu_factor_id-1),statePtr->v(),optimizer.marginalCovariance(V(imu_factor_id-1)));
+    graphPtr->addPrior(B(imu_factor_id-1),*imu_biasPtr,optimizer.marginalCovariance(B(imu_factor_id-1)));
     return true;
 }
 bool Imu_Integration::predict(boost::shared_ptr<svo::Frame>& new_frame,std::size_t& num_obs,const double reproj_thresh){
-    // Adding IMU factor and and pre-integration.
+    usleep(5000);
     syn=true;
-    auto preint_imu_combined =dynamic_cast<const gtsam::PreintegratedCombinedMeasurements&>(*preintegratedPtr);
-    gtsam::NavState Estimate_state = preintegratedPtr->predict(*statePtr, *imu_biasPtr);
-    std::cout<<"--------------------------------------------------------------------------PreIntegration----------------------------------------------"<<'\n';
-    //preintegratedPtr->print();
-    ++imu_factor_id;
-    valuesPtr->insert(P(imu_factor_id), Estimate_state.pose());
-    valuesPtr->insert(V(imu_factor_id), Estimate_state.v());
-    valuesPtr->insert(B(imu_factor_id), *imu_biasPtr);
-    gtsam::CombinedImuFactor imu_factor(P(imu_factor_id - 1), V(imu_factor_id - 1), P(imu_factor_id), V(imu_factor_id), B(imu_factor_id - 1), B(imu_factor_id),
-                                 preint_imu_combined);
-    graphPtr->emplace_shared<gtsam::CombinedImuFactor>(imu_factor);
-    imu_factor.print();
+    if(imu_factor_id<1){
+        statePtr=std::make_shared<gtsam::NavState>(gtsam::Pose3(new_frame->T_f_w_.matrix()),
+                                                   gtsam::Vector3(1e-12,1e-12,1e-12));
+        valuesPtr->insert(P(0),statePtr->pose());
+        valuesPtr->insert(V(0),statePtr->v());
+        valuesPtr->insert(B(0),*imu_biasPtr);
+        graphPtr->addPrior(P(0),statePtr->pose(),gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 1e-9, 1e-9, 1e-9, 1e-9, 1e-9, 1e-9).finished()));
+        graphPtr->addPrior(V(0),statePtr->v(),gtsam::noiseModel::Isotropic::Sigma(3, 1e-4));
+        graphPtr->addPrior(B(0),*imu_biasPtr,gtsam::noiseModel::Isotropic::Sigma(6, 1e-2));
+    }else{
+        if(imu_n<3)return false;
+        auto preint_imu_combined =dynamic_cast<const gtsam::PreintegratedCombinedMeasurements&>(*preintegratedPtr);
+        //gtsam::NavState Estimate_state = preintegratedPtr->predict(*statePtr, *imu_biasPtr);
+        valuesPtr->insert(P(imu_factor_id), gtsam::Pose3(new_frame->T_f_w_.matrix()));
+        //valuesPtr->insert(P(imu_factor_id), Estimate_state.pose());
+        valuesPtr->insert(V(imu_factor_id), statePtr->v());
+        //valuesPtr->insert(V(imu_factor_id), Estimate_state.v());
+        valuesPtr->insert(B(imu_factor_id), *imu_biasPtr);
+        gtsam::CombinedImuFactor imu_factor(P(imu_factor_id - 1), V(imu_factor_id - 1), P(imu_factor_id), V(imu_factor_id), B(imu_factor_id - 1), B(imu_factor_id),
+                                            preint_imu_combined);
+        graphPtr->emplace_shared<gtsam::CombinedImuFactor>(imu_factor);
+        imu_n=0;
+    }
+
     num_obs=0;
     for(auto&& f:new_frame->fts_){
        if(f->point==NULL)continue;
@@ -87,32 +102,25 @@ bool Imu_Integration::predict(boost::shared_ptr<svo::Frame>& new_frame,std::size
         ++num_obs;
     }
     // Now optimize.
-    std::cout<<"--------------------------------------------------------------------------graph----------------------------------------------"<<'\n';
-    //graphPtr->print();
-    std::cout<<"--------------------------------------------------------------------------values----------------------------------------------"<<'\n';
-    valuesPtr->print();
-    gtsam::LevenbergMarquardtParams params;
-    params.setVerbosityLM("SUMMARY");
-    gtsam::LevenbergMarquardtOptimizer optimizer(*graphPtr, *valuesPtr, params);
-    gtsam::Values result = optimizer.optimize();
-    gtsam::Marginals marginals(*graphPtr, result);
-    std::cout<<"--------------------------------------------------------------------------marginals----------------------------------------------"<<'\n';
-    //marginals.print();
-    reset(result);
-    syn=false;
-    new_frame->T_f_w_=Sophus::SE3(statePtr->R(),statePtr->t());
-    new_frame->Cov_=marginals.marginalCovariance(P(imu_factor_id));
-    std::cout<<new_frame->Cov_<<'\n';
+    gtsam::ISAM2 optimizer(*optimizerParamPtr);
+    optimizer.update(*graphPtr, *valuesPtr);
+    // Each call to iSAM2 update(*) performs one iteration of the iterative
+    // nonlinear solver. If accuracy is desired at the expense of time,
+    // update(*) can be called additional times to perform multiple optimizer
+    // iterations every step.
+    optimizer.update();
+   // optimizer.print();
+    reset(optimizer,new_frame);
+    // Remove Measurements with too large reprojection error
     double reproj_thresh_scaled = reproj_thresh / new_frame->cam_->errorMultiplier2();
     for(auto&& f:new_frame->fts_)
     {
         if(f->point == NULL)
             continue;
-        Eigen::Vector2d e = vk::project2d(f->f) - vk::project2d(new_frame->T_f_w_ * f->point->pos_);
-        double sqrt_inv_cov = 1.0 / (1<<f->level);
-        e *= sqrt_inv_cov;
+        Eigen::Vector2d e = (vk::project2d(f->f) - vk::project2d(new_frame->T_f_w_ * f->point->pos_))*1.0 / (1<<f->level);
         if(e.norm() > reproj_thresh_scaled)
         {
+            std::cout<<"Error: "<<e.norm()<<'\n';
             // we don't need to delete a reference in the point since it was not created yet
             f->point = NULL;
             --num_obs;

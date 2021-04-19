@@ -53,9 +53,8 @@ namespace svo {
             gtsam::Matrix26 J;
             gtsam::Point3 point(p*landmark);
             svo::Frame::jacobian_xyz2uv(point, J);
-            if(Hp)(*Hp) = (gtsam::Matrix(2,6)<< J / (1<<level)).finished();
-            Vector2d e = vk::project2d(feature) - vk::project2d(point);
-            e *= 1.0 / (1<<level);
+            Vector2d e = (vk::project2d(feature) - vk::project2d(point))*1.0 / (1<<level);
+            if(Hp)(*Hp) = (gtsam::Matrix(2,6)<< J * 1.0 / (1<<level)).finished();
             return e;
         }
         // The second is a 'clone' function that allows the factor to be copied. Under most
