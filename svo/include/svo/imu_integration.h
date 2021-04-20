@@ -101,6 +101,7 @@ public:
     Imu_Integration(Sophus::SE3& SE_init);
     ~Imu_Integration();
     bool reset(gtsam::ISAM2& optimizer,boost::shared_ptr<svo::Frame>& new_frame);
+    bool reset(gtsam::LevenbergMarquardtOptimizer& optimizer,boost::shared_ptr<svo::Frame>& new_frame);
     bool update(double* imu= nullptr);
     bool predict(boost::shared_ptr<svo::Frame>&,std::size_t&,const double reproj_thresh);
 private:

@@ -119,6 +119,23 @@ public:
   /// If within one frame, this amount of features are dropped. Tracking quality is bad.
   static int& qualityMaxFtsDrop() { return getInstance().quality_max_drop_fts; }
 
+  /// acc white noise in continuous.
+  static double& ACC_Noise() { return getInstance().ACC_noise; }
+
+  /// acc white noise in continuous.
+  static double& GYO_Noise() { return getInstance().GYO_noise; }
+  /// integration uncertainty continuous
+  static double& IUC() { return getInstance().iuc; }
+    // acc bias in continuous
+  static double& ABC() { return getInstance().abc; }
+    // gyro bias in continuous
+  static double& GBC() { return getInstance().gbc; }
+    // error in the bias used for preintegration
+  static double& EBP() { return getInstance().ebp; }
+    // the noise used for projection
+  static double& NRP() { return getInstance().nrp; }
+
+
 private:
   Config();
   Config(Config const&);
@@ -152,6 +169,7 @@ private:
   size_t max_fts;
   size_t quality_min_fts;
   int quality_max_drop_fts;
+  double nrp,ebp,gbc,abc,iuc,ACC_noise,GYO_noise;
 };
 
 } // namespace svo

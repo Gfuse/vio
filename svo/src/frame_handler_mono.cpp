@@ -66,9 +66,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   overlap_kfs_.clear();
 
   // create new frame
-  //SVO_START_TIMER("pyramid_creation");
   new_frame_.reset(new Frame(cam_, img.clone(), timestamp));
-  //SVO_STOP_TIMER("pyramid_creation");
 
   // process frame
   UpdateResult res = RESULT_FAILURE;
@@ -135,12 +133,10 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // sparse image align
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::GaussNewton, false, false);
-  size_t img_align_n_tracked = img_align.run(last_frame_, new_frame_);
-  std::cout<<"Img Align:\t Tracked = "<<img_align_n_tracked<<'\n';
-
+  img_align.run(last_frame_, new_frame_);
   // map reprojection & feature alignment
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  std::cout<<"Reprojection:\t nPoints = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_<<'\n';
+  std::cerr<<"Reprojection Map:\t nPoints = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_<<'\n';
   if(reprojector_.n_matches_< Config::qualityMinFts())
   {
     SVO_WARN_STREAM_THROTTLE(1.0, "Not enough matched features.");
@@ -153,9 +149,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   size_t sfba_n_edges_final;
   if(!imu_integPtr_->predict(new_frame_,sfba_n_edges_final,Config::poseOptimThresh()))
         return RESULT_FAILURE;
-  std::cout<<"reprojected point after opmization: "<<sfba_n_edges_final<<'\n';
-  //if(sfba_n_edges_final < 20)
-  //  return RESULT_FAILURE;
+  std::cerr<<"Reprojected points after opmization: "<<sfba_n_edges_final<<'\n';
+  if(sfba_n_edges_final < Config::qualityMinFts())
+    return RESULT_FAILURE;
 
   // structure optimization
   SVO_START_TIMER("point_optimizer");
@@ -165,7 +161,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // select keyframe
   core_kfs_.insert(new_frame_);
   setTrackingQuality(sfba_n_edges_final);
-  std::cout<<"teracking quality: "<<tracking_quality_<<'\n';
   if(tracking_quality_ == TRACKING_INSUFFICIENT)
   {
     new_frame_->T_f_w_ = last_frame_->T_f_w_; // reset to avoid crazy pose jumps
@@ -179,7 +174,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     return RESULT_NO_KEYFRAME;
   }
   new_frame_->setKeyframe();
-  SVO_DEBUG_STREAM("New keyframe selected.");
 
   // new keyframe selected
   for(Features::iterator it=new_frame_->fts_.begin(); it!=new_frame_->fts_.end(); ++it)
@@ -218,7 +212,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-
+  std::cerr<<"Svo pipline was finished\n";
   return RESULT_IS_KEYFRAME;
 }
 

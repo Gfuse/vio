@@ -51,7 +51,14 @@ Config::Config() :
     img_imu_delay(vk::getParam<double>("svo/img_imu_delay", 0.0)),
     max_fts(vk::getParam<int>("svo/max_fts", 120)),
     quality_min_fts(vk::getParam<int>("svo/quality_min_fts", 50)),
-    quality_max_drop_fts(vk::getParam<int>("svo/quality_max_drop_fts", 40))
+    quality_max_drop_fts(vk::getParam<int>("svo/quality_max_drop_fts", 40)),
+    ACC_noise(vk::getParam<double>("svo/ACC_noise", 1e-4)),
+    GYO_noise(vk::getParam<double>("svo/GYO_noise", 1e-4)),
+    iuc(vk::getParam<double>("svo/IUC", 1e-1)),
+    abc(vk::getParam<double>("svo/ABC", 1e-1)),
+    gbc(vk::getParam<double>("svo/GBC", 1e-1)),
+    ebp(vk::getParam<double>("svo/EBP", 1e-2)),
+    nrp(vk::getParam<double>("svo/NRP", 1e-5))
 #else
     trace_name("svo"),
     trace_dir("/tmp"),
