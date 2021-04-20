@@ -4,10 +4,10 @@ svo:
   loba_num_iter: 0         #Number of iterations in the local bundle adjustment.
   quality_min_fts: 10      #If the number of tracked features drops below this threshold. Tracking quality is bad.
   quality_max_drop_fts: 60 #If within one frame, this amount of features are dropped. Tracking quality is bad.
-  ACC_noise: 0.0001          #acc white noise in continuous
-  GYO_noise: 0.0001          #gyro white noise in continuous
+  ACC_noise: 0.00001          #acc white noise in continuous
+  GYO_noise: 0.00001          #gyro white noise in continuous
   IUC: 0.1                #integration uncertainty continuous
   ABC: 0.1                #acc bias in continuous
   GBC: 0.1                #gyro bias in continuous
-  EBP: 0.01                #error in the bias used for preintegration
+  EBP: 0.1                #error in the bias used for preintegration
   NRP: 0.0000001                #noise used for projection in preintegration
