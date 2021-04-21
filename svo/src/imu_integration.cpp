@@ -104,7 +104,7 @@ bool Imu_Integration::predict(boost::shared_ptr<svo::Frame>& new_frame,std::size
         graphPtr->addPrior(V(0),statePtr->v(),gtsam::noiseModel::Isotropic::Sigma(3, 1e-4));
         graphPtr->addPrior(B(0),*imu_biasPtr,gtsam::noiseModel::Isotropic::Sigma(6, 1e-2));
     }else{
-        if(imu_n<3)return false;
+        if(imu_n<1)return false;
         auto preint_imu_combined =dynamic_cast<const gtsam::PreintegratedCombinedMeasurements&>(*preintegratedPtr);
         valuesPtr->insert(P(imu_factor_id), gtsam::Pose3(new_frame->T_f_w_.matrix()));
         valuesPtr->insert(V(imu_factor_id), statePtr->v());

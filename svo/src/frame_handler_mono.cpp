@@ -136,10 +136,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   img_align.run(last_frame_, new_frame_);
   // map reprojection & feature alignment
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  std::cerr<<"Reprojection Map:\t nPoints = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_<<'\n';
+  std::cerr<<"Reprojection Map:\t nPoints = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_<<" \t Quality min: "<<Config::qualityMinFts()<<'\n';
   if(reprojector_.n_matches_< Config::qualityMinFts())
   {
-    SVO_WARN_STREAM_THROTTLE(1.0, "Not enough matched features.");
     new_frame_->T_f_w_ = last_frame_->T_f_w_; // reset to avoid crazy pose jumps
     tracking_quality_ = TRACKING_INSUFFICIENT;
     return RESULT_FAILURE;
@@ -148,15 +147,17 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // pose optimization subject to change for adding IMU
   size_t sfba_n_edges_final;
   if(!imu_integPtr_->predict(new_frame_,sfba_n_edges_final,Config::poseOptimThresh()))
-        return RESULT_FAILURE;
+      return RESULT_FAILURE;
+
+
   std::cerr<<"Reprojected points after opmization: "<<sfba_n_edges_final<<'\n';
   if(sfba_n_edges_final < Config::qualityMinFts())
     return RESULT_FAILURE;
 
   // structure optimization
-  SVO_START_TIMER("point_optimizer");
+  //SVO_START_TIMER("point_optimizer");
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
-  SVO_STOP_TIMER("point_optimizer");
+  //SVO_STOP_TIMER("point_optimizer");
 
   // select keyframe
   core_kfs_.insert(new_frame_);
@@ -220,16 +221,15 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::relocalizeFrame(
     const SE3& T_cur_ref,
     FramePtr ref_keyframe)
 {
-  SVO_WARN_STREAM_THROTTLE(1.0, "Relocalizing frame");
   if(ref_keyframe == nullptr)
   {
-    SVO_INFO_STREAM("No reference keyframe.");
     return RESULT_FAILURE;
   }
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::GaussNewton, false, false);
   size_t img_align_n_tracked = img_align.run(ref_keyframe, new_frame_);
-  if(img_align_n_tracked > 30)
+  usleep(2000);
+  if(img_align_n_tracked > Config::qualityMinFts())
   {
     SE3 T_f_w_last = last_frame_->T_f_w_;
     last_frame_ = ref_keyframe;
@@ -237,7 +237,6 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::relocalizeFrame(
     if(res != RESULT_FAILURE)
     {
       stage_ = STAGE_DEFAULT_FRAME;
-      SVO_INFO_STREAM("Relocalization successful.");
     }
     else
       new_frame_->T_f_w_ = T_f_w_last; // reset to last well localized pose
