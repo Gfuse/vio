@@ -3,9 +3,10 @@ SVO
 
 This code implements a semi-direct monocular visual odometry pipeline which has been integrated with GTSAM to infused IMU as well. 
 
-Video: http://youtu.be/2YnIMfw6bJY
 
-Paper: http://rpg.ifi.uzh.ch/docs/ICRA14_Forster.pdf
+Paper svo: http://rpg.ifi.uzh.ch/docs/ICRA14_Forster.pdf
+Paper Svo+GTSAM: https://arxiv.org/abs/1512.02363
+
 
 #### Disclaimer
 
