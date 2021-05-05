@@ -22,7 +22,6 @@
 #include <vikit/math_utils.h>
 #include <vikit/vision.h>
 #include <vikit/performance_monitor.h>
-#include <fast/fast.h>
 
 namespace svo {
 

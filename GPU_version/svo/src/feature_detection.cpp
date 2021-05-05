@@ -16,7 +16,6 @@
 
 #include <svo/feature_detection.h>
 #include <svo/feature.h>
-#include <fast/fast.h>
 #include <vikit/vision.h>
 
 namespace svo {
@@ -32,7 +31,16 @@ AbstractDetector::AbstractDetector(
         grid_n_cols_(ceil(static_cast<double>(img_width)/cell_size_)),
         grid_n_rows_(ceil(static_cast<double>(img_height)/cell_size_)),
         grid_occupancy_(grid_n_cols_*grid_n_rows_, false)
-{}
+{
+    gpu_fast_= new opencl();
+    cv::Mat init=cv::Mat::zeros(cv::Size(img_width, img_height),CV_8UC1);
+    gpu_fast_->write_buf(0,0,init);
+    cl_int2 corners[img_width*img_height];
+    gpu_fast_->write_buf(0,1,img_width*img_height,corners);
+    int icorner[1]={0};
+    gpu_fast_->write_buf(0,2,1,icorner);
+    gpu_fast_->write_buf(0,3,(1 << 18));
+}
 
 void AbstractDetector::resetGrid()
 {
@@ -73,35 +81,30 @@ void FastDetector::detect(
   for(int L=0; L<n_pyr_levels_; ++L)
   {
     const int scale = (1<<L);
-    vector<fast::fast_xy> fast_corners;
-#if __SSE2__
-      fast::fast_corner_detect_10_sse2(
-          (fast::fast_byte*) img_pyr[L].data, img_pyr[L].cols,
-          img_pyr[L].rows, img_pyr[L].cols, 20, fast_corners);
-#elif HAVE_FAST_NEON
-      fast::fast_corner_detect_9_neon(
-          (fast::fast_byte*) img_pyr[L].data, img_pyr[L].cols,
-          img_pyr[L].rows, img_pyr[L].cols, 20, fast_corners);
-#else
-      fast::fast_corner_detect_10(
-          (fast::fast_byte*) img_pyr[L].data, img_pyr[L].cols,
-          img_pyr[L].rows, img_pyr[L].cols, 20, fast_corners);
-#endif
-    vector<int> scores, nm_corners;
-    fast::fast_corner_score_10((fast::fast_byte*) img_pyr[L].data, img_pyr[L].cols, fast_corners, 20, scores);
-    fast::fast_nonmax_3x3(fast_corners, scores, nm_corners);
+    gpu_fast_->reload_buf(0,0,img_pyr[L].data);
+    int icorner[1]={0};
+    gpu_fast_->reload_buf(0,2,icorner);
+    gpu_fast_->run(0,img_pyr[L].cols,img_pyr[L].rows);
+    cl_int2* fast_corners;
+    gpu_fast_->read(0,1,fast_corners);
+    int count[1]={0};
+    gpu_fast_->read(0,2,count);
+    //vector<int> scores, nm_corners;
+    //fast::fast_corner_score_10((fast::fast_byte*) img_pyr[L].data, img_pyr[L].cols, fast_corners, 20, scores);
+    //fast::fast_nonmax_3x3(fast_corners, scores, nm_corners);
 
-    for(auto it=nm_corners.begin(), ite=nm_corners.end(); it!=ite; ++it)
+    for(uint i=0;i<count[0];++i)
     {
-      fast::fast_xy& xy = fast_corners.at(*it);
-      const int k = static_cast<int>((xy.y*scale)/cell_size_)*grid_n_cols_
-                  + static_cast<int>((xy.x*scale)/cell_size_);
+      if(fast_corners[i].x<0 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<0)continue;
+      const int k = static_cast<int>((fast_corners[i].y*scale)/cell_size_)*grid_n_cols_
+                  + static_cast<int>((fast_corners[i].x*scale)/cell_size_);
       if(grid_occupancy_[k])
         continue;
-      const float score = vk::shiTomasiScore(img_pyr[L], xy.x, xy.y);
+      const float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
       if(score > corners.at(k).score)
-        corners.at(k) = Corner(xy.x*scale, xy.y*scale, score, L, 0.0f);
+        corners.at(k) = Corner(fast_corners[i].x*scale, fast_corners[i].y*scale, score, L, 0.0f);
     }
+
   }
 
   // Create feature for every corner that has high enough corner score

@@ -19,6 +19,7 @@
 
 #include <svo/global.h>
 #include <svo/frame.h>
+#include <svo/cl_class.h>
 
 namespace svo {
 
@@ -49,7 +50,10 @@ public:
       const int cell_size,
       const int n_pyr_levels);
 
-  virtual ~AbstractDetector() {};
+  virtual ~AbstractDetector() {
+      gpu_fast_->clear_buf();
+      gpu_fast_->make_kernel("fast_gray");
+  };
 
   virtual void detect(
       Frame* frame,
@@ -62,6 +66,7 @@ public:
 
   /// Set grid cells of existing features as occupied
   void setExistingFeatures(const Features& fts);
+  opencl* gpu_fast_= nullptr;
 
 protected:
 
