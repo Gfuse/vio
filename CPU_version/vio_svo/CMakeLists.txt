@@ -32,7 +32,6 @@ FIND_PACKAGE(catkin REQUIRED COMPONENTS
   cv_bridge
   tf
   svo
-  svo_msgs
   vikit_common
   vikit_ros
 )
@@ -44,10 +43,22 @@ FIND_PACKAGE(Sophus REQUIRED)
 FIND_PACKAGE(Boost REQUIRED COMPONENTS thread)
 FIND_PACKAGE(GTSAM REQUIRED)
 
+# notify catkin to look at the previously found msg files
+add_message_files(
+        FILES
+        Info.msg
+)
+
+# build the header files from the msg files, and notify catkin about the dependencies
+generate_messages(
+        DEPENDENCIES
+        geometry_msgs
+        sensor_msgs
+)
 # Describe catkin Project
 catkin_package(
   DEPENDS Eigen OpenCV Sophus Boost
-  CATKIN_DEPENDS roscpp nav_msgs std_msgs visualization_msgs sensor_msgs image_transport cv_bridge tf svo svo_msgs vikit_common vikit_ros geometry_msgs
+  CATKIN_DEPENDS roscpp nav_msgs std_msgs visualization_msgs sensor_msgs image_transport cv_bridge tf svo vikit_common vikit_ros geometry_msgs
   INCLUDE_DIRS include
   LIBRARIES svo_visualizer
 )

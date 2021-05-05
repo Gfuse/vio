@@ -6,7 +6,7 @@
     Monocular Visual Odometry - ROS Nodes
   </description>
   <author>Christian Forster</author>
-  <maintainer email="forster@ifi.uzh.ch">Christian Forster</maintainer>
+  <maintainer email="majidgeravand@gfuse.it">Majid Geravand</maintainer>
   <license>GPLv3</license>
 
   <!-- Dependencies which this package needs to build itself. -->
@@ -23,7 +23,6 @@
   <build_depend>cv_bridge</build_depend>
   <build_depend>tf</build_depend>
   <build_depend>svo</build_depend>
-  <build_depend>svo_msgs</build_depend>
   <build_depend>vikit_common</build_depend>
   <build_depend>vikit_ros</build_depend>
   <build_depend>geometry_msgs</build_depend>
@@ -38,7 +37,6 @@
   <run_depend>cv_bridge</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>svo</run_depend>
-  <run_depend>svo_msgs</run_depend>
   <run_depend>vikit_common</run_depend>
   <run_depend>vikit_ros</run_depend>
   <run_depend>geometry_msgs</run_depend>

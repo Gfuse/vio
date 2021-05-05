@@ -19,7 +19,7 @@
 #include <svo/point.h>
 #include <svo/map.h>
 #include <svo/feature.h>
-#include <svo_msgs/Info.h>
+#include <vio_svo/Info.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <vikit/timer.h>
 #include <vikit/output_helper.h>
@@ -37,7 +37,7 @@ Visualizer() :
   pub_frames_ = pnh_.advertise<visualization_msgs::Marker>("keyframes", 10);
   pub_points_ = pnh_.advertise<visualization_msgs::Marker>("points", 1000);
   pub_pose_ = pnh_.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose",10);
-  pub_info_ = pnh_.advertise<svo_msgs::Info>("info", 10);
+  pub_info_ = pnh_.advertise<vio_svo::Info>("info", 10);
 }
 
 void Visualizer::publishMinimal(
@@ -55,7 +55,7 @@ void Visualizer::publishMinimal(
   // publish info msg.
   if(pub_info_.getNumSubscribers() > 0)
   {
-    svo_msgs::Info msg_info;
+      vio_svo::Info msg_info;
     msg_info.header = header_msg;
     msg_info.processing_time = slam.lastProcessingTime();
     msg_info.keyframes.reserve(slam.map().keyframes_.size());

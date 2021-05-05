@@ -8,14 +8,12 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
 )
 
-# search for all msg files
-FILE(GLOB messages_to_build RELATIVE "msg"
-    "${CMAKE_CURRENT_SOURCE_DIR}/msg/*.msg")
+
 
 # notify catkin to look at the previously found msg files
 add_message_files(
   FILES
-  ${messages_to_build}
+  Info.msg
 )
 
 # build the header files from the msg files, and notify catkin about the dependencies
