@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <svo/config.h>
-#include <svo/frame_handler_mono.h>
-#include <svo/map.h>
-#include <svo/frame.h>
-#include <svo/feature.h>
-#include <svo/point.h>
-#include <svo/pose_optimizer.h>
-#include <svo/sparse_img_align.h>
+#include <gpu_svo/config.h>
+#include <gpu_svo/frame_handler_mono.h>
+#include <gpu_svo/map.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/pose_optimizer.h>
+#include <gpu_svo/sparse_img_align.h>
 #include <vikit/performance_monitor.h>
-#include <svo/depth_filter.h>
+#include <gpu_svo/depth_filter.h>
 #ifdef USE_BUNDLE_ADJUSTMENT
-#include <svo/bundle_adjustment.h>
+#include <gpu_svo/bundle_adjustment.h>
 #endif
 
 namespace svo {
@@ -36,6 +36,16 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Sophus::SE3& SE_init)
   reprojector_(cam_, map_),
   depth_filter_(NULL)
 {
+    gpu_fast_= new opencl();
+    gpu_fast_->make_kernel("fast_gray");
+    cv::Mat img=cv::Mat(cv::Size(1000, 1000),CV_8UC1);
+    gpu_fast_->write_buf(0,0,img);
+    cl_int2 corners_[1000000];
+    gpu_fast_->write_buf(0,1,1000000,corners_);
+    int icorner[1]={0};
+    gpu_fast_->write_buf(0,2,1,icorner);
+    gpu_fast_->write_buf(0,3,(1 << 18));
+    klt_homography_init_=new initialization::KltHomographyInit(gpu_fast_);
   initialize();
   imu_integPtr_=std::make_unique<Imu_Integration>(SE_init);
 }
@@ -44,7 +54,7 @@ void FrameHandlerMono::initialize()
 {
   feature_detection::DetectorPtr feature_detector(
       new feature_detection::FastDetector(
-          cam_->width(), cam_->height(), Config::gridSize(), Config::nPyrLevels()));
+          cam_->width(), cam_->height(), Config::gridSize(),gpu_fast_, Config::nPyrLevels()));
   DepthFilter::callback_t depth_filter_cb = boost::bind(
       &MapPointCandidates::newCandidatePoint, &map_.point_candidates_, _1, _2);
   depth_filter_ = new DepthFilter(feature_detector, depth_filter_cb);
@@ -90,7 +100,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
   new_frame_->T_f_w_ = SE3(Matrix3d::Identity(), Vector3d::Zero());
-  if(klt_homography_init_.addFirstFrame(new_frame_) == initialization::FAILURE)
+  if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
   new_frame_->setKeyframe();
   map_.addKeyframe(new_frame_);
@@ -101,7 +111,7 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 
 FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 {
-  initialization::InitResult res = klt_homography_init_.addSecondFrame(new_frame_);
+  initialization::InitResult res = klt_homography_init_->addSecondFrame(new_frame_);
   if(res == initialization::FAILURE)
     return RESULT_FAILURE;
   else if(res == initialization::NO_KEYFRAME)
@@ -120,7 +130,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
-  klt_homography_init_.reset();
+  klt_homography_init_->reset();
   SVO_INFO_STREAM("Init: Selected second frame, triangulated initial map.");
   return RESULT_IS_KEYFRAME;
 }

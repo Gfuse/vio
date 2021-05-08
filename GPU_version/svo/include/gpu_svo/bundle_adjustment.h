@@ -17,7 +17,7 @@
 #ifndef SVO_BUNDLE_ADJUSTMENT_H_
 #define SVO_BUNDLE_ADJUSTMENT_H_
 
-#include <svo/global.h>
+#include <gpu_svo/global.h>
 
 namespace g2o {
 class EdgeProjectXYZ2UV;

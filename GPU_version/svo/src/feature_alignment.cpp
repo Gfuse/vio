@@ -20,7 +20,7 @@
 #ifdef __ARM_NEON__
 #include <arm_neon.h>
 #endif
-#include <svo/feature_alignment.h>
+#include <gpu_svo/feature_alignment.h>
 
 namespace svo {
 namespace feature_alignment {

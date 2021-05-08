@@ -67,13 +67,15 @@ public:
     };
     int32_t reload(size_t id,cv::Mat& buf,cl::Context* context){
         try{
-            for(auto i:_images)if(i.second==id)
+            for(auto i:_images)if(i.second==id){
                     i.first=cl::Image2D(*context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
                                         cl::ImageFormat(CL_R, CL_UNSIGNED_INT8),
                                         buf.size().width,
                                         buf.size().height,
                                         0,
                                         reinterpret_cast<uchar*>(buf.data));
+            }
+
             return CL_SUCCESS;
         }catch (std::exception& err){
             std::cerr<<"Reload buffer on GPU failed\n"<<err.what()<<'\n';
@@ -127,7 +129,7 @@ public:
             _kernels.at(id1).write(id2,buf,context);
             return CL_SUCCESS;
         }catch (std::exception& err){
-            std::cerr<<"Write buffer on GPU failed\n"<<err.what()<<'\n';
+            std::cerr<<"Write image on GPU failed\n"<<err.what()<<'\n';
             return CL_MAP_FAILURE;
         }
     }

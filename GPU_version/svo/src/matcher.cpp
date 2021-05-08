@@ -19,12 +19,12 @@
 #include <vikit/vision.h>
 #include <vikit/math_utils.h>
 #include <vikit/patch_score.h>
-#include <svo/matcher.h>
-#include <svo/frame.h>
-#include <svo/feature.h>
-#include <svo/point.h>
-#include <svo/config.h>
-#include <svo/feature_alignment.h>
+#include <gpu_svo/matcher.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/config.h>
+#include <gpu_svo/feature_alignment.h>
 
 namespace svo {
 

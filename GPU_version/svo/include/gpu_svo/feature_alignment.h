@@ -17,7 +17,7 @@
 #ifndef SVO_FEATURE_ALIGNMENT_H_
 #define SVO_FEATURE_ALIGNMENT_H_
 
-#include <svo/global.h>
+#include <gpu_svo/global.h>
 
 namespace svo {
 

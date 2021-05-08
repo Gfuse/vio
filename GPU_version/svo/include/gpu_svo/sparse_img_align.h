@@ -19,7 +19,7 @@
 
 #include <vikit/nlls_solver.h>
 #include <vikit/performance_monitor.h>
-#include <svo/global.h>
+#include <gpu_svo/global.h>
 
 namespace vk {
 class AbstractCamera;

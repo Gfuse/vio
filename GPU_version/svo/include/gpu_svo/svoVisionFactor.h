@@ -12,7 +12,7 @@
 #include <gtsam/geometry/Pose3.h>
 #include <vikit/robust_cost.h>
 #include <vikit/math_utils.h>
-#include <svo/frame.h>
+#include <gpu_svo/frame.h>
 
 namespace svo {
 

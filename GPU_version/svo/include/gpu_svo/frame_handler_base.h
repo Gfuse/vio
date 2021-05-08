@@ -23,8 +23,8 @@
 #include <boost/noncopyable.hpp>
 #include <boost/function.hpp>
 #include <boost/thread.hpp>
-#include <svo/global.h>
-#include <svo/map.h>
+#include <gpu_svo/global.h>
+#include <gpu_svo/map.h>
 
 namespace vk
 {

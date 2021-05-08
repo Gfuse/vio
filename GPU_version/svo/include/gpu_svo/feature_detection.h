@@ -17,9 +17,9 @@
 #ifndef SVO_FEATURE_DETECTION_H_
 #define SVO_FEATURE_DETECTION_H_
 
-#include <svo/global.h>
-#include <svo/frame.h>
-#include <svo/cl_class.h>
+#include <gpu_svo/global.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/cl_class.h>
 
 namespace svo {
 
@@ -51,8 +51,6 @@ public:
       const int n_pyr_levels);
 
   virtual ~AbstractDetector() {
-      gpu_fast_->clear_buf();
-      gpu_fast_->make_kernel("fast_gray");
   };
 
   virtual void detect(
@@ -66,7 +64,6 @@ public:
 
   /// Set grid cells of existing features as occupied
   void setExistingFeatures(const Features& fts);
-  opencl* gpu_fast_= nullptr;
 
 protected:
 
@@ -95,6 +92,7 @@ public:
       const int img_width,
       const int img_height,
       const int cell_size,
+      opencl* gpu_fast_,
       const int n_pyr_levels);
 
   virtual ~FastDetector() {}
@@ -104,6 +102,7 @@ public:
       const ImgPyr& img_pyr,
       const double detection_threshold,
       Features& fts);
+  opencl* gpu_fast_;
 };
 
 } // namespace feature_detection

@@ -19,12 +19,12 @@
 #include <Eigen/StdVector>
 #include <boost/bind.hpp>
 #include <fstream>
-#include <svo/frame_handler_base.h>
-#include <svo/config.h>
-#include <svo/feature.h>
-#include <svo/matcher.h>
-#include <svo/map.h>
-#include <svo/point.h>
+#include <gpu_svo/frame_handler_base.h>
+#include <gpu_svo/config.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/matcher.h>
+#include <gpu_svo/map.h>
+#include <gpu_svo/point.h>
 
 namespace svo
 {

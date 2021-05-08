@@ -17,8 +17,8 @@
 #ifndef SVO_REPROJECTION_H_
 #define SVO_REPROJECTION_H_
 
-#include <svo/global.h>
-#include <svo/matcher.h>
+#include <gpu_svo/global.h>
+#include <gpu_svo/matcher.h>
 
 namespace vk {
 class AbstractCamera;

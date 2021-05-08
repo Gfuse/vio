@@ -1,7 +1,7 @@
 //
 // Created by root on 4/27/21.
 //
-#include "svo/cl_class.h"
+#include "gpu_svo/cl_class.h"
 opencl::opencl() {
     std::vector<cl::Platform> all_platforms;
     cl::Platform::get(&all_platforms);
@@ -12,7 +12,7 @@ opencl::opencl() {
     //get default device of the default platform
     std::vector<cl::Device> all_devices;
     for(auto i:all_platforms){
-        std::cout << "Find platform: " << i.getInfo<CL_PLATFORM_NAME>() << "\n";
+        std::cout << "Find platform number:"<< i.getInfo<CL_PLATFORM_NAME>() << "\n";
         i.getDevices(CL_DEVICE_TYPE_GPU, &all_devices);
     }
 
@@ -30,7 +30,7 @@ opencl::opencl() {
 
     context=new cl::Context({ device });
     cl::Program::Sources sources;
-    read_cl fast("../kernel/fast-gray.cl");
+    read_cl fast(std::string(KERNEL_DIR)+"/fast-gray.cl");
     sources.push_back({ fast.src_str, fast.size });
     program=new cl::Program(*context, sources);
     if(program->build({ device },"-DFAST_THRESH=40") !=0)

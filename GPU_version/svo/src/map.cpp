@@ -15,10 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <set>
-#include <svo/map.h>
-#include <svo/point.h>
-#include <svo/frame.h>
-#include <svo/feature.h>
+#include <gpu_svo/map.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/feature.h>
 #include <boost/bind.hpp>
 
 namespace svo {

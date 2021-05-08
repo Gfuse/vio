@@ -2,16 +2,16 @@
 // Created by gfuse on 4/9/21.
 //
 //#define NDEBUG
-#include "svo/imu_integration.h"
+#include "gpu_svo/imu_integration.h"
 #include <memory>
 #include <utility>
-#include "svo/feature.h"
-#include "svo/point.h"
-#include "svo/svoVisionFactor.h"
+#include "gpu_svo/feature.h"
+#include "gpu_svo/point.h"
+#include "gpu_svo/svoVisionFactor.h"
 #include <gtsam/nonlinear/Marginals.h>
 #include <gtsam/geometry/Pose3.h>
 #include <vikit/params_helper.h>
-#include <svo/config.h>
+#include <gpu_svo/config.h>
 
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();

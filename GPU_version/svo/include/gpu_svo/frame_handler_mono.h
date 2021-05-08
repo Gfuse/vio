@@ -19,10 +19,11 @@
 
 #include <set>
 #include <vikit/abstract_camera.h>
-#include <svo/frame_handler_base.h>
-#include <svo/reprojector.h>
-#include <svo/initialization.h>
-#include <svo/imu_integration.h>
+#include <gpu_svo/frame_handler_base.h>
+#include <gpu_svo/reprojector.h>
+#include <gpu_svo/initialization.h>
+#include <gpu_svo/imu_integration.h>
+#include <gpu_svo/cl_class.h>
 
 namespace svo {
 
@@ -48,8 +49,8 @@ public:
   const set<FramePtr>& coreKeyframes() { return core_kfs_; }
 
   /// Return the feature track to visualize the KLT tracking during initialization.
-  const vector<cv::Point2f>& initFeatureTrackRefPx() const { return klt_homography_init_.px_ref_; }
-  const vector<cv::Point2f>& initFeatureTrackCurPx() const { return klt_homography_init_.px_cur_; }
+  const vector<cv::Point2f>& initFeatureTrackRefPx() const { return klt_homography_init_->px_ref_; }
+  const vector<cv::Point2f>& initFeatureTrackCurPx() const { return klt_homography_init_->px_cur_; }
 
   /// Access the depth filter.
   DepthFilter* depthFilter() const { return depth_filter_; }
@@ -69,9 +70,9 @@ protected:
   FramePtr last_frame_;                         //!< Last frame, not necessarily a keyframe.
   set<FramePtr> core_kfs_;                      //!< Keyframes in the closer neighbourhood.
   vector< pair<FramePtr,size_t> > overlap_kfs_; //!< All keyframes with overlapping field of view. the paired number specifies how many common mappoints are observed TODO: why vector!?
-  initialization::KltHomographyInit klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
+  initialization::KltHomographyInit* klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
-
+  opencl* gpu_fast_;
 
   /// Initialize the visual odometry algorithm.
   virtual void initialize();

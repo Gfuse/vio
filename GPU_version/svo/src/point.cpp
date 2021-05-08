@@ -16,9 +16,9 @@
 
 #include <stdexcept>
 #include <vikit/math_utils.h>
-#include <svo/point.h>
-#include <svo/frame.h>
-#include <svo/feature.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/feature.h>
  
 namespace svo {
 

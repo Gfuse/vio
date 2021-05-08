@@ -26,12 +26,12 @@
 #include <g2o/solvers/dense/linear_solver_dense.h>
 #include <g2o/types/sba/types_six_dof_expmap.h>
 #include <g2o/solvers/structure_only/structure_only_solver.h>
-#include <svo/bundle_adjustment.h>
-#include <svo/frame.h>
-#include <svo/feature.h>
-#include <svo/point.h>
-#include <svo/config.h>
-#include <svo/map.h>
+#include <gpu_svo/bundle_adjustment.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/config.h>
+#include <gpu_svo/map.h>
 
 #define SCHUR_TRICK 1
 

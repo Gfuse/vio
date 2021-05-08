@@ -17,7 +17,7 @@
 #ifndef SVO_FEATURE_H_
 #define SVO_FEATURE_H_
 
-#include <svo/frame.h>
+#include <gpu_svo/frame.h>
 
 namespace svo {
 

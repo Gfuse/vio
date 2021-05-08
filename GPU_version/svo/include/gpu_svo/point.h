@@ -18,7 +18,7 @@
 #define SVO_POINT_H_
 
 #include <boost/noncopyable.hpp>
-#include <svo/global.h>
+#include <gpu_svo/global.h>
 
 namespace g2o {
   class VertexSBAPointXYZ;

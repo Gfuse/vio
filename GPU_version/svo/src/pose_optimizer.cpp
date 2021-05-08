@@ -15,10 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdexcept>
-#include <svo/pose_optimizer.h>
-#include <svo/frame.h>
-#include <svo/feature.h>
-#include <svo/point.h>
+#include <gpu_svo/pose_optimizer.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/point.h>
 #include <vikit/robust_cost.h>
 #include <vikit/math_utils.h>
 

@@ -20,14 +20,14 @@
 #include <vikit/vision.h>
 #include <boost/bind.hpp>
 #include <boost/math/distributions/normal.hpp>
-#include <svo/global.h>
-#include <svo/depth_filter.h>
-#include <svo/frame.h>
-#include <svo/point.h>
-#include <svo/feature.h>
-#include <svo/matcher.h>
-#include <svo/config.h>
-#include <svo/feature_detection.h>
+#include <gpu_svo/global.h>
+#include <gpu_svo/depth_filter.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/matcher.h>
+#include <gpu_svo/config.h>
+#include <gpu_svo/feature_detection.h>
 
 namespace svo {
 

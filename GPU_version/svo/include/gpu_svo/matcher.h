@@ -17,7 +17,7 @@
 #ifndef SVO_MATCHER_H_
 #define SVO_MATCHER_H_
 
-#include <svo/global.h>
+#include <gpu_svo/global.h>
 
 namespace vk {
   class AbstractCamera;

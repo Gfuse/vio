@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <svo/config.h>
-#include <svo/frame.h>
-#include <svo/point.h>
-#include <svo/feature.h>
-#include <svo/initialization.h>
-#include <svo/feature_detection.h>
+#include <gpu_svo/config.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/initialization.h>
+#include <gpu_svo/feature_detection.h>
 #include <vikit/math_utils.h>
 #include <vikit/homography.h>
 
@@ -29,7 +29,7 @@ namespace initialization {
 InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 {
   reset();
-  detectFeatures(frame_ref, px_ref_, f_ref_);
+  detectFeatures(frame_ref, px_ref_, f_ref_,gpu_fast_);
   if(px_ref_.size() < 100)
   {
     SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 100 features. Retry in more textured environment.");
@@ -107,11 +107,12 @@ void KltHomographyInit::reset()
 void detectFeatures(
     FramePtr frame,
     vector<cv::Point2f>& px_vec,
-    vector<Vector3d>& f_vec)
+    vector<Vector3d>& f_vec,
+    opencl* gpu_fast)
 {
   Features new_features;
   feature_detection::FastDetector detector(
-      frame->img().cols, frame->img().rows, Config::gridSize(), Config::nPyrLevels());
+      frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
   detector.detect(frame.get(), frame->img_pyr_, Config::triangMinCornerScore(), new_features);
 
   // now for all maximum corners, initialize a new seed

@@ -16,12 +16,12 @@
 
 #include <algorithm>
 #include <stdexcept>
-#include <svo/reprojector.h>
-#include <svo/frame.h>
-#include <svo/point.h>
-#include <svo/feature.h>
-#include <svo/map.h>
-#include <svo/config.h>
+#include <gpu_svo/reprojector.h>
+#include <gpu_svo/frame.h>
+#include <gpu_svo/point.h>
+#include <gpu_svo/feature.h>
+#include <gpu_svo/map.h>
+#include <gpu_svo/config.h>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
 #include <vikit/abstract_camera.h>

@@ -17,7 +17,7 @@
 #ifdef SVO_USE_ROS
 #include <vikit/params_helper.h>
 #endif
-#include <svo/config.h>
+#include <gpu_svo/config.h>
 
 namespace svo {
 

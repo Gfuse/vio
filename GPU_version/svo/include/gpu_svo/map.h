@@ -20,7 +20,7 @@
 #include <queue>
 #include <boost/noncopyable.hpp>
 #include <boost/thread.hpp>
-#include <svo/global.h>
+#include <gpu_svo/global.h>
 
 namespace svo {
 

@@ -17,7 +17,8 @@
 #ifndef SVO_INITIALIZATION_H
 #define SVO_INITIALIZATION_H
 
-#include <svo/global.h>
+#include <gpu_svo/global.h>
+#include <gpu_svo/cl_class.h>
 
 namespace svo {
 
@@ -35,7 +36,7 @@ public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
   FramePtr frame_ref_;
-  KltHomographyInit() {};
+  KltHomographyInit(opencl* gpu_fast_):gpu_fast_(gpu_fast_) {};
   ~KltHomographyInit() {};
   InitResult addFirstFrame(FramePtr frame_ref);
   InitResult addSecondFrame(FramePtr frame_ref);
@@ -50,13 +51,15 @@ protected:
   vector<int> inliers_;             //!< inliers after the geometric check (e.g., Homography).
   vector<Vector3d> xyz_in_cur_;     //!< 3D points computed during the geometric check.
   SE3 T_cur_from_ref_;              //!< computed transformation between the first two frames.
+  opencl* gpu_fast_;
 };
 
 /// Detect Fast corners in the image.
 void detectFeatures(
     FramePtr frame,
     vector<cv::Point2f>& px_vec,
-    vector<Vector3d>& f_vec);
+    vector<Vector3d>& f_vec,
+    opencl* gpu_fast);
 
 /// Compute optical flow (Lucas Kanade) for selected keypoints.
 void trackKlt(
