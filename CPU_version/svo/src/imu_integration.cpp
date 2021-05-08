@@ -16,7 +16,9 @@
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();
     valuesPtr=std::make_shared<gtsam::Values>();
-    parameterPtr = gtsam::PreintegratedCombinedMeasurements::Params::MakeSharedD();// TODO check the IMU frame
+    gtsam::Vector4 g=SE_init.matrix()*gtsam::Vector4(0, 0, 9.8,1.0);
+    parameterPtr = boost::shared_ptr<gtsam::PreintegrationCombinedParams>(new gtsam::PreintegrationCombinedParams(gtsam::Vector3(g.x(),g.y(),g.z())));
+    parameterPtr->setBodyPSensor(gtsam::Pose3(SE_init.matrix()));// The pose of the sensor in the body frame
     parameterPtr->accelerometerCovariance=gtsam::I_3x3 * svo::Config::ACC_Noise(); // acc white noise in continuous
     parameterPtr->gyroscopeCovariance=gtsam::I_3x3 * svo::Config::GYO_Noise();// gyro white noise in continuous
     parameterPtr->integrationCovariance=gtsam::I_3x3 * svo::Config::IUC(); // integration uncertainty continuous

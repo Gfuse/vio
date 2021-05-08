@@ -16,7 +16,12 @@
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();
     valuesPtr=std::make_shared<gtsam::Values>();
-    parameterPtr = gtsam::PreintegratedCombinedMeasurements::Params::MakeSharedD();// TODO check the IMU frame
+    // Example: pitch and roll of aircraft in an ENU Cartesian frame.
+    // If pitch and roll are zero for an aerospace frame,
+    // that means Z is pointing down, i.e., direction of Z = (0,0,-1)
+    gtsam::Vector4 g=SE_init.matrix()*gtsam::Vector4(0, 0, 9.8,1.0);
+    parameterPtr = boost::shared_ptr<gtsam::PreintegrationCombinedParams>(new gtsam::PreintegrationCombinedParams(gtsam::Vector3(g.x(),g.y(),g.z())));
+    parameterPtr->setBodyPSensor(gtsam::Pose3(SE_init.matrix()));// The pose of the sensor in the body frame
     parameterPtr->accelerometerCovariance=gtsam::I_3x3 * svo::Config::ACC_Noise(); // acc white noise in continuous
     parameterPtr->gyroscopeCovariance=gtsam::I_3x3 * svo::Config::GYO_Noise();// gyro white noise in continuous
     parameterPtr->integrationCovariance=gtsam::I_3x3 * svo::Config::IUC(); // integration uncertainty continuous
@@ -122,14 +127,6 @@ bool Imu_Integration::predict(boost::shared_ptr<svo::Frame>& new_frame,std::size
         ++num_obs;
     }
     // Now optimize.
-    //gtsam::ISAM2 optimizer(*optimizerParamPtr);
-    //optimizer.update(*graphPtr, *valuesPtr);
-    // Each call to iSAM2 update(*) performs one iteration of the iterative
-    // nonlinear solver. If accuracy is desired at the expense of time,
-    // update(*) can be called additional times to perform multiple optimizer
-    // iterations every step.
-    //optimizer.update();
-   // optimizer.print();
     gtsam::LevenbergMarquardtOptimizer optimizer(*graphPtr, *valuesPtr);
 
     reset(optimizer,new_frame);
