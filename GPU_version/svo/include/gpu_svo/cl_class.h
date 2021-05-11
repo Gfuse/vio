@@ -4,7 +4,7 @@
 
 #ifndef VIO_OPENCL_CL_CLASS_H
 #define VIO_OPENCL_CL_CLASS_H
-#include <CL/cl.hpp>
+#include <gpu_svo/cl.hpp>
 #include <iostream>
 #include <vector>
 #include <algorithm>

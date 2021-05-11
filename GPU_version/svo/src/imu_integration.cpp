@@ -111,6 +111,8 @@ bool Imu_Integration::predict(boost::shared_ptr<svo::Frame>& new_frame,std::size
     }else{
         if(imu_n<1)return false;
         auto preint_imu_combined =dynamic_cast<const gtsam::PreintegratedCombinedMeasurements&>(*preintegratedPtr);
+        //preint_imu_combined.predict(*statePtr,*imu_biasPtr).print();
+        //std::cerr<<new_frame->T_f_w_.matrix();
         valuesPtr->insert(P(imu_factor_id), gtsam::Pose3(new_frame->T_f_w_.matrix()));
         valuesPtr->insert(V(imu_factor_id), statePtr->v());
         valuesPtr->insert(B(imu_factor_id), *imu_biasPtr);

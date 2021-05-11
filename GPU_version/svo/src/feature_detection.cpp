@@ -80,7 +80,7 @@ void FastDetector::detect(
     int icorner[1]={0};
     gpu_fast_->reload_buf(0,2,icorner);
     gpu_fast_->run(0,img_pyr[L].cols,img_pyr[L].rows);
-    cl_int2 fast_corners[1000000];
+    cl_int2 fast_corners[350000];
     gpu_fast_->read(0,1,fast_corners);
     int count[1]={0};
     gpu_fast_->read(0,2,count);
@@ -97,18 +97,15 @@ void FastDetector::detect(
 
       const float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
 
-      if(score > corners.at(k).score)
-        corners.at(k) = Corner(fast_corners[i].x*scale, fast_corners[i].y*scale, score, L, 0.0f);
+      if(score > corners.at(k).score){
+          corners.at(k) = Corner(fast_corners[i].x*scale, fast_corners[i].y*scale, score, L, 0.0f);
+          // Create feature for every corner that has high enough corner score
+          if(corners.at(k).score > detection_threshold)
+              fts.push_back(new Feature(frame, Vector2d(corners.at(k).x, corners.at(k).y), corners.at(k).level));
+      }
     }
 
   }
-
-  // Create feature for every corner that has high enough corner score
-  std::for_each(corners.begin(), corners.end(), [&](Corner& c) {
-    if(c.score > detection_threshold)
-      fts.push_back(new Feature(frame, Vector2d(c.x, c.y), c.level));
-  });
-
   resetGrid();
 }
 

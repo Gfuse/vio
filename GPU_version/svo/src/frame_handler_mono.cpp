@@ -38,10 +38,10 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Sophus::SE3& SE_init)
 {
     gpu_fast_= new opencl();
     gpu_fast_->make_kernel("fast_gray");
-    cv::Mat img=cv::Mat(cv::Size(1000, 1000),CV_8UC1);
+    cv::Mat img=cv::Mat(cv::Size(700, 500),CV_8UC1);
     gpu_fast_->write_buf(0,0,img);
-    cl_int2 corners_[1000000];
-    gpu_fast_->write_buf(0,1,1000000,corners_);
+    cl_int2 corners_[350000];
+    gpu_fast_->write_buf(0,1,350000,corners_);
     int icorner[1]={0};
     gpu_fast_->write_buf(0,2,1,icorner);
     gpu_fast_->write_buf(0,3,(1 << 18));

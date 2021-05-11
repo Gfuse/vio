@@ -1,6 +1,9 @@
 // Copyright (C) 2021  Majid Geravand
 // Copyright (C) 2021  Gfuse
 
+// Enable OpenCL 32-bit integer atomic functions.
+#pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
+
 __kernel void fast_gray(
     __read_only  image2d_t   image,
     __global     int2      * corners,

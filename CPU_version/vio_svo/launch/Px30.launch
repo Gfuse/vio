@@ -10,7 +10,7 @@
     <rosparam file="$(find vio_svo)/param/px30.yaml" />
 
     <!-- Initial camera orientation, make it point downwards -->
-    <param name="init_rx" value="3.14" />
+    <param name="init_rx" value="-2.35619" />
     <param name="init_ry" value="0.00" />
     <param name="init_rz" value="0.00" />
 

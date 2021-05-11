@@ -122,17 +122,17 @@ public:
   /// acc white noise in continuous.
   static double& ACC_Noise() { return getInstance().ACC_noise; }
 
-  /// acc white noise in continuous.
+  /// Gro white noise in continuous.
   static double& GYO_Noise() { return getInstance().GYO_noise; }
   /// integration uncertainty continuous
   static double& IUC() { return getInstance().iuc; }
-    // acc bias in continuous
+    /// acc bias in continuous
   static double& ABC() { return getInstance().abc; }
-    // gyro bias in continuous
+    /// gyro bias in continuous
   static double& GBC() { return getInstance().gbc; }
-    // error in the bias used for preintegration
+    /// error in the bias used for preintegration
   static double& EBP() { return getInstance().ebp; }
-    // the noise used for projection
+    /// the noise used for projection
   static double& NRP() { return getInstance().nrp; }
 
 
