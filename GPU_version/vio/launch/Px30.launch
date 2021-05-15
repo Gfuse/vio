@@ -10,9 +10,9 @@
     <rosparam file="$(find vio_gpu)/param/px30.yaml" />
 
     <!-- Initial camera orientation, make it point downwards -->
-    <param name="init_rx" value="-2.35619" /> <!-- 90 + tetha -->
-    <param name="init_ry" value="0.0" />
-    <param name="init_rz" value="0.0" />
+    <param name="init_rx" value="0.0" />
+    <param name="init_ry" value="-0.785398" /> <!--  -tetha (-35) -->
+    <param name="init_rz" value="3.14" /> <!-- 180  -->
 
   </node>
 
