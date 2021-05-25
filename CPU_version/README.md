@@ -55,7 +55,7 @@ CPU_version/vio_svo/launch/Px30.launch
 
     <!-- IMU 2 Camera Frame -->
     <param name="init_rx" value="1.88496" /><!--  90 + 18 -->
-    <param name="init_ry" value="0.0" /> <!--  90 -->
+    <param name="init_ry" value="0.0" /> <!--  0 -->
     <param name="init_rz" value="0.0" /> <!-- 0  -->
     
 You can also edit the algorithm parameters in the follwoing file, please look at the config file to underestand the meaning of the parameters (CPU_version/svo/include/svo/config.h)
