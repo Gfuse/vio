@@ -51,6 +51,8 @@ I try to follow the ROS C++ style guide http://wiki.ros.org/CppStyleGuide
 ## Setting
 
 You can edit the camera position in the launch file as (The IMU frame will rotate to align with camera frame based on the follwoing Eular angles):
+CPU_version/vio_svo/launch/Px30.launch
+
     <!-- Initial camera orientation, make it point downwards -->
     <param name="init_rx" value="-2.35619" />
     <param name="init_ry" value="0.00" />
