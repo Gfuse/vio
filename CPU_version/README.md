@@ -37,6 +37,10 @@ The GTSAM documentation  https://gtsam.org/tutorials/
 
 #### Instructions
 
+First install gtsam library => https://github.com/borglab/gtsam
+
+Then follow thw SVO instalation
+
 See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki and https://gtsam.org/get_started/
 
 #### Contributing
