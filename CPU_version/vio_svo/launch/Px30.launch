@@ -9,10 +9,10 @@
     <!-- Camera calibration file -->
     <rosparam file="$(find vio_svo)/param/px30.yaml" />
 
-    <!-- Initial camera orientation, make it point downwards -->
-    <param name="init_rx" value="-2.35619" />
-    <param name="init_ry" value="0.00" />
-    <param name="init_rz" value="0.00" />
+    <!-- IMU 2 Camera Frame -->
+    <param name="init_rx" value="1.88496" /><!--  90 + 18 -->
+    <param name="init_ry" value="0.0" /> <!--  90 -->
+    <param name="init_rz" value="0.0" /> <!-- 0  -->
 
   </node>
 
