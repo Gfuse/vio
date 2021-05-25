@@ -39,7 +39,7 @@ The GTSAM documentation  https://gtsam.org/tutorials/
 
 First install gtsam library => https://github.com/borglab/gtsam
 
-Then follow thw SVO instalation
+Then follow the SVO instalation
 
 See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki and https://gtsam.org/get_started/
 
@@ -47,3 +47,16 @@ See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki and 
 
 You are very welcome to contribute to SVO by opening a pull request via Github.
 I try to follow the ROS C++ style guide http://wiki.ros.org/CppStyleGuide
+
+## Setting
+
+You can edit the camera position in the launch file as (The IMU frame will rotate to align with camera frame based on the follwoing Eular angles):
+    <!-- Initial camera orientation, make it point downwards -->
+    <param name="init_rx" value="-2.35619" />
+    <param name="init_ry" value="0.00" />
+    <param name="init_rz" value="0.00" />
+    
+You can also edit the algorithm parameters in the follwoing file, please look at the config file to underestand the meaning of the parameters (CPU_version/svo/include/svo/config.h)
+
+CPU_version/vio_svo/param/vo_fast.yaml
+    
