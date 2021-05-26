@@ -14,15 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifdef SVO_USE_ROS
-#include <vikit/params_helper.h>
-#endif
+#include <gpu_svo/params_helper.h>
 #include <gpu_svo/config.h>
 
 namespace svo {
 
 Config::Config() :
-#ifdef SVO_USE_ROS
     trace_name(vk::getParam<string>("svo/trace_name", "svo")),
     trace_dir(vk::getParam<string>("svo/trace_dir", "/tmp")),
     n_pyr_levels(vk::getParam<int>("svo/n_pyr_levels", 3)),
@@ -58,38 +55,11 @@ Config::Config() :
     abc(vk::getParam<double>("svo/ABC", 1e-1)),
     gbc(vk::getParam<double>("svo/GBC", 1e-1)),
     ebp(vk::getParam<double>("svo/EBP", 1e-2)),
-    nrp(vk::getParam<double>("svo/NRP", 1e-5))
-#else
-    trace_name("svo"),
-    trace_dir("/tmp"),
-    n_pyr_levels(3),
-    use_imu(false),
-    core_n_kfs(3),
-    map_scale(1.0),
-    grid_size(25),
-    init_min_disparity(50.0),
-    init_min_tracked(50),
-    init_min_inliers(40),
-    klt_max_level(4),
-    klt_min_level(2),
-    reproj_thresh(2.0),
-    poseoptim_thresh(2.0),
-    poseoptim_num_iter(10),
-    structureoptim_max_pts(20),
-    structureoptim_num_iter(5),
-    loba_thresh(2.0),
-    loba_robust_huber_width(1.0),
-    loba_num_iter(0),
-    kfselect_mindist(0.12),
-    triang_min_corner_score(20.0),
-    triang_half_patch_size(4),
-    subpix_n_iter(10),
-    max_n_kfs(0),
-    img_imu_delay(0.0),
-    max_fts(120),
-    quality_min_fts(50),
-    quality_max_drop_fts(40)
-#endif
+    nrp(vk::getParam<double>("svo/NRP", 1e-5)),
+    gravity(vk::getParam<double>("svo/gravity", 9.8)),
+    acc_x_off(vk::getParam<double>("svo/Acceleration_offset_x", 0.0)),
+    acc_y_off(vk::getParam<double>("svo/Acceleration_offset_y", 0.0)),
+    gyr_z_off(vk::getParam<double>("svo/Gyroscope_offset_z", 0.0))
 {}
 
 Config& Config::getInstance()

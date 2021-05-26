@@ -19,9 +19,8 @@
 #include <gpu_svo/feature.h>
 #include <gpu_svo/point.h>
 #include <gpu_svo/config.h>
-#include <vikit/math_utils.h>
-#include <vikit/vision.h>
-#include <vikit/performance_monitor.h>
+#include <gpu_svo/math_utils.h>
+#include <gpu_svo/vision.h>
 
 namespace svo {
 

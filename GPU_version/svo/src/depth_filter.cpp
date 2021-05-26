@@ -15,9 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
-#include <vikit/math_utils.h>
-#include <vikit/abstract_camera.h>
-#include <vikit/vision.h>
+#include <gpu_svo/math_utils.h>
+#include <gpu_svo/abstract_camera.h>
+#include <gpu_svo/vision.h>
 #include <boost/bind.hpp>
 #include <boost/math/distributions/normal.hpp>
 #include <gpu_svo/global.h>
@@ -340,13 +340,8 @@ double DepthFilter::computeTau(
   Vector3d t(T_ref_cur.translation());
   Vector3d a = f*z-t;
   double t_norm = t.norm();
-  double a_norm = a.norm();
-  double alpha = acos(f.dot(t)/t_norm); // dot product
-  double beta = acos(a.dot(-t)/(t_norm*a_norm)); // dot product
-  double beta_plus = beta + px_error_angle;
-  double gamma_plus = PI-alpha-beta_plus; // triangle angles sum to PI
-  double z_plus = t_norm*sin(beta_plus)/sin(gamma_plus); // law of sines
-  return (z_plus - z); // tau
+  double beta_plus = acos(a.dot(-t)/(t_norm*a.norm())) + px_error_angle;
+  return (t_norm*sin(beta_plus)/sin(PI-acos(f.dot(t)/t_norm)-beta_plus) - z); // ( triangle angles sum to PI and law of sines ) tau
 }
 
 } // namespace svo

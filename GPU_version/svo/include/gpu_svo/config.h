@@ -134,6 +134,10 @@ public:
   static double& EBP() { return getInstance().ebp; }
     /// the noise used for projection
   static double& NRP() { return getInstance().nrp; }
+  static double& Gravity() { return getInstance().gravity; }
+    static double& X_off() { return getInstance().acc_x_off; }
+    static double& Y_off() { return getInstance().acc_y_off; }
+    static double& Teta_off() { return getInstance().gyr_z_off; }
 
 
 private:
@@ -169,7 +173,7 @@ private:
   size_t max_fts;
   size_t quality_min_fts;
   int quality_max_drop_fts;
-  double nrp,ebp,gbc,abc,iuc,ACC_noise,GYO_noise;
+  double nrp,ebp,gbc,abc,iuc,ACC_noise,GYO_noise,gravity,acc_x_off,acc_y_off,gyr_z_off;
 };
 
 } // namespace svo

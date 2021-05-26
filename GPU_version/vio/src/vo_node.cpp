@@ -17,15 +17,15 @@
 #include <string>
 #include <gpu_svo/frame_handler_mono.h>
 #include <vio_gpu/visualizer.h>
-#include <vikit/params_helper.h>
+#include <gpu_svo/params_helper.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
 #include <image_transport/image_transport.h>
 #include <boost/thread.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <Eigen/Core>
-#include <vikit/abstract_camera.h>
-#include <vikit/camera_loader.h>
+#include <gpu_svo/abstract_camera.h>
+#include <vio_gpu/camera_loader.h>
 #include <gpu_svo/frame.h>
 
 

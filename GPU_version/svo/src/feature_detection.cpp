@@ -16,7 +16,7 @@
 
 #include <gpu_svo/feature_detection.h>
 #include <gpu_svo/feature.h>
-#include <vikit/vision.h>
+#include <gpu_svo/vision.h>
 
 namespace svo {
 namespace feature_detection {

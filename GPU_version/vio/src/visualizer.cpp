@@ -21,8 +21,8 @@
 #include <gpu_svo/feature.h>
 #include <vio_gpu/Info.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
-#include <vikit/timer.h>
-#include <vikit/output_helper.h>
+#include <gpu_svo/timer.h>
+#include <vio_gpu/output_helper.h>
 #include <deque>
 
 namespace svo {
@@ -57,16 +57,18 @@ void Visualizer::publishMinimal(
   {
       vio_gpu::Info msg_info;
     msg_info.header = header_msg;
-    msg_info.processing_time = slam.lastProcessingTime();
+    //msg_info.processing_time = slam.lastProcessingTime();
     msg_info.keyframes.reserve(slam.map().keyframes_.size());
     for(list<FramePtr>::const_iterator it=slam.map().keyframes_.begin(); it!=slam.map().keyframes_.end(); ++it)
       msg_info.keyframes.push_back((*it)->id_);
     msg_info.stage = static_cast<int>(slam.stage());
     msg_info.tracking_quality = static_cast<int>(slam.trackingQuality());
+    /*
     if(frame != NULL)
       msg_info.num_matches = slam.lastNumObservations();
     else
       msg_info.num_matches = 0;
+      */
     pub_info_.publish(msg_info);
   }
   if(pub_pose_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_DEFAULT_FRAME)

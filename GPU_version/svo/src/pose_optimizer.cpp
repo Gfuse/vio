@@ -19,8 +19,8 @@
 #include <gpu_svo/frame.h>
 #include <gpu_svo/feature.h>
 #include <gpu_svo/point.h>
-#include <vikit/robust_cost.h>
-#include <vikit/math_utils.h>
+#include <gpu_svo/robust_cost.h>
+#include <gpu_svo/math_utils.h>
 
 namespace svo {
 namespace pose_optimizer {

@@ -18,7 +18,7 @@
 #define SVO_FRAME_HANDLER_H_
 
 #include <set>
-#include <vikit/abstract_camera.h>
+#include <gpu_svo/abstract_camera.h>
 #include <gpu_svo/frame_handler_base.h>
 #include <gpu_svo/reprojector.h>
 #include <gpu_svo/initialization.h>
@@ -61,7 +61,7 @@ public:
       const SE3& T_kf_f,
       const cv::Mat& img,
       const double timestamp);
-  std::unique_ptr<Imu_Integration> imu_integPtr_;  //Integration of IMU
+  std::shared_ptr<Imu_Integration> imu_integPtr_;  //Integration of IMU
 
 protected:
   vk::AbstractCamera* cam_;                     //!< Camera model, can be ATAN, Pinhole or Ocam (see vikit).
@@ -73,6 +73,7 @@ protected:
   initialization::KltHomographyInit* klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   opencl* gpu_fast_;
+  uint image_count_=0;
 
   /// Initialize the visual odometry algorithm.
   virtual void initialize();

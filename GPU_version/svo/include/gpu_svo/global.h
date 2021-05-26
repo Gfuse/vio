@@ -27,7 +27,7 @@
 #include <Eigen/Core>
 #include <opencv2/opencv.hpp>
 #include <sophus/se3.h>
-#include <vikit/performance_monitor.h>
+//#include <vikit/performance_monitor.h>
 #include <boost/shared_ptr.hpp>
 #include<Eigen/StdVector>
 #ifndef RPG_SVO_VIKIT_IS_VECTOR_SPECIALIZED //Guard for rpg_vikit
@@ -78,6 +78,7 @@ namespace svo
   const double PI = 3.14159265;
 
 #ifdef SVO_TRACE
+  /*
   extern vk::PerformanceMonitor* g_permon;
   #define SVO_LOG(value) g_permon->log(std::string((#value)),(value))
   #define SVO_LOG2(value1, value2) SVO_LOG(value1); SVO_LOG(value2)
@@ -85,6 +86,7 @@ namespace svo
   #define SVO_LOG4(value1, value2, value3, value4) SVO_LOG2(value1, value2); SVO_LOG2(value3, value4)
   #define SVO_START_TIMER(name) g_permon->startTimer((name))
   #define SVO_STOP_TIMER(name) g_permon->stopTimer((name))
+   */
 #else
   #define SVO_LOG(v)
   #define SVO_LOG2(v1, v2)

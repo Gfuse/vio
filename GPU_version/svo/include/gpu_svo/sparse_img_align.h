@@ -17,8 +17,7 @@
 #ifndef SVO_SPARSE_IMG_ALIGN_H_
 #define SVO_SPARSE_IMG_ALIGN_H_
 
-#include <vikit/nlls_solver.h>
-#include <vikit/performance_monitor.h>
+#include <gpu_svo/nlls_solver.h>
 #include <gpu_svo/global.h>
 
 namespace vk {
@@ -32,8 +31,8 @@ class Feature;
 /// Optimize the pose of the frame by minimizing the photometric error of feature patches.
 class SparseImgAlign : public vk::NLLSSolver<6, SE3>
 {
-  static const int patch_halfsize_ = 2;
-  static const int patch_size_ = 2*patch_halfsize_;
+  static const int patch_halfsize_ = 6;
+  static const int patch_size_ = 6*patch_halfsize_;
   static const int patch_area_ = patch_size_*patch_size_;
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW

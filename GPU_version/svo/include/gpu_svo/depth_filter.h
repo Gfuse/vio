@@ -20,7 +20,7 @@
 #include <queue>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
-#include <vikit/performance_monitor.h>
+//#include <vikit/performance_monitor.h>
 #include <gpu_svo/global.h>
 #include <gpu_svo/feature_detection.h>
 #include <gpu_svo/matcher.h>
@@ -79,7 +79,7 @@ public:
       epi_search_1d(false),
       verbose(false),
       use_photometric_disparity_error(false),
-      max_n_kfs(3),
+      max_n_kfs(10),
       sigma_i_sq(5e-4),
       seed_convergence_sigma2_thresh(200.0)
     {}
@@ -150,7 +150,7 @@ protected:
   bool new_keyframe_set_;               //!< Do we have a new keyframe to process?.
   double new_keyframe_min_depth_;       //!< Minimum depth in the new keyframe. Used for range in new seeds.
   double new_keyframe_mean_depth_;      //!< Maximum depth in the new keyframe. Used for range in new seeds.
-  vk::PerformanceMonitor permon_;       //!< Separate performance monitor since the DepthFilter runs in a parallel thread.
+  //vk::PerformanceMonitor permon_;       //!< Separate performance monitor since the DepthFilter runs in a parallel thread.
   Matcher matcher_;
 
   /// Initialize new seeds from a frame.

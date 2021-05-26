@@ -24,9 +24,9 @@
 #include <gpu_svo/config.h>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
-#include <vikit/abstract_camera.h>
-#include <vikit/math_utils.h>
-#include <vikit/timer.h>
+#include <gpu_svo/abstract_camera.h>
+#include <gpu_svo/math_utils.h>
+#include <gpu_svo/timer.h>
 
 namespace svo {
 
@@ -68,10 +68,11 @@ void Reprojector::reprojectMap(
   resetGrid();
 
   // Identify those Keyframes which share a common field of view.
-  SVO_START_TIMER("reproject_kfs");
+//  SVO_START_TIMER("reproject_kfs");
   list< pair<FramePtr,double> > close_kfs;
   map_.getCloseKeyframes(frame, close_kfs);
 
+  std::cout<<"The number of closed frames: "<<std::to_string(close_kfs.size())<<'\n';
   // Sort KFs with overlap according to their closeness
   close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                  boost::bind(&std::pair<FramePtr, double>::second, _2));
@@ -98,14 +99,16 @@ void Reprojector::reprojectMap(
       if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
         continue;
       (*it_ftr)->point->last_projected_kf_id_ = frame->id_;
-      if(reprojectPoint(frame, (*it_ftr)->point))
-        overlap_kfs.back().second++;
+      if(reprojectPoint(frame, (*it_ftr)->point)){
+          overlap_kfs.back().second++;
+      }
+
     }
   }
-  SVO_STOP_TIMER("reproject_kfs");
+  //SVO_STOP_TIMER("reproject_kfs");
 
   // Now project all point candidates
-  SVO_START_TIMER("reproject_candidates");
+ // SVO_START_TIMER("reproject_candidates");
   {
     boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
     auto it=map_.point_candidates_.candidates_.begin();
@@ -124,11 +127,11 @@ void Reprojector::reprojectMap(
       ++it;
     }
   } // unlock the mutex when out of scope
-  SVO_STOP_TIMER("reproject_candidates");
+  //SVO_STOP_TIMER("reproject_candidates");
 
   // Now we go through each grid cell and select one point to match.
   // At the end, we should have at maximum one reprojected point per cell.
-  SVO_START_TIMER("feature_align");
+  //SVO_START_TIMER("feature_align");
   for(size_t i=0; i<grid_.cells.size(); ++i)
   {
     // we prefer good quality points over unkown quality (more likely to match)
@@ -138,7 +141,7 @@ void Reprojector::reprojectMap(
     if(n_matches_ > (size_t) Config::maxFts())
       break;
   }
-  SVO_STOP_TIMER("feature_align");
+// SVO_STOP_TIMER("feature_align");
 }
 
 bool Reprojector::pointQualityComparator(Candidate& lhs, Candidate& rhs)
@@ -161,7 +164,6 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
       it = cell.erase(it);
       continue;
     }
-
     bool found_match = true;
     if(options_.find_match_direct)
       found_match = matcher_.findMatchDirect(*it->pt, *frame, it->px);

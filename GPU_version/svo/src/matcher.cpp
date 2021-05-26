@@ -15,10 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdlib>
-#include <vikit/abstract_camera.h>
-#include <vikit/vision.h>
-#include <vikit/math_utils.h>
-#include <vikit/patch_score.h>
+#include <gpu_svo/abstract_camera.h>
+#include <gpu_svo/vision.h>
+#include <gpu_svo/math_utils.h>
+#include <gpu_svo/patch_score.h>
 #include <gpu_svo/matcher.h>
 #include <gpu_svo/frame.h>
 #include <gpu_svo/feature.h>
@@ -139,7 +139,6 @@ bool Matcher::findMatchDirect(
 {
   if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))
     return false;
-
   if(!ref_ftr_->frame->cam_->isInFrame(
       ref_ftr_->px.cast<int>()/(1<<ref_ftr_->level), halfpatch_size_+2, ref_ftr_->level))
     return false;

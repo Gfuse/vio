@@ -20,8 +20,8 @@
 #include <gpu_svo/feature.h>
 #include <gpu_svo/initialization.h>
 #include <gpu_svo/feature_detection.h>
-#include <vikit/math_utils.h>
-#include <vikit/homography.h>
+#include <gpu_svo/math_utils.h>
+#include <gpu_svo/homography.h>
 
 namespace svo {
 namespace initialization {
@@ -43,26 +43,24 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
   trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, f_ref_, f_cur_, disparities_);
-  SVO_INFO_STREAM("Init: KLT tracked "<< disparities_.size() <<" features");
-
   if(disparities_.size() < Config::initMinTracked())
-    return FAILURE;
-
+        return NO_KEYFRAME;
   double disparity = vk::getMedian(disparities_);
-  SVO_INFO_STREAM("Init: KLT "<<disparity<<"px average disparity.");
-  if(disparity < Config::initMinDisparity())
-    return NO_KEYFRAME;
-
+  if(disparity < Config::initMinDisparity()){
+      SVO_INFO_STREAM("Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required."
+      <<"  KLT tracked : "<<disparities_.size());
+      return NO_KEYFRAME;
+  }
   computeHomography(
       f_ref_, f_cur_,
       frame_ref_->cam_->errorMultiplier2(), Config::poseOptimThresh(),
       inliers_, xyz_in_cur_, T_cur_from_ref_);
-  SVO_INFO_STREAM("Init: Homography RANSAC "<<inliers_.size()<<" inliers.");
 
   if(inliers_.size() < Config::initMinInliers())
   {
-    SVO_WARN_STREAM("Init WARNING: "<<Config::initMinInliers()<<" inliers minimum required.");
-    return FAILURE;
+    SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()<<" While: "<<Config::initMinInliers()<<" inliers minimum required.\n"
+       <<"Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required.");
+      return NO_KEYFRAME;
   }
 
   // Rescale the map such that the mean scene depth is equal to the specified scale
@@ -72,29 +70,31 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   double scene_depth_median = vk::getMedian(depth_vec);
   double scale = Config::mapScale()/scene_depth_median;
   frame_cur->T_f_w_ = T_cur_from_ref_ * frame_ref_->T_f_w_;
-  frame_cur->T_f_w_.translation() =
-      -frame_cur->T_f_w_.rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
+  frame_cur->T_f_w_.translation() = -frame_cur->T_f_w_.rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
 
   // For each inlier create 3D point and add feature in both frames
   SE3 T_world_cur = frame_cur->T_f_w_.inverse();
-  for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
-  {
-    Vector2d px_cur(px_cur_[*it].x, px_cur_[*it].y);
-    Vector2d px_ref(px_ref_[*it].x, px_ref_[*it].y);
-    if(frame_ref_->cam_->isInFrame(px_cur.cast<int>(), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>(), 10) && xyz_in_cur_[*it].z() > 0)
+    for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
     {
-      Vector3d pos = T_world_cur * (xyz_in_cur_[*it]*scale);
-      Point* new_point = new Point(pos);
+        Vector2d px_cur(px_cur_[*it].x, px_cur_[*it].y);
+        Vector2d px_ref(px_ref_[*it].x, px_ref_[*it].y);
+        if(frame_ref_->cam_->isInFrame(px_cur.cast<int>(), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>(), 10) && xyz_in_cur_[*it].z() > 0)
+        {
+            Vector3d pos = T_world_cur * (xyz_in_cur_[*it]*scale);
+            Point* new_point = new Point(pos);
 
-      Feature* ftr_cur(new Feature(frame_cur.get(), new_point, px_cur, f_cur_[*it], 0));
-      frame_cur->addFeature(ftr_cur);
-      new_point->addFrameRef(ftr_cur);
+            Feature* ftr_cur(new Feature(frame_cur.get(), new_point, px_cur, f_cur_[*it], 0));
+            frame_cur->addFeature(ftr_cur);
+            new_point->addFrameRef(ftr_cur);
 
-      Feature* ftr_ref(new Feature(frame_ref_.get(), new_point, px_ref, f_ref_[*it], 0));
-      frame_ref_->addFeature(ftr_ref);
-      new_point->addFrameRef(ftr_ref);
+            Feature* ftr_ref(new Feature(frame_ref_.get(), new_point, px_ref, f_ref_[*it], 0));
+            frame_ref_->addFeature(ftr_ref);
+            new_point->addFrameRef(ftr_ref);
+        }
     }
-  }
+    SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()
+                    <<"\nKLT disparity is: "<<disparity<<" px average disparity."
+                    <<"\nThe number of feature: "<<frame_cur->fts_.size());
   return SUCCESS;
 }
 
@@ -118,11 +118,11 @@ void detectFeatures(
   // now for all maximum corners, initialize a new seed
   px_vec.clear(); px_vec.reserve(new_features.size());
   f_vec.clear(); f_vec.reserve(new_features.size());
-  std::for_each(new_features.begin(), new_features.end(), [&](Feature* ftr){
-    px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
-    f_vec.push_back(ftr->f);
-    delete ftr;
-  });
+  for(auto&& ftr:new_features){
+      px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
+      f_vec.push_back(ftr->f);
+      delete ftr;
+  }
 }
 
 void trackKlt(
@@ -134,8 +134,8 @@ void trackKlt(
     vector<Vector3d>& f_cur,
     vector<double>& disparities)
 {
-  const double klt_win_size = 30.0;
-  const int klt_max_iter = 30;
+  const double klt_win_size = 45.0;//30.0
+  const int klt_max_iter = 30;//30
   const double klt_eps = 0.001;
   vector<uchar> status;
   vector<float> error;

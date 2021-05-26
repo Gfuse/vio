@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdexcept>
-#include <vikit/math_utils.h>
+#include <gpu_svo/math_utils.h>
 #include <gpu_svo/point.h>
 #include <gpu_svo/frame.h>
 #include <gpu_svo/feature.h>

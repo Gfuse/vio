@@ -25,7 +25,7 @@
 namespace svo {
 namespace feature_alignment {
 
-#define SUBPIX_VERBOSE 0
+#define SUBPIX_VERBOSE 1
 
 bool align1D(
     const cv::Mat& cur_img,
@@ -258,7 +258,7 @@ bool align2D(
 #if SUBPIX_VERBOSE
     cout << "Iter " << iter << ":"
          << "\t u=" << u << ", v=" << v
-         << "\t update = " << update[0] << ", " << update[1]
+         << "\t update = " << update[0] << ", " << update[1]<< endl;
 //         << "\t new chi2 = " << new_chi2 << endl;
 #endif
 

@@ -18,8 +18,8 @@
 #define SVO_FRAME_H_
 
 #include <sophus/se3.h>
-#include <vikit/math_utils.h>
-#include <vikit/abstract_camera.h>
+#include <gpu_svo/math_utils.h>
+#include <gpu_svo/abstract_camera.h>
 #include <boost/noncopyable.hpp>
 #include <gpu_svo/global.h>
 
@@ -92,6 +92,8 @@ public:
 
   /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
   inline Vector2d w2c(const Vector3d& xyz_w) const { return cam_->world2cam( T_f_w_ * xyz_w ); }
+  /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
+  inline Vector2d w2px(const Vector3d& xyz_w) const { return cam_->world2cam( xyz_w ); }
 
   /// Transforms pixel coordinates (c) to frame unit sphere coordinates (f).
   inline Vector3d c2f(const Vector2d& px) const { return cam_->cam2world(px[0], px[1]); }
@@ -111,6 +113,7 @@ public:
   /// Return the pose of the frame in the (w)orld coordinate frame.
   inline Vector3d pos() const { return T_f_w_.inverse().translation(); }
 
+
   /// Frame jacobian for projection of 3D point in (f)rame coordinate to
   /// unit plane coordinates uv (focal length = 1).
   inline static void jacobian_xyz2uv(
@@ -129,12 +132,25 @@ public:
     J(0,4) = -(1.0 + x*J(0,2));   // -(1.0 + x^2/z^2)
     J(0,5) = y*z_inv;             // y/z
 
-    J(1,0) = 0.0;                 // 0
+    J(1,0) = 0.0;                // 0
     J(1,1) = -z_inv;              // -1/z
     J(1,2) = y*z_inv_2;           // y/z^2
     J(1,3) = 1.0 + y*J(1,2);      // 1.0 + y^2/z^2
     J(1,4) = -J(0,3);             // -x*y/z^2
     J(1,5) = -x*z_inv;            // x/z
+  }
+  inline static void jacobian_l2uv(
+            const Matrix<double,3,1>& p,
+            Matrix<double,2,3>& J){
+      double A = -1.0*sqrt(p.z());
+      double z_inv = -1/p.z();
+        J(0,0) = z_inv;
+        J(0,1) = 0.0;
+      J(0,2) = p.x()*A;
+
+      J(1,0) = 0.0;
+      J(1,1) = z_inv;
+      J(1,2) =A*p.y();
   }
 };
 

@@ -19,6 +19,7 @@
 
 #include <gpu_svo/global.h>
 #include <gpu_svo/cl_class.h>
+#include <gpu_svo/imu_integration.h>
 
 namespace svo {
 
