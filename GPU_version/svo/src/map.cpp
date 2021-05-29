@@ -114,12 +114,11 @@ void Map::getCloseKeyframes(
     {
       if(keypoint == nullptr)
         continue;
-
       if(frame->isVisible(keypoint->point->pos_))
       {
         close_kfs.push_back(
             std::make_pair(
-                kf, (frame->T_f_w_.translation()-kf->T_f_w_.translation()).norm()));
+                kf, (frame->T_f_w_.T->translation()-kf->T_f_w_.T->translation()).norm()));
         break; // this keyframe has an overlapping field of view -> add to close_kfs
       }
     }
@@ -178,8 +177,9 @@ void Map::transform(const Matrix3d& R, const Vector3d& t, const double& s)
   for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
   {
     Vector3d pos = s*R*(*it)->pos() + t;
-    Matrix3d rot = R*(*it)->T_f_w_.rotation_matrix().inverse();
-    (*it)->T_f_w_ = SE3(rot, pos).inverse();
+    Matrix3d rot = R*(*it)->T_f_w_.T->rotation_matrix().inverse();
+    SE3 inv=SE3(rot, pos).inverse();
+    (*it)->T_f_w_ = SE2_5(inv.translation().x(),inv.translation().z(),atan(inv.rotation_matrix()(0,2)/inv.rotation_matrix()(0,0)));
     for(auto ftr=(*it)->fts_.begin(); ftr!=(*it)->fts_.end(); ++ftr)
     {
       if((*ftr)->point == NULL)

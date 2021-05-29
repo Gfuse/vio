@@ -25,7 +25,7 @@
 namespace svo {
 namespace feature_alignment {
 
-#define SUBPIX_VERBOSE 1
+#define SUBPIX_VERBOSE 0
 
 bool align1D(
     const cv::Mat& cur_img,
@@ -77,11 +77,16 @@ bool align1D(
   {
     int u_r = floor(u);
     int v_r = floor(v);
-    if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_)
-      break;
+    if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_){
+        std::cout<<"not in bach size\n";
+        break;
+    }
 
-    if(isnan(u) || isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
-      return false;
+    if(isnan(u) || isnan(v)){
+        // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+        std::cout<<"H singularity\n";
+        return false;
+    }
 
     // compute interpolation weights
     float subpix_x = u-u_r;
@@ -193,9 +198,12 @@ bool align2D(
   // Compute pixel location in new image:
   float u = cur_px_estimate.x();
   float v = cur_px_estimate.y();
+  double error=1000.0;
+  double scale=1.0;
+  bool sign=true;// +
 
   // termination condition
-  const float min_update_squared = 0.03*0.03;
+  const float min_update_squared = 0.05;
   const int cur_step = cur_img.step.p[0];
 //  float chi2 = 0;
   Vector3f update; update.setZero();
@@ -203,11 +211,14 @@ bool align2D(
   {
     int u_r = floor(u);
     int v_r = floor(v);
-    if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_)
-      break;
+    if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_){
+        break;
+    }
 
-    if(isnan(u) || isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+    if(isnan(u) || isnan(v)) {
+        // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
       return false;
+    }
 
     // compute interpolation weights
     float subpix_x = u-u_r;
@@ -233,36 +244,39 @@ bool align2D(
         Jres[0] -= res*(*it_ref_dx);
         Jres[1] -= res*(*it_ref_dy);
         Jres[2] -= res;
-//        new_chi2 += res*res;
       }
     }
-
-
-/*
-    if(iter > 0 && new_chi2 > chi2)
-    {
-#if SUBPIX_VERBOSE
-      cout << "error increased." << endl;
-#endif
-      u -= update[0];
-      v -= update[1];
-      break;
-    }
-    chi2 = new_chi2;
-*/
     update = Hinv * Jres;
-    u += update[0];
-    v += update[1];
-    mean_diff += update[2];
+    double error_t=update[0]*update[0]+update[1]*update[1];
+    double dt=error_t-error;
+    if(!signbit(dt))if(sign){
+            sign=false;
+            scale*=0.5;
+        }else{
+            sign=true;
+            scale*=0.5;
+        }
+    if(sign){
+        u += scale*update[0];
+        v += scale*update[1];
+        mean_diff += scale*update[2];
+    }else{
+        u -= scale*update[0];
+        v -= scale*update[1];
+        mean_diff -= scale*update[2];
+    }
+    error=error_t;
+
 
 #if SUBPIX_VERBOSE
     cout << "Iter " << iter << ":"
          << "\t u=" << u << ", v=" << v
-         << "\t update = " << update[0] << ", " << update[1]<< endl;
-//         << "\t new chi2 = " << new_chi2 << endl;
+         << "\t error = " << error
+         << "\t delta error = " << dt
+         << "\t sign = " << sign << endl;
 #endif
 
-    if(update[0]*update[0]+update[1]*update[1] < min_update_squared)
+    if(error_t < min_update_squared)
     {
 #if SUBPIX_VERBOSE
       cout << "converged." << endl;
@@ -271,7 +285,9 @@ bool align2D(
       break;
     }
   }
-
+#if SUBPIX_VERBOSE
+    if(!converged)cout << "not converged." << endl;
+#endif
   cur_px_estimate << u, v;
   return converged;
 }

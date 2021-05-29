@@ -16,12 +16,11 @@
 
 namespace svo {
 
-    class VisionFactor: public gtsam::NoiseModelFactor2<gtsam::Pose3,gtsam::Point3> {
+    class VisionFactor: public gtsam::NoiseModelFactor1<gtsam::Pose3> {
 
     private:
         // measurement information
-        gtsam::Point3 feature;   ///<Unit-bearing vector of the feature.
-        int level;            ///< Image pyramid level where feature was extracted.
+        gtsam::Pose3 pose;   ///<Estimated pose in svo after GaussNewton optimization.
 
     public:
         /// shorthand for a smart pointer to a factor
@@ -29,36 +28,28 @@ namespace svo {
 
         /**
         * Constructor
-        * @param feature Unit-bearing vector of the feature.
-        * @param model is the standard deviation
+        * @param pose Camera pose.
         * @param pointKey is the index of the landmark
-        * @param poseKey is the index of the camera pose
-        * @param landmark 3D position of the landmark
-        * @param body_P_sensor is the transform from body to sensor frame (default identity)
-        * @param level Image pyramid level where feature was extracted.
         */
-        VisionFactor(const gtsam::Point3& feature,const int level,
+        VisionFactor(const gtsam::Pose3& pose,
                      const gtsam::SharedNoiseModel& H,
-                      gtsam::Key poseKey,gtsam::Key landKey ) :
-                gtsam::NoiseModelFactor2<gtsam::Pose3,gtsam::Point3>(H, poseKey,landKey), feature(feature),level(level){}
+                      gtsam::Key poseKey) :
+                gtsam::NoiseModelFactor1<gtsam::Pose3>(H, poseKey), pose(pose){}
         virtual ~VisionFactor(){}
 
         /// error function
         /// @param p    the Estimated pose in Pose3
         /// @param H    the optional Jacobian matrix, which use boost optional and has default null pointer
-        gtsam::Vector evaluateError(const gtsam::Pose3& p,const gtsam::Point3& l,
-                                    boost::optional<gtsam::Matrix&> H1 = boost::none,boost::optional<gtsam::Matrix&> H2 = boost::none) const {
+        gtsam::Vector evaluateError(const gtsam::Pose3& p
+                                    ,boost::optional<gtsam::Matrix&> H1 = boost::none) const {
             // note that use boost optional like a pointer
             // only calculate jacobian matrix when non-null pointer exists
-            gtsam::Matrix26 J1;
-            gtsam::Matrix23 J2;
-            gtsam::Point3 point(p*l);
-            svo::Frame::jacobian_xyz2uv(point, J1);
-            svo::Frame::jacobian_l2uv(point, J2);
-            Vector2d e=(vk::project2d(feature) - vk::project2d(point))*1.0 / (1<<level);
-            if(H1)(*H1) = (gtsam::Matrix(2,6)<< J1*1.0 / (1<<level)).finished();
-            if(H2)(*H2) = (gtsam::Matrix(2,3)<< J2*1.0 / (1<<level)).finished();
-            return e;
+            Eigen::Matrix<double,3,3> E_r=0.5*(p.rotation().matrix().transpose()*pose.rotation().matrix()-pose.rotation().matrix().transpose()*p.rotation().matrix());
+            Vector3d e_t=p.translation()-pose.translation();
+            if(H1)(*H1) = (gtsam::Matrix(3,6)<< 1,0,0,0,0,0,
+                                                      0,0,1,0,0,0,
+                                                      0,0,0,0,1,0).finished();
+            return (gtsam::Matrix(3,1)<<e_t.x(),e_t.z(),-E_r(0,2)).finished();
         }
         // The second is a 'clone' function that allows the factor to be copied. Under most
         // circumstances, the following code that employs the default copy constructor should

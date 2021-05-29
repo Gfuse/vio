@@ -69,11 +69,14 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
     depth_vec.push_back((xyz_in_cur_[i]).z());
   double scene_depth_median = vk::getMedian(depth_vec);
   double scale = Config::mapScale()/scene_depth_median;
-  frame_cur->T_f_w_ = T_cur_from_ref_ * frame_ref_->T_f_w_;
-  frame_cur->T_f_w_.translation() = -frame_cur->T_f_w_.rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
+  SE3 tem=T_cur_from_ref_ * (*frame_ref_->T_f_w_.T);
+  frame_cur->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
+  tem.translation() = -frame_cur->T_f_w_.T->rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
+  frame_cur->T_f_w_.X_ = tem.translation().x();
+  frame_cur->T_f_w_.Z_ = tem.translation().z();
 
   // For each inlier create 3D point and add feature in both frames
-  SE3 T_world_cur = frame_cur->T_f_w_.inverse();
+  SE3 T_world_cur = frame_cur->T_f_w_.T->inverse();
     for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
     {
         Vector2d px_cur(px_cur_[*it].x, px_cur_[*it].y);

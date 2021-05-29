@@ -99,7 +99,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
-  new_frame_->T_f_w_ = SE3(Matrix3d::Identity(), Vector3d::Zero());
+  new_frame_->T_f_w_ = SE2_5(0.0,0.0,0.0);
   if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
   new_frame_->setKeyframe();
@@ -137,41 +137,30 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 {
   SE3 tem=imu_integPtr_->preintegrate_predict();
-  Eigen::Quaternion<double> q(tem.rotation_matrix());
-  q.vec() *= 1/q.norm();
-  q.w() *= 1/q.norm();
-  q.x()=0.0;
-  q.z()=0.0;
-  tem.translation().y()=0.0;
-  new_frame_->T_f_w_ = SE3(q,tem.translation());
+  new_frame_->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
+  //new_frame_->T_f_w_ = last_frame_->T_f_w_;
   // sparse image align
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
-                           30, SparseImgAlign::LevenbergMarquardt, false, true);
+                           30, SparseImgAlign::LevenbergMarquardt, false, false);
   img_align.run(last_frame_, new_frame_);
   // map reprojection & feature alignment
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  std::cerr<<"Reprojection Map: "<<"\t nPoint:"<<overlap_kfs_.back().second<<"\t nCell = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_<<" \t Quality min: "<<Config::qualityMinFts()<<'\n';
   size_t sfba_n_edges_final=0;
-  if(!imu_integPtr_->predict(new_frame_,last_frame_,sfba_n_edges_final,Config::poseOptimThresh())){
-        std::cerr<<"imu failed\n";
+
+  double sfba_thresh, sfba_error_init, sfba_error_final;
+  if(!imu_integPtr_->predict(new_frame_,last_frame_,sfba_n_edges_final,reprojector_.n_matches_)){
         return RESULT_FAILURE;
   }
-
-  //usleep(5000);
-  double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
-            Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
+            Config::poseOptimThresh(), Config::poseOptimNumIter(), true,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  // pose optimization subject to change for adding IMU
-  /*
-  if(!imu_integPtr_->predict(new_frame_,last_frame_,sfba_n_edges_final,Config::poseOptimThresh())){
-      std::cerr<<"imu failed\n";
-      return RESULT_FAILURE;
-  }*/
 
-  std::cerr<<"Reprojected points after opmization: "<<sfba_n_edges_final<<'\n';
+  std::cerr<<"Reprojection Map: "<<"\t nPoint:"<<overlap_kfs_.back().second
+  <<"\t nCell = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_
+  <<" \t Reprojected points after opmization: "<<sfba_n_edges_final<<'\n';
+
   if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
-      return RESULT_FAILURE;
+      return RESULT_NO_KEYFRAME;
   }
 
   // structure optimization
@@ -232,7 +221,7 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::relocalizeFrame(
   usleep(2000);
   if(img_align_n_tracked > Config::qualityMinFts())
   {
-    SE3 T_f_w_last = last_frame_->T_f_w_;
+    SE2_5 T_f_w_last = last_frame_->T_f_w_;
     last_frame_ = ref_keyframe;
     FrameHandlerMono::UpdateResult res = processFrame();
     if(res != RESULT_FAILURE)

@@ -32,6 +32,7 @@ public:
     bool init(boost::shared_ptr<svo::Frame>&);
     Sophus::SE3 preintegrate_predict();
 private:
+    FILE* logtime;
     std::shared_ptr<gtsam::NavState> statePtr;
     std::shared_ptr<gtsam::imuBias::ConstantBias> imu_biasPtr;
     std::shared_ptr<gtsam::Values> valuesPtr;

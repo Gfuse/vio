@@ -147,7 +147,7 @@ bool Matcher::findMatchDirect(
   warp::getWarpMatrixAffine(
       *ref_ftr_->frame->cam_, *cur_frame.cam_, ref_ftr_->px, ref_ftr_->f,
       (ref_ftr_->frame->pos() - pt.pos_).norm(),
-      cur_frame.T_f_w_ * ref_ftr_->frame->T_f_w_.inverse(), ref_ftr_->level, A_cur_ref_);
+      (*cur_frame.T_f_w_.T) * ref_ftr_->frame->T_f_w_.T->inverse(), ref_ftr_->level, A_cur_ref_);
   search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
   warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
                    ref_ftr_->level, search_level_, halfpatch_size_+1, patch_with_border_);
@@ -184,7 +184,7 @@ bool Matcher::findEpipolarMatchDirect(
     const double d_max,
     double& depth)
 {
-  SE3 T_cur_ref = cur_frame.T_f_w_ * ref_frame.T_f_w_.inverse();
+  SE3 T_cur_ref = (*cur_frame.T_f_w_.T) * ref_frame.T_f_w_.T->inverse();
   int zmssd_best = PatchScore::threshold();
   Vector2d uv_best;
 

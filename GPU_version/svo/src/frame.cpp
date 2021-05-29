@@ -32,7 +32,8 @@ Frame::Frame(vk::AbstractCamera* cam, const cv::Mat& img, double timestamp) :
     cam_(cam),
     key_pts_(5),
     is_keyframe_(false),
-    v_kf_(NULL)
+    v_kf_(NULL),
+    T_f_w_(SE2_5(0.0,0.0,0.0))
 {
   initFrame(img);
 }
@@ -137,7 +138,9 @@ void Frame::removeKeyPoint(Feature* ftr)
 
 bool Frame::isVisible(const Vector3d& xyz_w) const
 {
-  Vector3d xyz_f = T_f_w_*xyz_w;
+  Vector3d xyz_f = Vector3d(xyz_w.x()*T_f_w_.cos_theta_+xyz_w.z()*T_f_w_.sin_theta_+T_f_w_.X_,
+                            xyz_w.y(),
+                            -xyz_w.x()*T_f_w_.sin_theta_+xyz_w.z()*T_f_w_.cos_theta_+T_f_w_.Z_);
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera
   Vector2d px = f2c(xyz_f);

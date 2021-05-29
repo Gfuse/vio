@@ -36,6 +36,7 @@ struct Feature;
 typedef list<Feature*> Features;
 typedef vector<cv::Mat> ImgPyr;
 
+
 /// A frame saves the image, the associated features and the estimated pose.
 class Frame : boost::noncopyable
 {
@@ -46,7 +47,7 @@ public:
   int                           id_;                    //!< Unique id of the frame.
   double                        timestamp_;             //!< Timestamp of when the image was recorded.
   vk::AbstractCamera*           cam_;                   //!< Camera model.
-  Sophus::SE3                   T_f_w_;                 //!< Transform (f)rame from (w)orld.
+  SE2_5                         T_f_w_;                 //!< Transform (f)rame from (w)orld.
   Matrix<double, 6, 6>          Cov_;                   //!< Covariance.
   ImgPyr                        img_pyr_;               //!< Image Pyramid.
   Features                      fts_;                   //!< List of features in the image.
@@ -91,7 +92,11 @@ public:
   inline bool isKeyframe() const { return is_keyframe_; }
 
   /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
-  inline Vector2d w2c(const Vector3d& xyz_w) const { return cam_->world2cam( T_f_w_ * xyz_w ); }
+  inline Vector2d w2c(const Vector3d& xyz_w) const {
+      return cam_->world2cam( Vector3d(xyz_w.x()*T_f_w_.cos_theta_+xyz_w.z()*T_f_w_.sin_theta_+T_f_w_.X_,
+                                       xyz_w.y(),
+                                       -xyz_w.x()*T_f_w_.sin_theta_+xyz_w.z()*T_f_w_.cos_theta_+T_f_w_.Z_) );
+  }
   /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
   inline Vector2d w2px(const Vector3d& xyz_w) const { return cam_->world2cam( xyz_w ); }
 
@@ -102,16 +107,22 @@ public:
   inline Vector3d c2f(const double x, const double y) const { return cam_->cam2world(x, y); }
 
   /// Transforms point coordinates in world-frame (w) to camera-frams (f).
-  inline Vector3d w2f(const Vector3d& xyz_w) const { return T_f_w_ * xyz_w; }
+  inline Vector3d w2f(const Vector3d& xyz_w) const {
+      return Vector3d(xyz_w.x()*T_f_w_.cos_theta_+xyz_w.z()*T_f_w_.sin_theta_+T_f_w_.X_,
+                      xyz_w.y(),
+                      -xyz_w.x()*T_f_w_.sin_theta_+xyz_w.z()*T_f_w_.cos_theta_+T_f_w_.Z_);
+  }
 
   /// Transforms point from frame unit sphere (f) frame to world coordinate frame (w).
-  inline Vector3d f2w(const Vector3d& f) const { return T_f_w_.inverse() * f; }
+  inline Vector3d f2w(const Vector3d& f) const {
+      return T_f_w_.T->inverse() * f;
+  }
 
   /// Projects Point from unit sphere (f) in camera pixels (c).
   inline Vector2d f2c(const Vector3d& f) const { return cam_->world2cam( f ); }
 
   /// Return the pose of the frame in the (w)orld coordinate frame.
-  inline Vector3d pos() const { return T_f_w_.inverse().translation(); }
+  inline Vector3d pos() const { return T_f_w_.T->inverse().translation(); }
 
 
   /// Frame jacobian for projection of 3D point in (f)rame coordinate to

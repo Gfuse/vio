@@ -55,8 +55,7 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
   ref_patch_cache_ = cv::Mat(ref_frame_->fts_.size(), patch_area_, CV_32F);
   jacobian_cache_.resize(Eigen::NoChange, ref_patch_cache_.rows*patch_area_);
   //visible_fts_.resize(ref_patch_cache_.rows, false); // TODO: should it be reset at each level?
-  SE3 T_cur_from_ref(cur_frame_->T_f_w_ * ref_frame_->T_f_w_.inverse());
-
+  SE3 T_cur_from_ref(*cur_frame_->T_f_w_.T * ref_frame_->T_f_w_.T->inverse());
   for(level_=max_level_; level_>=min_level_; --level_)
   {
     visible_fts_.resize(ref_patch_cache_.rows, false); // TODO: should it be reset at each level?
@@ -67,7 +66,8 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
       printf("\nPYRAMID LEVEL %i\n---------------\n", level_);
     optimize(T_cur_from_ref);
   }
-  cur_frame_->T_f_w_ = T_cur_from_ref * ref_frame_->T_f_w_;
+  SE3 tem=T_cur_from_ref * (*ref_frame_->T_f_w_.T);
+  cur_frame_->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
 
   return n_meas_/patch_area_;
 }

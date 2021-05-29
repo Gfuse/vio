@@ -10,7 +10,7 @@
     <rosparam file="$(find vio_gpu)/param/px30.yaml" />
 
     <!-- IMU 2 Camera Frame -->
-    <param name="init_rx" value="1.88496" /><!--  90 + 18 -->
+    <param name="init_rx" value="-1.88496" /><!--  90 + 18 -->
     <param name="init_ry" value="0.0" /> <!--  00 -->
     <param name="init_rz" value="0.0" /> <!-- 0  -->
 

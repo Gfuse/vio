@@ -34,10 +34,9 @@ Visualizer() :
     T_world_from_vision_(Matrix3d::Identity(), Vector3d::Zero())
 {
   // Init ROS Marker Publishers
-  pub_frames_ = pnh_.advertise<visualization_msgs::Marker>("keyframes", 10);
-  pub_points_ = pnh_.advertise<visualization_msgs::Marker>("points", 1000);
+  //pub_frames_ = pnh_.advertise<visualization_msgs::Marker>("keyframes", 10);
+ // pub_points_ = pnh_.advertise<visualization_msgs::Marker>("points", 1000);
   pub_pose_ = pnh_.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose",10);
-  pub_info_ = pnh_.advertise<vio_gpu::Info>("info", 10);
 }
 
 void Visualizer::publishMinimal(
@@ -48,38 +47,18 @@ void Visualizer::publishMinimal(
 {
   ++trace_id_;
   std_msgs::Header header_msg;
-  header_msg.frame_id = "/cam";
+  header_msg.frame_id = "/world";
   header_msg.seq = trace_id_;
   header_msg.stamp = ros::Time(timestamp);
-
-  // publish info msg.
-  if(pub_info_.getNumSubscribers() > 0)
-  {
-      vio_gpu::Info msg_info;
-    msg_info.header = header_msg;
-    //msg_info.processing_time = slam.lastProcessingTime();
-    msg_info.keyframes.reserve(slam.map().keyframes_.size());
-    for(list<FramePtr>::const_iterator it=slam.map().keyframes_.begin(); it!=slam.map().keyframes_.end(); ++it)
-      msg_info.keyframes.push_back((*it)->id_);
-    msg_info.stage = static_cast<int>(slam.stage());
-    msg_info.tracking_quality = static_cast<int>(slam.trackingQuality());
-    /*
-    if(frame != NULL)
-      msg_info.num_matches = slam.lastNumObservations();
-    else
-      msg_info.num_matches = 0;
-      */
-    pub_info_.publish(msg_info);
-  }
   if(pub_pose_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_DEFAULT_FRAME)
   {
     Quaterniond q;
     Vector3d p;
     Matrix<double,6,6> Cov;
     // publish cam in world frame (Estimated odometry in the worls frame)
-    SE3 T_world_from_cam(T_world_from_vision_*frame->T_f_w_.inverse());// do not confused with inverse. the T_f_w_ is the from camera to initial position with reference of camera
-    q = Quaterniond(T_world_from_cam.rotation_matrix()*T_world_from_vision_.rotation_matrix().transpose());
-    p = T_world_from_cam.translation();
+    SE3 T_world_from_cam(T_world_from_vision_*frame->T_f_w_.T->inverse());// do not confused with inverse. the T_f_w_ is the from camera to initial position with reference of camera
+    //q = Quaterniond(T_world_from_cam.rotation_matrix()*T_world_from_vision_.rotation_matrix().transpose());
+    //p = T_world_from_cam.translation();
     Cov = T_world_from_cam.Adj()*frame->Cov_*T_world_from_cam.inverse().Adj();
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose(new geometry_msgs::PoseWithCovarianceStamped);
     msg_pose->header = header_msg;
@@ -105,7 +84,7 @@ void Visualizer::visualizeMarkers(
     return;
 
   vk::output_helper::publishTfTransform(
-      frame->T_f_w_*T_world_from_vision_.inverse(),
+      *frame->T_f_w_.T*T_world_from_vision_.inverse(),
       ros::Time(frame->timestamp_), "cam_pos", "world", br_);
 
   if(pub_frames_.getNumSubscribers() > 0 || pub_points_.getNumSubscribers() > 0)

@@ -15,8 +15,8 @@ svo:
   ABC: 0.1                #acc bias in continuous
   GBC: 0.1                #gyro bias in continuous
   EBP: 0.1                #error in the bias used for preintegration
-  NRP: 0.0000001                #noise used for projection in preintegration
-  gravity: 9.65
+  NRP: 0.001                #noise used for projection in preintegration
+  gravity: -9.65
   Acceleration_offset_x: -0.05
   Acceleration_offset_y: -0.04
   Gyroscope_offset_z: 0.001

@@ -39,7 +39,7 @@ void optimizeGaussNewton(
   double chi2(0.0);
   vector<double> chi2_vec_init, chi2_vec_final;
   vk::robust_cost::TukeyWeightFunction weight_function;
-  SE3 T_old(frame->T_f_w_);
+  SE2_5 T_old(frame->T_f_w_.X_,frame->T_f_w_.Z_,frame->T_f_w_.tetha_);
   Matrix6d A;
   Vector6d b;
 
@@ -51,7 +51,10 @@ void optimizeGaussNewton(
       continue;
     //Reprojection error
     Vector2d e = vk::project2d((*it)->f)
-               - vk::project2d(frame->T_f_w_ * (*it)->point->pos_);
+               - vk::project2d(Vector3d((*it)->point->pos_.x()*frame->T_f_w_.cos_theta_+(*it)->point->pos_.z()*frame->T_f_w_.sin_theta_+frame->T_f_w_.X_,
+                                        (*it)->point->pos_.y(),
+                                        -(*it)->point->pos_.x()*frame->T_f_w_.sin_theta_+(*it)->point->pos_.z()*frame->T_f_w_.cos_theta_+frame->T_f_w_.Z_));
+
     e *= 1.0 / (1<<(*it)->level);
     errors.push_back(e.norm());
   }
@@ -80,7 +83,9 @@ void optimizeGaussNewton(
       if((*it)->point == NULL)
         continue;
       Matrix26d J;
-      Vector3d xyz_f(frame->T_f_w_ * (*it)->point->pos_);
+      Vector3d xyz_f(Vector3d((*it)->point->pos_.x()*frame->T_f_w_.cos_theta_+(*it)->point->pos_.z()*frame->T_f_w_.sin_theta_+frame->T_f_w_.X_,
+                (*it)->point->pos_.y(),
+                -(*it)->point->pos_.x()*frame->T_f_w_.sin_theta_+(*it)->point->pos_.z()*frame->T_f_w_.cos_theta_+frame->T_f_w_.Z_));
       Frame::jacobian_xyz2uv(xyz_f, J);
       Vector2d e = vk::project2d((*it)->f) - vk::project2d(xyz_f);
       double sqrt_inv_cov = 1.0 / (1<<(*it)->level);
@@ -108,9 +113,9 @@ void optimizeGaussNewton(
     }
 
     // update the model
-    SE3 T_new = SE3::exp(dT)*frame->T_f_w_;
+    SE3 T_new = SE3::exp(dT)*(*frame->T_f_w_.T);
     T_old = frame->T_f_w_;
-    frame->T_f_w_ = T_new;
+    frame->T_f_w_ = SE2_5(T_new.translation().x(),T_new.translation().z(),atan(T_new.rotation_matrix()(0,2)/T_new.rotation_matrix()(0,0)));
     chi2 = new_chi2;
     if(verbose)
       std::cout << "it " << iter
@@ -133,7 +138,9 @@ void optimizeGaussNewton(
   {
     if((*it)->point == NULL)
       continue;
-    Vector2d e = vk::project2d((*it)->f) - vk::project2d(frame->T_f_w_ * (*it)->point->pos_);
+    Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->point->pos_.x()*frame->T_f_w_.cos_theta_+(*it)->point->pos_.z()*frame->T_f_w_.sin_theta_+frame->T_f_w_.X_,
+                                                                  (*it)->point->pos_.y(),
+                                                                  -(*it)->point->pos_.x()*frame->T_f_w_.sin_theta_+(*it)->point->pos_.z()*frame->T_f_w_.cos_theta_+frame->T_f_w_.Z_));
     double sqrt_inv_cov = 1.0 / (1<<(*it)->level);
     e *= sqrt_inv_cov;
     chi2_vec_final.push_back(e.squaredNorm());
