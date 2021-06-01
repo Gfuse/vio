@@ -72,7 +72,7 @@ void Reprojector::reprojectMap(
   list< pair<FramePtr,double> > close_kfs;
   map_.getCloseKeyframes(frame, close_kfs);
 
-  std::cout<<"The number of closed frames: "<<std::to_string(close_kfs.size())<<'\n';
+  //std::cout<<"The number of closed frames: "<<std::to_string(close_kfs.size())<<'\n';
   // Sort KFs with overlap according to their closeness
   close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                  boost::bind(&std::pair<FramePtr, double>::second, _2));

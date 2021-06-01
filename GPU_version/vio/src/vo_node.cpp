@@ -105,12 +105,12 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 }
 void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     double imu_in[6];
-    imu_in[0] = 0.1*imu_[0]+0.9*imu->linear_acceleration.x;
-    imu_in[1] = 0.1*imu_[1]+0.9*imu->linear_acceleration.y;
-    imu_in[2] = 0.1*imu_[2]+0.9*imu->linear_acceleration.z;
-    imu_in[3] = 0.1*imu_[3]+0.9*imu->angular_velocity.x;
-    imu_in[4] = 0.1*imu_[4]+0.9*imu->angular_velocity.y;
-    imu_in[5] = 0.1*imu_[5]+0.9*imu->angular_velocity.z;
+    imu_in[0] = 0.4*imu_[0]+0.6*imu->linear_acceleration.x;
+    imu_in[1] = 0.4*imu_[1]+0.6*imu->linear_acceleration.y;
+    imu_in[2] = 0.4*imu_[2]+0.6*imu->linear_acceleration.z;
+    imu_in[3] = 0.4*imu_[3]+0.6*imu->angular_velocity.x;
+    imu_in[4] = 0.4*imu_[4]+0.6*imu->angular_velocity.y;
+    imu_in[5] = 0.4*imu_[5]+0.6*imu->angular_velocity.z;
     memcpy(imu_, imu_in, static_cast<std::size_t>(6*sizeof(double)));
     vo_->imu_integPtr_->update(imu_in);
 }

@@ -62,6 +62,13 @@ namespace svo
                -sin_theta_,0.0,cos_theta_;
             T=new SE3(R,Vector3d(X_,0.0,Z_));
         };
+        void set(){
+            X_=T->translation().x();
+            Z_=T->translation().z();
+            tetha_=atan(T->matrix()(0,2)/T->matrix()(0,0));
+            cos_theta_=cos(tetha_);
+            sin_theta_=sin(tetha_);
+        }
         ~SE2_5(){}
   };
 

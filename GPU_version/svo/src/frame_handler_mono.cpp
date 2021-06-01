@@ -137,24 +137,32 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 {
   SE3 tem=imu_integPtr_->preintegrate_predict();
-  new_frame_->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
+  if((new_frame_->T_f_w_.T->translation()-tem.translation()).norm()>0.5){
+      new_frame_->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
+  }else{
+      new_frame_->T_f_w_ = last_frame_->T_f_w_;
+  }
+  new_frame_->T_f_w_.set();
   //new_frame_->T_f_w_ = last_frame_->T_f_w_;
   // sparse image align
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::LevenbergMarquardt, false, false);
   img_align.run(last_frame_, new_frame_);
+  new_frame_->T_f_w_.set();
   // map reprojection & feature alignment
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
   size_t sfba_n_edges_final=0;
-
+  new_frame_->T_f_w_.set();
   double sfba_thresh, sfba_error_init, sfba_error_final;
   if(!imu_integPtr_->predict(new_frame_,last_frame_,sfba_n_edges_final,reprojector_.n_matches_)){
         return RESULT_FAILURE;
   }
+  new_frame_->T_f_w_.set();
   pose_optimizer::optimizeGaussNewton(
-            Config::poseOptimThresh(), Config::poseOptimNumIter(), true,
+            Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
 
+  new_frame_->T_f_w_.set();
   std::cerr<<"Reprojection Map: "<<"\t nPoint:"<<overlap_kfs_.back().second
   <<"\t nCell = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_
   <<" \t Reprojected points after opmization: "<<sfba_n_edges_final<<'\n';
@@ -168,6 +176,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   //SVO_STOP_TIMER("point_optimizer");
 
+  new_frame_->T_f_w_.set();
   // select keyframe
   core_kfs_.insert(new_frame_);
   setTrackingQuality(sfba_n_edges_final);
@@ -176,20 +185,26 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     return RESULT_FAILURE;
   }
   double depth_mean, depth_min;
+
+  new_frame_->T_f_w_.set();
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
-  if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)
+
+  new_frame_->T_f_w_.set();
+  if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)//edited
   {
     depth_filter_->addFrame(new_frame_);
     return RESULT_NO_KEYFRAME;
   }
   new_frame_->setKeyframe();
 
+    new_frame_->T_f_w_.set();
   // new keyframe selected
   for(auto&& it:new_frame_->fts_){
       if(it->point != NULL)it->point->addFrameRef(it);
   }
   map_.point_candidates_.addCandidatePointToFrame(new_frame_);
 
+    new_frame_->T_f_w_.set();
   // init new depth-filters
   depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
 
@@ -201,6 +216,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     map_.safeDeleteFrame(furthest_frame);
   }
 
+    new_frame_->T_f_w_.set();
   // add keyframe to map
   map_.addKeyframe(new_frame_);
   std::cerr<<"Svo pipline was finished\n";
@@ -274,6 +290,7 @@ void FrameHandlerMono::setFirstFrame(const FramePtr& first_frame)
 
 bool FrameHandlerMono::needNewKf(double scene_depth_mean)
 {
+  if(scene_depth_mean >10.0)return true;
   for(auto&& it:overlap_kfs_)
   {
     Vector3d relpos = new_frame_->w2f(it.first->pos());

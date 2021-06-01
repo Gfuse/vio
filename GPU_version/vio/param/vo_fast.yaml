@@ -17,6 +17,6 @@ svo:
   EBP: 0.1                #error in the bias used for preintegration
   NRP: 0.001                #noise used for projection in preintegration
   gravity: -9.65
-  Acceleration_offset_x: -0.05
-  Acceleration_offset_y: -0.04
-  Gyroscope_offset_z: 0.001
+  Acceleration_offset_x: 0.0 #-0.05
+  Acceleration_offset_y: 0.0 #-0.04
+  Gyroscope_offset_z: 0.0 #0.001

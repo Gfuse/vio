@@ -98,7 +98,6 @@ void optimizeGaussNewton(
       b.noalias() -= J.transpose()*e*weight;
       new_chi2 += e.squaredNorm()*weight;
     }
-
     // solve linear system
     const Vector6d dT(A.ldlt().solve(b));
 

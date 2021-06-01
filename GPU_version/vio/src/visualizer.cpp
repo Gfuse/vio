@@ -65,10 +65,10 @@ void Visualizer::publishMinimal(
     msg_pose->pose.pose.position.x = p[0];
     msg_pose->pose.pose.position.y = p[1];
     msg_pose->pose.pose.position.z = p[2];
-    msg_pose->pose.pose.orientation.x = q.x();
-    msg_pose->pose.pose.orientation.y = q.y();
-    msg_pose->pose.pose.orientation.z = q.z();
-    msg_pose->pose.pose.orientation.w = q.w();
+    msg_pose->pose.pose.orientation.x = q.x()/q.norm();
+    msg_pose->pose.pose.orientation.y = q.y()/q.norm();
+    msg_pose->pose.pose.orientation.z = q.z()/q.norm();
+    msg_pose->pose.pose.orientation.w = q.w()/q.norm();
     for(size_t i=0; i<36; ++i)
       msg_pose->pose.covariance[i] = Cov(i%6, i/6);
     pub_pose_.publish(msg_pose);

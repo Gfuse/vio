@@ -15,7 +15,7 @@
 #include <vikit/params_helper.h>
 #include <gpu_svo/config.h>
 #include <gpu_svo/for_it.hpp>
-#define debug 1
+#define debug 0
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();
     valuesPtr=std::make_shared<gtsam::Values>();
@@ -52,9 +52,9 @@ bool Imu_Integration::update(double* imu){
     auto in=std::chrono::steady_clock::now();
     if(std::chrono::duration<double>(in-t_1).count()>20.0){
         t_1=in;
-        preintegratedPtr->integrateMeasurement(Eigen::Vector3d(imu[0]-svo::Config::X_off(),0.0,-1.0*imu[1]-svo::Config::Y_off()),Eigen::Vector3d(0.0,imu[5]-svo::Config::Teta_off(),0.0),0.005);
+        preintegratedPtr->integrateMeasurement(Eigen::Vector3d(-1.0*(imu[0]-svo::Config::X_off()),0.0,-1.0*(imu[1]-svo::Config::Y_off())),Eigen::Vector3d(0.0,imu[5]-svo::Config::Teta_off(),0.0),0.005);
     }else{
-        preintegratedPtr->integrateMeasurement(Eigen::Vector3d(imu[0]-svo::Config::X_off(),0.0,-1.0*imu[1]-svo::Config::Y_off()),Eigen::Vector3d(0.0,imu[5]-svo::Config::Teta_off(),0.0),std::chrono::duration<double>(in-t_1).count());
+        preintegratedPtr->integrateMeasurement(Eigen::Vector3d(-1.0*(imu[0]-svo::Config::X_off()),0.0,-1.0*(imu[1]-svo::Config::Y_off())),Eigen::Vector3d(0.0,imu[5]-svo::Config::Teta_off(),0.0),std::chrono::duration<double>(in-t_1).count());
         t_1=in;
         ++imu_n;
     }
@@ -98,13 +98,16 @@ bool Imu_Integration::reset(gtsam::LevenbergMarquardtOptimizer& optimizer,boost:
     ++imu_factor_id;
     syn=false;
     gtsam::Marginals marginals(*graphPtr,result);
-    if(debug)fprintf(logtime, "%f,%f,%f,%f,%f,%f,\n",
+    if(debug)fprintf(logtime, "%f,%f,%f,%f,%f,%f,%f,%f,\n",
                      new_frame->T_f_w_.T->translation().x(),
                      new_frame->T_f_w_.T->translation().y(),
                      new_frame->T_f_w_.T->translation().z(),
+                     atan(new_frame->T_f_w_.T->rotation_matrix()(0,2)/new_frame->T_f_w_.T->rotation_matrix()(0,0)),
                      statePtr->pose().x(),
                      statePtr->pose().y(),
-                     statePtr->pose().z());
+                     statePtr->pose().z(),
+                     atan(statePtr->R()(0,2)/statePtr->R()(0,0)));
+    if((statePtr->t()-new_frame->T_f_w_.T->translation()).norm()>2.0)return false;
     new_frame->T_f_w_=svo::SE2_5(statePtr->t().x(),statePtr->t().z(),atan(statePtr->R()(0,2)/statePtr->R()(0,0)));
     new_frame->Cov_=marginals.marginalCovariance(P(imu_factor_id-1));
     graphPtr->resize(0);
@@ -147,7 +150,7 @@ bool Imu_Integration::predict(boost::shared_ptr<svo::Frame>& new_frame,
                                                 P(imu_factor_id));
     gtsam::LevenbergMarquardtParams params0;
     //params0.verbosity=gtsam::LevenbergMarquardtParams::LINEAR;
-    params0.verbosityLM = gtsam::LevenbergMarquardtParams::SUMMARY;
+    params0.verbosityLM = gtsam::LevenbergMarquardtParams::SILENT;
     params0.setlambdaFactor(10.0);
     params0.setlambdaInitial(100);
     params0.setlambdaUpperBound(1e10);
