@@ -136,14 +136,15 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 
 FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 {
-  SE3 tem=imu_integPtr_->preintegrate_predict();
-  if((new_frame_->T_f_w_.T->translation()-tem.translation()).norm()>0.5){
-      new_frame_->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
+  bool IMU=false;
+  SE2_5 tem(0.0,0.0,0.0);
+  if(imu_integPtr_->preintegrate_predict(tem))if((last_frame_->T_f_w_.T->translation()-tem.T->translation()).norm()>0.5){
+      new_frame_->T_f_w_ = tem;
+      IMU=true;
   }else{
+      imu_integPtr_->reset();
       new_frame_->T_f_w_ = last_frame_->T_f_w_;
   }
-  new_frame_->T_f_w_.set();
-  //new_frame_->T_f_w_ = last_frame_->T_f_w_;
   // sparse image align
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::LevenbergMarquardt, false, false);
@@ -151,30 +152,32 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_.set();
   // map reprojection & feature alignment
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  size_t sfba_n_edges_final=0;
   new_frame_->T_f_w_.set();
-  double sfba_thresh, sfba_error_init, sfba_error_final;
-  if(!imu_integPtr_->predict(new_frame_,last_frame_,sfba_n_edges_final,reprojector_.n_matches_)){
-        return RESULT_FAILURE;
+  if(IMU)if(!imu_integPtr_->predict(new_frame_,last_frame_,reprojector_.n_matches_)){
+            return RESULT_FAILURE;
   }
+  size_t sfba_n_edges_final=0;
+  double sfba_thresh, sfba_error_init, sfba_error_final;
   new_frame_->T_f_w_.set();
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
 
   new_frame_->T_f_w_.set();
-  std::cerr<<"Reprojection Map: "<<"\t nPoint:"<<overlap_kfs_.back().second
+
+  std::cout<<"Reprojection Map: "<<"\t nPoint:"<<overlap_kfs_.back().second
   <<"\t nCell = "<<reprojector_.n_trials_<<"\t \t nMatches = "<<reprojector_.n_matches_
   <<" \t Reprojected points after opmization: "<<sfba_n_edges_final<<'\n';
 
+  if((last_frame_->T_f_w_.T->translation()-new_frame_->T_f_w_.T->translation()).norm()>1.0){
+      new_frame_->T_f_w_ = last_frame_->T_f_w_;
+      return RESULT_NO_KEYFRAME;
+  }
   if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
       return RESULT_NO_KEYFRAME;
   }
 
-  // structure optimization
-//  SVO_START_TIMER("point_optimizer");
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
-  //SVO_STOP_TIMER("point_optimizer");
 
   new_frame_->T_f_w_.set();
   // select keyframe
@@ -188,8 +191,11 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   new_frame_->T_f_w_.set();
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
+  if(depth_mean > 50 || depth_mean < 0.0)
+  {
+      return RESULT_NO_KEYFRAME;
+  }
 
-  new_frame_->T_f_w_.set();
   if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)//edited
   {
     depth_filter_->addFrame(new_frame_);
@@ -197,14 +203,13 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   new_frame_->setKeyframe();
 
-    new_frame_->T_f_w_.set();
+  new_frame_->T_f_w_.set();
   // new keyframe selected
   for(auto&& it:new_frame_->fts_){
       if(it->point != NULL)it->point->addFrameRef(it);
   }
   map_.point_candidates_.addCandidatePointToFrame(new_frame_);
 
-    new_frame_->T_f_w_.set();
   // init new depth-filters
   depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
 
@@ -219,7 +224,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     new_frame_->T_f_w_.set();
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  std::cerr<<"Svo pipline was finished\n";
+  std::cout<<"Svo pipline was finished\n";
   return RESULT_IS_KEYFRAME;
 }
 
@@ -294,10 +299,10 @@ bool FrameHandlerMono::needNewKf(double scene_depth_mean)
   for(auto&& it:overlap_kfs_)
   {
     Vector3d relpos = new_frame_->w2f(it.first->pos());
-    if(fabs(relpos.x())/scene_depth_mean < Config::kfSelectMinDist() &&
-       fabs(relpos.y())/scene_depth_mean < Config::kfSelectMinDist() &&
-       fabs(relpos.z())/scene_depth_mean < Config::kfSelectMinDist())
-      return false;
+    if(fabs(relpos.norm())/scene_depth_mean < Config::kfSelectMinDist()){
+        return false;
+    }
+
   }
   return true;
 }

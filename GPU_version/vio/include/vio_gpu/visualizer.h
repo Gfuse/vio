@@ -44,7 +44,7 @@ public:
   size_t trace_id_;
   ros::Publisher pub_frames_;
   ros::Publisher pub_points_;
-  ros::Publisher pub_pose_;
+  ros::Publisher pub_pose_with_cov_;
   ros::Publisher pub_info_;
   tf::TransformBroadcaster br_;
   SE3 T_world_from_vision_;

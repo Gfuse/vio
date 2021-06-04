@@ -92,14 +92,17 @@ void DepthFilter::addFrame(FramePtr frame)
     seeds_updating_halt_ = false;
     frame_queue_cond_.notify_one();
   }
-  else
-    updateSeeds(frame);
+  else{
+      updateSeeds(frame);
+  }
+
 }
 
 void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_min)
 {
   new_keyframe_min_depth_ = depth_min;
   new_keyframe_mean_depth_ = depth_mean;
+  ++seeds_cont_;
   if(thread_ != NULL)
   {
     new_keyframe_ = frame;
@@ -108,7 +111,10 @@ void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_mi
     frame_queue_cond_.notify_one();
   }
   else
-    initializeSeeds(frame);
+    if(seeds_cont_>5){
+        initializeSeeds(frame);
+        seeds_cont_=0;
+    }
 }
 
 void DepthFilter::initializeSeeds(FramePtr frame)
@@ -178,7 +184,9 @@ void DepthFilter::updateSeedsLoop()
       if(new_keyframe_set_)
       {
         new_keyframe_set_ = false;
-        seeds_updating_halt_ = false;
+        if(seeds_cont_>5){
+            seeds_updating_halt_ = false;
+        }
         clearFrameQueue();
         frame = new_keyframe_;
       }
@@ -189,8 +197,12 @@ void DepthFilter::updateSeedsLoop()
       }
     }
     updateSeeds(frame);
-    if(frame->isKeyframe())
-      initializeSeeds(frame);
+
+    if(frame->isKeyframe() && seeds_cont_>5){
+        initializeSeeds(frame);
+        seeds_cont_=0;
+    }
+
   }
 }
 
@@ -233,6 +245,10 @@ void DepthFilter::updateSeeds(FramePtr frame)
     // we are using inverse depth coordinates
     float z_inv_min = it->mu + sqrt(it->sigma2);
     float z_inv_max = max(it->mu - sqrt(it->sigma2), 0.00000001f);
+    if(z_inv_min <0){
+        ++it;
+        continue;
+    }
     double z;
     if(!matcher_.findEpipolarMatchDirect(
         *it->ftr->frame, *frame, *it->ftr, 1.0/it->mu, 1.0/z_inv_min, 1.0/z_inv_max, z))
@@ -264,20 +280,7 @@ void DepthFilter::updateSeeds(FramePtr frame)
       Vector3d xyz_world(it->ftr->frame->T_f_w_.T->inverse() * (it->ftr->f * (1.0/it->mu)));
       Point* point = new Point(xyz_world, it->ftr);
       it->ftr->point = point;
-      /* FIXME it is not threadsafe to add a feature to the frame here.
-      if(frame->isKeyframe())
-      {
-        Feature* ftr = new Feature(frame.get(), matcher_.px_cur_, matcher_.search_level_);
-        ftr->point = point;
-        point->addFrameRef(ftr);
-        frame->addFeature(ftr);
-        it->ftr->frame->addFeature(it->ftr);
-      }
-      else
-      */
-      {
-        seed_converged_cb_(point, it->sigma2); // put in candidate list
-      }
+      seed_converged_cb_(point, it->sigma2); // put in candidate list
       it = seeds_.erase(it);
     }
     else if(isnan(z_inv_min))

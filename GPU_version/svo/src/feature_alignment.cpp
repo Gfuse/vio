@@ -203,7 +203,7 @@ bool align2D(
   bool sign=true;// +
 
   // termination condition
-  const float min_update_squared = 0.05;
+  const float min_update_squared = 0.3;
   const int cur_step = cur_img.step.p[0];
 //  float chi2 = 0;
   Vector3f update; update.setZero();

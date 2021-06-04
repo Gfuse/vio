@@ -138,7 +138,6 @@ public:
 protected:
   feature_detection::DetectorPtr feature_detector_;
   callback_t seed_converged_cb_;
-  //std::list<Seed> seeds_;
   std::list<Seed, Eigen::aligned_allocator<Seed>> seeds_;
   boost::mutex seeds_mut_;
   bool seeds_updating_halt_;            //!< Set this value to true when seeds updating should be interrupted.
@@ -150,8 +149,8 @@ protected:
   bool new_keyframe_set_;               //!< Do we have a new keyframe to process?.
   double new_keyframe_min_depth_;       //!< Minimum depth in the new keyframe. Used for range in new seeds.
   double new_keyframe_mean_depth_;      //!< Maximum depth in the new keyframe. Used for range in new seeds.
-  //vk::PerformanceMonitor permon_;       //!< Separate performance monitor since the DepthFilter runs in a parallel thread.
   Matcher matcher_;
+  uint seeds_cont_=0;
 
   /// Initialize new seeds from a frame.
   void initializeSeeds(FramePtr frame);

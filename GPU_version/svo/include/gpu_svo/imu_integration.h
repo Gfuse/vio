@@ -24,13 +24,13 @@ class Imu_Integration{
 public:
     Imu_Integration(Sophus::SE3& SE_init);
     ~Imu_Integration();
-    bool reset(gtsam::ISAM2& optimizer,boost::shared_ptr<svo::Frame>& new_frame);
+    void reset();
     bool reset(gtsam::LevenbergMarquardtOptimizer& optimizer,boost::shared_ptr<svo::Frame>& new_frame);
     bool update(double* imu= nullptr);
     bool predict(boost::shared_ptr<svo::Frame>&,
-                 boost::shared_ptr<svo::Frame>& last_frame ,std::size_t&,const double reproj_thresh);
+                 boost::shared_ptr<svo::Frame>& last_frame ,const double match);
     bool init(boost::shared_ptr<svo::Frame>&);
-    Sophus::SE3 preintegrate_predict();
+    bool preintegrate_predict(svo::SE2_5& frame);
 private:
     FILE* logtime;
     std::shared_ptr<gtsam::NavState> statePtr;

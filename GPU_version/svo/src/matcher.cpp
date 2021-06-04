@@ -184,6 +184,7 @@ bool Matcher::findEpipolarMatchDirect(
     const double d_max,
     double& depth)
 {
+  if(isnan(d_min) || isnan(d_max))return false;
   SE3 T_cur_ref = (*cur_frame.T_f_w_.T) * ref_frame.T_f_w_.T->inverse();
   int zmssd_best = PatchScore::threshold();
   Vector2d uv_best;
@@ -216,6 +217,7 @@ bool Matcher::findEpipolarMatchDirect(
   Vector2d px_A(cur_frame.cam_->world2cam(A));
   Vector2d px_B(cur_frame.cam_->world2cam(B));
   epi_length_ = (px_A-px_B).norm() / (1<<search_level_);
+
 
   // Warp reference patch at ref_level
   warp::warpAffine(A_cur_ref_, ref_frame.img_pyr_[ref_ftr.level], ref_ftr.px,
