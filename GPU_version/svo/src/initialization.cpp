@@ -70,7 +70,8 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   double scene_depth_median = vk::getMedian(depth_vec);
   double scale = Config::mapScale()/scene_depth_median;
   SE3 tem=T_cur_from_ref_ * (*frame_ref_->T_f_w_.T);
-  frame_cur->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),atan(tem.rotation_matrix()(0,2)/tem.rotation_matrix()(0,0)));
+  frame_cur->T_f_w_ = SE2_5(tem.translation().x(),tem.translation().z(),asin(2*(tem.unit_quaternion().w()*tem.unit_quaternion().y()-
+          tem.unit_quaternion().z()*tem.unit_quaternion().x())));
   tem.translation() = -frame_cur->T_f_w_.T->rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
   frame_cur->T_f_w_.X_ = tem.translation().x();
   frame_cur->T_f_w_.Z_ = tem.translation().z();

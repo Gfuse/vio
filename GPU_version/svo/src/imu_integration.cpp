@@ -15,17 +15,11 @@
 #include <vikit/params_helper.h>
 #include <gpu_svo/config.h>
 #include <gpu_svo/for_it.hpp>
-#define debug 1
+#define debug 0
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();
     valuesPtr=std::make_shared<gtsam::Values>();
-    // Example: pitch and roll of aircraft in an ENU Cartesian frame.
-    // If pitch and roll are zero for an aerospace frame,
-    // that means Z is pointing down, i.e., direction of Z = (0,0,-1)
-    //gtsam::Vector4 g=SE_init.matrix()*gtsam::Vector4(0, 0, svo::Config::Gravity(),1.0);
-    //parameterPtr = boost::shared_ptr<gtsam::PreintegrationCombinedParams>(new gtsam::PreintegrationCombinedParams(gtsam::Vector3(g.x(),g.y(),g.z())));
     parameterPtr = boost::shared_ptr<gtsam::PreintegrationCombinedParams>(new gtsam::PreintegrationCombinedParams(gtsam::Vector3(0.0,0.0,0.0)));
-    //parameterPtr->setBodyPSensor(gtsam::Pose3(SE_init.matrix()));// The pose of the sensor in the body frame
     parameterPtr->accelerometerCovariance=gtsam::I_3x3 * svo::Config::ACC_Noise(); // acc white noise in continuous
     parameterPtr->gyroscopeCovariance=gtsam::I_3x3 * svo::Config::GYO_Noise();// gyro white noise in continuous
     parameterPtr->integrationCovariance=gtsam::I_3x3 * svo::Config::IUC(); // integration uncertainty continuous
@@ -49,8 +43,8 @@ Imu_Integration::~Imu_Integration(){
 bool Imu_Integration::update(double* imu){
     if(syn)return false;
     if(imu_factor_id<1)return false;
-    if(abs(imu[0])<1.0)imu[0]=pow(imu[0],3);
-    if(abs(imu[1])<1.0)imu[0]=pow(imu[1],3);
+    if(abs(imu[0])<1.0)imu[0]=pow(imu[0],3);//picked up from your code
+    if(abs(imu[1])<1.0)imu[0]=pow(imu[1],3);//picked up from your code
     auto in=std::chrono::steady_clock::now();
     if(std::chrono::duration<double>(in-t_1).count()>20.0){
         t_1=in;

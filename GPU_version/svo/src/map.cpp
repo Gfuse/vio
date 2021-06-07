@@ -179,7 +179,8 @@ void Map::transform(const Matrix3d& R, const Vector3d& t, const double& s)
     Vector3d pos = s*R*(*it)->pos() + t;
     Matrix3d rot = R*(*it)->T_f_w_.T->rotation_matrix().inverse();
     SE3 inv=SE3(rot, pos).inverse();
-    (*it)->T_f_w_ = SE2_5(inv.translation().x(),inv.translation().z(),atan(inv.rotation_matrix()(0,2)/inv.rotation_matrix()(0,0)));
+    (*it)->T_f_w_ = SE2_5(inv.translation().x(),inv.translation().z(),asin(2*(inv.unit_quaternion().w()*inv.unit_quaternion().y()-
+                                                                              inv.unit_quaternion().z()*inv.unit_quaternion().x())));
     for(auto ftr=(*it)->fts_.begin(); ftr!=(*it)->fts_.end(); ++ftr)
     {
       if((*ftr)->point == NULL)

@@ -65,7 +65,8 @@ namespace svo
         void set(){
             X_=T->translation().x();
             Z_=T->translation().z();
-            tetha_=atan(T->matrix()(0,2)/T->matrix()(0,0));
+            tetha_=asin(2*(T->unit_quaternion().w()*T->unit_quaternion().y()-
+                           T->unit_quaternion().z()*T->unit_quaternion().x()));
             cos_theta_=cos(tetha_);
             sin_theta_=sin(tetha_);
         }
