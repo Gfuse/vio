@@ -32,11 +32,14 @@ If you use SVO in an academic context, please cite the following publication:
     
 #### Documentation
 OpenCL documentation
+
 The API is documented here: http://uzh-rpg.github.io/rpg_svo/doc/
+
 The GTSAM documentation  https://gtsam.org/tutorials/
 
 #### Instructions
 Please be sure that you have the OpenCL driver installed
+
 First install gtsam library => https://github.com/borglab/gtsam
 
 Then follow the SVO instalation
