@@ -1,7 +1,7 @@
 SVO
 ===
 
-This code implements a semi-direct monocular visual odometry pipeline which has been integrated with GTSAM to infused IMU as well. 
+This code implements a semi-direct monocular visual odometry pipeline which has been integrated with GTSAM to infused IMU as well. The feature extraction part is implemented in OpenCL to take advantage of GPU.
 
 
 Paper svo: http://rpg.ifi.uzh.ch/docs/ICRA14_Forster.pdf
@@ -31,15 +31,21 @@ If you use SVO in an academic context, please cite the following publication:
     
     
 #### Documentation
-
+OpenCL documentation
 The API is documented here: http://uzh-rpg.github.io/rpg_svo/doc/
 The GTSAM documentation  https://gtsam.org/tutorials/
 
 #### Instructions
+Please be sure that you have the OpenCL driver installed
+First install gtsam library => https://github.com/borglab/gtsam
+
+Then follow the SVO instalation
 
 See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki and https://gtsam.org/get_started/
 
-#### Contributing
 
-You are very welcome to contribute to SVO by opening a pull request via Github.
-I try to follow the ROS C++ style guide http://wiki.ros.org/CppStyleGuide
+## Setting
+
+You can edit the algorithm parameters in the follwoing file, please look at the config file to underestand the meaning of the parameters (CPU_version/svo/include/svo/config.h)
+
+CPU_version/vio_svo/param/vo_fast.yaml
