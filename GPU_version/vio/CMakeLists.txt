@@ -1,92 +1,76 @@
-SET(PROJECT_NAME vio_gpu)
+SET(PROJECT_NAME vio)
 PROJECT(${PROJECT_NAME})
 CMAKE_MINIMUM_REQUIRED (VERSION 2.8.3)
+
 SET(CMAKE_BUILD_TYPE Release) # Release, RelWithDebInfo
 SET(CMAKE_VERBOSE_MAKEFILE OFF)
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMakeModules/")
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
+# Set definitions
+ADD_DEFINITIONS(-DSVO_TRACE)
+ADD_DEFINITIONS(-DSVO_USE_ROS)
+
+
+# Set build flags, set ARM_ARCHITECTURE environment variable on Odroid
 # Set build flags. Set IS_ARM on odroid board as environment variable
 SET(CMAKE_CXX_FLAGS "-Wall -D_LINUX -D_REENTRANT -march=native -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unknown-pragmas")
 IF(DEFINED ENV{ARM_ARCHITECTURE})
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
 ELSE()
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmmx -msse -msse -msse2 -msse3 -mssse3")
 ENDIF()
-IF(CMAKE_COMPILER_IS_GNUCC)
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-ELSE()
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-ENDIF()
 SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -fsee -fomit-frame-pointer -fno-signed-zeros -fno-math-errno -funroll-loops")
 
-# Add catkin and required ROS packages
-FIND_PACKAGE(catkin REQUIRED COMPONENTS
-        geometry_msgs
-        roscpp
-  cmake_modules
-  nav_msgs
-  std_msgs
-  visualization_msgs
-  sensor_msgs
-  image_transport
-  cv_bridge
-  tf
-  gpu_svo
-  vikit_common
-  vikit_ros
-)
-
 # Add plain cmake packages 
-FIND_PACKAGE(OpenCV REQUIRED)
+FIND_PACKAGE(OpenCV 3 REQUIRED)
 FIND_PACKAGE(Eigen REQUIRED)
 FIND_PACKAGE(Sophus REQUIRED)
-FIND_PACKAGE(Boost REQUIRED COMPONENTS thread)
-FIND_PACKAGE(GTSAM REQUIRED)
+FIND_PACKAGE(Boost REQUIRED COMPONENTS thread system)
 FIND_PACKAGE(OpenCL REQUIRED)
 
-# notify catkin to look at the previously found msg files
-add_message_files(
-        FILES
-        Info.msg
+set(GTSAM_INCLUDE_DIRS "${GTSAM_INCLUDE_DIR}")
+FIND_PACKAGE(catkin REQUIRED COMPONENTS roscpp roslib cmake_modules image_transport cv_bridge tf geometry_msgs)
+catkin_package(
+      DEPENDS Eigen OpenCV Sophus Boost
+      CATKIN_DEPENDS roscpp roslib image_transport cv_bridge tf geometry_msgs
+      INCLUDE_DIRS include
 )
 
-# build the header files from the msg files, and notify catkin about the dependencies
-generate_messages(
-        DEPENDENCIES
-        geometry_msgs
-        sensor_msgs
-)
-# Describe catkin Project
-catkin_package(
-  DEPENDS Eigen OpenCV Sophus Boost
-  CATKIN_DEPENDS roscpp nav_msgs std_msgs visualization_msgs sensor_msgs image_transport cv_bridge tf gpu_svo vikit_common vikit_ros geometry_msgs
-  INCLUDE_DIRS include
-  LIBRARIES ${PROJECT_NAME}_visualizer
-)
 
 # Include dirs
 INCLUDE_DIRECTORIES(
         include
-  ${Eigen_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${Sophus_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIRS}
-  ${catkin_INCLUDE_DIRS}
+        kernel
+        ${Eigen_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
+        ${Sophus_INCLUDE_DIRS}
+        ${Boost_INCLUDE_DIRS}
+        ${OpenCL_INCLUDE_DIRS}
+        ${catkin_INCLUDE_DIRS}
 )
 
 # Set link libraries
-LIST(APPEND LINK_LIBS 
+LIST(APPEND LINK_LIBS
+  #gtsam
   ${OpenCV_LIBS}
   ${Sophus_LIBRARIES}
   ${Boost_LIBRARIES}
-  ${catkin_LIBRARIES}
   ${OpenCL_LIBRARIES}
+  ${catkin_LIBRARIES}
 )
 
-# Create visualizer library
-ADD_LIBRARY(${PROJECT_NAME}_visualizer src/visualizer.cpp)
-TARGET_LINK_LIBRARIES(${PROJECT_NAME}_visualizer ${LINK_LIBS} gtsam)
-                                 
-# Create Executables                      
-ADD_EXECUTABLE(${PROJECT_NAME} src/vo_node.cpp)
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${PROJECT_NAME}_visualizer ${LINK_LIBS})
+file(GLOB SRC  CONFIGURE_DEPENDS "src/*.cpp")
+
+
+
+# Create svo library
+ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LINK_LIBS})
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_range_for)
+ADD_DEFINITIONS(-DKERNEL_DIR=\"${PROJECT_SOURCE_DIR}/kernel\")
+
+

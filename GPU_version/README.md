@@ -49,3 +49,18 @@ See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki and 
 You can edit the algorithm parameters in the follwoing file, please look at the config file to underestand the meaning of the parameters (CPU_version/svo/include/svo/config.h)
 
 CPU_version/vio_svo/param/vo_fast.yaml
+
+# the GPU_version
+
+Dose not have dependency with GTSAM, the dependencies are:
+1. OpenCV 3
+2. Eigen
+3. Sophus     https://github.com/strasdat/Sophus.git
+4. Boost
+5. OpenCL
+
+if make fails in the build of Sophus with the error lvalue required as left operand of assignment in so2.cpp, see this issue: https://github.com/uzh-rpg/rpg_svo/issues/237
+
+
+
+

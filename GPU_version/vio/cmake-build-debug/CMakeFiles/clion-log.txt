@@ -1,0 +1,70 @@
+/opt/clion-2020.3.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /root/Project/ROS/src/vio_svo/GPU_version/svo
+-- The C compiler identification is GNU 7.5.0
+-- The CXX compiler identification is GNU 7.5.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc - works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenCV: /usr (found suitable version "3.2.0", minimum required is "3") 
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+-- Checking for module 'eigen3'
+--   Found eigen3, version 3.3.4
+-- Found Eigen: /usr/include/eigen3  
+-- Eigen found (include: /usr/include/eigen3)
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found Boost: /usr/include (found version "1.65.1") found components: thread system chrono date_time atomic 
+-- Looking for CL_VERSION_2_2
+-- Looking for CL_VERSION_2_2 - found
+-- Found OpenCL: /usr/lib/x86_64-linux-gnu/libOpenCL.so (found version "2.2") 
+-- Using CATKIN_DEVEL_PREFIX: /root/Project/ROS/src/vio_svo/GPU_version/svo/cmake-build-debug/devel
+-- Using CMAKE_PREFIX_PATH: /opt/ros/melodic
+-- This workspace overlays: /opt/ros/melodic
+-- Found PythonInterp: /usr/bin/python2 (found suitable version "2.7.17", minimum required is "2") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python2
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /root/Project/ROS/src/vio_svo/GPU_version/svo/cmake-build-debug/test_results
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python2 (found version "2.7.17") 
+-- Using Python nosetests: /usr/bin/nosetests-2.7
+-- catkin 0.7.28
+-- BUILD_SHARED_LIBS is on
+-- Could NOT find robot_localization (missing: robot_localization_DIR)
+-- Could not find the required component 'robot_localization'. The following CMake error indicates that you either need to install the package with the same name or change your environment so that it can be found.
+CMake Error at /opt/ros/melodic/share/catkin/cmake/catkinConfig.cmake:83 (find_package):
+  Could not find a package configuration file provided by
+  "robot_localization" with any of the following names:
+
+    robot_localizationConfig.cmake
+    robot_localization-config.cmake
+
+  Add the installation prefix of "robot_localization" to CMAKE_PREFIX_PATH or
+  set "robot_localization_DIR" to a directory containing one of the above
+  files.  If "robot_localization" provides a separate development package or
+  SDK, be sure it has been installed.
+Call Stack (most recent call first):
+  CMakeLists.txt:34 (FIND_PACKAGE)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/root/Project/ROS/src/vio_svo/GPU_version/svo/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/root/Project/ROS/src/vio_svo/GPU_version/svo/cmake-build-debug/CMakeFiles/CMakeError.log".

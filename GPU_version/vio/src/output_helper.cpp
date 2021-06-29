@@ -5,11 +5,9 @@
  *      Author: chrigi
  */
 
-#include <vio_gpu/output_helper.h>
+#include <gpu_svo/output_helper.h>
 #include <visualization_msgs/Marker.h>
 
-namespace vk {
-namespace output_helper {
 
 void
 publishTfTransform(const Sophus::SE3& T, const ros::Time& stamp,
@@ -403,8 +401,5 @@ void publishFrameMarker(ros::Publisher pub,
   marker.lifetime = lifetime;
   pub.publish(marker);
 }
-
-} // namespace output_helper
-} // namespace vk
 
 

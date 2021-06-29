@@ -14,16 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <vio_gpu/visualizer.h>
+#include <gpu_svo/visualizer.h>
 #include <gpu_svo/frame_handler_mono.h>
 #include <gpu_svo/point.h>
 #include <gpu_svo/map.h>
 #include <gpu_svo/feature.h>
-#include <vio_gpu/Info.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <gpu_svo/timer.h>
-#include <vio_gpu/output_helper.h>
+#include <gpu_svo/output_helper.h>
 #include <deque>
 
 namespace svo {
@@ -53,31 +52,27 @@ void Visualizer::publishMinimal(
   header_msg.stamp = ros::Time(timestamp);
   if(pub_pose_with_cov_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_DEFAULT_FRAME)
   {
-    Matrix<double,6,6> Cov;
     // publish cam in world frame (Estimated odometry in the worls frame)
-    SE3 T_world_from_cam(frame->T_f_w_.T->inverse());// do not confused with inverse. the T_f_w_ is the from camera to initial position with reference of camera
-    double yaw=asin(2*(frame->T_f_w_.T->unit_quaternion().w()*frame->T_f_w_.T->unit_quaternion().y()-
-            frame->T_f_w_.T->unit_quaternion().z()*frame->T_f_w_.T->unit_quaternion().x()));
-    Quaterniond q;
-    q = AngleAxisd(0.0, Vector3d::UnitX())
-          * AngleAxisd(0.0, Vector3d::UnitY())
-          * AngleAxisd(yaw-1.5708, Vector3d::UnitZ());
-    Cov = T_world_from_cam.Adj()*frame->Cov_*T_world_from_cam.inverse().Adj();
+    Quaterniond q(AngleAxisd(frame->T_f_w_.pitch(), Vector3d::UnitY()));
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose_with_cov(new geometry_msgs::PoseWithCovarianceStamped);
       msg_pose_with_cov->header = header_msg;
-      msg_pose_with_cov->pose.pose.position.x = -1.0*T_world_from_cam.translation().x();
-      msg_pose_with_cov->pose.pose.position.y = -1.0*T_world_from_cam.translation().z();
+      msg_pose_with_cov->pose.pose.position.x = frame->se3().translation().x();
+      msg_pose_with_cov->pose.pose.position.y = frame->se3().translation().z();
       msg_pose_with_cov->pose.pose.position.z = 0.0;
-      msg_pose_with_cov->pose.pose.orientation.x = q.x()/q.norm();
-      msg_pose_with_cov->pose.pose.orientation.y = q.y()/q.norm();
-      msg_pose_with_cov->pose.pose.orientation.z = q.z()/q.norm();
-      msg_pose_with_cov->pose.pose.orientation.w = q.w()/q.norm();
-    for(size_t i=0; i<36; ++i)
-        msg_pose_with_cov->pose.covariance[i] = Cov(i%6, i/6);
+      msg_pose_with_cov->pose.pose.orientation.x = q.x();
+      msg_pose_with_cov->pose.pose.orientation.y = q.y();
+      msg_pose_with_cov->pose.pose.orientation.z = q.z();
+      msg_pose_with_cov->pose.pose.orientation.w = q.w();
+        msg_pose_with_cov->pose.covariance = {frame->Cov_(0,0),frame->Cov_(0,1),0.0,0.0,frame->Cov_(0,2),0.0,
+                                              frame->Cov_(1,0),frame->Cov_(1,1),0.0,0.0,frame->Cov_(1,2),0.0,
+                                              0.0,0.0,0.0000001,0.0,0.0,0.0,
+                                              0.0,0.0,0.0,0.0000001,0.0,0.0,
+                                              frame->Cov_(2,0),frame->Cov_(2,1),0.0,0.0,frame->Cov_(2,2),0.0,
+                                              0.0,0.0,0.0,0.0,0.0,0.0000001};
     pub_pose_with_cov_.publish(msg_pose_with_cov);
     if(pub_frames_.getNumSubscribers() > 0 || pub_points_.getNumSubscribers() > 0){
-          vk::output_helper::publishPointMarker(
-                  pub_points_, Eigen::Vector3d(-1.0*T_world_from_cam.translation().x(),-1.0*T_world_from_cam.translation().z(),0.0), "trajectory",
+          publishPointMarker(
+                  pub_points_, Eigen::Vector3d(frame->se3().translation().x(),frame->se3().translation().z(),0.0), "trajectory",
                   ros::Time::now(), trace_id_, 0, 0.01, Vector3d(0.,0.,0.5));
     }
   }
@@ -92,14 +87,14 @@ void Visualizer::visualizeMarkers(
   if(frame == NULL)
     return;
 
-  vk::output_helper::publishTfTransform(
-      *frame->T_f_w_.T*T_world_from_vision_.inverse(),
+  publishTfTransform(
+      frame->se3()*T_world_from_vision_.inverse(),
       ros::Time(frame->timestamp_), "cam_pos", "world", br_);
 
   if(pub_frames_.getNumSubscribers() > 0 || pub_points_.getNumSubscribers() > 0)
   {
-    vk::output_helper::publishPointMarker(
-        pub_points_, T_world_from_vision_*frame->pos(), "trajectory",
+    publishPointMarker(
+        pub_points_, T_world_from_vision_*Vector3d(frame->pos()(0),0.0,frame->pos()(1)), "trajectory",
         ros::Time::now(), trace_id_, 0, 0.006, Vector3d(0.,0.,0.5));
     removeDeletedPts(map);
   }
@@ -110,7 +105,7 @@ void Visualizer::removeDeletedPts(const Map& map)
   if(pub_points_.getNumSubscribers() > 0)
   {
     for(list<Point*>::const_iterator it=map.trash_points_.begin(); it!=map.trash_points_.end(); ++it)
-      vk::output_helper::publishPointMarker(pub_points_, Vector3d(), "pts", ros::Time::now(), (*it)->id_, 2, 0.006, Vector3d());
+      publishPointMarker(pub_points_, Vector3d(), "pts", ros::Time::now(), (*it)->id_, 2, 0.006, Vector3d());
   }
 }
 
