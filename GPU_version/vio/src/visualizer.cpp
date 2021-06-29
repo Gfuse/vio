@@ -53,7 +53,7 @@ void Visualizer::publishMinimal(
   if(pub_pose_with_cov_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_DEFAULT_FRAME)
   {
     // publish cam in world frame (Estimated odometry in the worls frame)
-    Quaterniond q(AngleAxisd(frame->T_f_w_.pitch(), Vector3d::UnitY()));
+    Quaterniond q(AngleAxisd(frame->T_f_w_.pitch(), Vector3d::UnitZ()));
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose_with_cov(new geometry_msgs::PoseWithCovarianceStamped);
       msg_pose_with_cov->header = header_msg;
       msg_pose_with_cov->pose.pose.position.x = frame->se3().translation().x();
