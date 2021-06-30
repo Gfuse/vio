@@ -74,8 +74,8 @@ VoNode::VoNode() :
           Eigen::Vector3d(vk::getParam<double>("vio/init_tx", 0.0),
                           vk::getParam<double>("vio/init_ty", 0.0),
                           vk::getParam<double>("vio/init_tz", 0.0)));
-    Eigen::Matrix<double,6,1> init;
-    init<<1e-5,1e-5,1e-5,1e-5,1e-5,1e-5;
+    Eigen::Matrix<double,3,1> init;
+    init<<1e-19,1e-19,1e-19;
     vo_ = new svo::FrameHandlerMono(cam_,init);
     usleep(500);
 
@@ -157,6 +157,7 @@ void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
         }
 #endif
     vo_->UpdateIMU(imu_in,imu->header.stamp);
+    imu_time_=imu->header.stamp;
 }
 void VoNode::cmdCb(const geometry_msgs::TwistPtr &cmd) {
         double _cmd[3]={cmd->linear.x,cmd->linear.y,cmd->angular.z};

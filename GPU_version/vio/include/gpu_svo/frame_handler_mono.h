@@ -33,7 +33,7 @@ class FrameHandlerMono : public FrameHandlerBase
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   
-  FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,6,1>& init);
+  FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,3,1>& init);
   virtual ~FrameHandlerMono();
 
   /// Provide an image.

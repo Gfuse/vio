@@ -27,7 +27,7 @@
 
 namespace svo {
 
-FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,6,1>& init) :
+FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,3,1>& init) :
   FrameHandlerBase(),
   cam_(cam),
   reprojector_(cam_, map_),
@@ -133,7 +133,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 
 FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 {
-
   new_frame_->T_f_w_ = last_frame_->T_f_w_;
   // sparse image align
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
