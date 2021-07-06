@@ -109,7 +109,6 @@ void Map::getCloseKeyframes(
 {
   for(auto kf : keyframes_)
   {
-      std::cout<<"key points:"<<std::to_string(kf->key_pts_.size())<<'\t';
     // check if kf has overlaping field of view with frame, use therefore KeyPoints
     for(auto keypoint : kf->key_pts_)
     {

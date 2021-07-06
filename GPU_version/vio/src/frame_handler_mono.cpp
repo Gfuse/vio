@@ -113,7 +113,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   new_frame_->T_f_w_ = last_frame_->T_f_w_;
   initialization::InitResult res = klt_homography_init_->addSecondFrame(new_frame_);
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.getSE2().translation()(0),new_frame_->T_f_w_.getSE2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
-  new_frame_->T_f_w_ = SE2_5(result.second);
+  new_frame_->T_f_w_ = result.second;
   new_frame_->Cov_ = result.first;
   if(res == initialization::NO_KEYFRAME)
       return RESULT_NO_KEYFRAME;
@@ -138,8 +138,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::LevenbergMarquardt, false, false);
   img_align.run(last_frame_, new_frame_);
- // std::cout<<"img_align:\n"<<new_frame_->T_f_w_.getSE2()<<"\n";
-  // map reprojection & feature alignment
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
@@ -151,7 +149,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.getSE2().translation()(0),
                                 new_frame_->T_f_w_.getSE2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
-  new_frame_->T_f_w_ = SE2_5(result.second);
+  new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
   <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
@@ -172,10 +170,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   double depth_mean, depth_min;
 
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
-  if(depth_mean > 50 || depth_min < 0.0)
-  {
-      return RESULT_NO_KEYFRAME;
-  }
   if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)//edited
   {
     depth_filter_->addFrame(new_frame_);
@@ -191,6 +185,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   // init new depth-filters
   depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
+
   // if limited number of keyframes, remove the one furthest apart
   if(Config::maxNKfs() > 2 && map_.size() >= Config::maxNKfs())
   {
@@ -275,13 +270,11 @@ bool FrameHandlerMono::needNewKf(double scene_depth_mean)
   if(scene_depth_mean >10.0)return true;
   for(auto&& it:overlap_kfs_)
   {
-    Vector3d relpos = new_frame_->w2f(Vector3d(it.first->pos()(0),0.0,it.first->pos()(1)));
-    if(fabs(relpos.norm())/scene_depth_mean < Config::kfSelectMinDist()){
-        return false;
-    }
-
+    if(fabs(it.first->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>0.0523599)return true;
+    if(fabs((it.first->T_f_w_.translation()-new_frame_->T_f_w_.translation()).norm()) > Config::kfSelectMinDist())
+        return true;
   }
-  return true;
+  return false;
 }
 
 void FrameHandlerMono::setCoreKfs(size_t n_closest)

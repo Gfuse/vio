@@ -56,8 +56,23 @@ public:
         E(2)=state_(2)+dt*dpitch-state_h_(2);
         k=cov_h_*H.transpose()*(H*cov_h_*H.transpose()+Q).inverse();
         state_=state_h_+k*E;
+        if(fabs(state_(2)-yaw_t_1_)>M_PI_4)state_(2)-=M_PI;
+        if(fabs(state_(2))>2*M_PI)state_(2)-=2.0*int(0.5*state_(2)/M_PI)*M_PI;
         cov_=(Eigen::MatrixXd::Identity(3,3)-k*H)*cov_h_;
-        predict_up=false;
+        state_h_(2)=state_(2)+dt*dpitch;
+        state_h_(1)=state_(1)+0.5*pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2)));
+        state_h_(0)=state_(0)+0.5*pow(dt,2)*(ddx*cos(state_(2))+ddz*sin(state_(2)));
+        Eigen::Matrix<double,3,3> R;
+        R<<svo::Config::ACC_Noise(),0,0,
+                0,svo::Config::ACC_Noise(),0,
+                0,0,svo::Config::GYO_Noise();
+        Eigen::Matrix<double,3,3> G;
+        G<<1.0,0,0.5*pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2))),
+                0,1.0,-0.5*pow(dt,2)*(ddx*cos(state_(2))+ddz*sin(state_(2))),
+                0,0,1.0;
+        cov_h_=G*cov_*G.transpose()+R;
+        yaw_t_1_=state_(2);
+
     }
     void correct(double x, double z,double pitch,size_t match,double time){
         Eigen::Matrix<double,3,3> H;
@@ -69,13 +84,16 @@ public:
         H<<1.0,0,0,
            0,1.0,0,
            0,0,1.0;
-        Q<<svo::Config::Svo_Ekf()/match,0,0,
-           0,svo::Config::Svo_Ekf()/match,0,
-           0,0,50*svo::Config::Svo_Ekf()/match;
+        Q<<svo::Config::Svo_Ekf(),0,0,
+           0,svo::Config::Svo_Ekf(),0,
+           0,0,svo::Config::Svo_Ekf();
         E<<x-state_h_(0),z-state_h_(1),pitch-state_h_(2);
         k=cov_h_*H.transpose()*(H*cov_h_*H.transpose()+Q).inverse();
-        state_=state_h_+k*E;
+        state_=state_h_+(k*E);
+        if(fabs(state_(2)-yaw_t_1_)>M_PI_4)state_(2)-=M_PI;
+        if(fabs(state_(2))>2*M_PI)state_(2)-=2.0*int(0.5*state_(2)/M_PI)*M_PI;
         cov_=(Eigen::MatrixXd::Identity(3,3)-k*H)*cov_h_;
+        yaw_t_1_=state_(2);
         predict_up=false;
     }
     Eigen::Matrix<double,3,3> cov_;
@@ -85,6 +103,7 @@ private:
     double t_=0.0;
     Eigen::Matrix<double,3,3> cov_h_;
     Eigen::Matrix<double, 3, 1> state_h_;//state{x,z,pitch}
+    double yaw_t_1_=0.0;
 
 };
 
@@ -109,13 +128,12 @@ public:
         filter_->predict(x,z,pitch,1e-9*time.toNSec());
         lock=false;
     };
-    std::pair<Eigen::Matrix<double,3,3>,svo::SE2> UpdateSvo(double x,double z,double pitch,size_t match,ros::Time& time) {
+    std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5> UpdateSvo(double x,double z,double pitch,size_t match,ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
         if(filter_->predict_up)filter_->correct(x,z,pitch,match,1e-9*time.toNSec());
         lock=false;
-        svo::SE2 out(filter_->state_(2),Eigen::Vector2d(filter_->state_(0),filter_->state_(1)));
-        return std::pair<Eigen::Matrix<double,3,3>,svo::SE2>(filter_->cov_,out);
+        return std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5>(filter_->cov_,svo::SE2_5(filter_->state_(0),filter_->state_(1),filter_->state_(2)));
     };
 private:
      Base* filter_= nullptr;
