@@ -42,7 +42,8 @@ interpolateMat_32f(const cv::Mat& mat, float u, float v)
 inline float
 interpolateMat_8u(const cv::Mat& mat, float u, float v)
 {
-  assert(mat.type()==CV_8U);
+  if(mat.empty())return 0.0;
+  if(mat.type()!=CV_8U)return 0.0;
   int x = floor(u);
   int y = floor(v);
   float subpix_x = u-x;
@@ -55,6 +56,8 @@ interpolateMat_8u(const cv::Mat& mat, float u, float v)
 
   const int stride = mat.step.p[0];
   unsigned char* ptr = mat.data + y*stride + x;
+  if(isnan(w00) || isnan(w01 )||isnan( w10) || isnan(w11) || isinf(w00) || isinf(w01)|| isinf(w10)|| isinf(w11))return 0.0;
+  if(ptr[0] == NULL || ptr[1]== NULL || ptr[stride]==NULL ||ptr[stride+1]==NULL)return 0.0;
   return w00*ptr[0] + w01*ptr[stride] + w10*ptr[1] + w11*ptr[stride+1];
 }
 

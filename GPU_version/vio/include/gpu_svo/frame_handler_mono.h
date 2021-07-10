@@ -64,6 +64,7 @@ public:
   //std::shared_ptr<Imu_Integration> imu_integPtr_;  //Integration of IMU
   void UpdateIMU(double* value,const ros::Time& time);
   void UpdateCmd(double* value,const ros::Time& time);
+  UKF ukfPtr_;
 
 protected:
   vk::AbstractCamera* cam_;                     //!< Camera model, can be ATAN, Pinhole or Ocam (see vikit).
@@ -76,7 +77,6 @@ protected:
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   opencl* gpu_fast_;
   ros::Time time_;
-  UKF ukfPtr_;
 
   /// Initialize the visual odometry algorithm.
   virtual void initialize();

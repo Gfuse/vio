@@ -99,21 +99,19 @@ bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
 {
   // TODO: get frame with same point of view AND same pyramid level!
   Vector3d obs_dir(Vector3d(framepos(0),0.0,framepos(1)) - pos_); obs_dir.normalize();
-  auto min_it=obs_.begin();
-  double min_cos_angle = 0;
+  auto max_it=obs_.begin();
+  double max_cos_angle = 1;
   for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
   {
     Vector3d dir(Vector3d((*it)->frame->pos()(0),0.0,(*it)->frame->pos()(1)) - pos_); dir.normalize();
     double cos_angle = obs_dir.dot(dir);
-    if(cos_angle > min_cos_angle)
+    if(cos_angle < max_cos_angle)
     {
-      min_cos_angle = cos_angle;
-      min_it = it;
+      max_cos_angle = cos_angle;
+      max_it = it;
     }
   }
-  ftr = *min_it;
-  if(min_cos_angle < 0.5) // assume that observations larger than 60° are useless
-    return false;
+  ftr = *max_it;
   return true;
 }
 

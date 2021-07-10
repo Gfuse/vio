@@ -89,7 +89,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
                           map_.getClosestKeyframe(last_frame_));
 
   // set last frame
-  last_frame_ = new_frame_;
+  if(!new_frame_->fts_.empty() || stage_ != STAGE_DEFAULT_FRAME)last_frame_ = new_frame_;
   new_frame_.reset();
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
@@ -103,16 +103,18 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
   new_frame_->setKeyframe();
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_SECOND_FRAME;
-  ukfPtr_.UpdateSvo(new_frame_->T_f_w_.getSE2().translation()(0),new_frame_->T_f_w_.getSE2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
+  ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
   SVO_INFO_STREAM("Init: Selected first frame.");
   return RESULT_IS_KEYFRAME;
 }
 
 FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 {
-  new_frame_->T_f_w_ = last_frame_->T_f_w_;
+  auto init_f= ukfPtr_.get_location();
+  new_frame_->T_f_w_=init_f.second;
+  new_frame_->Cov_ = init_f.first;
   initialization::InitResult res = klt_homography_init_->addSecondFrame(new_frame_);
-  auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.getSE2().translation()(0),new_frame_->T_f_w_.getSE2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
+  auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
   new_frame_->T_f_w_ = result.second;
   new_frame_->Cov_ = result.first;
   if(res == initialization::NO_KEYFRAME)
@@ -133,28 +135,31 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 
 FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 {
-  new_frame_->T_f_w_ = last_frame_->T_f_w_;
+  auto init_f= ukfPtr_.get_location();
+  new_frame_->T_f_w_=init_f.second;
+  new_frame_->Cov_ = init_f.first;
   // sparse image align
   SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
                            30, SparseImgAlign::LevenbergMarquardt, false, false);
-  img_align.run(last_frame_, new_frame_);
+  if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  if((last_frame_->T_f_w_.getSE2().translation()-new_frame_->T_f_w_.getSE2().translation()).norm()>0.1){
-        new_frame_->T_f_w_ = last_frame_->T_f_w_;
+  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>2.0 || fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
+      new_frame_=last_frame_;
+      return RESULT_NO_KEYFRAME;
   }
-  auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.getSE2().translation()(0),
-                                new_frame_->T_f_w_.getSE2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
+  auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
+                                new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
   <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
   <<"\tReprojected points after opmization: "<<sfba_n_edges_final<<"\t distance between two frames: "<<
-  (last_frame_->T_f_w_.getSE2().translation()-new_frame_->T_f_w_.getSE2().translation()).norm()<<'\n';
+  (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
   if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
       return RESULT_NO_KEYFRAME;
   }
@@ -165,7 +170,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   setTrackingQuality(sfba_n_edges_final);
   if(tracking_quality_ == TRACKING_INSUFFICIENT)
   {
-    return RESULT_FAILURE;
+      return RESULT_FAILURE;
   }
   double depth_mean, depth_min;
 

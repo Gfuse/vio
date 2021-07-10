@@ -69,9 +69,9 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
     depth_vec.push_back((xyz_in_cur_[i]).z());
   double scene_depth_median = vk::getMedian(depth_vec);
   double scale = Config::mapScale()/scene_depth_median;
-  frame_cur->T_f_w_ = SE2_5(T_cur_from_ref_.getSE2() * frame_ref_->T_f_w_.getSE2());
-  frame_cur->T_f_w_.T2_.translation() = -frame_cur->T_f_w_.getSE2().rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
-  //frame_cur->T_f_w_.T2_.translation() = frame_cur->T_f_w_.getSE2().rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
+  frame_cur->T_f_w_ = SE2_5(T_cur_from_ref_.se2() * frame_ref_->T_f_w_.se2());
+  frame_cur->T_f_w_ = SE2_5(SE2(frame_cur->T_f_w_.se2().rotation_matrix(),
+                                -frame_cur->T_f_w_.se2().rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()))));
   // For each inlier create 3D point and add feature in both frames
   SE3 T_world_cur = frame_cur->getSE3Inv();
     for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)

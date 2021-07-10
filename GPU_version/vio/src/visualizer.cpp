@@ -24,6 +24,7 @@
 #include <gpu_svo/timer.h>
 #include <gpu_svo/output_helper.h>
 #include <deque>
+#include <gpu_svo/ukf.h>
 
 namespace svo {
 
@@ -40,9 +41,7 @@ Visualizer() :
 }
 
 void Visualizer::publishMinimal(
-    const cv::Mat& img,
-    const FramePtr& frame,
-    const FrameHandlerMono& slam,
+        UKF& ukf,
     const double timestamp)
 {
   ++trace_id_;
@@ -50,63 +49,33 @@ void Visualizer::publishMinimal(
   header_msg.frame_id = "/world";
   header_msg.seq = trace_id_;
   header_msg.stamp = ros::Time(timestamp);
-  if(pub_pose_with_cov_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_DEFAULT_FRAME)
+  if(pub_pose_with_cov_.getNumSubscribers() > 0)
   {
     // publish cam in world frame (Estimated odometry in the worls frame)
-    Quaterniond q(AngleAxisd(frame->T_f_w_.pitch(), Vector3d::UnitZ()));
+    auto odom=ukf.get_location();
+    Quaterniond q(AngleAxisd(odom.second.pitch()+M_PI_2, Vector3d::UnitZ()));
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose_with_cov(new geometry_msgs::PoseWithCovarianceStamped);
       msg_pose_with_cov->header = header_msg;
-      msg_pose_with_cov->pose.pose.position.x = frame->se3().translation().x();
-      msg_pose_with_cov->pose.pose.position.y = frame->se3().translation().z();
+      msg_pose_with_cov->pose.pose.position.x = -odom.second.se2().translation()(0);
+      msg_pose_with_cov->pose.pose.position.y = -odom.second.se2().translation()(1);
       msg_pose_with_cov->pose.pose.position.z = 0.0;
       msg_pose_with_cov->pose.pose.orientation.x = q.x();
       msg_pose_with_cov->pose.pose.orientation.y = q.y();
       msg_pose_with_cov->pose.pose.orientation.z = q.z();
       msg_pose_with_cov->pose.pose.orientation.w = q.w();
-        msg_pose_with_cov->pose.covariance = {frame->Cov_(0,0),frame->Cov_(0,1),0.0,0.0,frame->Cov_(0,2),0.0,
-                                              frame->Cov_(1,0),frame->Cov_(1,1),0.0,0.0,frame->Cov_(1,2),0.0,
+        msg_pose_with_cov->pose.covariance = {odom.first(0,0),odom.first(0,1),0.0,0.0,odom.first(0,2),0.0,
+                                              odom.first(1,0),odom.first(1,1),0.0,0.0,odom.first(1,2),0.0,
                                               0.0,0.0,0.0000001,0.0,0.0,0.0,
                                               0.0,0.0,0.0,0.0000001,0.0,0.0,
-                                              frame->Cov_(2,0),frame->Cov_(2,1),0.0,0.0,frame->Cov_(2,2),0.0,
+                                              odom.first(2,0),odom.first(2,1),0.0,0.0,odom.first(2,2),0.0,
                                               0.0,0.0,0.0,0.0,0.0,0.0000001};
     pub_pose_with_cov_.publish(msg_pose_with_cov);
     if(pub_frames_.getNumSubscribers() > 0 || pub_points_.getNumSubscribers() > 0){
           publishPointMarker(
-                  pub_points_, Eigen::Vector3d(frame->se3().translation().x(),frame->se3().translation().z(),0.0), "trajectory",
+                  pub_points_, Eigen::Vector3d(-odom.second.se2().translation()(0),-odom.second.se2().translation()(1),0.0), "trajectory",
                   ros::Time::now(), trace_id_, 0, 0.01, Vector3d(0.,0.,0.5));
     }
   }
 
 }
-
-void Visualizer::visualizeMarkers(
-    const FramePtr& frame,
-    const set<FramePtr>& core_kfs,
-    const Map& map)
-{
-  if(frame == NULL)
-    return;
-
-  publishTfTransform(
-      frame->se3()*T_world_from_vision_.inverse(),
-      ros::Time(frame->timestamp_), "cam_pos", "world", br_);
-
-  if(pub_frames_.getNumSubscribers() > 0 || pub_points_.getNumSubscribers() > 0)
-  {
-    publishPointMarker(
-        pub_points_, T_world_from_vision_*Vector3d(frame->pos()(0),0.0,frame->pos()(1)), "trajectory",
-        ros::Time::now(), trace_id_, 0, 0.006, Vector3d(0.,0.,0.5));
-    removeDeletedPts(map);
-  }
-}
-
-void Visualizer::removeDeletedPts(const Map& map)
-{
-  if(pub_points_.getNumSubscribers() > 0)
-  {
-    for(list<Point*>::const_iterator it=map.trash_points_.begin(); it!=map.trash_points_.end(); ++it)
-      publishPointMarker(pub_points_, Vector3d(), "pts", ros::Time::now(), (*it)->id_, 2, 0.006, Vector3d());
-  }
-}
-
 } // end namespace gpu_svo

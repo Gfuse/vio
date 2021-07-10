@@ -108,9 +108,6 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
           auto start=std::chrono::steady_clock::now();
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
           vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);
-          visualizer_.publishMinimal(img, vo_->lastFrame(), *vo_, msg->header.stamp.toSec());
-          if(vo_->stage() == svo::FrameHandlerMono::STAGE_PAUSED)
-              usleep(100000);
 #if VIO_DEBUG
     fprintf(log_, ",,,,,,,%s,%f,%f,%f\n",std::to_string(std::chrono::duration<double>(std::chrono::steady_clock::now()-start).count()).c_str(),vo_->lastFrame()->T_f_w_.translation()(0),
             vo_->lastFrame()->T_f_w_.translation()(1),
@@ -158,6 +155,7 @@ void VoNode::imuCb(const sensor_msgs::ImuPtr &imu) {
 #endif
     vo_->UpdateIMU(imu_in,imu->header.stamp);
     imu_time_=imu->header.stamp;
+    visualizer_.publishMinimal(vo_->ukfPtr_, imu->header.stamp.toSec());
 }
 void VoNode::cmdCb(const geometry_msgs::TwistPtr &cmd) {
         double _cmd[3]={cmd->linear.x,cmd->linear.y,cmd->angular.z};

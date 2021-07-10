@@ -93,11 +93,7 @@ public:
 
   /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
   inline Vector2d w2c(const Vector3d& xyz_w) const {
-      Eigen::Matrix<double,3,3> R;
-      R<<T_f_w_.T2_.rotation_matrix()(0,0),1e-19,T_f_w_.T2_.rotation_matrix()(0,1),
-              1e-19,1.0,1e-19,
-      T_f_w_.T2_.rotation_matrix()(1,0),1e-19,T_f_w_.T2_.rotation_matrix()(1,1);
-      return cam_->world2cam( SE3(R,Vector3d(T_f_w_.T2_.translation()(0),1e-19,T_f_w_.T2_.translation()(1)))*xyz_w);
+      return cam_->world2cam( T_f_w_.se3()*xyz_w);
   }
   /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
   inline Vector2d w2px(const Vector3d& xyz_w) const { return cam_->world2cam( xyz_w ); }
@@ -110,35 +106,22 @@ public:
 
   /// Transforms point coordinates in world-frame (w) to camera-frams (f).
   inline Vector3d w2f(const Vector3d& xyz_w) const {
-      Eigen::Matrix<double,3,3> R;
-      R<<T_f_w_.T2_.rotation_matrix()(0,0),1e-19,T_f_w_.T2_.rotation_matrix()(0,1),
-              1e-19,1.0,1e-19,
-              T_f_w_.T2_.rotation_matrix()(1,0),1e-19,T_f_w_.T2_.rotation_matrix()(1,1);
-      return Vector3d(SE3(R,Vector3d(T_f_w_.T2_.translation()(0),1e-19,T_f_w_.T2_.translation()(1)))*xyz_w);
+      return Vector3d(T_f_w_.se3()*xyz_w);
   }
 
   /// Transforms point from frame unit sphere (f) frame to world coordinate frame (w).
   inline Vector3d f2w(const Vector3d& f) const {
-      Eigen::Matrix<double,3,3> R;
-      R<<T_f_w_.T2_.rotation_matrix()(0,0),1e-19,T_f_w_.T2_.rotation_matrix()(0,1),
-              1e-19,1.0,1e-19,
-              T_f_w_.T2_.rotation_matrix()(1,0),1e-19,T_f_w_.T2_.rotation_matrix()(1,1);
-      return SE3(R,Vector3d(T_f_w_.T2_.translation()(0),1e-19,T_f_w_.T2_.translation()(1))).inverse() * f;
+      return getSE3Inv() * f;
   }
 
   /// Projects Point from unit sphere (f) in camera pixels (c).
   inline Vector2d f2c(const Vector3d& f) const { return cam_->world2cam( f ); }
 
   /// Return the pose of the frame in the (w)orld coordinate frame.
-  inline Vector2d pos() const { return T_f_w_.T2_.translation(); }
+  inline Vector2d pos() const { return T_f_w_.se2().translation(); }
 
   inline SE3 se3() const{
-      Eigen::Matrix<double,3,3> R;
-      R<<T_f_w_.getSE2().rotation_matrix()(0,0),1e-19,T_f_w_.getSE2().rotation_matrix()(0,1),
-              1e-19,1.0,1e-19,
-              T_f_w_.getSE2().rotation_matrix()(1,0),1e-19,T_f_w_.getSE2().rotation_matrix()(1,1);
-      SE3 out(R,Vector3d(T_f_w_.getSE2().translation()(0),1e-19,T_f_w_.getSE2().translation()(1)));
-      return out;
+      return T_f_w_.se3();
   }
 
   inline  SE3 getSE3Inv() const{

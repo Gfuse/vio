@@ -69,7 +69,7 @@ int getBestSearchLevel(
   return search_level;
 }
 
-void warpAffine(
+bool warpAffine(
     const Matrix2d& A_cur_ref,
     const cv::Mat& img_ref,
     const Vector2d& px_ref,
@@ -78,14 +78,14 @@ void warpAffine(
     const int halfpatch_size,
     uint8_t* patch)
 {
+  if(patch==NULL || img_ref.empty())return false;
   const int patch_size = halfpatch_size*2 ;
   const Matrix2f A_ref_cur = A_cur_ref.inverse().cast<float>();
   if(isnan(A_ref_cur(0,0)))
   {
     printf("Affine warp is NaN, probably camera has no translation\n"); // TODO
-    return;
+    return false;
   }
-
   // Perform the warp on a larger patch.
   uint8_t* patch_ptr = patch;
   const Vector2f px_ref_pyr = px_ref.cast<float>() / (1<<level_ref);
@@ -96,12 +96,15 @@ void warpAffine(
       Vector2f px_patch(x-halfpatch_size, y-halfpatch_size);
       px_patch *= (1<<search_level);
       const Vector2f px(A_ref_cur*px_patch + px_ref_pyr);
-      if (px[0]<0 || px[1]<0 || px[0]>=img_ref.cols-1 || px[1]>=img_ref.rows-1)
-        *patch_ptr = 0;
-      else
-        *patch_ptr = (uint8_t) vk::interpolateMat_8u(img_ref, px[0], px[1]);
+      if(patch_ptr == nullptr)continue;
+      if (px[0]<1 || px[1]<1 || px[0]>=img_ref.cols-1 || px[1]>=img_ref.rows-1){
+          *patch_ptr = 0;
+      }else{
+          *patch_ptr = (uint8_t) vk::interpolateMat_8u(img_ref, px[0], px[1]);
+      }
     }
   }
+  return true;
 }
 
 } // namespace warp
@@ -117,7 +120,7 @@ bool depthFromTriangulation(
   if(AtA.determinant() < 0.000001)
     return false;
   const Vector2d depth2 = - AtA.inverse()*A.transpose()*T_search_ref.translation();
-  depth = fabs(depth2[0]);
+  depth = fabs(depth2[0]/depth2[1]);
   return true;
 }
 
@@ -142,35 +145,36 @@ bool Matcher::findMatchDirect(
   if(!ref_ftr_->frame->cam_->isInFrame(
       ref_ftr_->px.cast<int>()/(1<<ref_ftr_->level), halfpatch_size_+2, ref_ftr_->level))
     return false;
-
+  if(ref_ftr_->frame->img_pyr_.empty())return false;
+  if(ref_ftr_->frame->img_pyr_[ref_ftr_->level].empty())return false;
   // warp affine
   warp::getWarpMatrixAffine(
       *ref_ftr_->frame->cam_, *cur_frame.cam_, ref_ftr_->px, ref_ftr_->f,
       (Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),
       cur_frame.se3() * ref_ftr_->frame->getSE3Inv(), ref_ftr_->level, A_cur_ref_);
   search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
-  warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
-                   ref_ftr_->level, search_level_, halfpatch_size_+1, patch_with_border_);
+  if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
+                   ref_ftr_->level, search_level_, halfpatch_size_+1, patch_with_border_))return false;
   createPatchFromPatchWithBorder();
 
   // px_cur should be set
   Vector2d px_scaled(px_cur/(1<<search_level_));
 
   bool success = false;
-  if(ref_ftr_->type == Feature::EDGELET)
-  {
-    Vector2d dir_cur(A_cur_ref_*ref_ftr_->grad);
-    dir_cur.normalize();
-    success = feature_alignment::align1D(
-          cur_frame.img_pyr_[search_level_], dir_cur.cast<float>(),
-          patch_with_border_, patch_, options_.align_max_iter, px_scaled, h_inv_);
-  }
-  else
-  {
+ // if(ref_ftr_->type == Feature::EDGELET)
+  //{
+  //  Vector2d dir_cur(A_cur_ref_*ref_ftr_->grad);
+  //  dir_cur.normalize();
+  //  success = feature_alignment::align1D(
+  //        cur_frame.img_pyr_[search_level_], dir_cur.cast<float>(),
+  //        patch_with_border_, patch_, options_.align_max_iter, px_scaled, h_inv_);
+  //}
+  //else
+  //{
     success = feature_alignment::align2D(
       cur_frame.img_pyr_[search_level_], patch_with_border_, patch_,
       options_.align_max_iter, px_scaled);
-  }
+ // }
   px_cur = px_scaled * (1<<search_level_);
   return success;
 }
@@ -185,24 +189,19 @@ bool Matcher::findEpipolarMatchDirect(
     double& depth)
 {
   if(isnan(d_min) || isnan(d_max))return false;
-  SE2 T(cur_frame.T_f_w_.getSE2() * ref_frame.T_f_w_.inverse());
-  Eigen::Matrix<double,3,3> R;
-  R<<T.rotation_matrix()(0,0),0.0,T.rotation_matrix()(0,1),
-  0.0,1.0,0.0,
-  T.rotation_matrix()(1,0),0.0,T.rotation_matrix()(1,1);
-  SE3 T_cur_ref(R,Vector3d(T.translation()(0),0.0,T.translation()(1)));
+  SE2_5 T_cur_ref(cur_frame.T_f_w_.se2() * ref_frame.T_f_w_.inverse());
   int zmssd_best = PatchScore::threshold();
   Vector2d uv_best;
 
   // Compute start and end of epipolar line in old_kf for match search, on unit plane!
-  Vector2d A = vk::project2d(T_cur_ref * (ref_ftr.f*d_min));
-  Vector2d B = vk::project2d(T_cur_ref * (ref_ftr.f*d_max));
+  Vector2d A = vk::project2d(T_cur_ref.se3() * (ref_ftr.f*d_min));
+  Vector2d B = vk::project2d(T_cur_ref.se3() * (ref_ftr.f*d_max));
   epi_dir_ = A - B;
 
   // Compute affine warp matrix
   warp::getWarpMatrixAffine(
       *ref_frame.cam_, *cur_frame.cam_, ref_ftr.px, ref_ftr.f,
-      d_estimate, T_cur_ref, ref_ftr.level, A_cur_ref_);
+      d_estimate, T_cur_ref.se3(), ref_ftr.level, A_cur_ref_);
 
   // feature pre-selection
   reject_ = false;
@@ -225,13 +224,12 @@ bool Matcher::findEpipolarMatchDirect(
 
 
   // Warp reference patch at ref_level
-  warp::warpAffine(A_cur_ref_, ref_frame.img_pyr_[ref_ftr.level], ref_ftr.px,
-                   ref_ftr.level, search_level_, halfpatch_size_+1, patch_with_border_);
+  if(!warp::warpAffine(A_cur_ref_, ref_frame.img_pyr_[ref_ftr.level], ref_ftr.px,
+                   ref_ftr.level, search_level_, halfpatch_size_+1, patch_with_border_))return false;
   createPatchFromPatchWithBorder();
-
-  if(epi_length_ < 2.0)
+  if(epi_length_ < 5.0)
   {
-    px_cur_ = (px_A+px_B)/2.0;
+    px_cur_ = (px_A+px_B)/5.0;
     Vector2d px_scaled(px_cur_/(1<<search_level_));
     bool res;
     if(options_.align_1d)
@@ -245,7 +243,7 @@ bool Matcher::findEpipolarMatchDirect(
     if(res)
     {
       px_cur_ = px_scaled*(1<<search_level_);
-      if(depthFromTriangulation(T_cur_ref, ref_ftr.f, cur_frame.cam_->cam2world(px_cur_), depth))
+      if(depthFromTriangulation(T_cur_ref.se3(), ref_ftr.f, cur_frame.cam_->cam2world(px_cur_), depth))
         return true;
     }
     return false;
@@ -314,13 +312,13 @@ bool Matcher::findEpipolarMatchDirect(
       if(res)
       {
         px_cur_ = px_scaled*(1<<search_level_);
-        if(depthFromTriangulation(T_cur_ref, ref_ftr.f, cur_frame.cam_->cam2world(px_cur_), depth))
+        if(depthFromTriangulation(T_cur_ref.se3(), ref_ftr.f, cur_frame.cam_->cam2world(px_cur_), depth))
           return true;
       }
       return false;
     }
     px_cur_ = cur_frame.cam_->world2cam(uv_best);
-    if(depthFromTriangulation(T_cur_ref, ref_ftr.f, vk::unproject2d(uv_best).normalized(), depth))
+    if(depthFromTriangulation(T_cur_ref.se3(), ref_ftr.f, vk::unproject2d(uv_best).normalized(), depth))
       return true;
   }
   return false;

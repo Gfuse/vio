@@ -78,7 +78,6 @@ bool align1D(
     int u_r = floor(u);
     int v_r = floor(v);
     if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_){
-        std::cout<<"not in bach size\n";
         break;
     }
 

@@ -56,8 +56,6 @@ public:
         E(2)=state_(2)+dt*dpitch-state_h_(2);
         k=cov_h_*H.transpose()*(H*cov_h_*H.transpose()+Q).inverse();
         state_=state_h_+k*E;
-        if(fabs(state_(2)-yaw_t_1_)>M_PI_4)state_(2)-=M_PI;
-        if(fabs(state_(2))>2*M_PI)state_(2)-=2.0*int(0.5*state_(2)/M_PI)*M_PI;
         cov_=(Eigen::MatrixXd::Identity(3,3)-k*H)*cov_h_;
         state_h_(2)=state_(2)+dt*dpitch;
         state_h_(1)=state_(1)+0.5*pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2)));
@@ -90,8 +88,6 @@ public:
         E<<x-state_h_(0),z-state_h_(1),pitch-state_h_(2);
         k=cov_h_*H.transpose()*(H*cov_h_*H.transpose()+Q).inverse();
         state_=state_h_+(k*E);
-        if(fabs(state_(2)-yaw_t_1_)>M_PI_4)state_(2)-=M_PI;
-        if(fabs(state_(2))>2*M_PI)state_(2)-=2.0*int(0.5*state_(2)/M_PI)*M_PI;
         cov_=(Eigen::MatrixXd::Identity(3,3)-k*H)*cov_h_;
         yaw_t_1_=state_(2);
         predict_up=false;
@@ -131,10 +127,27 @@ public:
     std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5> UpdateSvo(double x,double z,double pitch,size_t match,ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
-        if(filter_->predict_up)filter_->correct(x,z,pitch,match,1e-9*time.toNSec());
+        if(pitch<0.0)
+            pitch=M_PI-pitch;
+        else
+            pitch=pitch-M_PI;
+        if(filter_->predict_up)filter_->correct(-x,-z,pitch,match,1e-9*time.toNSec());
         lock=false;
-        return std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5>(filter_->cov_,svo::SE2_5(filter_->state_(0),filter_->state_(1),filter_->state_(2)));
+        double pitch_f;
+        if(filter_->state_(0)<0.0)
+            pitch_f=M_PI-filter_->state_(2);
+        else
+            pitch_f=filter_->state_(2)-M_PI;
+        return std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5>(filter_->cov_,svo::SE2_5(-filter_->state_(0),-filter_->state_(1),pitch_f));
     };
+    std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5> get_location(){
+        double pitch_f;
+        if(filter_->state_(0)<0.0)
+            pitch_f=M_PI-filter_->state_(2);
+        else
+            pitch_f=filter_->state_(2)-M_PI;
+        return std::pair<Eigen::Matrix<double,3,3>,svo::SE2_5>(filter_->cov_,svo::SE2_5(-filter_->state_(0),-filter_->state_(1),pitch_f));
+    }
 private:
      Base* filter_= nullptr;
      bool lock=false;

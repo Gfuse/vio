@@ -46,7 +46,6 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
 
   if(ref_frame->fts_.empty())
   {
-    SVO_WARN_STREAM("SparseImgAlign: no features to track!");
     return 0;
   }
 
@@ -54,8 +53,7 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
   cur_frame_ = cur_frame;
   ref_patch_cache_ = cv::Mat(ref_frame_->fts_.size(), patch_area_, CV_32F);
   jacobian_cache_.resize(Eigen::NoChange, ref_patch_cache_.rows*patch_area_);
-  //visible_fts_.resize(ref_patch_cache_.rows, false); // TODO: should it be reset at each level?
-  SE2 T_cur_from_ref(cur_frame_->T_f_w_.getSE2() * ref_frame_->T_f_w_.inverse());
+  SE2 T_cur_from_ref(cur_frame_->T_f_w_.se2() * ref_frame_->T_f_w_.inverse());
   for(level_=max_level_; level_>=min_level_; --level_)
   {
     visible_fts_.resize(ref_patch_cache_.rows, false); // TODO: should it be reset at each level?
@@ -66,7 +64,7 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
       printf("\nPYRAMID LEVEL %i\n---------------\n", level_);
     optimize(T_cur_from_ref);
   }
-  cur_frame_->T_f_w_ = SE2_5(T_cur_from_ref * ref_frame_->T_f_w_.getSE2());
+  cur_frame_->T_f_w_ = SE2_5(T_cur_from_ref * ref_frame_->T_f_w_.se2());
 
   return n_meas_/patch_area_;
 }
@@ -251,7 +249,7 @@ void SparseImgAlign::update(
     const ModelType& T_curold_from_ref,
     ModelType& T_curnew_from_ref)
 {
-  T_curnew_from_ref =  T_curold_from_ref * SE2::exp(-1.0*x_);
+  T_curnew_from_ref =  T_curold_from_ref * SE2::exp(-0.25*x_);
 }
 
 void SparseImgAlign::startIteration()

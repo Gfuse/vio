@@ -26,6 +26,7 @@
 #include <image_transport/image_transport.h>
 #include <boost/thread.hpp>
 #include <boost/shared_ptr.hpp>
+#include <gpu_svo/ukf.h>
 
 namespace svo {
 
@@ -54,17 +55,8 @@ public:
   ~Visualizer() {};
 
   void publishMinimal(
-      const cv::Mat& img,
-      const FramePtr& frame,
-      const FrameHandlerMono& slam,
+      UKF& ukf,
       const double timestamp);
-
-  void visualizeMarkers(
-      const FramePtr& frame,
-      const set<FramePtr>& core_kfs,
-      const Map& map);
-
-  void removeDeletedPts(const Map& map);
 
 };
 

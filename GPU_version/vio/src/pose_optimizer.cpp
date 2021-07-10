@@ -121,9 +121,9 @@ void optimizeGaussNewton(
     // update the model
     T_old = frame->T_f_w_;
     if(direction){
-        frame->T_f_w_=SE2_5(SE2::exp(dT)*(T_old.getSE2()));
+        frame->T_f_w_=SE2_5(SE2::exp(dT)*(T_old.se2()));
     }else{
-        frame->T_f_w_=SE2_5(SE2::exp(-1.0*dT)*(T_old.getSE2()));
+        frame->T_f_w_=SE2_5(SE2::exp(-1.0*dT)*(T_old.se2()));
     }
     chi2 = new_chi2;
     if(verbose)

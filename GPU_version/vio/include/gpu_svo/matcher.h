@@ -49,7 +49,7 @@ int getBestSearchLevel(
     const Matrix2d& A_cur_ref,
     const int max_level);
 
-void warpAffine(
+bool warpAffine(
     const Matrix2d& A_cur_ref,
     const cv::Mat& img_ref,
     const Vector2d& px_ref,
