@@ -40,6 +40,7 @@ void Map::reset()
 
 bool Map::safeDeleteFrame(FramePtr frame)
 {
+  if(syn_==true)return false;
   bool found = false;
   for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
   {
@@ -107,6 +108,7 @@ void Map::getCloseKeyframes(
     const FramePtr& frame,
     std::list< std::pair<FramePtr,double> >& close_kfs) const
 {
+    syn_=true;
   for(auto kf : keyframes_)
   {
     // check if kf has overlaping field of view with frame, use therefore KeyPoints
@@ -123,6 +125,7 @@ void Map::getCloseKeyframes(
       }
     }
   }
+  syn_=false;
 }
 
 FramePtr Map::getClosestKeyframe(const FramePtr& frame) const
@@ -149,6 +152,7 @@ FramePtr Map::getFurthestKeyframe(const Vector2d& pos) const
 {
   FramePtr furthest_kf;
   double maxdist = 0.0;
+  syn_=true;
   for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
   {
     double dist = ((*it)->pos()-pos).norm();
@@ -157,18 +161,21 @@ FramePtr Map::getFurthestKeyframe(const Vector2d& pos) const
       furthest_kf = *it;
     }
   }
+  syn_=false;
   return furthest_kf;
 }
 
 bool Map::getKeyframeById(const int id, FramePtr& frame) const
 {
   bool found = false;
+  syn_=true;
   for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
     if((*it)->id_ == id) {
       found = true;
       frame = *it;
       break;
     }
+  syn_=false;
   return found;
 }
 
@@ -178,6 +185,7 @@ void Map::transform(const Matrix2d& R, const Vector2d& t, const double& s)
     R3<<R(0,0),0.0,R(0,1),
         0.0,1.0,0.0,
         R(1,0),0.0,R(1,1);
+    syn_=true;
   for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
   {
       SE2_5 tem(SE2(R*(*it)->T_f_w_.inverse().rotation_matrix(),s*R*(*it)->pos() + t));
@@ -192,6 +200,7 @@ void Map::transform(const Matrix2d& R, const Vector2d& t, const double& s)
       (*ftr)->point->pos_ = s*R3*(*ftr)->point->pos_ + Vector3d(t(0),0.0,t(1));
     }
   }
+  syn_=false;
 }
 
 void Map::emptyTrash()

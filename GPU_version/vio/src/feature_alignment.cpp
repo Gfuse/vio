@@ -36,9 +36,9 @@ bool align1D(
     Vector2d& cur_px_estimate,
     double& h_inv)
 {
-  const int halfpatch_size_ = 4;
-  const int patch_size = 8;
-  const int patch_area = 64;
+  const int halfpatch_size_ = 1;
+  const int patch_size = 2;
+  const int patch_area = 4;
   bool converged=false;
 
   // compute derivative of template and prepare inverse compositional
@@ -69,7 +69,7 @@ bool align1D(
   float v = cur_px_estimate.y();
 
   // termination condition
-  const float min_update_squared = 0.5*0.5;
+  const float min_update_squared = 0.05;
   const int cur_step = cur_img.step.p[0];
   float chi2 = 0;
   Vector2f update; update.setZero();
@@ -163,9 +163,9 @@ bool align2D(
     return align2D_NEON(cur_img, ref_patch_with_border, ref_patch, n_iter, cur_px_estimate);
 #endif
 
-  const int halfpatch_size_ = 4;
-  const int patch_size_ = 8;
-  const int patch_area_ = 64;
+  const int halfpatch_size_ = 1;
+  const int patch_size_ = 2;
+  const int patch_area_ = 4;
   bool converged=false;
 
   // compute derivative of template and prepare inverse compositional
@@ -202,7 +202,7 @@ bool align2D(
   bool sign=true;// +
 
   // termination condition
-  const float min_update_squared = 0.5;//0.001
+  const float min_update_squared = 0.05;//0.001
   const int cur_step = cur_img.step.p[0];
 //  float chi2 = 0;
   Vector3f update; update.setZero();

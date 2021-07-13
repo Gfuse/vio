@@ -148,7 +148,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>2.0 || fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
+  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>2.0 ||
+     fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI ||
+     sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
       new_frame_=last_frame_;
       return RESULT_NO_KEYFRAME;
   }
@@ -160,9 +162,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
   <<"\tReprojected points after opmization: "<<sfba_n_edges_final<<"\t distance between two frames: "<<
   (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
-  if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
-      return RESULT_NO_KEYFRAME;
-  }
 
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe
