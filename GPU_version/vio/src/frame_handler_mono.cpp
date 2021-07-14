@@ -66,8 +66,9 @@ FrameHandlerMono::~FrameHandlerMono()
 
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const ros::Time& time)
 {
-  if(!startFrameProcessingCommon(timestamp))
-    return;
+  if(!startFrameProcessingCommon(timestamp)){
+      return;
+  }
 
   // some cleanup from last iteration, can't do before because of visualization
   core_kfs_.clear();

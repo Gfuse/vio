@@ -6,6 +6,9 @@
     <param name="vio/cam_topic" value="/CoreNode/grey_img" type="str" />
     <param name="vio/imu_topic" value="/SensorNode/imu" type="str" />
     <param name="vio/cmd_topic" value="/cmd_vel" type="str" />
+    <param name="vio/start" value="/vio/start" type="str" />
+    <param name="vio/stop" value="/vio/stop" type="str" />
+    <param name="vio/getOdom" value="/vio/set_odom" type="str" />
     
     <!-- Camera calibration file -->
     <rosparam file="$(find vio)/param/px30.yaml" />

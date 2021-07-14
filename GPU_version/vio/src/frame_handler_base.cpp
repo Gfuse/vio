@@ -70,15 +70,9 @@ int FrameHandlerBase::finishFrameProcessingCommon(
     const UpdateResult dropout,
     const size_t num_observations)
 {
-//  SVO_DEBUG_STREAM("Frame: "<<update_id<<"\t fps-avg = "<< 1.0/acc_frame_timings_.getMean()<<"\t nObs = "<<acc_num_obs_.getMean());
- // SVO_LOG(dropout);
 
-  // save processing time to calculate fps
-//  acc_frame_timings_.push_back(timer_.stop());
   if(stage_ == STAGE_DEFAULT_FRAME)
- //   acc_num_obs_.push_back(num_observations);
   num_obs_last_ = num_observations;
- // SVO_STOP_TIMER("tot_time");
 
   if(dropout == RESULT_FAILURE &&
       (stage_ == STAGE_DEFAULT_FRAME || stage_ == STAGE_RELOCALIZING ))
@@ -86,10 +80,6 @@ int FrameHandlerBase::finishFrameProcessingCommon(
     stage_ = STAGE_RELOCALIZING;
     tracking_quality_ = TRACKING_INSUFFICIENT;
   }
-  /*
-  else if (dropout == RESULT_FAILURE)
-    resetAll();
-    */
   if(set_reset_)
     resetAll();
 

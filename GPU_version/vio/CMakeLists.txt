@@ -31,14 +31,19 @@ FIND_PACKAGE(Boost REQUIRED COMPONENTS thread system)
 FIND_PACKAGE(OpenCL REQUIRED)
 
 set(GTSAM_INCLUDE_DIRS "${GTSAM_INCLUDE_DIR}")
-FIND_PACKAGE(catkin REQUIRED COMPONENTS roscpp roslib cmake_modules image_transport cv_bridge tf geometry_msgs)
+FIND_PACKAGE(catkin REQUIRED COMPONENTS roscpp roslib cmake_modules image_transport cv_bridge tf geometry_msgs message_generation)
+
+add_service_files(FILES
+        getOdom.srv
+        stop.srv
+        start.srv)
+
+generate_messages(DEPENDENCIES std_msgs)
 catkin_package(
-      DEPENDS Eigen OpenCV Sophus Boost
-      CATKIN_DEPENDS roscpp roslib image_transport cv_bridge tf geometry_msgs
-      INCLUDE_DIRS include
+        DEPENDS Eigen OpenCV Sophus Boost
+        CATKIN_DEPENDS roscpp roslib image_transport cv_bridge tf geometry_msgs message_runtime
+        INCLUDE_DIRS include
 )
-
-
 # Include dirs
 INCLUDE_DIRECTORIES(
         include

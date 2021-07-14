@@ -31,8 +31,7 @@ namespace svo {
 Visualizer::
 Visualizer() :
     pnh_("~"),
-    trace_id_(0),
-    T_world_from_vision_(Matrix3d::Identity(), Vector3d::Zero())
+    trace_id_(0)
 {
   // Init ROS Marker Publishers
   //pub_frames_ = pnh_.advertise<visualization_msgs::Marker>("keyframes", 10);

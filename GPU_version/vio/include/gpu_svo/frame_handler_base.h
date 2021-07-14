@@ -18,8 +18,6 @@
 #define SVO_FRAME_HANDLER_BASE_H_
 
 #include <queue>
-//#include <vikit/timer.h>
-//#include <vikit/ringbuffer.h>
 #include <boost/noncopyable.hpp>
 #include <boost/function.hpp>
 #include <boost/thread.hpp>
@@ -90,9 +88,6 @@ protected:
   bool set_reset_;              //!< Flag that the user can set. Will reset the system before the next iteration.
   bool set_start_;              //!< Flag the user can set to start the system when the next image is received.
   Map map_;                     //!< Map of keyframes created by the slam system.
-  //vk::Timer timer_;             //!< Stopwatch to measure time to process frame.
-  //vk::RingBuffer<double> acc_frame_timings_;    //!< Total processing time of the last 10 frames, used to give some user feedback on the performance.
-  //vk::RingBuffer<size_t> acc_num_obs_;          //!< Number of observed features of the last 10 frames, used to give some user feedback on the tracking performance.
   size_t num_obs_last_;                         //!< Number of observations in the previous frame.
   TrackingQuality tracking_quality_;            //!< An estimate of the tracking quality based on the number of tracked features.
 
