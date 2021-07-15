@@ -74,6 +74,7 @@ void DepthFilter::stopThread()
     SVO_INFO_STREAM("DepthFilter interrupt and join thread... ");
     seeds_updating_halt_ = true;
     thread_->interrupt();
+    usleep(5000);
     thread_->join();
     thread_ = NULL;
   }

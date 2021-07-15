@@ -53,7 +53,7 @@ public:
   const vector<cv::Point2f>& initFeatureTrackCurPx() const { return klt_homography_init_->px_cur_; }
 
   /// Access the depth filter.
-  DepthFilter* depthFilter() const { return depth_filter_; }
+  DepthFilter* depthFilter() const{ return depth_filter_; }
 
   /// An external place recognition module may know where to relocalize.
   bool relocalizeFrameAtPose(

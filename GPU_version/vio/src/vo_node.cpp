@@ -32,6 +32,7 @@
 #include <vio/getOdom.h>
 #include <vio/start.h>
 #include <vio/stop.h>
+#include <gpu_svo/depth_filter.h>
 #if VIO_DEBUG
 #include <gpu_svo/visualizer.h>
 #endif
@@ -55,8 +56,11 @@ public:
             start_=true;
             if(vo_->stage()!=svo::FrameHandlerBase::STAGE_DEFAULT_FRAME)
                 vo_->start();
-            else
+            else{
+                vo_->depthFilter()->startThread();
                 vo_->reset();
+            }
+
             imu_the_=new boost::thread(&VioNode::imu_th,this);
             ++trace_id_;
             res.ret=0;
@@ -67,10 +71,15 @@ public:
     };
 
     bool stop(vio::stop::Request& req, vio::stop::Response& res){
-        if(req.off==1){
+        if(req.off==1 && imu_the_!=NULL){
             start_=false;
-            usleep(5000);
-            imu_the_->join();
+            vo_->depthFilter()->stopThread();
+            imu_the_->interrupt();
+            if(imu_the_->get_id()==boost::this_thread::get_id())
+                imu_the_->detach();
+            else
+                imu_the_->join();
+            imu_the_=NULL;
             res.ret=0;
         }else{
             res.ret=100;
@@ -155,7 +164,7 @@ void VioNode::imu_th(){
     ros::NodeHandle nh;
     ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),10,&VioNode::imuCb, this);
     ros::Subscriber cmd_sub=nh.subscribe(vk::getParam<std::string>("vio/cmd_topic", "cmd/raw"),10,&VioNode::cmdCb, this);
-    while(start_)
+    while(start_ && !boost::this_thread::interruption_requested())
     {
         ros::spinOnce();
         usleep(1000);
