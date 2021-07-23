@@ -5,7 +5,7 @@
  *      Author: cforster
  */
 
-#include <gpu_svo/math_utils.h>
+#include <vio/math_utils.h>
 
 namespace vk {
 

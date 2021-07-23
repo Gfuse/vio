@@ -15,21 +15,21 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/abstract_camera.h>
-#include <gpu_svo/vision.h>
+#include <vio/math_utils.h>
+#include <vio/abstract_camera.h>
+#include <vio/vision.h>
 #include <boost/bind.hpp>
 #include <boost/math/distributions/normal.hpp>
-#include <gpu_svo/global.h>
-#include <gpu_svo/depth_filter.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/matcher.h>
-#include <gpu_svo/config.h>
-#include <gpu_svo/feature_detection.h>
+#include <vio/global.h>
+#include <vio/depth_filter.h>
+#include <vio/frame.h>
+#include <vio/point.h>
+#include <vio/feature.h>
+#include <vio/matcher.h>
+#include <vio/config.h>
+#include <vio/feature_detection.h>
 
-namespace svo {
+namespace vio {
 
 int Seed::batch_counter = 0;
 int Seed::seed_counter = 0;
@@ -354,4 +354,4 @@ double DepthFilter::computeTau(
   return (t_norm*sin(beta_plus)/sin(PI-acos(f.dot(t)/t_norm)-beta_plus) - z); // ( triangle angles sum to PI and law of sines ) tau
 }
 
-} // namespace svo
+} // namespace vio

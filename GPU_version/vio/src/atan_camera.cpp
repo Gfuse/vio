@@ -7,8 +7,8 @@
 
 
 #include <math.h>
-#include <gpu_svo/atan_camera.h>
-#include <gpu_svo/math_utils.h>
+#include <vio/atan_camera.h>
+#include <vio/math_utils.h>
 
 namespace vk {
 

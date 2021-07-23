@@ -12,9 +12,9 @@
 #include <gtsam/geometry/Pose3.h>
 #include <vikit/robust_cost.h>
 #include <vikit/math_utils.h>
-#include <gpu_svo/frame.h>
+#include <vio/frame.h>
 
-namespace svo {
+namespace vio {
 
     class VisionFactorLandMark: public gtsam::NoiseModelFactor3<gtsam::Pose3,gtsam::Pose3,gtsam::Point3> {
 

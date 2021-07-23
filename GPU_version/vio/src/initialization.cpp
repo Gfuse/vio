@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gpu_svo/config.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/initialization.h>
-#include <gpu_svo/feature_detection.h>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/homography.h>
+#include <vio/config.h>
+#include <vio/frame.h>
+#include <vio/point.h>
+#include <vio/feature.h>
+#include <vio/initialization.h>
+#include <vio/feature_detection.h>
+#include <vio/math_utils.h>
+#include <vio/homography.h>
 
-namespace svo {
+namespace vio {
 namespace initialization {
 
 InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
@@ -197,4 +197,4 @@ void computeHomography(
 
 
 } // namespace initialization
-} // namespace svo
+} // namespace vio

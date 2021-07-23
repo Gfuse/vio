@@ -14,19 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gpu_svo/abstract_camera.h>
+#include <vio/abstract_camera.h>
 #include <stdlib.h>
 #include <Eigen/StdVector>
 #include <boost/bind.hpp>
 #include <fstream>
-#include <gpu_svo/frame_handler_base.h>
-#include <gpu_svo/config.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/matcher.h>
-#include <gpu_svo/map.h>
-#include <gpu_svo/point.h>
+#include <vio/frame_handler_base.h>
+#include <vio/config.h>
+#include <vio/feature.h>
+#include <vio/matcher.h>
+#include <vio/map.h>
+#include <vio/point.h>
 
-namespace svo
+namespace vio
 {
 
 // definition of global and static variables which were declared in the header
@@ -137,4 +137,4 @@ void FrameHandlerBase::optimizeStructure(
 }
 
 
-} // namespace svo
+} // namespace vio

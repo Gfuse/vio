@@ -15,14 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdexcept>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/config.h>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/vision.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
+#include <vio/point.h>
+#include <vio/config.h>
+#include <vio/math_utils.h>
+#include <vio/vision.h>
 
-namespace svo {
+namespace vio {
 
 int Frame::frame_counter_ = 0;
 
@@ -186,4 +186,4 @@ bool getSceneDepth(const Frame& frame, double& depth_mean, double& depth_min)
 }
 
 } // namespace frame_utils
-} // namespace svo
+} // namespace vio

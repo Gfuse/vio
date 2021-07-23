@@ -30,7 +30,7 @@
 #include <iostream>
 #include "test_utils.h"
 
-namespace svo {
+namespace vio {
 
 class BenchmarkNode
 {
@@ -84,7 +84,7 @@ void BenchmarkNode::runFromFolder()
   }
 }
 
-} // namespace svo
+} // namespace vio
 
 int main(int argc, char** argv)
 {

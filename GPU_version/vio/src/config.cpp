@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gpu_svo/params_helper.h>
-#include <gpu_svo/config.h>
+#include <vio/params_helper.h>
+#include <vio/config.h>
 
-namespace svo {
+namespace vio {
 
 Config::Config() :
     trace_name(vk::getParam<string>("svo/trace_name", "svo")),
@@ -69,5 +69,5 @@ Config& Config::getInstance()
   return instance;
 }
 
-} // namespace svo
+} // namespace vio
 

@@ -16,19 +16,19 @@
 
 #include <algorithm>
 #include <stdexcept>
-#include <gpu_svo/reprojector.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/map.h>
-#include <gpu_svo/config.h>
+#include <vio/reprojector.h>
+#include <vio/frame.h>
+#include <vio/point.h>
+#include <vio/feature.h>
+#include <vio/map.h>
+#include <vio/config.h>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
-#include <gpu_svo/abstract_camera.h>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/timer.h>
+#include <vio/abstract_camera.h>
+#include <vio/math_utils.h>
+#include <vio/timer.h>
 
-namespace svo {
+namespace vio {
 
 Reprojector::Reprojector(vk::AbstractCamera* cam, Map& map) :
     map_(map)
@@ -216,4 +216,4 @@ bool Reprojector::reprojectPoint(FramePtr frame, Point* point)
   return false;
 }
 
-} // namespace svo
+} // namespace vio

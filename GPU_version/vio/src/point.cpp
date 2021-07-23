@@ -15,12 +15,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdexcept>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/feature.h>
+#include <vio/math_utils.h>
+#include <vio/point.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
  
-namespace svo {
+namespace vio {
 
 int Point::point_counter_ = 0;
 
@@ -175,4 +175,4 @@ void Point::optimize(const size_t n_iter)
 #endif
 }
 
-} // namespace svo
+} // namespace vio
