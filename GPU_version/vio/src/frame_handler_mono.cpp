@@ -52,18 +52,20 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     gpu_fast_->write_buf(1,3,3,pose);
     cl_double3 f[300]={0};
     gpu_fast_->write_buf(1,4,300,f);
+    cl_double2 px[300]={0};
+    gpu_fast_->write_buf(1,5,300,px);
     int level=0;
-    gpu_fast_->write_buf(1,5,level);
+    gpu_fast_->write_buf(1,6,level);
     double c[5]={0};
-    gpu_fast_->write_buf(1,6,5,c);
+    gpu_fast_->write_buf(1,7,5,c);
     float  e[300]={0};
-    gpu_fast_->write_buf(1,7,300,e);
+    gpu_fast_->write_buf(1,8,300,e);
     float H[6]={0};
-    gpu_fast_->write_buf(1,8,6,H);
+    gpu_fast_->write_buf(1,9,6,H);
     float J[3]={0};
-    gpu_fast_->write_buf(1,9,3,J);
+    gpu_fast_->write_buf(1,10,3,J);
     double chi2=0.0;
-    gpu_fast_->write_buf(1,10,chi2);
+    gpu_fast_->write_buf(1,11,chi2);
     imageAlign_=new SparseImgAlignGpu(Config::kltMaxLevel(), Config::kltMinLevel(),
                                       30, SparseImgAlign::GaussNewton, false,gpu_fast_);
     klt_homography_init_=new initialization::KltHomographyInit(gpu_fast_);

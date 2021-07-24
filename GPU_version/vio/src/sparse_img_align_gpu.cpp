@@ -45,8 +45,9 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   double cur_pos[3]={cur_frame->pos()(0),cur_frame->pos()(1),cur_frame->T_f_w_.pitch()};
   residual_->reload_buf(1,2,cur_pos);
   residual_->reload_buf(1,3,ref_pos);
-  residual_->reload_buf(1,6,camera);
+  residual_->reload_buf(1,7,camera);
   cl_double3* features;
+  cl_double2* featue_px;
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
   std::vector<bool>::iterator visiblity_it = visible_fts_.begin();
   for(auto it=ref_frame->fts_.begin(); it!=ref_frame->fts_.end();
@@ -57,9 +58,12 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
         features[feature_counter_].x=xyz_ref(0);
         features[feature_counter_].y=xyz_ref(1);
         features[feature_counter_].z=xyz_ref(2);
+        featue_px[feature_counter_].x=(*it)->px(0);
+        featue_px[feature_counter_].y=(*it)->px(1);
         ++feature_counter_;
   }
   residual_->reload_buf(1,4,features);
+  residual_->reload_buf(1,5,featue_px);
   SE2 T_cur(cur_frame->T_f_w_.se2());///TODO temporary, we can remove it
   for(level_=max_level_; level_>=min_level_; --level_)
   {
@@ -67,7 +71,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
       cv::Mat& ref_img = ref_frame->img_pyr_.at(level_);
       residual_->reload_buf(1,0,cur_img);
       residual_->reload_buf(1,1,ref_img);
-      residual_->reload_buf(1,5,&level_);
+      residual_->reload_buf(1,6,&level_);
     mu_ = 1.0;
     optimize(T_cur);
   }
@@ -81,16 +85,16 @@ double SparseImgAlignGpu::computeResiduals(
     bool compute_weight_scale)
 {
   double chi2=0.0;
-  residual_->reload_buf(1,10,&chi2);
+  residual_->reload_buf(1,11,&chi2);
   /// TODO GPU compute based on the feature
   residual_->run(1,feature_counter_);
   if(compute_weight_scale && iter_ == 0)  {
       float error[feature_counter_];
-      residual_->read(1,7,error);
+      residual_->read(1,8,error);
       std::vector<float> errors(error,error+feature_counter_);
       scale_ = scale_estimator_->compute(errors);
   }
-  residual_->read(1,10,&chi2);
+  residual_->read(1,11,&chi2);
   return chi2;
 }
 
@@ -98,8 +102,8 @@ int SparseImgAlignGpu::solve()
 {
     double* H;
     double* J;
-    residual_->read(1,8,H);
-    residual_->read(1,9,J);
+    residual_->read(1,9,H);
+    residual_->read(1,10,J);
     x_ = Eigen::Matrix<double,3,3>(H).ldlt().solve(Eigen::Matrix<double,3,1>(J));
     if((bool) std::isnan((double) x_[0]))
       return 0;
