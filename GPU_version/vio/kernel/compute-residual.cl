@@ -22,9 +22,9 @@ double3 xyz_cur(double cur_x, double cur_z, double cur_pitch, double ref_x, doub
         ref_pitch = ref_pitch - 3.1415926535897932384626433832795028841971693993;
     double cc_ss = cos(cur_pitch) * cos(ref_pitch) - sin(cur_pitch) * sin(ref_pitch);
     double sc_cs = cos(cur_pitch) * sin(ref_pitch) + cos(ref_pitch) * sin(cur_pitch);
-    return  double3(cc_ss * ref_feature.x() + sc_cs * ref_feature.z() + cur_x - ref_x * cos(cur_pitch) - ref_z * sin(cur_pitch),
-                    ref_feature.y(),
-                    -1.0 * sc_cs * ref_feature.x() + cc_ss * ref_feature.z() + cur_z + ref_x * sin(cur_pitch) - ref_z * cos(cur_pitch));
+    return  double3(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur_x - ref_x * cos(cur_pitch) - ref_z * sin(cur_pitch),
+                    ref_feature.y,
+                    -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur_z + ref_x * sin(cur_pitch) - ref_z * cos(cur_pitch));
 }
 
 double3 xyz_ref(double fts_pos_x, double fts_pos_y, double fts_pos_z, double ref_x, double ref_y, double ref_z)
@@ -38,7 +38,7 @@ void jacobian_xyz2uv(double3 xyz_in_f, double* J)
 {
     *(J + 0) = -(1. / xyz_in_f[2]);                                                         // -1/z
     *(J + 1) = (xyz_in_f[0]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // x/z^2
-    *(J + 2) = -(1.0 + pow((xyz_in_f[0]),2) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2])));   // -(1.0 + x^2/z^2)
+    *(J + 2) = -(1.0 + pow((xyz_in_f[0]),2) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2])));   // -(1.0 + x^2/z^2)
     *(J + 3) = 1e-19;                                                                       // 0
     *(J + 4) = (xyz_in_f[1]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // y/z^2
     *(J + 5) = -(xyz_in_f[0]) * (xyz_in_f[1]) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));  // -x*y/z^2
