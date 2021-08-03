@@ -44,7 +44,7 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     int icorner[1]={0};
     gpu_fast_->write_buf(0,2,1,icorner);
     gpu_fast_->write_buf(0,3,(1 << 18));
-    gpu_fast_->make_kernel("compute-residual");
+    gpu_fast_->make_kernel("compute_residual");
     gpu_fast_->write_buf(1,0,img);
     gpu_fast_->write_buf(1,1,img);
     double pose[3]={0};

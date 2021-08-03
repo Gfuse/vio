@@ -32,8 +32,10 @@ opencl::opencl() {
     cl::Program::Sources sources;
     read_cl fast(std::string(KERNEL_DIR)+"/fast-gray.cl");
     sources.push_back({ fast.src_str, fast.size });
+    read_cl compute_residual(std::string(KERNEL_DIR)+"/compute-residual.cl");
+    sources.push_back({ compute_residual.src_str, compute_residual.size });
     program=new cl::Program(*context, sources);
-    if(program->build({ device },"-DFAST_THRESH=40 -DPATCH_SIZE=4") !=0)
+    if(program->build({ device },"-DFAST_THRESH=40 -DPATCH_SIZE=4 -DPATCH_HALFSIZE=2") !=0)
         std::cout << " Error building: " << program->getBuildInfo<CL_PROGRAM_BUILD_STATUS>(device)<<'\n'
         <<program->getBuildInfo<CL_PROGRAM_BUILD_LOG>(device) << '\n';
     queue=new cl::CommandQueue(*context,device,0,NULL);

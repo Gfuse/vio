@@ -31,7 +31,7 @@ public:
         }
         err=_kernel->setArg(id,_buffers.back().first.first);
         if(err!=0){
-            std::cerr<<"Error C:Kernel, F:write, L3:setArg\n"<<err<<'\n';
+            std::cerr<<"Error C:Kernel, F:write, L3:setArg\t"<<id<<"\t"<<err<<'\n';
             return err;
         }
         return CL_SUCCESS;
@@ -47,7 +47,7 @@ public:
 
         cl_int err=_kernel->setArg(id,_images.back().first);
         if(err!=0){
-            std::cerr<<"Error C:Kernel, F:write image, L:setArg\n"<<err<<'\n';
+            std::cerr<<"Error C:Kernel, F:write image, L:setArg ID:\t"<<id<<"\t"<<err<<'\n';
             return err;
         }
         return CL_SUCCESS;

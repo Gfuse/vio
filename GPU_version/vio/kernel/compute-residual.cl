@@ -6,12 +6,11 @@
 
 double2 world2cam(double f_x, double f_y, double c_x, double c_y, double s_, double x, double y, double z)
 {
-    double2 uv = (x/z, y/z);
-    double r = sqrt(pow(uv[0], 2) + pow(uv[1], 2));
+    double r = sqrt(pow(x/z, 2) + pow(y/z, 2));
     double factor = 1.0;
     if(s_ != 0 || r > 0.001)
         factor = (atan(r * 2.0 * tan(0.5 * s_)) / (r * s_));
-    return double3(cx_ + fx_ * factor * uv[0], cy_ + fy_ * factor * uv[1]);
+    return (double2)(c_x + f_x * factor * x/z, c_y + f_y * factor * y/z);
 }
 
 double3 xyz_cur(double cur_x, double cur_z, double cur_pitch, double ref_x, double ref_z, double ref_pitch, double3 ref_feature)
@@ -22,14 +21,14 @@ double3 xyz_cur(double cur_x, double cur_z, double cur_pitch, double ref_x, doub
         ref_pitch = ref_pitch - 3.1415926535897932384626433832795028841971693993;
     double cc_ss = cos(cur_pitch) * cos(ref_pitch) - sin(cur_pitch) * sin(ref_pitch);
     double sc_cs = cos(cur_pitch) * sin(ref_pitch) + cos(ref_pitch) * sin(cur_pitch);
-    return  double3(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur_x - ref_x * cos(cur_pitch) - ref_z * sin(cur_pitch),
+    return  (double3)(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur_x - ref_x * cos(cur_pitch) - ref_z * sin(cur_pitch),
                     ref_feature.y,
                     -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur_z + ref_x * sin(cur_pitch) - ref_z * cos(cur_pitch));
 }
 
 double3 xyz_ref(double fts_pos_x, double fts_pos_y, double fts_pos_z, double ref_x, double ref_y, double ref_z)
 {
-    return double3(sqrt(pow((fts_pos_x - ref_x), 2)),
+    return (double3)(sqrt(pow((fts_pos_x - ref_x), 2)),
                    sqrt(pow((fts_pos_y - ref_y), 2)),
                    sqrt(pow((fts_pos_z - ref_z), 2)));
 }
@@ -64,26 +63,25 @@ void compute_Jacobian(double3 j, double* Jacobian, double r, double w)
     *(Jacobian + 2) -= j[2] * r * w;
 }
 
-__kernel void compute-residual(
+__kernel void compute_residual(
     __read_only  image2d_t   image_cur, // current frame
     __read_only  image2d_t   image_ref, // reference frame
     __global     double      * cur_pose,//[reference frame pose{x,z,pitch}]
     __global     double      * ref_pose,//[current frame pose{x,z,pitch}]
     __global     double3     * ref_feature, // feature on the reference frame, when we applied the distance calculation: xyz_ref((*it)->f*((*it)->point->pos_ - Eigen::Vector3d(ref_pos[0],0.0,ref_pos[1])).norm());
     __global     double2     * featue_px,
-    __global     int         * level,
+                 int         level,
     __global     double      * camera_model, // camera model [f_x,f_y,c_x,c_y,s_]
-                 float       * errors,
-                 double      * Hessian,
-                 double      * Jacobian,
-                 double      * chi
-) {
-    static const int PATCH_SIZE = 4;
-    static const int PATCH_HALFSIZE = 2;
-    static const int PATCH_AREA_ = PATCH_SIZE * PATCH_SIZE;
+    __global     float       * errors,
+    __global     double      * Hessian,
+    __global     double      * Jacobian,
+                 double      chi
+)
+{
+    const int PATCH_AREA_ = PATCH_SIZE * PATCH_SIZE;
     int border = PATCH_HALFSIZE + 1;
     int stride = get_image_dim(image_cur)[0]; //width, height
-    double scale = pow(2, (-1.0 * level));
+    double scale = pown(2.0, -level);
     size_t n_meas_ = 0;
     // Prepare a suitable OpenCL image sampler.
     sampler_t const sampler = CLK_ADDRESS_CLAMP | CLK_FILTER_NEAREST;
@@ -101,7 +99,7 @@ __kernel void compute-residual(
        u_ref_i + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[0] || v_ref_i + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[1])
         return;
 
-    xyz_reference = xyz_ref(ref_feature[f][0], ref_feature[f][1], ref_feature[f][2], ref_pose.x, ref_pose.y, ref_pose.z);
+    double3 xyz_reference = xyz_ref(ref_feature[f][0], ref_feature[f][1], ref_feature[f][2], ref_pose[0], ref_pose[1], ref_pose[2]);
 
     // evaluate projection jacobian
     double* frame_jac = (double *) malloc(6 * sizeof(double)); // 2X3
@@ -116,7 +114,7 @@ __kernel void compute-residual(
     double w_ref_br = subpix_u_ref * subpix_v_ref;
     size_t pixel_counter = 0;
 
-    double3 xyz_current = xyz_cur(cur_pose.x, cur_pose.z, cur_pose.pitch, ref_pose.x ,ref_pose.z ,ref_pose.pitch, ref_feature[f]);
+    double3 xyz_current = xyz_cur(cur_pose.x, cur_pose.z, cur_pose.pitch, ref_pose[0] ,ref_pose[1] ,ref_pose[2], ref_feature[f]);
     double2 uv_cur_pyr = world2cam(camera_model[0], camera_model[1], camera_model[2], camera_model[3], camera_model[4],
                                    xyz_current[0], xyz_current[1], xyz_current[2]) * scale;
     double u_cur = uv_cur_pyr[0];
