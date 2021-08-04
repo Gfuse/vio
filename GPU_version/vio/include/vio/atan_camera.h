@@ -14,6 +14,7 @@
 #define ATAN_CAMERA_H_
 
 #include <stdlib.h>
+#include <iostream>
 #include <string>
 #include <Eigen/Eigen>
 #include <vio/abstract_camera.h>

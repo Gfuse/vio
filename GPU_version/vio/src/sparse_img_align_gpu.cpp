@@ -35,7 +35,6 @@ SparseImgAlignGpu::SparseImgAlignGpu(
 size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
 {
   reset();
-
   if(ref_frame->fts_.empty())
   {
     return 0;
@@ -46,15 +45,11 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   residual_->reload_buf(1,2,cur_pos);
   residual_->reload_buf(1,3,ref_pos);
   residual_->reload_buf(1,7,camera);
-  cl_double3* features;
-  cl_double2* featue_px;
+  cl_double3 features[ref_frame->fts_.size()];
+  cl_double2 featue_px[ref_frame->fts_.size()];
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
-  std::vector<bool>::iterator visiblity_it = visible_fts_.begin();
-  for(auto it=ref_frame->fts_.begin(); it!=ref_frame->fts_.end();
-        ++it, ++visiblity_it){
-        if(!*visiblity_it)
-            continue;
-        const Vector3d xyz_ref((*it)->f*((*it)->point->pos_ - Eigen::Vector3d(ref_pos[0],0.0,ref_pos[1])).norm());
+  for(auto it=ref_frame->fts_.begin(); it!=ref_frame->fts_.end();++it){
+        Vector3d xyz_ref=(*it)->f*((*it)->point->pos_ - Eigen::Vector3d(ref_pos[0],0.0,ref_pos[1])).norm();
         features[feature_counter_].x=xyz_ref(0);
         features[feature_counter_].y=xyz_ref(1);
         features[feature_counter_].z=xyz_ref(2);
@@ -84,8 +79,8 @@ double SparseImgAlignGpu::computeResiduals(
     bool linearize_system,
     bool compute_weight_scale)
 {
-  double chi2=0.0;
-  residual_->reload_buf(1,11,&chi2);
+  double chi2[1]={0};
+  residual_->reload_buf(1,11,chi2);
   /// TODO GPU compute based on the feature
   residual_->run(1,feature_counter_);
   if(compute_weight_scale && iter_ == 0)  {
@@ -94,14 +89,16 @@ double SparseImgAlignGpu::computeResiduals(
       std::vector<float> errors(error,error+feature_counter_);
       scale_ = scale_estimator_->compute(errors);
   }
-  residual_->read(1,11,&chi2);
-  return chi2;
+
+  double out[1]={0.0};
+  residual_->read(1,11,out);
+  return out[0];
 }
 
 int SparseImgAlignGpu::solve()
 {
-    double* H;
-    double* J;
+    double H[9]={0};
+    double J[3]={0};
     residual_->read(1,9,H);
     residual_->read(1,10,J);
     x_ = Eigen::Matrix<double,3,3>(H).ldlt().solve(Eigen::Matrix<double,3,1>(J));
@@ -112,7 +109,7 @@ int SparseImgAlignGpu::solve()
 void SparseImgAlignGpu::update()
 {
 /// TODO the update situation may have a smarter solution
-  double* pos;
+  double pos[3]={0};
   residual_->read(1,2,pos);
   SE2 update =  SE2(pos[2],Eigen::Vector2d(pos[0],pos[1])) * SE2::exp(-0.25*x_);
   pos[0]=update.translation()(0);
