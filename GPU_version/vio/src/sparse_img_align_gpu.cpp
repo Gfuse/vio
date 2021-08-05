@@ -49,6 +49,8 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   cl_double2 featue_px[ref_frame->fts_.size()];
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
   for(auto it=ref_frame->fts_.begin(); it!=ref_frame->fts_.end();++it){
+      if(*it == nullptr)continue;
+      if((*it)->point == nullptr)continue;
         Vector3d xyz_ref=(*it)->f*((*it)->point->pos_ - Eigen::Vector3d(ref_pos[0],0.0,ref_pos[1])).norm();
         features[feature_counter_].x=xyz_ref(0);
         features[feature_counter_].y=xyz_ref(1);
@@ -62,17 +64,19 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   SE2 T_cur(cur_frame->T_f_w_.se2());///TODO temporary, we can remove it
   for(level_=max_level_; level_>=min_level_; --level_)
   {
-      cv::Mat& cur_img = cur_frame->img_pyr_.at(level_);
-      cv::Mat& ref_img = ref_frame->img_pyr_.at(level_);
+      cv::Mat cur_img = cur_frame->img_pyr_.at(level_);
+      cv::Mat ref_img = ref_frame->img_pyr_.at(level_);
       residual_->reload_buf(1,0,cur_img);
       residual_->reload_buf(1,1,ref_img);
       residual_->reload_buf(1,6,&level_);
     mu_ = 1.0;
     optimize(T_cur);
   }
-  cur_frame->T_f_w_ = SE2_5(T_cur);
+  double pos[3]={0};
+  residual_->read(1,2,pos);
+  cur_frame->T_f_w_ = SE2_5(pos[0],pos[1],pos[2]);
 
-  return n_meas_/patch_area_;
+  return 1;
 }
 
 double SparseImgAlignGpu::computeResiduals(
@@ -111,7 +115,7 @@ void SparseImgAlignGpu::update()
 /// TODO the update situation may have a smarter solution
   double pos[3]={0};
   residual_->read(1,2,pos);
-  SE2 update =  SE2(pos[2],Eigen::Vector2d(pos[0],pos[1])) * SE2::exp(-0.25*x_);
+  SE2 update =  SE2(pos[2],Eigen::Vector2d(pos[0],pos[1])) * SE2::exp(-0.5*x_);
   pos[0]=update.translation()(0);
   pos[1]=update.translation()(1);
   pos[2]=atan(update.so2().unit_complex().imag()/update.so2().unit_complex().real());

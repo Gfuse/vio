@@ -78,7 +78,6 @@ protected:
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   opencl* gpu_fast_;
   ros::Time time_;
-  SparseImgAlignGpu* imageAlign_;
 
 
   /// Initialize the visual odometry algorithm.

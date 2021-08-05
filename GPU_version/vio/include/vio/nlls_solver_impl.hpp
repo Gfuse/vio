@@ -60,7 +60,6 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
       std::cout << "It. " << iter_
                 << "\t Success"
                 << "\t new_chi2 = " << new_chi2
-                << "\t n_meas = " << n_meas_
                 << "\t x_norm = " << vk::norm_max(x_)<<'\n';
     }
     // stop when converged, i.e. update step too small

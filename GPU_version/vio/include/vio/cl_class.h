@@ -57,8 +57,14 @@ public:
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
         try{
             if(id>_buffers.size())return CL_MAP_FAILURE;
-            for(auto i:_buffers)if(i.second==id)
-                queue->enqueueWriteBuffer(i.first.first,CL_TRUE, 0, sizeof(T) * i.first.second, buf);
+            for(auto&& i:_buffers)if(i.second==id){
+                    cl_int err1=queue->enqueueWriteBuffer(i.first.first,CL_TRUE, 0, sizeof(T) * i.first.second, buf);
+                    cl_int err2=_kernel->setArg(id,i.first.first);
+                    if(err1!=0 || err2!=0){
+                        std::cerr<<"Error C:Kernel, F:write, L3:setArg\t"<<id<<"\t"<<err1<<"\t"<<err2<<'\n';
+                        return CL_MAP_FAILURE;
+                    }
+            }
             return CL_SUCCESS;
         }catch (std::exception& err){
             std::cerr<<"Reload buffer on GPU failed\n"<<err.what()<<'\n';
@@ -67,15 +73,19 @@ public:
     };
     int32_t reload(size_t id,cv::Mat& buf,cl::Context* context){
         try{
-            for(auto i:_images)if(i.second==id){
+            for(auto&& i:_images)if(i.second==id){
                     i.first=cl::Image2D(*context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
                                         cl::ImageFormat(CL_R, CL_UNSIGNED_INT8),
                                         buf.size().width,
                                         buf.size().height,
                                         0,
                                         reinterpret_cast<uchar*>(buf.data));
+                    cl_int err=_kernel->setArg(id,i.first);
+                    if(err!=0){
+                        std::cerr<<"Error C:Kernel, F:write image, L:setArg ID:\t"<<id<<"\t"<<err<<'\n';
+                        return err;
+                    }
             }
-
             return CL_SUCCESS;
         }catch (std::exception& err){
             std::cerr<<"Reload buffer on GPU failed\n"<<err.what()<<'\n';

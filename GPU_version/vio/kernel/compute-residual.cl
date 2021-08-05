@@ -94,7 +94,6 @@ __kernel void compute_residual(
     double v_ref = featue_px[f].y * scale;
     int u_ref_i = floor(u_ref);
     int v_ref_i = floor(v_ref);
-
     if(u_ref_i - (PATCH_HALFSIZE + 1) < 0 || v_ref_i - (PATCH_HALFSIZE + 1) < 0 ||
     u_ref_i + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[0] || v_ref_i + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[1])
     return;

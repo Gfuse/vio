@@ -66,8 +66,6 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     gpu_fast_->write_buf(1,10,3,J);
     double chi2[1]={0.0};
     gpu_fast_->write_buf(1,11,1,chi2);
-    imageAlign_=new SparseImgAlignGpu(Config::kltMaxLevel(), Config::kltMinLevel(),
-                                      30, SparseImgAlign::GaussNewton, true,gpu_fast_);
     klt_homography_init_=new initialization::KltHomographyInit(gpu_fast_);
     initialize();
 }
@@ -164,11 +162,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_=init_f.second;
   new_frame_->Cov_ = init_f.first;
   // sparse image align
-  /*
-  SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
-                           30, SparseImgAlign::LevenbergMarquardt, false, false);
-  if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;*/
-  if(imageAlign_->run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
+  //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, true);
+  SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::GaussNewton, false,gpu_fast_);
+  if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
