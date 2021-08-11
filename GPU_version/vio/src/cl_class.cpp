@@ -2,7 +2,7 @@
 // Created by root on 4/27/21.
 //
 #include <vio/cl_class.h>
-opencl::opencl() {
+opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
     std::vector<cl::Platform> all_platforms;
     cl::Platform::get(&all_platforms);
     if (all_platforms.size() == 0){
@@ -27,7 +27,6 @@ opencl::opencl() {
               << "CL_DEVICE_COMPILER_AVAILABLE: " <<device->getInfo<CL_DEVICE_COMPILER_AVAILABLE>()<<'\n'
               << "CL_DEVICE_LOCAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_LOCAL_MEM_SIZE>()<<'\n'
               << "CL_DEVICE_GLOBAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>()<<'\n';
-
     context=new cl::Context({ *device });
     cl::Program::Sources sources;
     read_cl fast(std::string(KERNEL_DIR)+"/fast-gray.cl");
@@ -35,7 +34,13 @@ opencl::opencl() {
     read_cl compute_residual(std::string(KERNEL_DIR)+"/compute-residual.cl");
     sources.push_back({ compute_residual.src_str, compute_residual.size });
     program=new cl::Program(*context, sources);
-    if(program->build({ *device },"-DFAST_THRESH=40 -DPATCH_SIZE=2 -DPATCH_HALFSIZE=1 -DF_X=296.724480 -DF_Y=395.357280 -DC_X=317.877600 -DC_Y=238.752640 -DS=1.016870") !=0)
+    double* camera=cam->params();
+    std::string options="-DFAST_THRESH=40 -DPATCH_SIZE=2 -DPATCH_HALFSIZE=1 -DF_X="+ std::to_string(camera[0]) +
+                        " -DF_Y="+std::to_string(camera[1])+
+                        " -DC_X="+std::to_string(camera[2])+
+                        " -DC_Y="+std::to_string(camera[3])+
+                        " -DS="+std::to_string(camera[4]);
+    if(program->build({ *device },options.c_str()) !=0)
         std::cout << " Error building: " << program->getBuildInfo<CL_PROGRAM_BUILD_STATUS>(*device)<<'\n'
                   <<program->getBuildInfo<CL_PROGRAM_BUILD_LOG>(*device) << '\n';
     queue=new cl::CommandQueue(*context,*device,CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,NULL);

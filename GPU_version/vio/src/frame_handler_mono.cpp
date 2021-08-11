@@ -36,7 +36,7 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
   ukfPtr_(init),
   time_(ros::Time::now())
 {
-    gpu_fast_= new opencl();
+    gpu_fast_= new opencl(cam_);
     gpu_fast_->make_kernel("fast_gray");
     cv::Mat img=cv::Mat(cv::Size(700, 500),CV_8UC1);
     gpu_fast_->write_buf(0,0,img);

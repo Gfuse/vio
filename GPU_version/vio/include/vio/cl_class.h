@@ -12,6 +12,7 @@
 #include <exception>
 #include <CL/opencl.h>
 #include <opencv2/opencv.hpp>
+#include <vio/abstract_camera.h>
 
 class kernel{
 public:
@@ -114,7 +115,7 @@ public:
 };
 class opencl{
 public:
-    opencl();
+    opencl(vk::AbstractCamera* cam);
     ~opencl();
     int32_t make_kernel(std::string name){_kernels.push_back(kernel(program,name));};
     template<typename T>
@@ -195,6 +196,7 @@ private:
     cl::Device* device = nullptr;
     cl::Program* program = nullptr;
     cl::CommandQueue* queue= nullptr;
+    vk::AbstractCamera* cam= nullptr;
 };
 
 #endif //VIO_OPENCL_CL_CLASS_H
