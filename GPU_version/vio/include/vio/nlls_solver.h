@@ -110,7 +110,7 @@ public:
 
   // robust least squares
   bool                  use_weights_;
-  float                 scale_;
+  double                 scale_=2.0;
   robust_cost::ScaleEstimatorPtr scale_estimator_;
   robust_cost::WeightFunctionPtr weight_function_;
 
@@ -131,7 +131,7 @@ public:
     eps_(0.0000000001),
     iter_(0),
     use_weights_(false),
-    scale_(0.0),
+    scale_(2.0),
     scale_estimator_(NULL),
     weight_function_(NULL)
   { }

@@ -37,7 +37,7 @@ SparseImgAlign::SparseImgAlign(
   n_iter_init_ = n_iter_;
   method_ = method;
   verbose_ = verbose;
-  eps_ = 0.0001;
+  eps_ = 1e-5;
 }
 
 size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)

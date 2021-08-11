@@ -54,6 +54,7 @@ public:
       FramePtr ref_frame,
       FramePtr cur_frame);
 
+   // FILE* data= nullptr;
 
 protected:
   int level_;                     //!< current pyramid level on which the optimization runs.
