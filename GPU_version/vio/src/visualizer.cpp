@@ -52,7 +52,7 @@ void Visualizer::publishMinimal(
   {
     // publish cam in world frame (Estimated odometry in the worls frame)
     auto odom=ukf.get_location();
-    Quaterniond q(AngleAxisd(odom.second.pitch()+M_PI_2, Vector3d::UnitZ()));
+    Quaterniond q(AngleAxisd(odom.second.pitch(), Vector3d::UnitZ()));
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose_with_cov(new geometry_msgs::PoseWithCovarianceStamped);
       msg_pose_with_cov->header = header_msg;
       msg_pose_with_cov->pose.pose.position.x = -odom.second.se2().translation()(0);
