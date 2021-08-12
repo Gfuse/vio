@@ -17,8 +17,8 @@
 #include <ros/ros.h>
 #include <string>
 #include <chrono>
-#include <gpu_svo/frame_handler_mono.h>
-#include <gpu_svo/params_helper.h>
+#include <vio/frame_handler_mono.h>
+#include <vio/params_helper.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
 #include <geometry_msgs/Twist.h>
@@ -26,21 +26,21 @@
 #include <boost/thread.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <Eigen/Core>
-#include <gpu_svo/abstract_camera.h>
-#include <gpu_svo/camera_loader.h>
-#include <gpu_svo/frame.h>
+#include <vio/abstract_camera.h>
+#include <vio/camera_loader.h>
+#include <vio/frame.h>
 #include <vio/getOdom.h>
 #include <vio/start.h>
 #include <vio/stop.h>
-#include <gpu_svo/depth_filter.h>
+#include <vio/depth_filter.h>
 #if VIO_DEBUG
-#include <gpu_svo/visualizer.h>
+#include <vio/visualizer.h>
 #endif
 
 class VioNode
 {
 public:
-      svo::FrameHandlerMono* vo_;
+      vio::FrameHandlerMono* vo_;
       vk::AbstractCamera* cam_;
       VioNode();
       ~VioNode();
@@ -54,7 +54,7 @@ public:
     bool start(vio::start::Request& req, vio::start::Response& res){
         if(req.on==1){
             start_=true;
-            if(vo_->stage()!=svo::FrameHandlerBase::STAGE_DEFAULT_FRAME)
+            if(vo_->stage()!=vio::FrameHandlerBase::STAGE_DEFAULT_FRAME)
                 vo_->start();
             else{
                 vo_->depthFilter()->startThread();
@@ -106,7 +106,7 @@ VioNode::VioNode() :
         throw std::runtime_error("Camera model not correctly specified.");
     Eigen::Matrix<double,3,1> init;
     init<<1e-19,1e-19,1e-19;
-    vo_ = new svo::FrameHandlerMono(cam_,init);
+    vo_ = new vio::FrameHandlerMono(cam_,init);
     usleep(500);
 }
 

@@ -7,8 +7,8 @@
 
 
 #include <math.h>
-#include <gpu_svo/atan_camera.h>
-#include <gpu_svo/math_utils.h>
+#include <vio/atan_camera.h>
+#include <vio/math_utils.h>
 
 namespace vk {
 
@@ -36,11 +36,14 @@ ATANCamera(double width, double height,
     tans_ = 0.0;
     distortion_ = false;
   }
+  param_ = (double *) malloc(5 * sizeof(double));
 }
 
 ATANCamera::
 ~ATANCamera()
-{}
+{
+    delete param_;
+}
 
 Vector3d ATANCamera::
 cam2world(const double& x, const double& y) const

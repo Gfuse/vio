@@ -15,16 +15,16 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
-#include <gpu_svo/sparse_img_align.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/config.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/abstract_camera.h>
-#include <gpu_svo/vision.h>
-#include <gpu_svo/math_utils.h>
+#include <vio/sparse_img_align.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
+#include <vio/config.h>
+#include <vio/point.h>
+#include <vio/abstract_camera.h>
+#include <vio/vision.h>
+#include <vio/math_utils.h>
 
-namespace svo {
+namespace vio {
 
 SparseImgAlign::SparseImgAlign(
     int max_level, int min_level, int n_iter,
@@ -37,7 +37,7 @@ SparseImgAlign::SparseImgAlign(
   n_iter_init_ = n_iter_;
   method_ = method;
   verbose_ = verbose;
-  eps_ = 0.0001;
+  eps_ = 1e-5;
 }
 
 size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
@@ -99,8 +99,8 @@ void SparseImgAlign::precomputeReferencePatches()
     *visiblity_it = true;
 
     // cannot just take the 3d points coordinate because of the reprojection errors in the reference image!!!
-    const double depth(((*it)->point->pos_ - ref_pos).norm());
-    const Vector3d xyz_ref((*it)->f*depth);
+   // const double depth(((*it)->point->pos_ - ref_pos).norm());
+    const Vector3d xyz_ref((*it)->f*((*it)->point->pos_ - ref_pos).norm());
 
     // evaluate projection jacobian
     Matrix<double,2,3> frame_jac;
@@ -171,8 +171,8 @@ double SparseImgAlign::computeResiduals(
       continue;
 
     // compute pixel location in cur img
-    const double depth = ((*it)->point->pos_ - ref_pos).norm();
-    const Vector3d xyz_ref((*it)->f*depth);
+    //const double depth = ((*it)->point->pos_ - ref_pos).norm();
+    const Vector3d xyz_ref((*it)->f*((*it)->point->pos_ - ref_pos).norm());
     const Vector3d xyz_cur((T_cur_from_ref.rotation_matrix()(0,0)*xyz_ref.x())+(T_cur_from_ref.rotation_matrix()(0,1)*xyz_ref.z())+T_cur_from_ref.translation()(0),
                            xyz_ref.y(),
                            -1.0*(T_cur_from_ref.rotation_matrix()(1,0)*xyz_ref.x())+(T_cur_from_ref.rotation_matrix()(1,1)*xyz_ref.z())+T_cur_from_ref.translation()(1));
@@ -224,8 +224,6 @@ double SparseImgAlign::computeResiduals(
           const Vector3d J(jacobian_cache_.col(feature_counter*patch_area_ + pixel_counter));
           H_.noalias() += J*J.transpose()*weight;
           Jres_.noalias() -= J*res*weight;
-          if(display_)
-            resimg_.at<float>((int) v_cur+y-patch_halfsize_, (int) u_cur+x-patch_halfsize_) = res/255.0;
         }
       }
     }
@@ -265,5 +263,5 @@ void SparseImgAlign::finishIteration()
   }
 }
 
-} // namespace svo
+} // namespace vio
 

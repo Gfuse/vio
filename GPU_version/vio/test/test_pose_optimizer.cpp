@@ -29,7 +29,7 @@
 
 namespace {
 
-using namespace svo;
+using namespace vio;
 using namespace Eigen;
 
 /// Pose Optimizer Test-Fixture

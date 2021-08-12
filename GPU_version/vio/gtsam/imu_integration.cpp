@@ -5,14 +5,14 @@
 #include "imu_integration.h"
 #include <memory>
 #include <utility>
-#include "gpu_svo/feature.h"
-#include "gpu_svo/point.h"
-#include "gpu_svo/svoVisionFactor.h"
+#include "vio/feature.h"
+#include "vio/point.h"
+#include "vio/svoVisionFactor.h"
 #include <gtsam/nonlinear/Marginals.h>
 #include <gtsam/geometry/Pose3.h>
-#include <gpu_svo/params_helper.h>
-#include <gpu_svo/config.h>
-#include <gpu_svo/for_it.hpp>
+#include <vio/params_helper.h>
+#include <vio/config.h>
+#include <vio/for_it.hpp>
 #define debug 0
 Imu_Integration::Imu_Integration(Sophus::SE3& SE_init){
     graphPtr=std::make_shared<gtsam::NonlinearFactorGraph>();

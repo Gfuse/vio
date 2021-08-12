@@ -5,7 +5,7 @@
  *      Author: cforster
  */
 
-#include <gpu_svo/vision.h>
+#include <vio/vision.h>
 
 #if __SSE2__
 # include <emmintrin.h>

@@ -14,18 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <vikit/pinhole_camera.h>
-#include <vikit/math_utils.h>
-#include <vikit/file_reader.h>
-#include <vikit/timer.h>
-#include <vikit/blender_utils.h>
+#include <vio/pinhole_camera.h>
+#include <vio/math_utils.h>
+#include <vio/file_reader.h>
+#include <vio/timer.h>
 #include <iostream>
-#include <svo/feature_detection.h>
-#include <svo/sparse_img_align.h>
-#include <svo/frame.h>
-#include <svo/point.h>
-#include <svo/feature.h>
-#include <svo/config.h>
+#include <vio/feature_detection.h>
+#include <vio/sparse_img_align.h>
+#include <vio/frame.h>
+#include <vio/point.h>
+#include <vio/feature.h>
+#include <vio/config.h>
 #include "test_utils.h"
 
 namespace {

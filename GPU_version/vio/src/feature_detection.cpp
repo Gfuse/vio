@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gpu_svo/feature_detection.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/vision.h>
+#include <vio/feature_detection.h>
+#include <vio/feature.h>
+#include <vio/vision.h>
 
-namespace svo {
+namespace vio {
 namespace feature_detection {
 
 AbstractDetector::AbstractDetector(
@@ -79,7 +79,7 @@ void FastDetector::detect(
     gpu_fast_->reload_buf(0,0,img);
     int icorner[1]={0};
     gpu_fast_->reload_buf(0,2,icorner);
-    gpu_fast_->run(0,img_pyr[L].cols,img_pyr[L].rows);
+    gpu_fast_->run(0,img.cols,img.rows);
     cl_int2 fast_corners[350000];
     gpu_fast_->read(0,1,fast_corners);
     int count[1]={0};
@@ -110,5 +110,5 @@ void FastDetector::detect(
 }
 
 } // namespace feature_detection
-} // namespace svo
+} // namespace vio
 

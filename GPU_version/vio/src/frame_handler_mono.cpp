@@ -14,18 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gpu_svo/config.h>
-#include <gpu_svo/frame_handler_mono.h>
-#include <gpu_svo/map.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/pose_optimizer.h>
-#include <gpu_svo/sparse_img_align.h>
-#include <gpu_svo/depth_filter.h>
-#include <gpu_svo/for_it.hpp>
+#include <vio/config.h>
+#include <vio/frame_handler_mono.h>
+#include <vio/map.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
+#include <vio/point.h>
+#include <vio/pose_optimizer.h>
+#include <vio/sparse_img_align.h>
+#include <vio/depth_filter.h>
+#include <vio/for_it.hpp>
+#include <assert.h>
 
-namespace svo {
+namespace vio {
 
 FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,3,1>& init) :
   FrameHandlerBase(),
@@ -35,15 +36,33 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
   ukfPtr_(init),
   time_(ros::Time::now())
 {
-    gpu_fast_= new opencl();
+    gpu_fast_= new opencl(cam_);
     gpu_fast_->make_kernel("fast_gray");
     cv::Mat img=cv::Mat(cv::Size(700, 500),CV_8UC1);
     gpu_fast_->write_buf(0,0,img);
-    cl_int2 corners_[350000];
+    cl_int2 corners_[350000]={0};
     gpu_fast_->write_buf(0,1,350000,corners_);
     int icorner[1]={0};
     gpu_fast_->write_buf(0,2,1,icorner);
     gpu_fast_->write_buf(0,3,(1 << 18));
+    gpu_fast_->make_kernel("compute_residual");
+    gpu_fast_->write_buf(1,0,img);
+    gpu_fast_->write_buf(1,1,img);
+    cl_double3 pose[1]={0.0};
+    gpu_fast_->write_buf(1,2,3,pose);
+    gpu_fast_->write_buf(1,3,3,pose);
+    cl_double3 f[300]={0};
+    gpu_fast_->write_buf(1,4,300,f);
+    cl_double2 px[300]={0};
+    gpu_fast_->write_buf(1,5,300,px);
+    double  e[300]={0};
+    gpu_fast_->write_buf(1,7,300,e);
+    double H[9*300]={0};
+    gpu_fast_->write_buf(1,8,9*300,H);
+    cl_double3 J[300];
+    gpu_fast_->write_buf(1,9,300,J);
+    double chi2[1]={0.01};
+    gpu_fast_->write_buf(1,10,1,chi2);
     klt_homography_init_=new initialization::KltHomographyInit(gpu_fast_);
     initialize();
 }
@@ -140,10 +159,15 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_=init_f.second;
   new_frame_->Cov_ = init_f.first;
   // sparse image align
-  SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
-                           30, SparseImgAlign::LevenbergMarquardt, false, false);
+  //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
+  SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
+  //assert (false);
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
+  std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
+             <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
+             <<"\t distance between two frames: "<<
+             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
@@ -299,4 +323,4 @@ void FrameHandlerMono::UpdateCmd(double* value,const ros::Time& time){
     ukfPtr_.UpdateCmd(value[0],value[1],value[2],time);
 }
 
-} // namespace svo
+} // namespace vio

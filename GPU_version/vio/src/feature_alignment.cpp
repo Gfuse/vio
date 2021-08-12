@@ -20,9 +20,9 @@
 #ifdef __ARM_NEON__
 #include <arm_neon.h>
 #endif
-#include <gpu_svo/feature_alignment.h>
+#include <vio/feature_alignment.h>
 
-namespace svo {
+namespace vio {
 namespace feature_alignment {
 
 #define SUBPIX_VERBOSE 0
@@ -613,4 +613,4 @@ bool align2D_NEON (
 }
 
 } // namespace feature_alignment
-} // namespace svo
+} // namespace vio

@@ -24,7 +24,7 @@
 # include <vikit/params_helper.h>
 #endif
 
-namespace svo {
+namespace vio {
 namespace test_utils {
 
 std::string getDatasetDir()
@@ -51,7 +51,7 @@ std::string getTraceDir()
 }
 
 } // namespace test_utils
-} // namespace svo
+} // namespace vio
 
 
 #endif // TEST_UTILS_H_

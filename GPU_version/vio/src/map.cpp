@@ -15,13 +15,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <set>
-#include <gpu_svo/map.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/feature.h>
+#include <vio/map.h>
+#include <vio/point.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
 #include <boost/bind.hpp>
 
-namespace svo {
+namespace vio {
 
 Map::Map() {}
 
@@ -376,4 +376,4 @@ void mapStatistics(Map* map)
 }
 
 } // namespace map_debug
-} // namespace svo
+} // namespace vio

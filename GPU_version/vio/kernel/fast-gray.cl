@@ -17,7 +17,7 @@ __kernel void fast_gray(
     // Use global work item as 2D image coordinates.
     int  const x   = get_global_id(0);
     int  const y   = get_global_id(1);
-    if(x>16 && x<get_image_width(image)-16 && y<get_image_height(image)-16 && y>16){
+    if(x>5 && x<get_image_width(image)-5 && y<get_image_height(image)-5 && y>5){
         int2 const xy  = (int2)(x, y);
         // Read the candidate pixel.
         int  const p00 = read_imageui(image, sampler, xy).x;

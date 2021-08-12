@@ -14,19 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gpu_svo/visualizer.h>
-#include <gpu_svo/frame_handler_mono.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/map.h>
-#include <gpu_svo/feature.h>
+#include <vio/visualizer.h>
+#include <vio/frame_handler_mono.h>
+#include <vio/point.h>
+#include <vio/map.h>
+#include <vio/feature.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/PoseStamped.h>
-#include <gpu_svo/timer.h>
-#include <gpu_svo/output_helper.h>
+#include <vio/timer.h>
+#include <vio/output_helper.h>
 #include <deque>
-#include <gpu_svo/ukf.h>
+#include <vio/ukf.h>
 
-namespace svo {
+namespace vio {
 
 Visualizer::
 Visualizer() :
@@ -77,4 +77,4 @@ void Visualizer::publishMinimal(
   }
 
 }
-} // end namespace gpu_svo
+} // end namespace vio

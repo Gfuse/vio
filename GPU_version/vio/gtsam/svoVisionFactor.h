@@ -10,11 +10,11 @@
 #include <gtsam/base/Matrix.h>
 #include <gtsam/base/Vector.h>
 #include <gtsam/geometry/Pose3.h>
-#include <gpu_svo/robust_cost.h>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/frame.h>
+#include <vio/robust_cost.h>
+#include <vio/math_utils.h>
+#include <vio/frame.h>
 
-namespace svo {
+namespace vio {
 
     class VisionFactor: public gtsam::NoiseModelFactor1<gtsam::Pose3> {
 

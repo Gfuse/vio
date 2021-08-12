@@ -20,8 +20,8 @@
 
 #include <numeric>
 #include <algorithm>
-#include <gpu_svo/robust_cost.h>
-#include <gpu_svo/math_utils.h>
+#include <vio/robust_cost.h>
+#include <vio/math_utils.h>
 
 namespace vk {
 namespace robust_cost {

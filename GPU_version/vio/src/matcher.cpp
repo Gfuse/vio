@@ -15,18 +15,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdlib>
-#include <gpu_svo/abstract_camera.h>
-#include <gpu_svo/vision.h>
-#include <gpu_svo/math_utils.h>
-#include <gpu_svo/patch_score.h>
-#include <gpu_svo/matcher.h>
-#include <gpu_svo/frame.h>
-#include <gpu_svo/feature.h>
-#include <gpu_svo/point.h>
-#include <gpu_svo/config.h>
-#include <gpu_svo/feature_alignment.h>
+#include <vio/abstract_camera.h>
+#include <vio/vision.h>
+#include <vio/math_utils.h>
+#include <vio/patch_score.h>
+#include <vio/matcher.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
+#include <vio/point.h>
+#include <vio/config.h>
+#include <vio/feature_alignment.h>
 
-namespace svo {
+namespace vio {
 
 namespace warp {
 
@@ -324,4 +324,4 @@ bool Matcher::findEpipolarMatchDirect(
   return false;
 }
 
-} // namespace svo
+} // namespace vio

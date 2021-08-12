@@ -13,7 +13,7 @@
 #include <gtsam/slam/ProjectionFactor.h>
 #include <gtsam/nonlinear/ISAM2.h>
 #include <sophus/se3.h>
-#include <gpu_svo/frame.h>
+#include <vio/frame.h>
 
 using gtsam::symbol_shorthand::B;  // Bias  (ax,ay,az,gx,gy,gz)
 using gtsam::symbol_shorthand::V;  // Vel   (xdot,ydot,zdot)

@@ -5,7 +5,7 @@
  *      Author: chrigi
  */
 
-#include <gpu_svo/output_helper.h>
+#include <vio/output_helper.h>
 #include <visualization_msgs/Marker.h>
 
 
