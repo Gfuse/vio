@@ -92,7 +92,7 @@ private:
     ros::Time imu_time_;
     boost::thread* imu_the_= nullptr;
 #if VIO_DEBUG
-    svo::Visualizer visualizer_;
+    vio::Visualizer visualizer_;
 #endif
 };
 

@@ -74,7 +74,7 @@ __kernel void compute_residual(
     if(uv_ref_i.x - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.y - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.x + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[0] || uv_ref_i.y + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[1])return;
     // evaluate projection jacobian
     double frame_jac[6]={0.0}; // 2X3
-    jacobian_xyz2uv(sqrt(pow(ref_feature[f] - ref_pose[0], 2.0)), &frame_jac);
+    jacobian_xyz2uv(sqrt(pow(ref_feature[f] - (double3)(ref_pose[0].x,0.0,ref_pose[0].y), 2.0)), &frame_jac);
 
     // compute bilateral interpolation weights for reference image
     double2 subpix=  uv_ref - uv_ref_i;

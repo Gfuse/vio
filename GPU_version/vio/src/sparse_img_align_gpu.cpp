@@ -78,7 +78,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
     optimize(T_cur);
   }
   cl_double3 pos[1]={0};
-  residual_->read(0,2,pos);
+  residual_->read(1,2,pos);
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;
 }
