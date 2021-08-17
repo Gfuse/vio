@@ -3,6 +3,7 @@
 
 // Enable OpenCL 32-bit integer atomic functions.
 #pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
+#pragma OPENCL EXTENSION cl_khr_fp64 : enable
 
 double2 world2cam(double3 feature)
 {
