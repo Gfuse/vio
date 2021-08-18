@@ -26,7 +26,8 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
               << "CL_DEVICE_BUILT_IN_KERNELS: " <<device->getInfo<CL_DEVICE_BUILT_IN_KERNELS>()<<'\n'
               << "CL_DEVICE_COMPILER_AVAILABLE: " <<device->getInfo<CL_DEVICE_COMPILER_AVAILABLE>()<<'\n'
               << "CL_DEVICE_LOCAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_LOCAL_MEM_SIZE>()<<'\n'
-              << "CL_DEVICE_GLOBAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>()<<'\n';
+              << "CL_DEVICE_GLOBAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>()<<'\n'
+              << "CL_DEVICE_EXTENSIONS: " <<device->getInfo<CL_DEVICE_EXTENSIONS>()<<'\n';
     context=new cl::Context({ *device });
     cl::Program::Sources sources;
     read_cl fast(std::string(KERNEL_DIR)+"/fast-gray.cl");
