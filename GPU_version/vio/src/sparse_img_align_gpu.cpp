@@ -128,7 +128,9 @@ int SparseImgAlignGpu::solve()
         J[0].y -= J[i].y;
         J[0].z -= J[i].z;
     }
-    x_ = Eigen::Matrix<double,3,3>(H).ldlt().solve(Eigen::Vector3d(J[0].x,J[0].y,J[0].z));
+    double Hd[9]={};
+    double Jd[3]={};
+    x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d(Jd[0],Jd[1],Jd[2]));
     if((bool) std::isnan((double) x_[0]))
         return 0;
     return 1;
