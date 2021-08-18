@@ -28,25 +28,25 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)
 {
-    *(J + 0) = -(1. / xyz_in_f[2]);                                                         // -1/z
-    *(J + 1) = (xyz_in_f[0]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // x/z^2
-    *(J + 2) = -(1.0 + pow((xyz_in_f[0]),2) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2])));   // -(1.0 + x^2/z^2)
-    *(J + 3) = 1e-19;                                                                       // 0
-    *(J + 4) = (xyz_in_f[1]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // y/z^2
-    *(J + 5) = -(xyz_in_f[0]) * (xyz_in_f[1]) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));  // -x*y/z^2
+    J[0] = -(1. / xyz_in_f[2]);                                                         // -1/z
+    J[1] = (xyz_in_f[0]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // x/z^2
+    J[2] = -(1.0 + pow((xyz_in_f[0]),2) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2])));   // -(1.0 + x^2/z^2)
+    J[3] = 1e-19;                                                                       // 0
+    J[4] = (xyz_in_f[1]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // y/z^2
+    J[5] = -(xyz_in_f[0]) * (xyz_in_f[1]) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));  // -x*y/z^2
 }
 
 void compute_hessain(float3 j, __global float* H, float w)
 {
-    *(H + 0) += j[0] * j[0] * w;
-    *(H + 1) += j[0] * j[1] * w;
-    *(H + 2) += j[0] * j[2] * w;
-    *(H + 3) += j[1] * j[0] * w;
-    *(H + 4) += j[1] * j[1] * w;
-    *(H + 5) += j[1] * j[2] * w;
-    *(H + 6) += j[2] * j[0] * w;
-    *(H + 7) += j[2] * j[1] * w;
-    *(H + 8) += j[2] * j[2] * w;
+    H[0] += j[0] * j[0] * w;
+    H[1] += j[0] * j[1] * w;
+    H[2] += j[0] * j[2] * w;
+    H[3] += j[1] * j[0] * w;
+    H[4] += j[1] * j[1] * w;
+    H[5] += j[1] * j[2] * w;
+    H[6] += j[2] * j[0] * w;
+    H[7] += j[2] * j[1] * w;
+    H[8] += j[2] * j[2] * w;
 }
 
 __kernel void compute_residual(
