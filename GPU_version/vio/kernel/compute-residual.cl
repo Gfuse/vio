@@ -36,10 +36,10 @@ void jacobian_xyz2uv(float3 xyz_in_f, float* J)
     *(J + 5) = -(xyz_in_f[0]) * (xyz_in_f[1]) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));  // -x*y/z^2
 }
 <<<<<<< HEAD
-void jacobian_xyz2uv_2(double3 xyz_in_f, double3 ref_pose, double3 cur_pose, double* J)
+void jacobian_xyz2uv_2(float3 xyz_in_f, float3 ref_pose, float3 cur_pose, float* J)
 {
-    double3 txtytetha = cur_pose - ref_pose;
-    double2 uv = world2cam(xyz_in_f);
+    float3 txtytetha = cur_pose - ref_pose;
+    float2 uv = world2cam(xyz_in_f);
     *(J + 0) = 1.0;
     *(J + 1) = 0.0;
     *(J + 2) = ((-1 * sin(txtytetha[2]) * cos(ref_pose[2])) - (cos(txtytetha[2]) * sin(ref_pose[2]))) * uv[0] + ((cos(txtytetha[2]) * cos(ref_pose[2])) - (sin(txtytetha[2]) * sin(ref_pose[2]))) * uv[1];
