@@ -40,12 +40,12 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   {
     return 0;
   }
-  cl_double3 ref_pos[1]={ref_frame->pos()(0),ref_frame->pos()(1),ref_frame->T_f_w_.pitch()};
-  cl_double3 cur_pos[1]={cur_frame->pos()(0),cur_frame->pos()(1),cur_frame->T_f_w_.pitch()};
+  cl_float3 ref_pos[1]={ref_frame->pos()(0),ref_frame->pos()(1),ref_frame->T_f_w_.pitch()};
+  cl_float3 cur_pos[1]={cur_frame->pos()(0),cur_frame->pos()(1),cur_frame->T_f_w_.pitch()};
   residual_->reload_buf(1,2,cur_pos);
   residual_->reload_buf(1,3,ref_pos);
-  cl_double3 features[ref_frame->fts_.size()];
-  cl_double2 featue_px[ref_frame->fts_.size()];
+  cl_float3 features[ref_frame->fts_.size()];
+  cl_float2 featue_px[ref_frame->fts_.size()];
  // fprintf(data, "ref_frame:\n %f,%f,%f\n",ref_pos[0],ref_pos[1],ref_pos[2]);
  // fprintf(data, "cur_frame:\n %f,%f,%f\n",cur_pos[0],cur_pos[1],cur_pos[2]);
  // fprintf(data, "camera:\n %f,%f,%f,%f,%f\n features:\n",camera[0],camera[1],camera[2],camera[3],camera[4]);

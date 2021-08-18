@@ -206,7 +206,7 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
 bool Reprojector::reprojectPoint(FramePtr frame, Point* point)
 {
   Vector2d px(frame->w2c(point->pos_));
-  if(frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
+  if(frame->cam_->isInFrame(px.cast<int>(), 3)) // 8px is the patch size in the matcher
   {
     const int k = static_cast<int>(px[1]/grid_.cell_size)*grid_.grid_n_cols
                 + static_cast<int>(px[0]/grid_.cell_size);
