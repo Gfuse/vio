@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#define VIO_DEBUG true
+#define VIO_DEBUG false
 #include <ros/ros.h>
 #include <string>
 #include <chrono>

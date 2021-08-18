@@ -40,8 +40,8 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   {
     return 0;
   }
-  cl_float3 ref_pos[1]={ref_frame->pos()(0),ref_frame->pos()(1),ref_frame->T_f_w_.pitch()};
-  cl_float3 cur_pos[1]={cur_frame->pos()(0),cur_frame->pos()(1),cur_frame->T_f_w_.pitch()};
+  cl_float3 ref_pos[1]={(float)ref_frame->pos()(0),(float)ref_frame->pos()(1),(float)ref_frame->T_f_w_.pitch()};
+  cl_float3 cur_pos[1]={(float)cur_frame->pos()(0),(float)cur_frame->pos()(1),(float)cur_frame->T_f_w_.pitch()};
   residual_->reload_buf(1,2,cur_pos);
   residual_->reload_buf(1,3,ref_pos);
   cl_float3 features[ref_frame->fts_.size()];
@@ -77,7 +77,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
     mu_ = 1.0;
     optimize(T_cur);
   }
-  cl_double3 pos[1]={0};
+  cl_float3 pos[1]={0};
   residual_->read(1,2,pos);
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;
@@ -87,9 +87,9 @@ double SparseImgAlignGpu::computeResiduals(
     bool linearize_system,
     bool compute_weight_scale)
 {
-    double H[9*300]={0};
-    cl_double3 J[300]={0.0};
-    double chi2_[300]={0.0};
+    float H[9*300]={0};
+    cl_float3 J[300]={0.0};
+    float chi2_[300]={0.0};
     residual_->write_buf(1,11,scale_);
     residual_->reload_buf(1,10,chi2_);
     residual_->reload_buf(1,8,H);
@@ -97,7 +97,7 @@ double SparseImgAlignGpu::computeResiduals(
     /// TODO GPU compute based on the feature
     residual_->run(1,feature_counter_);
     float error[300]={0.0};
-    double chi[300]={0.0};
+    float chi[300]={0.0};
     residual_->read(1,10,feature_counter_,chi);
     residual_->read(1,7,feature_counter_,error);
     for(int i = 1; i < feature_counter_; ++i){
@@ -110,8 +110,8 @@ double SparseImgAlignGpu::computeResiduals(
 
 int SparseImgAlignGpu::solve()
 {
-    double H[300*9]={0.0};
-    cl_double3 J[300]={0.0};
+    float H[300*9]={0.0};
+    cl_float3 J[300]={0.0};
     residual_->read(1,8,feature_counter_*9,H);
     residual_->read(1,9,feature_counter_,J);
     for(int i = 1; i < feature_counter_; ++i){
@@ -136,12 +136,12 @@ int SparseImgAlignGpu::solve()
 void SparseImgAlignGpu::update()
 {
 /// TODO the update situation may have a smarter solution
-    cl_double3 pos[1]={0.0,0.0,0.0};
+    cl_float3 pos[1]={0.0,0.0,0.0};
     residual_->read(1,2,pos);
     Sophus::SE2 update =  Sophus::SE2(pos[0].z,Eigen::Vector2d(pos[0].x,pos[0].y)) * Sophus::SE2::exp(-0.5*x_);
-    pos[0].x=update.translation()(0);
-    pos[0].y=update.translation()(1);
-    pos[0].z=atan(update.so2().unit_complex().imag()/update.so2().unit_complex().real());
+    pos[0].x=(float)update.translation()(0);
+    pos[0].y=(float)update.translation()(1);
+    pos[0].z=(float)atan(update.so2().unit_complex().imag()/update.so2().unit_complex().real());
     residual_->reload_buf(1,2,pos);
 }
 
