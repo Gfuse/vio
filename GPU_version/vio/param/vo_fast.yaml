@@ -5,7 +5,7 @@ svo:
   quality_min_fts: 10      #If the number of tracked features drops below this threshold. Tracking quality is bad.
   quality_max_drop_fts: 90 #If within one frame, this amount of features are dropped. Tracking quality is bad.
   init_min_tracked: 100
-  init_min_disparity: 60
+  init_min_disparity: 40
   structureoptim_max_pts: 50
   kfselect_mindist: 0.01
   poseoptim_thresh: 4.0

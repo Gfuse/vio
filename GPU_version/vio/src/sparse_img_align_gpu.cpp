@@ -128,8 +128,10 @@ int SparseImgAlignGpu::solve()
         J[0].y -= J[i].y;
         J[0].z -= J[i].z;
     }
-    double Hd[9]={};
-    double Jd[3]={};
+    double Hd[9]={(double)H[0],(double)H[1],(double)H[2],
+                  (double)H[3],(double)H[4],(double)H[5],
+                  (double)H[6],(double)H[7],(double)H[8]};
+    double Jd[3]={(double)J[0].x,(double)J[0].y,(double)J[0].z};
     x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d(Jd[0],Jd[1],Jd[2]));
     if((bool) std::isnan((double) x_[0]))
         return 0;
@@ -140,7 +142,7 @@ void SparseImgAlignGpu::update()
 /// TODO the update situation may have a smarter solution
     cl_float3 pos[1]={0.0,0.0,0.0};
     residual_->read(1,2,pos);
-    Sophus::SE2 update =  Sophus::SE2(pos[0].z,Eigen::Vector2d(pos[0].x,pos[0].y)) * Sophus::SE2::exp(-0.5*x_);
+    Sophus::SE2 update =  Sophus::SE2(pos[0].z,Eigen::Vector2d(pos[0].x,pos[0].y)) * Sophus::SE2::exp(-1.0*x_);
     pos[0].x=(float)update.translation()(0);
     pos[0].y=(float)update.translation()(1);
     pos[0].z=(float)atan(update.so2().unit_complex().imag()/update.so2().unit_complex().real());

@@ -37,7 +37,7 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
     if(!solve())
     {
       // matrix was singular and could not be computed
-      std::cout << "Matrix is close to singular! Stop Optimizing." << std::endl;
+      if(verbose_)std::cout << "Matrix is close to singular! Stop Optimizing." << std::endl;
       stop_ = true;
     }
     // check if error increased since last optimization

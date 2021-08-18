@@ -148,7 +148,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
   klt_homography_init_->reset();
-  SVO_INFO_STREAM("Init: Selected second frame, triangulated initial map.");
+  SVO_INFO_STREAM("Init: triangulated initial map. Vio is starting ...");
   return RESULT_IS_KEYFRAME;
 }
 
@@ -164,12 +164,12 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   //assert (false);
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-
+/*
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
              (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
-
+*/
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
