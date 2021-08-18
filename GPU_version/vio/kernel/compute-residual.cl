@@ -28,25 +28,25 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)
 {
-    J[0] = -(1. / xyz_in_f[2]);                                                         // -1/z
-    J[1] = (xyz_in_f[0]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // x/z^2
-    J[2] = -(1.0 + pow((xyz_in_f[0]),2) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2])));   // -(1.0 + x^2/z^2)
+    J[0] = -(1. / xyz_in_f.z);                                                         // -1/z
+    J[1] = (xyz_in_f.x) * ((1. / xyz_in_f.z) * (1. / xyz_in_f.z));                   // x/z^2
+    J[2] = -(1.0 + pow((xyz_in_f.x),2) / ((1. / xyz_in_f.z) * (1. / xyz_in_f.z)));   // -(1.0 + x^2/z^2)
     J[3] = 1e-19;                                                                       // 0
-    J[4] = (xyz_in_f[1]) * ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));                   // y/z^2
-    J[5] = -(xyz_in_f[0]) * (xyz_in_f[1]) / ((1. / xyz_in_f[2]) * (1. / xyz_in_f[2]));  // -x*y/z^2
+    J[4] = (xyz_in_f.y) * ((1. / xyz_in_f.z) * (1. / xyz_in_f.z));                   // y/z^2
+    J[5] = -(xyz_in_f.x) * (xyz_in_f.y) / ((1. / xyz_in_f.z) * (1. / xyz_in_f.z));  // -x*y/z^2
 }
 
 void compute_hessain(float3 j, __global float* H, float w)
 {
-    H[0] += j[0] * j[0] * w;
-    H[1] += j[0] * j[1] * w;
-    H[2] += j[0] * j[2] * w;
-    H[3] += j[1] * j[0] * w;
-    H[4] += j[1] * j[1] * w;
-    H[5] += j[1] * j[2] * w;
-    H[6] += j[2] * j[0] * w;
-    H[7] += j[2] * j[1] * w;
-    H[8] += j[2] * j[2] * w;
+    H[0] += j.x * j.x * w;
+    H[1] += j.x * j.y * w;
+    H[2] += j.x * j.z * w;
+    H[3] += j.y * j.x * w;
+    H[4] += j.y * j.y * w;
+    H[5] += j.y * j.z * w;
+    H[6] += j.z * j.x * w;
+    H[7] += j.z * j.y * w;
+    H[8] += j.z * j.z * w;
 }
 
 __kernel void compute_residual(
@@ -72,7 +72,7 @@ int f = get_global_id(0);
 // check if reference with patch size is within image
 float2 uv_ref = featue_px[f] * scale;
 float2 uv_ref_i = floor(uv_ref);
-if(uv_ref_i.x - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.y - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.x + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[0] || uv_ref_i.y + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref)[1])return;
+if(uv_ref_i.x - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.y - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.x + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref).x || uv_ref_i.y + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref).y)return;
 // evaluate projection jacobian
 float frame_jac[6]={0.0}; // 2X3
 jacobian_xyz2uv(sqrt(pow(ref_feature[f] - (float3)(ref_pose[0].x,0.0,ref_pose[0].y), 2.0)), &frame_jac);
@@ -96,42 +96,42 @@ float e = 0.0;
 float chi_=0.0;
 for(int y = 0; y < PATCH_SIZE; ++y)
 {
-int ref_element_addr = (int)(uv_ref_i.y + y - PATCH_HALFSIZE) * get_image_dim(image_ref)[0] + (uv_ref_i.x - PATCH_HALFSIZE);
-int cur_element_addr = (int)(uv_cur_i.y + y - PATCH_HALFSIZE) * get_image_dim(image_cur)[0] + (uv_cur_i.x - PATCH_HALFSIZE);
+int ref_element_addr = (int)(uv_ref_i.y + y - PATCH_HALFSIZE) * get_image_dim(image_ref).x + (uv_ref_i.x - PATCH_HALFSIZE);
+int cur_element_addr = (int)(uv_cur_i.y + y - PATCH_HALFSIZE) * get_image_dim(image_cur).x + (uv_cur_i.x - PATCH_HALFSIZE);
 
 for(int x = 0; x < PATCH_SIZE; ++x, ++ref_element_addr, ++cur_element_addr)
 {
 // precompute interpolated reference patch color
-int2 px_reftl = (int2)( ref_element_addr                                    % get_image_dim(image_ref)[0],  ref_element_addr                                    / get_image_dim(image_ref)[0]);
-int2 px_reftr = (int2)((ref_element_addr + 1)                               % get_image_dim(image_ref)[0], (ref_element_addr + 1)                               / get_image_dim(image_ref)[0]);
-int2 px_refbl = (int2)((ref_element_addr + get_image_dim(image_ref)[0])     % get_image_dim(image_ref)[0], (ref_element_addr + get_image_dim(image_ref)[0])     / get_image_dim(image_ref)[0]);
-int2 px_refbr = (int2)((ref_element_addr + get_image_dim(image_ref)[0] + 1) % get_image_dim(image_ref)[0], (ref_element_addr + get_image_dim(image_ref)[0] + 1) / get_image_dim(image_ref)[0]);
+int2 px_reftl = (int2)( ref_element_addr                                    % get_image_dim(image_ref).x,  ref_element_addr                                    / get_image_dim(image_ref).x);
+int2 px_reftr = (int2)((ref_element_addr + 1)                               % get_image_dim(image_ref).x, (ref_element_addr + 1)                               / get_image_dim(image_ref).x);
+int2 px_refbl = (int2)((ref_element_addr + get_image_dim(image_ref).x)     % get_image_dim(image_ref).x, (ref_element_addr + get_image_dim(image_ref).x)     / get_image_dim(image_ref).x);
+int2 px_refbr = (int2)((ref_element_addr + get_image_dim(image_ref).x + 1) % get_image_dim(image_ref).x, (ref_element_addr + get_image_dim(image_ref).x + 1) / get_image_dim(image_ref).x);
 float value = w_ref_tl * read_imageui(image_ref, sampler, px_reftl).x + w_ref_tr * read_imageui(image_ref, sampler, px_reftr).x +
               w_ref_bl * read_imageui(image_ref, sampler, px_refbl).x + w_ref_br * read_imageui(image_ref, sampler, px_refbr).x;
 
-float dx = 0.5f * ((w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 1)                                     % get_image_dim(image_ref)[0], ((ref_element_addr + 1)                                     / get_image_dim(image_ref)[0]))).x +
-                    w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 2)                                     % get_image_dim(image_ref)[0], ((ref_element_addr + 2)                                     / get_image_dim(image_ref)[0]))).x +
-                    w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]) + 1)     % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]) + 1)     / get_image_dim(image_ref)[0]))).x +
-                    w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]) + 2)     % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]) + 2)     / get_image_dim(image_ref)[0]))).x)
-                   -(w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr - 1)                                     % get_image_dim(image_ref)[0], ((ref_element_addr - 1)                                     / get_image_dim(image_ref)[0]))).x +
-                     w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 0)                                     % get_image_dim(image_ref)[0], ((ref_element_addr + 0)                                     / get_image_dim(image_ref)[0]))).x +
-                     w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]) - 1)     % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]) - 1)     / get_image_dim(image_ref)[0]))).x +
-                     w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]))         % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]))         / get_image_dim(image_ref)[0]))).x));
+float dx = 0.5f * ((w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 1)                                     % get_image_dim(image_ref).x, ((ref_element_addr + 1)                                     / get_image_dim(image_ref).x))).x +
+                    w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 2)                                     % get_image_dim(image_ref).x, ((ref_element_addr + 2)                                     / get_image_dim(image_ref).x))).x +
+                    w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x) + 1)     % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x) + 1)     / get_image_dim(image_ref).x))).x +
+                    w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x) + 2)     % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x) + 2)     / get_image_dim(image_ref).x))).x)
+                   -(w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr - 1)                                     % get_image_dim(image_ref).x, ((ref_element_addr - 1)                                     / get_image_dim(image_ref).x))).x +
+                     w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 0)                                     % get_image_dim(image_ref).x, ((ref_element_addr + 0)                                     / get_image_dim(image_ref).x))).x +
+                     w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x) - 1)     % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x) - 1)     / get_image_dim(image_ref).x))).x +
+                     w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x))         % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x))         / get_image_dim(image_ref).x))).x));
 
-float dy = 0.5f * ((w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]))         % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]))         / get_image_dim(image_ref)[0]))).x +
-                    w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]) + 1)     % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]) + 1)     / get_image_dim(image_ref)[0]))).x +
-                    w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]) * 2)     % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]) * 2)     / get_image_dim(image_ref)[0]))).x +
-                    w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref)[0]) * 2 + 1) % get_image_dim(image_ref)[0], ((ref_element_addr + (get_image_dim(image_ref)[0]) * 2 + 1) / get_image_dim(image_ref)[0]))).x)
-                   -(w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (-get_image_dim(image_ref)[0]))        % get_image_dim(image_ref)[0], ((ref_element_addr + (-get_image_dim(image_ref)[0]))        / get_image_dim(image_ref)[0]))).x +
-                     w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (1 - get_image_dim(image_ref)[0]))     % get_image_dim(image_ref)[0], ((ref_element_addr + (1 - get_image_dim(image_ref)[0]))     / get_image_dim(image_ref)[0]))).x +
-                     w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 0)                                     % get_image_dim(image_ref)[0], ((ref_element_addr + 0)                                     / get_image_dim(image_ref)[0]))).x +
-                     w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 1)                                     % get_image_dim(image_ref)[0], ((ref_element_addr + 1)                                     / get_image_dim(image_ref)[0]))).x));
+float dy = 0.5f * ((w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x))         % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x))         / get_image_dim(image_ref).x))).x +
+                    w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x) + 1)     % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x) + 1)     / get_image_dim(image_ref).x))).x +
+                    w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x) * 2)     % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x) * 2)     / get_image_dim(image_ref).x))).x +
+                    w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (get_image_dim(image_ref).x) * 2 + 1) % get_image_dim(image_ref).x, ((ref_element_addr + (get_image_dim(image_ref).x) * 2 + 1) / get_image_dim(image_ref).x))).x)
+                   -(w_ref_tl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (-get_image_dim(image_ref).x))        % get_image_dim(image_ref).x, ((ref_element_addr + (-get_image_dim(image_ref).x))        / get_image_dim(image_ref).x))).x +
+                     w_ref_tr * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + (1 - get_image_dim(image_ref).x))     % get_image_dim(image_ref).x, ((ref_element_addr + (1 - get_image_dim(image_ref).x))     / get_image_dim(image_ref).x))).x +
+                     w_ref_bl * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 0)                                     % get_image_dim(image_ref).x, ((ref_element_addr + 0)                                     / get_image_dim(image_ref).x))).x +
+                     w_ref_br * read_imageui(image_ref, sampler, (int2) ((ref_element_addr + 1)                                     % get_image_dim(image_ref).x, ((ref_element_addr + 1)                                     / get_image_dim(image_ref).x))).x));
 
 // compute residual
-int2 px_curtl = (int2)( cur_element_addr                                      % get_image_dim(image_cur)[0],  cur_element_addr                                      / get_image_dim(image_cur)[0]);
-int2 px_curtr = (int2)((cur_element_addr + 1)                                 % get_image_dim(image_cur)[0], (cur_element_addr + 1)                                 / get_image_dim(image_cur)[0]);
-int2 px_curbl = (int2)((cur_element_addr + (get_image_dim(image_cur)[0]))     % get_image_dim(image_cur)[0], (cur_element_addr + (get_image_dim(image_cur)[0]))     / get_image_dim(image_cur)[0]);
-int2 px_curbr = (int2)((cur_element_addr + (get_image_dim(image_cur)[0]) + 1) % get_image_dim(image_cur)[0], (cur_element_addr + (get_image_dim(image_cur)[0]) + 1) / get_image_dim(image_cur)[0]);
+int2 px_curtl = (int2)( cur_element_addr                                      % get_image_dim(image_cur).x,  cur_element_addr                                      / get_image_dim(image_cur).x);
+int2 px_curtr = (int2)((cur_element_addr + 1)                                 % get_image_dim(image_cur).x, (cur_element_addr + 1)                                 / get_image_dim(image_cur).x);
+int2 px_curbl = (int2)((cur_element_addr + (get_image_dim(image_cur).x))     % get_image_dim(image_cur).x, (cur_element_addr + (get_image_dim(image_cur).x))     / get_image_dim(image_cur).x);
+int2 px_curbr = (int2)((cur_element_addr + (get_image_dim(image_cur).x) + 1) % get_image_dim(image_cur).x, (cur_element_addr + (get_image_dim(image_cur).x) + 1) / get_image_dim(image_cur).x);
 
 float res = value - w_cur_tl * read_imageui(image_cur, sampler, px_curtl).x + w_cur_tr * read_imageui(image_cur, sampler, px_curtr).x +
             w_cur_bl * read_imageui(image_cur, sampler, px_curbl).x + w_cur_br * read_imageui(image_cur, sampler, px_curbr).x;

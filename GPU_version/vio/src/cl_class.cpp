@@ -22,11 +22,12 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
     }
     device = new cl::Device(all_devices[0]);
     std::cout << "CL_DEVICE_NAME: " << device->getInfo<CL_DEVICE_NAME>() <<'\n'
+              << "CL_DRIVER_VERSION: " <<device->getInfo<CL_DRIVER_VERSION>()<<'\n'
               << "CL_DEVICE_OPENCL_C_VERSION: " <<device->getInfo<CL_DEVICE_OPENCL_C_VERSION>()<<'\n'
-              << "CL_DEVICE_BUILT_IN_KERNELS: " <<device->getInfo<CL_DEVICE_BUILT_IN_KERNELS>()<<'\n'
               << "CL_DEVICE_COMPILER_AVAILABLE: " <<device->getInfo<CL_DEVICE_COMPILER_AVAILABLE>()<<'\n'
               << "CL_DEVICE_LOCAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_LOCAL_MEM_SIZE>()<<'\n'
               << "CL_DEVICE_GLOBAL_MEM_SIZE: " <<device->getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>()<<'\n'
+              << "CL_DEVICE_EXECUTION_CAPABILITIES: " <<device->getInfo<CL_DEVICE_EXECUTION_CAPABILITIES>()<<'\n'
               << "CL_DEVICE_EXTENSIONS: " <<device->getInfo<CL_DEVICE_EXTENSIONS>()<<'\n';
     context=new cl::Context({ *device });
     cl::Program::Sources sources;
@@ -43,6 +44,7 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
                         " -DS="+std::to_string(camera[4]);
     if(program->build({ *device },options.c_str()) !=0)
         std::cout << " Error building: " << program->getBuildInfo<CL_PROGRAM_BUILD_STATUS>(*device)<<'\n'
+                  << " Binary type: " << program->getBuildInfo<CL_PROGRAM_BINARY_TYPE>(*device)<<'\n'
                   <<program->getBuildInfo<CL_PROGRAM_BUILD_LOG>(*device) << '\n';
     queue=new cl::CommandQueue(*context,*device,CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,NULL);
 }
