@@ -90,6 +90,8 @@ private:
     double* imu_;
     double* cmd_;
     ros::Time imu_time_;
+    int width;
+    int height;
     boost::thread* imu_the_= nullptr;
 #if VIO_DEBUG
     vio::Visualizer visualizer_;
@@ -100,6 +102,8 @@ VioNode::VioNode() :
       vo_(NULL),
       cam_(NULL)
 {
+    width=vk::getParam<int>("vio/cam_width", 640);
+    height=vk::getParam<int>("vio/cam_height", 480);
     imu_=(double *)calloc(static_cast<std::size_t>(3), sizeof(double));
     cmd_=(double *)calloc(static_cast<std::size_t>(3), sizeof(double));
     if(!vk::camera_loader::loadFromRosNs("vio", cam_))
@@ -126,6 +130,9 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
       try {
           auto start=std::chrono::steady_clock::now();
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
+          if(img.empty())
+              return;
+          if(cv::countNonZero(img) < 0.85*height*width)return;
           vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);
       } catch (cv_bridge::Exception& e) {
         ROS_ERROR("cv_bridge exception: %s", e.what());

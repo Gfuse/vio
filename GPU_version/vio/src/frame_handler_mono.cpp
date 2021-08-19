@@ -164,7 +164,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   //assert (false);
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  /*
+/*
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<

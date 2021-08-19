@@ -43,7 +43,7 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
   trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, f_ref_, f_cur_, disparities_);
-  if(disparities_.size() < Config::initMinTracked())
+  if(disparities_.size() < 1)
         return NO_KEYFRAME;
   double disparity = vk::getMedian(disparities_);
   if(disparity < Config::initMinDisparity()){
@@ -134,6 +134,7 @@ void trackKlt(
     vector<Vector3d>& f_cur,
     vector<double>& disparities)
 {
+  disparities.clear();
   const double klt_win_size = 30.0;//30.0
   const int klt_max_iter = 30;//30
   const double klt_eps = 0.001;
@@ -141,17 +142,17 @@ void trackKlt(
   vector<float> error;
   vector<float> min_eig_vec;
   cv::TermCriteria termcrit(cv::TermCriteria::COUNT+cv::TermCriteria::EPS, klt_max_iter, klt_eps);
+  if(frame_ref->img_pyr_[0].empty() || frame_cur->img_pyr_[0].empty())return;
   cv::calcOpticalFlowPyrLK(frame_ref->img_pyr_[0], frame_cur->img_pyr_[0],
                            px_ref, px_cur,
                            status, error,
                            cv::Size2i(klt_win_size, klt_win_size),
                            4, termcrit, cv::OPTFLOW_USE_INITIAL_FLOW);
-
   vector<cv::Point2f>::iterator px_ref_it = px_ref.begin();
   vector<cv::Point2f>::iterator px_cur_it = px_cur.begin();
   vector<Vector3d>::iterator f_ref_it = f_ref.begin();
   f_cur.clear(); f_cur.reserve(px_cur.size());
-  disparities.clear(); disparities.reserve(px_cur.size());
+  disparities.reserve(px_cur.size());
   for(size_t i=0; px_ref_it != px_ref.end(); ++i)
   {
     if(!status[i])
