@@ -8,7 +8,7 @@
     <param name="vio/cmd_topic" value="/cmd_vel" type="str" />
     <param name="vio/start" value="/vio/start" type="str" />
     <param name="vio/stop" value="/vio/stop" type="str" />
-    <param name="vio/odom" value="/vio/odom" type="str" />
+    <param name="vio/odom" value="/vio/getOdom" type="str" />
     
     <!-- Camera calibration file -->
     <rosparam file="$(find vio)/param/px30.yaml" />
