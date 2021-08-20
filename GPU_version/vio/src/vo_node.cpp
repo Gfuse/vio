@@ -88,7 +88,6 @@ public:
     };
 private:
     double* imu_;
-    double* cmd_;
     ros::Time imu_time_;
     int width;
     int height;
@@ -105,7 +104,6 @@ VioNode::VioNode() :
     width=vk::getParam<int>("vio/cam_width", 640);
     height=vk::getParam<int>("vio/cam_height", 480);
     imu_=(double *)calloc(static_cast<std::size_t>(3), sizeof(double));
-    cmd_=(double *)calloc(static_cast<std::size_t>(3), sizeof(double));
     if(!vk::camera_loader::loadFromRosNs("vio", cam_))
         throw std::runtime_error("Camera model not correctly specified.");
     Eigen::Matrix<double,3,1> init;
@@ -130,9 +128,12 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
       try {
           auto start=std::chrono::steady_clock::now();
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
-          if(img.empty())
-              return;
-          if(cv::countNonZero(img) < 0.85*height*width)return;
+          if(img.empty())return;
+          cv::Mat imgbul;
+          cv::Laplacian(img,imgbul,CV_64F);
+          cv::Scalar mean, stddev; // 0:1st channel, 1:2nd channel and 2:3rd channel
+          meanStdDev(imgbul, mean, stddev, cv::Mat());
+          if(stddev.val[0] * stddev.val[0]< 50.0)return;
           vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);
       } catch (cv_bridge::Exception& e) {
         ROS_ERROR("cv_bridge exception: %s", e.what());
@@ -164,7 +165,6 @@ void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
 void VioNode::cmdCb(const geometry_msgs::TwistPtr &cmd) {
     if(!start_)return;
     double _cmd[3]={cmd->linear.x,cmd->linear.y,cmd->angular.z};
-    memcpy(cmd_, _cmd, static_cast<std::size_t>(3*sizeof(double)));
     vo_->UpdateCmd(_cmd,imu_time_);
 }
 void VioNode::imu_th(){

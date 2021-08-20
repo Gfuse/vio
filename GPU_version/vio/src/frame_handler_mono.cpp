@@ -227,7 +227,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  std::cout<<"Svo pipline was finished\n";
+  //std::cout<<"Svo pipline was finished\n";
   return RESULT_IS_KEYFRAME;
 }
 
