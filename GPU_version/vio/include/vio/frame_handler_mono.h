@@ -94,7 +94,6 @@ protected:
 
   /// Try relocalizing the frame at relative position to provided keyframe.
   virtual UpdateResult relocalizeFrame(
-      const SE3& T_cur_ref,
       FramePtr ref_keyframe);
 
   /// Reset the frame handler. Implement in derived class.

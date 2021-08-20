@@ -56,11 +56,15 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       frame_ref_->cam_->errorMultiplier2(), Config::poseOptimThresh(),
       inliers_, xyz_in_cur_, T_cur_from_ref_);
 
-  if(inliers_.size() < Config::initMinInliers())
+  if(inliers_.size() < Config::initMinInliers() && disparity < 80)
   {
     SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()<<" While: "<<Config::initMinInliers()<<" inliers minimum required.\n"
        <<"Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required.");
       return NO_KEYFRAME;
+  }else if(inliers_.size() < Config::initMinInliers() && disparity > 80){
+      SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()<<" While: "<<Config::initMinInliers()<<" inliers minimum required.\n"
+                       <<"Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required. Reinitialized");
+      return FAILURE;
   }
 
   // Rescale the map such that the mean scene depth is equal to the specified scale

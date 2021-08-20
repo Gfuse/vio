@@ -52,7 +52,7 @@ public:
     uint trace_id_= 0;
     bool start_=false;
     bool start(vio::start::Request& req, vio::start::Response& res){
-        if(req.on==1){
+        if(req.on==1 && !start_){
             start_=true;
             if(vo_->stage()!=vio::FrameHandlerBase::STAGE_DEFAULT_FRAME)
                 vo_->start();
@@ -136,7 +136,7 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
           if(stddev.val[0] * stddev.val[0]< 50.0)return;
           vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);
       } catch (cv_bridge::Exception& e) {
-        ROS_ERROR("cv_bridge exception: %s", e.what());
+        ROS_ERROR("vo exception: %s", e.what());
       }
 }
 void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {

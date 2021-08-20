@@ -104,26 +104,29 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
     res = processSecondFrame();
   else if(stage_ == STAGE_FIRST_FRAME)
     res = processFirstFrame();
-  else if(stage_ == STAGE_RELOCALIZING)
-    res = relocalizeFrame(SE3(Matrix3d::Identity(), Vector3d::Zero()),
-                          map_.getClosestKeyframe(last_frame_));
 
   // set last frame
   if(!new_frame_->fts_.empty() || stage_ != STAGE_DEFAULT_FRAME)last_frame_ = new_frame_;
   new_frame_.reset();
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
+  if(stage_ == STAGE_RELOCALIZING){
+      depthFilter()->stopThread();
+      start();
+  }
 }
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
-  new_frame_->T_f_w_ = SE2_5(0.0,0.0,0.0);
+  auto init_f= ukfPtr_.get_location();
+  new_frame_->T_f_w_=init_f.second;
+  new_frame_->Cov_ = init_f.first;
   if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
   new_frame_->setKeyframe();
+  map_.reset();
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_SECOND_FRAME;
-  ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
   SVO_INFO_STREAM("Init: Selected first frame.");
   return RESULT_IS_KEYFRAME;
 }
@@ -137,8 +140,13 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
   new_frame_->T_f_w_ = result.second;
   new_frame_->Cov_ = result.first;
-  if(res == initialization::NO_KEYFRAME)
+  if(res == initialization::NO_KEYFRAME){
       return RESULT_NO_KEYFRAME;
+  }else if(res == initialization::FAILURE){
+      stage_ = STAGE_FIRST_FRAME;
+      return RESULT_FAILURE;
+  }
+
   new_frame_->setKeyframe();
   double depth_mean, depth_min;
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
@@ -232,30 +240,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 }
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::relocalizeFrame(
-    const SE3& T_cur_ref,
     FramePtr ref_keyframe)
 {
-  if(ref_keyframe == nullptr)
-  {
-    return RESULT_FAILURE;
-  }
-  SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),
-                           30, SparseImgAlign::GaussNewton, false, false);
-  size_t img_align_n_tracked = img_align.run(ref_keyframe, new_frame_);
-  usleep(2000);
-  if(img_align_n_tracked > Config::qualityMinFts())
-  {
-    SE2_5 T_f_w_last = last_frame_->T_f_w_;
-    last_frame_ = ref_keyframe;
-    FrameHandlerMono::UpdateResult res = processFrame();
-    if(res != RESULT_FAILURE)
-    {
-      stage_ = STAGE_DEFAULT_FRAME;
-    }
-    else
-      new_frame_->T_f_w_ = T_f_w_last; // reset to last well localized pose
-    return res;
-  }
   return RESULT_FAILURE;
 }
 
@@ -265,6 +251,7 @@ bool FrameHandlerMono::relocalizeFrameAtPose(
     const cv::Mat& img,
     const double timestamp)
 {
+    /*
   FramePtr ref_keyframe;
   if(!map_.getKeyframeById(keyframe_id, ref_keyframe))
     return false;
@@ -273,7 +260,7 @@ bool FrameHandlerMono::relocalizeFrameAtPose(
   if(res != RESULT_FAILURE) {
     last_frame_ = new_frame_;
     return true;
-  }
+  }*/
   return false;
 }
 
