@@ -90,7 +90,8 @@ double SparseImgAlignGpu::computeResiduals(
     float H[9*300]={0};
     cl_float3 J[300]={0.0};
     float chi2_[300]={0.0};
-    residual_->write_buf(1,11,scale_);
+    float scale=(float)scale_;
+    residual_->write_buf(1,11,scale);
     residual_->reload_buf(1,10,chi2_);
     residual_->reload_buf(1,8,H);
     residual_->reload_buf(1,9,J);
