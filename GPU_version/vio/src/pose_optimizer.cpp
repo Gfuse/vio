@@ -45,7 +45,7 @@ void optimizeGaussNewton(
   Vector3d b;
 
   // compute the scale of the error for robust estimation
-  std::vector<float> errors; errors.reserve(frame->fts_.size());
+  std::vector<float> errors;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
   {
     if((*it)->point == NULL)

@@ -165,7 +165,7 @@ void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
 bool getSceneDepth(const Frame& frame, double& depth_mean, double& depth_min)
 {
   vector<double> depth_vec;
-  depth_vec.reserve(frame.fts_.size());
+  //depth_vec.reserve(frame.fts_.size());
   depth_min = std::numeric_limits<double>::max();
   for(auto it=frame.fts_.begin(), ite=frame.fts_.end(); it!=ite; ++it)
   {

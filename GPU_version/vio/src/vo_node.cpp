@@ -131,7 +131,7 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
           if(img.empty())return;
           cv::Mat imgbul;
           cv::Laplacian(img,imgbul,CV_64F);
-          cv::Scalar mean, stddev; // 0:1st channel, 1:2nd channel and 2:3rd channel
+          cv::Scalar mean, stddev;
           meanStdDev(imgbul, mean, stddev, cv::Mat());
           if(stddev.val[0] * stddev.val[0]< 50.0)return;
           vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);

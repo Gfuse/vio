@@ -114,10 +114,9 @@ void detectFeatures(
   feature_detection::FastDetector detector(
       frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
   detector.detect(frame.get(), frame->img_pyr_, Config::triangMinCornerScore(), new_features);
-
   // now for all maximum corners, initialize a new seed
-  px_vec.clear(); px_vec.reserve(new_features.size());
-  f_vec.clear(); f_vec.reserve(new_features.size());
+  px_vec.clear();
+  f_vec.clear();
   for(auto&& ftr:new_features){
       px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
       f_vec.push_back(ftr->f);
@@ -151,8 +150,8 @@ void trackKlt(
   vector<cv::Point2f>::iterator px_ref_it = px_ref.begin();
   vector<cv::Point2f>::iterator px_cur_it = px_cur.begin();
   vector<Vector3d>::iterator f_ref_it = f_ref.begin();
-  f_cur.clear(); f_cur.reserve(px_cur.size());
-  disparities.reserve(px_cur.size());
+  f_cur.clear(); //f_cur.reserve(px_cur.size());
+  //disparities.reserve(px_cur.size());
   for(size_t i=0; px_ref_it != px_ref.end(); ++i)
   {
     if(!status[i])
