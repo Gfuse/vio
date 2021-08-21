@@ -91,21 +91,31 @@ double SparseImgAlignGpu::computeResiduals(
     cl_float3 J[300]={0.0};
     float chi2_[300]={0.0};
     float scale=(float)scale_;
+    std::cerr<<"computeResiduals line: 94,\t";
     residual_->write_buf(1,11,scale);
+    std::cerr<<"96,\t";
     residual_->reload_buf(1,10,chi2_);
+    std::cerr<<"computeResiduals line: 98,\t";
     residual_->reload_buf(1,8,H);
+    std::cerr<<"computeResiduals line: 100,\t";
     residual_->reload_buf(1,9,J);
+    std::cerr<<"computeResiduals line: 102,\t";
     /// TODO GPU compute based on the feature
     residual_->run(1,feature_counter_);
+    std::cerr<<"105,\t";
     float error[300]={0.0};
     float chi[300]={0.0};
     residual_->read(1,10,feature_counter_,chi);
+    std::cerr<<"109,\t";
     residual_->read(1,7,feature_counter_,error);
+    std::cerr<<"111,\t";
     for(int i = 1; i < feature_counter_; ++i){
         error[0] += error[i];
         chi[0] += chi[i];
     }
+    std::cerr<<"116,\t";
     scale_ = error[0]*(1.48f / feature_counter_);
+    std::cerr<<"118\n";
     return chi[0]/(feature_counter_*8);
 }
 
