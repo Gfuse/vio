@@ -53,10 +53,14 @@ public:
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
         for(auto&& i:_buffers)if(i.second==id){
                 cl_int error;
-                T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_TRUE,CL_MAP_WRITE,0,sizeof(T) * i.first.second,NULL,NULL,&error);
+                cl::Event event;
+                T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_NON_BLOCKING,CL_MAP_WRITE,0,sizeof(T) * i.first.second,NULL,&event,&error);
                 assert(error == CL_SUCCESS);
+                event.wait();
                 memcpy(Map_buf,buf,sizeof(T) * i.first.second);
-                if(queue->enqueueUnmapMemObject(i.first.first,Map_buf)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
+                if(queue->enqueueUnmapMemObject(i.first.first,Map_buf,NULL,&event)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
+                event.wait();
+
         }
         return CL_SUCCESS;
     };
@@ -160,21 +164,17 @@ public:
     }
     int32_t run(size_t id1/*kernal ID*/,std::size_t  x=1,std::size_t y=1,std::size_t z=1) {
         cl_int err=0;
+        cl::Event event;
         queue->flush();
         if(z>1 && y>1){
-            err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x,y,z)/*Global*/, cl::NullRange/*local*/);
+            err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x,y,z)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         }else if(z<2 && y>1){
-            err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x,y)/*Global*/, cl::NullRange/*local*/);
+            err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x,y)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         }else{
-            err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x)/*Global*/, cl::NullRange/*local*/);
+            err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         };
-        if(err!=0){
-            std::cerr<<"kernel: "<<_kernels.at(id1)._kernel->getInfo<CL_KERNEL_FUNCTION_NAME>();
-            std::cerr<<" ,Args: "<<_kernels.at(id1)._kernel->getInfo<CL_KERNEL_NUM_ARGS>()<<" ,Run out: "<<err<<'\n';
-            for(int i=0;i<_kernels.at(id1)._kernel->getInfo<CL_KERNEL_NUM_ARGS>();++i)
-                std::cerr<<"argument type "<<i<<":"<<_kernels.at(id1)._kernel->getArgInfo<CL_KERNEL_ARG_TYPE_NAME>(i)<<'\n';
-        }
-        return queue->finish();
+        assert(err==CL_SUCCESS);
+        return event.wait();
 
     }
     template<typename T>
@@ -183,9 +183,14 @@ public:
     }
     template<typename T>
     void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,size_t size/*size*/, T* out){
-        T* Map_buf=(T*)queue->enqueueMapBuffer(_kernels.at(id1).read(id2).first,CL_TRUE,CL_MAP_READ,0,sizeof(T) * size);
+        cl_int error;
+        cl::Event event;
+        T* Map_buf=(T*)queue->enqueueMapBuffer(_kernels.at(id1).read(id2).first,CL_NON_BLOCKING,CL_MAP_READ,0,sizeof(T) * size,NULL,&event,&error);
+        assert(error == CL_SUCCESS);
+        event.wait();
         memcpy(out,Map_buf,sizeof(T) * size);
-        if(queue->enqueueUnmapMemObject(_kernels.at(id1).read(id2).first,Map_buf)!=CL_SUCCESS)std::cerr<<"Read buffer on GPU failed"<<'\n';
+        if(queue->enqueueUnmapMemObject(_kernels.at(id1).read(id2).first,Map_buf,NULL,&event)!=CL_SUCCESS)std::cerr<<"Read buffer on GPU failed"<<'\n';
+        event.wait();
     }
     void clear_buf();
 private:
