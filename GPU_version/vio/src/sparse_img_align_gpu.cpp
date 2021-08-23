@@ -30,7 +30,6 @@ SparseImgAlignGpu::SparseImgAlignGpu(
   method_ = method;
   verbose_ = verbose;
   eps_ = 1e-10;
-//  data = fopen((std::string(getenv("HOME"))+"/Project/data.txt").c_str(), "w+");
 }
 
 size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
@@ -46,9 +45,6 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   residual_->reload_buf(1,3,ref_pos);
   cl_float3 features[ref_frame->fts_.size()];
   cl_float2 featue_px[ref_frame->fts_.size()];
- // fprintf(data, "ref_frame:\n %f,%f,%f\n",ref_pos[0],ref_pos[1],ref_pos[2]);
- // fprintf(data, "cur_frame:\n %f,%f,%f\n",cur_pos[0],cur_pos[1],cur_pos[2]);
- // fprintf(data, "camera:\n %f,%f,%f,%f,%f\n features:\n",camera[0],camera[1],camera[2],camera[3],camera[4]);
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
   for(auto it=ref_frame->fts_.begin(); it!=ref_frame->fts_.end();++it){
       if(*it == nullptr)continue;
@@ -59,7 +55,6 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
         features[feature_counter_].z=xyz_ref(2);
         featue_px[feature_counter_].x=(*it)->px(0);
         featue_px[feature_counter_].y=(*it)->px(1);
-       // fprintf(data, "%f,%f,%f,%f,%f\n",xyz_ref(0),xyz_ref(1),xyz_ref(2),(*it)->px(0),(*it)->px(1));
         ++feature_counter_;
   }
   residual_->reload_buf(1,4,features);
@@ -91,31 +86,21 @@ double SparseImgAlignGpu::computeResiduals(
     cl_float3 J[300]={0.0};
     float chi2_[300]={0.0};
     float scale=(float)scale_;
-    std::cerr<<"computeResiduals line: 94,\t";
     residual_->write_buf(1,11,scale);
-    std::cerr<<"96,\t";
     residual_->reload_buf(1,10,chi2_);
-    std::cerr<<"computeResiduals line: 98,\t";
     residual_->reload_buf(1,8,H);
-    std::cerr<<"computeResiduals line: 100,\t";
     residual_->reload_buf(1,9,J);
-    std::cerr<<"computeResiduals line: 102,\t";
     /// TODO GPU compute based on the feature
     residual_->run(1,feature_counter_);
-    std::cerr<<"105,\t";
     float error[300]={0.0};
     float chi[300]={0.0};
     residual_->read(1,10,feature_counter_,chi);
-    std::cerr<<"109,\t";
     residual_->read(1,7,feature_counter_,error);
-    std::cerr<<"111,\t";
     for(int i = 1; i < feature_counter_; ++i){
         error[0] += error[i];
         chi[0] += chi[i];
     }
-    std::cerr<<"116,\t";
     scale_ = error[0]*(1.48f / feature_counter_);
-    std::cerr<<"118\n";
     return chi[0]/(feature_counter_*8);
 }
 

@@ -13,7 +13,7 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
     std::vector<cl::Device> all_devices;
     for(auto i:all_platforms){
         std::cout << "Find platform number:"<< i.getInfo<CL_PLATFORM_NAME>() << "\n";
-        i.getDevices(CL_DEVICE_TYPE_GPU, &all_devices);
+        i.getDevices(CL_DEVICE_TYPE_CPU, &all_devices);
     }
 
     if (all_devices.size() == 0){
