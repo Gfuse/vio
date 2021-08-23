@@ -174,7 +174,8 @@ public:
             err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         };
         assert(err==CL_SUCCESS);
-        return event.wait();
+        event.wait();
+        return queue->finish();
 
     }
     template<typename T>
