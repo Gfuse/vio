@@ -188,9 +188,13 @@ public:
     }
     template<typename T>
     void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,size_t size/*size*/, T* out){
+        std::cerr<<"read GPU line 191\t";
         T* Map_buf=(T*)queue->enqueueMapBuffer(_kernels.at(id1).read(id2).first,CL_TRUE,CL_MAP_READ,0,sizeof(T) * size);
+        std::cerr<<"read GPU line 193\t";
         memcpy(out,Map_buf,sizeof(T) * size);
+        std::cerr<<"read GPU line 195\t";
         if(queue->enqueueUnmapMemObject(_kernels.at(id1).read(id2).first,Map_buf)!=CL_SUCCESS)std::cerr<<"Read buffer on GPU failed"<<'\n';
+        std::cerr<<"read GPU line 197\t";
     }
     void clear_buf();
 private:
