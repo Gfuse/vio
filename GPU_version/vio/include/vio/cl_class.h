@@ -46,7 +46,7 @@ public:
 
         cl_int err=_kernel->setArg(id,_images.back().first);
         if(err!=0){
-            std::cerr<<"Error C:Kernel, F:write image, L:setArg ID:\t"<<id<<"\t"<<err<<'\n';
+            std::cout<<"Error C:Kernel, F:write image, L:setArg ID:\t"<<id<<"\t"<<err<<'\n';
             return err;
         }
         return CL_SUCCESS;
@@ -56,11 +56,11 @@ public:
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
         for(auto&& i:_buffers)if(i.second==id){
             T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_TRUE,CL_MAP_WRITE,0,sizeof(T) * i.first.second);
-            std::cerr<<"\n reload class L:59,\t";
+            std::cout<<"\n reload class L:59,\t";
             memcpy(Map_buf,buf,sizeof(T) * i.first.second);
-             std::cerr<<"L:61\t";
+             std::cout<<"L:61\t";
             if(queue->enqueueUnmapMemObject(i.first.first,Map_buf)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
-            std::cerr<<"L:63\n";
+            std::cout<<"L:63\n";
         }
         return CL_SUCCESS;
     };
@@ -188,13 +188,13 @@ public:
     }
     template<typename T>
     void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,size_t size/*size*/, T* out){
-        std::cerr<<"read GPU line 191\t";
+        std::cout<<"read GPU line 191\t";
         T* Map_buf=(T*)queue->enqueueMapBuffer(_kernels.at(id1).read(id2).first,CL_TRUE,CL_MAP_READ,0,sizeof(T) * size);
-        std::cerr<<"read GPU line 193\t";
+        std::cout<<"read GPU line 193\t";
         memcpy(out,Map_buf,sizeof(T) * size);
-        std::cerr<<"read GPU line 195\t";
+        std::cout<<"read GPU line 195\t";
         if(queue->enqueueUnmapMemObject(_kernels.at(id1).read(id2).first,Map_buf)!=CL_SUCCESS)std::cerr<<"Read buffer on GPU failed"<<'\n';
-        std::cerr<<"read GPU line 197\t";
+        std::cout<<"read GPU line 197\t";
     }
     void clear_buf();
 private:
