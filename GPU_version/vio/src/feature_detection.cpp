@@ -80,10 +80,10 @@ void FastDetector::detect(
     int icorner[1]={0};
     gpu_fast_->reload_buf(0,2,icorner);
     gpu_fast_->run(0,img.cols,img.rows);
-    cl_int2 fast_corners[350000];
-    gpu_fast_->read(0,1,fast_corners);
     int count[1]={0};
-    gpu_fast_->read(0,2,count);
+    gpu_fast_->read(0,2,1,count);
+    cl_int2 fast_corners[350000];
+    gpu_fast_->read(0,1,count[0],fast_corners);
     for(uint i=0;i<count[0];++i)
     {
       if(fast_corners[i].x<0 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<0)

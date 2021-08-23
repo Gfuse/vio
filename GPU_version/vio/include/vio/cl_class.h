@@ -58,7 +58,7 @@ public:
                 assert(error == CL_SUCCESS);
                 event.wait();
                 memcpy(Map_buf,buf,sizeof(T) * i.first.second);
-                if(queue->enqueueUnmapMemObject(i.first.first,Map_buf,NULL,&event)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
+                assert(queue->enqueueUnmapMemObject(i.first.first,Map_buf,NULL,&event)==CL_SUCCESS);
                 event.wait();
 
         }
@@ -178,10 +178,11 @@ public:
         return queue->finish();
 
     }
+    /*
     template<typename T>
-    void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/, T* out){
-        queue->enqueueReadBuffer(_kernels.at(id1).read(id2).first, CL_TRUE, 0, sizeof(T) * _kernels.at(id1).read(id2).second, out);
-    }
+    void read(size_t id1/*kernal ID*///,size_t id2/*buffer ID*/, T* out){
+    //    queue->enqueueReadBuffer(_kernels.at(id1).read(id2).first, CL_TRUE, 0, sizeof(T) * _kernels.at(id1).read(id2).second, out);
+  //  }
     template<typename T>
     void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,size_t size/*size*/, T* out){
         cl_int error;

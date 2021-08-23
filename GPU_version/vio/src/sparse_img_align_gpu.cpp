@@ -73,7 +73,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
     optimize(T_cur);
   }
   cl_float3 pos[1]={0};
-  residual_->read(1,2,pos);
+  residual_->read(1,2,1,pos);
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;
 }
@@ -137,7 +137,7 @@ void SparseImgAlignGpu::update()
 {
 /// TODO the update situation may have a smarter solution
     cl_float3 pos[1]={0.0,0.0,0.0};
-    residual_->read(1,2,pos);
+    residual_->read(1,2,1,pos);
     Sophus::SE2 update =  Sophus::SE2(pos[0].z,Eigen::Vector2d(pos[0].x,pos[0].y)) * Sophus::SE2::exp(-1.0*x_);
     pos[0].x=(float)update.translation()(0);
     pos[0].y=(float)update.translation()(1);
