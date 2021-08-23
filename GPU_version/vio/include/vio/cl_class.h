@@ -25,57 +25,55 @@ public:
     };
     template<typename T>
     int32_t write(size_t id/*buffer ID*/,T* buf,cl::CommandQueue* queue,cl::Context* context,size_t buf_size){
+        cl_int error;
         _buffers.push_back(std::pair<std::pair<cl::Buffer,size_t>,size_t>(std::pair<cl::Buffer,size_t>(cl::Buffer(*context, CL_MEM_READ_WRITE | CL_MEM_USE_HOST_PTR
-                                                                                                                  , sizeof(T) * buf_size,buf),
+                , sizeof(T) * buf_size,buf,&error),
                                                                                                        buf_size),id));
+        assert(error == CL_SUCCESS);
         cl_int err=_kernel->setArg(id,_buffers.back().first.first);
-        if(err!=0){
-            std::cerr<<"Error C:Kernel, F:write, L3:setArg\t"<<id<<"\t"<<err<<'\n';
-            return err;
-        }
+        assert(err == CL_SUCCESS);
         return CL_SUCCESS;
 
     };
     int32_t write(size_t id/*buffer ID*/,cv::Mat& buf,cl::Context* context){
+        cl_int error;
         _images.push_back(std::pair<cl::Image2D,size_t>(cl::Image2D(*context, CL_MEM_READ_ONLY | CL_MEM_USE_HOST_PTR,
                                                                     cl::ImageFormat(CL_R, CL_UNSIGNED_INT8),
                                                                     buf.size().width,
                                                                     buf.size().height,
                                                                     0,
-                                                                    reinterpret_cast<uchar*>(buf.data)),id));
-
+                                                                    reinterpret_cast<uchar*>(buf.data),&error),id));
+        assert(error == CL_SUCCESS);
         cl_int err=_kernel->setArg(id,_images.back().first);
-        if(err!=0){
-            std::cout<<"Error C:Kernel, F:write image, L:setArg ID:\t"<<id<<"\t"<<err<<'\n';
-            return err;
-        }
+        assert(err == CL_SUCCESS);
         return CL_SUCCESS;
     };
 
     template<typename T>
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
         for(auto&& i:_buffers)if(i.second==id){
-            T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_TRUE,CL_MAP_WRITE,0,sizeof(T) * i.first.second);
-            memcpy(Map_buf,buf,sizeof(T) * i.first.second);
-            if(queue->enqueueUnmapMemObject(i.first.first,Map_buf)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
+                cl_int error;
+                T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_TRUE,CL_MAP_WRITE,0,sizeof(T) * i.first.second,NULL,NULL,&error);
+                assert(error == CL_SUCCESS);
+                memcpy(Map_buf,buf,sizeof(T) * i.first.second);
+                if(queue->enqueueUnmapMemObject(i.first.first,Map_buf)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
         }
         return CL_SUCCESS;
     };
     int32_t reload(size_t id,cv::Mat& buf,cl::Context* context){
         try{
             for(auto&& i:_images)if(i.second==id){
-                i.first.setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
+                    cl_int error;
+                    i.first.setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
                     i.first=cl::Image2D(*context, CL_MEM_READ_ONLY | CL_MEM_USE_HOST_PTR,
                                         cl::ImageFormat(CL_R, CL_UNSIGNED_INT8),
                                         buf.size().width,
                                         buf.size().height,
                                         0,
-                                        reinterpret_cast<uchar*>(buf.data));
+                                        reinterpret_cast<uchar*>(buf.data),&error);
+                    assert(error == CL_SUCCESS);
                     cl_int err=_kernel->setArg(id,i.first);
-                    if(err!=0){
-                        std::cerr<<"Error C:Kernel, F:write image, L:setArg ID:\t"<<id<<"\t"<<err<<'\n';
-                        return err;
-                    }
+                    assert(err == CL_SUCCESS);
                 }
             return CL_SUCCESS;
         }catch (std::exception& err){
