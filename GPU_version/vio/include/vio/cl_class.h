@@ -56,8 +56,11 @@ public:
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
         for(auto&& i:_buffers)if(i.second==id){
             T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_TRUE,CL_MAP_WRITE,0,sizeof(T) * i.first.second);
+            std::cerr<<"\n reload class L:59,\t";
             memcpy(Map_buf,buf,sizeof(T) * i.first.second);
+             std::cerr<<"L:61\t";
             if(queue->enqueueUnmapMemObject(i.first.first,Map_buf)!=CL_SUCCESS)std::cerr<<"Reload buffer on GPU failed"<<'\n';
+            std::cerr<<"L:63\n";
         }
         return CL_SUCCESS;
     };
