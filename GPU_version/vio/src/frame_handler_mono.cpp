@@ -61,8 +61,8 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     gpu_fast_->write_buf(1,8,9*300,H);
     cl_float3 J[300];
     gpu_fast_->write_buf(1,9,300,J);
-    float chi2[1]={0.01};
-    gpu_fast_->write_buf(1,10,1,chi2);
+    float chi2[300]={0.01};
+    gpu_fast_->write_buf(1,10,300,chi2);
     klt_homography_init_=new initialization::KltHomographyInit(gpu_fast_);
     initialize();
 }
