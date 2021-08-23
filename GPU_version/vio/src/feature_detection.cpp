@@ -92,7 +92,7 @@ void FastDetector::detect(
       const int k = static_cast<int>((fast_corners[i].y*scale)/cell_size_)*grid_n_cols_
                   + static_cast<int>((fast_corners[i].x*scale)/cell_size_);
 
-      if(grid_occupancy_[k])
+      if(grid_occupancy_[k] || k > corners.size())
         continue;
 
       const float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
