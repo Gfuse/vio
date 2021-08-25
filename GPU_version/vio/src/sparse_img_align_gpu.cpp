@@ -64,8 +64,6 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   {
       cv::Mat cur_img = cur_frame->img_pyr_.at(level_);
       cv::Mat ref_img = ref_frame->img_pyr_.at(level_);
-     // cv::imwrite(std::string(getenv("HOME"))+"/Project/cur"+to_string(level_)+".png",cur_img);
-     // cv::imwrite(std::string(getenv("HOME"))+"/Project/fer"+to_string(level_)+".png",ref_img);
       residual_->reload_buf(1,0,cur_img);
       residual_->reload_buf(1,1,ref_img);
       residual_->write_buf(1,6,level_);
@@ -74,6 +72,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
   }
   cl_float3 pos[1]={0};
   residual_->read(1,2,1,pos);
+  if(isnan(pos[0].x) || isnan(pos[0].y) || isnan(pos[0].z))return 0;
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;
 }
@@ -90,7 +89,6 @@ double SparseImgAlignGpu::computeResiduals(
     residual_->reload_buf(1,10,chi2_);
     residual_->reload_buf(1,8,H);
     residual_->reload_buf(1,9,J);
-    /// TODO GPU compute based on the feature
     residual_->run(1,feature_counter_);
     float error[300]={0.0};
     float chi[300]={0.0};
@@ -129,19 +127,18 @@ int SparseImgAlignGpu::solve()
                   (double)H[6],(double)H[7],(double)H[8]};
     double Jd[3]={(double)J[0].x,(double)J[0].y,(double)J[0].z};
     x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d(Jd[0],Jd[1],Jd[2]));
-    if((bool) std::isnan((double) x_[0]))
+    if((bool) std::isnan((double) x_[0]) || (bool) std::isnan((double) x_[1]) ||(bool) std::isnan((double) x_[2]))
         return 0;
     return 1;
 }
 void SparseImgAlignGpu::update()
 {
-/// TODO the update situation may have a smarter solution
     cl_float3 pos[1]={0.0,0.0,0.0};
     residual_->read(1,2,1,pos);
     Sophus::SE2 update =  Sophus::SE2(pos[0].z,Eigen::Vector2d(pos[0].x,pos[0].y)) * Sophus::SE2::exp(-1.0*x_);
     pos[0].x=(float)update.translation()(0);
     pos[0].y=(float)update.translation()(1);
-    pos[0].z=(float)atan(update.so2().unit_complex().imag()/update.so2().unit_complex().real());
+    pos[0].z=(float)atan2(update.so2().unit_complex().imag(),update.so2().unit_complex().real());
     residual_->reload_buf(1,2,pos);
 }
 

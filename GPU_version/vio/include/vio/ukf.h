@@ -127,25 +127,16 @@ public:
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x,double z,double pitch,size_t match,ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
-        if(pitch<0.0)
-            pitch=M_PI-pitch;
-        else
-            pitch=pitch-M_PI;
+        pitch=pitch+M_PI;
         if(filter_->predict_up)filter_->correct(-x,-z,pitch,match,1e-9*time.toNSec());
         lock=false;
         double pitch_f;
-        if(filter_->state_(0)<0.0)
-            pitch_f=M_PI-filter_->state_(2);
-        else
-            pitch_f=filter_->state_(2)-M_PI;
+        pitch_f=filter_->state_(2)+M_PI;
         return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(0),-filter_->state_(1),pitch_f));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
         double pitch_f;
-        if(filter_->state_(0)<0.0)
-            pitch_f=M_PI-filter_->state_(2);
-        else
-            pitch_f=filter_->state_(2)-M_PI;
+        pitch_f=filter_->state_(2)+M_PI;
         return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(0),-filter_->state_(1),pitch_f));
     }
 private:

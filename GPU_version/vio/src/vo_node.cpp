@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#define VIO_DEBUG false
+#define VIO_DEBUG true
 #include <ros/ros.h>
 #include <string>
 #include <chrono>
@@ -107,7 +107,7 @@ VioNode::VioNode() :
     if(!vk::camera_loader::loadFromRosNs("vio", cam_))
         throw std::runtime_error("Camera model not correctly specified.");
     Eigen::Matrix<double,3,1> init;
-    init<<1e-19,1e-19,1e-19;
+    init<<1e-19,1e-19,M_PI;
     vo_ = new vio::FrameHandlerMono(cam_,init);
     usleep(500);
 }
@@ -184,8 +184,8 @@ bool VioNode::getOdom(vio::getOdom::Request &req, vio::getOdom::Response &res) {
         res.header.frame_id = "/world";
         res.header.seq = trace_id_;
         auto odom=vo_->ukfPtr_.get_location();
-        res.x=-odom.second.se2().translation()(0);
-        res.y=-odom.second.se2().translation()(1);
+        res.x=odom.second.se2().translation()(1);
+        res.y=odom.second.se2().translation()(0);
         res.yaw=odom.second.pitch();
         res.cov={odom.first(0,0),odom.first(0,1),odom.first(0,2),
                  odom.first(1,0),odom.first(1,1),odom.first(1,2),

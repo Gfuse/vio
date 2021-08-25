@@ -170,34 +170,31 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
-  //assert (false);
+  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
+       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
+        return RESULT_FAILURE;
+  }
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-/*
+  /*
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
              (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';*/
+  if( reprojector_.n_matches_ < 5)return RESULT_FAILURE;
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>2.0 ||
-     fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI ||
-     sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
-      new_frame_=last_frame_;
-      return RESULT_NO_KEYFRAME;
-  }
+
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
-  /*
-  std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
-  <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
-  <<"\tReprojected points after opmization: "<<sfba_n_edges_final<<"\t distance between two frames: "<<
-  (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
-*/
+  if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
+      return RESULT_FAILURE;
+  }
+
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe
   core_kfs_.insert(new_frame_);
@@ -209,6 +206,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   double depth_mean, depth_min;
 
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
+
   if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)//edited
   {
     depth_filter_->addFrame(new_frame_);

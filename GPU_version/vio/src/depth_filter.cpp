@@ -217,7 +217,7 @@ void DepthFilter::updateSeeds(FramePtr frame)
 
   const double focal_length = frame->cam_->errorMultiplier2();
   double px_noise = 1.0;
-  double px_error_angle = atan(px_noise/(2.0*focal_length))*2.0; // law of chord (sehnensatz)
+  double px_error_angle = atan2(px_noise,(2.0*focal_length))*2.0; // law of chord (sehnensatz)
   while( it!=seeds_.end())
   {
     // set this value true when seeds updating should be interrupted

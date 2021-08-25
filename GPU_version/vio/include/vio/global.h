@@ -90,7 +90,7 @@ namespace vio
             return T2_;
         }
         SE2 inverse() const{
-            double yaw=atan(T2_.so2().unit_complex().imag()/T2_.so2().unit_complex().real());
+            double yaw=atan2(T2_.so2().unit_complex().imag(),T2_.so2().unit_complex().real());
             if(yaw<0.0)
                 yaw=M_PI-yaw;
             else
@@ -98,7 +98,7 @@ namespace vio
             return SE2(yaw,-1.0*T2_.translation());
         }
         double pitch()const{
-            return atan(T2_.rotation_matrix()(0,1)/T2_.rotation_matrix()(0,0));
+            return atan2(T2_.rotation_matrix()(0,1),T2_.rotation_matrix()(0,0));
         }
         SE3 se3() const{
             Eigen::Matrix<double,3,3> R;
