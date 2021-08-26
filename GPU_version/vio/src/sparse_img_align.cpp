@@ -53,7 +53,7 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
   cur_frame_ = cur_frame;
   ref_patch_cache_ = cv::Mat(ref_frame_->fts_.size(), patch_area_, CV_32F);
   jacobian_cache_.resize(Eigen::NoChange, ref_patch_cache_.rows*patch_area_);
-  SE2 T_cur_from_ref(SE2(cur_frame->T_f_w_.pitch() - ref_frame->T_f_w_.pitch(),cur_frame->T_f_w_.se2().translation() - ref_frame->T_f_w_.se2().translation()));
+  SE2 T_cur_from_ref(cur_frame_->T_f_w_.se2() * ref_frame_->T_f_w_.inverse());
   for(level_=max_level_; level_>=min_level_; --level_)
   {
     visible_fts_.resize(ref_patch_cache_.rows, false); // TODO: should it be reset at each level?
