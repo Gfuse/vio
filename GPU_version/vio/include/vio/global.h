@@ -91,11 +91,7 @@ namespace vio
         }
         SE2 inverse() const{
             double yaw=atan2(T2_.so2().unit_complex().imag(),T2_.so2().unit_complex().real());
-            if(yaw<0.0)
-                yaw=M_PI-yaw;
-            else
-                yaw=yaw-M_PI;
-            return SE2(yaw,-1.0*T2_.translation());
+            return SE2(yaw+M_PI,-1.0*T2_.translation());
         }
         double pitch()const{
             return atan2(T2_.rotation_matrix()(0,1),T2_.rotation_matrix()(0,0));
