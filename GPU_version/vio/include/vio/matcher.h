@@ -87,7 +87,7 @@ public:
       max_epi_search_steps(1000),
       subpix_refinement(true),
       epi_search_edgelet_filtering(true),
-      epi_search_edgelet_max_angle(0.7)
+      epi_search_edgelet_max_angle(0.3)
     {}
   } options_;
 

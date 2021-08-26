@@ -171,11 +171,11 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-/*
+
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
-             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';*/
+             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
   if( reprojector_.n_trials_ < 10)return RESULT_FAILURE;
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
@@ -183,16 +183,14 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
   if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
+       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI ||
+       sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
         return RESULT_FAILURE;
     }
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
-  if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
-      return RESULT_FAILURE;
-  }
 
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe

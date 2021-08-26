@@ -109,13 +109,8 @@ void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_mi
     new_keyframe_set_ = true;
     seeds_updating_halt_ = true;
     frame_queue_cond_.notify_one();
-  }else if(seeds_cont_>3){
-        initializeSeeds(frame);
-        seeds_cont_=0;
-  }else if(seeds_cont_==0){
-        initializeSeeds(frame);
   }
-  ++seeds_cont_;
+  initializeSeeds(frame);
 }
 
 void DepthFilter::initializeSeeds(FramePtr frame)
@@ -185,9 +180,6 @@ void DepthFilter::updateSeedsLoop()
       if(new_keyframe_set_)
       {
         new_keyframe_set_ = false;
-        if(seeds_cont_>3){
-            seeds_updating_halt_ = false;
-        }
         clearFrameQueue();
         frame = new_keyframe_;
       }
@@ -198,12 +190,6 @@ void DepthFilter::updateSeedsLoop()
       }
     }
     updateSeeds(frame);
-
-    if((frame->isKeyframe() && seeds_cont_>3) ||(frame->isKeyframe() && seeds_cont_==0)){
-        initializeSeeds(frame);
-        seeds_cont_=0;
-    }
-
   }
 }
 
@@ -211,7 +197,7 @@ void DepthFilter::updateSeeds(FramePtr frame)
 {
   // update only a limited number of seeds, because we don't have time to do it
   // for all the seeds in every frame!
-  size_t n_updates=0, n_failed_matches=0, n_seeds = seeds_.size();
+  size_t n_updates=0, n_failed_matches=0;
   lock_t lock(seeds_mut_);
   std::list<Seed>::iterator it=seeds_.begin();
 
@@ -224,11 +210,6 @@ void DepthFilter::updateSeeds(FramePtr frame)
     if(seeds_updating_halt_)
       return;
 
-    // check if seed is not already too old
-    if((Seed::batch_counter - it->batch_id) > options_.max_n_kfs) {
-      it = seeds_.erase(it);
-      continue;
-    }
     if(it->ftr->frame == NULL){
         it = seeds_.erase(it);
         continue;
@@ -241,7 +222,7 @@ void DepthFilter::updateSeeds(FramePtr frame)
     T.rotation_matrix()(1,0),0.0,T.rotation_matrix()(1,1);
     SE3 T_ref_cur(R,Vector3d(T.translation()(0),0.0,T.translation()(1)));
     const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
-    if(xyz_f.z() < 0.0 && xyz_f.y() < 0.08)  {
+    if(xyz_f.z() < 0.0)  {
       ++it; // behind the camera
       continue;
     }
@@ -271,7 +252,11 @@ void DepthFilter::updateSeeds(FramePtr frame)
     double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
 
     // update the estimate
-    updateSeed(1.0/z, tau_inverse*tau_inverse, &*it);
+    if(!updateSeed(1.0/z, tau_inverse*tau_inverse, &*it)){
+        ++it;
+        ++n_failed_matches;
+        continue;
+    }
     ++n_updates;
 
     if(frame->isKeyframe())
@@ -315,12 +300,11 @@ void DepthFilter::getSeedsCopy(const FramePtr& frame, std::list<Seed>& seeds)
       seeds.push_back(*it);
   }
 }
-
-void DepthFilter::updateSeed(const float x, const float tau2, Seed* seed)
+ bool DepthFilter::updateSeed(const float x, const float tau2, Seed* seed)
 {
   float norm_scale = sqrt(seed->sigma2 + tau2);
   if(std::isnan(norm_scale))
-    return;
+    return false;
   boost::math::normal_distribution<float> nd(seed->mu, norm_scale);
   float s2 = 1./(1./seed->sigma2 + 1./tau2);
   float m = s2*(seed->mu/seed->sigma2 + x/tau2);
@@ -339,6 +323,7 @@ void DepthFilter::updateSeed(const float x, const float tau2, Seed* seed)
   seed->mu = mu_new;
   seed->a = (e-f)/(f-e/f);
   seed->b = seed->a*(1.0f-f)/f;
+  return true;
 }
 
 double DepthFilter::computeTau(

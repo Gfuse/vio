@@ -154,7 +154,7 @@ void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     };
     imu_in[0] = 0.5*imu_[0]+0.5*imu->linear_acceleration.x;
     imu_in[1] = 0.5*imu_[1]+0.5*imu->linear_acceleration.y;
-    imu_in[2] = 0.5*imu_[2]+0.5*imu->angular_velocity.z;
+    imu_in[2] = imu->angular_velocity.z;
     memcpy(imu_, imu_in, static_cast<std::size_t>(3*sizeof(double)));
     vo_->UpdateIMU(imu_in,imu->header.stamp);
     imu_time_=imu->header.stamp;
@@ -184,8 +184,8 @@ bool VioNode::getOdom(vio::getOdom::Request &req, vio::getOdom::Response &res) {
         res.header.frame_id = "/world";
         res.header.seq = trace_id_;
         auto odom=vo_->ukfPtr_.get_location();
-        res.x=odom.second.se2().translation()(1);
-        res.y=odom.second.se2().translation()(0);
+        res.x=odom.second.se2().translation()(0);
+        res.y=odom.second.se2().translation()(1);
         res.yaw=odom.second.pitch();
         res.cov={odom.first(0,0),odom.first(0,1),odom.first(0,2),
                  odom.first(1,0),odom.first(1,1),odom.first(1,2),

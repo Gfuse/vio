@@ -129,6 +129,8 @@ int SparseImgAlignGpu::solve()
     x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d(Jd[0],Jd[1],Jd[2]));
     if((bool) std::isnan((double) x_[0]) || (bool) std::isnan((double) x_[1]) ||(bool) std::isnan((double) x_[2]))
         return 0;
+    double norm=x_.norm();
+    if(norm<=0 ||norm > 1.0)x_=Eigen::Vector3d(0.1,0.1,0.1);
     return 1;
 }
 void SparseImgAlignGpu::update()

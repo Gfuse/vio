@@ -249,7 +249,7 @@ bool Matcher::findEpipolarMatchDirect(
     return false;
   }
 
-  size_t n_steps = epi_length_/0.7; // one step per pixel
+  size_t n_steps = epi_length_/0.3; // one step per pixel
   Vector2d step = epi_dir_/n_steps;
 
   if(n_steps > options_.max_epi_search_steps)

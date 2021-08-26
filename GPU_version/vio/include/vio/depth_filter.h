@@ -123,7 +123,7 @@ public:
   std::list<Seed, Eigen::aligned_allocator<Seed>>& getSeeds() { return seeds_; }
 
   /// Bayes update of the seed, x is the measurement, tau2 the measurement uncertainty
-  static void updateSeed(
+  static bool updateSeed(
       const float x,
       const float tau2,
       Seed* seed);
@@ -150,7 +150,7 @@ protected:
   double new_keyframe_min_depth_;       //!< Minimum depth in the new keyframe. Used for range in new seeds.
   double new_keyframe_mean_depth_;      //!< Maximum depth in the new keyframe. Used for range in new seeds.
   Matcher matcher_;
-  uint seeds_cont_=0;
+  //uint seeds_cont_=0;
 
   /// Initialize new seeds from a frame.
   void initializeSeeds(FramePtr frame);
