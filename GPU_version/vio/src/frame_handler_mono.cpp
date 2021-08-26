@@ -171,6 +171,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
+  // assert // TODO
 /*
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
