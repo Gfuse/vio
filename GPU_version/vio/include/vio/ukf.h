@@ -18,47 +18,59 @@ public:
     virtual ~Base(){
     };
     void predict(double dx,double dz,double dpitch,double time){
-        state_h_(2)=state_(2)+dt_angular*dpitch;
-        state_h_(1)=state_(1)+dt_liner*(dz*cos(state_(2))-dx*sin(state_(2)));
-        state_h_(0)=state_(0)+dt_liner*(dx*cos(state_(2))+dz*sin(state_(2)));
+        double dt=time-t_cmd;
+        if(t_cmd==0.0){
+            t_cmd=time;
+            return;
+        }
+        t_cmd=time;
+        state_h_(2)=state_(2)+dt*dpitch;
+        state_h_(1)=state_(1)+dt*(dz*cos(state_(2))-dx*sin(state_(2)));
+        state_h_(0)=state_(0)+dt*(dx*cos(state_(2))+dz*sin(state_(2)));
         Eigen::Matrix<double,3,3> R;
         R<<vio::Config::Cmd_Cov(),0,0,
            0,vio::Config::Cmd_Cov(),0,
            0,0,vio::Config::Cmd_Cov();
         Eigen::Matrix<double,3,3> G;
-        G<<1.0,0,dt_liner*(-dx*sin(state_(2))+dz*cos(state_(2))),
-           0,1.0,dt_liner*(-dz*sin(state_(2))-dx*cos(state_(2))),
+        G<<1.0,0,dt*(-dx*sin(state_(2))+dz*cos(state_(2))),
+           0,1.0,dt*(-dz*sin(state_(2))-dx*cos(state_(2))),
            0,0,1.0;
         cov_h_=G*cov_*G.transpose()+R;
         predict_up=true;
     }
     void correct(double ddx, double ddz, double dpitch, double time){
+        double dt=time-t_imu;
+        if(t_imu==0.0){
+            t_imu=time;
+            return;
+        }
+        t_imu=time;
         Eigen::Matrix<double,3,3> H;
         Eigen::Matrix<double,3,3> Q;
         Eigen::Matrix<double,3,1> E;
         Eigen::Matrix<double,3,3> k;
-        H<<1.0,0,pow(0.03*dt_liner,2)*(ddz*cos(state_(2))-ddx*sin(state_(2))),
-           0,1.0,-pow(0.03*dt_liner,2)*(ddx*cos(state_(2))+ddz*sin(state_(2))),
+        H<<1.0,0,pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2))),
+           0,1.0,-pow(dt,2)*(ddx*cos(state_(2))+ddz*sin(state_(2))),
            0,0,1.0;
         Q<<vio::Config::ACC_Noise(),0,0,
            0,vio::Config::ACC_Noise(),0,
            0,0,vio::Config::GYO_Noise();
-        E(0)=state_(0)+pow(0.03*dt_liner,2)*(ddx*cos(state_(2))+ddz*sin(state_(2)))-state_h_(0);
-        E(1)=state_(1)+pow(0.03*dt_liner,2)*(ddz*cos(state_(2))-ddx*sin(state_(2)))-state_h_(1);
-        E(2)=state_(2)+0.03*dt_angular*dpitch-state_h_(2);
+        E(0)=state_(0)+pow(dt,2)*(ddx*cos(state_(2))+ddz*sin(state_(2)))-state_h_(0);
+        E(1)=state_(1)+pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2)))-state_h_(1);
+        E(2)=state_(2)+dt*dpitch-state_h_(2);
         k=cov_h_*H.transpose()*(H*cov_h_*H.transpose()+Q).inverse();
         state_=state_h_+k*E;
         cov_=(Eigen::MatrixXd::Identity(3,3)-k*H)*cov_h_;
-        state_h_(2)=state_(2)+0.03*dt_angular*dpitch;
-        state_h_(1)=state_(1)+pow(0.03*dt_liner,2)*(ddz*cos(state_(2))-ddx*sin(state_(2)));
-        state_h_(0)=state_(0)+pow(0.03*dt_liner,2)*(ddx*cos(state_(2))+ddz*sin(state_(2)));
+        state_h_(2)=state_(2)+dt*dpitch;
+        state_h_(1)=state_(1)+pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2)));
+        state_h_(0)=state_(0)+pow(dt,2)*(ddx*cos(state_(2))+ddz*sin(state_(2)));
         Eigen::Matrix<double,3,3> R;
         R<<vio::Config::ACC_Noise(),0,0,
                 0,vio::Config::ACC_Noise(),0,
                 0,0,vio::Config::GYO_Noise();
         Eigen::Matrix<double,3,3> G;
-        G<<1.0,0,pow(0.03*dt_liner,2)*(ddz*cos(state_(2))-ddx*sin(state_(2))),
-                0,1.0,-pow(0.03*dt_liner,2)*(ddx*cos(state_(2))+ddz*sin(state_(2))),
+        G<<1.0,0,pow(dt,2)*(ddz*cos(state_(2))-ddx*sin(state_(2))),
+                0,1.0,-pow(dt,2)*(ddx*cos(state_(2))+ddz*sin(state_(2))),
                 0,0,1.0;
         cov_h_=G*cov_*G.transpose()+R;
 
@@ -85,10 +97,10 @@ public:
     Eigen::Matrix<double, 3, 1> state_;
     bool predict_up=false;
 private:
+    double t_cmd=0.0;
     Eigen::Matrix<double,3,3> cov_h_;
     Eigen::Matrix<double, 3, 1> state_h_;//state{x,z,pitch}
-    double dt_liner=0.2;
-    double dt_angular=0.2;
+    double t_imu=0.0;
 
 };
 
