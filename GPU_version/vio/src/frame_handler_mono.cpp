@@ -170,23 +170,23 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
-  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
-        return RESULT_FAILURE;
-  }
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  /*
+  // assert // TODO
+/*
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
              (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';*/
-  if( reprojector_.n_matches_ < 5)return RESULT_FAILURE;
+  if( reprojector_.n_trials_ < 10)return RESULT_FAILURE;
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-
+  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
+       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
+        return RESULT_FAILURE;
+    }
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
