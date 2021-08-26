@@ -41,7 +41,9 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
                         " -DF_Y="+std::to_string(camera[1])+
                         " -DC_X="+std::to_string(camera[2])+
                         " -DC_Y="+std::to_string(camera[3])+
-                        " -DS="+std::to_string(camera[4]);
+                        " -DS="+std::to_string(camera[4])+
+                        " -DFREAK_LOG2=0.693147180559945 -DFREAK_NB_ORIENTATION=256 -DFREAK_NB_POINTS=43"+
+                        " -DFREAK_SMALLEST_KP_SIZE=7 -DNB_PAIRS=512 -DNB_SCALES=64";
     if(program->build({ *device },options.c_str()) !=0)
         std::cout << " Error building: " << program->getBuildInfo<CL_PROGRAM_BUILD_STATUS>(*device)<<'\n'
                   << " Binary type: " << program->getBuildInfo<CL_PROGRAM_BINARY_TYPE>(*device)<<'\n'

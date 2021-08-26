@@ -19,6 +19,9 @@
 
 #include <vio/global.h>
 #include <vio/matcher.h>
+#include <CL/cl.h>
+#include <vio/cl_class.h>
+#include <vio/initialization.h>
 
 namespace vk {
 class AbstractCamera;
@@ -44,7 +47,7 @@ public:
     size_t max_n_kfs;   //!< max number of keyframes to reproject from
     bool find_match_direct;
     Options()
-    : max_n_kfs(10),
+    : max_n_kfs(30),
       find_match_direct(true)
     {}
   } options_;
@@ -52,7 +55,7 @@ public:
   size_t n_matches_;
   size_t n_trials_;
 
-  Reprojector(vk::AbstractCamera* cam, Map& map);
+  Reprojector(vk::AbstractCamera* cam, Map& map, opencl* kernel);
 
   ~Reprojector();
 
@@ -94,6 +97,9 @@ private:
   void resetGrid();
   bool reprojectCell(Cell& cell, FramePtr frame);
   bool reprojectPoint(FramePtr frame, Point* point);
+
+protected:
+    opencl* gpu_freak;
 };
 
 } // namespace vio
