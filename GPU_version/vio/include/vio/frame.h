@@ -131,7 +131,7 @@ public:
       q = AngleAxisd(atan2(inv.so2().unit_complex().imag(),inv.so2().unit_complex().real()), Vector3d::UnitX())
           * AngleAxisd(0.261799, Vector3d::UnitY())
           * AngleAxisd(0.0, Vector3d::UnitZ());
-      SE3 out(q.toRotationMatrix(),Vector3d(inv.translation()(0),1e-19,inv.translation()(1)));
+      SE3 out(q.toRotationMatrix(),Vector3d(0.0,inv.translation()(0),inv.translation()(1)));
       return out;
 
   }

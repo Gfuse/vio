@@ -95,7 +95,7 @@ namespace vio
             q = AngleAxisd(pitch(), Vector3d::UnitX())
                 * AngleAxisd(0.261799, Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
-            return SE3(q.toRotationMatrix(),Vector3d(T2_.translation()(0),1e-19,T2_.translation()(1)));
+            return SE3(q.toRotationMatrix(),Vector3d(1e-19,T2_.translation()(0),T2_.translation()(1)));
         }
         ~SE2_5(){}
 
