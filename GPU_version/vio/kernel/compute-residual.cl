@@ -15,15 +15,25 @@ float2 world2cam(float3 feature)
 
 float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 {
-    if(ref.z < 0.0)
-        ref.z = 3.141592653589793238462643383279502884197169399375 - ref.z;
-    else
-        ref.z = ref.z - 3.1415926535897932384626433832795028841971693993;
-    float cc_ss = cos(cur.z) * cos(ref.z) - sin(cur.z) * sin(ref.z);
-    float sc_cs = cos(cur.z) * sin(ref.z) + cos(ref.z) * sin(cur.z);
-    return  (float3)(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur.x - ref.x * cos(cur.z) - ref.z * sin(cur.z),
-                     ref_feature.y,
-                     -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur.z + ref.x * sin(cur.z) - ref.z * cos(cur.z));
+    ref.x*=-1.0;
+    ref.y*=-1.0;
+    ref.z = 3.141592653589793238462643383279502884197169399375 +ref.z;
+    float3 error=ref+cur;
+    float yaw=0.0;
+    float pitch=0.261799;
+    float roll=error.z;
+    float R00=cos(yaw)*cos(pitch);//cos(pitch)
+    float R01=cos(yaw)*sin(pitch)*sin(roll)-sin(yaw)*cos(roll);//0
+    float R02=cos(yaw)*sin(pitch)*cos(roll)+sin(yaw)*sin(roll);//sin(pitch)
+    float R10=sin(yaw)*cos(pitch);//0
+    float R11=sin(yaw)*sin(pitch)*sin(roll)+cos(yaw)*cos(roll);//1
+    float R12=sin(yaw)*sin(pitch)*cos(roll)-cos(yaw)*sin(roll);//0
+    float R20=-sin(pitch);//-sin(pitch)
+    float R21=cos(pitch)*sin(roll);//0
+    float R22=cos(pitch)*cos(roll);//cos(pitch)
+    return  (float3)(R00*ref_feature.x+R01*ref_feature.y+R02*ref_feature.z+error.x,
+                     R10*ref_feature.x+R11*ref_feature.y+R12*ref_feature.z,
+                     R20*ref_feature.x+R21*ref_feature.y+R22*ref_feature.z+error.y);
 }
 
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)

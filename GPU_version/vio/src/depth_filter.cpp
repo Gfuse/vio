@@ -216,12 +216,12 @@ void DepthFilter::updateSeeds(FramePtr frame)
     }
     // check if point is visible in the current image
     SE2 T(it->ftr->frame->T_f_w_.pitch()-frame->T_f_w_.pitch(),it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
-    Eigen::Matrix<double,3,3> R;
     ///TODO add 15 degrees roll orientation
-    R<<T.rotation_matrix()(0,0),0.0,T.rotation_matrix()(0,1),
-    0.0,1.0,0.0,
-    T.rotation_matrix()(1,0),0.0,T.rotation_matrix()(1,1);
-    SE3 T_ref_cur(R,Vector3d(T.translation()(0),0.0,T.translation()(1)));
+    Quaterniond q;
+    q = AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitX())
+          * AngleAxisd(0.261799, Vector3d::UnitY())
+          * AngleAxisd(0.0, Vector3d::UnitZ());
+    SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(T.translation()(0),0.0,T.translation()(1)));
     const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
     if(xyz_f.z() < 0.0)  {
       ++it; // behind the camera

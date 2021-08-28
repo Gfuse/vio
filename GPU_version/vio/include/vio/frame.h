@@ -126,11 +126,12 @@ public:
 
   inline  SE3 getSE3Inv() const{
       //TODO add 15 degree roll orientation
-      Eigen::Matrix<double,3,3> R;
-      R<<T_f_w_.inverse().rotation_matrix()(0,0),1e-19,T_f_w_.inverse().rotation_matrix()(0,1),
-              1e-19,1.0,1e-19,
-              T_f_w_.inverse().rotation_matrix()(1,0),1e-19,T_f_w_.inverse().rotation_matrix()(1,1);
-      SE3 out(R,Vector3d(T_f_w_.inverse().translation()(0),1e-19,T_f_w_.inverse().translation()(1)));
+      SE2 inv=T_f_w_.inverse();
+      Quaterniond q;
+      q = AngleAxisd(atan2(inv.so2().unit_complex().imag(),inv.so2().unit_complex().real()), Vector3d::UnitX())
+          * AngleAxisd(0.261799, Vector3d::UnitY())
+          * AngleAxisd(0.0, Vector3d::UnitZ());
+      SE3 out(q.toRotationMatrix(),Vector3d(inv.translation()(0),1e-19,inv.translation()(1)));
       return out;
 
   }

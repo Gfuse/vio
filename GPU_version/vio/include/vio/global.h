@@ -58,26 +58,18 @@ namespace vio
         }
         SE2_5(SE3&& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
-            double pitch=asin(2.0*(q.w()*q.y()-q.z()*q.x()));
-            if (std::abs(pitch) >= 1)
-                pitch = std::copysign(M_PI / 2.0, pitch); // use 90 degrees if out of range
-            else
-                pitch = std::asin(pitch);
+            auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);//roll,pitch,yaw
             Eigen::Matrix<double, 2,2> R;
-            R<<cos(pitch),sin(pitch),
-               -sin(pitch),cos(pitch);
+            R<<cos(euler(0)),sin(euler(0)),
+               -sin(euler(0)),cos(euler(0));
             T2_ = SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
         }
         SE2_5(SE3& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
-            double pitch=asin(2.0*(q.w()*q.y()-q.z()*q.x()));
-            if (std::abs(pitch) >= 1)
-                pitch = std::copysign(M_PI / 2.0, pitch); // use 90 degrees if out of range
-            else
-                pitch = std::asin(pitch);
-             Eigen::Matrix<double, 2,2> R;
-             R<<cos(pitch),sin(pitch),
-                  -sin(pitch),cos(pitch);
+            auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);//roll,pitch,yaw
+            Eigen::Matrix<double, 2,2> R;
+            R<<cos(euler(0)),sin(euler(0)),
+                    -sin(euler(0)),cos(euler(0));
             T2_=SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
         }
         SE2_5(double y,double z,double roll){
@@ -99,11 +91,11 @@ namespace vio
         }
         SE3 se3() const{
             //Todo add 15 roll orientation
-            Eigen::Matrix<double,3,3> R;
-            R<<T2_.rotation_matrix()(0,0),0.0,T2_.rotation_matrix()(0,1),
-                     0.0,1.0,0.0,
-                    T2_.rotation_matrix()(1,0),0.0,T2_.rotation_matrix()(1,1);
-            return SE3(R,Vector3d(T2_.translation()(0),1e-19,T2_.translation()(1)));
+            Quaterniond q;
+            q = AngleAxisd(pitch(), Vector3d::UnitX())
+                * AngleAxisd(0.261799, Vector3d::UnitY())
+                * AngleAxisd(0.0, Vector3d::UnitZ());
+            return SE3(q.toRotationMatrix(),Vector3d(T2_.translation()(0),1e-19,T2_.translation()(1)));
         }
         ~SE2_5(){}
 
