@@ -80,19 +80,20 @@ namespace vio
                   -sin(pitch),cos(pitch);
             T2_=SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
         }
-        SE2_5(double x,double z,double pitch){
+        SE2_5(double y,double z,double roll){
             Eigen::Matrix<double, 2,2> R;
-            R<<cos(pitch),sin(pitch),
-               -sin(pitch),cos(pitch);
-            T2_=SE2(R,Vector2d(x,z));
+            R<<cos(roll),sin(roll),
+               -sin(roll),cos(roll);
+            T2_=SE2(R,Vector2d(y,z));
         };
         SE2 se2() const{
             return T2_;
         }
         SE2 inverse() const{
-            double yaw=atan2(T2_.so2().unit_complex().imag(),T2_.so2().unit_complex().real());
-            return SE2(yaw+M_PI,-1.0*T2_.translation());
+            double roll=atan2(T2_.so2().unit_complex().imag(),T2_.so2().unit_complex().real());
+            return SE2(roll+M_PI,-1.0*T2_.translation());
         }
+        // Rotation around x
         double pitch()const{
             return atan2(T2_.rotation_matrix()(0,1),T2_.rotation_matrix()(0,0));
         }
@@ -102,7 +103,7 @@ namespace vio
             R<<T2_.rotation_matrix()(0,0),0.0,T2_.rotation_matrix()(0,1),
                      0.0,1.0,0.0,
                     T2_.rotation_matrix()(1,0),0.0,T2_.rotation_matrix()(1,1);
-              return SE3(R,Vector3d(T2_.translation()(0),1e-19,T2_.translation()(1)));
+            return SE3(R,Vector3d(T2_.translation()(0),1e-19,T2_.translation()(1)));
         }
         ~SE2_5(){}
 
