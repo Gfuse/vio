@@ -170,13 +170,17 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
+//  cv::Mat imgref = last_frame_->img().clone();
+//  cv::imwrite("/root/Projects/ROS/src/p_33_vio/GPU_version/imgref.png",imgref);
+//  cv::Mat imgcur = new_frame_->img().clone();
+//  cv::imwrite("/root/Projects/ROS/src/p_33_vio/GPU_version/imgcur.png",imgcur);
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-  assert (false);
-/*
+  //assert (false);
+
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
-             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';*/
+             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
   if( reprojector_.n_trials_ < 10)return RESULT_FAILURE;
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;

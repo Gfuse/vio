@@ -3626,10 +3626,13 @@ CMakeFiles/vio.dir/src/pose_optimizer.cpp.o
  /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 CMakeFiles/vio.dir/src/reprojector.cpp.o
  ../include/vio/abstract_camera.h
+ ../include/vio/cl.hpp
+ ../include/vio/cl_class.h
  ../include/vio/config.h
  ../include/vio/feature.h
  ../include/vio/frame.h
  ../include/vio/global.h
+ ../include/vio/initialization.h
  ../include/vio/map.h
  ../include/vio/matcher.h
  ../include/vio/math_utils.h

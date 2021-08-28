@@ -8,7 +8,7 @@ float2 world2cam(float3 feature)
 {
     float r = sqrt(pow(feature.x/feature.z, 2) + pow(feature.y/feature.z, 2));
     float factor = 1.0;
-    if((float)S != 0 || r > 0.001)
+    if((float)S != 0 && r > 0.001)
         factor = (atan(r * 2.0 * tan(0.5 * (float)S)) / (r * (float)S));
     return (float2)((float)C_X + (float)F_X * factor * feature.x/feature.z, (float)C_Y + (float)F_Y * factor * feature.y/feature.z);
 }
@@ -22,8 +22,18 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
     float cc_ss = cos(cur.z) * cos(ref.z) - sin(cur.z) * sin(ref.z);
     float sc_cs = cos(cur.z) * sin(ref.z) + cos(ref.z) * sin(cur.z);
     return  (float3)(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur.x - ref.x * cos(cur.z) - ref.z * sin(cur.z),
-                     ref_feature.y,
-                     -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur.z + ref.x * sin(cur.z) - ref.z * cos(cur.z));
+                      ref_feature.y,
+                      -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur.z + ref.x * sin(cur.z) - ref.z * cos(cur.z));
+
+    //   alfa = 0,  betha = 15 degree - 0.261799 radian
+    //return  (float3)(((float)(cos(0.261799)*ref_feature.x)+(float)(sin(0.261799)*sin(cur.z)*ref_feature.y)+(float)(sin(0.261799)*cos(cur.z)*ref_feature.z)),
+    //                 ((float)(cos(cur.z)*ref_feature.y)-(float)(sin(cur.z)*ref_feature.z)),
+    //                 ((float)(-1*sin(0.261799)*ref_feature.x)+(float)(cos(0.261799)*sin(cur.z)*ref_feature.y)+(float)(cos(0.261799)*cos(cur.z)*ref_feature.z)));
+    //
+    //   betha = 0,  alfa = 15 degree - 0.261799 radian
+    //return  (float3)(((float)(cos(0.261799)*ref_feature.x)+(float)(-1*sin(0.261799)*cos(cur.z)*ref_feature.y)+(float)(sin(0.261799)*sin(cur.z)*ref_feature.z)),
+    //                 ((float)(sin(0.261799)*ref_feature.x)+(float)(cos(0.261799)*cos(cur.z)*ref_feature.y)-(float)(cos(0.261799)*sin(cur.z)*ref_feature.z)),
+    //                 ((float)(sin(cur.z)*ref_feature.y)+(float)(cos(cur.z)*ref_feature.z)));
 }
 
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)
