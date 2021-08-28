@@ -125,6 +125,7 @@ public:
   }
 
   inline  SE3 getSE3Inv() const{
+      //TODO add 15 degree roll orientation
       Eigen::Matrix<double,3,3> R;
       R<<T_f_w_.inverse().rotation_matrix()(0,0),1e-19,T_f_w_.inverse().rotation_matrix()(0,1),
               1e-19,1.0,1e-19,

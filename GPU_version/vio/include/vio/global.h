@@ -97,6 +97,7 @@ namespace vio
             return atan2(T2_.rotation_matrix()(0,1),T2_.rotation_matrix()(0,0));
         }
         SE3 se3() const{
+            //Todo add 15 roll orientation
             Eigen::Matrix<double,3,3> R;
             R<<T2_.rotation_matrix()(0,0),0.0,T2_.rotation_matrix()(0,1),
                      0.0,1.0,0.0,
