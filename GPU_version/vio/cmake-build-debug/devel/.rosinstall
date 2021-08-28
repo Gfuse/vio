@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug/devel/setup.sh
