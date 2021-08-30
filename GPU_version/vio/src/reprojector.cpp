@@ -72,7 +72,6 @@ void Reprojector::reprojectMap(
 {
   resetGrid();
   list< pair<FramePtr,double> > close_kfs;
-  //assert(frame== nullptr);
   map_.getCloseKeyframes(frame, close_kfs);
   close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                  boost::bind(&std::pair<FramePtr, double>::second, _2));
@@ -114,7 +113,6 @@ void Reprojector::reprojectMap(
     }
   for(size_t i=0; i<grid_.cells.size(); ++i)
   {
-
     if(reprojectCell(*grid_.cells.at(grid_.cell_order[i]), frame))
       ++n_matches_;
     if(n_matches_ > (size_t) Config::maxFts())
@@ -223,7 +221,6 @@ void Reprojector::reprojectMap(
         std::vector<cv::KeyPoint> keypoints_kfs;
         std::vector<std::vector<cv::KeyPoint>> keypoints_ref;
         map_.getCloseKeyframes(frame, close_kfs);
-        std::cerr<<"close_kfs size : "<<close_kfs.size()<<std::endl;
 
         // Sort KFs with overlap according to their closeness
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
@@ -239,7 +236,6 @@ void Reprojector::reprojectMap(
         {
             keypoints_kfs.clear();
             FramePtr ref_frame = it_frame->first;
-
             // Try to reproject each mappoint that the other KF observes
             for(auto it_ftr=ref_frame->fts_.begin(), ite_ftr=ref_frame->fts_.end();
                 it_ftr!=ite_ftr; ++it_ftr)
@@ -247,7 +243,6 @@ void Reprojector::reprojectMap(
                 // check if the feature has a mappoint assigned
                 if((*it_ftr)->point == NULL)
                     continue;
-
                 // make sure we project a point only once
                 if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
                     continue;
@@ -257,10 +252,8 @@ void Reprojector::reprojectMap(
                 kp->pt.y = (*it_ftr)->px.y();
                 keypoints_kfs.push_back(*kp);
             }
-            std::cerr<<"keypoints_kfs size : "<<keypoints_kfs.size()<<std::endl;
             keypoints_ref.push_back(keypoints_kfs);
         }
-        std::cerr<<"keypoints_ref size : "<<keypoints_ref.size()<<std::endl;
         //SVO_STOP_TIMER("reproject_kfs");
 
         cv::Mat descriptors_ref, descriptors_cur;
@@ -287,11 +280,8 @@ void Reprojector::reprojectMap(
                 for (int f = 0; f < matches[i].queryIdx; f++)
                     fts2++;
                 if (reprojectPoint1(frame, (*fts2)->point, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y)) {
-                    std::cerr<<"i : "<<i<<"\t True"<<std::endl;
                     overlap_kfs.back().second++;
                 }
-                else
-                    std::cerr<<"i : "<<i<<"\t False"<<std::endl;
                 //keypoints_cur[i].class_id = 0;
 
             }
@@ -394,7 +384,7 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
 bool Reprojector::reprojectPoint(FramePtr frame, Point* point)
 {
   Vector2d px(frame->w2c(point->pos_));
-  if(frame->cam_->isInFrame(px.cast<int>(), 3)) // 8px is the patch size in the matcher
+  if(frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
   {
     const int k = static_cast<int>(px[1]/grid_.cell_size)*grid_.grid_n_cols
                 + static_cast<int>(px[0]/grid_.cell_size);
@@ -409,7 +399,7 @@ bool Reprojector::reprojectPoint(FramePtr frame, Point* point)
     {
         if(point) {
             Vector2d px(x, y);
-            if (frame->cam_->isInFrame(px.cast<int>(), 3)) // 8px is the patch size in the matcher
+            if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
             {
                 const int k = static_cast<int>(px[1] / grid_.cell_size) * grid_.grid_n_cols
                               + static_cast<int>(px[0] / grid_.cell_size);
@@ -420,7 +410,7 @@ bool Reprojector::reprojectPoint(FramePtr frame, Point* point)
         }
         else{
             Vector2d px(x, y);
-            if (frame->cam_->isInFrame(px.cast<int>(), 3)) // 8px is the patch size in the matcher
+            if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
             {
                 const int k = static_cast<int>(px[1] / grid_.cell_size) * grid_.grid_n_cols
                               + static_cast<int>(px[0] / grid_.cell_size);
