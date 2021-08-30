@@ -213,7 +213,7 @@ void Reprojector::reprojectMap(
             std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs)
     {
         resetGrid();
-        cv::Mat descriptors_ref, descriptors_cur;
+        cv::Mat descriptors_cur;
         std::vector<cv::KeyPoint> keypoints_cur;
         std::vector<cv::DMatch> matches;
         cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 4);
@@ -231,6 +231,7 @@ void Reprojector::reprojectMap(
             it_frame!=ite_frame && n<options_.max_n_kfs; ++it_frame, ++n)
         {
             std::vector<cv::KeyPoint> keypoints_kfs;
+            cv::Mat descriptors_ref;
             FramePtr ref_frame = it_frame->first;
             overlap_kfs.push_back(pair<FramePtr,size_t>(ref_frame,0));
 
@@ -243,15 +244,14 @@ void Reprojector::reprojectMap(
                 if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
                     continue;
                 (*it_ftr)->point->last_projected_kf_id_ = frame->id_;
-                cv::KeyPoint * kp = new cv::KeyPoint;
-                kp->pt.x = (*it_ftr)->px.x();
-                kp->pt.y = (*it_ftr)->px.y();
-                keypoints_kfs.push_back(*kp);
+                cv::KeyPoint kp;
+                kp.pt.x = (*it_ftr)->px.x();
+                kp.pt.y = (*it_ftr)->px.y();
+                keypoints_kfs.push_back(kp);
             }
             extractor->compute(it_frame->first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
-            //std::cerr<<keypoints_cur.size()<<"\t"<<descriptors_cur.size<<"\t"<<keypoints_kfs.size()<<"\t"<<descriptors_ref.size<<"\t"<<matches.size()<<std::endl;
-            for (int i; i < matches.size(); i++){
+            for (int i=0; i < matches.size(); i++){
                 std::cerr<<matches[i].queryIdx<<"\t"<<matches[i].trainIdx<<"\t"<<matches[i].distance<<std::endl;
                 auto fts = ref_frame->fts_.begin();
                 auto fts2 = fts;
