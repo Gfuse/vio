@@ -31,6 +31,7 @@
 
 #include <opencv2/xfeatures2d.hpp>
 #include <opencv2/features2d.hpp>
+#include <vio/for_it.hpp>
 
 namespace vio {
 
@@ -161,7 +162,7 @@ void Reprojector::reprojectMap(
         matcher->match(descriptors_ref,descriptors_cur,matches);
         //std::cerr<<"matches size : "<<matches.size()<<std::endl;
 
-        for(int i; i < matches.size(); i++)
+        for(int i=0; i < matches.size(); i++)
         {
             auto fts = framel->fts_.begin();
             auto fts2 = fts;
@@ -173,7 +174,7 @@ void Reprojector::reprojectMap(
             keypoints_cur[i].class_id = 0;
 
         }
-        for(int i; i < keypoints_cur.size(); i++)
+        for(int i=0; i < keypoints_cur.size(); i++)
         {
             if(keypoints_cur[i].class_id == 0)
                 continue;
@@ -215,14 +216,12 @@ void Reprojector::reprojectMap(
         resetGrid();
         cv::Mat descriptors_cur;
         std::vector<cv::KeyPoint> keypoints_cur;
-        std::vector<cv::DMatch> matches;
         cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 4);
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
         cv::FAST(frame->img(),keypoints_cur,50);
         extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
         list< pair<FramePtr,double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
-        std::cerr<<close_kfs.size()<<'\n';
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
         size_t n = 0;
@@ -231,6 +230,7 @@ void Reprojector::reprojectMap(
             it_frame!=ite_frame && n<options_.max_n_kfs; ++it_frame, ++n)
         {
             std::vector<cv::KeyPoint> keypoints_kfs;
+            std::vector<cv::DMatch> matches;
             cv::Mat descriptors_ref;
             FramePtr ref_frame = it_frame->first;
             overlap_kfs.push_back(pair<FramePtr,size_t>(ref_frame,0));
@@ -251,13 +251,8 @@ void Reprojector::reprojectMap(
             }
             extractor->compute(it_frame->first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
-            for (int i=0; i < matches.size(); i++){
-                std::cerr<<matches[i].queryIdx<<"\t"<<matches[i].trainIdx<<"\t"<<matches[i].distance<<std::endl;
-                auto fts = ref_frame->fts_.begin();
-                auto fts2 = fts;
-                for (int f = 0; f < matches[i].queryIdx; f++)
-                    fts2++;
-                if (reprojectPoint1(frame, (*fts2)->point, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y)) {
+            for(auto&& f: _for(ref_frame->fts_)){
+                if (reprojectPoint1(frame, f.item->point, keypoints_cur[matches[f.index].trainIdx].pt.x, keypoints_cur[matches[f.index].trainIdx].pt.y)) {
                     overlap_kfs.back().second++;
                 }
             }
