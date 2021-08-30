@@ -138,7 +138,7 @@ void Frame::removeKeyPoint(Feature* ftr)
 
 bool Frame::isVisible(const Vector3d& xyz_w) const
 {
-  Vector3d xyz_f = Vector3d(this->getSE3Inv()*xyz_w);
+  Vector3d xyz_f = Vector3d(this->se3()*xyz_w);
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera
   Vector2d px = f2c(xyz_f);

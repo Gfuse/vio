@@ -34,33 +34,6 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
     return  (float3)(R00*ref_feature.x+R01*ref_feature.y+R02*ref_feature.z+error.x,
                      R10*ref_feature.x+R11*ref_feature.y+R12*ref_feature.z,
                      R20*ref_feature.x+R21*ref_feature.y+R22*ref_feature.z+error.y);
-/*
-    if(ref.z < 0.0)
-        ref.z = 3.141592653589793238462643383279502884197169399375 - ref.z;
-    else
-        ref.z = ref.z - 3.1415926535897932384626433832795028841971693993;
-    float cc_ss = cos(cur.z) * cos(ref.z) - sin(cur.z) * sin(ref.z);
-    float sc_cs = cos(cur.z) * sin(ref.z) + cos(ref.z) * sin(cur.z);
-
-    return  (float3)(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur.x - ref.x * cos(cur.z) - ref.z * sin(cur.z),
-                     ref_feature.y,
-                     -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur.z + ref.x * sin(cur.z) - ref.z * cos(cur.z));
-
-    // alfa = 0,  betha = 15 degree - 0.261799 radian
-    //return  (float3)(((float)(cos(0.261799)*ref_feature.x)+(float)(sin(0.261799)*sin(cur.z)*ref_feature.y)+(float)(sin(0.261799)*cos(cur.z)*ref_feature.z)),
-    //                ((float)(cos(cur.z)*ref_feature.y)-(float)(sin(cur.z)*ref_feature.z)),
-    //                ((float)(-1*sin(0.261799)*ref_feature.x)+(float)(cos(0.261799)*sin(cur.z)*ref_feature.y)+(float)(cos(0.261799)*cos(cur.z)*ref_feature.z)));
-    //
-    // betha = 0,  alfa = 15 degree - 0.261799 radian
-    //return  (float3)(((float)(cos(0.261799)*ref_feature.x)+(float)(-1*sin(0.261799)*cos(cur.z)*ref_feature.y)+(float)(sin(0.261799)*sin(cur.z)*ref_feature.z)),
-    //                    ((float)(sin(0.261799)*ref_feature.x)+(float)(cos(0.261799)*cos(cur.z)*ref_feature.y)-(float)(cos(0.261799)*sin(cur.z)*ref_feature.z)),
-    //                    ((float)(sin(cur.z)*ref_feature.y)+(float)(cos(cur.z)*ref_feature.z)));
-    }
-
-
-    return  (float3)(cc_ss * ref_feature.x + sc_cs * ref_feature.z + cur.x - ref.x * cos(cur.z) - ref.z * sin(cur.z),
-                     ref_feature.y,
-                     -1.0 * sc_cs * ref_feature.x + cc_ss * ref_feature.z + cur.z + ref.x * sin(cur.z) - ref.z * cos(cur.z));*/
 }
 
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)

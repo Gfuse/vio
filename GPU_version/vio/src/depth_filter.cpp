@@ -190,6 +190,8 @@ namespace vio {
                 }
             }
             updateSeeds(frame);
+            if(frame->isKeyframe())
+                initializeSeeds(frame);
         }
     }
 
@@ -215,7 +217,7 @@ namespace vio {
                 continue;
             }
             // check if point is visible in the current image
-            SE2 T(it->ftr->frame->T_f_w_.pitch()-frame->T_f_w_.pitch(),it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
+            SE2 T(it->ftr->frame->T_f_w_.pitch()+frame->T_f_w_.pitch()+M_PI,it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
             q = AngleAxisd(-0.261799, Vector3d::UnitX())
