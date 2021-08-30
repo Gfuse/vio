@@ -94,7 +94,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   overlap_kfs_.clear();
 
   // create new frame
-  new_frame_.reset(new Frame(cam_, img.clone(), timestamp));
+  new_frame_=boost::make_shared<Frame>(cam_, img.clone(), timestamp);
   time_=time;
   // process frame
   UpdateResult res = RESULT_FAILURE;
@@ -107,7 +107,6 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
 
   // set last frame
   if(!new_frame_->fts_.empty() || stage_ != STAGE_DEFAULT_FRAME)last_frame_ = new_frame_;
-  new_frame_.reset();
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
   if(stage_ == STAGE_RELOCALIZING){
@@ -168,11 +167,12 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->Cov_ = init_f.first;
   // sparse image align
   //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
+  //assert(new_frame_.get()== nullptr);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
-//    reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-    reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
-//    reprojector_.reprojectMap2(new_frame_, overlap_kfs_);
+ // reprojector_.reprojectMap(new_frame_, overlap_kfs_);
+  //  reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
+    reprojector_.reprojectMap2(new_frame_, overlap_kfs_);
   //assert (false);
 
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second

@@ -71,18 +71,11 @@ void Reprojector::reprojectMap(
     std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs)
 {
   resetGrid();
-
-  // Identify those Keyframes which share a common field of view.
-  //  SVO_START_TIMER("reproject_kfs");
   list< pair<FramePtr,double> > close_kfs;
+  //assert(frame== nullptr);
   map_.getCloseKeyframes(frame, close_kfs);
-
-  // Sort KFs with overlap according to their closeness
   close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                  boost::bind(&std::pair<FramePtr, double>::second, _2));
-
-  // Reproject all mappoints of the closest N kfs with overlap. We only store
-  // in which grid cell the points fall.
   size_t n = 0;
   overlap_kfs.reserve(options_.max_n_kfs);
   for(auto it_frame=close_kfs.begin(), ite_frame=close_kfs.end();
@@ -90,16 +83,11 @@ void Reprojector::reprojectMap(
   {
     FramePtr ref_frame = it_frame->first;
     overlap_kfs.push_back(pair<FramePtr,size_t>(ref_frame,0));
-
-    // Try to reproject each mappoint that the other KF observes
     for(auto it_ftr=ref_frame->fts_.begin(), ite_ftr=ref_frame->fts_.end();
         it_ftr!=ite_ftr; ++it_ftr)
     {
-      // check if the feature has a mappoint assigned
       if((*it_ftr)->point == NULL)
         continue;
-
-      // make sure we project a point only once
       if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
         continue;
       (*it_ftr)->point->last_projected_kf_id_ = frame->id_;
@@ -108,11 +96,6 @@ void Reprojector::reprojectMap(
       }
     }
   }
-  //SVO_STOP_TIMER("reproject_kfs");
-
-  // Now project all point candidates
- // SVO_START_TIMER("reproject_candidates");
-  {
     boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
     auto it=map_.point_candidates_.candidates_.begin();
     while(it!=map_.point_candidates_.candidates_.end())
@@ -129,21 +112,14 @@ void Reprojector::reprojectMap(
       }
       ++it;
     }
-  } // unlock the mutex when out of scope
-  //SVO_STOP_TIMER("reproject_candidates");
-  // Now we go through each grid cell and select one point to match.
-  // At the end, we should have at maximum one reprojected point per cell.
-  //SVO_START_TIMER("feature_align");
   for(size_t i=0; i<grid_.cells.size(); ++i)
   {
-    // we prefer good quality points over unkown quality (more likely to match)
-    // and unknown quality over candidates (position not optimized)
+
     if(reprojectCell(*grid_.cells.at(grid_.cell_order[i]), frame))
       ++n_matches_;
     if(n_matches_ > (size_t) Config::maxFts())
       break;
   }
-// SVO_STOP_TIMER("feature_align");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO - First reimplementation
@@ -373,7 +349,7 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
       it = cell.erase(it);
       continue;
     }
-    /*bool found_match = true;
+    bool found_match = true;
     if(options_.find_match_direct)
       found_match = matcher_.findMatchDirect(*it->pt, *frame, it->px);
     if(!found_match)
@@ -385,7 +361,7 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
         map_.point_candidates_.deleteCandidatePoint(it->pt);
       it = cell.erase(it);
       continue;
-    }*/
+    }
     it->pt->n_succeeded_reproj_++;
     if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
       it->pt->type_ = Point::TYPE_GOOD;
