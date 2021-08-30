@@ -92,7 +92,7 @@ namespace vk {
         q.w() *= 1/q.norm();
         q.x()=0.0;
         q.z()=0.0;
-        T_c2_from_c1=Sophus::SE3(q.toRotationMatrix(),Eigen::Vector3d(0.0,decompositions.front().T.translation().x(),decompositions.front().T.translation().z()));
+        T_c2_from_c1=Sophus::SE3(q.toRotationMatrix(),Eigen::Vector3d(decompositions.front().T.translation().x(), 0.0, decompositions.front().T.translation().z()));
         return true;
     }
 

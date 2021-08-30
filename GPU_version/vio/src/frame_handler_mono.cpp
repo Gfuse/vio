@@ -170,12 +170,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
-//  cv::Mat imgref = last_frame_->img().clone();
-//  cv::imwrite("/root/Projects/ROS/src/p_33_vio/GPU_version/imgref.png",imgref);
-//  cv::Mat imgcur = new_frame_->img().clone();
-//  cv::imwrite("/root/Projects/ROS/src/p_33_vio/GPU_version/imgcur.png",imgcur);
 //    reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-    reprojector_.reprojectMap(new_frame_, last_frame_, overlap_kfs_);
+    reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
+//    reprojector_.reprojectMap2(new_frame_, overlap_kfs_);
   //assert (false);
 
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second

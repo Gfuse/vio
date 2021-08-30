@@ -55,20 +55,24 @@ public:
   size_t n_matches_;
   size_t n_trials_;
 
-  Reprojector(vk::AbstractCamera* cam, Map& map/*, opencl* kernel*/);
+  Reprojector(vk::AbstractCamera* cam, Map& map);
 
   ~Reprojector();
 
   /// Project points from the map into the image. First finds keyframes with
   /// overlapping field of view and projects only those map-points.
-//  void reprojectMap(
-//      FramePtr frame,
-//      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
+  void reprojectMap(
+      FramePtr frame,
+      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
 
-    void reprojectMap(
-            FramePtr frame,
-            FramePtr framel,
-            std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
+  void reprojectMap1(
+      FramePtr frame,
+      FramePtr framel,
+      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
+
+  void reprojectMap2(
+      FramePtr frame,
+      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
 
 private:
 
@@ -102,10 +106,7 @@ private:
   void resetGrid();
   bool reprojectCell(Cell& cell, FramePtr frame);
   bool reprojectPoint(FramePtr frame, Point* point);
-  bool reprojectPoint(FramePtr frame, Point* point, float x, float y);
-
-protected:
-    opencl* gpu_freak;
+  bool reprojectPoint1(FramePtr frame, Point* point, float x, float y);
 };
 
 } // namespace vio
