@@ -129,7 +129,7 @@ public:
         while(lock)usleep(5);
         lock=true;
         roll=roll+M_PI;
-        if(filter_->predict_up)filter_->correct(-z,-y,roll,match,1e-9*time.toNSec());
+        if(filter_->predict_up)filter_->correct(z,y,roll,match,1e-9*time.toNSec());
         lock=false;
         double roll_f;
         roll_f=filter_->state_(2)+M_PI;

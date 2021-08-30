@@ -222,6 +222,7 @@ void Reprojector::reprojectMap(
         extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
         list< pair<FramePtr,double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
+        std::cerr<<close_kfs.size()<<'\n';
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
         size_t n = 0;
