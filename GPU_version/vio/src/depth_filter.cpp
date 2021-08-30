@@ -218,10 +218,10 @@ namespace vio {
             SE2 T(it->ftr->frame->T_f_w_.pitch()-frame->T_f_w_.pitch(),it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
-            q = AngleAxisd(0.261799, Vector3d::UnitX())
-                * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitY())
+            q = AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitX())
+                * AngleAxisd(0.261799, Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
-            SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
+            SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(0.0,T.translation()(0),T.translation()(1)));
             const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
             if(xyz_f.z() < 0.0)  {
                 ++it; // behind the camera

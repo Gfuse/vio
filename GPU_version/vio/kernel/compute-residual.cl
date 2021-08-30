@@ -31,8 +31,8 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
     float R20=-sin(pitch);//-sin(pitch)
     float R21=cos(pitch)*sin(roll);//0
     float R22=cos(pitch)*cos(roll);//cos(pitch)
-    return  (float3)(R00*ref_feature.x+R01*ref_feature.y+R02*ref_feature.z+error.x,
-                     R10*ref_feature.x+R11*ref_feature.y+R12*ref_feature.z,
+    return  (float3)(R00*ref_feature.x+R01*ref_feature.y+R02*ref_feature.z,
+                     R10*ref_feature.x+R11*ref_feature.y+R12*ref_feature.z+error.x,
                      R20*ref_feature.x+R21*ref_feature.y+R22*ref_feature.z+error.y);
 /*
     if(ref.z < 0.0)
@@ -112,7 +112,7 @@ float2 uv_ref_i = floor(uv_ref);
 if(uv_ref_i.x - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.y - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.x + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref).x || uv_ref_i.y + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref).y)return;
 // evaluate projection jacobian
 float frame_jac[6]={0.0}; // 2X3
-jacobian_xyz2uv(sqrt(pow(ref_feature[f] - (float3)(ref_pose[0].x, 0.0, ref_pose[0].y), 2.0)), &frame_jac);
+jacobian_xyz2uv(sqrt(pow(ref_feature[f] - (float3)(0.0, ref_pose[0].x, ref_pose[0].y), 2.0)), &frame_jac);
 
 // compute bilateral interpolation weights for reference image
 float2 subpix=  uv_ref - uv_ref_i;
