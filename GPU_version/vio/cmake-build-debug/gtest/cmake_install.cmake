@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug/gtest/googlemock/cmake_install.cmake")
+  include("/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug/gtest/googlemock/cmake_install.cmake")
 
 endif()
 

@@ -62,10 +62,10 @@ RM = /opt/clion-2021.1.2/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/Projects/ROS/src/p_33_vio/GPU_version/vio
+CMAKE_SOURCE_DIR = /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug
+CMAKE_BINARY_DIR = /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug
 
 # Utility rule file for std_msgs_generate_messages_py.
 
@@ -86,6 +86,6 @@ CMakeFiles/std_msgs_generate_messages_py.dir/clean:
 .PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/clean
 
 CMakeFiles/std_msgs_generate_messages_py.dir/depend:
-	cd /root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/Projects/ROS/src/p_33_vio/GPU_version/vio /root/Projects/ROS/src/p_33_vio/GPU_version/vio /root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug /root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug /root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug/CMakeFiles/std_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug /root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug/CMakeFiles/std_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/depend
 

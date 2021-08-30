@@ -174,7 +174,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 //  cv::imwrite("/root/Projects/ROS/src/p_33_vio/GPU_version/imgref.png",imgref);
 //  cv::Mat imgcur = new_frame_->img().clone();
 //  cv::imwrite("/root/Projects/ROS/src/p_33_vio/GPU_version/imgcur.png",imgcur);
-  reprojector_.reprojectMap(new_frame_, overlap_kfs_);
+//    reprojector_.reprojectMap(new_frame_, overlap_kfs_);
+    reprojector_.reprojectMap(new_frame_, last_frame_, overlap_kfs_);
   //assert (false);
 
   std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second

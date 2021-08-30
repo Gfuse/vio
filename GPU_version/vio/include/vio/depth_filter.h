@@ -123,7 +123,7 @@ public:
   std::list<Seed, Eigen::aligned_allocator<Seed>>& getSeeds() { return seeds_; }
 
   /// Bayes update of the seed, x is the measurement, tau2 the measurement uncertainty
-  static void updateSeed(
+  static bool updateSeed(
       const float x,
       const float tau2,
       Seed* seed);

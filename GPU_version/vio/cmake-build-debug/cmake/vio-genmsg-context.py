@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/root/Projects/ROS/src/p_33_vio/GPU_version/vio/srv/getOdom.srv;/root/Projects/ROS/src/p_33_vio/GPU_version/vio/srv/stop.srv;/root/Projects/ROS/src/p_33_vio/GPU_version/vio/srv/start.srv"
+services_str = "/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/srv/getOdom.srv;/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/srv/stop.srv;/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/srv/start.srv"
 pkg_name = "vio"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

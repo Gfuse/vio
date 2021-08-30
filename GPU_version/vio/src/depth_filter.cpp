@@ -31,327 +31,313 @@
 
 namespace vio {
 
-int Seed::batch_counter = 0;
-int Seed::seed_counter = 0;
+    int Seed::batch_counter = 0;
+    int Seed::seed_counter = 0;
 
-Seed::Seed(Feature* ftr, float depth_mean, float depth_min) :
-    batch_id(batch_counter),
-    id(seed_counter++),
-    ftr(ftr),
-    a(10),
-    b(10),
-    mu(1.0/depth_mean),
-    z_range(1.0/depth_min),
-    sigma2(z_range*z_range/36)
-{}
+    Seed::Seed(Feature* ftr, float depth_mean, float depth_min) :
+            batch_id(batch_counter),
+            id(seed_counter++),
+            ftr(ftr),
+            a(10),
+            b(10),
+            mu(1.0/depth_mean),
+            z_range(1.0/depth_min),
+            sigma2(z_range*z_range/36)
+    {}
 
-DepthFilter::DepthFilter(feature_detection::DetectorPtr feature_detector, callback_t seed_converged_cb) :
-    feature_detector_(feature_detector),
-    seed_converged_cb_(seed_converged_cb),
-    seeds_updating_halt_(false),
-    thread_(NULL),
-    new_keyframe_set_(false),
-    new_keyframe_min_depth_(0.0),
-    new_keyframe_mean_depth_(0.0)
-{}
+    DepthFilter::DepthFilter(feature_detection::DetectorPtr feature_detector, callback_t seed_converged_cb) :
+            feature_detector_(feature_detector),
+            seed_converged_cb_(seed_converged_cb),
+            seeds_updating_halt_(false),
+            thread_(NULL),
+            new_keyframe_set_(false),
+            new_keyframe_min_depth_(0.0),
+            new_keyframe_mean_depth_(0.0)
+    {}
 
-DepthFilter::~DepthFilter()
-{
-  stopThread();
-  SVO_INFO_STREAM("DepthFilter destructed.");
-}
-
-void DepthFilter::startThread()
-{
-  thread_ = new boost::thread(&DepthFilter::updateSeedsLoop, this);
-}
-
-void DepthFilter::stopThread()
-{
-  SVO_INFO_STREAM("DepthFilter stop thread invoked.");
-  if(thread_ != NULL)
-  {
-    SVO_INFO_STREAM("DepthFilter interrupt and join thread... ");
-    seeds_updating_halt_ = true;
-    thread_->interrupt();
-    usleep(5000);
-    thread_->join();
-    thread_ = NULL;
-  }
-}
-
-void DepthFilter::addFrame(FramePtr frame)
-{
-  if(thread_ != NULL)
-  {
+    DepthFilter::~DepthFilter()
     {
-      lock_t lock(frame_queue_mut_);
-      if(frame_queue_.size() > 2)
-        frame_queue_.pop();
-      frame_queue_.push(frame);
+        stopThread();
+        SVO_INFO_STREAM("DepthFilter destructed.");
     }
-    seeds_updating_halt_ = false;
-    frame_queue_cond_.notify_one();
-  }else{
-      updateSeeds(frame);
-  }
 
-}
-
-void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_min)
-{
-  new_keyframe_min_depth_ = depth_min;
-  new_keyframe_mean_depth_ = depth_mean;
-
-  if(thread_ != NULL)
-  {
-    new_keyframe_ = frame;
-    new_keyframe_set_ = true;
-    seeds_updating_halt_ = true;
-    frame_queue_cond_.notify_one();
-  }else if(seeds_cont_>3){
-        initializeSeeds(frame);
-        seeds_cont_=0;
-  }else if(seeds_cont_==0){
-        initializeSeeds(frame);
-  }
-  ++seeds_cont_;
-}
-
-void DepthFilter::initializeSeeds(FramePtr frame)
-{
-  Features new_features;
-  feature_detector_->setExistingFeatures(frame->fts_);
-  feature_detector_->detect(frame.get(), frame->img_pyr_,
-                            Config::triangMinCornerScore(), new_features);
-
-  // initialize a seed for every new feature
-  seeds_updating_halt_ = true;
-  lock_t lock(seeds_mut_); // by locking the updateSeeds function stops
-  ++Seed::batch_counter;
-  std::for_each(new_features.begin(), new_features.end(), [&](Feature* ftr){
-    seeds_.push_back(Seed(ftr, new_keyframe_mean_depth_, new_keyframe_min_depth_));
-  });
-
-  if(options_.verbose)
-    SVO_INFO_STREAM("DepthFilter: Initialized "<<new_features.size()<<" new seeds");
-  seeds_updating_halt_ = false;
-}
-
-void DepthFilter::removeKeyframe(FramePtr frame)
-{
-  seeds_updating_halt_ = true;
-  lock_t lock(seeds_mut_);
-  std::list<Seed>::iterator it=seeds_.begin();
-  size_t n_removed = 0;
-  while(it!=seeds_.end())
-  {
-    if(it->ftr->frame == frame.get())
+    void DepthFilter::startThread()
     {
-      it = seeds_.erase(it);
-      ++n_removed;
+        thread_ = new boost::thread(&DepthFilter::updateSeedsLoop, this);
     }
-    else
-      ++it;
-  }
-  seeds_updating_halt_ = false;
-}
 
-void DepthFilter::reset()
-{
-  seeds_updating_halt_ = true;
-  {
-    lock_t lock(seeds_mut_);
-    seeds_.clear();
-  }
-  lock_t lock();
-  while(!frame_queue_.empty())
-    frame_queue_.pop();
-  seeds_updating_halt_ = false;
-
-  if(options_.verbose)
-    SVO_INFO_STREAM("DepthFilter: RESET.");
-}
-
-void DepthFilter::updateSeedsLoop()
-{
-  while(!boost::this_thread::interruption_requested())
-  {
-    FramePtr frame;
+    void DepthFilter::stopThread()
     {
-      lock_t lock(frame_queue_mut_);
-      while(frame_queue_.empty() && new_keyframe_set_ == false)
-        frame_queue_cond_.wait(lock);
-      if(new_keyframe_set_)
-      {
-        new_keyframe_set_ = false;
-        if(seeds_cont_>3){
-            seeds_updating_halt_ = false;
+        SVO_INFO_STREAM("DepthFilter stop thread invoked.");
+        if(thread_ != NULL)
+        {
+            SVO_INFO_STREAM("DepthFilter interrupt and join thread... ");
+            seeds_updating_halt_ = true;
+            thread_->interrupt();
+            usleep(5000);
+            thread_->join();
+            thread_ = NULL;
         }
-        clearFrameQueue();
-        frame = new_keyframe_;
-      }
-      else
-      {
-        frame = frame_queue_.front();
-        frame_queue_.pop();
-      }
     }
-    updateSeeds(frame);
 
-    if((frame->isKeyframe() && seeds_cont_>3) ||(frame->isKeyframe() && seeds_cont_==0)){
+    void DepthFilter::addFrame(FramePtr frame)
+    {
+        if(thread_ != NULL)
+        {
+            {
+                lock_t lock(frame_queue_mut_);
+                if(frame_queue_.size() > 2)
+                    frame_queue_.pop();
+                frame_queue_.push(frame);
+            }
+            seeds_updating_halt_ = false;
+            frame_queue_cond_.notify_one();
+        }else{
+            updateSeeds(frame);
+        }
+
+    }
+
+    void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_min)
+    {
+        new_keyframe_min_depth_ = depth_min;
+        new_keyframe_mean_depth_ = depth_mean;
+
+        if(thread_ != NULL)
+        {
+            new_keyframe_ = frame;
+            new_keyframe_set_ = true;
+            seeds_updating_halt_ = true;
+            frame_queue_cond_.notify_one();
+        }
         initializeSeeds(frame);
-        seeds_cont_=0;
     }
 
-  }
-}
-
-void DepthFilter::updateSeeds(FramePtr frame)
-{
-  // update only a limited number of seeds, because we don't have time to do it
-  // for all the seeds in every frame!
-  size_t n_updates=0, n_failed_matches=0, n_seeds = seeds_.size();
-  lock_t lock(seeds_mut_);
-  std::list<Seed>::iterator it=seeds_.begin();
-
-  const double focal_length = frame->cam_->errorMultiplier2();
-  double px_noise = 1.0;
-  double px_error_angle = atan2(px_noise,(2.0*focal_length))*2.0; // law of chord (sehnensatz)
-  while( it!=seeds_.end())
-  {
-    // set this value true when seeds updating should be interrupted
-    if(seeds_updating_halt_)
-      return;
-
-    // check if seed is not already too old
-    if((Seed::batch_counter - it->batch_id) > options_.max_n_kfs) {
-      it = seeds_.erase(it);
-      continue;
-    }
-    if(it->ftr->frame == NULL){
-        it = seeds_.erase(it);
-        continue;
-    }
-    // check if point is visible in the current image
-    SE2 T(it->ftr->frame->T_f_w_.pitch()-frame->T_f_w_.pitch(),it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
-    Eigen::Matrix<double,3,3> R;
-    R<<T.rotation_matrix()(0,0),0.0,T.rotation_matrix()(0,1),
-    0.0,1.0,0.0,
-    T.rotation_matrix()(1,0),0.0,T.rotation_matrix()(1,1);
-    SE3 T_ref_cur(R,Vector3d(T.translation()(0),0.0,T.translation()(1)));
-    const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
-    if(xyz_f.z() < 0.0 && xyz_f.y() < 0.08)  {
-      ++it; // behind the camera
-      continue;
-    }
-    if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
-      ++it; // point does not project in image
-      continue;
-    }
-
-    float z_min = it->mu + sqrt(it->sigma2);
-    float z_max = max(it->mu - sqrt(it->sigma2), 0.00000001f);
-
-    if(z_min < 0){
-        ++it;
-        continue;
-    }
-
-    double z;
-    if(!matcher_.findEpipolarMatchDirect(
-        *it->ftr->frame, *frame, *it->ftr, 1.0/it->mu, 1.0/z_min, 1.0/z_max, z))
+    void DepthFilter::initializeSeeds(FramePtr frame)
     {
-      it->b++; // increase outlier probability when no match was found
-      ++it;
-      ++n_failed_matches;
-      continue;
+        Features new_features;
+        feature_detector_->setExistingFeatures(frame->fts_);
+        feature_detector_->detect(frame.get(), frame->img_pyr_,
+                                  Config::triangMinCornerScore(), new_features);
+
+        // initialize a seed for every new feature
+        seeds_updating_halt_ = true;
+        lock_t lock(seeds_mut_); // by locking the updateSeeds function stops
+        ++Seed::batch_counter;
+        std::for_each(new_features.begin(), new_features.end(), [&](Feature* ftr){
+            seeds_.push_back(Seed(ftr, new_keyframe_mean_depth_, new_keyframe_min_depth_));
+        });
+
+        if(options_.verbose)
+            SVO_INFO_STREAM("DepthFilter: Initialized "<<new_features.size()<<" new seeds");
+        seeds_updating_halt_ = false;
     }
-    double tau = computeTau(T_ref_cur, it->ftr->f, z, px_error_angle);
-    double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
 
-    // update the estimate
-    updateSeed(1.0/z, tau_inverse*tau_inverse, &*it);
-    ++n_updates;
-
-    if(frame->isKeyframe())
+    void DepthFilter::removeKeyframe(FramePtr frame)
     {
-      // The feature detector should not initialize new seeds close to this location
-      feature_detector_->setGridOccpuancy(matcher_.px_cur_);
+        seeds_updating_halt_ = true;
+        lock_t lock(seeds_mut_);
+        std::list<Seed>::iterator it=seeds_.begin();
+        size_t n_removed = 0;
+        while(it!=seeds_.end())
+        {
+            if(it->ftr->frame == frame.get())
+            {
+                it = seeds_.erase(it);
+                ++n_removed;
+            }
+            else
+                ++it;
+        }
+        seeds_updating_halt_ = false;
     }
 
-    // if the seed has converged, we initialize a new candidate point and remove the seed
-    if(sqrt(it->sigma2) < it->z_range/options_.seed_convergence_sigma2_thresh)
+    void DepthFilter::reset()
     {
-      assert(it->ftr->point == NULL); // TODO this should not happen anymore
-      Vector3d xyz_world(it->ftr->frame->getSE3Inv() * (it->ftr->f/it->mu));
-      Point* point = new Point(xyz_world, it->ftr);
-      it->ftr->point = point;
-      seed_converged_cb_(point, it->sigma2); // put in candidate list
-      it = seeds_.erase(it);
+        seeds_updating_halt_ = true;
+        {
+            lock_t lock(seeds_mut_);
+            seeds_.clear();
+        }
+        lock_t lock();
+        while(!frame_queue_.empty())
+            frame_queue_.pop();
+        seeds_updating_halt_ = false;
+
+        if(options_.verbose)
+            SVO_INFO_STREAM("DepthFilter: RESET.");
     }
-    else if(isnan(z_min))
+
+    void DepthFilter::updateSeedsLoop()
     {
-      SVO_WARN_STREAM("z_min is NaN");
-      it = seeds_.erase(it);
+        while(!boost::this_thread::interruption_requested())
+        {
+            FramePtr frame;
+            {
+                lock_t lock(frame_queue_mut_);
+                while(frame_queue_.empty() && new_keyframe_set_ == false)
+                    frame_queue_cond_.wait(lock);
+                if(new_keyframe_set_)
+                {
+                    new_keyframe_set_ = false;
+                    clearFrameQueue();
+                    frame = new_keyframe_;
+                }
+                else
+                {
+                    frame = frame_queue_.front();
+                    frame_queue_.pop();
+                }
+            }
+            updateSeeds(frame);
+        }
     }
-    else
-      ++it;
-  }
-}
 
-void DepthFilter::clearFrameQueue()
-{
-  while(!frame_queue_.empty())
-    frame_queue_.pop();
-}
+    void DepthFilter::updateSeeds(FramePtr frame)
+    {
+        // update only a limited number of seeds, because we don't have time to do it
+        // for all the seeds in every frame!
+        size_t n_updates=0, n_failed_matches=0;
+        lock_t lock(seeds_mut_);
+        std::list<Seed>::iterator it=seeds_.begin();
 
-void DepthFilter::getSeedsCopy(const FramePtr& frame, std::list<Seed>& seeds)
-{
-  lock_t lock(seeds_mut_);
-  for(std::list<Seed>::iterator it=seeds_.begin(); it!=seeds_.end(); ++it)
-  {
-    if (it->ftr->frame == frame.get())
-      seeds.push_back(*it);
-  }
-}
+        const double focal_length = frame->cam_->errorMultiplier2();
+        double px_noise = 1.0;
+        double px_error_angle = atan2(px_noise,(2.0*focal_length))*2.0; // law of chord (sehnensatz)
+        while( it!=seeds_.end())
+        {
+            // set this value true when seeds updating should be interrupted
+            if(seeds_updating_halt_)
+                return;
 
-void DepthFilter::updateSeed(const float x, const float tau2, Seed* seed)
-{
-  float norm_scale = sqrt(seed->sigma2 + tau2);
-  if(std::isnan(norm_scale))
-    return;
-  boost::math::normal_distribution<float> nd(seed->mu, norm_scale);
-  float s2 = 1./(1./seed->sigma2 + 1./tau2);
-  float m = s2*(seed->mu/seed->sigma2 + x/tau2);
-  float C1 = seed->a/(seed->a+seed->b) * boost::math::pdf(nd, x);
-  float C2 = seed->b/(seed->a+seed->b) * 1./seed->z_range;
-  float normalization_constant = C1 + C2;
-  C1 /= normalization_constant;
-  C2 /= normalization_constant;
-  float f = C1*(seed->a+1.)/(seed->a+seed->b+1.) + C2*seed->a/(seed->a+seed->b+1.);
-  float e = C1*(seed->a+1.)*(seed->a+2.)/((seed->a+seed->b+1.)*(seed->a+seed->b+2.))
-          + C2*seed->a*(seed->a+1.0f)/((seed->a+seed->b+1.0f)*(seed->a+seed->b+2.0f));
+            if(it->ftr->frame == NULL){
+                it = seeds_.erase(it);
+                continue;
+            }
+            // check if point is visible in the current image
+            SE2 T(it->ftr->frame->T_f_w_.pitch()-frame->T_f_w_.pitch(),it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
+            ///TODO add 15 degrees roll orientation
+            Quaterniond q;
+            q = AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitX())
+                * AngleAxisd(0.261799, Vector3d::UnitY())
+                * AngleAxisd(0.0, Vector3d::UnitZ());
+            SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(0.0,T.translation()(0),T.translation()(1)));
+            const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
+            if(xyz_f.z() < 0.0)  {
+                ++it; // behind the camera
+                continue;
+            }
+            if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
+                ++it; // point does not project in image
+                continue;
+            }
 
-  // update parameters
-  float mu_new = C1*m+C2*seed->mu;
-  seed->sigma2 = C1*(s2 + m*m) + C2*(seed->sigma2 + seed->mu*seed->mu) - mu_new*mu_new;
-  seed->mu = mu_new;
-  seed->a = (e-f)/(f-e/f);
-  seed->b = seed->a*(1.0f-f)/f;
-}
+            float z_min = it->mu + sqrt(it->sigma2);
+            float z_max = max(it->mu - sqrt(it->sigma2), 0.00000001f);
 
-double DepthFilter::computeTau(
-      const SE3& T_ref_cur,
-      const Vector3d& f,
-      const double z,
-      const double px_error_angle)
-{
-  Vector3d t(T_ref_cur.translation());
-  Vector3d a = f*z-t;
-  double t_norm = t.norm();
-  double beta_plus = acos(a.dot(-t)/(t_norm*a.norm())) + px_error_angle;
-  return (t_norm*sin(beta_plus)/sin(PI-acos(f.dot(t)/t_norm)-beta_plus) - z); // ( triangle angles sum to PI and law of sines ) tau
-}
+            if(z_min < 0){
+                ++it;
+                continue;
+            }
+
+            double z;
+            if(!matcher_.findEpipolarMatchDirect(
+                    *it->ftr->frame, *frame, *it->ftr, 1.0/it->mu, 1.0/z_min, 1.0/z_max, z))
+            {
+                it->b++; // increase outlier probability when no match was found
+                ++it;
+                ++n_failed_matches;
+                continue;
+            }
+            double tau = computeTau(T_ref_cur, it->ftr->f, z, px_error_angle);
+            double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
+
+            // update the estimate
+            if(!updateSeed(1.0/z, tau_inverse*tau_inverse, &*it)){
+                ++it;
+                ++n_failed_matches;
+                continue;
+            }
+            ++n_updates;
+
+            if(frame->isKeyframe())
+            {
+                // The feature detector should not initialize new seeds close to this location
+                feature_detector_->setGridOccpuancy(matcher_.px_cur_);
+            }
+
+            // if the seed has converged, we initialize a new candidate point and remove the seed
+            if(sqrt(it->sigma2) < it->z_range/options_.seed_convergence_sigma2_thresh)
+            {
+                assert(it->ftr->point == NULL); // TODO this should not happen anymore
+                Vector3d xyz_world(it->ftr->frame->getSE3Inv() * (it->ftr->f/it->mu));
+                Point* point = new Point(xyz_world, it->ftr);
+                it->ftr->point = point;
+                seed_converged_cb_(point, it->sigma2); // put in candidate list
+                it = seeds_.erase(it);
+            }
+            else if(isnan(z_min))
+            {
+                SVO_WARN_STREAM("z_min is NaN");
+                it = seeds_.erase(it);
+            }
+            else
+                ++it;
+        }
+    }
+
+    void DepthFilter::clearFrameQueue()
+    {
+        while(!frame_queue_.empty())
+            frame_queue_.pop();
+    }
+
+    void DepthFilter::getSeedsCopy(const FramePtr& frame, std::list<Seed>& seeds)
+    {
+        lock_t lock(seeds_mut_);
+        for(std::list<Seed>::iterator it=seeds_.begin(); it!=seeds_.end(); ++it)
+        {
+            if (it->ftr->frame == frame.get())
+                seeds.push_back(*it);
+        }
+    }
+    bool DepthFilter::updateSeed(const float x, const float tau2, Seed* seed)
+    {
+        float norm_scale = sqrt(seed->sigma2 + tau2);
+        if(std::isnan(norm_scale))
+            return false;
+        boost::math::normal_distribution<float> nd(seed->mu, norm_scale);
+        float s2 = 1./(1./seed->sigma2 + 1./tau2);
+        float m = s2*(seed->mu/seed->sigma2 + x/tau2);
+        float C1 = seed->a/(seed->a+seed->b) * boost::math::pdf(nd, x);
+        float C2 = seed->b/(seed->a+seed->b) * 1./seed->z_range;
+        float normalization_constant = C1 + C2;
+        C1 /= normalization_constant;
+        C2 /= normalization_constant;
+        float f = C1*(seed->a+1.)/(seed->a+seed->b+1.) + C2*seed->a/(seed->a+seed->b+1.);
+        float e = C1*(seed->a+1.)*(seed->a+2.)/((seed->a+seed->b+1.)*(seed->a+seed->b+2.))
+                  + C2*seed->a*(seed->a+1.0f)/((seed->a+seed->b+1.0f)*(seed->a+seed->b+2.0f));
+
+        // update parameters
+        float mu_new = C1*m+C2*seed->mu;
+        seed->sigma2 = C1*(s2 + m*m) + C2*(seed->sigma2 + seed->mu*seed->mu) - mu_new*mu_new;
+        seed->mu = mu_new;
+        seed->a = (e-f)/(f-e/f);
+        seed->b = seed->a*(1.0f-f)/f;
+        return true;
+    }
+
+    double DepthFilter::computeTau(
+            const SE3& T_ref_cur,
+            const Vector3d& f,
+            const double z,
+            const double px_error_angle)
+    {
+        Vector3d t(T_ref_cur.translation());
+        Vector3d a = f*z-t;
+        double t_norm = t.norm();
+        double beta_plus = acos(a.dot(-t)/(t_norm*a.norm())) + px_error_angle;
+        return (t_norm*sin(beta_plus)/sin(PI-acos(f.dot(t)/t_norm)-beta_plus) - z); // ( triangle angles sum to PI and law of sines ) tau
+    }
 
 } // namespace vio

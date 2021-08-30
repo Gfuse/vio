@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/usr/src/googletest")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/root/Projects/ROS/src/p_33_vio/GPU_version/vio/cmake-build-debug")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/cmake-build-debug")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

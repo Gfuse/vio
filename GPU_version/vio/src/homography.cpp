@@ -48,7 +48,8 @@ namespace vk {
         }
 
         // TODO: replace this function to remove dependency from opencv!
-        cv::Mat cvH = cv::findHomography(src_pts, dst_pts, CV_RANSAC, 2./error_multiplier2);
+//        cv::Mat cvH = cv::findHomography(src_pts, dst_pts, CV_RANSAC, 2./error_multiplier2);
+        cv::Mat cvH = cv::findHomography(src_pts, dst_pts, cv::RANSAC, 2./error_multiplier2);
         H_c2_from_c1(0,0) = cvH.at<double>(0,0);
         H_c2_from_c1(0,1) = cvH.at<double>(0,1);
         H_c2_from_c1(0,2) = cvH.at<double>(0,2);
@@ -91,7 +92,7 @@ namespace vk {
         q.w() *= 1/q.norm();
         q.x()=0.0;
         q.z()=0.0;
-        T_c2_from_c1=Sophus::SE3(q.toRotationMatrix(),Eigen::Vector3d(decompositions.front().T.translation().x(),0.0,decompositions.front().T.translation().z()));
+        T_c2_from_c1=Sophus::SE3(q.toRotationMatrix(),Eigen::Vector3d(0.0,decompositions.front().T.translation().x(),decompositions.front().T.translation().z()));
         return true;
     }
 
