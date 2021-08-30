@@ -150,7 +150,7 @@ protected:
   double new_keyframe_min_depth_;       //!< Minimum depth in the new keyframe. Used for range in new seeds.
   double new_keyframe_mean_depth_;      //!< Maximum depth in the new keyframe. Used for range in new seeds.
   Matcher matcher_;
-  uint seeds_cont_=0;
+  //uint seeds_cont_=0;
 
   /// Initialize new seeds from a frame.
   void initializeSeeds(FramePtr frame);
