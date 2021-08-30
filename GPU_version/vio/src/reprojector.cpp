@@ -172,10 +172,6 @@ void Reprojector::reprojectMap(
             if(reprojectPoint1(frame, nullptr, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y))
                 overlap_kfs.back().second++;
         }
-        //SVO_STOP_TIMER("reproject_kfs");
-
-        // Now project all point candidates
-        // SVO_START_TIMER("reproject_candidates");
         {
             boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
             auto it=map_.point_candidates_.candidates_.begin();
@@ -193,21 +189,14 @@ void Reprojector::reprojectMap(
                 }
                 ++it;
             }
-        } // unlock the mutex when out of scope
-        //SVO_STOP_TIMER("reproject_candidates");
-        // Now we go through each grid cell and select one point to match.
-        // At the end, we should have at maximum one reprojected point per cell.
-        //SVO_START_TIMER("feature_align");
+        }
         for(size_t i=0; i<grid_.cells.size(); ++i)
         {
-            // we prefer good quality points over unkown quality (more likely to match)
-            // and unknown quality over candidates (position not optimized)
             if(reprojectCell(*grid_.cells.at(grid_.cell_order[i]), frame))
                 ++n_matches_;
             if(n_matches_ > (size_t) Config::maxFts())
                 break;
         }
-// SVO_STOP_TIMER("feature_align");
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO - second reimplementation
@@ -216,34 +205,43 @@ void Reprojector::reprojectMap(
             std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs)
     {
         resetGrid();
-
+        cv::Mat descriptors_ref, descriptors_cur;
+        std::vector<cv::KeyPoint> keypoints_cur;
+        std::vector<cv::DMatch> matches;
+        cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 4);
+        cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
+        cv::FAST(frame->img(),keypoints_cur,50);
+        extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
         list< pair<FramePtr,double> > close_kfs;
-        std::vector<cv::KeyPoint> keypoints_kfs;
-        std::vector<std::vector<cv::KeyPoint>> keypoints_ref;
         map_.getCloseKeyframes(frame, close_kfs);
+<<<<<<< HEAD
 
         // Sort KFs with overlap according to their closeness
+=======
+>>>>>>> internal/dev2
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
-
-        // Reproject all mappoints of the closest N kfs with overlap. We only store
-        // in which grid cell the points fall.
         size_t n = 0;
         overlap_kfs.reserve(options_.max_n_kfs);
-        keypoints_ref.clear();
         for(auto it_frame=close_kfs.begin(), ite_frame=close_kfs.end();
             it_frame!=ite_frame && n<options_.max_n_kfs; ++it_frame, ++n)
         {
-            keypoints_kfs.clear();
+            std::vector<cv::KeyPoint> keypoints_kfs;
             FramePtr ref_frame = it_frame->first;
+<<<<<<< HEAD
             // Try to reproject each mappoint that the other KF observes
+=======
+            overlap_kfs.push_back(pair<FramePtr,size_t>(ref_frame,0));
+>>>>>>> internal/dev2
             for(auto it_ftr=ref_frame->fts_.begin(), ite_ftr=ref_frame->fts_.end();
                 it_ftr!=ite_ftr; ++it_ftr)
             {
-                // check if the feature has a mappoint assigned
                 if((*it_ftr)->point == NULL)
                     continue;
+<<<<<<< HEAD
                 // make sure we project a point only once
+=======
+>>>>>>> internal/dev2
                 if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
                     continue;
                 (*it_ftr)->point->last_projected_kf_id_ = frame->id_;
@@ -252,6 +250,7 @@ void Reprojector::reprojectMap(
                 kp->pt.y = (*it_ftr)->px.y();
                 keypoints_kfs.push_back(*kp);
             }
+<<<<<<< HEAD
             keypoints_ref.push_back(keypoints_kfs);
         }
         //SVO_STOP_TIMER("reproject_kfs");
@@ -268,13 +267,13 @@ void Reprojector::reprojectMap(
             it_frame != ite_frame; ++it_frame, ++ii)
         {
             extractor->compute(it_frame->first->img(), keypoints_ref[ii], descriptors_ref);
+=======
+            extractor->compute(it_frame->first->img(), keypoints_kfs, descriptors_ref);
+>>>>>>> internal/dev2
             matcher->match(descriptors_ref, descriptors_cur, matches);
-            //std::cerr<<"matches size : "<<matches.size()<<std::endl;
-
-            FramePtr ref_frame = it_frame->first;
-            overlap_kfs.push_back(pair<FramePtr,size_t>(ref_frame,0));
-
-            for (int i; i < matches.size(); i++) {
+            //std::cerr<<keypoints_cur.size()<<"\t"<<descriptors_cur.size<<"\t"<<keypoints_kfs.size()<<"\t"<<descriptors_ref.size<<"\t"<<matches.size()<<std::endl;
+            for (int i; i < matches.size(); i++){
+                std::cerr<<matches[i].queryIdx<<"\t"<<matches[i].trainIdx<<"\t"<<matches[i].distance<<std::endl;
                 auto fts = ref_frame->fts_.begin();
                 auto fts2 = fts;
                 for (int f = 0; f < matches[i].queryIdx; f++)
@@ -282,41 +281,36 @@ void Reprojector::reprojectMap(
                 if (reprojectPoint1(frame, (*fts2)->point, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y)) {
                     overlap_kfs.back().second++;
                 }
+<<<<<<< HEAD
                 //keypoints_cur[i].class_id = 0;
 
+=======
+>>>>>>> internal/dev2
             }
         }
-
-        // Now project all point candidates
-        // SVO_START_TIMER("reproject_candidates");
+        boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
+        auto it=map_.point_candidates_.candidates_.begin();
+        while(it!=map_.point_candidates_.candidates_.end())
         {
-            boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
-            auto it=map_.point_candidates_.candidates_.begin();
-            while(it!=map_.point_candidates_.candidates_.end())
+            if(!reprojectPoint(frame, it->first))
             {
-                if(!reprojectPoint(frame, it->first))
+                it->first->n_failed_reproj_ += 3;
+                if(it->first->n_failed_reproj_ > 30)
                 {
-                    it->first->n_failed_reproj_ += 3;
-                    if(it->first->n_failed_reproj_ > 30)
-                    {
-                        map_.point_candidates_.deleteCandidate(*it);
-                        it = map_.point_candidates_.candidates_.erase(it);
-                        continue;
-                    }
+                    map_.point_candidates_.deleteCandidate(*it);
+                    it = map_.point_candidates_.candidates_.erase(it);
+                    continue;
                 }
-                ++it;
             }
-
-            for(size_t i=0; i<grid_.cells.size(); ++i)
-            {
-                // we prefer good quality points over unkown quality (more likely to match)
-                // and unknown quality over candidates (position not optimized)
-                if(reprojectCell(*grid_.cells.at(grid_.cell_order[i]), frame))
-                    ++n_matches_;
-                if(n_matches_ > (size_t) Config::maxFts())
-                    break;
-            }
-        } // unlock the mutex when out of scope
+            ++it;
+        }
+        for(size_t i=0; i<grid_.cells.size(); ++i)
+        {
+            if(reprojectCell(*grid_.cells.at(grid_.cell_order[i]), frame))
+                ++n_matches_;
+            if(n_matches_ > (size_t) Config::maxFts())
+                break;
+        }
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Reprojector::pointQualityComparator(Candidate& lhs, Candidate& rhs)
