@@ -92,9 +92,9 @@ void Reprojector::reprojectMap(
             {
                 if((*it_ftr)->point == NULL)
                     continue;
-                if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
+                if((*it_ftr)->point->last_frame_overlap_id_ == frame->id_)
                     continue;
-                (*it_ftr)->point->last_projected_kf_id_ = frame->id_;
+                (*it_ftr)->point->last_frame_overlap_id_= frame->id_;
                 if(reprojectPoint(frame, (*it_ftr)->point)){
                     overlap_kfs.back().second++;
                 }
@@ -240,37 +240,21 @@ void Reprojector::reprojectMap(
             extractor->compute(it_frame.item.first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
             for(auto&& f: _for(it_frame.item.first->fts_)){
-               // if(f.item->point->last_projected_kf_id_ == it_frame.item.first->id_ || f.index > matches.size()-1)continue;
-               // f.item->point->last_projected_kf_id_ = it_frame.item.first->id_;
+                if(f.item->point==NULL)f.item->point=new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(),f.item->px.y()));
+                if(f.item->point->last_frame_overlap_id_ == frame->id_)continue;
+                f.item->point->last_frame_overlap_id_ = frame->id_;
                 for(auto&& match:matches){
                     if(match.queryIdx!=f.index)continue;
                     assert(keypoints_cur.size()>match.trainIdx);
                     const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) * grid_.grid_n_cols
                                   + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
                     assert(grid_.cells.at(k)!= nullptr);
-                    if(f.item->point==NULL)continue;
                     Vector2d px((int)keypoints_cur.at(match.trainIdx).pt.x,(int)keypoints_cur.at(match.trainIdx).pt.y);
                     grid_.cells.at(k)->push_back(Candidate(f.item->point,px));
                     overlap_kfs.back().second++;
                     break;
                 }
             }
-        }
-        boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
-        auto it=map_.point_candidates_.candidates_.begin();
-        while(it!=map_.point_candidates_.candidates_.end())
-        {
-            if(!reprojectPoint(frame, it->first))
-            {
-                it->first->n_failed_reproj_ += 3;
-                if(it->first->n_failed_reproj_ > 30)
-                {
-                    map_.point_candidates_.deleteCandidate(*it);
-                    it = map_.point_candidates_.candidates_.erase(it);
-                    continue;
-                }
-            }
-            ++it;
         }
         for(size_t i=0; i<grid_.cells.size(); ++i)
         {

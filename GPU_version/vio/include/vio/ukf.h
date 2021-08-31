@@ -125,20 +125,15 @@ public:
         filter_->predict(x,y,pitch,1e-9*time.toNSec());
         lock=false;
     };
-    std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double y/*in camera frame*/,double z/*in camera frame*/,double roll/*in camera frame*/,size_t match,ros::Time& time) {
+    std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/,size_t match,ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
-        roll=roll+M_PI;
-        if(filter_->predict_up)filter_->correct(z,y,roll,match,1e-9*time.toNSec());
+        //if(filter_->predict_up)filter_->correct(z,x,pitch,match,1e-9*time.toNSec());
         lock=false;
-        double roll_f;
-        roll_f=filter_->state_(2)+M_PI;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(1),-filter_->state_(0),roll_f));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(1),filter_->state_(0),filter_->state_(2)));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
-        double pitch_f;
-        pitch_f=filter_->state_(2)+M_PI;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(1),-filter_->state_(0),pitch_f));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(1),filter_->state_(0),filter_->state_(2)));
     }
 private:
      Base* filter_= nullptr;

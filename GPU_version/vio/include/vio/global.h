@@ -92,7 +92,7 @@ namespace vio
         SE3 se3() const{
             //Todo add 15 roll orientation
             Quaterniond q;
-            q = AngleAxisd(-0.261799, Vector3d::UnitX())
+            q = AngleAxisd(0.261799, Vector3d::UnitX())
                 * AngleAxisd(pitch(), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
             return SE3(q.toRotationMatrix(),Vector3d(T2_.translation()(0), 0.0,T2_.translation()(1)));

@@ -54,7 +54,7 @@ public:
   size_t                      n_obs_;                   //!< Number of obervations: Keyframes AND successful reprojections in intermediate frames.
   g2oPoint*                   v_pt_;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
   int                         last_published_ts_;       //!< Timestamp of last publishing.
-  int                         last_projected_kf_id_;    //!< Flag for the reprojection: don't reproject a pt twice.
+  int                         last_frame_overlap_id_;    //!< Flag for the reprojection: don't reproject a pt twice.
   PointType                   type_;                    //!< Quality of the point.
   int                         n_failed_reproj_;         //!< Number of failed reprojections. Used to assess the quality of the point.
   int                         n_succeeded_reproj_;      //!< Number of succeeded reprojections. Used to assess the quality of the point.
