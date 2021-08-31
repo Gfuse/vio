@@ -151,8 +151,7 @@ namespace vio {
             extractor->compute(it_frame.item.first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
             for (auto &&f: _for(it_frame.item.first->fts_)) {
-                if (f.item->point == NULL)
-                    f.item->point = new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item);
+                if (f.item->point == NULL)f.item->point = new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item);
                 if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
                 f.item->point->last_frame_overlap_id_ = frame->id_;
                 for (auto &&match:matches) {

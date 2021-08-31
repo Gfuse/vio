@@ -142,7 +142,7 @@ bool Matcher::findMatchDirect(
 {
   ref_ftr_= nullptr;
   if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))return false;
-  if(!ref_ftr_->frame->cam_->isInFrame(ref_ftr_->px.cast<int>()/(1<<ref_ftr_->level), halfpatch_size_+2, ref_ftr_->level))
+  if(!ref_ftr_->frame->cam_->isInFrame(Vector2d(ref_ftr_->px/(1<<ref_ftr_->level)).cast<int>(), halfpatch_size_+2, ref_ftr_->level))
     return false;
   if(ref_ftr_->frame->img_pyr_.empty())return false;
   if(ref_ftr_->frame->img_pyr_[ref_ftr_->level].empty())return false;
