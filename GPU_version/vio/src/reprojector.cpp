@@ -162,17 +162,16 @@ void Reprojector::reprojectMap(
         matcher->match(descriptors_ref,descriptors_cur,matches);
         //std::cerr<<"matches size : "<<matches.size()<<std::endl;
 
-        for(int i=0; i < matches.size(); i++)
-        {
-            auto fts = framel->fts_.begin();
-            auto fts2 = fts;
-            for(int f = 0; f < matches[i].queryIdx; f++)
-                fts2++;
-            if(reprojectPoint1(frame, (*fts2)->point, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y)){
-                overlap_kfs.back().second++;
+        int i = 0;
+        for(auto&& f: _for(framel->fts_)){
+            if (f.index == matches[i].queryIdx) {
+                if (reprojectPoint1(frame, f.item->point, keypoints_cur[matches[i].trainIdx].pt.x,
+                                    keypoints_cur[matches[i].trainIdx].pt.y)) {
+                    overlap_kfs.back().second++;
+                }
+                keypoints_cur[i].class_id = 0;
+                i++;
             }
-            keypoints_cur[i].class_id = 0;
-
         }
         for(int i=0; i < keypoints_cur.size(); i++)
         {
@@ -251,12 +250,25 @@ void Reprojector::reprojectMap(
             }
             extractor->compute(it_frame->first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
+            int i = 0;
             for(auto&& f: _for(ref_frame->fts_)){
-                if (reprojectPoint1(frame, f.item->point, keypoints_cur[matches[f.index].trainIdx].pt.x, keypoints_cur[matches[f.index].trainIdx].pt.y)) {
-                    overlap_kfs.back().second++;
+                if (f.index == matches[i].queryIdx) {
+                    if (reprojectPoint1(frame, f.item->point, keypoints_cur[matches[i].trainIdx].pt.x,
+                                        keypoints_cur[matches[i].trainIdx].pt.y)) {
+                        overlap_kfs.back().second++;
+//                        keypoints_cur[matches[i].trainIdx].class_id = 0;
+                    }
+                    i++;
                 }
             }
         }
+//        for(int i=0; i < keypoints_cur.size(); i++)
+//        {
+//            if(keypoints_cur[i].class_id == 0)
+//                continue;
+//            if(reprojectPoint1(frame, nullptr, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y))
+//                overlap_kfs.back().second++;
+//        }
         boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
         auto it=map_.point_candidates_.candidates_.begin();
         while(it!=map_.point_candidates_.candidates_.end())
@@ -296,7 +308,6 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
   while(it!=cell.end())
   {
     ++n_trials_;
-    //std::cerr<<"n_trials_ : "<<n_trials_<<"\t"<<it->pt->type_<<"\t"<<it->pt->n_failed_reproj_<<"\t"<<it->pt->n_succeeded_reproj_<<std::endl;
     if(it->pt->type_ == Point::TYPE_DELETED)
     {
       it = cell.erase(it);
