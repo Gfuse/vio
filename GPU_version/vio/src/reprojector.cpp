@@ -217,7 +217,7 @@ void Reprojector::reprojectMap(
         resetGrid();
         cv::Mat descriptors_cur;
         std::vector<cv::KeyPoint> keypoints_cur;
-        cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 4);
+        cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
         cv::FAST(frame->img(),keypoints_cur,50);
         extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
@@ -228,8 +228,7 @@ void Reprojector::reprojectMap(
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
         overlap_kfs.reserve(options_.max_n_kfs);
         for(auto&& it_frame:_for(close_kfs)) {
-            //if(it_frame.index>options_.max_n_kfs)continue;
-            std::cerr<<it_frame.index<<","<<frame->id_<<'\n';
+            if(it_frame.index>options_.max_n_kfs)continue;
             std::vector<cv::KeyPoint> keypoints_kfs;
             std::vector<cv::DMatch> matches;
             cv::Mat descriptors_ref;
@@ -245,11 +244,15 @@ void Reprojector::reprojectMap(
                // f.item->point->last_projected_kf_id_ = it_frame.item.first->id_;
                 for(auto&& match:matches){
                     if(match.queryIdx!=f.index)continue;
-                    //if(match.distance>100.0)continue;
                     assert(keypoints_cur.size()>match.trainIdx);
-                    if(reprojectPoint1(frame, f.item->point, &keypoints_cur.at(match.trainIdx))==true) {
-                        overlap_kfs.back().second++;
-                    }
+                    const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) * grid_.grid_n_cols
+                                  + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
+                    assert(grid_.cells.at(k)!= nullptr);
+                    if(f.item->point==NULL)continue;
+                    Vector2d px((int)keypoints_cur.at(match.trainIdx).pt.x,(int)keypoints_cur.at(match.trainIdx).pt.y);
+                    grid_.cells.at(k)->push_back(Candidate(f.item->point,px));
+                    overlap_kfs.back().second++;
+                    break;
                 }
             }
         }
@@ -296,7 +299,7 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
     {
       it = cell.erase(it);
       continue;
-    }
+    }/*
     bool found_match = true;
     if(options_.find_match_direct)
       found_match = matcher_.findMatchDirect(*it->pt, *frame, it->px);
@@ -309,7 +312,7 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
         map_.point_candidates_.deleteCandidatePoint(it->pt);
       it = cell.erase(it);
       continue;
-    }
+    }*/
     it->pt->n_succeeded_reproj_++;
     if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
       it->pt->type_ = Point::TYPE_GOOD;
