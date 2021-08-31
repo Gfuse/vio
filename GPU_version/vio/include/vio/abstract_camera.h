@@ -9,6 +9,7 @@
 #define ABSTRACT_CAMERA_H_
 
 #include <Eigen/Core>
+#include <iostream>
 
 namespace vk
 {
@@ -66,8 +67,7 @@ public:
 
   inline bool isInFrame(const Vector2i &obs, int boundary, int level) const
   {
-    if(obs[0] >= boundary && obs[0] < width()/(1<<level)-boundary
-        && obs[1] >= boundary && obs[1] <height()/(1<<level)-boundary)
+    if(obs[0] >= boundary && obs.x() < width()/(1<<level)-boundary && obs[1] >= boundary && obs.y() <height()/(1<<level)-boundary)
       return true;
     return false;
   }

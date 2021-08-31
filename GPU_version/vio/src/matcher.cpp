@@ -140,23 +140,21 @@ bool Matcher::findMatchDirect(
     const Frame& cur_frame,
     Vector2d& px_cur)
 {
-  if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))
-    return false;
-  if(!ref_ftr_->frame->cam_->isInFrame(
-      ref_ftr_->px.cast<int>()/(1<<ref_ftr_->level), halfpatch_size_+2, ref_ftr_->level))
+  ref_ftr_= nullptr;
+  if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))return false;
+  if(!ref_ftr_->frame->cam_->isInFrame(ref_ftr_->px.cast<int>()/(1<<ref_ftr_->level), halfpatch_size_+2, ref_ftr_->level))
     return false;
   if(ref_ftr_->frame->img_pyr_.empty())return false;
   if(ref_ftr_->frame->img_pyr_[ref_ftr_->level].empty())return false;
   // warp affine
   warp::getWarpMatrixAffine(
-      *ref_ftr_->frame->cam_, *cur_frame.cam_, ref_ftr_->px, ref_ftr_->f,
+      *ref_ftr_->frame->cam_, *(cur_frame.cam_), ref_ftr_->px, ref_ftr_->f,
       (Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),
       cur_frame.se3() * ref_ftr_->frame->getSE3Inv(), ref_ftr_->level, A_cur_ref_);
   search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
   if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
                    ref_ftr_->level, search_level_, halfpatch_size_+1, patch_with_border_))return false;
   createPatchFromPatchWithBorder();
-
   // px_cur should be set
   Vector2d px_scaled(px_cur/(1<<search_level_));
 

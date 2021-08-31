@@ -168,8 +168,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // sparse image align
   //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
   //assert(new_frame_.get()== nullptr);
-  //SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-  //if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
+  SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
+  if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   //reprojector_.reprojectMap(new_frame_, overlap_kfs_);
    // reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
     reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);

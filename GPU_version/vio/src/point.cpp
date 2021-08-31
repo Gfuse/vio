@@ -98,20 +98,18 @@ void Point::initNormal()
 bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
 {
   // TODO: get frame with same point of view AND same pyramid level!
-  Vector3d obs_dir(Vector3d(framepos(0),0.0,framepos(1)) - pos_); obs_dir.normalize();
-  auto max_it=obs_.begin();
-  double max_cos_angle = 1;
-  for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
-  {
-    Vector3d dir(Vector3d((*it)->frame->pos()(0),0.0,(*it)->frame->pos()(1)) - pos_); dir.normalize();
-    double cos_angle = obs_dir.dot(dir);
-    if(cos_angle < max_cos_angle)
-    {
-      max_cos_angle = cos_angle;
-      max_it = it;
-    }
+  Vector3d obs_dir(Vector3d(framepos(0),1e-9,framepos(1)) + pos_); obs_dir.normalize();
+  double max_cos_angle = 1.0;
+  if(obs_.empty())return false;
+  for(auto&& ob:obs_){
+      Vector3d dir(Vector3d(ob->frame->pos()(0),1e-9,ob->frame->pos()(1)) + pos_);
+      double cos_angle = obs_dir.dot(dir.normalized());
+      if(cos_angle < max_cos_angle)
+      {
+          max_cos_angle = cos_angle;
+          ftr = ob;
+      }
   }
-  ftr = *max_it;
   return true;
 }
 
