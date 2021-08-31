@@ -72,6 +72,7 @@ public:
 
   void reprojectMap2(
       FramePtr frame,
+      FramePtr last_frame,
       std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
 
 private:
@@ -106,7 +107,7 @@ private:
   void resetGrid();
   bool reprojectCell(Cell& cell, FramePtr frame);
   bool reprojectPoint(FramePtr frame, Point* point);
-  bool reprojectPoint1(FramePtr frame, Point* point, float x, float y);
+  bool reprojectPoint1(FramePtr frame, Point* point, cv::KeyPoint* px_cv);
 };
 
 } // namespace vio

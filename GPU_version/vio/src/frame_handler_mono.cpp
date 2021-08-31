@@ -171,11 +171,12 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
   //reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-    //reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
-    reprojector_.reprojectMap2(new_frame_, overlap_kfs_);
+   // reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
+   std::cerr<<"new frame\n";
+    reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
   //assert (false);
 
-  std::cout<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
+  std::cerr<<"Reprojection Map nPoint: "<<overlap_kfs_.back().second
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
              (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';

@@ -168,7 +168,7 @@ void Reprojector::reprojectMap(
             auto fts2 = fts;
             for(int f = 0; f < matches[i].queryIdx; f++)
                 fts2++;
-            if(reprojectPoint1(frame, (*fts2)->point, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y)){
+            if(reprojectPoint1(frame, (*fts2)->point, &keypoints_cur[i])){
                 overlap_kfs.back().second++;
             }
             keypoints_cur[i].class_id = 0;
@@ -178,7 +178,7 @@ void Reprojector::reprojectMap(
         {
             if(keypoints_cur[i].class_id == 0)
                 continue;
-            if(reprojectPoint1(frame, nullptr, keypoints_cur[i].pt.x, keypoints_cur[i].pt.y))
+            if(reprojectPoint1(frame, nullptr, &keypoints_cur[i]))
                 overlap_kfs.back().second++;
         }
         {
@@ -211,6 +211,7 @@ void Reprojector::reprojectMap(
 // TODO - second reimplementation
     void Reprojector::reprojectMap2(
             FramePtr frame,
+            FramePtr last_frame,
             std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs)
     {
         resetGrid();
@@ -222,38 +223,33 @@ void Reprojector::reprojectMap(
         extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
         list< pair<FramePtr,double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
+        if(!last_frame->fts_.empty())close_kfs.push_back(pair<FramePtr,double>(last_frame, (frame->T_f_w_.se2().translation()-last_frame->T_f_w_.se2().translation()).norm()));
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
-        size_t n = 0;
         overlap_kfs.reserve(options_.max_n_kfs);
-        for(auto it_frame=close_kfs.begin(), ite_frame=close_kfs.end();
-            it_frame!=ite_frame && n<options_.max_n_kfs; ++it_frame, ++n)
-        {
+        for(auto&& it_frame:_for(close_kfs)) {
+            //if(it_frame.index>options_.max_n_kfs)continue;
+            std::cerr<<it_frame.index<<","<<frame->id_<<'\n';
             std::vector<cv::KeyPoint> keypoints_kfs;
             std::vector<cv::DMatch> matches;
             cv::Mat descriptors_ref;
-            FramePtr ref_frame = it_frame->first;
-            overlap_kfs.push_back(pair<FramePtr,size_t>(ref_frame,0));
-
-            for(auto it_ftr=ref_frame->fts_.begin(), ite_ftr=ref_frame->fts_.end();
-                it_ftr!=ite_ftr; ++it_ftr)
+            overlap_kfs.push_back(pair<FramePtr,size_t>(it_frame.item.first,0));
+            for(auto&& it_ftr:it_frame.item.first->fts_)
             {
-                if((*it_ftr)->point == NULL)
-                    continue;
-
-                if((*it_ftr)->point->last_projected_kf_id_ == frame->id_)
-                    continue;
-                (*it_ftr)->point->last_projected_kf_id_ = frame->id_;
-                cv::KeyPoint kp;
-                kp.pt.x = (*it_ftr)->px.x();
-                kp.pt.y = (*it_ftr)->px.y();
-                keypoints_kfs.push_back(kp);
+                keypoints_kfs.push_back(cv::KeyPoint(it_ftr->px.x(),it_ftr->px.y(),1));
             }
-            extractor->compute(it_frame->first->img(), keypoints_kfs, descriptors_ref);
+            extractor->compute(it_frame.item.first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
-            for(auto&& f: _for(ref_frame->fts_)){
-                if (reprojectPoint1(frame, f.item->point, keypoints_cur[matches[f.index].trainIdx].pt.x, keypoints_cur[matches[f.index].trainIdx].pt.y)) {
-                    overlap_kfs.back().second++;
+            for(auto&& f: _for(it_frame.item.first->fts_)){
+               // if(f.item->point->last_projected_kf_id_ == it_frame.item.first->id_ || f.index > matches.size()-1)continue;
+               // f.item->point->last_projected_kf_id_ = it_frame.item.first->id_;
+                for(auto&& match:matches){
+                    if(match.queryIdx!=f.index)continue;
+                    //if(match.distance>100.0)continue;
+                    assert(keypoints_cur.size()>match.trainIdx);
+                    if(reprojectPoint1(frame, f.item->point, &keypoints_cur.at(match.trainIdx))==true) {
+                        overlap_kfs.back().second++;
+                    }
                 }
             }
         }
@@ -296,7 +292,6 @@ bool Reprojector::reprojectCell(Cell& cell, FramePtr frame)
   while(it!=cell.end())
   {
     ++n_trials_;
-    //std::cerr<<"n_trials_ : "<<n_trials_<<"\t"<<it->pt->type_<<"\t"<<it->pt->n_failed_reproj_<<"\t"<<it->pt->n_succeeded_reproj_<<std::endl;
     if(it->pt->type_ == Point::TYPE_DELETED)
     {
       it = cell.erase(it);
@@ -358,33 +353,35 @@ bool Reprojector::reprojectPoint(FramePtr frame, Point* point)
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO first reimplementation
-    bool Reprojector::reprojectPoint1(FramePtr frame, Point* point, float x, float y)
+    bool Reprojector::reprojectPoint1(FramePtr frame, Point* point, cv::KeyPoint* px_cv)
     {
-        if(point) {
+        if(point != nullptr) {
+            Vector2d px((int)px_cv->pt.x, (int)px_cv->pt.y);
+            if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
+            {
+                const int k = static_cast<int>(px[1] / grid_.cell_size) * grid_.grid_n_cols
+                              + static_cast<int>(px[0] / grid_.cell_size);
+                if(k<grid_.cells.size()-1){
+                    assert(grid_.cells.at(k)!= nullptr);
+                    assert(point!=NULL);
+                    grid_.cells.at(k)->push_back(Candidate(point, px));
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;/*else{
             Vector2d px(x, y);
             if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
             {
                 const int k = static_cast<int>(px[1] / grid_.cell_size) * grid_.grid_n_cols
                               + static_cast<int>(px[0] / grid_.cell_size);
-                grid_.cells.at(k)->push_back(Candidate(point, px));
+                frame->fts_.push_back(Fea)
+                grid_.cells.at(k)->push_back(Candidate(vio::Point(Vector3d(frame->cam_->cam2world(x, y))), px));
                 return true;
             }
             return false;
-        }
-        else{
-            Vector2d px(x, y);
-            if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
-            {
-                const int k = static_cast<int>(px[1] / grid_.cell_size) * grid_.grid_n_cols
-                              + static_cast<int>(px[0] / grid_.cell_size);
-                Point* pnt = new Point(Vector3d(frame->cam_->cam2world(x, y)));
-                pnt->type_ = Point::TYPE_UNKNOWN;
-                grid_.cells.at(k)->push_back(Candidate(pnt, px));
-                delete pnt;
-                return true;
-            }
-            return false;
-        }
+        }*/
     }
 
 } // namespace vio
