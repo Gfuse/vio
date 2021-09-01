@@ -78,7 +78,7 @@ public:
   Feature* findFrameRef(Frame* frame);
 
   /// Get Frame with similar viewpoint.
-  bool getCloseViewObs(const Vector2d& pos, Feature*& obs) const;
+  bool getCloseViewObs(const Vector2d& pos, Feature*& obs, int id=0) const;
 
   /// Get number of observations.
   inline size_t nRefs() const { return obs_.size(); }

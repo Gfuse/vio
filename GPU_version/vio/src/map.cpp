@@ -44,7 +44,7 @@ bool Map::safeDeleteFrame(FramePtr frame)
   bool found = false;
   for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
   {
-    if(*it == frame)
+    if(it->get()->id_ == frame->id_)
     {
       std::for_each((*it)->fts_.begin(), (*it)->fts_.end(), [&](Feature* ftr){
         removePtFrameRef(it->get(), ftr);
@@ -268,7 +268,7 @@ void MapPointCandidates::removeFrameCandidates(FramePtr frame)
   auto it=candidates_.begin();
   while(it!=candidates_.end())
   {
-    if(it->second->frame == frame.get())
+    if(it->second->frame->id_ == frame->id_)
     {
       deleteCandidate(*it);
       it = candidates_.erase(it);

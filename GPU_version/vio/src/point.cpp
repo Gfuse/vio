@@ -59,6 +59,7 @@ Point::~Point()
 
 void Point::addFrameRef(Feature* ftr)
 {
+
   obs_.push_front(ftr);
   ++n_obs_;
 }
@@ -95,7 +96,7 @@ void Point::initNormal()
   normal_set_ = true;
 }
 
-bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
+bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr,int id) const
 {
   // TODO: get frame with same point of view AND same pyramid level!
   ftr= nullptr;
@@ -103,7 +104,10 @@ bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
   double max_cos_angle = 1.0;
   if(obs_.empty())return false;
   for(auto&& ob:obs_){
-      if(ob == nullptr)continue;
+      if(ob->frame->id_==id){
+          ftr = ob;
+          return true;
+      }
       Vector2d t=ob->frame->pos();
       Vector3d dir(Vector3d(t.x(),1e-9,t.y()) + pos_);
       double cos_angle = obs_dir.dot(dir.normalized());

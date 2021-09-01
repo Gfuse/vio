@@ -140,7 +140,9 @@ bool Matcher::findMatchDirect(
     const Frame& cur_frame,
     Vector2d& px_cur)
 {
-  if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))return false;
+  if(pt.last_frame_overlap_id_ !=cur_frame.id_)return true;
+  if(pt.obs_.size()<2)return false;
+  if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_,cur_frame.id_))return false;
   if(ref_ftr_== nullptr)return false;
   if(ref_ftr_->frame== nullptr)return false;
   if(ref_ftr_->frame->cam_== nullptr)return false;

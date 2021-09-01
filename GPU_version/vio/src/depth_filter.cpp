@@ -299,7 +299,7 @@ namespace vio {
         lock_t lock(seeds_mut_);
         for(std::list<Seed>::iterator it=seeds_.begin(); it!=seeds_.end(); ++it)
         {
-            if (it->ftr->frame == frame.get())
+            if (it->ftr->frame->id_ == frame->id_)
                 seeds.push_back(*it);
         }
     }

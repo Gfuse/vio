@@ -155,23 +155,33 @@ namespace vio {
                 for (auto &&match:matches) {
                     if (match.queryIdx != f.index)continue;
                     if (f.item->point == NULL){
-                        f.item->point = new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()));
-                       // assert(!f.item->point->obs_.empty());
+                        const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
+                                      grid_.grid_n_cols
+                                      + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
+                        Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
+                                    (int) keypoints_cur.at(match.trainIdx).pt.y);
+                        frame->fts_.push_back(new Feature(it_frame.item.first.get(),
+                                                          new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item),
+                                px,it_frame.item.first->cam_->cam2world(f.item->px),0));
+                        frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
+                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
+                        overlap_kfs.back().second++;
+                        break;
+                    }else{
+                        if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
+                        f.item->point->last_frame_overlap_id_ = frame->id_;
+                        assert(keypoints_cur.size() > match.trainIdx);
+                        const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
+                                      grid_.grid_n_cols
+                                      + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
+                        assert(grid_.cells.at(k) != nullptr);
+                        Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
+                                    (int) keypoints_cur.at(match.trainIdx).pt.y);
+                        //f.item->point->addFrameRef(f.item);
+                        grid_.cells.at(k)->push_back(Candidate(f.item->point, px));
+                        overlap_kfs.back().second++;
+                        break;
                     }
-                    if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
-                    f.item->point->last_frame_overlap_id_ = frame->id_;
-                    assert(keypoints_cur.size() > match.trainIdx);
-                    const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
-                                  grid_.grid_n_cols
-                                  + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
-                    assert(grid_.cells.at(k) != nullptr);
-                    Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
-                                (int) keypoints_cur.at(match.trainIdx).pt.y);
-                    f.item->point->addFrameRef(new Feature(it_frame.item.first.get(),f.item->px,0));
-                    //f.item->point->addFrameRef(f.item);
-                    grid_.cells.at(k)->push_back(Candidate(f.item->point, px));
-                    overlap_kfs.back().second++;
-                    break;
                 }
             }
         }
@@ -193,12 +203,13 @@ namespace vio {
     }
 
     bool Reprojector::reprojectCell(Cell &cell, FramePtr frame) {
+        if(cell.size()<1)return false;
         cell.sort(boost::bind(&Reprojector::pointQualityComparator, _1, _2));
         Cell::iterator it=cell.begin();
         while(it!=cell.end())
         {
             ++n_trials_;
-            if(it->pt->type_ == Point::TYPE_DELETED)
+            if(it->pt->type_ == Point::TYPE_DELETED || it->pt ==NULL)
             {
                 it = cell.erase(it);
                 continue;
