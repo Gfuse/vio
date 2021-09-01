@@ -99,6 +99,7 @@ public:
   double h_inv_;                //!< hessian of 1d image alignment along epipolar line
   int search_level_;
   bool reject_;
+  Feature* ref_ftr_;
   Vector2d px_cur_;
 
   Matcher() = default;

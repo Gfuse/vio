@@ -99,7 +99,9 @@ namespace vio
             return SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));
         }
         ~SE2_5(){
-           // delete T2_;
+        }
+        bool empty(){
+            return T2_ == nullptr ? true : false;
         }
 
     private:

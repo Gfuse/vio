@@ -140,7 +140,6 @@ bool Matcher::findMatchDirect(
     const Frame& cur_frame,
     Vector2d& px_cur)
 {
-  Feature* ref_ftr_= nullptr;
   if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))return false;
   //if(ref_ftr_->frame->cam_== nullptr)return false;
   assert(ref_ftr_->frame!= nullptr);

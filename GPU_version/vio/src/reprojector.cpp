@@ -189,41 +189,50 @@ namespace vio {
 
     bool Reprojector::reprojectCell(Cell &cell, FramePtr frame) {
         cell.sort(boost::bind(&Reprojector::pointQualityComparator, _1, _2));
-        for(auto&& it : cell) {
+        Cell::iterator it=cell.begin();
+        while(it!=cell.end())
+        {
             ++n_trials_;
-            if (it.pt->type_ == Point::TYPE_DELETED) {
-               // cell.erase(it.index);
-                continue;
-            }
-            if (!matcher_.findMatchDirect(*it.pt, *frame, it.px)) {
-                it.pt->n_failed_reproj_++;
-                if (it.pt->type_ == Point::TYPE_UNKNOWN && it.pt->n_failed_reproj_ > 15)
-                    map_.safeDeletePoint(it.pt);
-                if (it.pt->type_ == Point::TYPE_CANDIDATE && it.pt->n_failed_reproj_ > 30)
-                    map_.point_candidates_.deleteCandidatePoint(it.pt);
-                //it = cell.erase(it);
-                continue;
-            }
-            it.pt->n_succeeded_reproj_++;
-            if (it.pt->type_ == Point::TYPE_UNKNOWN && it.pt->n_succeeded_reproj_ > 10)
-                it.pt->type_ = Point::TYPE_GOOD;
 
-            Feature *new_feature = new Feature(frame.get(), it.px, matcher_.search_level_);
+            if(it->pt->type_ == Point::TYPE_DELETED)
+            {
+                it = cell.erase(it);
+                continue;
+            }
+            bool found_match = true;
+            if(options_.find_match_direct)
+                found_match = matcher_.findMatchDirect(*it->pt, *frame, it->px);
+            if(!found_match)
+            {
+                it->pt->n_failed_reproj_++;
+                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)
+                    map_.safeDeletePoint(it->pt);
+                if(it->pt->type_ == Point::TYPE_CANDIDATE  && it->pt->n_failed_reproj_ > 30)
+                    map_.point_candidates_.deleteCandidatePoint(it->pt);
+                it = cell.erase(it);
+                continue;
+            }
+            it->pt->n_succeeded_reproj_++;
+            if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
+                it->pt->type_ = Point::TYPE_GOOD;
+
+            Feature* new_feature = new Feature(frame.get(), it->px, matcher_.search_level_);
             frame->addFeature(new_feature);
 
             // Here we add a reference in the feature to the 3D point, the other way
             // round is only done if this frame is selected as keyframe.
-            new_feature->point = it.pt;
-/*
-            if (matcher_.ref_ftr_->type == Feature::EDGELET) {
+            new_feature->point = it->pt;
+
+            if(matcher_.ref_ftr_->type == Feature::EDGELET)
+            {
                 new_feature->type = Feature::EDGELET;
-                new_feature->grad = matcher_.A_cur_ref_ * matcher_.ref_ftr_->grad;
+                new_feature->grad = matcher_.A_cur_ref_*matcher_.ref_ftr_->grad;
                 new_feature->grad.normalize();
             }
-*/
+
             // If the keyframe is selected and we reproject the rest, we don't have to
             // check this point anymore.
-            //it = cell.erase(it);
+            it = cell.erase(it);
 
             // Maximum one point per cell.
             return true;

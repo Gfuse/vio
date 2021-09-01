@@ -119,7 +119,8 @@ namespace vio {
 
         /// Return the pose of the frame in the (w)orld coordinate frame.
         inline Vector2d pos() const {
-            return T_f_w_.se2().translation();
+            Vector2d tem=T_f_w_.se2().translation();
+            return tem;
         }
 
         inline SE3 se3() const{
