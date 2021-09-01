@@ -140,10 +140,21 @@ bool Matcher::findMatchDirect(
     const Frame& cur_frame,
     Vector2d& px_cur)
 {
-  ref_ftr_= nullptr;
+  Feature* ref_ftr_= nullptr;
   if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))return false;
-  if(!ref_ftr_->frame->cam_->isInFrame(Vector2d(ref_ftr_->px/(1<<ref_ftr_->level)).cast<int>(), halfpatch_size_+2, ref_ftr_->level))
-    return false;
+  //if(ref_ftr_->frame->cam_== nullptr)return false;
+  assert(ref_ftr_->frame!= nullptr);
+  if(ref_ftr_->frame->cam_== nullptr)return false;
+  assert(ref_ftr_->frame->cam_!= nullptr);
+  Vector2i pxi=ref_ftr_->px.cast<int>();
+  if(ref_ftr_->level==NULL){
+      if(!ref_ftr_->frame->cam_->isInFrame(pxi, 6))return false;
+      ref_ftr_->level=0;
+  }else {
+      if (!ref_ftr_->frame->cam_->isInFrame(Vector2d(ref_ftr_->px / (1 << ref_ftr_->level)).cast<int>(),
+                                            halfpatch_size_ + 2, ref_ftr_->level))
+          return false;
+  }
   if(ref_ftr_->frame->img_pyr_.empty())return false;
   if(ref_ftr_->frame->img_pyr_[ref_ftr_->level].empty())return false;
   // warp affine

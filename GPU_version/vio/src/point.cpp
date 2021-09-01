@@ -102,7 +102,9 @@ bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
   double max_cos_angle = 1.0;
   if(obs_.empty())return false;
   for(auto&& ob:obs_){
-      Vector3d dir(Vector3d(ob->frame->pos()(0),1e-9,ob->frame->pos()(1)) + pos_);
+      assert(ob->frame!= nullptr);
+      Vector2d t=ob->frame->pos();
+      Vector3d dir(Vector3d(t.x(),1e-9,t.y()) + pos_);
       double cos_angle = obs_dir.dot(dir.normalized());
       if(cos_angle < max_cos_angle)
       {

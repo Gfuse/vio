@@ -99,7 +99,6 @@ public:
   double h_inv_;                //!< hessian of 1d image alignment along epipolar line
   int search_level_;
   bool reject_;
-  Feature* ref_ftr_;
   Vector2d px_cur_;
 
   Matcher() = default;
@@ -108,8 +107,8 @@ public:
   /// Find a match by directly applying subpix refinement.
   /// IMPORTANT! This function assumes that px_cur is already set to an estimate that is within ~2-3 pixel of the final result!
   bool findMatchDirect(
-      const Point& pt,
-      const Frame& frame,
+       const Point& pt,
+       const Frame& frame,
       Vector2d& px_cur);
 
   /// Find a match by searching along the epipolar line without using any features.

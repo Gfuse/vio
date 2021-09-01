@@ -26,7 +26,6 @@ SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -fsee -fomit-frame-pointer -
 # Add plain cmake packages 
 FIND_PACKAGE(OpenCV 4 REQUIRED)
 FIND_PACKAGE(Eigen REQUIRED)
-FIND_PACKAGE(Sophus REQUIRED)
 FIND_PACKAGE(Boost REQUIRED COMPONENTS thread system)
 FIND_PACKAGE(OpenCL REQUIRED)
 
@@ -50,7 +49,6 @@ INCLUDE_DIRECTORIES(
         kernel
         ${Eigen_INCLUDE_DIRS}
         ${OpenCV_INCLUDE_DIRS}
-        ${Sophus_INCLUDE_DIRS}
         ${Boost_INCLUDE_DIRS}
         ${OpenCL_INCLUDE_DIRS}
         ${catkin_INCLUDE_DIRS}
@@ -60,13 +58,12 @@ INCLUDE_DIRECTORIES(
 LIST(APPEND LINK_LIBS
   #gtsam
   ${OpenCV_LIBS}
-  ${Sophus_LIBRARIES}
   ${Boost_LIBRARIES}
   ${OpenCL_LIBRARIES}
   ${catkin_LIBRARIES}
 )
 
-file(GLOB SRC  CONFIGURE_DEPENDS "src/*.cpp")
+file(GLOB SRC  CONFIGURE_DEPENDS "src/*.cpp" "include/sophus/*.cpp")
 
 
 

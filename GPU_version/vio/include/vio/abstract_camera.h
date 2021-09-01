@@ -67,9 +67,19 @@ public:
 
   inline bool isInFrame(const Vector2i &obs, int boundary, int level) const
   {
-    if((int)obs[0] >= boundary && (int)obs.x() < width()/(1<<level)-boundary && (int)obs[1] >= boundary && (int)obs.y() <height()/(1<<level)-boundary)
+      if(level>0){
+          if(obs.x() < boundary)return false;
+          if(obs.x() > (int)(width()/(1<<level)-boundary))return false;
+          if(obs.y() < boundary)return false;
+          if(obs.y() > (int)(height()/(1<<level)-boundary))return false;
+      }else{
+          if(obs.x() < boundary)return false;
+          if(obs.x() > (int)(width()-boundary))return false;
+          if(obs.y() < boundary)return false;
+          if(obs.y() > (int)(height()-boundary))return false;
+      }
       return true;
-    return false;
+
   }
 };
 

@@ -52,9 +52,9 @@ namespace vio
     const double PI = 3.14159265;
     class SE2_5: public SE2{
     public:
-        SE2_5(SE2&& se2):T2_(se2){
+        SE2_5(SE2&& se2):T2_(new SE2(se2)){
         }
-        SE2_5(SE2& se2):T2_(se2){
+        SE2_5(SE2& se2):T2_(new SE2(se2)){
         }
         SE2_5(SE3&& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
@@ -62,7 +62,7 @@ namespace vio
             Eigen::Matrix<double, 2,2> R;
             R<<cos(euler(0)),sin(euler(0)),
                     -sin(euler(0)),cos(euler(0));
-            T2_ = SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
+            T2_ = new SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
         }
         SE2_5(SE3& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
@@ -70,24 +70,25 @@ namespace vio
             Eigen::Matrix<double, 2,2> R;
             R<<cos(euler(0)),sin(euler(0)),
                     -sin(euler(0)),cos(euler(0));
-            T2_=SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
+            T2_=new SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
         }
         SE2_5(double y,double z,double roll){
             Eigen::Matrix<double, 2,2> R;
             R<<cos(roll),sin(roll),
                     -sin(roll),cos(roll);
-            T2_=SE2(R,Vector2d(y,z));
+            T2_=new SE2(R,Vector2d(y,z));
         };
         SE2 se2() const{
-            return T2_;
+            assert(T2_!= nullptr);
+            return *T2_;
         }
         SE2 inverse() const{
-            double roll=atan2(T2_.so2().unit_complex().imag(),T2_.so2().unit_complex().real());
-            return SE2(roll+M_PI,-1.0*T2_.translation());
+            double roll=atan2(T2_->so2().unit_complex().imag(),T2_->so2().unit_complex().real());
+            return SE2(roll+M_PI,-1.0*T2_->translation());
         }
-        // Rotation around x
+        // Rotation around y
         double pitch()const{
-            return atan2(T2_.rotation_matrix()(0,1),T2_.rotation_matrix()(0,0));
+            return atan2(T2_->rotation_matrix()(0,1),T2_->rotation_matrix()(0,0));
         }
         SE3 se3() const{
             //Todo add 15 roll orientation
@@ -95,12 +96,14 @@ namespace vio
             q = AngleAxisd(0.261799, Vector3d::UnitX())
                 * AngleAxisd(pitch(), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
-            return SE3(q.toRotationMatrix(),Vector3d(T2_.translation()(0), 0.0,T2_.translation()(1)));
+            return SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));
         }
-        ~SE2_5(){}
+        ~SE2_5(){
+           // delete T2_;
+        }
 
     private:
-        SE2 T2_;
+        SE2* T2_= nullptr;
     };
 
     class Frame;

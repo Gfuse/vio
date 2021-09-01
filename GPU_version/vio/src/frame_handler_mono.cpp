@@ -170,9 +170,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   //assert(new_frame_.get()== nullptr);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
-  //reprojector_.reprojectMap(new_frame_, overlap_kfs_);
-   // reprojector_.reprojectMap1(new_frame_, last_frame_, overlap_kfs_);
-    reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
+  reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
   //assert (false);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;

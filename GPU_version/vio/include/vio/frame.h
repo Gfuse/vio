@@ -118,7 +118,9 @@ namespace vio {
         inline Vector2d f2c(const Vector3d& f) const { return cam_->world2cam( f ); }
 
         /// Return the pose of the frame in the (w)orld coordinate frame.
-        inline Vector2d pos() const { return T_f_w_.se2().translation(); }
+        inline Vector2d pos() const {
+            return T_f_w_.se2().translation();
+        }
 
         inline SE3 se3() const{
             return T_f_w_.se3();
