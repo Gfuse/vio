@@ -52,31 +52,29 @@ namespace vio
     const double PI = 3.14159265;
     class SE2_5: public SE2{
     public:
-        SE2_5(SE2&& se2):T2_(new SE2(se2)){
+        SE2_5(SE2&& se2){
+            T2_=new SE2(se2);
+            assert(T2_!= nullptr);
         }
-        SE2_5(SE2& se2):T2_(new SE2(se2)){
+        SE2_5(SE2& se2){
+            T2_=new SE2(se2);
+            assert(T2_!= nullptr);
         }
         SE2_5(SE3&& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
             auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);//roll,pitch,yaw
-            Eigen::Matrix<double, 2,2> R;
-            R<<cos(euler(0)),sin(euler(0)),
-                    -sin(euler(0)),cos(euler(0));
-            T2_ = new SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
+            T2_ = new SE2(SO2(euler(1)),Vector2d(se3.translation().x(),se3.translation().z()));
+            assert(T2_!= nullptr);
         }
         SE2_5(SE3& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
             auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);//roll,pitch,yaw
-            Eigen::Matrix<double, 2,2> R;
-            R<<cos(euler(0)),sin(euler(0)),
-                    -sin(euler(0)),cos(euler(0));
-            T2_=new SE2(R,Vector2d(se3.translation().x(),se3.translation().z()));
+            T2_=new SE2(SO2(euler(1)),Vector2d(se3.translation().x(),se3.translation().z()));
+            assert(T2_!= nullptr);
         }
-        SE2_5(double y,double z,double roll){
-            Eigen::Matrix<double, 2,2> R;
-            R<<cos(roll),sin(roll),
-                    -sin(roll),cos(roll);
-            T2_=new SE2(R,Vector2d(y,z));
+        SE2_5(double y,double z,double pitch){
+            T2_=new SE2(SO2(pitch),Vector2d(y,z));
+            assert(T2_!= nullptr);
         };
         SE2 se2() const{
             assert(T2_!= nullptr);
@@ -100,7 +98,7 @@ namespace vio
         }
         ~SE2_5(){
         }
-        bool empty(){
+        bool empty() const{
             return T2_ == nullptr ? true : false;
         }
 

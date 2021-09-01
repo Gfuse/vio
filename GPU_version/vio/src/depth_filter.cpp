@@ -141,7 +141,7 @@ namespace vio {
         size_t n_removed = 0;
         while(it!=seeds_.end())
         {
-            if(it->ftr->frame == frame.get())
+            if(it->ftr->frame->id_ == frame->id_)
             {
                 it = seeds_.erase(it);
                 ++n_removed;

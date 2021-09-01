@@ -141,10 +141,9 @@ bool Matcher::findMatchDirect(
     Vector2d& px_cur)
 {
   if(!pt.getCloseViewObs(cur_frame.pos(), ref_ftr_))return false;
-  //if(ref_ftr_->frame->cam_== nullptr)return false;
-  assert(ref_ftr_->frame!= nullptr);
+  if(ref_ftr_== nullptr)return false;
+  if(ref_ftr_->frame== nullptr)return false;
   if(ref_ftr_->frame->cam_== nullptr)return false;
-  assert(ref_ftr_->frame->cam_!= nullptr);
   Vector2i pxi=ref_ftr_->px.cast<int>();
   if(ref_ftr_->level==NULL){
       if(!ref_ftr_->frame->cam_->isInFrame(pxi, 6))return false;

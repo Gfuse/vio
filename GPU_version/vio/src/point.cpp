@@ -75,7 +75,7 @@ bool Point::deleteFrameRef(Frame* frame)
 {
   for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
   {
-    if((*it)->frame == frame)
+    if((*it)->frame->id_ == frame->id_)
     {
       obs_.erase(it);
       return true;
@@ -98,11 +98,12 @@ void Point::initNormal()
 bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
 {
   // TODO: get frame with same point of view AND same pyramid level!
+  ftr= nullptr;
   Vector3d obs_dir(Vector3d(framepos(0),1e-9,framepos(1)) + pos_); obs_dir.normalize();
   double max_cos_angle = 1.0;
   if(obs_.empty())return false;
   for(auto&& ob:obs_){
-      if(ob->frame->T_f_w_.empty())continue;
+      if(ob == nullptr)continue;
       Vector2d t=ob->frame->pos();
       Vector3d dir(Vector3d(t.x(),1e-9,t.y()) + pos_);
       double cos_angle = obs_dir.dot(dir.normalized());
@@ -112,6 +113,7 @@ bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr) const
           ftr = ob;
       }
   }
+  if(ftr== nullptr)return false;
   return true;
 }
 

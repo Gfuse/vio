@@ -44,7 +44,7 @@ public:
                               const Vector2d & translation);
 
   SE2                        (double theta,
-                              const Vector2d & translation_);
+                              const Vector2d & translation);
 
   SE2                        (const SE2 & other);
 
@@ -95,11 +95,11 @@ public:
   {
     return translation_;
   }
-
+/*
   Vector2d& translation()
   {
     return translation_;
-  }
+  }*/
 
   Matrix2d rotation_matrix() const
   {

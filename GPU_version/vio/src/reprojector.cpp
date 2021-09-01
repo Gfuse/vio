@@ -139,6 +139,7 @@ namespace vio {
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
         overlap_kfs.reserve(options_.max_n_kfs);
+        boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
         for (auto &&it_frame:_for(close_kfs)) {
             if (it_frame.index > options_.max_n_kfs)continue;
             std::vector<cv::KeyPoint> keypoints_kfs;
@@ -151,11 +152,14 @@ namespace vio {
             extractor->compute(it_frame.item.first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
             for (auto &&f: _for(it_frame.item.first->fts_)) {
-                if (f.item->point == NULL)f.item->point = new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item);
-                if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
-                f.item->point->last_frame_overlap_id_ = frame->id_;
                 for (auto &&match:matches) {
                     if (match.queryIdx != f.index)continue;
+                    if (f.item->point == NULL){
+                        f.item->point = new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()));
+                       // assert(!f.item->point->obs_.empty());
+                    }
+                    if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
+                    f.item->point->last_frame_overlap_id_ = frame->id_;
                     assert(keypoints_cur.size() > match.trainIdx);
                     const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
                                   grid_.grid_n_cols
@@ -163,6 +167,8 @@ namespace vio {
                     assert(grid_.cells.at(k) != nullptr);
                     Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
                                 (int) keypoints_cur.at(match.trainIdx).pt.y);
+                    f.item->point->addFrameRef(new Feature(it_frame.item.first.get(),f.item->px,0));
+                    //f.item->point->addFrameRef(f.item);
                     grid_.cells.at(k)->push_back(Candidate(f.item->point, px));
                     overlap_kfs.back().second++;
                     break;
@@ -170,7 +176,6 @@ namespace vio {
             }
         }
         {
-            boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
             for (auto&& cell : grid_.cells) {
                 if (reprojectCell(*cell, frame))
                     ++n_matches_;
@@ -193,16 +198,14 @@ namespace vio {
         while(it!=cell.end())
         {
             ++n_trials_;
-
             if(it->pt->type_ == Point::TYPE_DELETED)
             {
                 it = cell.erase(it);
                 continue;
             }
-            bool found_match = true;
-            if(options_.find_match_direct)
-                found_match = matcher_.findMatchDirect(*it->pt, *frame, it->px);
-            if(!found_match)
+
+            syn_=true;
+            if(!matcher_.findMatchDirect(*it->pt, *frame, it->px))
             {
                 it->pt->n_failed_reproj_++;
                 if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)
@@ -212,6 +215,7 @@ namespace vio {
                 it = cell.erase(it);
                 continue;
             }
+            syn_=false;
             it->pt->n_succeeded_reproj_++;
             if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
                 it->pt->type_ = Point::TYPE_GOOD;

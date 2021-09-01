@@ -62,15 +62,15 @@ SE2 SE2
 {
   SE2 result(*this);
   result.translation_ += so2_*(other.translation_);
-  result.so2_*=other.so2_;
+  result.so2_ *= other.so2_;
   return result;
 }
 
 SE2& SE2
 ::operator *= (const SE2 & other)
 {
-  translation_+= so2_*(other.translation_);
-  so2_*=other.so2_;
+  translation_ += so2_ * (other.translation_);
+  so2_ *= other.so2_;
   return *this;
 }
 
@@ -79,7 +79,7 @@ SE2 SE2
 {
   SE2 ret;
   ret.so2_= so2_.inverse();
-  ret.translation_ = ret.so2_*(translation_*-1.);
+  ret.translation_ = ret.so2_ * (translation_ *-1.);
   return ret;
 }
 
@@ -113,8 +113,8 @@ Matrix<double, 3, 3> SE2
   Matrix3d res;
   res.setIdentity();
   res.topLeftCorner<2,2>() = R;
-  res(0,2) = translation_[1];
-  res(1,2) = -translation_[0];
+  res(0,2) = translation_.y();
+  res(1,2) = -translation_.x();
   return res;
 }
 
@@ -220,7 +220,7 @@ Vector3d SE2
   Matrix2d V_inv;
   V_inv(0,0) = halftheta_by_tan_of_halftheta; V_inv(1,0) = -halftheta;
   V_inv(0,1) = halftheta; V_inv(1,1) = halftheta_by_tan_of_halftheta;
-  upsilon_theta.head<2>() = V_inv*se2.translation_;
+  upsilon_theta.head<2>() = V_inv* se2.translation_;
   return upsilon_theta;
 }
 
