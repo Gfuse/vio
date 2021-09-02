@@ -120,6 +120,7 @@ void Map::getCloseKeyframes(
     {
       if(keypoint == nullptr)
           continue;
+      if(keypoint->point==NULL)continue;
       if(frame->isVisible(keypoint->point->pos_))
       {
         close_kfs.push_back(

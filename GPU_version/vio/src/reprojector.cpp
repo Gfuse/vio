@@ -124,6 +124,7 @@ namespace vio {
             FramePtr frame,
             FramePtr last_frame,
             std::vector<std::pair<FramePtr, std::size_t> > &overlap_kfs) {
+        if(frame->id_<1)return;
         resetGrid();
         cv::Mat descriptors_cur;
         std::vector<cv::KeyPoint> keypoints_cur;

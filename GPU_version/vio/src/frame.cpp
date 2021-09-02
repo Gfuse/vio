@@ -145,14 +145,12 @@ void Frame::removeKeyPoint(Feature* ftr)
 bool Frame::isVisible(const Vector3d& xyz_w) const
 {
     if(!id_)return false;
-    std::cerr<<"148is\t";
+    usleep(1000);
     SE3 tem=this->se3();
-    std::cerr<<"150is\t";
+    assert(!xyz_w.hasNaN());
   Vector3d xyz_f = tem*xyz_w;
-    std::cerr<<"152is\t";
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera
-    std::cerr<<"153is\t";
   Vector2d px = f2c(xyz_f);
   if(px[0] >= 0.0 && px[1] >= 0.0 && px[0] < cam_->width() && px[1] < cam_->height())
     return true;
