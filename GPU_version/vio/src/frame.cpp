@@ -125,13 +125,24 @@ void Frame::checkKeyPoints(Feature* ftr)
 
 void Frame::removeKeyPoint(Feature* ftr)
 {
-  bool found = false;
-  std::for_each(key_pts_.begin(), key_pts_.end(), [&](Feature*& i){
-    if(i == ftr) {
-      i = NULL;
-      found = true;
+    std::cerr<<key_pts_.size()<<'\t';
+    if(key_pts_.size()!=5){
+        key_pts_.clear();
+        key_pts_.reserve(5);
+        return;
     }
-  });
+  bool found = false;
+  for(auto&& key_pt:key_pts_){
+      std::cerr<<"131\t";
+      if(key_pt==NULL)continue;
+      std::cerr<<"131\t";
+      if(key_pt==ftr){
+          std::cerr<<"131\t";
+          key_pt=NULL;
+          found=true;
+      }
+  }
+    std::cerr<<"dd\n";
   if(found)
     setKeyPoints();
 }

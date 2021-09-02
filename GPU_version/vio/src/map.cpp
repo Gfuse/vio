@@ -83,10 +83,11 @@ void Map::removePtFrameRef(Frame* frame, Feature* ftr)
 void Map::safeDeletePoint(Point* pt)
 {
   // Delete references to mappoints in all keyframes
-  std::for_each(pt->obs_.begin(), pt->obs_.end(), [&](Feature* ftr){
-    ftr->point=NULL;
-    ftr->frame->removeKeyPoint(ftr);
-  });
+  for(auto&& ftr:pt->obs_){
+      assert(ftr);
+      if(ftr->frame!= nullptr)ftr->frame->removeKeyPoint(ftr);
+      ftr->point=NULL;
+  }
   pt->obs_.clear();
 
   // Delete mappoint
