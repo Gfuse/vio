@@ -33,6 +33,7 @@
 #include <vio/start.h>
 #include <vio/stop.h>
 #include <vio/depth_filter.h>
+#include <ros/callback_queue.h>
 #if VIO_DEBUG
 #include <vio/visualizer.h>
 #endif
@@ -169,11 +170,13 @@ void VioNode::cmdCb(const geometry_msgs::TwistPtr &cmd) {
 }
 void VioNode::imu_th(){
     ros::NodeHandle nh;
-    ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),10,&VioNode::imuCb, this);
-    ros::Subscriber cmd_sub=nh.subscribe(vk::getParam<std::string>("vio/cmd_topic", "cmd/raw"),10,&VioNode::cmdCb, this);
+    ros::CallbackQueue Q;
+    nh.setCallbackQueue(&Q);
+    ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),10,&VioNode::imuCb, this,ros::TransportHints().tcpNoDelay());
+    ros::Subscriber cmd_sub=nh.subscribe(vk::getParam<std::string>("vio/cmd_topic", "cmd/raw"),10,&VioNode::cmdCb, this,ros::TransportHints().tcpNoDelay());
     while(start_ && !boost::this_thread::interruption_requested())
     {
-        ros::spinOnce();
+        Q.callOne(ros::WallDuration(10,0.0));
         usleep(1000);
     }
 
@@ -198,6 +201,8 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "vio");
   ros::NodeHandle nh;
+  ros::CallbackQueue Q;
+  nh.setCallbackQueue(&Q);
   VioNode vio;
   ros::ServiceServer start = nh.advertiseService(vk::getParam<std::string>("vio/start", "start"),
                                                  &VioNode::start, &vio);
@@ -210,7 +215,7 @@ int main(int argc, char **argv)
   // start processing callbacks
   while(ros::ok())
   {
-      ros::spinOnce();
+      Q.callOne(ros::WallDuration(30,0.0));
   }
   printf("SVO terminated.\n");
   return 0;
