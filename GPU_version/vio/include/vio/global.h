@@ -81,20 +81,26 @@ namespace vio
             return *T2_;
         }
         SE2 inverse() const{
-            double roll=atan2(T2_->so2().unit_complex().imag(),T2_->so2().unit_complex().real());
-            return SE2(roll+M_PI,-1.0*T2_->translation());
+            assert(T2_!= nullptr);
+            double pitch=atan2(T2_->so2().unit_complex().imag(),T2_->so2().unit_complex().real());
+            SE2 tem=SE2(pitch+M_PI,-1.0*T2_->translation());
+            return tem;
         }
         // Rotation around y
         double pitch()const{
-            return atan2(T2_->rotation_matrix()(0,1),T2_->rotation_matrix()(0,0));
+            assert(T2_!= nullptr);
+            double pitch=atan2(T2_->so2().unit_complex().imag(),T2_->so2().unit_complex().real());
+            return pitch;
         }
         SE3 se3() const{
+            assert(T2_!= nullptr);
             //Todo add 15 roll orientation
             Quaterniond q;
             q = AngleAxisd(0.261799, Vector3d::UnitX())
                 * AngleAxisd(pitch(), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
-            return SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));
+            SE3 tem=SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));
+            return tem;
         }
         ~SE2_5(){
         }

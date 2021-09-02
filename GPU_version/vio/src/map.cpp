@@ -83,10 +83,13 @@ void Map::removePtFrameRef(Frame* frame, Feature* ftr)
 void Map::safeDeletePoint(Point* pt)
 {
   // Delete references to mappoints in all keyframes
-  for(auto&& ftr:pt->obs_){
-      assert(ftr);
-      if(ftr->frame!= nullptr)ftr->frame->removeKeyPoint(ftr);
-      ftr->point=NULL;
+  if(pt->obs_.size()>1){
+      for(auto&& ftr:pt->obs_){
+          ftr->frame->removeKeyPoint(ftr);
+          ftr->point=NULL;
+      }
+  }else{
+      pt->obs_.back()->point=NULL;
   }
   pt->obs_.clear();
 

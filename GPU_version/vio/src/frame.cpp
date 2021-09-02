@@ -125,33 +125,34 @@ void Frame::checkKeyPoints(Feature* ftr)
 
 void Frame::removeKeyPoint(Feature* ftr)
 {
-    std::cerr<<key_pts_.size()<<'\t';
+    bool found = false;
     if(key_pts_.size()!=5){
         key_pts_.clear();
         key_pts_.reserve(5);
-        return;
+        found=true;
     }
-  bool found = false;
   for(auto&& key_pt:key_pts_){
-      std::cerr<<"131\t";
       if(key_pt==NULL)continue;
-      std::cerr<<"131\t";
       if(key_pt==ftr){
-          std::cerr<<"131\t";
           key_pt=NULL;
           found=true;
       }
   }
-    std::cerr<<"dd\n";
   if(found)
     setKeyPoints();
 }
 
 bool Frame::isVisible(const Vector3d& xyz_w) const
 {
-  Vector3d xyz_f = Vector3d(this->se3()*xyz_w);
+    if(!id_)return false;
+    std::cerr<<"148is\t";
+    SE3 tem=this->se3();
+    std::cerr<<"150is\t";
+  Vector3d xyz_f = tem*xyz_w;
+    std::cerr<<"152is\t";
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera
+    std::cerr<<"153is\t";
   Vector2d px = f2c(xyz_f);
   if(px[0] >= 0.0 && px[1] >= 0.0 && px[0] < cam_->width() && px[1] < cam_->height())
     return true;

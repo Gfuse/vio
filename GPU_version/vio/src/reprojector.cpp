@@ -154,10 +154,12 @@ namespace vio {
             for (auto &&f: _for(it_frame.item.first->fts_)) {
                 for (auto &&match:matches) {
                     if (match.queryIdx != f.index)continue;
+                    if(keypoints_cur.size() < match.trainIdx)continue;
                     if (f.item->point == NULL){
                         const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
                                       grid_.grid_n_cols
                                       + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
+                        assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
                                     (int) keypoints_cur.at(match.trainIdx).pt.y);
                         frame->fts_.push_back(new Feature(it_frame.item.first.get(),
@@ -170,7 +172,6 @@ namespace vio {
                     }else{
                         if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
                         f.item->point->last_frame_overlap_id_ = frame->id_;
-                        assert(keypoints_cur.size() > match.trainIdx);
                         const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
                                       grid_.grid_n_cols
                                       + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
@@ -209,7 +210,11 @@ namespace vio {
         while(it!=cell.end())
         {
             ++n_trials_;
-            if(it->pt->type_ == Point::TYPE_DELETED || it->pt ==NULL)
+            if( it->pt ==NULL){
+                it = cell.erase(it);
+                continue;
+            }
+            if(it->pt->type_ == Point::TYPE_DELETED)
             {
                 it = cell.erase(it);
                 continue;
@@ -233,21 +238,23 @@ namespace vio {
 
             Feature* new_feature = new Feature(frame.get(), it->px, matcher_.search_level_);
             frame->addFeature(new_feature);
-
             // Here we add a reference in the feature to the 3D point, the other way
             // round is only done if this frame is selected as keyframe.
             new_feature->point = it->pt;
-
+            if(matcher_.ref_ftr_== nullptr){
+                cell.erase(it);
+                return true;
+            }
+            assert(matcher_.ref_ftr_!= nullptr);
             if(matcher_.ref_ftr_->type == Feature::EDGELET)
             {
                 new_feature->type = Feature::EDGELET;
                 new_feature->grad = matcher_.A_cur_ref_*matcher_.ref_ftr_->grad;
                 new_feature->grad.normalize();
             }
-
             // If the keyframe is selected and we reproject the rest, we don't have to
             // check this point anymore.
-            it = cell.erase(it);
+            cell.erase(it);
 
             // Maximum one point per cell.
             return true;

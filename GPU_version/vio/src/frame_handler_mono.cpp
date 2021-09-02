@@ -106,7 +106,8 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
     res = processFirstFrame();
 
   // set last frame
-  if(!new_frame_->fts_.empty() || stage_ != STAGE_DEFAULT_FRAME)last_frame_ = new_frame_;
+  //if(!new_frame_->fts_.empty() || stage_ != STAGE_DEFAULT_FRAME)
+  last_frame_ = new_frame_;
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
   if(stage_ == STAGE_RELOCALIZING){
@@ -166,10 +167,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_=init_f.second;
   new_frame_->Cov_ = init_f.first;
   // sparse image align
-  //SparseImgAlign img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlign::LevenbergMarquardt, false, false);
-  //assert(new_frame_.get()== nullptr);
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-  if(img_align.run(last_frame_, new_frame_)==0)return  RESULT_FAILURE;
+  img_align.run(last_frame_, new_frame_);
   reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
   //assert (false);
   int n_point=0;

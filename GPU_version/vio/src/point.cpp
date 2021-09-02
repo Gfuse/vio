@@ -100,9 +100,9 @@ bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr,int id) cons
 {
   // TODO: get frame with same point of view AND same pyramid level!
   ftr= nullptr;
+  if(id_<1)return false;
   Vector3d obs_dir(Vector3d(framepos(0),1e-9,framepos(1)) + pos_); obs_dir.normalize();
   double max_cos_angle = 1.0;
-  if(obs_.empty())return false;
   for(auto&& ob:obs_){
       if(ob->frame->id_==id){
           ftr = ob;
