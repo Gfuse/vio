@@ -108,7 +108,7 @@ VioNode::VioNode() :
     if(!vk::camera_loader::loadFromRosNs("vio", cam_))
         throw std::runtime_error("Camera model not correctly specified.");
     Eigen::Matrix<double,3,1> init;
-    init<<1e-19,1e-19,M_PI;
+    init<<1e-19,1e-19,1e-19;
     vo_ = new vio::FrameHandlerMono(cam_,init);
     usleep(500);
 }

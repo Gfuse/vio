@@ -8,8 +8,13 @@ float2 world2cam(float3 feature)
 {
     float r = sqrt(pow(feature.x/feature.z, 2) + pow(feature.y/feature.z, 2));
     float factor = 1.0;
-    if((float)S != 0 && r > 0.001)
-        factor = (atan(r * 2.0 * tan(0.5 * (float)S)) / (r * (float)S));
+    if((float)S == 0 || r < 0.001){
+        factor = 1.0;
+    }else{
+        float y=2*r*sin(0.5 * (float)S);
+        float x=cos(0.5 * (float)S);
+        factor = (atan2(y,x) / (r * (float)S));
+    }
     return (float2)((float)C_X + (float)F_X * factor * feature.x/feature.z, (float)C_Y + (float)F_Y * factor * feature.y/feature.z);
 }
 
@@ -17,7 +22,7 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 {
     ref.x*=-1.0;
     ref.y*=-1.0;
-    ref.z = 3.141592653589793238462643383279502884197169399375 +ref.z;
+    ref.z = 3.141592653589793238462643383279502884197169399375 - ref.z;
     float3 error=ref+cur;
     float yaw=0.0;
     float pitch=error.z;

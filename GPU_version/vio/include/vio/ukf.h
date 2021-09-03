@@ -130,10 +130,10 @@ public:
         lock=true;
         //if(filter_->predict_up)filter_->correct(z,x,pitch,match,1e-9*time.toNSec());
         lock=false;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(1),filter_->state_(0),filter_->state_(2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(1),-filter_->state_(0),M_PI-filter_->state_(2)));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(1),filter_->state_(0),filter_->state_(2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(1),-filter_->state_(0),M_PI-filter_->state_(2)));
     }
 private:
      Base* filter_= nullptr;
