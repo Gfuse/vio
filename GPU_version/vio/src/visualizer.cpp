@@ -48,7 +48,7 @@ void Visualizer::publishMinimal(
   header_msg.frame_id = "/world";
   header_msg.seq = trace_id_;
   header_msg.stamp = ros::Time(timestamp);
- // if(pub_pose_with_cov_.getNumSubscribers() > 0)
+  if(pub_pose_with_cov_.getNumSubscribers() > 0)
   {
     // publish cam in world frame (Estimated odometry in the worls frame)
     auto odom=ukf.get_location();
