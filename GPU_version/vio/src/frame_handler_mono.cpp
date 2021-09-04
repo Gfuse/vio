@@ -191,6 +191,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
+  depth_filter_->addFrame(new_frame_);
   if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
       return RESULT_FAILURE;
   }
@@ -209,7 +210,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)//edited
   {
-    depth_filter_->addFrame(new_frame_);
+    //depth_filter_->addFrame(new_frame_);
     return RESULT_NO_KEYFRAME;
   }
   new_frame_->setKeyframe();

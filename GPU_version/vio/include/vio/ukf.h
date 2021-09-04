@@ -111,29 +111,31 @@ public:
     virtual ~UKF() {
         delete filter_;
     };
-    void UpdateIMU(double x/*in imu frame*/,double y/*in imu frame*/,double pitch/*in imu frame*/,const ros::Time& time) {
+    void UpdateIMU(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
         if(abs(x)<1.0)x=pow(x,3);//picked up from your code
         if(abs(y)<1.0)y=pow(y,3);//picked up from your code
-        if(filter_->predict_up)filter_->correct(x,y,pitch,1e-9*time.toNSec());
+        if(filter_->predict_up)filter_->correct(x,y,theta,1e-9*time.toNSec());
         lock=false;
     };
-    void UpdateCmd(double x/*in imu frame*/,double y/*in imu frame*/,double pitch/*in imu frame*/,const ros::Time& time) {
+    //IMU frame y front, x right, z up -> left hands (theta counts from y)
+    void UpdateCmd(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
-        filter_->predict(x,y,pitch,1e-9*time.toNSec());
+        filter_->predict(x,y,theta,1e-9*time.toNSec());
         lock=false;
     };
+    //Camera frame z front, x right, y down -> right hands (pitch counts from z)
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/,size_t match,ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
         //if(filter_->predict_up)filter_->correct(z,x,pitch,match,1e-9*time.toNSec());
         lock=false;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(1),-filter_->state_(0),M_PI-filter_->state_(2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-filter_->state_(2)));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-filter_->state_(1),-filter_->state_(0),M_PI-filter_->state_(2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-filter_->state_(2)));
     }
 private:
      Base* filter_= nullptr;

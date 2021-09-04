@@ -115,6 +115,7 @@ VioNode::VioNode() :
 
 VioNode::~VioNode()
 {
+    vo_->depthFilter()->stopThread();
     start_=false;
     usleep(5000);
     imu_the_->join();
@@ -187,9 +188,11 @@ bool VioNode::getOdom(vio::getOdom::Request &req, vio::getOdom::Response &res) {
         res.header.frame_id = "/world";
         res.header.seq = trace_id_;
         auto odom=vo_->ukfPtr_.get_location();
+        //Camera frame z front, x right, y down -> right hands (pitch counts from z)
+        //IMU frame y front, x right, z up -> left hands (theta counts from y)
         res.x=odom.second.se2().translation()(0);
         res.y=odom.second.se2().translation()(1);
-        res.yaw=odom.second.pitch();
+        res.yaw=-odom.second.pitch();
         res.cov={odom.first(0,0),odom.first(0,1),odom.first(0,2),
                  odom.first(1,0),odom.first(1,1),odom.first(1,2),
                  odom.first(2,0),odom.first(2,1),odom.first(2,2)};
