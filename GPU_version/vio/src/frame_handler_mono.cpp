@@ -25,9 +25,11 @@
 #include <vio/depth_filter.h>
 #include <vio/for_it.hpp>
 #include <assert.h>
+#if VIO_DEBUG
+#include <sys/stat.h>
+#endif
 
 namespace vio {
-
 FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,3,1>& init) :
   FrameHandlerBase(),
   cam_(cam),
@@ -65,6 +67,11 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     gpu_fast_->write_buf(1,10,300,chi2);
     klt_homography_init_=new initialization::KltHomographyInit(gpu_fast_);
     initialize();
+#if VIO_DEBUG
+    log_ =fopen((std::string(PROJECT_DIR)+"/frame_handler_log.txt").c_str(),"w+");
+    assert(log_);
+    chmod((std::string(PROJECT_DIR)+"/frame_handler_log.txt").c_str(), ACCESSPERMS);
+#endif
 }
 
 void FrameHandlerMono::initialize()
@@ -105,8 +112,6 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   else if(stage_ == STAGE_FIRST_FRAME)
     res = processFirstFrame();
 
-  // set last frame
-  //if(!new_frame_->fts_.empty() || stage_ != STAGE_DEFAULT_FRAME)
   last_frame_ = new_frame_;
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
@@ -127,7 +132,9 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
   map_.reset();
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_SECOND_FRAME;
-  SVO_INFO_STREAM("Init: Selected first frame.");
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Init: Selected first frame. \n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
   return RESULT_IS_KEYFRAME;
 }
 
@@ -137,6 +144,11 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   new_frame_->T_f_w_=init_f.second;
   new_frame_->Cov_ = init_f.first;
   initialization::InitResult res = klt_homography_init_->addSecondFrame(new_frame_);
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Init: distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
+            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+#endif
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
   new_frame_->T_f_w_ = result.second;
   new_frame_->Cov_ = result.first;
@@ -156,7 +168,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
   klt_homography_init_->reset();
-  SVO_INFO_STREAM("Init: triangulated initial map. Vio is starting ...");
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Init: Selected first frame. \n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
   return RESULT_IS_KEYFRAME;
 }
 
@@ -172,11 +186,13 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
-  std::cerr<<"Reprojection Map nPoint: "<<n_point
-             <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
-             <<"\t distance between two frames: "<<
-             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<
-             "\t angle between two frames:"<<last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch()<<'\n';
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Reprojection Map nPoint:%d ,nCell:%d ,nMatches:%d ,distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            n_point,
+            reprojector_.n_trials_,reprojector_.n_matches_,
+            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
+            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+#endif
   if( reprojector_.n_trials_ < 10)return RESULT_FAILURE;
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
@@ -191,6 +207,11 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Update EKF and 3D points, distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
+            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+#endif
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   depth_filter_->addFrame(new_frame_);
   if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()/*10*/){
@@ -213,7 +234,11 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     return RESULT_NO_KEYFRAME;
   }
   new_frame_->setKeyframe();
-
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Choose frame as a key frame Scene Depth mean:%f ,depth min:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            depth_mean,
+            depth_min);
+#endif
   // new keyframe selected
   for(auto&& it:new_frame_->fts_){
       if(it->point != NULL)it->point->addFrameRef(it);

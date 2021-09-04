@@ -61,6 +61,9 @@ public:
         if(req.off==1 && imu_the_!=NULL){
             start_=false;
             vo_->depthFilter()->stopThread();
+#if VIO_DEBUG
+    fclose(vo_->log_);
+#endif
             imu_the_->interrupt();
             if(imu_the_->get_id()==boost::this_thread::get_id())
                 imu_the_->detach();
@@ -114,7 +117,6 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 {
     if(!start_)return;
       try {
-          auto start=std::chrono::steady_clock::now();
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
           if(img.empty())return;
           cv::Mat imgbul;

@@ -1,0 +1,52 @@
+[17:03:47.527] Init: Selected first frame. 
+[17:03:47.627] Init: distance between two frames:0.000012 ,angle between two frames:0.022571
+[17:03:47.732] Init: distance between two frames:0.000004 ,angle between two frames:0.025557
+[17:03:47.828] Init: distance between two frames:0.000006 ,angle between two frames:0.022501
+[17:03:47.932] Init: distance between two frames:0.000004 ,angle between two frames:0.026059
+[17:03:48.032] Init: distance between two frames:0.000029 ,angle between two frames:0.013181
+[17:03:48.133] Init: distance between two frames:0.000002 ,angle between two frames:0.013368
+[17:03:48.232] Init: distance between two frames:0.000007 ,angle between two frames:0.016733
+[17:03:48.332] Init: distance between two frames:0.000009 ,angle between two frames:0.021861
+[17:03:48.535] Init: distance between two frames:0.046145 ,angle between two frames:-0.471021
+[17:03:48.539] Init: Selected first frame. 
+[17:03:48.816] Reprojection Map nPoint:17 ,nCell:12 ,nMatches:3 ,distance between two frames:0.009163 ,angle between two frames:0.049424
+[17:03:49.020] Reprojection Map nPoint:3 ,nCell:3 ,nMatches:3 ,distance between two frames:3.357603 ,angle between two frames:2.458354
+[17:03:49.097] Reprojection Map nPoint:3 ,nCell:3 ,nMatches:0 ,distance between two frames:2.656850 ,angle between two frames:3.589865
+[17:03:49.189] Reprojection Map nPoint:17 ,nCell:13 ,nMatches:9 ,distance between two frames:0.465308 ,angle between two frames:0.022542
+[17:03:49.420] Reprojection Map nPoint:8 ,nCell:7 ,nMatches:7 ,distance between two frames:9.331640 ,angle between two frames:2.368349
+[17:03:49.499] Reprojection Map nPoint:8 ,nCell:8 ,nMatches:0 ,distance between two frames:2.651696 ,angle between two frames:-2.697419
+[17:03:49.595] Reprojection Map nPoint:22 ,nCell:15 ,nMatches:4 ,distance between two frames:0.302242 ,angle between two frames:0.020434
+[17:03:49.820] Reprojection Map nPoint:4 ,nCell:4 ,nMatches:4 ,distance between two frames:2.140314 ,angle between two frames:1.703499
+[17:03:49.897] Reprojection Map nPoint:23 ,nCell:14 ,nMatches:6 ,distance between two frames:2.831562 ,angle between two frames:-2.702069
+[17:03:50.320] Reprojection Map nPoint:6 ,nCell:6 ,nMatches:6 ,distance between two frames:2.264570 ,angle between two frames:2.182084
+[17:03:50.399] Reprojection Map nPoint:23 ,nCell:13 ,nMatches:5 ,distance between two frames:2.664975 ,angle between two frames:-2.689325
+[17:03:50.503] Reprojection Map nPoint:4 ,nCell:4 ,nMatches:4 ,distance between two frames:192.802028 ,angle between two frames:2.732007
+[17:03:50.599] Reprojection Map nPoint:25 ,nCell:19 ,nMatches:5 ,distance between two frames:2.643489 ,angle between two frames:-2.703208
+[17:03:51.318] Reprojection Map nPoint:5 ,nCell:5 ,nMatches:5 ,distance between two frames:2.178774 ,angle between two frames:-2.804699
+[17:03:51.396] Reprojection Map nPoint:18 ,nCell:11 ,nMatches:4 ,distance between two frames:2.696336 ,angle between two frames:-2.715705
+[17:04:09.106] Reprojection Map nPoint:23 ,nCell:18 ,nMatches:12 ,distance between two frames:7.108872 ,angle between two frames:-3.644508
+[17:04:09.609] Reprojection Map nPoint:30 ,nCell:23 ,nMatches:14 ,distance between two frames:3.232156 ,angle between two frames:0.155299
+[17:04:09.724] Reprojection Map nPoint:33 ,nCell:26 ,nMatches:12 ,distance between two frames:23.977235 ,angle between two frames:0.070389
+[17:04:09.905] Reprojection Map nPoint:29 ,nCell:20 ,nMatches:11 ,distance between two frames:156200.421037 ,angle between two frames:0.181012
+[17:04:10.013] Reprojection Map nPoint:34 ,nCell:19 ,nMatches:11 ,distance between two frames:3.142497 ,angle between two frames:0.353249
+[17:04:10.105] Reprojection Map nPoint:37 ,nCell:21 ,nMatches:16 ,distance between two frames:3.432714 ,angle between two frames:-0.663393
+[17:04:10.209] Reprojection Map nPoint:36 ,nCell:15 ,nMatches:15 ,distance between two frames:2.417147 ,angle between two frames:-0.004748
+[17:04:10.428] Reprojection Map nPoint:36 ,nCell:19 ,nMatches:15 ,distance between two frames:1.455741 ,angle between two frames:0.065159
+[17:04:10.518] Reprojection Map nPoint:38 ,nCell:22 ,nMatches:16 ,distance between two frames:12.974222 ,angle between two frames:0.210486
+[17:04:10.609] Reprojection Map nPoint:40 ,nCell:22 ,nMatches:16 ,distance between two frames:8.860754 ,angle between two frames:0.039250
+[17:04:10.730] Reprojection Map nPoint:42 ,nCell:16 ,nMatches:15 ,distance between two frames:2.417891 ,angle between two frames:0.044953
+[17:04:10.822] Reprojection Map nPoint:41 ,nCell:15 ,nMatches:13 ,distance between two frames:2.485466 ,angle between two frames:0.041414
+[17:04:10.929] Reprojection Map nPoint:38 ,nCell:20 ,nMatches:13 ,distance between two frames:4.775227 ,angle between two frames:0.781172
+[17:04:11.026] Reprojection Map nPoint:43 ,nCell:24 ,nMatches:15 ,distance between two frames:17.026834 ,angle between two frames:0.085196
+[17:04:11.117] Reprojection Map nPoint:42 ,nCell:15 ,nMatches:14 ,distance between two frames:1.545554 ,angle between two frames:-0.414163
+[17:04:11.213] Reprojection Map nPoint:44 ,nCell:24 ,nMatches:13 ,distance between two frames:3.878066 ,angle between two frames:1.039956
+[17:04:11.308] Reprojection Map nPoint:47 ,nCell:15 ,nMatches:12 ,distance between two frames:1.927317 ,angle between two frames:0.243026
+[17:04:11.415] Reprojection Map nPoint:50 ,nCell:19 ,nMatches:14 ,distance between two frames:2.706551 ,angle between two frames:0.324650
+[17:04:11.509] Reprojection Map nPoint:51 ,nCell:22 ,nMatches:17 ,distance between two frames:1.650694 ,angle between two frames:0.217249
+[17:04:11.607] Reprojection Map nPoint:54 ,nCell:20 ,nMatches:16 ,distance between two frames:1.690322 ,angle between two frames:0.095136
+[17:04:11.707] Reprojection Map nPoint:51 ,nCell:17 ,nMatches:14 ,distance between two frames:1.243964 ,angle between two frames:-1.003445
+[17:04:11.828] Reprojection Map nPoint:54 ,nCell:22 ,nMatches:17 ,distance between two frames:1.727187 ,angle between two frames:-0.022257
+[17:04:11.920] Reprojection Map nPoint:51 ,nCell:29 ,nMatches:17 ,distance between two frames:6.053159 ,angle between two frames:-0.315177
+[17:04:12.010] Reprojection Map nPoint:54 ,nCell:22 ,nMatches:17 ,distance between two frames:0.968941 ,angle between two frames:0.005651
+[17:04:12.118] Reprojection Map nPoint:57 ,nCell:22 ,nMatches:18 ,distance between two frames:1.669894 ,angle between two frames:-0.416700
+[17:04:12.208] Reprojection Map nPoint:54 ,nCell:29 ,nMatches:17 ,distance between two frames:9.852925 ,angle between two frames:0.109482

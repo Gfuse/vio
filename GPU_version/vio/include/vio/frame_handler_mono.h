@@ -65,7 +65,9 @@ public:
   void UpdateIMU(double* value,const ros::Time& time);
   void UpdateCmd(double* value,const ros::Time& time);
   UKF ukfPtr_;
-
+#if VIO_DEBUG
+        FILE* log_=nullptr;
+#endif
 protected:
   vk::AbstractCamera* cam_;                     //!< Camera model, can be ATAN, Pinhole or Ocam (see vikit).
   Reprojector reprojector_;                     //!< Projects points from other keyframes into the current frame
@@ -76,9 +78,7 @@ protected:
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   opencl* gpu_fast_;
   ros::Time time_;
-#if VIO_DEBUG
-        FILE* log_=nullptr;
-#endif
+
 
 
   /// Initialize the visual odometry algorithm.

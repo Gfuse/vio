@@ -15,6 +15,13 @@
 
 #include <string>
 #include <ros/ros.h>
+#if VIO_DEBUG
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <string>
+#endif
 
 namespace vk {
 

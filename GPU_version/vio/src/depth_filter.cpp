@@ -58,9 +58,9 @@ namespace vio {
             new_keyframe_mean_depth_(0.0)
     {
 #if VIO_DEBUG
-        log_ =fopen("/root/Project/log.txt","w+");
+        log_ =fopen((std::string(PROJECT_DIR)+"/depth_filter_log.txt").c_str(),"w+");
         assert(log_);
-        chmod("/root/Project/log.txt", ACCESSPERMS);
+        chmod((std::string(PROJECT_DIR)+"/depth_filter_log.txt").c_str(), ACCESSPERMS);
 #endif
     }
 
@@ -68,7 +68,7 @@ namespace vio {
     {
         stopThread();
 #if VIO_DEBUG
-        fprintf(log_,"DepthFilter destructed.\n");
+        fprintf(log_,"[%s] DepthFilter destructed.\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
     }
 
@@ -76,19 +76,19 @@ namespace vio {
     {
         thread_ = new boost::thread(&DepthFilter::updateSeedsLoop, this);
 #if VIO_DEBUG
-        fprintf(log_,"init depth filter\n");
+        fprintf(log_,"[%s] init depth filter\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
     }
 
     void DepthFilter::stopThread()
     {
 #if VIO_DEBUG
-        fprintf(log_,"DepthFilter stop thread invoked.");
+        fprintf(log_,"[%s] DepthFilter stop thread invoked.\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         if(thread_ != NULL)
         {
 #if VIO_DEBUG
-            fprintf(log_,"DepthFilter interrupt and join thread ");
+            fprintf(log_,"[%s] DepthFilter interrupt and join thread \n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
             seeds_updating_halt_ = true;
             thread_->interrupt();
@@ -104,7 +104,7 @@ namespace vio {
     void DepthFilter::addFrame(FramePtr frame)
     {
 #if VIO_DEBUG
-        fprintf(log_,"add new frame\n");
+        fprintf(log_,"[%s] add new frame\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         if(thread_ != NULL)
         {
@@ -127,7 +127,7 @@ namespace vio {
         new_keyframe_min_depth_ = depth_min;
         new_keyframe_mean_depth_ = depth_mean;
 #if VIO_DEBUG
-        fprintf(log_,"add key frame\n");
+        fprintf(log_,"[%s] add key frame\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
 
         if(thread_ != NULL)
@@ -144,7 +144,7 @@ namespace vio {
     {
         Features new_features;
 #if VIO_DEBUG
-        fprintf(log_,"init seeds\n");
+        fprintf(log_,"[%s] init seeds\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         feature_detector_->setExistingFeatures(frame->fts_);
         feature_detector_->detect(frame.get(), frame->img_pyr_,
@@ -159,7 +159,7 @@ namespace vio {
         });
 
 #if VIO_DEBUG
-        fprintf(log_,"DepthFilter: Initialized %d new seeds\n",new_features.size());
+        fprintf(log_,"[%s] DepthFilter: Initialized %d new seeds\n",vio::time_in_HH_MM_SS_MMM().c_str(),new_features.size());
 #endif
         seeds_updating_halt_ = false;
         seeds_mut_.unlock();
@@ -169,7 +169,7 @@ namespace vio {
     {
         seeds_updating_halt_ = true;
 #if VIO_DEBUG
-        fprintf(log_,"remove key frame\n");
+        fprintf(log_,"[%s] remove key frame\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         seeds_mut_.lock();
         std::list<Seed>::iterator it=seeds_.begin();
@@ -201,7 +201,7 @@ namespace vio {
         seeds_updating_halt_ = false;
 
 #if VIO_DEBUG
-        fprintf(log_,"DepthFilter: RESET.\n");
+        fprintf(log_,"[%s] DepthFilter: RESET.\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
     }
 
@@ -241,7 +241,7 @@ namespace vio {
         lock_t lock(seeds_mut_);
         std::list<Seed>::iterator it=seeds_.begin();
 #if VIO_DEBUG
-        fprintf(log_,"update seed\n");
+        fprintf(log_,"[%s] update seed\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         const double focal_length = frame->cam_->errorMultiplier2();
         double px_noise = 1.0;
