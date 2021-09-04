@@ -132,7 +132,7 @@ namespace vio {
             SE2 inv=T_f_w_.inverse();
             Quaterniond q;
             q = AngleAxisd(0.261799, Vector3d::UnitX())
-                * AngleAxisd(atan2(inv.so2().unit_complex().imag(),inv.so2().unit_complex().real()), Vector3d::UnitY())
+                * AngleAxisd(atan2(inv.so2().unit_complex().imag(),inv.so2().unit_complex().real())-M_PI_2, Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
             SE3 out(q.toRotationMatrix(),Vector3d(inv.translation()(0), 0.0,inv.translation()(1)));
             return out;

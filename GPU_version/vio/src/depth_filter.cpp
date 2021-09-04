@@ -28,9 +28,10 @@
 #include <vio/matcher.h>
 #include <vio/config.h>
 #include <vio/feature_detection.h>
+#if VIO_DEBUG
 #include <sys/types.h>
 #include <sys/stat.h>
-
+#endif
 namespace vio {
 
     int Seed::batch_counter = 0;
@@ -56,41 +57,55 @@ namespace vio {
             new_keyframe_min_depth_(0.0),
             new_keyframe_mean_depth_(0.0)
     {
+#if VIO_DEBUG
         log_ =fopen("/root/Project/log.txt","w+");
         assert(log_);
         chmod("/root/Project/log.txt", ACCESSPERMS);
+#endif
     }
 
     DepthFilter::~DepthFilter()
     {
         stopThread();
-        SVO_INFO_STREAM("DepthFilter destructed.");
+#if VIO_DEBUG
+        fprintf(log_,"DepthFilter destructed.\n");
+#endif
     }
 
     void DepthFilter::startThread()
     {
         thread_ = new boost::thread(&DepthFilter::updateSeedsLoop, this);
-        fprintf(log_,"init\n");
+#if VIO_DEBUG
+        fprintf(log_,"init depth filter\n");
+#endif
     }
 
     void DepthFilter::stopThread()
     {
-        SVO_INFO_STREAM("DepthFilter stop thread invoked.");
+#if VIO_DEBUG
+        fprintf(log_,"DepthFilter stop thread invoked.");
+#endif
         if(thread_ != NULL)
         {
-            SVO_INFO_STREAM("DepthFilter interrupt and join thread... ");
+#if VIO_DEBUG
+            fprintf(log_,"DepthFilter interrupt and join thread ");
+#endif
             seeds_updating_halt_ = true;
             thread_->interrupt();
             usleep(5000);
             thread_->join();
             thread_ = NULL;
         }
+#if VIO_DEBUG
         fclose(log_);
+#endif
     }
 
     void DepthFilter::addFrame(FramePtr frame)
     {
+#if VIO_DEBUG
         fprintf(log_,"add new frame\n");
+#endif
         if(thread_ != NULL)
         {
             {
@@ -111,7 +126,9 @@ namespace vio {
     {
         new_keyframe_min_depth_ = depth_min;
         new_keyframe_mean_depth_ = depth_mean;
+#if VIO_DEBUG
         fprintf(log_,"add key frame\n");
+#endif
 
         if(thread_ != NULL)
         {
@@ -126,7 +143,9 @@ namespace vio {
     void DepthFilter::initializeSeeds(FramePtr frame)
     {
         Features new_features;
+#if VIO_DEBUG
         fprintf(log_,"init seeds\n");
+#endif
         feature_detector_->setExistingFeatures(frame->fts_);
         feature_detector_->detect(frame.get(), frame->img_pyr_,
                                   Config::triangMinCornerScore(), new_features);
@@ -139,8 +158,9 @@ namespace vio {
             seeds_.push_back(Seed(ftr, new_keyframe_mean_depth_, new_keyframe_min_depth_));
         });
 
-        if(options_.verbose)
-            SVO_INFO_STREAM("DepthFilter: Initialized "<<new_features.size()<<" new seeds");
+#if VIO_DEBUG
+        fprintf(log_,"DepthFilter: Initialized %d new seeds\n",new_features.size());
+#endif
         seeds_updating_halt_ = false;
         seeds_mut_.unlock();
     }
@@ -148,7 +168,9 @@ namespace vio {
     void DepthFilter::removeKeyframe(FramePtr frame)
     {
         seeds_updating_halt_ = true;
+#if VIO_DEBUG
         fprintf(log_,"remove key frame\n");
+#endif
         seeds_mut_.lock();
         std::list<Seed>::iterator it=seeds_.begin();
         size_t n_removed = 0;
@@ -178,16 +200,15 @@ namespace vio {
             frame_queue_.pop();
         seeds_updating_halt_ = false;
 
-        if(options_.verbose)
-            SVO_INFO_STREAM("DepthFilter: RESET.");
+#if VIO_DEBUG
+        fprintf(log_,"DepthFilter: RESET.\n");
+#endif
     }
 
     void DepthFilter::updateSeedsLoop()
     {
         while(!boost::this_thread::interruption_requested())
         {
-
-            fprintf(log_,"loop 182\n");
             FramePtr frame;
             {
                 lock_t lock(frame_queue_mut_);
@@ -219,8 +240,9 @@ namespace vio {
         size_t n_updates=0, n_failed_matches=0;
         lock_t lock(seeds_mut_);
         std::list<Seed>::iterator it=seeds_.begin();
-
+#if VIO_DEBUG
         fprintf(log_,"update seed\n");
+#endif
         const double focal_length = frame->cam_->errorMultiplier2();
         double px_noise = 1.0;
         double px_error_angle = atan2(px_noise,(2.0*focal_length))*2.0; // law of chord (sehnensatz)
@@ -239,7 +261,7 @@ namespace vio {
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
             q = AngleAxisd(0.261799, Vector3d::UnitX())
-                * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitY())
+                * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real())-M_PI_2, Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
             SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
             const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
@@ -298,7 +320,6 @@ namespace vio {
             }
             else if(isnan(z_min))
             {
-                SVO_WARN_STREAM("z_min is NaN");
                 it = seeds_.erase(it);
             }
             else

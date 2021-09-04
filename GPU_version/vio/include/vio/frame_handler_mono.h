@@ -47,7 +47,7 @@ public:
   FramePtr lastFrame() { return last_frame_; }
 
   /// Get the set of spatially closest keyframes of the last frame.
-  const set<FramePtr>& coreKeyframes() { return core_kfs_; }
+  const set<FramePtr>& coreKeyframes() { /*return core_kfs_;*/ }
 
   /// Return the feature track to visualize the KLT tracking during initialization.
   const vector<cv::Point2f>& initFeatureTrackRefPx() const { return klt_homography_init_->px_ref_; }
@@ -62,7 +62,6 @@ public:
       const SE3& T_kf_f,
       const cv::Mat& img,
       const double timestamp);
-  //std::shared_ptr<Imu_Integration> imu_integPtr_;  //Integration of IMU
   void UpdateIMU(double* value,const ros::Time& time);
   void UpdateCmd(double* value,const ros::Time& time);
   UKF ukfPtr_;
@@ -72,12 +71,14 @@ protected:
   Reprojector reprojector_;                     //!< Projects points from other keyframes into the current frame
   FramePtr new_frame_;                          //!< Current frame.
   FramePtr last_frame_;                         //!< Last frame, not necessarily a keyframe.
-  set<FramePtr> core_kfs_;                      //!< Keyframes in the closer neighbourhood.
   vector< pair<FramePtr,size_t> > overlap_kfs_; //!< All keyframes with overlapping field of view. the paired number specifies how many common mappoints are observed TODO: why vector!?
   initialization::KltHomographyInit* klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   opencl* gpu_fast_;
   ros::Time time_;
+#if VIO_DEBUG
+        FILE* log_=nullptr;
+#endif
 
 
   /// Initialize the visual odometry algorithm.

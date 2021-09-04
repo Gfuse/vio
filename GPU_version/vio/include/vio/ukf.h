@@ -126,16 +126,16 @@ public:
         filter_->predict(x,y,theta,1e-9*time.toNSec());
         lock=false;
     };
-    //Camera frame z front, x right, y down -> right hands (pitch counts from z)
+    //Camera frame z front, x right, y down -> right hands (pitch counts from x)
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/,size_t match,ros::Time& time) {
         while(lock)usleep(5);
         lock=true;
         //if(filter_->predict_up)filter_->correct(z,x,pitch,match,1e-9*time.toNSec());
         lock=false;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-filter_->state_(2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-1.0*(filter_->state_(2)+M_PI_2)));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-filter_->state_(2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-1.0*(filter_->state_(2)+M_PI_2)));
     }
 private:
      Base* filter_= nullptr;

@@ -20,7 +20,6 @@
 #include <queue>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
-//#include <vikit/performance_monitor.h>
 #include <vio/global.h>
 #include <vio/feature_detection.h>
 #include <vio/matcher.h>
@@ -150,7 +149,9 @@ protected:
   double new_keyframe_min_depth_;       //!< Minimum depth in the new keyframe. Used for range in new seeds.
   double new_keyframe_mean_depth_;      //!< Maximum depth in the new keyframe. Used for range in new seeds.
   Matcher matcher_;
-  FILE* log_;
+#if VIO_DEBUG
+  FILE* log_=nullptr;
+#endif
   //uint seeds_cont_=0;
 
   /// Initialize new seeds from a frame.

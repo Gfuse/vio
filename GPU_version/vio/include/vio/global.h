@@ -68,6 +68,7 @@ namespace vio
         }
         SE2_5(SE3& se3){
             Quaterniond q=se3.unit_quaternion().normalized();
+            //Camera frame z front, x right, y down -> right hands
             auto euler = q.toRotationMatrix().eulerAngles(0, 1, 2);//roll,pitch,yaw
             T2_=new SE2(SO2(euler(1)),Vector2d(se3.translation().x(),se3.translation().z()));
             assert(T2_!= nullptr);
@@ -98,7 +99,7 @@ namespace vio
             //Camera frame z front, x right, y down -> right hands
             Quaterniond q;
             q = AngleAxisd(0.261799, Vector3d::UnitX()) // roll
-                * AngleAxisd(pitch(), Vector3d::UnitY())// pitch
+                * AngleAxisd(pitch()-M_PI_2, Vector3d::UnitY())// pitch
                 * AngleAxisd(0.0, Vector3d::UnitZ()); //yaw
             SE3 tem=SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));
             return tem;

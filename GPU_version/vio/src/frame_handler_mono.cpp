@@ -90,7 +90,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   }
 
   // some cleanup from last iteration, can't do before because of visualization
-  core_kfs_.clear();
+  //core_kfs_.clear();
   overlap_kfs_.clear();
 
   // create new frame
@@ -170,13 +170,13 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
   if(!img_align.run(last_frame_, new_frame_))new_frame_->T_f_w_=init_f.second;
   reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
-  //assert (false);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
   std::cerr<<"Reprojection Map nPoint: "<<n_point
              <<"\tnCell: "<<reprojector_.n_trials_<<"\t nMatches: "<<reprojector_.n_matches_
              <<"\t distance between two frames: "<<
-             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<'\n';
+             (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()<<
+             "\t angle between two frames:"<<last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch()<<'\n';
   if( reprojector_.n_trials_ < 10)return RESULT_FAILURE;
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
@@ -184,33 +184,32 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
   if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI){
+       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI_4){
         return RESULT_FAILURE;
     }
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),sfba_n_edges_final,time_);
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
+  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   depth_filter_->addFrame(new_frame_);
-  if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()){
+  if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()/*10*/){
       return RESULT_FAILURE;
   }
 
-  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe
-  core_kfs_.insert(new_frame_);
+  //core_kfs_.insert(new_frame_);
   setTrackingQuality(sfba_n_edges_final);
-  if(tracking_quality_ == TRACKING_INSUFFICIENT)
+  if(tracking_quality_ == TRACKING_INSUFFICIENT || tracking_quality_ == TRACKING_BAD)
   {
-      return RESULT_FAILURE;
+      return RESULT_NO_KEYFRAME;
   }
   double depth_mean, depth_min;
 
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
 
-  if(!needNewKf(depth_mean) || tracking_quality_ == TRACKING_BAD)//edited
+  if(!needNewKf(depth_mean))//edited
   {
-    //depth_filter_->addFrame(new_frame_);
     return RESULT_NO_KEYFRAME;
   }
   new_frame_->setKeyframe();
@@ -234,7 +233,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  //std::cout<<"Svo pipline was finished\n";
   return RESULT_IS_KEYFRAME;
 }
 
@@ -268,7 +266,7 @@ void FrameHandlerMono::resetAll()
   resetCommon();
   last_frame_.reset();
   new_frame_.reset();
-  core_kfs_.clear();
+  //core_kfs_.clear();
   overlap_kfs_.clear();
   depth_filter_->reset();
 }
@@ -300,7 +298,7 @@ void FrameHandlerMono::setCoreKfs(size_t n_closest)
   std::partial_sort(overlap_kfs_.begin(), overlap_kfs_.begin()+n, overlap_kfs_.end(),
                     boost::bind(&pair<FramePtr, size_t>::second, _1) >
                     boost::bind(&pair<FramePtr, size_t>::second, _2));
-  std::for_each(overlap_kfs_.begin(), overlap_kfs_.end(), [&](pair<FramePtr,size_t>& i){ core_kfs_.insert(i.first); });
+  //std::for_each(overlap_kfs_.begin(), overlap_kfs_.end(), [&](pair<FramePtr,size_t>& i){ core_kfs_.insert(i.first); });
 }
 void FrameHandlerMono::UpdateIMU(double* value,const ros::Time& time){
     if(value== nullptr)return;
