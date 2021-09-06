@@ -145,8 +145,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   new_frame_->Cov_ = init_f.first;
   initialization::InitResult res = klt_homography_init_->addSecondFrame(new_frame_);
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Init: distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
+    fprintf(log_,"[%s] Init: distance between two frames:%f ,angle between two frames x:%f ,z=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            last_frame_->T_f_w_.se2().translation().x()-new_frame_->T_f_w_.se2().translation().x(),
+            last_frame_->T_f_w_.se2().translation().y()-new_frame_->T_f_w_.se2().translation().y(),
             last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
 #endif
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch(),1000,time_);
@@ -169,7 +170,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   stage_ = STAGE_DEFAULT_FRAME;
   klt_homography_init_->reset();
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Init: Selected first frame. \n",vio::time_in_HH_MM_SS_MMM().c_str());
+    fprintf(log_,"[%s] Init: Selected Second frame. \n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
   return RESULT_IS_KEYFRAME;
 }
@@ -187,25 +188,32 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Reprojection Map nPoint:%d ,nCell:%d ,nMatches:%d ,distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+    fprintf(log_,"[%s] After Reprojection Map nPoint:%d ,nCell:%d ,nMatches:%d ,distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             n_point,
             reprojector_.n_trials_,reprojector_.n_matches_,
-            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
-            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+            last_frame_->T_f_w_.se2().translation().x()-new_frame_->T_f_w_.se2().translation().x(),
+            last_frame_->T_f_w_.se2().translation().y()-new_frame_->T_f_w_.se2().translation().y(),
+            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
 #endif
-  if( reprojector_.n_trials_ < 10)return RESULT_FAILURE;
+  if( reprojector_.n_trials_ < 10){
+      auto init_f= ukfPtr_.get_location();
+      new_frame_->T_f_w_=init_f.second;
+      new_frame_->Cov_ = init_f.first;
+      return RESULT_FAILURE;
+  }
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
-  pose_optimizer::optimizeGaussNewton(
+/*  pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), 70, false,
-            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
+            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);*/
 #if VIO_DEBUG
-    fprintf(log_,"[%s] After pose optimization, distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
-            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+    fprintf(log_,"[%s] After pose optimization, distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            last_frame_->T_f_w_.se2().translation().x()-new_frame_->T_f_w_.se2().translation().x(),
+            last_frame_->T_f_w_.se2().translation().y()-new_frame_->T_f_w_.se2().translation().y(),
+            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
 #endif
     if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI_4){
+       fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch())>M_PI_2){
         auto init_f= ukfPtr_.get_location();
         new_frame_->T_f_w_=init_f.second;
         new_frame_->Cov_ = init_f.first;
@@ -216,9 +224,10 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Update EKF and 3D points, distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
-            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+    fprintf(log_,"[%s] Update EKF and 3D points, distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            last_frame_->T_f_w_.se2().translation().x()-new_frame_->T_f_w_.se2().translation().x(),
+            last_frame_->T_f_w_.se2().translation().y()-new_frame_->T_f_w_.se2().translation().y(),
+            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
 #endif
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   depth_filter_->addFrame(new_frame_);

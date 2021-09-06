@@ -153,11 +153,11 @@ namespace vio {
 
             J(0,0) = -z_inv;              // -1/z
             J(0,1) = x*z_inv_2;           // x/z^2
-            J(0,2) = -(1.0 + pow(x,2)/z_inv_2);   // -(1.0 + x^2/z^2)
+            J(0,2) = -(1.0 + pow(x,2)*z_inv_2);   // -(1.0 + x^2/z^2)
 
             J(1,0) = 1e-19;                // 0
             J(1,1) = y*z_inv_2;           // y/z^2
-            J(1,2) = -x*y/z_inv_2;      // -x*y/z^2
+            J(1,2) = -x*y*z_inv_2;      // -x*y/z^2
         }
         inline static void jacobian_l2uv(
                 const Matrix<double,3,1>& p,

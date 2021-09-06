@@ -52,14 +52,14 @@ void Visualizer::publishMinimal(
   {
     // publish cam in world frame (Estimated odometry in the worls frame)
     auto odom=ukf.get_location();
-    //Rviz frame z up, x  forward, y left -> right hands (yaw counts from x)
+    //Rviz frame z up, x  right, y forward -> right hands (yaw counts from y)
     //Camera frame z front, x right, y down -> right hands (pitch counts from z)
     //IMU frame y front, x right, z up -> left hands (theta counts from y)
     Quaterniond q(AngleAxisd(-odom.second.pitch(), Vector3d::UnitZ()));
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose_with_cov(new geometry_msgs::PoseWithCovarianceStamped);
       msg_pose_with_cov->header = header_msg;
-      msg_pose_with_cov->pose.pose.position.x = odom.second.se2().translation()(1);
-      msg_pose_with_cov->pose.pose.position.y = -odom.second.se2().translation()(0);
+      msg_pose_with_cov->pose.pose.position.x = odom.second.se2().translation()(0);
+      msg_pose_with_cov->pose.pose.position.y = odom.second.se2().translation()(1);
       msg_pose_with_cov->pose.pose.position.z = 0.0;
       msg_pose_with_cov->pose.pose.orientation.x = q.x();
       msg_pose_with_cov->pose.pose.orientation.y = q.y();
@@ -74,7 +74,7 @@ void Visualizer::publishMinimal(
     pub_pose_with_cov_.publish(msg_pose_with_cov);
     if(pub_frames_.getNumSubscribers() > 0 || pub_points_.getNumSubscribers() > 0){
           publishPointMarker(
-                  pub_points_, Eigen::Vector3d(odom.second.se2().translation()(1),-odom.second.se2().translation()(0),0.0), "trajectory",
+                  pub_points_, Eigen::Vector3d(odom.second.se2().translation()(0),odom.second.se2().translation()(1),0.0), "trajectory",
                   ros::Time::now(), trace_id_, 0, 0.01, Vector3d(0.,0.,0.5));
     }
   }

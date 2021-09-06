@@ -89,11 +89,11 @@ void optimizeGaussNewton(
       Vector3d xyz_f(Vector3d(frame->se3()*(*it)->point->pos_));
       Frame::jacobian_xyz2uv(xyz_f, J);
       Vector2d e = vk::project2d((*it)->f) - vk::project2d(xyz_f);
-#if VIO_DEBUG
+/*#if VIO_DEBUG
         fprintf(log,"[%s] xyz_f:%f, %f, %f  Reprojection Error: %f, %f Feature: %f, %f, %f\n",
                 vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z(),e.x(),e.y(),
                         (*it)->point->pos_.x(),(*it)->point->pos_.y(),(*it)->point->pos_.z());
-#endif
+#endif*/
       double sqrt_inv_cov = 1.0 / (1<<(*it)->level);
       e *= sqrt_inv_cov;
       if(iter == 0)

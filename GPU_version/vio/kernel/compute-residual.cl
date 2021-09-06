@@ -44,11 +44,11 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)
 {
     J[0] = -(1. / xyz_in_f.z);                                                         // -1/z
-    J[1] = (xyz_in_f.x) * ((1. / xyz_in_f.z) * (1. / xyz_in_f.z));                   // x/z^2
-    J[2] = -(1.0 + pow((xyz_in_f.x),2) / ((1. / xyz_in_f.z) * (1. / xyz_in_f.z)));   // -(1.0 + x^2/z^2)
+    J[1] = (xyz_in_f.x) / (xyz_in_f.z * xyz_in_f.z);                   // x/z^2
+    J[2] = -(1.0 + pow((xyz_in_f.x),2) / (xyz_in_f.z * xyz_in_f.z));   // -(1.0 + x^2/z^2)
     J[3] = 1e-19;                                                                       // 0
-    J[4] = (xyz_in_f.y) * ((1. / xyz_in_f.z) * (1. / xyz_in_f.z));                   // y/z^2
-    J[5] = -(xyz_in_f.x) * (xyz_in_f.y) / ((1. / xyz_in_f.z) * (1. / xyz_in_f.z));  // -x*y/z^2
+    J[4] = (xyz_in_f.y) / (xyz_in_f.z * xyz_in_f.z);                   // y/z^2
+    J[5] = -(xyz_in_f.x) * (xyz_in_f.y) / (xyz_in_f.z * xyz_in_f.z);  // -x*y/z^2
 }
 
 void compute_hessain(float3 j, __global float* H, float w)
