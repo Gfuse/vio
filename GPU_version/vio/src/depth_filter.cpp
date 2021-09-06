@@ -136,8 +136,9 @@ namespace vio {
             new_keyframe_set_ = true;
             seeds_updating_halt_ = true;
             frame_queue_cond_.notify_one();
+        }else{
+            initializeSeeds(frame);
         }
-        initializeSeeds(frame);
     }
 
     void DepthFilter::initializeSeeds(FramePtr frame)
@@ -265,6 +266,9 @@ namespace vio {
                 * AngleAxisd(0.0, Vector3d::UnitZ());
             SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
             const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
+#if VIO_DEBUG
+            fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
+#endif
             if(xyz_f.z() < 0.0)  {
                 ++it; // behind the camera
                 continue;

@@ -42,7 +42,8 @@ void optimizeGaussNewton(
     double& estimated_scale,
     double& error_init,
     double& error_final,
-    size_t& num_obs);
+    size_t& num_obs,
+    FILE* log);
 
 } // namespace pose_optimizer
 } // namespace vio

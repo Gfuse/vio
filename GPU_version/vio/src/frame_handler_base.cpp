@@ -127,9 +127,9 @@ void FrameHandlerBase::optimizeStructure(
   for(auto&& it:frame->fts_){
       if(it->point!=NULL)pts.push_back(it->point);
   }
-  max_n_pts = min(max_n_pts, pts.size());
-  nth_element(pts.begin(), pts.begin() + max_n_pts, pts.end(), ptLastOptimComparator);
-  for(deque<Point*>::iterator it=pts.begin(); it!=pts.begin()+max_n_pts; ++it)
+  //max_n_pts = min(max_n_pts, pts.size());
+  //nth_element(pts.begin(), pts.begin() + max_n_pts, pts.end(), ptLastOptimComparator);
+  for(deque<Point*>::iterator it=pts.begin(); it!=pts.begin(); ++it)
   {
     (*it)->optimize(max_iter);
     (*it)->last_structure_optim_ = frame->id_;

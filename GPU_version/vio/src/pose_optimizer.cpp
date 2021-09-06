@@ -34,7 +34,8 @@ void optimizeGaussNewton(
     double& estimated_scale,
     double& error_init,
     double& error_final,
-    size_t& num_obs)
+    size_t& num_obs,
+    FILE* log)
 {
   // init
   double chi2(0.0);
@@ -57,10 +58,14 @@ void optimizeGaussNewton(
     e *= 1.0 / (1<<(*it)->level);
     errors.push_back(e.norm());
   }
+
   if(errors.empty())
     return;
   vk::robust_cost::MADScaleEstimator scale_estimator;
   estimated_scale = 0.5*scale_estimator.compute(errors);
+#if VIO_DEBUG
+    fprintf(log,"[%s] Init estimate scale:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),estimated_scale);
+#endif
 
   num_obs = errors.size();
   chi2_vec_init.reserve(num_obs);
@@ -70,9 +75,6 @@ void optimizeGaussNewton(
   size_t n_direction=0;
   for(size_t iter=0; iter<n_iter; iter++)
   {
-    // overwrite scale
-    if(iter == 5)
-      scale = 0.85/frame->cam_->errorMultiplier2();
 
     b.setZero();
     A.setZero();
@@ -87,6 +89,11 @@ void optimizeGaussNewton(
       Vector3d xyz_f(Vector3d(frame->se3()*(*it)->point->pos_));
       Frame::jacobian_xyz2uv(xyz_f, J);
       Vector2d e = vk::project2d((*it)->f) - vk::project2d(xyz_f);
+#if VIO_DEBUG
+        fprintf(log,"[%s] xyz_f:%f, %f, %f  Reprojection Error: %f, %f Feature: %f, %f, %f\n",
+                vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z(),e.x(),e.y(),
+                        (*it)->point->pos_.x(),(*it)->point->pos_.y(),(*it)->point->pos_.z());
+#endif
       double sqrt_inv_cov = 1.0 / (1<<(*it)->level);
       e *= sqrt_inv_cov;
       if(iter == 0)
@@ -97,39 +104,31 @@ void optimizeGaussNewton(
       b.noalias() -= J.transpose()*e*weight;
       new_chi2 += e.squaredNorm()*weight;
     }
+
     // solve linear system
-    const Vector3d dT(A.ldlt().solve(b));
+    Vector3d dT(A.ldlt().solve(b));
 
     // check if error increased
-    if((iter > 0 && new_chi2 > chi2 && n_direction>3) || (bool) std::isnan((double)dT[0]))
+    if((iter > 0 && new_chi2 > chi2) || (bool) std::isnan((double)dT[0]))
     {
-      if(verbose)
-        std::cout << "it " << iter
-                  << "\t FAILURE \t new_chi2 = " << new_chi2 << std::endl;
+#if VIO_DEBUG
+          fprintf(log,"[%s] it:%d \t FAILURE \t new_chi2: %f\n",
+                  vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2);
+#endif
       frame->T_f_w_ = T_old; // roll-back
       break;
-    }else if((iter > 0 && new_chi2 > chi2 && n_direction<3) ){
-        ++n_direction;
-        scale *=0.5;
-        if(direction){
-            direction=false;
-        }else{
-            direction=true;
-        }
     }
-
+    scale *=0.5;
+    dT=0.1*dT;
     // update the model
     T_old = frame->T_f_w_;
-    if(direction){
-        frame->T_f_w_=SE2_5(SE2::exp(dT)*(T_old.se2()));
-    }else{
-        frame->T_f_w_=SE2_5(SE2::exp(-1.0*dT)*(T_old.se2()));
-    }
+    frame->T_f_w_=SE2_5(T_old.se2().translation().y()+dT.x(),T_old.se2().translation().y()+dT.y(),T_old.pitch()+dT.z());
+
     chi2 = new_chi2;
-    if(verbose)
-      std::cout << "it " << iter
-                << "\t Success \t new_chi2 = " << new_chi2
-                << "\t norm(dT) = " << vk::norm_max(dT) << std::endl;
+#if VIO_DEBUG
+      fprintf(log,"[%s] it:%d \t Success \t new_chi2: %f \t dT = %f, %f, %f\n",
+              vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2,dT.x(),dT.y(),dT.z());
+#endif
 
     // stop when converged
     if(vk::norm_max(dT) <= EPS)

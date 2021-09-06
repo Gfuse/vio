@@ -197,10 +197,18 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
-            Config::poseOptimThresh(), Config::poseOptimNumIter(), false,
-            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final);
-  if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
+            Config::poseOptimThresh(), 70, false,
+            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
+#if VIO_DEBUG
+    fprintf(log_,"[%s] After pose optimization, distance between two frames:%f ,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            (last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm(),
+            last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch());
+#endif
+    if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
        fabs(last_frame_->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>M_PI_4){
+        auto init_f= ukfPtr_.get_location();
+        new_frame_->T_f_w_=init_f.second;
+        new_frame_->Cov_ = init_f.first;
         return RESULT_FAILURE;
     }
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
