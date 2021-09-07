@@ -91,14 +91,13 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   frame_cur->T_f_w_ = SE2_5(SE2(frame_cur->T_f_w_.se2().rotation_matrix(),
                                 -frame_cur->T_f_w_.se2().rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()))));*/
   // For each inlier create 3D point and add feature in both frames
-  SE3 T_world_cur = frame_cur->getSE3Inv();
     for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
     {
         Vector2d px_cur(px_cur_[*it].x, px_cur_[*it].y);
         Vector2d px_ref(px_ref_[*it].x, px_ref_[*it].y);
-        if(frame_ref_->cam_->isInFrame(px_cur.cast<int>(), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>(), 10) && xyz_in_cur_[*it].z() > 0)
+        if(frame_cur->cam_->isInFrame(px_cur.cast<int>(), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>(), 10))
         {
-            Vector3d pos = T_world_cur * (xyz_in_cur_[*it]/* *scale */);
+            Vector3d pos = frame_cur->getSE3Inv() * (xyz_in_cur_[*it]/* *scale */);
             Point* new_point = new Point(pos);
 
             Feature* ftr_cur(new Feature(frame_cur.get(), new_point, px_cur, f_cur_[*it], 0));
