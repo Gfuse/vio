@@ -22,11 +22,11 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 {
     ref.x*=-1.0;
     ref.y*=-1.0;
-    ref.z = 3.141592653589793238462643383279502884197169399375 - ref.z;
+    ref.z = 3.141592653589793238462643383279502884197169399375 + ref.z;
     float3 error=ref+cur;
     float yaw=0.0;
-    float pitch=error.z-1.57079632679489661923;
-    float roll=0.26;
+    float pitch=error.z;
+    float roll=-0.26;
     float R00=cos(yaw)*cos(pitch);//cos(pitch)
     float R01=cos(yaw)*sin(pitch)*sin(roll)-sin(yaw)*cos(roll);//0
     float R02=cos(yaw)*sin(pitch)*cos(roll)+sin(yaw)*sin(roll);//sin(pitch)

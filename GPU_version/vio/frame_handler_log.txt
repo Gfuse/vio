@@ -1,123 +1,443 @@
-[13:55:52.003] Init: Selected first frame. 
-[13:55:52.103] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.199] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.299] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.400] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.499] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.599] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.699] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.797] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:52.898] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.003] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.098] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.199] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.298] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.398] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.498] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.597] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.700] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.806] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:53.900] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:54.003] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:54.103] Init: distance between two frames:0.000000 ,angle between two frames:0.000000
-[13:55:54.199] Init: distance between two frames:0.008098 ,angle between two frames:-0.001413
-[13:55:54.299] Init: distance between two frames:0.005687 ,angle between two frames:-0.008137
-[13:55:54.407] Init: distance between two frames:0.005817 ,angle between two frames:-0.018202
-[13:55:54.507] Init: distance between two frames:0.005256 ,angle between two frames:-0.021341
-[13:55:54.600] Init: distance between two frames:0.005647 ,angle between two frames:-0.009766
-[13:55:54.701] Init: distance between two frames:0.005229 ,angle between two frames:-0.008498
-[13:55:54.801] Init: distance between two frames:0.005693 ,angle between two frames:0.001719
-[13:55:54.901] Init: distance between two frames:0.005210 ,angle between two frames:-0.008292
-[13:55:55.001] Init: distance between two frames:0.005547 ,angle between two frames:-0.015455
-[13:55:55.300] Init: distance between two frames:0.016741 ,angle between two frames:0.002021
-[13:55:55.403] Init: distance between two frames:0.005574 ,angle between two frames:-0.023727
-[13:55:55.503] Init: distance between two frames:0.005524 ,angle between two frames:-0.000275
-[13:55:55.600] Init: distance between two frames:0.005563 ,angle between two frames:-0.011462
-[13:55:55.701] Init: distance between two frames:0.005445 ,angle between two frames:0.013509
-[13:55:55.801] Init: distance between two frames:0.005600 ,angle between two frames:-0.000241
-[13:55:55.901] Init: distance between two frames:0.005498 ,angle between two frames:0.001560
-[13:55:56.000] Init: distance between two frames:0.005522 ,angle between two frames:0.004637
-[13:55:56.102] Init: distance between two frames:0.005248 ,angle between two frames:-0.006459
-[13:55:56.203] Init: distance between two frames:0.005829 ,angle between two frames:-0.005902
-[13:55:56.305] Init: distance between two frames:0.005226 ,angle between two frames:-0.010043
-[13:55:56.402] Init: distance between two frames:0.005506 ,angle between two frames:0.001260
-[13:55:56.502] Init: distance between two frames:0.005776 ,angle between two frames:-0.008069
-[13:55:56.602] Init: distance between two frames:0.005224 ,angle between two frames:0.002812
-[13:55:56.704] Init: distance between two frames:0.005528 ,angle between two frames:0.006773
-[13:55:56.802] Init: distance between two frames:0.005590 ,angle between two frames:-0.004552
-[13:55:56.902] Init: distance between two frames:0.005306 ,angle between two frames:0.018989
-[13:55:57.002] Init: distance between two frames:0.005527 ,angle between two frames:0.009266
-[13:55:57.102] Init: distance between two frames:0.005535 ,angle between two frames:-0.003895
-[13:55:57.202] Init: distance between two frames:0.006042 ,angle between two frames:-0.005678
-[13:55:57.303] Init: distance between two frames:0.005375 ,angle between two frames:0.002087
-[13:55:57.401] Init: distance between two frames:0.005455 ,angle between two frames:-0.005637
-[13:55:57.552] Init: distance between two frames:1.071640 ,angle between two frames:0.180774
-[13:55:57.552] Init: Selected first frame. 
-[13:55:57.682] After Reprojection Map nPoint:16 ,nCell:15 ,nMatches:4 ,distance between two frames x:0.456077 ,z=-0.308324,angle between two frames:0.009333
-[13:55:57.682] After pose optimization, distance between two frames x:0.456077 ,z=-0.308324,angle between two frames:0.009333
-[13:55:57.777] After Reprojection Map nPoint:4 ,nCell:4 ,nMatches:3 ,distance between two frames x:0.444207 ,z=-0.197349,angle between two frames:0.011885
-[13:55:57.870] After Reprojection Map nPoint:3 ,nCell:3 ,nMatches:2 ,distance between two frames x:-0.915788 ,z=1.264063,angle between two frames:0.060910
-[13:55:58.080] After Reprojection Map nPoint:2 ,nCell:2 ,nMatches:1 ,distance between two frames x:-0.207997 ,z=0.968835,angle between two frames:0.027259
-[13:55:58.177] After Reprojection Map nPoint:1 ,nCell:1 ,nMatches:1 ,distance between two frames x:0.244283 ,z=-0.037634,angle between two frames:0.003677
-[13:55:58.278] After Reprojection Map nPoint:1 ,nCell:1 ,nMatches:0 ,distance between two frames x:0.812641 ,z=-0.028099,angle between two frames:0.011898
-[13:55:58.466] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005370 ,z=-0.001219,angle between two frames:0.018277
-[13:55:58.581] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000004,angle between two frames:0.008013
-[13:55:58.667] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000001,angle between two frames:0.001890
-[13:55:58.775] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000009 ,z=-0.000010,angle between two frames:0.006365
-[13:55:58.869] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000010,angle between two frames:0.000411
-[13:55:58.970] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.000203
-[13:55:59.064] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000008 ,z=-0.000075,angle between two frames:0.003287
-[13:55:59.564] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.021895 ,z=-0.003651,angle between two frames:0.021524
-[13:56:00.170] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.027362 ,z=-0.006364,angle between two frames:0.085969
-[13:56:00.564] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.015903 ,z=-0.004426,angle between two frames:0.015006
-[13:56:00.664] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000011,angle between two frames:0.001058
-[13:56:00.777] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=0.000002,angle between two frames:0.000613
-[13:56:01.164] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.016086 ,z=-0.003829,angle between two frames:0.024067
-[13:56:01.264] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=0.000003,angle between two frames:0.001916
-[13:56:01.364] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000018,angle between two frames:0.001095
-[13:56:01.464] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=0.000003,angle between two frames:0.002453
-[13:56:02.064] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.026612 ,z=-0.007134,angle between two frames:0.070804
-[13:56:02.169] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000021 ,z=-0.000080,angle between two frames:0.001478
-[13:56:02.363] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005007 ,z=-0.001536,angle between two frames:0.017243
-[13:56:02.463] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000001,angle between two frames:0.001778
-[13:56:02.565] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000008 ,z=-0.000018,angle between two frames:0.000692
-[13:56:02.764] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005113 ,z=-0.001562,angle between two frames:0.006603
-[13:56:02.865] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000021 ,z=-0.000078,angle between two frames:0.002404
-[13:56:02.966] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000017 ,z=0.000001,angle between two frames:0.003004
-[13:56:03.064] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000008,angle between two frames:0.002762
-[13:56:03.171] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000005,angle between two frames:0.004046
-[13:56:03.264] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=0.000009,angle between two frames:0.002007
-[13:56:03.364] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.000411
-[13:56:03.666] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.010716 ,z=-0.003146,angle between two frames:0.031622
-[13:56:04.164] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.020633 ,z=-0.007259,angle between two frames:0.038141
-[13:56:04.265] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000002,angle between two frames:0.000542
-[13:56:04.464] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005238 ,z=-0.001791,angle between two frames:0.023024
-[13:56:04.563] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000008 ,z=-0.000046,angle between two frames:0.000343
-[13:56:04.665] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000001,angle between two frames:0.002538
-[13:56:04.765] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000012 ,z=-0.000005,angle between two frames:0.001983
-[13:56:04.971] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005352 ,z=-0.001606,angle between two frames:0.000162
-[13:56:05.166] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005324 ,z=-0.001748,angle between two frames:0.002488
-[13:56:05.371] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005314 ,z=-0.001922,angle between two frames:0.026127
-[13:56:05.698] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.010681 ,z=-0.004039,angle between two frames:0.020154
-[13:56:05.773] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.000479
-[13:56:05.984] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005159 ,z=-0.002048,angle between two frames:0.010591
-[13:56:06.096] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.000905
-[13:56:06.178] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000008 ,z=-0.000022,angle between two frames:0.001117
-[13:56:06.287] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000023 ,z=0.000004,angle between two frames:0.001649
-[13:56:06.375] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000003,angle between two frames:0.000796
-[13:56:06.470] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=0.000011,angle between two frames:0.003529
-[13:56:06.564] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000036 ,z=-0.000111,angle between two frames:0.000367
-[13:56:06.765] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000019 ,z=-0.000176,angle between two frames:0.002309
-[13:56:06.864] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000156 ,z=-0.000101,angle between two frames:0.003402
-[13:56:06.964] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000006 ,z=-0.000020,angle between two frames:0.004292
-[13:56:07.066] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000005,angle between two frames:0.000914
-[13:56:07.178] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000003,angle between two frames:0.000731
-[13:56:07.266] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000002,angle between two frames:0.000396
-[13:56:07.367] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000003,angle between two frames:0.000795
-[13:56:07.466] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000653
-[13:56:07.565] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000003,angle between two frames:0.000792
-[13:56:07.668] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000003,angle between two frames:0.000924
-[13:56:07.772] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000003,angle between two frames:0.000731
-[13:56:07.864] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000526
-[13:56:07.967] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000643
-[13:56:08.064] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000659
+[11:01:55.988] Init: frame zero: -0.000004, -0.000076 -0.031748
+[11:01:55.988] Init: Selected first frame. 
+[11:01:56.086] Init: px average disparity is:0.037345 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.086] Init: distance between two frames x:0.000004 ,z=0.000076,angle between two frames: 0.031748 
+[11:01:56.184] Init: px average disparity is:0.050550 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.184] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.284] Init: px average disparity is:0.054696 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.284] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.386] Init: px average disparity is:0.047857 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.386] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.482] Init: px average disparity is:0.055471 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.482] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.583] Init: px average disparity is:0.057133 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.583] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.685] Init: px average disparity is:0.051904 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.685] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.782] Init: px average disparity is:0.061241 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.782] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.884] Init: px average disparity is:0.050830 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.884] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:56.988] Init: px average disparity is:0.101803 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:56.988] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.086] Init: px average disparity is:7.279913 ,While minimum is: 30.000000  KLT tracked : 146
+[11:01:57.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.188] Init: px average disparity is:14.299447 ,While minimum is: 30.000000  KLT tracked : 136
+[11:01:57.188] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.284] Init: px average disparity is:17.174474 ,While minimum is: 30.000000  KLT tracked : 130
+[11:01:57.284] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.387] Init: px average disparity is:16.165114 ,While minimum is: 30.000000  KLT tracked : 129
+[11:01:57.387] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.485] Init: px average disparity is:13.631511 ,While minimum is: 30.000000  KLT tracked : 129
+[11:01:57.485] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.584] Init: px average disparity is:11.967167 ,While minimum is: 30.000000  KLT tracked : 129
+[11:01:57.584] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.683] Init: px average disparity is:9.226998 ,While minimum is: 30.000000  KLT tracked : 128
+[11:01:57.683] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.786] Init: px average disparity is:9.280991 ,While minimum is: 30.000000  KLT tracked : 127
+[11:01:57.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.886] Init: px average disparity is:8.696010 ,While minimum is: 30.000000  KLT tracked : 126
+[11:01:57.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:57.986] Init: px average disparity is:10.812092 ,While minimum is: 30.000000  KLT tracked : 126
+[11:01:57.986] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.084] Init: px average disparity is:10.220709 ,While minimum is: 30.000000  KLT tracked : 126
+[11:01:58.084] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.187] Init: px average disparity is:9.905617 ,While minimum is: 30.000000  KLT tracked : 126
+[11:01:58.187] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.284] Init: px average disparity is:10.536242 ,While minimum is: 30.000000  KLT tracked : 126
+[11:01:58.284] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.385] Init: px average disparity is:9.821336 ,While minimum is: 30.000000  KLT tracked : 126
+[11:01:58.385] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.496] Init: px average disparity is:11.334300 ,While minimum is: 30.000000  KLT tracked : 125
+[11:01:58.496] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.585] Init: px average disparity is:11.068508 ,While minimum is: 30.000000  KLT tracked : 125
+[11:01:58.585] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.685] Init: px average disparity is:12.364304 ,While minimum is: 30.000000  KLT tracked : 125
+[11:01:58.685] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.786] Init: px average disparity is:9.340030 ,While minimum is: 30.000000  KLT tracked : 116
+[11:01:58.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.886] Init: px average disparity is:8.380981 ,While minimum is: 30.000000  KLT tracked : 105
+[11:01:58.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:58.984] Init: px average disparity is:9.289314 ,While minimum is: 30.000000  KLT tracked : 105
+[11:01:58.984] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.086] Init: px average disparity is:8.568369 ,While minimum is: 30.000000  KLT tracked : 104
+[11:01:59.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.186] Init: px average disparity is:8.583950 ,While minimum is: 30.000000  KLT tracked : 104
+[11:01:59.186] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.294] Init: px average disparity is:10.034264 ,While minimum is: 30.000000  KLT tracked : 103
+[11:01:59.294] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.385] Init: px average disparity is:10.455943 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.385] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.485] Init: px average disparity is:12.370028 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.485] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.586] Init: px average disparity is:11.320209 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.586] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.684] Init: px average disparity is:10.469113 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.684] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.784] Init: px average disparity is:10.335327 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.785] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.885] Init: px average disparity is:10.202416 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:01:59.986] Init: px average disparity is:10.288406 ,While minimum is: 30.000000  KLT tracked : 102
+[11:01:59.986] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.086] Init: px average disparity is:10.270807 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.184] Init: px average disparity is:10.249354 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.184] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.285] Init: px average disparity is:10.251442 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.285] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.384] Init: px average disparity is:10.286003 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.384] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.485] Init: px average disparity is:10.152584 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.485] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.586] Init: px average disparity is:10.132516 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.586] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.688] Init: px average disparity is:10.194353 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.688] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.785] Init: px average disparity is:10.172247 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.785] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.885] Init: px average disparity is:10.240655 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.885] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:00.988] Init: px average disparity is:10.233074 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:00.988] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.085] Init: px average disparity is:10.133897 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.085] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.186] Init: px average disparity is:10.163725 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.186] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.285] Init: px average disparity is:10.222874 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.285] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.388] Init: px average disparity is:10.261694 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.388] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.486] Init: px average disparity is:10.267448 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.486] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.588] Init: px average disparity is:10.135959 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.588] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.687] Init: px average disparity is:10.252439 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.687] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.786] Init: px average disparity is:10.227142 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.888] Init: px average disparity is:10.259772 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.888] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:01.985] Init: px average disparity is:10.251031 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:01.985] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.086] Init: px average disparity is:10.260130 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.188] Init: px average disparity is:10.247340 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.188] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.288] Init: px average disparity is:10.186346 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.288] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.385] Init: px average disparity is:10.137828 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.385] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.487] Init: px average disparity is:10.226063 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.487] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.587] Init: px average disparity is:10.320538 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.587] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.688] Init: px average disparity is:10.223420 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.688] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.788] Init: px average disparity is:10.347357 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.788] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.889] Init: px average disparity is:10.157928 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.890] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:02.987] Init: px average disparity is:10.222194 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:02.987] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.097] Init: px average disparity is:10.251769 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.097] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.184] Init: px average disparity is:10.222131 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.185] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.288] Init: px average disparity is:10.232337 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.288] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.385] Init: px average disparity is:10.237536 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.385] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.487] Init: px average disparity is:10.282337 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.487] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.585] Init: px average disparity is:10.270175 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.585] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.687] Init: px average disparity is:10.206514 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.687] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.786] Init: px average disparity is:10.241267 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.886] Init: px average disparity is:10.141367 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:03.985] Init: px average disparity is:10.248750 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:03.985] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.085] Init: px average disparity is:10.221989 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.085] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.185] Init: px average disparity is:10.216355 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.185] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.287] Init: px average disparity is:10.219806 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.287] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.384] Init: px average disparity is:10.257169 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.384] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.484] Init: px average disparity is:10.158695 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.484] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.586] Init: px average disparity is:10.264931 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.587] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.685] Init: px average disparity is:10.282706 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.685] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.785] Init: px average disparity is:10.188245 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.785] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.886] Init: px average disparity is:10.237752 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:04.985] Init: px average disparity is:10.276601 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:04.985] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.084] Init: px average disparity is:10.241680 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.084] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.185] Init: px average disparity is:10.251192 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.185] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.285] Init: px average disparity is:10.171053 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.285] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.385] Init: px average disparity is:10.244646 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.385] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.484] Init: px average disparity is:10.203797 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.484] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.585] Init: px average disparity is:10.201256 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.585] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.687] Init: px average disparity is:10.136497 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.687] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.786] Init: px average disparity is:10.135943 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.885] Init: px average disparity is:10.248781 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.885] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:05.986] Init: px average disparity is:10.247617 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:05.986] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.086] Init: px average disparity is:10.267410 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.187] Init: px average disparity is:10.266867 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.187] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.287] Init: px average disparity is:10.264840 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.287] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.388] Init: px average disparity is:10.337304 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.388] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.485] Init: px average disparity is:10.128865 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.485] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.585] Init: px average disparity is:10.269877 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.585] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.687] Init: px average disparity is:10.337045 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.688] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.785] Init: px average disparity is:10.129750 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.785] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.885] Init: px average disparity is:10.168965 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.885] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:06.987] Init: px average disparity is:10.191896 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:06.987] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.087] Init: px average disparity is:10.238642 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.087] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.185] Init: px average disparity is:10.223198 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.185] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.285] Init: px average disparity is:10.282554 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.285] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.385] Init: px average disparity is:10.176952 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.385] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.486] Init: px average disparity is:10.238094 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.486] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.586] Init: px average disparity is:10.211476 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.586] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.685] Init: px average disparity is:10.233704 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.685] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.787] Init: px average disparity is:10.269705 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.787] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.891] Init: px average disparity is:10.287704 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.891] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:07.985] Init: px average disparity is:10.135574 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:07.985] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.086] Init: px average disparity is:10.249979 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.184] Init: px average disparity is:10.185653 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.184] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.284] Init: px average disparity is:10.219771 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.284] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.387] Init: px average disparity is:10.173549 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.387] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.487] Init: px average disparity is:10.147496 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.487] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.587] Init: px average disparity is:10.248013 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.587] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.689] Init: px average disparity is:10.263723 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.689] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.789] Init: px average disparity is:10.254862 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.789] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.886] Init: px average disparity is:10.270866 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:08.986] Init: px average disparity is:10.216670 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:08.986] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.086] Init: px average disparity is:10.217332 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.186] Init: px average disparity is:10.240237 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.186] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.285] Init: px average disparity is:10.193919 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.285] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.388] Init: px average disparity is:10.352347 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.388] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.488] Init: px average disparity is:10.186599 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.488] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.588] Init: px average disparity is:10.249947 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.588] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.685] Init: px average disparity is:10.126938 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.686] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.786] Init: px average disparity is:10.134148 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.887] Init: px average disparity is:10.290771 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.887] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:09.992] Init: px average disparity is:10.226093 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:09.992] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.087] Init: px average disparity is:10.265580 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.087] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.186] Init: px average disparity is:10.237849 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.186] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.287] Init: px average disparity is:10.284607 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.287] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.386] Init: px average disparity is:10.243096 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.386] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.487] Init: px average disparity is:10.328327 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.487] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.586] Init: px average disparity is:10.264396 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.586] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.687] Init: px average disparity is:10.196906 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.687] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.786] Init: px average disparity is:10.149259 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.786] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.887] Init: px average disparity is:10.172362 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.887] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:10.986] Init: px average disparity is:10.299432 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:10.986] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.086] Init: px average disparity is:10.251815 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.086] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.189] Init: px average disparity is:10.272047 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.189] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.288] Init: px average disparity is:10.222494 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.288] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.388] Init: px average disparity is:10.276493 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.388] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.488] Init: px average disparity is:10.266866 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.488] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.586] Init: px average disparity is:10.253621 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.586] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.686] Init: px average disparity is:10.212135 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.686] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.789] Init: px average disparity is:10.234589 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.789] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.885] Init: px average disparity is:10.168199 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.885] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:11.986] Init: px average disparity is:10.137210 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:11.987] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.085] Init: px average disparity is:10.244415 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.085] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.185] Init: px average disparity is:10.245816 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.185] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.286] Init: px average disparity is:10.135106 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.286] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.384] Init: px average disparity is:10.191597 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.384] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.486] Init: px average disparity is:10.293023 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.487] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.585] Init: px average disparity is:10.175095 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.585] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.687] Init: px average disparity is:10.151985 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.687] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.787] Init: px average disparity is:10.254288 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.788] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.887] Init: px average disparity is:10.171402 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.887] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:12.988] Init: px average disparity is:10.345112 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:12.988] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.087] Init: px average disparity is:10.209089 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.087] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.186] Init: px average disparity is:10.150739 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.186] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.288] Init: px average disparity is:10.227470 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.288] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.387] Init: px average disparity is:10.200847 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.387] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.487] Init: px average disparity is:10.265641 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.487] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.586] Init: px average disparity is:10.258678 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.586] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.685] Init: px average disparity is:10.129732 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.685] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.787] Init: px average disparity is:9.102508 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.787] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.885] Init: px average disparity is:11.568022 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.886] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:13.986] Init: px average disparity is:21.810193 ,While minimum is: 30.000000  KLT tracked : 102
+[11:02:13.986] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.091] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:30.827348 ,While minimum is: 30.000000  KLT tracked: 102
+[11:02:14.091] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.196] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:39.974605 ,While minimum is: 30.000000  KLT tracked: 102
+[11:02:14.196] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.295] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:48.333544 ,While minimum is: 30.000000  KLT tracked: 102
+[11:02:14.295] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.491] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:77.938278 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:14.491] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.590] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:90.717428 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:14.590] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.690] Init: Homography RANSAC (inlier) is:12 ,While 40 inliers minimum required.  px average disparity is:106.873798 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:14.690] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.793] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:118.779647 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:14.793] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.891] Init: Homography RANSAC (inlier) is:11 ,While 40 inliers minimum required.  px average disparity is:127.640758 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:14.891] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:14.990] Init: Homography RANSAC (inlier) is:11 ,While 40 inliers minimum required.  px average disparity is:140.627478 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:14.990] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.092] Init: Homography RANSAC (inlier) is:5 ,While 40 inliers minimum required.  px average disparity is:158.715614 ,While minimum is: 30.000000  KLT tracked: 99
+[11:02:15.092] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.193] Init: Homography RANSAC (inlier) is:5 ,While 40 inliers minimum required.  px average disparity is:169.205942 ,While minimum is: 30.000000  KLT tracked: 98
+[11:02:15.193] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.293] Init: Homography RANSAC (inlier) is:5 ,While 40 inliers minimum required.  px average disparity is:183.609603 ,While minimum is: 30.000000  KLT tracked: 98
+[11:02:15.293] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.394] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:197.180236 ,While minimum is: 30.000000  KLT tracked: 95
+[11:02:15.394] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.494] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:209.895206 ,While minimum is: 30.000000  KLT tracked: 93
+[11:02:15.494] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.602] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:222.922431 ,While minimum is: 30.000000  KLT tracked: 93
+[11:02:15.602] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.699] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:240.840291 ,While minimum is: 30.000000  KLT tracked: 92
+[11:02:15.699] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.802] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:255.005166 ,While minimum is: 30.000000  KLT tracked: 89
+[11:02:15.802] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:15.912] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:267.040170 ,While minimum is: 30.000000  KLT tracked: 89
+[11:02:15.912] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:16.010] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:279.245505 ,While minimum is: 30.000000  KLT tracked: 89
+[11:02:16.010] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:16.396] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:317.753528 ,While minimum is: 30.000000  KLT tracked: 85
+[11:02:16.396] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.056] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:325.193446 ,While minimum is: 30.000000  KLT tracked: 82
+[11:02:27.056] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.257] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:302.640580 ,While minimum is: 30.000000  KLT tracked: 82
+[11:02:27.257] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.472] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:277.556248 ,While minimum is: 30.000000  KLT tracked: 82
+[11:02:27.472] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.515] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:261.254929 ,While minimum is: 30.000000  KLT tracked: 80
+[11:02:27.515] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.603] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:245.062521 ,While minimum is: 30.000000  KLT tracked: 80
+[11:02:27.603] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.799] Init: Homography RANSAC (inlier) is:3 ,While 40 inliers minimum required.  px average disparity is:215.034152 ,While minimum is: 30.000000  KLT tracked: 80
+[11:02:27.799] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:27.902] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:203.837870 ,While minimum is: 30.000000  KLT tracked: 79
+[11:02:27.902] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.000] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:188.600403 ,While minimum is: 30.000000  KLT tracked: 79
+[11:02:28.000] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.097] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:172.574220 ,While minimum is: 30.000000  KLT tracked: 79
+[11:02:28.097] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.191] Init: Homography RANSAC (inlier) is:11 ,While 40 inliers minimum required.  px average disparity is:160.910590 ,While minimum is: 30.000000  KLT tracked: 78
+[11:02:28.191] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.293] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:144.128868 ,While minimum is: 30.000000  KLT tracked: 78
+[11:02:28.293] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.392] Init: Homography RANSAC (inlier) is:6 ,While 40 inliers minimum required.  px average disparity is:128.974416 ,While minimum is: 30.000000  KLT tracked: 78
+[11:02:28.392] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.491] Init: Homography RANSAC (inlier) is:6 ,While 40 inliers minimum required.  px average disparity is:118.914593 ,While minimum is: 30.000000  KLT tracked: 77
+[11:02:28.491] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.594] Init: Homography RANSAC (inlier) is:6 ,While 40 inliers minimum required.  px average disparity is:105.187966 ,While minimum is: 30.000000  KLT tracked: 77
+[11:02:28.594] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.694] Init: Homography RANSAC (inlier) is:6 ,While 40 inliers minimum required.  px average disparity is:90.291915 ,While minimum is: 30.000000  KLT tracked: 77
+[11:02:28.694] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.793] Init: Homography RANSAC (inlier) is:11 ,While 40 inliers minimum required.  px average disparity is:74.358445 ,While minimum is: 30.000000  KLT tracked: 77
+[11:02:28.793] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:28.991] Init: Homography RANSAC (inlier) is:11 ,While 40 inliers minimum required.  px average disparity is:49.854464 ,While minimum is: 30.000000  KLT tracked: 77
+[11:02:28.991] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:29.091] Init: Homography RANSAC (inlier) is:11 ,While 40 inliers minimum required.  px average disparity is:38.269844 ,While minimum is: 30.000000  KLT tracked: 77
+[11:02:29.091] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:29.188] Init: px average disparity is:26.081087 ,While minimum is: 30.000000  KLT tracked : 77
+[11:02:29.188] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:29.287] Init: px average disparity is:14.597041 ,While minimum is: 30.000000  KLT tracked : 77
+[11:02:29.287] Init: distance between two frames x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[11:02:29.386] Init: px average disparity is:8.958921 ,While mi

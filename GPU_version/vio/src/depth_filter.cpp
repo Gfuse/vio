@@ -258,14 +258,14 @@ namespace vio {
                 continue;
             }
             // check if point is visible in the current image
-            SE2 T(it->ftr->frame->T_f_w_.pitch()+frame->T_f_w_.pitch()+M_PI,it->ftr->frame->T_f_w_.se2().translation()- frame->T_f_w_.se2().translation());
+            SE2 T(frame->T_f_w_.pitch()-it->ftr->frame->T_f_w_.pitch(),frame->T_f_w_.se2().translation()+it->ftr->frame->T_f_w_.inverse().translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
             q = AngleAxisd(0.261799, Vector3d::UnitX())
-                * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real())-M_PI_2, Vector3d::UnitY())
+                * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
-            SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
-            const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/it->mu * it->ftr->f) );
+            SE3 T_cur_ref(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
+            const Vector3d xyz_f(T_cur_ref*(1.0/it->mu * it->ftr->f) );
 #if VIO_DEBUG
             fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
 #endif
@@ -295,7 +295,7 @@ namespace vio {
                 ++n_failed_matches;
                 continue;
             }
-            double tau = computeTau(T_ref_cur, it->ftr->f, z, px_error_angle);
+            double tau = computeTau(T_cur_ref.inverse(), it->ftr->f, z, px_error_angle);
             double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
 
             // update the estimate

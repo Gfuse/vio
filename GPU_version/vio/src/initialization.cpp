@@ -21,7 +21,6 @@
 #include <vio/initialization.h>
 #include <vio/feature_detection.h>
 #include <vio/math_utils.h>
-#include <vio/homography.h>
 
 namespace vio {
 namespace initialization {
@@ -35,6 +34,12 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
     SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 100 features. Retry in more textured environment.");
     return FAILURE;
   }
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Init: frame zero: %f, %f %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            frame_ref->T_f_w_.se2().translation().x(),
+            frame_ref->T_f_w_.se2().translation().y(),
+            frame_ref->T_f_w_.pitch());
+#endif
   frame_ref_ = frame_ref;
   px_cur_.insert(px_cur_.begin(), px_ref_.begin(), px_ref_.end());
   return SUCCESS;
@@ -46,25 +51,30 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   if(disparities_.size() < 1)
         return NO_KEYFRAME;
   double disparity = vk::getMedian(disparities_);
-  if(disparity < Config::initMinDisparity()){
-      SVO_INFO_STREAM("Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required."
-      <<"  KLT tracked : "<<disparities_.size());
-      return NO_KEYFRAME;
-  }
+    if(disparity < Config::initMinDisparity()){
+#if VIO_DEBUG
+        fprintf(log_,"[%s] Init: px average disparity is:%f ,While minimum is: %f  KLT tracked : %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+                disparity,
+                Config::initMinDisparity(),
+                disparities_.size());
+#endif
+        return NO_KEYFRAME;
+    }
   computeHomography(
       f_ref_, f_cur_,
       frame_ref_->cam_->errorMultiplier2(), Config::poseOptimThresh(),
       inliers_, xyz_in_cur_, T_cur_from_ref_);
-
-  if(inliers_.size() < Config::initMinInliers() && disparity < 150)
-  {
-    SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()<<" While: "<<Config::initMinInliers()<<" inliers minimum required.\n"
-       <<"Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required.");
+  if(inliers_.size() < Config::initMinInliers()){
+#if VIO_DEBUG
+      fprintf(log_,"[%s] Init: Homography RANSAC (inlier) is:%d ,While %d inliers minimum required.  px average disparity is:%f ,While minimum is: %f  KLT tracked: %d\n",
+              vio::time_in_HH_MM_SS_MMM().c_str(),
+              inliers_.size(),
+              Config::initMinInliers(),
+              disparity,
+              Config::initMinDisparity(),
+              disparities_.size());
+#endif
       return NO_KEYFRAME;
-  }else if(inliers_.size() < Config::initMinInliers() && disparity > 150){
-      SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()<<" While: "<<Config::initMinInliers()<<" inliers minimum required.\n"
-                       <<"Init: px average disparity is: "<<disparity<<" While: "<<Config::initMinDisparity()<<" minimum required. Reinitialized");
-      return FAILURE;
   }
 
   // Rescale the map such that the mean scene depth is equal to the specified scale
@@ -96,9 +106,15 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
             new_point->addFrameRef(ftr_ref);
         }
     }
-    SVO_INFO_STREAM("Init Homography RANSAC (inlier) is: "<<inliers_.size()
-                    <<"\nKLT disparity is: "<<disparity<<" px average disparity."
-                    <<"\nThe number of feature: "<<frame_cur->fts_.size());
+#if VIO_DEBUG
+    fprintf(log_,"[%s] Init finished: Homography RANSAC (inlier) is:%d ,While %d inliers minimum required.  px average disparity is:%f ,While minimum is: %f  KLT tracked: %d\n",
+            vio::time_in_HH_MM_SS_MMM().c_str(),
+            inliers_.size(),
+            Config::initMinInliers(),
+            disparity,
+            Config::initMinDisparity(),
+            disparities_.size());
+#endif
   return SUCCESS;
 }
 
@@ -127,78 +143,49 @@ void detectFeatures(
       delete ftr;
   }
 }
-
 void trackKlt(
-    FramePtr frame_ref,
-    FramePtr frame_cur,
-    vector<cv::Point2f>& px_ref,
-    vector<cv::Point2f>& px_cur,
-    vector<Vector3d>& f_ref,
-    vector<Vector3d>& f_cur,
-    vector<double>& disparities)
-{
-  disparities.clear();
-  const double klt_win_size = 30.0;//30.0
-  const int klt_max_iter = 30;//30
-  const double klt_eps = 0.001;
-  vector<uchar> status;
-  vector<float> error;
-  vector<float> min_eig_vec;
-  cv::TermCriteria termcrit(cv::TermCriteria::COUNT+cv::TermCriteria::EPS, klt_max_iter, klt_eps);
-  if(frame_ref->img_pyr_[0].empty() || frame_cur->img_pyr_[0].empty())return;
-  cv::calcOpticalFlowPyrLK(frame_ref->img_pyr_[0], frame_cur->img_pyr_[0],
-                           px_ref, px_cur,
-                           status, error,
-                           cv::Size2i(klt_win_size, klt_win_size),
-                           4, termcrit, cv::OPTFLOW_USE_INITIAL_FLOW);
-  vector<cv::Point2f>::iterator px_ref_it = px_ref.begin();
-  vector<cv::Point2f>::iterator px_cur_it = px_cur.begin();
-  vector<Vector3d>::iterator f_ref_it = f_ref.begin();
-  f_cur.clear(); //f_cur.reserve(px_cur.size());
-  //disparities.reserve(px_cur.size());
-  for(size_t i=0; px_ref_it != px_ref.end(); ++i)
-  {
-    if(!status[i])
+            FramePtr frame_ref,
+            FramePtr frame_cur,
+            vector<cv::Point2f>& px_ref,
+            vector<cv::Point2f>& px_cur,
+            vector<Vector3d>& f_ref,
+            vector<Vector3d>& f_cur,
+            vector<double>& disparities)
     {
-      px_ref_it = px_ref.erase(px_ref_it);
-      px_cur_it = px_cur.erase(px_cur_it);
-      f_ref_it = f_ref.erase(f_ref_it);
-      continue;
-    }
-    f_cur.push_back(frame_cur->c2f(px_cur_it->x, px_cur_it->y));
-    disparities.push_back(Vector2d(px_ref_it->x - px_cur_it->x, px_ref_it->y - px_cur_it->y).norm());
-    ++px_ref_it;
-    ++px_cur_it;
-    ++f_ref_it;
-  }
-}
-
-void computeHomography(
-    const vector<Vector3d>& f_ref,
-    const vector<Vector3d>& f_cur,
-    double focal_length,
-    double reprojection_threshold,
-    vector<int>& inliers,
-    vector<Vector3d>& xyz_in_cur,
-    SE2_5& T_cur_from_ref)
-{
-  vector<Vector2d > uv_ref(f_ref.size());
-  vector<Vector2d > uv_cur(f_cur.size());
-  for(size_t i=0, i_max=f_ref.size(); i<i_max; ++i)
-  {
-    uv_ref[i] = vk::project2d(f_ref[i]);
-    uv_cur[i] = vk::project2d(f_cur[i]);
-  }
-  vk::Homography Homography(uv_ref, uv_cur, focal_length, reprojection_threshold);
-  Homography.computeSE3fromMatches();
-  vector<int> outliers;
-  vk::computeInliers(f_cur, f_ref,
-                     Homography.T_c2_from_c1.rotation_matrix(), Homography.T_c2_from_c1.translation(),
-                     reprojection_threshold, focal_length,
-                     xyz_in_cur, inliers, outliers);
-  T_cur_from_ref=SE2_5(Homography.T_c2_from_c1);
-}
-
-
+        disparities.clear();
+        const double klt_win_size = 30.0;//30.0
+        const int klt_max_iter = 30;//30
+        const double klt_eps = 0.001;
+        vector<uchar> status;
+        vector<float> error;
+        vector<float> min_eig_vec;
+        cv::TermCriteria termcrit(cv::TermCriteria::COUNT+cv::TermCriteria::EPS, klt_max_iter, klt_eps);
+        if(frame_ref->img_pyr_[0].empty() || frame_cur->img_pyr_[0].empty())return;
+        cv::calcOpticalFlowPyrLK(frame_ref->img_pyr_[0], frame_cur->img_pyr_[0],
+                                 px_ref, px_cur,
+                                 status, error,
+                                 cv::Size2i(klt_win_size, klt_win_size),
+                                 4, termcrit, cv::OPTFLOW_USE_INITIAL_FLOW);
+        vector<cv::Point2f>::iterator px_ref_it = px_ref.begin();
+        vector<cv::Point2f>::iterator px_cur_it = px_cur.begin();
+        vector<Vector3d>::iterator f_ref_it = f_ref.begin();
+        f_cur.clear(); //f_cur.reserve(px_cur.size());
+        //disparities.reserve(px_cur.size());
+        for(size_t i=0; px_ref_it != px_ref.end(); ++i)
+        {
+            if(!status[i])
+            {
+                px_ref_it = px_ref.erase(px_ref_it);
+                px_cur_it = px_cur.erase(px_cur_it);
+                f_ref_it = f_ref.erase(f_ref_it);
+                continue;
+            }
+            f_cur.push_back(frame_cur->c2f(px_cur_it->x, px_cur_it->y));
+            disparities.push_back(Vector2d(px_ref_it->x - px_cur_it->x, px_ref_it->y - px_cur_it->y).norm());
+            ++px_ref_it;
+            ++px_cur_it;
+            ++f_ref_it;
+        }
+    };
 } // namespace initialization
 } // namespace vio

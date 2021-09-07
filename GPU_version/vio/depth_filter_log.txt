@@ -1,8 +1,0 @@
-[13:53:07.139] init depth filter
-[13:55:51.997] DepthFilter: RESET.
-[13:55:57.552] add key frame
-[13:55:57.552] update seed
-[13:55:57.552] init seeds
-[13:55:57.555] DepthFilter: Initialized 83 new seeds
-[13:56:18.563] DepthFilter stop thread invoked.
-[13:56:18.563] DepthFilter interrupt and join thread 

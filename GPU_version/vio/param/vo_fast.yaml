@@ -5,12 +5,12 @@ svo:
   quality_min_fts: 10      #If the number of tracked features drops below this threshold. Tracking quality is bad.
   quality_max_drop_fts: 90 #If within one frame, this amount of features are dropped. Tracking quality is bad.
   init_min_tracked: 100
-  init_min_disparity: 80
+  init_min_disparity: 30
   structureoptim_max_pts: 50
   kfselect_mindist: 0.01
   poseoptim_thresh: 4.0
   init_min_inliers: 40
   ACC_noise: 0.5          #acc white noise in continuous in EKF
-  GYO_noise: 0.001          #gyro white noise in continuous in EKF
-  svo_ekf: 1.5                #Svo noise that will be devided by number of Reprojected points after opmization in EKF
+  GYO_noise: 100         #gyro white noise in continuous in EKF
+  svo_ekf: 0.01                #Svo noise that will be devided by number of Reprojected points after opmization in EKF
   Cmd_Cov: 0.1  #control vector noise in EKF

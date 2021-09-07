@@ -19,7 +19,8 @@
 
 #include <vio/global.h>
 #include <vio/cl_class.h>
-//#include "../../gtsam/imu_integration.h"
+#include <vio/ukf.h>
+#include <vio/homography.h>
 
 namespace vio {
 
@@ -37,7 +38,7 @@ public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
   FramePtr frame_ref_;
-  KltHomographyInit(opencl* gpu_fast_):gpu_fast_(gpu_fast_),T_cur_from_ref_(0.0,0.0,0.0) {};
+  KltHomographyInit(opencl* gpu_fast_,UKF* ukf,FILE* log=nullptr):gpu_fast_(gpu_fast_),T_cur_from_ref_(0.0,0.0,0.0),ukf_(ukf),log_(log) {};
   ~KltHomographyInit() {};
   InitResult addFirstFrame(FramePtr frame_ref);
   InitResult addSecondFrame(FramePtr frame_ref);
@@ -53,6 +54,40 @@ protected:
   vector<Vector3d> xyz_in_cur_;     //!< 3D points computed during the geometric check.
   SE2_5 T_cur_from_ref_;              //!< computed transformation between the first two frames.
   opencl* gpu_fast_;
+  FILE* log_=nullptr;
+  UKF* ukf_= nullptr;
+
+  void computeHomography(
+            const vector<Vector3d>& f_ref,
+            const vector<Vector3d>& f_cur,
+            double focal_length,
+            double reprojection_threshold,
+            vector<int>& inliers,
+            vector<Vector3d>& xyz_in_cur,
+            SE2_5& T_cur_from_ref)
+    {
+        vector<Vector2d > uv_ref(f_ref.size());
+        vector<Vector2d > uv_cur(f_cur.size());
+        for(size_t i=0, i_max=f_ref.size(); i<i_max; ++i)
+        {
+            uv_ref[i] = vk::project2d(f_ref[i]);
+            uv_cur[i] = vk::project2d(f_cur[i]);
+        }
+        vk::Homography Homography(uv_ref, uv_cur, focal_length, reprojection_threshold);
+        Homography.computeSE3fromMatches();
+        vector<int> outliers;
+        assert(ukf_!= nullptr);
+        auto euler =Homography.T_c2_from_c1.unit_quaternion().normalized().toRotationMatrix().eulerAngles(0,1,2);
+        auto check=ukf_->get_location();
+        if((check.second.se3().translation()-Homography.T_c2_from_c1.translation()).norm()>0.1)return;
+        auto res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
+        Homography.T_c2_from_c1=res.second.se3();
+        vk::computeInliers(f_cur, f_ref,
+                               Homography.T_c2_from_c1.rotation_matrix(), Homography.T_c2_from_c1.translation(),
+                               reprojection_threshold, focal_length,
+                               xyz_in_cur, inliers, outliers);
+        T_cur_from_ref=SE2_5(Homography.T_c2_from_c1);
+    }
 };
 
 /// Detect Fast corners in the image.
@@ -61,26 +96,14 @@ void detectFeatures(
     vector<cv::Point2f>& px_vec,
     vector<Vector3d>& f_vec,
     opencl* gpu_fast);
-
-/// Compute optical flow (Lucas Kanade) for selected keypoints.
 void trackKlt(
-    FramePtr frame_ref,
-    FramePtr frame_cur,
-    vector<cv::Point2f>& px_ref,
-    vector<cv::Point2f>& px_cur,
-    vector<Vector3d>& f_ref,
-    vector<Vector3d>& f_cur,
-    vector<double>& disparities);
-
-void computeHomography(
-    const vector<Vector3d>& f_ref,
-    const vector<Vector3d>& f_cur,
-    double focal_length,
-    double reprojection_threshold,
-    vector<int>& inliers,
-    vector<Vector3d>& xyz_in_cur,
-    SE2_5& T_cur_from_ref);
-
+            FramePtr frame_ref,
+            FramePtr frame_cur,
+            vector<cv::Point2f>& px_ref,
+            vector<cv::Point2f>& px_cur,
+            vector<Vector3d>& f_ref,
+            vector<Vector3d>& f_cur,
+            vector<double>& disparities);
 } // namespace initialization
 } // namespace vio
 

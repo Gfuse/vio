@@ -14,6 +14,9 @@ public:
         state_=init;
         cov_.setIdentity();
         cov_*=0.0001;
+        state_h_=init;
+        cov_h_.setIdentity();
+        cov_h_*=0.0001;
     };
     virtual ~Base(){
     };
@@ -36,7 +39,6 @@ public:
            0,1.0,dt*(-dy*sin(state_(2))-dx*cos(state_(2))),
            0,0,1.0;
         cov_h_=G*cov_*G.transpose()+R;
-        predict_up=true;
     }
     void correct(double ddx, double ddy, double dpitch, double time){
         double dt=time-t_imu;
@@ -75,12 +77,11 @@ public:
         cov_h_=G*cov_*G.transpose()+R;
 
     }
-    void correct(double x, double z,double pitch,size_t match,double time){
+    void correct(double x, double z,double pitch){
         Eigen::Matrix<double,3,3> H;
         Eigen::Matrix<double,3,3> Q;
         Eigen::Matrix<double,3,1> E;
         Eigen::Matrix<double,3,3> k;
-        ++match;
         H<<1.0,0,0,
            0,1.0,0,
            0,0,1.0;
@@ -91,11 +92,9 @@ public:
         k=cov_h_*H.transpose()*(H*cov_h_*H.transpose()+Q).inverse();
         state_=state_h_+(k*E);
         cov_=(Eigen::MatrixXd::Identity(3,3)-k*H)*cov_h_;
-        predict_up=false;
     }
     Eigen::Matrix<double,3,3> cov_;
     Eigen::Matrix<double, 3, 1> state_;
-    bool predict_up=false;
 private:
     double t_cmd=0.0;
     Eigen::Matrix<double,3,3> cov_h_;
@@ -116,7 +115,7 @@ public:
         lock=true;
         if(abs(x)<1.0)x=pow(x,3);//picked up from your code
         if(abs(y)<1.0)y=pow(y,3);//picked up from your code
-        if(filter_->predict_up)filter_->correct(x,y,theta,1e-9*time.toNSec());
+        filter_->correct(x,y,theta,1e-9*time.toNSec());
         lock=false;
     };
     //IMU frame y front, x right, z up -> left hands (theta counts from y)
@@ -126,16 +125,17 @@ public:
         filter_->predict(x,y,theta,1e-9*time.toNSec());
         lock=false;
     };
-    //Camera frame z front, x right, y down -> right hands (pitch counts from x)
-    std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/,size_t match,ros::Time& time) {
+    //Camera frame z front, x right, y down -> right hands (pitch counts from x)correct
+    //Notice T_F_W is the position of the first frame with respect to the new frame while they are looking at one feature
+    std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/) {
         while(lock)usleep(5);
         lock=true;
-        //if(filter_->predict_up)filter_->correct(z,x,pitch,match,1e-9*time.toNSec());
+        filter_->correct(-1.0*x,-1.0*z,pitch);
         lock=false;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-1.0*(filter_->state_(2)+M_PI_2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-1.0*filter_->state_(0),-1.0*filter_->state_(1),(filter_->state_(2))));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),filter_->state_(1),-1.0*(filter_->state_(2)+M_PI_2)));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-1.0*filter_->state_(0),-1.0*filter_->state_(1),(filter_->state_(2))));
     }
 private:
      Base* filter_= nullptr;
