@@ -111,6 +111,7 @@ public:
         delete filter_;
     };
     void UpdateIMU(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
+        if(!start_)return;
         while(lock)usleep(5);
         lock=true;
         if(abs(x)<1.0)x=pow(x,3);//picked up from your code
@@ -120,6 +121,7 @@ public:
     };
     //IMU frame y front, x right, z up -> left hands (theta counts from y)
     void UpdateCmd(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
+        if(!start_)return;
         while(lock)usleep(5);
         lock=true;
         filter_->predict(x,y,theta,1e-9*time.toNSec());
@@ -137,6 +139,7 @@ public:
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
         return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(-1.0*filter_->state_(0),-1.0*filter_->state_(1),(filter_->state_(2))));
     }
+    bool start_=false;
 private:
      Base* filter_= nullptr;
      bool lock=false;

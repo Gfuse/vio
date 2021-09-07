@@ -1,0 +1,4 @@
+[15:30:07.498] init depth filter
+[15:30:30.322] DepthFilter: RESET.
+[15:31:47.121] DepthFilter stop thread invoked.
+[15:31:47.121] DepthFilter interrupt and join thread 

@@ -73,9 +73,9 @@ computeInliers(const vector<Vector3d>& features1, // c1
                vector<int>& inliers,
                vector<int>& outliers)
 {
-  inliers.clear(); //inliers.reserve(features1.size());
-  outliers.clear(); //outliers.reserve(features1.size());
-  xyz_vec.clear(); //xyz_vec.reserve(features1.size());
+  inliers.clear();
+  outliers.clear();
+  xyz_vec.clear();
   double tot_error = 0;
   //triangulate all features and compute reprojection errors and inliers
   for(size_t j=0; j<features1.size(); ++j)

@@ -125,9 +125,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
-  auto init_f= ukfPtr_.get_location();
-  new_frame_->T_f_w_=init_f.second;
-  new_frame_->Cov_ = init_f.first;
+    ukfPtr_.start_=true;
   if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
   new_frame_->setKeyframe();
