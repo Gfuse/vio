@@ -142,7 +142,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 {
   initialization::InitResult res = klt_homography_init_->addSecondFrame(new_frame_);
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Init: distance between two frames x:%f ,z=%f,angle between two frames: %f \n",vio::time_in_HH_MM_SS_MMM().c_str(),
+    fprintf(log_,"[%s] Init: distance between the first and current frame is x:%f ,z=%f,angle between two frames: %f \n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
             new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
             new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch());
@@ -163,7 +163,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   stage_ = STAGE_DEFAULT_FRAME;
   klt_homography_init_->reset();
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Init: Selected Second frame. \n",vio::time_in_HH_MM_SS_MMM().c_str());
+    fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size());
 #endif
   return RESULT_IS_KEYFRAME;
 }

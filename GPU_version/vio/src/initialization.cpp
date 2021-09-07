@@ -48,10 +48,14 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
   trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, f_ref_, f_cur_, disparities_);
-  if(disparities_.size() < 1)
-        return NO_KEYFRAME;
+  if(disparities_.size() < 1){
+      ukf_->UpdateSvo(0.0,0.0,0.0);
+      return NO_KEYFRAME;
+  }
   double disparity = vk::getMedian(disparities_);
     if(disparity < Config::initMinDisparity()){
+        auto result=ukf_->get_location();
+        if(fabs(result.second.se2().translation().x())>0.2 || fabs(result.second.pitch())>0.0698132)ukf_->UpdateSvo(0.0,result.second.se2().translation().y(),0.0);
 #if VIO_DEBUG
         fprintf(log_,"[%s] Init: px average disparity is:%f ,While minimum is: %f  KLT tracked : %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
                 disparity,
@@ -76,7 +80,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 #endif
       return NO_KEYFRAME;
   }
-
+    frame_cur->T_f_w_ = T_cur_from_ref_;
   // Rescale the map such that the mean scene depth is equal to the specified scale
 /*  vector<double> depth_vec;
   for(size_t i=0; i<xyz_in_cur_.size(); ++i)
