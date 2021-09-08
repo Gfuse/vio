@@ -32,6 +32,7 @@ private:
   double fx_inv_, fy_inv_;              //!< inverse focal length
   double cx_, cy_;                      //!< projection center
   double s_, s_inv_;                    //!< distortion model coeff
+  mutable double r_;
   double tans_;                         //!< distortion model coeff
   double tans_inv_;                     //!< distortion model coeff
   bool distortion_;                     //!< use distortion model?
@@ -92,6 +93,7 @@ public:
       param_[2]=cx_;
       param_[3]=cy_;
       param_[4]=s_;
+      param_[5]=r_;
      return  param_;
   }
 };

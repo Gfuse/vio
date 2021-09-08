@@ -164,12 +164,34 @@ namespace vio {
                 const Vector3d& pos,
                 Matrix<double,2,3>& J)
         {
-            cam_->params();
-            T_f_w_.se2().translation();
-            T_f_w_.pitch();
-            dz;
-            dz_n_k;
-            dp_;
+            double fx = cam_->params()[0];
+            double fy = cam_->params()[1];
+            double s = cam_->params()[4];
+            double r = cam_->params()[5];
+            double x_n = pos.x();
+            double y_n = pos.y();
+            double z_n = pos.z();
+            double x_c = T_f_w_.se2().translation().x();
+            double z_c = T_f_w_.se2().translation().z();
+            double theta = T_f_w_.pitch();
+
+            double alpha = (fx*(theta/r))-(fx*((x_n*x_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fx*x_n*x_n)/(r*r));
+            double beta  =               -(fx*((x_n*y_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fx*x_n*y_n)/(r*r));
+            double gamma =               -(fy*((x_n*y_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fy*x_n*y_n)/(r*r));
+            double lamda = (fy*(theta/r))-(fy*((y_n*y_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fy*y_n*y_n)/(r*r));
+
+	        double Xf_Xc = x_n - x_c;
+	        double Zf_Zc = z_n - z_c;
+	        double n1 = -1*sin(theta)*Xf_Xc + cos(theta)*Zf_Zc;
+	        double n2 = -1*cos(theta)*Xf_Xc - sin(theta)*Zf_Zc;
+
+            J(0,0) = ((-1*cos(theta)/z_n)*alpha)-((sin(theta)/z_n)*beta)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n1);
+            J(0,1) = 0;
+            J(0,2) = ((sin(theta)/z_n)*alpha)-((cos(theta)/z_n)*beta)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n2);
+
+            J(1,0) = ((-1*cos(theta)/z_n)*gamma)-((sin(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n1);
+            J(1,1) = 0;
+            J(1,2) = ((sin(theta)/z_n)*gamma)-((cos(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
         }
     };
 

@@ -21,7 +21,7 @@ ATANCamera(double width, double height,
            fx_(width*fx), fy_(height*fy),
            fx_inv_(1.0/fx_), fy_inv_(1.0/fy_),
            cx_(cx*width - 0.5), cy_(cy*height - 0.5),
-           s_(s), s_inv_(1.0/s_)
+           s_(s), s_inv_(1.0/s_), r_(0.0)
 {
   if(s_ != 0.0)
   {
@@ -76,6 +76,7 @@ Vector2d ATANCamera::
 world2cam(const Vector2d& uv) const
 {
   double r = uv.norm();
+  r_ = r;
   double factor = rtrans_factor(r);
   Vector2d dist_cam = factor * uv;
   return Vector2d(cx_ + fx_ * dist_cam[0],
