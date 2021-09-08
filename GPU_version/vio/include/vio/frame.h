@@ -164,8 +164,9 @@ namespace vio {
                 const Vector3d& pos,
                 Matrix<double,2,3>& J)
         {
-            cam_;
-            T_f_w_;
+            cam_->params();
+            T_f_w_.se2().translation();
+            T_f_w_.pitch();
             dz;
             dz_n_k;
             dp_;
