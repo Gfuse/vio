@@ -87,7 +87,7 @@ void optimizeGaussNewton(
         continue;
       Matrix23d J;
       Vector3d xyz_f(Vector3d(frame->se3()*(*it)->point->pos_));
-      Frame::jacobian_xyz2uv(xyz_f, J);
+      frame->jacobian_xyz2uv_((*it)->f,(*it)->point->pos_,J);
       Vector2d e = vk::project2d((*it)->f) - vk::project2d(xyz_f);
 /*#if VIO_DEBUG
         fprintf(log,"[%s] xyz_f:%f, %f, %f  Reprojection Error: %f, %f Feature: %f, %f, %f\n",

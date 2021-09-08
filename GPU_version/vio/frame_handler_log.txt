@@ -1,0 +1,151 @@
+[17:53:40.942] Init: frame zero: 0.000000, 0.000000 0.000000
+[17:53:40.942] Init: Selected first frame. 
+[17:53:41.041] Init: px average disparity is:0.016455 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.041] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.135] Init: px average disparity is:0.017447 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.135] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.236] Init: px average disparity is:0.025058 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.236] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.335] Init: px average disparity is:0.023802 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.335] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.437] Init: px average disparity is:0.022858 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.437] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.535] Init: px average disparity is:0.022775 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.535] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.636] Init: px average disparity is:0.022403 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.636] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.735] Init: px average disparity is:0.020505 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.735] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.835] Init: px average disparity is:0.028883 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.835] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:41.934] Init: px average disparity is:0.033604 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:41.935] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.038] Init: px average disparity is:0.031919 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.038] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.135] Init: px average disparity is:0.028624 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.135] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.237] Init: px average disparity is:0.030967 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.237] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.335] Init: px average disparity is:0.027607 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.335] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.437] Init: px average disparity is:0.025368 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.437] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.534] Init: px average disparity is:0.032988 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.534] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.639] Init: px average disparity is:0.029951 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.639] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.743] Init: px average disparity is:0.030030 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.743] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.840] Init: px average disparity is:0.028943 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.840] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:42.936] Init: px average disparity is:0.028884 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:42.936] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.038] Init: px average disparity is:0.027947 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:43.038] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.135] Init: px average disparity is:0.024169 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:43.135] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.239] Init: px average disparity is:2.849816 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:43.239] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.337] Init: px average disparity is:8.038056 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:43.337] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.440] Init: px average disparity is:14.933593 ,While minimum is: 30.000000  KLT tracked : 137
+[17:53:43.440] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.540] Init: px average disparity is:18.298683 ,While minimum is: 30.000000  KLT tracked : 134
+[17:53:43.540] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.640] Init: px average disparity is:20.839023 ,While minimum is: 30.000000  KLT tracked : 133
+[17:53:43.640] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.740] Init: px average disparity is:19.878944 ,While minimum is: 30.000000  KLT tracked : 125
+[17:53:43.740] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.840] Init: px average disparity is:21.713514 ,While minimum is: 30.000000  KLT tracked : 118
+[17:53:43.840] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:43.938] Init: px average disparity is:25.512334 ,While minimum is: 30.000000  KLT tracked : 115
+[17:53:43.938] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:44.238] Init: px average disparity is:24.217693 ,While minimum is: 30.000000  KLT tracked : 113
+[17:53:44.238] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[17:53:44.344] homography: x=-0.018059 y=0.010182 z=0.049690 roll=0.000000 pitch=-0.089978 yaw=0.000000 	 ekf: x=-0.040015 z=-0.005077 pitch=-0.081138
+[17:53:44.344] homography after fuse: x=-0.020475 y=0.000000 z=0.043663 pitch=-0.087195	 number of outlier: 54
+[17:53:44.344] Init finished: Homography RANSAC (inlier) is:58 ,While 20 inliers minimum required.  px average disparity is:31.848776 ,While minimum is: 30.000000  KLT tracked: 112
+[17:53:44.344] Init: distance between the first and current frame is x:-0.020475 ,z=0.043663,angle between two frames: -0.087195 
+[17:53:44.344] Init: Selected Second frame. 	 The number of features: 58
+[17:53:44.523] After Reprojection Map nPoint:22 ,nCell:20 ,nMatches:3 ,distance between two frames x:-0.017161 ,z=-0.016786,angle between two frames:0.011553
+[17:53:44.523] After pose optimization, distance between two frames x:-0.017161 ,z=-0.016786,angle between two frames:0.011553
+[17:53:44.523] Update EKF and 3D points, distance between two frames x:-0.017306 ,z=-0.017109,angle between two frames:0.003335
+[17:53:44.636] After Reprojection Map nPoint:3 ,nCell:3 ,nMatches:0 ,distance between two frames x:0.022629 ,z=0.043559,angle between two frames:0.008999
+[17:53:44.722] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[17:53:44.819] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000019 ,z=-0.000095,angle between two frames:0.000684
+[17:53:44.917] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=0.000007,angle between two frames:0.000460
+[17:53:45.009] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000007 ,z=-0.000024,angle between two frames:0.001736
+[17:53:45.112] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000043,angle between two frames:0.005339
+[17:53:45.225] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000014,angle between two frames:0.004219
+[17:53:45.311] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000002,angle between two frames:0.000726
+[17:53:45.413] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000016,angle between two frames:0.001550
+[17:53:45.515] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000000,angle between two frames:0.005123
+[17:53:45.611] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000003,angle between two frames:0.000780
+[17:53:45.707] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000010 ,z=-0.000001,angle between two frames:0.001830
+[17:53:45.816] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000011 ,z=0.000001,angle between two frames:0.000596
+[17:53:45.913] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.000189
+[17:53:46.013] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000044 ,z=-0.000024,angle between two frames:0.004861
+[17:53:46.111] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000037 ,z=0.000015,angle between two frames:0.002090
+[17:53:46.213] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000009 ,z=-0.000002,angle between two frames:0.002259
+[17:53:46.311] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000016 ,z=-0.000047,angle between two frames:0.000448
+[17:53:46.407] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000003,angle between two frames:0.003527
+[17:53:46.523] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000019,angle between two frames:0.000626
+[17:53:46.615] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.000319
+[17:53:46.720] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000004,angle between two frames:0.002522
+[17:53:46.822] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000009,angle between two frames:0.002377
+[17:53:47.011] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005189 ,z=-0.000723,angle between two frames:0.025390
+[17:53:47.132] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000012 ,z=-0.000031,angle between two frames:0.002186
+[17:53:47.221] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000021 ,z=-0.000004,angle between two frames:0.000362
+[17:53:47.423] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005419 ,z=-0.000980,angle between two frames:0.015072
+[17:53:47.527] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.001260
+[17:53:47.621] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000001,angle between two frames:0.000865
+[17:53:47.709] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000001,angle between two frames:0.001847
+[17:53:47.808] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000015 ,z=-0.000028,angle between two frames:0.000459
+[17:53:47.932] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000001,angle between two frames:0.000369
+[17:53:48.019] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[17:53:48.513] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.022027 ,z=-0.002790,angle between two frames:0.018277
+[17:53:49.116] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.027601 ,z=-0.005214,angle between two frames:0.084445
+[17:53:49.510] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.016075 ,z=-0.003746,angle between two frames:0.015789
+[17:53:49.616] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000008,angle between two frames:0.000090
+[17:53:49.709] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=0.000001,angle between two frames:0.001360
+[17:53:50.109] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.016223 ,z=-0.003190,angle between two frames:0.024119
+[17:53:50.215] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.001448
+[17:53:50.317] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000620
+[17:53:50.415] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000002,angle between two frames:0.001329
+[17:53:51.009] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.026600 ,z=-0.006026,angle between two frames:0.067632
+[17:53:51.136] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000017 ,z=-0.000075,angle between two frames:0.000586
+[17:53:51.309] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005066 ,z=-0.001326,angle between two frames:0.001445
+[17:53:51.406] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000727
+[17:53:51.529] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000004,angle between two frames:0.000552
+[17:53:51.708] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005169 ,z=-0.001322,angle between two frames:0.007309
+[17:53:51.808] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000026,angle between two frames:0.000554
+[17:53:51.911] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000015 ,z=-0.000001,angle between two frames:0.002676
+[17:53:52.014] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000002,angle between two frames:0.001216
+[17:53:52.116] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000005,angle between two frames:0.002784
+[17:53:52.210] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000008 ,z=0.000008,angle between two frames:0.001325
+[17:53:52.311] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.000007
+[17:53:52.609] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.010832 ,z=-0.002723,angle between two frames:0.031324
+[17:53:53.112] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.020937 ,z=-0.006456,angle between two frames:0.036730
+[17:53:53.207] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.000129
+[17:53:53.413] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005309 ,z=-0.001577,angle between two frames:0.021547
+[17:53:53.514] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000009 ,z=-0.000041,angle between two frames:0.000064
+[17:53:53.611] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.001879
+[17:53:53.712] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.001114
+[17:53:53.918] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005401 ,z=-0.001433,angle between two frames:0.001438
+[17:53:54.116] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005394 ,z=-0.001529,angle between two frames:0.001102
+[17:53:54.308] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005387 ,z=-0.001710,angle between two frames:0.025048
+[17:53:54.612] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.010844 ,z=-0.003596,angle between two frames:0.020295
+[17:53:54.714] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000022 ,z=-0.000001,angle between two frames:0.000338
+[17:53:54.929] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.005249 ,z=-0.001826,angle between two frames:0.010825
+[17:53:55.009] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.000504
+[17:53:55.111] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000021 ,z=-0.000075,angle between two frames:0.001826
+[17:53:55.214] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000023 ,z=0.000003,angle between two frames:0.001649
+[17:53:55.308] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000008 ,z=0.000024,angle between two frames:0.002704
+[17:53:55.427] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=0.000011,angle between two frames:0.004074
+[17:53:55.514] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000013,angle between two frames:0.000845
+[17:53:55.709] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000026 ,z=-0.000175,angle between two frames:0.005864
+[17:53:55.812] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000127 ,z=-0.000093,angle between two frames:0.003244
+[17:53:55.914] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000018,angle between two frames:0.002869
+[17:53:56.023] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000744
+[17:53:56.108] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.000279
+[17:53:56.215] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:

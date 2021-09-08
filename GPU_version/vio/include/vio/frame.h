@@ -159,18 +159,16 @@ namespace vio {
             J(1,1) = y*z_inv_2;           // y/z^2
             J(1,2) = -x*y*z_inv_2;      // -x*y/z^2
         }
-        inline static void jacobian_l2uv(
-                const Matrix<double,3,1>& p,
-                Matrix<double,2,3>& J){
-            double A = -1.0*sqrt(p.z());
-            double z_inv = -1/p.z();
-            J(0,0) = z_inv;
-            J(0,1) = 1e-19;
-            J(0,2) = p.x()*A;
-
-            J(1,0) = 1e-19;
-            J(1,1) = z_inv;
-            J(1,2) =A*p.y();
+        void jacobian_xyz2uv_(
+                const Vector3d& unit_bearing,
+                const Vector3d& pos,
+                Matrix<double,2,3>& J)
+        {
+            cam_;
+            T_f_w_;
+            dz;
+            dz_n_k;
+            dp_;
         }
     };
 

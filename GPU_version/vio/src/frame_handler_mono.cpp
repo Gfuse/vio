@@ -196,9 +196,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
-/*  pose_optimizer::optimizeGaussNewton(
+  pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), 70, false,
-            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);*/
+            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
 #if VIO_DEBUG
     fprintf(log_,"[%s] After pose optimization, distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
