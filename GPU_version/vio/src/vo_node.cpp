@@ -123,9 +123,6 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
           cv::Laplacian(img,imgbul,CV_64F);
           cv::Scalar mean, stddev;
           meanStdDev(imgbul, mean, stddev, cv::Mat());
-          //cv::cvtColor(img,tem,CV_GRAY2RGBA);
-          //cv::imshow("test",tem);
-          //cv::waitKey();
           if(stddev.val[0] * stddev.val[0]< 50.0)return;
           vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);
       } catch (cv_bridge::Exception& e) {

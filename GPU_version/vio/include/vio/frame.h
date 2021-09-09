@@ -172,7 +172,7 @@ namespace vio {
             double y_n = pos.y();
             double z_n = pos.z();
             double x_c = T_f_w_.se2().translation().x();
-            double z_c = T_f_w_.se2().translation().z();
+            double z_c = T_f_w_.se2().translation().y();
             double theta = T_f_w_.pitch();
 
             double alpha = (fx*(theta/r))-(fx*((x_n*x_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fx*x_n*x_n)/(r*r));

@@ -78,16 +78,18 @@ protected:
         vector<int> outliers;
         assert(ukf_!= nullptr);
         auto euler =Homography.T_c2_from_c1.unit_quaternion().normalized().toRotationMatrix().eulerAngles(0,1,2);
-        auto check=ukf_->get_location();
+        auto res=ukf_->get_location();
+        size_t in=0;
+        for(auto&& i:Homography.inliers)if(i)++in;
 #if VIO_DEBUG
       fprintf(log_,"[%s] homography: x=%f y=%f z=%f roll=%f pitch=%f yaw=%f \t ekf: x=%f z=%f pitch=%f\n",
               vio::time_in_HH_MM_SS_MMM().c_str(),
               Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().y(),Homography.T_c2_from_c1.translation().z(),
               euler(0),euler(1),euler(2)
-              ,check.second.se2().translation().x(),check.second.se2().translation().y(),check.second.pitch());
+              ,res.second.se2().translation().x(),res.second.se2().translation().y(),res.second.pitch());
 #endif
-        if((check.second.se3().translation()-Homography.T_c2_from_c1.translation()).norm()>0.1)return;
-        auto res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
+        if(in>10)
+        res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
         vk::computeInliers(f_cur, f_ref,
                            res.second.se3().rotation_matrix(), res.second.se3().translation(),
                                reprojection_threshold, focal_length,
