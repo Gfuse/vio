@@ -43,12 +43,43 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
 
 void jacobian_xyz2uv(float3 xyz_in_f, float* J)
 {
-    J[0] = -(1. / xyz_in_f.z);                                                         // -1/z
+    J[0] = -(1. / xyz_in_f.z);                                         // -1/z
     J[1] = (xyz_in_f.x) / (xyz_in_f.z * xyz_in_f.z);                   // x/z^2
     J[2] = -(1.0 + pow((xyz_in_f.x),2) / (xyz_in_f.z * xyz_in_f.z));   // -(1.0 + x^2/z^2)
-    J[3] = 1e-19;                                                                       // 0
+    J[3] = 1e-19;                                                      // 0
     J[4] = (xyz_in_f.y) / (xyz_in_f.z * xyz_in_f.z);                   // y/z^2
-    J[5] = -(xyz_in_f.x) * (xyz_in_f.y) / (xyz_in_f.z * xyz_in_f.z);  // -x*y/z^2
+    J[5] = -(xyz_in_f.x) * (xyz_in_f.y) / (xyz_in_f.z * xyz_in_f.z);   // -x*y/z^2
+}
+
+void jacobian_xyz2uv_(float3 xyz_in_f, float3 cur_p, float* J)
+{
+    double x_n = xyz_in_f.x;
+    double y_n = xyz_in_f.y;
+    double z_n = xyz_in_f.z;
+
+    double r = sqrt(pow(xyz_in_f.x/xyz_in_f.z, 2) + pow(xyz_in_f.y/xyz_in_f.z, 2));
+
+    double x_c = cur_p.x;
+    double z_c = cur_p.y;
+    double theta = cur_p.z;
+
+    double alpha = (F_X*(theta/r))-(F_X*((x_n*x_n)/(r*r))*theta)+((1+3*S*theta*theta)/((r*r)+1))*((F_X*x_n*x_n)/(r*r));
+    double beta  =                -(F_X*((x_n*y_n)/(r*r))*theta)+((1+3*S*theta*theta)/((r*r)+1))*((F_X*x_n*y_n)/(r*r));
+    double gamma =                -(F_Y*((x_n*y_n)/(r*r))*theta)+((1+3*S*theta*theta)/((r*r)+1))*((F_Y*x_n*y_n)/(r*r));
+    double lamda = (F_Y*(theta/r))-(F_Y*((y_n*y_n)/(r*r))*theta)+((1+3*S*theta*theta)/((r*r)+1))*((F_Y*y_n*y_n)/(r*r));
+
+    double Xf_Xc = x_n - x_c;
+    double Zf_Zc = z_n - z_c;
+    double n1 = -1*sin(theta)*Xf_Xc + cos(theta)*Zf_Zc;
+    double n2 = -1*cos(theta)*Xf_Xc - sin(theta)*Zf_Zc;
+
+    J[0] = ((-1*cos(theta)/z_n)*alpha)-((sin(theta)/z_n)*beta)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n1);
+    J[1] = 0;
+    J[2] = ((sin(theta)/z_n)*alpha)-((cos(theta)/z_n)*beta)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n2);
+
+    J[3] = ((-1*cos(theta)/z_n)*gamma)-((sin(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n1);
+    J[4] = 0;
+    J[5] = ((sin(theta)/z_n)*gamma)-((cos(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
 }
 
 void compute_hessain(float3 j, __global float* H, float w)
@@ -68,15 +99,15 @@ __kernel void compute_residual(
         __read_only  image2d_t   image_cur, // current frame
         __read_only  image2d_t   image_ref, // reference frame
         __global     float3      * cur_pose,//[reference frame pose{x,z,pitch}]
-__global     float3      * ref_pose,//[current frame pose{x,z,pitch}]
-__global     float3     * ref_feature, // feature on the reference frame, when we applied the distance calculation: xyz_ref((*it)->f*((*it)->point->pos_ - Eigen::Vector3d(ref_pos[0],0.0,ref_pos[1])).norm());
-__global     float2     * featue_px,
-int        level,
+        __global     float3      * ref_pose,//[current frame pose{x,z,pitch}]
+        __global     float3      * ref_feature, // feature on the reference frame, when we applied the distance calculation: xyz_ref((*it)->f*((*it)->point->pos_ - Eigen::Vector3d(ref_pos[0],0.0,ref_pos[1])).norm());
+        __global     float2      * featue_px,
+                     int           level,
         __global     float       * errors,
-        __global     float      * Hessian,
+        __global     float       * Hessian,
         __global     float3      * Jacobian,
-        __global     float      * chi,
-float        scale_
+        __global     float       * chi,
+                     float         scale_
 )
 {
 float scale = pow(2.0, -level);
@@ -90,7 +121,8 @@ float2 uv_ref_i = floor(uv_ref);
 if(uv_ref_i.x - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.y - (PATCH_HALFSIZE + 1) < 0 || uv_ref_i.x + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref).x || uv_ref_i.y + (PATCH_HALFSIZE + 1) >= get_image_dim(image_ref).y)return;
 // evaluate projection jacobian
 float frame_jac[6]={0.0}; // 2X3
-jacobian_xyz2uv(sqrt(pow(ref_feature[f] - (float3)(ref_pose[0].x, 0.0, ref_pose[0].y), 2.0)), &frame_jac);
+//jacobian_xyz2uv(sqrt(pow(ref_feature[f] - (float3)(ref_pose[0].x, 0.0, ref_pose[0].y), 2.0)), &frame_jac);
+jacobian_xyz2uv_(ref_feature[f], cur_pose[0], &frame_jac);
 
 // compute bilateral interpolation weights for reference image
 float2 subpix=  uv_ref - uv_ref_i;

@@ -52,7 +52,8 @@ public:
 
   size_t run(
       FramePtr ref_frame,
-      FramePtr cur_frame);
+      FramePtr cur_frame,
+      FILE* log);
 
    // FILE* data= nullptr;
 

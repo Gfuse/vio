@@ -32,15 +32,23 @@ SparseImgAlignGpu::SparseImgAlignGpu(
   eps_ = 1e-10;
 }
 
-size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
+size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
 {
   reset();
-  if(ref_frame->fts_.empty())
+  /*if(ref_frame->fts_.empty()) // more than 10
   {
     return 0;
-  }
+  }*/
   cl_float3 ref_pos[1]={(float)ref_frame->pos()(0),(float)ref_frame->pos()(1),(float)ref_frame->T_f_w_.pitch()};
+/*#if VIO_DEBUG
+    fprintf(log,"[%s] ref pose : , x:%f, z=%f, pitch:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            ref_pos[0].x, ref_pos[0].y, ref_pos[0].z);
+#endif*/
   cl_float3 cur_pos[1]={(float)cur_frame->pos()(0),(float)cur_frame->pos()(1),(float)cur_frame->T_f_w_.pitch()};
+/*#if VIO_DEBUG
+    fprintf(log,"[%s] cur pose : , x:%f, z=%f, pitch:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            cur_pos[0].x, cur_pos[0].y, cur_pos[0].z);
+#endif*/
   residual_->reload_buf(1,2,cur_pos);
   residual_->reload_buf(1,3,ref_pos);
   cl_float3 features[ref_frame->fts_.size()];
@@ -57,6 +65,10 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
         featue_px[feature_counter_].y=(*it)->px(1);
         ++feature_counter_;
   }
+  if(!feature_counter_) // more than 10
+  {
+      return 0;
+  }
   residual_->reload_buf(1,4,features);
   residual_->reload_buf(1,5,featue_px);
   SE2 T_cur(cur_frame->T_f_w_.se2());///TODO temporary, we can remove it
@@ -67,8 +79,8 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame)
       residual_->reload_buf(1,0,cur_img);
       residual_->reload_buf(1,1,ref_img);
       residual_->write_buf(1,6,level_);
-    mu_ = 1.0;
-    optimize(T_cur);
+      mu_ = 1.0;
+      optimize(T_cur);
   }
   cl_float3 pos[1]={0};
   residual_->read(1,2,1,pos);

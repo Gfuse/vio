@@ -1,6 +1,6 @@
 <launch>
 
-  <node pkg="vio" type="vio" name="vio" clear_params="true" output="screen" />
+  <!-- node pkg="vio" type="vio" name="vio" clear_params="true" output="screen" /-->
 
     <!-- Camera topic to subscribe to -->
     <param name="vio/cam_topic" value="/CoreNode/grey_img" type="str" />
