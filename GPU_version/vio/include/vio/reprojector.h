@@ -22,6 +22,7 @@
 #include <CL/cl.h>
 #include <vio/cl_class.h>
 #include <vio/initialization.h>
+#include <vio/vision.h>
 
 namespace vk {
 class AbstractCamera;
@@ -68,7 +69,10 @@ public:
   void reprojectMap2(
       FramePtr frame,
       FramePtr last_frame,
-      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
+      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs,
+      opencl* gpu_fast_);
+
+  void fast_detector(cv::Mat img, opencl * gpu_fast_, std::vector<cv::KeyPoint>& keypoints_cur, double detection_threshold);
 
 private:
 

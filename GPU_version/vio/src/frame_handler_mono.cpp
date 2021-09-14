@@ -221,7 +221,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     }
     fprintf(log_,"null : %d, null point : %d\n", nullcount, nullpointcount);
 #endif*/
-  reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_);
+  reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
 #if VIO_DEBUG
