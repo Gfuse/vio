@@ -72,7 +72,6 @@ public:
       std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs,
       opencl* gpu_fast_);
 
-  void fast_detector(cv::Mat img, opencl * gpu_fast_, std::vector<cv::KeyPoint>& keypoints_cur, double detection_threshold);
 
 private:
 

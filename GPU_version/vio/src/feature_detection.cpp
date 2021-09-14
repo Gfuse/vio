@@ -69,9 +69,10 @@ void FastDetector::detect(
     Frame* frame,
     const ImgPyr& img_pyr,
     const double detection_threshold,
-    Features& fts)
-{
+    Features& fts,
+    cv::Mat* descriptors){
   Corners corners(grid_n_cols_*grid_n_rows_, Corner(0,0,detection_threshold,0,0.0f));
+  std::vector<cv::KeyPoint> keypoints;
   for(int L=0; L<n_pyr_levels_; ++L)
   {
     const int scale = (1<<L);
@@ -100,14 +101,20 @@ void FastDetector::detect(
       if(score > corners.at(k).score){
           corners.at(k) = Corner(fast_corners[i].x*scale, fast_corners[i].y*scale, score, L, 0.0f);
           // Create feature for every corner that has high enough corner score
-          if(corners.at(k).score > detection_threshold)
+          if(corners.at(k).score > detection_threshold){
               fts.push_back(new Feature(frame, Vector2d(corners.at(k).x, corners.at(k).y), corners.at(k).level));
+              if(descriptors)keypoints.push_back(cv::KeyPoint(fast_corners[i].x, fast_corners[i].y, 1));
+          }
       }
     }
 
   }
+  if(descriptors){
+      cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
+      extractor->compute(frame->img(), keypoints, *descriptors);
+  }
   resetGrid();
-}
+};
 
 } // namespace feature_detection
 } // namespace vio

@@ -28,6 +28,7 @@
 #include <vio/math_utils.h>
 #include <vio/timer.h>
 #include <fstream>
+#include <vio/feature_detection.h>
 
 #include <opencv2/xfeatures2d.hpp>
 #include <opencv2/features2d.hpp>
@@ -118,31 +119,6 @@ namespace vio {
         }
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO - fast feature detector
-    void Reprojector::fast_detector(cv::Mat img, opencl * gpu_fast_, std::vector<cv::KeyPoint>& keypoints_cur, double detection_threshold = Config::triangMinCornerScore()) {
-        const int width = img.cols;
-        const int height = img.rows;
-        gpu_fast_->reload_buf(0,0,img);
-        int icorner[1]={0};
-        gpu_fast_->reload_buf(0,2, icorner);
-        gpu_fast_->run(0, img.cols, img.rows);
-        int count[1]={0};
-        gpu_fast_->read(0,2,1, count);
-        cl_int2 fast_corners[350000];
-        gpu_fast_->read(0,1,count[0], fast_corners);
-        for(uint i = 0; i < count[0]; ++i)
-        {
-            if(fast_corners[i].x < 0 || fast_corners[i].x > width || fast_corners[i].y < 0 || fast_corners[i].y > height)
-                continue;
-
-            const float score = vk::shiTomasiScore(img, fast_corners[i].x, fast_corners[i].y);
-            if(score > detection_threshold) {
-                cv::KeyPoint kp(fast_corners[i].x, fast_corners[i].y, 7);
-                keypoints_cur.push_back(kp);
-            }
-        }
-    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO - second reimplementation
     void Reprojector::reprojectMap2(
             FramePtr frame,
@@ -155,12 +131,7 @@ namespace vio {
         std::vector<cv::KeyPoint> keypoints_cur;
         cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
-        //cv::FAST(frame->img(), keypoints_cur, 50);
-        //for (int i = 0; i < keypoints_cur.size(); i++)
-        //    std::cerr<<keypoints_cur[i].pt.x<<"\t"<<keypoints_cur[i].pt.y<<"\t"<<keypoints_cur[i].size<<"\t"<<keypoints_cur[i].class_id<<"\t"<<keypoints_cur[i].octave<<"\t"<<keypoints_cur[i].angle<<std::endl;
         fast_detector(frame->img(), gpu_fast_, keypoints_cur);
-        //for (int i = 0; i < keypoints_cur.size(); i++)
-        //    std::cerr<<keypoints_cur[i].pt.x<<"\t"<<keypoints_cur[i].pt.y<<"\t"<<keypoints_cur[i].size<<"\t"<<keypoints_cur[i].class_id<<"\t"<<keypoints_cur[i].octave<<"\t"<<keypoints_cur[i].angle<<std::endl;
         extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);

@@ -81,15 +81,6 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       return NO_KEYFRAME;
   }
     frame_cur->T_f_w_ = T_cur_from_ref_;
-  // Rescale the map such that the mean scene depth is equal to the specified scale
-/*  vector<double> depth_vec;
-  for(size_t i=0; i<xyz_in_cur_.size(); ++i)
-    depth_vec.push_back((xyz_in_cur_[i]).z());
-  double scene_depth_median = vk::getMedian(depth_vec);
-  double scale = Config::mapScale()/scene_depth_median;
-  frame_cur->T_f_w_ = SE2_5(T_cur_from_ref_.se2() * frame_ref_->T_f_w_.se2());
-  frame_cur->T_f_w_ = SE2_5(SE2(frame_cur->T_f_w_.se2().rotation_matrix(),
-                                -frame_cur->T_f_w_.se2().rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()))));*/
   // For each inlier create 3D point and add feature in both frames
     for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
     {

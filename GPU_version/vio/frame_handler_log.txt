@@ -1,0 +1,1768 @@
+[12:39:07.379] Init: frame zero: 0.000000, 0.000000 0.000000
+[12:39:07.379] Init: Selected first frame. 
+[12:39:07.478] Init: px average disparity is:0.050363 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:07.478] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:07.569] Init: px average disparity is:0.050823 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:07.569] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:07.668] Init: px average disparity is:0.062911 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:07.668] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:07.769] Init: px average disparity is:0.073476 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:07.769] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:07.870] Init: px average disparity is:0.048979 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:07.870] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:07.971] Init: px average disparity is:0.051101 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:07.971] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.072] Init: px average disparity is:0.065625 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.072] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.172] Init: px average disparity is:0.053005 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.172] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.269] Init: px average disparity is:0.061786 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.269] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.368] Init: px average disparity is:0.056709 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.368] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.468] Init: px average disparity is:0.054258 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.468] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.575] Init: px average disparity is:0.054771 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.575] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.675] Init: px average disparity is:0.058205 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.675] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.776] Init: px average disparity is:0.060966 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.776] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.877] Init: px average disparity is:0.068148 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.877] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:08.974] Init: px average disparity is:0.054430 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:08.974] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.077] Init: px average disparity is:0.143078 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:09.077] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.178] Init: px average disparity is:1.486186 ,While minimum is: 40.000000  KLT tracked : 104
+[12:39:09.179] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.279] Init: px average disparity is:6.234379 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:09.279] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.377] Init: px average disparity is:4.506110 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:09.377] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.478] Init: px average disparity is:8.273376 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:09.478] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.577] Init: px average disparity is:12.090768 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:09.577] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.670] Init: px average disparity is:18.016455 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:09.670] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:09.875] Init: px average disparity is:13.701610 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:09.875] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.180] Init: px average disparity is:10.703515 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:10.180] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.279] Init: px average disparity is:16.157375 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:10.279] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.379] Init: px average disparity is:14.511595 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:10.380] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.479] Init: px average disparity is:19.016181 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:10.479] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.581] Init: px average disparity is:23.629475 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:10.581] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.675] Init: px average disparity is:25.060062 ,While minimum is: 40.000000  KLT tracked : 102
+[12:39:10.675] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.773] Init: px average disparity is:28.698848 ,While minimum is: 40.000000  KLT tracked : 101
+[12:39:10.773] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.872] Init: px average disparity is:35.447556 ,While minimum is: 40.000000  KLT tracked : 99
+[12:39:10.872] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:10.971] Init: px average disparity is:30.366716 ,While minimum is: 40.000000  KLT tracked : 98
+[12:39:10.971] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.071] Init: px average disparity is:29.761796 ,While minimum is: 40.000000  KLT tracked : 97
+[12:39:11.071] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.178] Init: px average disparity is:31.809666 ,While minimum is: 40.000000  KLT tracked : 97
+[12:39:11.178] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.279] Init: px average disparity is:34.092659 ,While minimum is: 40.000000  KLT tracked : 97
+[12:39:11.280] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.379] Init: px average disparity is:34.804754 ,While minimum is: 40.000000  KLT tracked : 97
+[12:39:11.379] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.480] Init: px average disparity is:32.196033 ,While minimum is: 40.000000  KLT tracked : 96
+[12:39:11.480] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.578] Init: px average disparity is:33.757493 ,While minimum is: 40.000000  KLT tracked : 96
+[12:39:11.578] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.680] Init: px average disparity is:25.537018 ,While minimum is: 40.000000  KLT tracked : 95
+[12:39:11.680] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.780] Init: px average disparity is:28.698257 ,While minimum is: 40.000000  KLT tracked : 94
+[12:39:11.780] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[12:39:11.918] homography: x=-0.236027 y=-0.317680 z=0.034179 roll=-0.000000 pitch=0.197703 yaw=0.000000 	 ekf: x=-0.005100 z=0.164627 pitch=-0.068530
+[12:39:11.918] homography after fuse: x=-0.222586 y=0.000000 z=0.041772 pitch=0.182174	 number of outlier: 59
+[12:39:11.918] Init finished: Homography RANSAC (inlier) is:35 ,While 20 inliers minimum required.  px average disparity is:41.354277 ,While minimum is: 40.000000  KLT tracked: 94
+[12:39:11.918] Init: distance between the first and current frame is x:-0.222586 ,z=0.041772,angle between two frames: 0.182174 
+[12:39:11.918] Init: Selected Second frame. 	 The number of features: 35
+[12:39:12.085] After Reprojection Map nPoint:32 ,nCell:25 ,nMatches:5 ,distance between two frames x:0.083380 ,z=0.052384,angle between two frames:0.104246
+[12:39:12.085] Init estimate scale:0.588416
+[12:39:12.085] it:0 	 Success 	 new_chi2: 1.148299 	 dT = 0.001368, 0.000000, 0.001024
+[12:39:12.085] it:1 	 FAILURE 	 new_chi2: 1.148344
+[12:39:12.085] n deleted obs = 5 	 scale =0.588416 	 error init =0.229660 	 error end=0.229660
+[12:39:12.085] After pose optimization, distance between two frames x:0.083380 ,z=0.052384,angle between two frames:0.104246
+[12:39:12.085] Update EKF and 3D points, distance between two frames x:0.083411 ,z=0.052714,angle between two frames:0.104659
+[12:39:12.162] After Reprojection Map nPoint:5 ,nCell:4 ,nMatches:4 ,distance between two frames x:0.000195 ,z=0.002039,angle between two frames:0.002317
+[12:39:12.239] After Reprojection Map nPoint:5 ,nCell:5 ,nMatches:0 ,distance between two frames x:0.000014 ,z=-0.000001,angle between two frames:0.000741
+[12:39:12.340] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000016 ,z=0.000000,angle between two frames:0.001630
+[12:39:12.439] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000003,angle between two frames:0.005963
+[12:39:12.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=0.000004,angle between two frames:0.003613
+[12:39:12.639] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000000,angle between two frames:0.004018
+[12:39:12.744] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000014 ,z=-0.000009,angle between two frames:0.002841
+[12:39:12.840] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000018 ,z=-0.000002,angle between two frames:0.005554
+[12:39:12.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000004,angle between two frames:0.004071
+[12:39:13.040] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000718 ,z=0.005729,angle between two frames:0.000818
+[12:39:13.150] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000005,angle between two frames:0.002436
+[12:39:13.240] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000851
+[12:39:13.339] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000715 ,z=0.005466,angle between two frames:0.004045
+[12:39:13.441] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000526 ,z=0.005464,angle between two frames:0.002296
+[12:39:13.546] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000051,angle between two frames:0.002884
+[12:39:13.638] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.008692
+[12:39:13.739] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000158 ,z=0.005794,angle between two frames:0.002993
+[12:39:13.840] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=-0.000001,angle between two frames:0.005449
+[12:39:13.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000009,angle between two frames:0.006836
+[12:39:14.040] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000001,angle between two frames:0.010107
+[12:39:14.148] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000005,angle between two frames:0.004614
+[12:39:14.240] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=0.000028,angle between two frames:0.000568
+[12:39:14.340] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000010,angle between two frames:0.000238
+[12:39:14.441] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000002,angle between two frames:0.000179
+[12:39:14.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000003,angle between two frames:0.001560
+[12:39:14.644] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000414 ,z=0.005486,angle between two frames:0.000381
+[12:39:14.739] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000003,angle between two frames:0.002081
+[12:39:14.840] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000009,angle between two frames:0.001270
+[12:39:14.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000453 ,z=0.005734,angle between two frames:0.001574
+[12:39:15.040] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=-0.000016,angle between two frames:0.007072
+[12:39:15.141] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000007,angle between two frames:0.000440
+[12:39:15.239] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000026,angle between two frames:0.009110
+[12:39:15.340] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=0.005540,angle between two frames:0.007450
+[12:39:15.441] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000003,angle between two frames:0.008966
+[12:39:15.543] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000004,angle between two frames:0.003955
+[12:39:15.642] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000009,angle between two frames:0.005557
+[12:39:15.741] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=0.000016,angle between two frames:0.007917
+[12:39:15.842] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000032,angle between two frames:0.002318
+[12:39:15.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.005922
+[12:39:16.041] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000007,angle between two frames:0.008433
+[12:39:16.140] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000004,angle between two frames:0.002155
+[12:39:16.248] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000003,angle between two frames:0.012163
+[12:39:16.341] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000017,angle between two frames:0.000114
+[12:39:16.440] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=0.000003,angle between two frames:0.003089
+[12:39:16.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000189 ,z=0.005496,angle between two frames:0.005751
+[12:39:16.641] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000021 ,z=-0.000005,angle between two frames:0.000014
+[12:39:16.741] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000010 ,z=-0.000014,angle between two frames:0.000128
+[12:39:16.840] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000001,angle between two frames:0.005228
+[12:39:16.942] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000027,angle between two frames:0.003412
+[12:39:17.041] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.002447
+[12:39:17.140] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000026,angle between two frames:0.008589
+[12:39:17.241] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000010,angle between two frames:0.002817
+[12:39:17.341] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000004,angle between two frames:0.006355
+[12:39:17.441] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000004,angle between two frames:0.003727
+[12:39:17.543] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000278 ,z=0.005796,angle between two frames:0.003306
+[12:39:17.642] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000001,angle between two frames:0.000457
+[12:39:17.740] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000035 ,z=-0.000004,angle between two frames:0.001103
+[12:39:17.842] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000011,angle between two frames:0.002351
+[12:39:17.952] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000015,angle between two frames:0.000428
+[12:39:18.041] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.002277
+[12:39:18.142] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000008,angle between two frames:0.003023
+[12:39:18.241] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000019 ,z=-0.000001,angle between two frames:0.011705
+[12:39:18.342] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.007241
+[12:39:18.440] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000014 ,z=-0.000034,angle between two frames:0.004729
+[12:39:18.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000012 ,z=-0.000011,angle between two frames:0.007912
+[12:39:18.642] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000027 ,z=-0.000002,angle between two frames:0.000765
+[12:39:18.739] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000006,angle between two frames:0.008734
+[12:39:18.847] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000020 ,z=-0.000007,angle between two frames:0.004793
+[12:39:18.947] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000007,angle between two frames:0.000676
+[12:39:19.041] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.006958
+[12:39:19.145] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000504 ,z=0.005583,angle between two frames:0.002817
+[12:39:19.248] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000006 ,z=-0.000001,angle between two frames:0.002429
+[12:39:19.350] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000000,angle between two frames:0.001557
+[12:39:19.440] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000006 ,z=-0.000008,angle between two frames:0.004914
+[12:39:19.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000539 ,z=0.005743,angle between two frames:0.004116
+[12:39:19.641] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000029,angle between two frames:0.004696
+[12:39:19.749] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000001,angle between two frames:0.001629
+[12:39:19.840] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.002631
+[12:39:19.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000295 ,z=0.005612,angle between two frames:0.011184
+[12:39:20.043] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000327 ,z=0.005782,angle between two frames:0.001909
+[12:39:20.142] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000011 ,z=-0.000064,angle between two frames:0.000977
+[12:39:20.240] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000001,angle between two frames:0.007508
+[12:39:20.340] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000331 ,z=0.005678,angle between two frames:0.005835
+[12:39:20.439] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000006 ,z=-0.000002,angle between two frames:0.011615
+[12:39:20.549] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000554 ,z=0.005511,angle between two frames:0.001892
+[12:39:20.641] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000023 ,z=-0.000046,angle between two frames:0.002526
+[12:39:20.740] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000348
+[12:39:20.937] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000001,angle between two frames:0.008544
+[12:39:21.014] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000667 ,z=0.005464,angle between two frames:0.000174
+[12:39:21.096] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[12:39:21.173] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.001702
+[12:39:21.249] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[12:39:21.342] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000001,angle between two frames:0.000080
+[12:39:21.454] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000010 ,z=-0.000005,angle between two frames:0.007250
+[12:39:21.541] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000000,angle between two frames:0.001340
+[12:39:21.641] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000008,angle between two frames:0.003163
+[12:39:21.741] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000000,angle between two frames:0.002531
+[12:39:21.840] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000014,angle between two frames:0.002032
+[12:39:21.945] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=0.000002,angle between two frames:0.003137
+[12:39:22.040] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000020,angle between two frames:0.004536
+[12:39:22.141] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=0.000004,angle between two frames:0.002124
+[12:39:22.249] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000029 ,z=-0.000035,angle between two frames:0.000245
+[12:39:22.340] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.003713
+[12:39:22.439] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000006,angle between two frames:0.001205
+[12:39:22.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.009691
+[12:39:22.641] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000005,angle between two frames:0.005825
+[12:39:22.741] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000002,angle between two frames:0.009927
+[12:39:22.841] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000001,angle between two frames:0.001876
+[12:39:22.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000011,angle between two frames:0.006767
+[12:39:23.040] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000010,angle between two frames:0.006699
+[12:39:23.141] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000856 ,z=0.005213,angle between two frames:0.007831
+[12:39:23.240] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000004,angle between two frames:0.003099
+[12:39:23.351] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000008,angle between two frames:0.006521
+[12:39:23.439] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000000,angle between two frames:0.005618
+[12:39:23.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000014,angle between two frames:0.007224
+[12:39:23.652] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000002,angle between two frames:0.008301
+[12:39:23.740] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000015 ,z=-0.000022,angle between two frames:0.008096
+[12:39:23.842] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000728 ,z=0.005454,angle between two frames:0.003499
+[12:39:23.940] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000009,angle between two frames:0.007583
+[12:39:24.043] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000005,angle between two frames:0.003720
+[12:39:24.150] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000013,angle between two frames:0.008363
+[12:39:24.241] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000004,angle between two frames:0.000731
+[12:39:24.363] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=-0.000003,angle between two frames:0.000775
+[12:39:24.442] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[12:39:24.542] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000045 ,z=-0.000275,angle between two frames:0.015319
+[12:39:24.646] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000006 ,z=0.000003,angle between two frames:0.005130
+[12:39:24.742] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000014 ,z=0.000058,angle between two frames:0.000043
+[12:39:24.846] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000037 ,z=0.000156,angle between two frames:0.003662
+[12:39:24.942] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000016 ,z=0.000052,angle between two frames:0.006773
+[12:39:25.053] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000029 ,z=0.000211,angle between two frames:0.006319
+[12:39:25.146] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=0.000026,angle between two frames:0.001007
+[12:39:25.250] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=0.000008,angle between two frames:0.006817
+[12:39:25.345] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=0.000060,angle between two frames:0.006100
+[12:39:25.451] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000032 ,z=0.000101,angle between two frames:0.001209
+[12:39:25.540] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=0.000011,angle between two frames:0.000877
+[12:39:25.648] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.001180 ,z=0.005652,angle between two frames:0.002012
+[12:39:25.744] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.001688
+[12:39:25.855] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000000,angle between two frames:0.001384
+[12:39:25.958] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000000,angle between two frames:0.000424
+[12:39:26.048] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.000318
+[12:39:26.143] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.000572
+[12:39:26.255] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000002,angle between two frames:0.001667
+[12:39:26.352] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.000555
+[12:39:26.449] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.003711
+[12:39:26.541] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000002,angle between two frames:0.001526
+[12:39:26.659] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.000484
+[12:39:26.751] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.000277
+[12:39:26.846] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000002,angle between two frames:0.000586
+[12:39:26.954] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000000,angle between two frames:0.001873
+[12:39:27.042] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.000321
+[12:39:27.143] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000002,angle between two frames:0.004275
+[12:39:27.241] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.000130
+[12:39:27.350] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000004,angle between two frames:0.000568
+[12:39:27.456] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.001112
+[12:39:27.541] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.000040
+[12:39:27.662] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000000,angle between two frames:0.002995
+[12:39:27.745] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.002732
+[12:39:27.848] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000015,angle between two frames:0.005742
+[12:39:27.945] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000004,angle between two frames:0.007459
+[12:39:28.048] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.003180
+[12:39:28.141] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.000484
+[12:39:28.244] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.007320
+[12:39:28.343] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000000,angle between two frames:0.003774
+[12:39:28.446] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000001,angle between two frames:0.000076
+[12:39:28.541] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000000,angle between two frames:0.000537
+[12:39:28.641] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.001177
+[12:39:28.749] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.002206
+[12:39:28.851] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.000322
+[12:39:28.941] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.001029
+[12:39:29.051] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000005,angle between two frames:0.000808
+[12:39:29.140] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.002093
+[12:39:29.247] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000001,angle between two frames:0.000939
+[12:39:29.356] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000003,angle between two frames:0.000351
+[12:39:29.453] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.002659
+[12:39:29.556] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000814
+[12:39:29.651] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000006 ,z=-0.000021,angle between two frames:0.003363
+[12:39:29.753] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.002075
+[12:39:29.854] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=0.000000,angle between two frames:0.003849
+[12:39:29.943] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000296
+[12:39:30.040] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000982
+[12:39:30.139] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000008
+[12:39:30.242] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.000417
+[12:39:30.342] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000067
+[12:39:30.455] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000678
+[12:39:30.547] After Reprojection Map nPoint:28 ,nCell:27 ,nMatches:3 ,distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000499
+[12:39:30.547] Init estimate scale:5.263019
+[12:39:30.547] it:0 	 Success 	 new_chi2: 36.182555 	 dT = -0.842664, 0.000000, 0.826149
+[12:39:30.547] it:1 	 FAILURE 	 new_chi2: 794.791585
+[12:39:30.547] n deleted obs = 3 	 scale =5.263019 	 error init =12.060852 	 error end=12.060852
+[12:39:30.547] After pose optimization, distance between two frames x:-0.000000 ,z=-0.000001,angle between two frames:0.000499
+[12:39:30.547] Update EKF and 3D points, distance between two frames x:-0.000107 ,z=0.000306,angle between two frames:0.000382
+[12:39:30.641] After Reprojection Map nPoint:33 ,nCell:28 ,nMatches:5 ,distance between two frames x:-0.000652 ,z=0.001885,angle between two frames:0.000671
+[12:39:30.641] Init estimate scale:0.724814
+[12:39:30.641] it:0 	 Success 	 new_chi2: 22.059000 	 dT = -0.219443, 0.000000, -0.162616
+[12:39:30.641] it:1 	 FAILURE 	 new_chi2: 49.120284
+[12:39:30.641] n deleted obs = 8 	 scale =0.724814 	 error init =2.757375 	 error end=2.757375
+[12:39:30.641] After pose optimization, distance between two frames x:-0.000652 ,z=0.001885,angle between two frames:0.000671
+[12:39:30.641] Update EKF and 3D points, distance between two frames x:-0.000767 ,z=0.002220,angle between two frames:0.000595
+[12:39:30.748] After Reprojection Map nPoint:37 ,nCell:33 ,nMatches:8 ,distance between two frames x:-0.000681 ,z=0.001983,angle between two frames:0.001182
+[12:39:30.748] Init estimate scale:0.640267
+[12:39:30.748] it:0 	 Success 	 new_chi2: 17.340976 	 dT = -0.021559, 0.000000, -0.019516
+[12:39:30.748] it:1 	 Success 	 new_chi2: 16.048955 	 dT = -0.020368, 0.000000, -0.017597
+[12:39:30.748] it:2 	 Success 	 new_chi2: 15.155229 	 dT = -0.019611, 0.000000, -0.016296
+[12:39:30.748] it:3 	 Success 	 new_chi2: 14.528339 	 dT = -0.019156, 0.000000, -0.015396
+[12:39:30.748] it:4 	 Success 	 new_chi2: 14.095499 	 dT = -0.018931, 0.000000, -0.014781
+[12:39:30.748] it:5 	 Success 	 new_chi2: 13.813833 	 dT = -0.019910, 0.000000, -0.012717
+[12:39:30.748] it:6 	 Success 	 new_chi2: 13.631469 	 dT = -0.020146, 0.000000, -0.012647
+[12:39:30.748] it:7 	 Success 	 new_chi2: 13.548994 	 dT = -0.020456, 0.000000, -0.012655
+[12:39:30.749] it:8 	 FAILURE 	 new_chi2: 13.560820
+[12:39:30.749] n deleted obs = 13 	 scale =0.640267 	 error init =1.333921 	 error end=1.042230
+[12:39:30.749] After pose optimization, distance between two frames x:-0.140362 ,z=0.001983,angle between two frames:0.107769
+[12:39:30.749] Update EKF and 3D points, distance between two frames x:-0.132317 ,z=0.002287,angle between two frames:0.101353
+[12:39:30.841] After Reprojection Map nPoint:38 ,nCell:20 ,nMatches:11 ,distance between two frames x:0.049674 ,z=0.001872,angle between two frames:0.040388
+[12:39:30.841] Init estimate scale:0.656932
+[12:39:30.841] it:0 	 Success 	 new_chi2: 48.574728 	 dT = -0.146229, 0.000000, -0.087264
+[12:39:30.841] it:1 	 FAILURE 	 new_chi2: 403.917690
+[12:39:30.841] n deleted obs = 19 	 scale =0.656932 	 error init =2.556565 	 error end=2.556565
+[12:39:30.841] After pose optimization, distance between two frames x:0.049674 ,z=0.001872,angle between two frames:0.040388
+[12:39:30.841] Update EKF and 3D points, distance between two frames x:0.049538 ,z=0.002204,angle between two frames:0.040806
+[12:39:30.943] After Reprojection Map nPoint:42 ,nCell:28 ,nMatches:9 ,distance between two frames x:-0.000801 ,z=0.001965,angle between two frames:0.005323
+[12:39:30.943] Init estimate scale:0.609979
+[12:39:30.943] it:0 	 Success 	 new_chi2: 9.381456 	 dT = -0.095521, 0.000000, -0.053586
+[12:39:30.943] it:1 	 FAILURE 	 new_chi2: 14.169444
+[12:39:30.943] n deleted obs = 20 	 scale =0.609979 	 error init =0.469073 	 error end=0.469073
+[12:39:30.943] After pose optimization, distance between two frames x:-0.000801 ,z=0.001965,angle between two frames:0.005323
+[12:39:30.943] Update EKF and 3D points, distance between two frames x:-0.000923 ,z=0.002266,angle between two frames:0.005420
+[12:39:31.040] After Reprojection Map nPoint:44 ,nCell:22 ,nMatches:10 ,distance between two frames x:-0.000750 ,z=0.001850,angle between two frames:0.000220
+[12:39:31.041] Init estimate scale:0.517576
+[12:39:31.041] it:0 	 Success 	 new_chi2: 2.722625 	 dT = -0.009640, 0.000000, -0.004961
+[12:39:31.041] it:1 	 FAILURE 	 new_chi2: 2.825601
+[12:39:31.041] n deleted obs = 22 	 scale =0.517576 	 error init =0.123756 	 error end=0.123756
+[12:39:31.041] After pose optimization, distance between two frames x:-0.000750 ,z=0.001850,angle between two frames:0.000220
+[12:39:31.041] Update EKF and 3D points, distance between two frames x:-0.001164 ,z=0.002869,angle between two frames:0.000530
+[12:39:31.145] After Reprojection Map nPoint:42 ,nCell:19 ,nMatches:10 ,distance between two frames x:-0.001852 ,z=0.004584,angle between two frames:0.002343
+[12:39:31.145] Init estimate scale:0.517596
+[12:39:31.145] it:0 	 Success 	 new_chi2: 15.258926 	 dT = -0.106717, 0.000000, -0.056123
+[12:39:31.145] it:1 	 FAILURE 	 new_chi2: 20.179370
+[12:39:31.145] n deleted obs = 22 	 scale =0.517596 	 error init =0.693588 	 error end=0.693588
+[12:39:31.145] After pose optimization, distance between two frames x:-0.001852 ,z=0.004584,angle between two frames:0.002343
+[12:39:31.145] Update EKF and 3D points, distance between two frames x:-0.001974 ,z=0.004885,angle between two frames:0.002305
+[12:39:31.242] After Reprojection Map nPoint:43 ,nCell:20 ,nMatches:11 ,distance between two frames x:-0.000749 ,z=0.001852,angle between two frames:0.000154
+[12:39:31.242] Init estimate scale:0.526103
+[12:39:31.242] it:0 	 Success 	 new_chi2: 4.123926 	 dT = -0.017696, 0.000000, -0.009503
+[12:39:31.242] it:1 	 FAILURE 	 new_chi2: 4.314868
+[12:39:31.242] n deleted obs = 24 	 scale =0.526103 	 error init =0.171830 	 error end=0.171830
+[12:39:31.242] After pose optimization, distance between two frames x:-0.000749 ,z=0.001852,angle between two frames:0.000154
+[12:39:31.242] Update EKF and 3D points, distance between two frames x:-0.000860 ,z=0.002130,angle between two frames:0.000015
+[12:39:31.347] After Reprojection Map nPoint:47 ,nCell:23 ,nMatches:11 ,distance between two frames x:-0.000685 ,z=0.001708,angle between two frames:0.000310
+[12:39:31.347] Init estimate scale:0.531608
+[12:39:31.347] it:0 	 Success 	 new_chi2: 4.118447 	 dT = -0.032179, 0.000000, -0.019459
+[12:39:31.347] it:1 	 FAILURE 	 new_chi2: 4.592482
+[12:39:31.347] n deleted obs = 25 	 scale =0.531608 	 error init =0.164738 	 error end=0.164738
+[12:39:31.347] After pose optimization, distance between two frames x:-0.000685 ,z=0.001708,angle between two frames:0.000310
+[12:39:31.347] Update EKF and 3D points, distance between two frames x:-0.000815 ,z=0.002024,angle between two frames:0.000303
+[12:39:31.438] After Reprojection Map nPoint:47 ,nCell:26 ,nMatches:11 ,distance between two frames x:-0.000803 ,z=0.001950,angle between two frames:0.005688
+[12:39:31.438] Init estimate scale:0.530988
+[12:39:31.438] it:0 	 Success 	 new_chi2: 3.770029 	 dT = -0.012209, 0.000000, -0.006904
+[12:39:31.438] it:1 	 FAILURE 	 new_chi2: 3.936442
+[12:39:31.438] n deleted obs = 25 	 scale =0.530988 	 error init =0.150801 	 error end=0.150801
+[12:39:31.438] After pose optimization, distance between two frames x:-0.000803 ,z=0.001950,angle between two frames:0.005688
+[12:39:31.438] Update EKF and 3D points, distance between two frames x:-0.001228 ,z=0.002983,angle between two frames:0.005867
+[12:39:31.542] After Reprojection Map nPoint:45 ,nCell:26 ,nMatches:11 ,distance between two frames x:-0.001914 ,z=0.004644,angle between two frames:0.001806
+[12:39:31.542] Init estimate scale:0.523340
+[12:39:31.542] it:0 	 Success 	 new_chi2: 23.794163 	 dT = -0.142495, 0.000000, -0.093915
+[12:39:31.542] it:1 	 FAILURE 	 new_chi2: 156.022789
+[12:39:31.542] n deleted obs = 25 	 scale =0.523340 	 error init =0.951767 	 error end=0.951767
+[12:39:31.542] After pose optimization, distance between two frames x:-0.001914 ,z=0.004644,angle between two frames:0.001806
+[12:39:31.542] Update EKF and 3D points, distance between two frames x:-0.002315 ,z=0.005610,angle between two frames:0.002374
+[12:39:31.651] After Reprojection Map nPoint:46 ,nCell:23 ,nMatches:11 ,distance between two frames x:-0.001814 ,z=0.004344,angle between two frames:0.003929
+[12:39:31.651] Init estimate scale:0.526983
+[12:39:31.651] it:0 	 Success 	 new_chi2: 9.971328 	 dT = -0.025865, 0.000000, -0.017177
+[12:39:31.651] it:1 	 FAILURE 	 new_chi2: 10.728785
+[12:39:31.651] n deleted obs = 26 	 scale =0.526983 	 error init =0.383513 	 error end=0.383513
+[12:39:31.651] After pose optimization, distance between two frames x:-0.001814 ,z=0.004344,angle between two frames:0.003929
+[12:39:31.651] Update EKF and 3D points, distance between two frames x:-0.001935 ,z=0.004631,angle between two frames:0.004040
+[12:39:31.758] After Reprojection Map nPoint:47 ,nCell:22 ,nMatches:11 ,distance between two frames x:-0.000747 ,z=0.001779,angle between two frames:0.000966
+[12:39:31.758] Init estimate scale:0.439356
+[12:39:31.758] it:0 	 Success 	 new_chi2: 3.576478 	 dT = -0.141137, 0.000000, -0.093660
+[12:39:31.758] it:1 	 FAILURE 	 new_chi2: 5.753096
+[12:39:31.758] n deleted obs = 27 	 scale =0.439356 	 error init =0.132462 	 error end=0.132462
+[12:39:31.758] After pose optimization, distance between two frames x:-0.000747 ,z=0.001779,angle between two frames:0.000966
+[12:39:31.758] Update EKF and 3D points, distance between two frames x:-0.000876 ,z=0.002084,angle between two frames:0.001218
+[12:39:31.840] After Reprojection Map nPoint:49 ,nCell:25 ,nMatches:13 ,distance between two frames x:-0.000798 ,z=0.001886,angle between two frames:0.002266
+[12:39:31.840] Init estimate scale:0.526858
+[12:39:31.840] it:0 	 Success 	 new_chi2: 32.390476 	 dT = -0.460048, 0.000000, -0.333404
+[12:39:31.840] it:1 	 Success 	 new_chi2: 22.228481 	 dT = -0.379467, 0.000000, -0.381029
+[12:39:31.840] it:2 	 FAILURE 	 new_chi2: 54.631587
+[12:39:31.840] n deleted obs = 30 	 scale =0.526858 	 error init =1.079683 	 error end=0.740949
+[12:39:31.840] After pose optimization, distance between two frames x:-0.460846 ,z=0.001886,angle between two frames:0.335670
+[12:39:31.840] Update EKF and 3D points, distance between two frames x:-0.433780 ,z=0.002176,angle between two frames:0.315977
+[12:39:31.952] After Reprojection Map nPoint:46 ,nCell:23 ,nMatches:13 ,distance between two frames x:0.166237 ,z=0.001790,angle between two frames:0.121374
+[12:39:31.952] Init estimate scale:0.878905
+[12:39:31.952] it:0 	 Success 	 new_chi2: 21.205227 	 dT = -0.131791, 0.000000, -0.106512
+[12:39:31.952] it:1 	 Success 	 new_chi2: 18.499848 	 dT = -0.110320, 0.000000, -0.104059
+[12:39:31.952] it:2 	 FAILURE 	 new_chi2: 23.303943
+[12:39:31.952] n deleted obs = 31 	 scale =0.878905 	 error init =0.684040 	 error end=0.596769
+[12:39:31.952] After pose optimization, distance between two frames x:0.034446 ,z=0.001790,angle between two frames:0.014862
+[12:39:31.952] Update EKF and 3D points, distance between two frames x:0.041952 ,z=0.002058,angle between two frames:0.020683
+[12:39:32.038] After Reprojection Map nPoint:50 ,nCell:20 ,nMatches:14 ,distance between two frames x:0.046345 ,z=0.001655,angle between two frames:0.034691
+[12:39:32.039] Init estimate scale:0.998075
+[12:39:32.039] it:0 	 Success 	 new_chi2: 18.722616 	 dT = -0.082958, 0.000000, -0.074676
+[12:39:32.039] it:1 	 FAILURE 	 new_chi2: 22.687485
+[12:39:32.039] n deleted obs = 33 	 scale =0.998075 	 error init =0.567352 	 error end=0.567352
+[12:39:32.039] After pose optimization, distance between two frames x:0.046345 ,z=0.001655,angle between two frames:0.034691
+[12:39:32.039] Update EKF and 3D points, distance between two frames x:0.046127 ,z=0.001937,angle between two frames:0.034723
+[12:39:32.139] After Reprojection Map nPoint:52 ,nCell:21 ,nMatches:17 ,distance between two frames x:-0.001290 ,z=0.001670,angle between two frames:0.000840
+[12:39:32.139] Init estimate scale:0.998033
+[12:39:32.139] it:0 	 Success 	 new_chi2: 19.021015 	 dT = -0.128850, 0.000000, -0.116589
+[12:39:32.139] it:1 	 FAILURE 	 new_chi2: 27.254171
+[12:39:32.139] n deleted obs = 38 	 scale =0.998033 	 error init =0.500553 	 error end=0.500553
+[12:39:32.139] After pose optimization, distance between two frames x:-0.001290 ,z=0.001670,angle between two frames:0.000840
+[12:39:32.139] Update EKF and 3D points, distance between two frames x:-0.001508 ,z=0.001952,angle between two frames:0.000674
+[12:39:32.248] After Reprojection Map nPoint:55 ,nCell:23 ,nMatches:17 ,distance between two frames x:-0.001292 ,z=0.001667,angle between two frames:0.001951
+[12:39:32.248] Init estimate scale:1.075665
+[12:39:32.248] it:0 	 Success 	 new_chi2: 20.417508 	 dT = -0.088054, 0.000000, -0.078586
+[12:39:32.248] it:1 	 FAILURE 	 new_chi2: 26.202756
+[12:39:32.248] n deleted obs = 40 	 scale =1.075665 	 error init =0.510438 	 error end=0.510438
+[12:39:32.248] After pose optimization, distance between two frames x:-0.001292 ,z=0.001667,angle between two frames:0.001951
+[12:39:32.248] Update EKF and 3D points, distance between two frames x:-0.001487 ,z=0.001921,angle between two frames:0.001704
+[12:39:32.340] After Reprojection Map nPoint:54 ,nCell:23 ,nMatches:15 ,distance between two frames x:-0.001208 ,z=0.001568,angle between two frames:0.003149
+[12:39:32.340] Init estimate scale:1.086491
+[12:39:32.340] it:0 	 Success 	 new_chi2: 22.151535 	 dT = -0.098742, 0.000000, -0.090537
+[12:39:32.340] it:1 	 FAILURE 	 new_chi2: 27.974803
+[12:39:32.340] n deleted obs = 39 	 scale =1.086491 	 error init =0.567988 	 error end=0.567988
+[12:39:32.340] After pose optimization, distance between two frames x:-0.001208 ,z=0.001568,angle between two frames:0.003149
+[12:39:32.340] Update EKF and 3D points, distance between two frames x:-0.001424 ,z=0.001849,angle between two frames:0.003115
+[12:39:32.442] After Reprojection Map nPoint:59 ,nCell:21 ,nMatches:17 ,distance between two frames x:-0.001280 ,z=0.001662,angle between two frames:0.001807
+[12:39:32.442] Init estimate scale:1.089114
+[12:39:32.442] it:0 	 Success 	 new_chi2: 41.104222 	 dT = -0.120513, 0.000000, -0.111438
+[12:39:32.442] it:1 	 Success 	 new_chi2: 38.985415 	 dT = -0.104627, 0.000000, -0.118611
+[12:39:32.442] it:2 	 FAILURE 	 new_chi2: 46.212598
+[12:39:32.442] n deleted obs = 44 	 scale =1.089114 	 error init =0.934187 	 error end=0.886032
+[12:39:32.442] After pose optimization, distance between two frames x:-0.121792 ,z=0.001662,angle between two frames:0.113245
+[12:39:32.442] Update EKF and 3D points, distance between two frames x:-0.114869 ,z=0.001918,angle between two frames:0.106630
+[12:39:32.539] After Reprojection Map nPoint:61 ,nCell:21 ,nMatches:19 ,distance between two frames x:0.042528 ,z=0.001574,angle between two frames:0.041707
+[12:39:32.539] Init estimate scale:1.171615
+[12:39:32.539] it:0 	 Success 	 new_chi2: 29.235889 	 dT = -0.118506, 0.000000, -0.121738
+[12:39:32.540] it:1 	 FAILURE 	 new_chi2: 41.413372
+[12:39:32.540] n deleted obs = 49 	 scale =1.171615 	 error init =0.596651 	 error end=0.596651
+[12:39:32.540] After pose optimization, distance between two frames x:0.042528 ,z=0.001574,angle between two frames:0.041707
+[12:39:32.540] Update EKF and 3D points, distance between two frames x:0.042295 ,z=0.001840,angle between two frames:0.041872
+[12:39:32.642] After Reprojection Map nPoint:62 ,nCell:20 ,nMatches:18 ,distance between two frames x:-0.001375 ,z=0.001572,angle between two frames:0.001617
+[12:39:32.642] Init estimate scale:1.194539
+[12:39:32.642] it:0 	 Success 	 new_chi2: 29.430904 	 dT = -0.244694, 0.000000, -0.259493
+[12:39:32.642] it:1 	 FAILURE 	 new_chi2: 60.223519
+[12:39:32.642] n deleted obs = 49 	 scale =1.194539 	 error init =0.600631 	 error end=0.600631
+[12:39:32.642] After pose optimization, distance between two frames x:-0.001375 ,z=0.001572,angle between two frames:0.001617
+[12:39:32.642] Update EKF and 3D points, distance between two frames x:-0.001589 ,z=0.001819,angle between two frames:0.002034
+[12:39:32.750] After Reprojection Map nPoint:60 ,nCell:24 ,nMatches:19 ,distance between two frames x:-0.001312 ,z=0.001514,angle between two frames:0.006395
+[12:39:32.750] Init estimate scale:1.192394
+[12:39:32.750] it:0 	 Success 	 new_chi2: 29.482504 	 dT = -0.386395, 0.000000, -0.399799
+[12:39:32.750] it:1 	 FAILURE 	 new_chi2: 85.100596
+[12:39:32.750] n deleted obs = 49 	 scale =1.192394 	 error init =0.601684 	 error end=0.601684
+[12:39:32.750] After pose optimization, distance between two frames x:-0.001312 ,z=0.001514,angle between two frames:0.006395
+[12:39:32.750] Update EKF and 3D points, distance between two frames x:-0.001520 ,z=0.001759,angle between two frames:0.006842
+[12:39:32.838] After Reprojection Map nPoint:62 ,nCell:22 ,nMatches:17 ,distance between two frames x:-0.001286 ,z=0.001512,angle between two frames:0.002344
+[12:39:32.838] Init estimate scale:1.205889
+[12:39:32.839] it:0 	 Success 	 new_chi2: 29.965574 	 dT = -0.131178, 0.000000, -0.129976
+[12:39:32.839] it:1 	 FAILURE 	 new_chi2: 43.002745
+[12:39:32.839] n deleted obs = 48 	 scale =1.205889 	 error init =0.624283 	 error end=0.624283
+[12:39:32.839] After pose optimization, distance between two frames x:-0.001286 ,z=0.001512,angle between two frames:0.002344
+[12:39:32.839] Update EKF and 3D points, distance between two frames x:-0.001522 ,z=0.001785,angle between two frames:0.001919
+[12:39:32.946] After Reprojection Map nPoint:62 ,nCell:23 ,nMatches:17 ,distance between two frames x:-0.001387 ,z=0.001590,angle between two frames:0.005821
+[12:39:32.946] Init estimate scale:1.219319
+[12:39:32.946] it:0 	 Success 	 new_chi2: 29.989602 	 dT = -0.188212, 0.000000, -0.193090
+[12:39:32.946] it:1 	 FAILURE 	 new_chi2: 50.239598
+[12:39:32.946] n deleted obs = 48 	 scale =1.219319 	 error init =0.624783 	 error end=0.624783
+[12:39:32.946] After pose optimization, distance between two frames x:-0.001387 ,z=0.001590,angle between two frames:0.005821
+[12:39:32.946] Update EKF and 3D points, distance between two frames x:-0.001600 ,z=0.001831,angle between two frames:0.006297
+[12:39:33.040] After Reprojection Map nPoint:60 ,nCell:23 ,nMatches:17 ,distance between two frames x:-0.001307 ,z=0.001482,angle between two frames:0.004903
+[12:39:33.040] Init estimate scale:1.128766
+[12:39:33.040] it:0 	 Success 	 new_chi2: 27.825095 	 dT = -0.165846, 0.000000, -0.175815
+[12:39:33.040] it:1 	 FAILURE 	 new_chi2: 45.130810
+[12:39:33.040] n deleted obs = 47 	 scale =1.128766 	 error init =0.592023 	 error end=0.592023
+[12:39:33.040] After pose optimization, distance between two frames x:-0.001307 ,z=0.001482,angle between two frames:0.004903
+[12:39:33.040] Update EKF and 3D points, distance between two frames x:-0.001542 ,z=0.001748,angle between two frames:0.005268
+[12:39:33.144] After Reprojection Map nPoint:60 ,nCell:25 ,nMatches:18 ,distance between two frames x:-0.001394 ,z=0.001571,angle between two frames:0.003989
+[12:39:33.144] Init estimate scale:1.128567
+[12:39:33.144] it:0 	 Success 	 new_chi2: 28.264416 	 dT = -0.106265, 0.000000, -0.109477
+[12:39:33.144] it:1 	 FAILURE 	 new_chi2: 38.352828
+[12:39:33.144] n deleted obs = 48 	 scale =1.128567 	 error init =0.588842 	 error end=0.588842
+[12:39:33.144] After pose optimization, distance between two frames x:-0.001394 ,z=0.001571,angle between two frames:0.003989
+[12:39:33.144] Update EKF and 3D points, distance between two frames x:-0.001602 ,z=0.001801,angle between two frames:0.004613
+[12:39:33.238] After Reprojection Map nPoint:54 ,nCell:20 ,nMatches:16 ,distance between two frames x:-0.001256 ,z=0.001393,angle between two frames:0.011501
+[12:39:33.238] Init estimate scale:1.120482
+[12:39:33.238] it:0 	 Success 	 new_chi2: 24.307356 	 dT = -0.127134, 0.000000, -0.130440
+[12:39:33.238] it:1 	 FAILURE 	 new_chi2: 35.916484
+[12:39:33.238] n deleted obs = 43 	 scale =1.120482 	 error init =0.565287 	 error end=0.565287
+[12:39:33.238] After pose optimization, distance between two frames x:-0.001256 ,z=0.001393,angle between two frames:0.011501
+[12:39:33.238] Update EKF and 3D points, distance between two frames x:-0.001996 ,z=0.002198,angle between two frames:0.013275
+[12:39:33.339] After Reprojection Map nPoint:57 ,nCell:21 ,nMatches:18 ,distance between two frames x:-0.003351 ,z=0.003597,angle between two frames:0.011078
+[12:39:33.339] Init estimate scale:1.133483
+[12:39:33.339] it:0 	 Success 	 new_chi2: 35.589857 	 dT = -0.134233, 0.000000, -0.133203
+[12:39:33.339] it:1 	 FAILURE 	 new_chi2: 44.757511
+[12:39:33.339] n deleted obs = 46 	 scale =1.133483 	 error init =0.773693 	 error end=0.773693
+[12:39:33.339] After pose optimization, distance between two frames x:-0.003351 ,z=0.003597,angle between two frames:0.011078
+[12:39:33.339] Update EKF and 3D points, distance between two frames x:-0.003593 ,z=0.003854,angle between two frames:0.011510
+[12:39:33.439] After Reprojection Map nPoint:60 ,nCell:23 ,nMatches:18 ,distance between two frames x:-0.001430 ,z=0.001518,angle between two frames:0.004663
+[12:39:33.439] Init estimate scale:1.128647
+[12:39:33.440] it:0 	 Success 	 new_chi2: 27.315197 	 dT = -0.129333, 0.000000, -0.144528
+[12:39:33.440] it:1 	 FAILURE 	 new_chi2: 41.345774
+[12:39:33.440] n deleted obs = 47 	 scale =1.128647 	 error init =0.581174 	 error end=0.581174
+[12:39:33.440] After pose optimization, distance between two frames x:-0.001430 ,z=0.001518,angle between two frames:0.004663
+[12:39:33.440] Update EKF and 3D points, distance between two frames x:-0.001676 ,z=0.001777,angle between two frames:0.005055
+[12:39:33.539] After Reprojection Map nPoint:57 ,nCell:21 ,nMatches:18 ,distance between two frames x:-0.001456 ,z=0.001529,angle between two frames:0.003272
+[12:39:33.539] Init estimate scale:1.131744
+[12:39:33.539] it:0 	 Success 	 new_chi2: 27.417207 	 dT = -0.046622, 0.000000, -0.048412
+[12:39:33.539] it:1 	 FAILURE 	 new_chi2: 31.785802
+[12:39:33.539] n deleted obs = 47 	 scale =1.131744 	 error init =0.583345 	 error end=0.583345
+[12:39:33.539] After pose optimization, distance between two frames x:-0.001456 ,z=0.001529,angle between two frames:0.003272
+[12:39:33.539] Update EKF and 3D points, distance between two frames x:-0.001702 ,z=0.001786,angle between two frames:0.003461
+[12:39:33.639] After Reprojection Map nPoint:58 ,nCell:24 ,nMatches:19 ,distance between two frames x:-0.001453 ,z=0.001523,angle between two frames:0.001860
+[12:39:33.639] Init estimate scale:1.141596
+[12:39:33.639] it:0 	 Success 	 new_chi2: 28.611737 	 dT = -0.140311, 0.000000, -0.156192
+[12:39:33.639] it:1 	 FAILURE 	 new_chi2: 44.945344
+[12:39:33.639] n deleted obs = 48 	 scale =1.141596 	 error init =0.596078 	 error end=0.596078
+[12:39:33.639] After pose optimization, distance between two frames x:-0.001453 ,z=0.001523,angle between two frames:0.001860
+[12:39:33.639] Update EKF and 3D points, distance between two frames x:-0.001698 ,z=0.001779,angle between two frames:0.002086
+[12:39:33.741] After Reprojection Map nPoint:62 ,nCell:23 ,nMatches:19 ,distance between two frames x:-0.001453 ,z=0.001515,angle between two frames:0.000685
+[12:39:33.741] Init estimate scale:1.142889
+[12:39:33.741] it:0 	 Success 	 new_chi2: 29.585844 	 dT = -0.072044, 0.000000, -0.075065
+[12:39:33.741] it:1 	 FAILURE 	 new_chi2: 36.997952
+[12:39:33.741] n deleted obs = 49 	 scale =1.142889 	 error init =0.603793 	 error end=0.603793
+[12:39:33.741] After pose optimization, distance between two frames x:-0.001453 ,z=0.001515,angle between two frames:0.000685
+[12:39:33.741] Update EKF and 3D points, distance between two frames x:-0.001697 ,z=0.001771,angle between two frames:0.000704
+[12:39:33.839] After Reprojection Map nPoint:57 ,nCell:22 ,nMatches:17 ,distance between two frames x:-0.001429 ,z=0.001498,angle between two frames:0.008751
+[12:39:33.839] Init estimate scale:1.147661
+[12:39:33.839] it:0 	 Success 	 new_chi2: 27.678730 	 dT = -0.037612, 0.000000, -0.040108
+[12:39:33.839] it:1 	 FAILURE 	 new_chi2: 31.244856
+[12:39:33.839] n deleted obs = 45 	 scale =1.147661 	 error init =0.615083 	 error end=0.615083
+[12:39:33.839] After pose optimization, distance between two frames x:-0.001429 ,z=0.001498,angle between two frames:0.008751
+[12:39:33.839] Update EKF and 3D points, distance between two frames x:-0.002214 ,z=0.002303,angle between two frames:0.009435
+[12:39:33.944] After Reprojection Map nPoint:55 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.003541 ,z=0.003613,angle between two frames:0.001245
+[12:39:33.944] Init estimate scale:1.215409
+[12:39:33.944] it:0 	 Success 	 new_chi2: 28.131778 	 dT = -0.053805, 0.000000, -0.053986
+[12:39:33.944] it:1 	 FAILURE 	 new_chi2: 32.682721
+[12:39:33.944] n deleted obs = 46 	 scale =1.215409 	 error init =0.611560 	 error end=0.611560
+[12:39:33.944] After pose optimization, distance between two frames x:-0.003541 ,z=0.003613,angle between two frames:0.001245
+[12:39:33.944] Update EKF and 3D points, distance between two frames x:-0.003791 ,z=0.003870,angle between two frames:0.001210
+[12:39:34.038] After Reprojection Map nPoint:57 ,nCell:23 ,nMatches:19 ,distance between two frames x:-0.001479 ,z=0.001518,angle between two frames:0.000512
+[12:39:34.038] Init estimate scale:1.212044
+[12:39:34.038] it:0 	 Success 	 new_chi2: 30.780578 	 dT = -0.137005, 0.000000, -0.149784
+[12:39:34.038] it:1 	 FAILURE 	 new_chi2: 47.247744
+[12:39:34.038] n deleted obs = 50 	 scale =1.212044 	 error init =0.615612 	 error end=0.615612
+[12:39:34.038] After pose optimization, distance between two frames x:-0.001479 ,z=0.001518,angle between two frames:0.000512
+[12:39:34.038] Update EKF and 3D points, distance between two frames x:-0.002221 ,z=0.002281,angle between two frames:0.000608
+[12:39:34.159] After Reprojection Map nPoint:56 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.003334 ,z=0.003428,angle between two frames:0.001234
+[12:39:34.159] Init estimate scale:1.150538
+[12:39:34.159] it:0 	 Success 	 new_chi2: 28.496389 	 dT = -0.093901, 0.000000, -0.097576
+[12:39:34.159] it:1 	 FAILURE 	 new_chi2: 38.242835
+[12:39:34.159] n deleted obs = 47 	 scale =1.150538 	 error init =0.606306 	 error end=0.606306
+[12:39:34.159] After pose optimization, distance between two frames x:-0.003334 ,z=0.003428,angle between two frames:0.001234
+[12:39:34.159] Update EKF and 3D points, distance between two frames x:-0.003543 ,z=0.003645,angle between two frames:0.001573
+[12:39:34.240] After Reprojection Map nPoint:55 ,nCell:22 ,nMatches:17 ,distance between two frames x:-0.001291 ,z=0.001340,angle between two frames:0.002594
+[12:39:34.240] Init estimate scale:1.150533
+[12:39:34.240] it:0 	 Success 	 new_chi2: 27.752175 	 dT = -0.088932, 0.000000, -0.092444
+[12:39:34.240] it:1 	 FAILURE 	 new_chi2: 36.661558
+[12:39:34.240] n deleted obs = 46 	 scale =1.150533 	 error init =0.603308 	 error end=0.603308
+[12:39:34.240] After pose optimization, distance between two frames x:-0.001291 ,z=0.001340,angle between two frames:0.002594
+[12:39:34.240] Update EKF and 3D points, distance between two frames x:-0.001530 ,z=0.001589,angle between two frames:0.002755
+[12:39:34.341] After Reprojection Map nPoint:58 ,nCell:22 ,nMatches:21 ,distance between two frames x:-0.001410 ,z=0.001465,angle between two frames:0.003212
+[12:39:34.341] Init estimate scale:1.217024
+[12:39:34.341] it:0 	 Success 	 new_chi2: 37.420471 	 dT = -0.102574, 0.000000, -0.100592
+[12:39:34.341] it:1 	 FAILURE 	 new_chi2: 47.226038
+[12:39:34.341] n deleted obs = 54 	 scale =1.217024 	 error init =0.692972 	 error end=0.692972
+[12:39:34.341] After pose optimization, distance between two frames x:-0.001410 ,z=0.001465,angle between two frames:0.003212
+[12:39:34.341] Update EKF and 3D points, distance between two frames x:-0.001659 ,z=0.001727,angle between two frames:0.003631
+[12:39:34.441] After Reprojection Map nPoint:62 ,nCell:19 ,nMatches:19 ,distance between two frames x:-0.001470 ,z=0.001549,angle between two frames:0.003536
+[12:39:34.441] Init estimate scale:1.231783
+[12:39:34.441] it:0 	 Success 	 new_chi2: 38.354152 	 dT = -0.021890, 0.000000, -0.017835
+[12:39:34.441] it:1 	 FAILURE 	 new_chi2: 40.544011
+[12:39:34.441] n deleted obs = 57 	 scale =1.231783 	 error init =0.672880 	 error end=0.672880
+[12:39:34.441] After pose optimization, distance between two frames x:-0.001470 ,z=0.001549,angle between two frames:0.003536
+[12:39:34.441] Update EKF and 3D points, distance between two frames x:-0.001725 ,z=0.001819,angle between two frames:0.003806
+[12:39:34.540] After Reprojection Map nPoint:65 ,nCell:19 ,nMatches:17 ,distance between two frames x:-0.001508 ,z=0.001595,angle between two frames:0.003460
+[12:39:34.540] Init estimate scale:1.226956
+[12:39:34.540] it:0 	 Success 	 new_chi2: 35.351820 	 dT = -0.124609, 0.000000, -0.130271
+[12:39:34.540] it:1 	 FAILURE 	 new_chi2: 50.517483
+[12:39:34.540] n deleted obs = 55 	 scale =1.226956 	 error init =0.642760 	 error end=0.642760
+[12:39:34.540] After pose optimization, distance between two frames x:-0.001508 ,z=0.001595,angle between two frames:0.003460
+[12:39:34.540] Update EKF and 3D points, distance between two frames x:-0.001756 ,z=0.001861,angle between two frames:0.003930
+[12:39:34.657] After Reprojection Map nPoint:64 ,nCell:22 ,nMatches:18 ,distance between two frames x:-0.001465 ,z=0.001569,angle between two frames:0.004072
+[12:39:34.657] Init estimate scale:1.229036
+[12:39:34.657] it:0 	 Success 	 new_chi2: 38.917741 	 dT = -0.097848, 0.000000, -0.101611
+[12:39:34.657] it:1 	 FAILURE 	 new_chi2: 51.206762
+[12:39:34.657] n deleted obs = 59 	 scale =1.229036 	 error init =0.659623 	 error end=0.659623
+[12:39:34.657] After pose optimization, distance between two frames x:-0.001465 ,z=0.001569,angle between two frames:0.004072
+[12:39:34.657] Update EKF and 3D points, distance between two frames x:-0.001691 ,z=0.001811,angle between two frames:0.004179
+[12:39:34.752] After Reprojection Map nPoint:69 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001392 ,z=0.001491,angle between two frames:0.001644
+[12:39:34.752] Init estimate scale:1.223935
+[12:39:34.752] it:0 	 Success 	 new_chi2: 40.376261 	 dT = -0.118822, 0.000000, -0.122519
+[12:39:34.753] it:1 	 FAILURE 	 new_chi2: 55.698390
+[12:39:34.753] n deleted obs = 61 	 scale =1.223935 	 error init =0.661906 	 error end=0.661906
+[12:39:34.753] After pose optimization, distance between two frames x:-0.001392 ,z=0.001491,angle between two frames:0.001644
+[12:39:34.753] Update EKF and 3D points, distance between two frames x:-0.001598 ,z=0.001712,angle between two frames:0.001629
+[12:39:34.844] After Reprojection Map nPoint:73 ,nCell:23 ,nMatches:21 ,distance between two frames x:-0.001273 ,z=0.001365,angle between two frames:0.000532
+[12:39:34.844] Init estimate scale:1.236013
+[12:39:34.844] it:0 	 Success 	 new_chi2: 46.128516 	 dT = -0.162513, 0.000000, -0.166700
+[12:39:34.844] it:1 	 FAILURE 	 new_chi2: 69.817789
+[12:39:34.844] n deleted obs = 69 	 scale =1.236013 	 error init =0.668529 	 error end=0.668529
+[12:39:34.844] After pose optimization, distance between two frames x:-0.001273 ,z=0.001365,angle between two frames:0.000532
+[12:39:34.844] Update EKF and 3D points, distance between two frames x:-0.001517 ,z=0.001626,angle between two frames:0.000588
+[12:39:34.943] After Reprojection Map nPoint:73 ,nCell:19 ,nMatches:19 ,distance between two frames x:-0.001445 ,z=0.001545,angle between two frames:0.001833
+[12:39:34.943] Init estimate scale:1.234270
+[12:39:34.943] it:0 	 Success 	 new_chi2: 44.676237 	 dT = -0.046034, 0.000000, -0.043366
+[12:39:34.943] it:1 	 FAILURE 	 new_chi2: 50.620436
+[12:39:34.943] n deleted obs = 69 	 scale =1.234270 	 error init =0.647482 	 error end=0.647482
+[12:39:34.943] After pose optimization, distance between two frames x:-0.001445 ,z=0.001545,angle between two frames:0.001833
+[12:39:34.943] Update EKF and 3D points, distance between two frames x:-0.001686 ,z=0.001797,angle between two frames:0.002563
+[12:39:35.050] After Reprojection Map nPoint:69 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001425 ,z=0.001492,angle between two frames:0.007543
+[12:39:35.050] Init estimate scale:1.252842
+[12:39:35.051] it:0 	 Success 	 new_chi2: 42.728718 	 dT = -0.142037, 0.000000, -0.156661
+[12:39:35.051] it:1 	 FAILURE 	 new_chi2: 63.540489
+[12:39:35.051] n deleted obs = 64 	 scale =1.252842 	 error init =0.667636 	 error end=0.667636
+[12:39:35.051] After pose optimization, distance between two frames x:-0.001425 ,z=0.001492,angle between two frames:0.007543
+[12:39:35.051] Update EKF and 3D points, distance between two frames x:-0.001658 ,z=0.001735,angle between two frames:0.007922
+[12:39:35.139] After Reprojection Map nPoint:73 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001435 ,z=0.001488,angle between two frames:0.004266
+[12:39:35.140] Init estimate scale:1.255751
+[12:39:35.140] it:0 	 Success 	 new_chi2: 45.017424 	 dT = -0.134576, 0.000000, -0.151168
+[12:39:35.140] it:1 	 FAILURE 	 new_chi2: 65.768637
+[12:39:35.140] n deleted obs = 66 	 scale =1.255751 	 error init =0.682082 	 error end=0.682082
+[12:39:35.140] After pose optimization, distance between two frames x:-0.001435 ,z=0.001488,angle between two frames:0.004266
+[12:39:35.140] Update EKF and 3D points, distance between two frames x:-0.002204 ,z=0.002284,angle between two frames:0.004857
+[12:39:35.241] After Reprojection Map nPoint:69 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.003454 ,z=0.003561,angle between two frames:0.006158
+[12:39:35.241] Init estimate scale:1.252704
+[12:39:35.241] it:0 	 Success 	 new_chi2: 41.039688 	 dT = -0.050988, 0.000000, -0.053321
+[12:39:35.241] it:1 	 FAILURE 	 new_chi2: 47.429246
+[12:39:35.241] n deleted obs = 62 	 scale =1.252704 	 error init =0.661930 	 error end=0.661930
+[12:39:35.241] After pose optimization, distance between two frames x:-0.003454 ,z=0.003561,angle between two frames:0.006158
+[12:39:35.241] Update EKF and 3D points, distance between two frames x:-0.004216 ,z=0.004338,angle between two frames:0.007220
+[12:39:35.351] After Reprojection Map nPoint:71 ,nCell:20 ,nMatches:19 ,distance between two frames x:-0.003445 ,z=0.003480,angle between two frames:0.007459
+[12:39:35.351] Init estimate scale:1.247373
+[12:39:35.351] it:0 	 Success 	 new_chi2: 43.438001 	 dT = -0.097507, 0.000000, -0.106998
+[12:39:35.351] it:1 	 FAILURE 	 new_chi2: 57.561654
+[12:39:35.352] n deleted obs = 65 	 scale =1.247373 	 error init =0.668277 	 error end=0.668277
+[12:39:35.352] After pose optimization, distance between two frames x:-0.003445 ,z=0.003480,angle between two frames:0.007459
+[12:39:35.352] Update EKF and 3D points, distance between two frames x:-0.003661 ,z=0.003695,angle between two frames:0.007936
+[12:39:35.458] After Reprojection Map nPoint:69 ,nCell:20 ,nMatches:19 ,distance between two frames x:-0.001335 ,z=0.001325,angle between two frames:0.005087
+[12:39:35.458] Init estimate scale:1.250653
+[12:39:35.458] it:0 	 Success 	 new_chi2: 44.083832 	 dT = -0.091513, 0.000000, -0.099334
+[12:39:35.458] it:1 	 FAILURE 	 new_chi2: 57.351667
+[12:39:35.458] n deleted obs = 65 	 scale =1.250653 	 error init =0.678213 	 error end=0.678213
+[12:39:35.458] After pose optimization, distance between two frames x:-0.001335 ,z=0.001325,angle between two frames:0.005087
+[12:39:35.458] Update EKF and 3D points, distance between two frames x:-0.001562 ,z=0.001550,angle between two frames:0.005023
+[12:39:35.557] After Reprojection Map nPoint:72 ,nCell:23 ,nMatches:21 ,distance between two frames x:-0.001403 ,z=0.001394,angle between two frames:0.000946
+[12:39:35.557] Init estimate scale:1.246748
+[12:39:35.557] it:0 	 Success 	 new_chi2: 48.041863 	 dT = -0.138537, 0.000000, -0.159841
+[12:39:35.557] it:1 	 FAILURE 	 new_chi2: 69.763763
+[12:39:35.557] n deleted obs = 67 	 scale =1.246748 	 error init =0.717043 	 error end=0.717043
+[12:39:35.557] After pose optimization, distance between two frames x:-0.001403 ,z=0.001394,angle between two frames:0.000946
+[12:39:35.557] Update EKF and 3D points, distance between two frames x:-0.001629 ,z=0.001617,angle between two frames:0.000317
+[12:39:35.639] After Reprojection Map nPoint:67 ,nCell:20 ,nMatches:19 ,distance between two frames x:-0.001411 ,z=0.001380,angle between two frames:0.004083
+[12:39:35.639] Init estimate scale:1.242655
+[12:39:35.639] it:0 	 Success 	 new_chi2: 41.452967 	 dT = -0.082433, 0.000000, -0.090098
+[12:39:35.639] it:1 	 FAILURE 	 new_chi2: 52.767857
+[12:39:35.639] n deleted obs = 62 	 scale =1.242655 	 error init =0.668596 	 error end=0.668596
+[12:39:35.639] After pose optimization, distance between two frames x:-0.001411 ,z=0.001380,angle between two frames:0.004083
+[12:39:35.639] Update EKF and 3D points, distance between two frames x:-0.001663 ,z=0.001630,angle between two frames:0.003978
+[12:39:35.751] After Reprojection Map nPoint:68 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001490 ,z=0.001478,angle between two frames:0.001820
+[12:39:35.751] Init estimate scale:1.254920
+[12:39:35.751] it:0 	 Success 	 new_chi2: 43.331577 	 dT = -0.188578, 0.000000, -0.212499
+[12:39:35.751] it:1 	 FAILURE 	 new_chi2: 71.100404
+[12:39:35.751] n deleted obs = 60 	 scale =1.254920 	 error init =0.722193 	 error end=0.722193
+[12:39:35.751] After pose optimization, distance between two frames x:-0.001490 ,z=0.001478,angle between two frames:0.001820
+[12:39:35.751] Update EKF and 3D points, distance between two frames x:-0.001717 ,z=0.001706,angle between two frames:0.002077
+[12:39:35.842] After Reprojection Map nPoint:65 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001405 ,z=0.001405,angle between two frames:0.002141
+[12:39:35.842] Init estimate scale:1.249888
+[12:39:35.842] it:0 	 Success 	 new_chi2: 40.273077 	 dT = -0.078132, 0.000000, -0.091616
+[12:39:35.842] it:1 	 FAILURE 	 new_chi2: 50.935034
+[12:39:35.842] n deleted obs = 61 	 scale =1.249888 	 error init =0.660214 	 error end=0.660214
+[12:39:35.842] After pose optimization, distance between two frames x:-0.001405 ,z=0.001405,angle between two frames:0.002141
+[12:39:35.842] Update EKF and 3D points, distance between two frames x:-0.001655 ,z=0.001657,angle between two frames:0.002448
+[12:39:35.949] After Reprojection Map nPoint:64 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001473 ,z=0.001481,angle between two frames:0.003555
+[12:39:35.949] Init estimate scale:1.257903
+[12:39:35.949] it:0 	 Success 	 new_chi2: 38.103349 	 dT = -0.051030, 0.000000, -0.056014
+[12:39:35.949] it:1 	 FAILURE 	 new_chi2: 44.175425
+[12:39:35.949] n deleted obs = 56 	 scale =1.257903 	 error init =0.680417 	 error end=0.680417
+[12:39:35.949] After pose optimization, distance between two frames x:-0.001473 ,z=0.001481,angle between two frames:0.003555
+[12:39:35.949] Update EKF and 3D points, distance between two frames x:-0.001705 ,z=0.001714,angle between two frames:0.003594
+[12:39:36.046] After Reprojection Map nPoint:62 ,nCell:21 ,nMatches:19 ,distance between two frames x:-0.001425 ,z=0.001435,angle between two frames:0.000550
+[12:39:36.046] Init estimate scale:1.263051
+[12:39:36.046] it:0 	 Success 	 new_chi2: 39.220812 	 dT = -0.119795, 0.000000, -0.136794
+[12:39:36.046] it:1 	 FAILURE 	 new_chi2: 55.481674
+[12:39:36.046] n deleted obs = 58 	 scale =1.263051 	 error init =0.676221 	 error end=0.676221
+[12:39:36.046] After pose optimization, distance between two frames x:-0.001425 ,z=0.001435,angle between two frames:0.000550
+[12:39:36.046] Update EKF and 3D points, distance between two frames x:-0.001638 ,z=0.001651,angle between two frames:0.000815
+[12:39:36.143] After Reprojection Map nPoint:60 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001312 ,z=0.001330,angle between two frames:0.002810
+[12:39:36.143] Init estimate scale:1.261228
+[12:39:36.143] it:0 	 Success 	 new_chi2: 39.312185 	 dT = -0.049396, 0.000000, -0.051563
+[12:39:36.143] it:1 	 FAILURE 	 new_chi2: 45.065735
+[12:39:36.143] n deleted obs = 57 	 scale =1.261228 	 error init =0.689687 	 error end=0.689687
+[12:39:36.143] After pose optimization, distance between two frames x:-0.001312 ,z=0.001330,angle between two frames:0.002810
+[12:39:36.143] Update EKF and 3D points, distance between two frames x:-0.001540 ,z=0.001563,angle between two frames:0.003218
+[12:39:36.254] After Reprojection Map nPoint:61 ,nCell:17 ,nMatches:15 ,distance between two frames x:-0.001400 ,z=0.001434,angle between two frames:0.004523
+[12:39:36.254] Init estimate scale:1.266130
+[12:39:36.254] it:0 	 Success 	 new_chi2: 36.498033 	 dT = -0.095864, 0.000000, -0.107372
+[12:39:36.254] it:1 	 FAILURE 	 new_chi2: 47.804845
+[12:39:36.254] n deleted obs = 53 	 scale =1.266130 	 error init =0.688642 	 error end=0.688642
+[12:39:36.254] After pose optimization, distance between two frames x:-0.001400 ,z=0.001434,angle between two frames:0.004523
+[12:39:36.254] Update EKF and 3D points, distance between two frames x:-0.001634 ,z=0.001676,angle between two frames:0.004926
+[12:39:36.347] After Reprojection Map nPoint:63 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001442 ,z=0.001491,angle between two frames:0.003932
+[12:39:36.347] Init estimate scale:1.271886
+[12:39:36.347] it:0 	 Success 	 new_chi2: 38.176079 	 dT = -0.101980, 0.000000, -0.115486
+[12:39:36.348] it:1 	 FAILURE 	 new_chi2: 50.773588
+[12:39:36.348] n deleted obs = 55 	 scale =1.271886 	 error init =0.694111 	 error end=0.694111
+[12:39:36.348] After pose optimization, distance between two frames x:-0.001442 ,z=0.001491,angle between two frames:0.003932
+[12:39:36.348] Update EKF and 3D points, distance between two frames x:-0.001667 ,z=0.001725,angle between two frames:0.004122
+[12:39:36.445] After Reprojection Map nPoint:68 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001382 ,z=0.001438,angle between two frames:0.000024
+[12:39:36.445] Init estimate scale:1.276088
+[12:39:36.445] it:0 	 Success 	 new_chi2: 41.924508 	 dT = -0.137477, 0.000000, -0.152965
+[12:39:36.445] it:1 	 FAILURE 	 new_chi2: 59.975558
+[12:39:36.445] n deleted obs = 59 	 scale =1.276088 	 error init =0.710585 	 error end=0.710585
+[12:39:36.445] After pose optimization, distance between two frames x:-0.001382 ,z=0.001438,angle between two frames:0.000024
+[12:39:36.445] Update EKF and 3D points, distance between two frames x:-0.001634 ,z=0.001695,angle between two frames:0.000409
+[12:39:36.541] After Reprojection Map nPoint:70 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001488 ,z=0.001518,angle between two frames:0.005154
+[12:39:36.541] Init estimate scale:1.282735
+[12:39:36.541] it:0 	 Success 	 new_chi2: 44.058898 	 dT = -0.132726, 0.000000, -0.155297
+[12:39:36.541] it:1 	 FAILURE 	 new_chi2: 63.028758
+[12:39:36.541] n deleted obs = 62 	 scale =1.282735 	 error init =0.710627 	 error end=0.710627
+[12:39:36.541] After pose optimization, distance between two frames x:-0.001488 ,z=0.001518,angle between two frames:0.005154
+[12:39:36.541] Update EKF and 3D points, distance between two frames x:-0.001694 ,z=0.001726,angle between two frames:0.005473
+[12:39:36.642] After Reprojection Map nPoint:64 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001266 ,z=0.001278,angle between two frames:0.002358
+[12:39:36.642] Init estimate scale:1.273660
+[12:39:36.642] it:0 	 Success 	 new_chi2: 40.918125 	 dT = -0.182443, 0.000000, -0.205636
+[12:39:36.642] it:1 	 FAILURE 	 new_chi2: 67.423091
+[12:39:36.642] n deleted obs = 59 	 scale =1.273660 	 error init =0.693528 	 error end=0.693528
+[12:39:36.642] After pose optimization, distance between two frames x:-0.001266 ,z=0.001278,angle between two frames:0.002358
+[12:39:36.642] Update EKF and 3D points, distance between two frames x:-0.001528 ,z=0.001542,angle between two frames:0.002932
+[12:39:36.749] After Reprojection Map nPoint:63 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001555 ,z=0.001558,angle between two frames:0.007934
+[12:39:36.749] Init estimate scale:1.281529
+[12:39:36.749] it:0 	 Success 	 new_chi2: 41.071993 	 dT = -0.118905, 0.000000, -0.145016
+[12:39:36.749] it:1 	 FAILURE 	 new_chi2: 58.092056
+[12:39:36.749] n deleted obs = 57 	 scale =1.281529 	 error init =0.720561 	 error end=0.720561
+[12:39:36.749] After pose optimization, distance between two frames x:-0.001555 ,z=0.001558,angle between two frames:0.007934
+[12:39:36.749] Update EKF and 3D points, distance between two frames x:-0.001784 ,z=0.001782,angle between two frames:0.008543
+[12:39:36.840] After Reprojection Map nPoint:65 ,nCell:20 ,nMatches:18 ,distance between two frames x:-0.001413 ,z=0.001387,angle between two frames:0.004950
+[12:39:36.840] Init estimate scale:1.275952
+[12:39:36.840] it:0 	 Success 	 new_chi2: 40.865877 	 dT = -0.086939, 0.000000, -0.104965
+[12:39:36.840] it:1 	 FAILURE 	 new_chi2: 52.784332
+[12:39:36.840] n deleted obs = 59 	 scale =1.275952 	 error init =0.692642 	 error end=0.692642
+[12:39:36.840] After pose optimization, distance between two frames x:-0.001413 ,z=0.001387,angle between two frames:0.004950
+[12:39:36.840] Update EKF and 3D points, distance between two frames x:-0.001663 ,z=0.001632,angle between two frames:0.005415
+[12:39:36.940] After Reprojection Map nPoint:61 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001481 ,z=0.001446,angle between two frames:0.007507
+[12:39:36.940] Init estimate scale:1.266621
+[12:39:36.940] it:0 	 Success 	 new_chi2: 38.072490 	 dT = -0.300226, 0.000000, -0.332091
+[12:39:36.940] it:1 	 FAILURE 	 new_chi2: 86.287435
+[12:39:36.940] n deleted obs = 55 	 scale =1.266621 	 error init =0.692227 	 error end=0.692227
+[12:39:36.940] After pose optimization, distance between two frames x:-0.001481 ,z=0.001446,angle between two frames:0.007507
+[12:39:36.940] Update EKF and 3D points, distance between two frames x:-0.001724 ,z=0.001679,angle between two frames:0.008149
+[12:39:37.046] After Reprojection Map nPoint:58 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001438 ,z=0.001376,angle between two frames:0.006779
+[12:39:37.046] Init estimate scale:1.274107
+[12:39:37.046] it:0 	 Success 	 new_chi2: 35.972468 	 dT = -0.055994, 0.000000, -0.065599
+[12:39:37.046] it:1 	 FAILURE 	 new_chi2: 42.549729
+[12:39:37.046] n deleted obs = 52 	 scale =1.274107 	 error init =0.691778 	 error end=0.691778
+[12:39:37.046] After pose optimization, distance between two frames x:-0.001438 ,z=0.001376,angle between two frames:0.006779
+[12:39:37.046] Update EKF and 3D points, distance between two frames x:-0.001677 ,z=0.001605,angle between two frames:0.006695
+[12:39:37.140] After Reprojection Map nPoint:60 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001475 ,z=0.001411,angle between two frames:0.001462
+[12:39:37.140] Init estimate scale:1.272720
+[12:39:37.140] it:0 	 Success 	 new_chi2: 38.528577 	 dT = -0.108310, 0.000000, -0.128812
+[12:39:37.140] it:1 	 FAILURE 	 new_chi2: 52.235193
+[12:39:37.140] n deleted obs = 55 	 scale =1.272720 	 error init =0.700520 	 error end=0.700520
+[12:39:37.140] After pose optimization, distance between two frames x:-0.001475 ,z=0.001411,angle between two frames:0.001462
+[12:39:37.140] Update EKF and 3D points, distance between two frames x:-0.001742 ,z=0.001667,angle between two frames:0.001363
+[12:39:37.240] After Reprojection Map nPoint:66 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001584 ,z=0.001517,angle between two frames:0.002227
+[12:39:37.240] Init estimate scale:1.275367
+[12:39:37.240] it:0 	 Success 	 new_chi2: 40.816305 	 dT = -0.112677, 0.000000, -0.132710
+[12:39:37.240] it:1 	 FAILURE 	 new_chi2: 56.937026
+[12:39:37.240] n deleted obs = 59 	 scale =1.275367 	 error init =0.691802 	 error end=0.691802
+[12:39:37.240] After pose optimization, distance between two frames x:-0.001584 ,z=0.001517,angle between two frames:0.002227
+[12:39:37.240] Update EKF and 3D points, distance between two frames x:-0.001846 ,z=0.001767,angle between two frames:0.002363
+[12:39:37.342] After Reprojection Map nPoint:67 ,nCell:15 ,nMatches:14 ,distance between two frames x:-0.001549 ,z=0.001476,angle between two frames:0.001019
+[12:39:37.342] Init estimate scale:1.279831
+[12:39:37.342] it:0 	 Success 	 new_chi2: 40.506171 	 dT = -0.084338, 0.000000, -0.101632
+[12:39:37.342] it:1 	 FAILURE 	 new_chi2: 52.259392
+[12:39:37.342] n deleted obs = 58 	 scale =1.279831 	 error init =0.698382 	 error end=0.698382
+[12:39:37.342] After pose optimization, distance between two frames x:-0.001549 ,z=0.001476,angle between two frames:0.001019
+[12:39:37.342] Update EKF and 3D points, distance between two frames x:-0.001777 ,z=0.001693,angle between two frames:0.001105
+[12:39:37.443] After Reprojection Map nPoint:69 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001401 ,z=0.001333,angle between two frames:0.000069
+[12:39:37.443] Init estimate scale:1.283382
+[12:39:37.443] it:0 	 Success 	 new_chi2: 41.688308 	 dT = -0.111920, 0.000000, -0.135992
+[12:39:37.443] it:1 	 FAILURE 	 new_chi2: 58.420442
+[12:39:37.443] n deleted obs = 60 	 scale =1.283382 	 error init =0.694805 	 error end=0.694805
+[12:39:37.443] After pose optimization, distance between two frames x:-0.001401 ,z=0.001333,angle between two frames:0.000069
+[12:39:37.443] Update EKF and 3D points, distance between two frames x:-0.001664 ,z=0.001584,angle between two frames:0.000098
+[12:39:37.542] After Reprojection Map nPoint:70 ,nCell:21 ,nMatches:16 ,distance between two frames x:-0.001554 ,z=0.001489,angle between two frames:0.001427
+[12:39:37.542] Init estimate scale:1.284118
+[12:39:37.542] it:0 	 Success 	 new_chi2: 45.768767 	 dT = -0.098948, 0.000000, -0.122745
+[12:39:37.542] it:1 	 FAILURE 	 new_chi2: 61.760437
+[12:39:37.542] n deleted obs = 63 	 scale =1.284118 	 error init =0.726488 	 error end=0.726488
+[12:39:37.542] After pose optimization, distance between two frames x:-0.001554 ,z=0.001489,angle between two frames:0.001427
+[12:39:37.542] Update EKF and 3D points, distance between two frames x:-0.001806 ,z=0.001731,angle between two frames:0.001602
+[12:39:37.641] After Reprojection Map nPoint:70 ,nCell:21 ,nMatches:19 ,distance between two frames x:-0.001490 ,z=0.001432,angle between two frames:0.002180
+[12:39:37.641] Init estimate scale:1.281645
+[12:39:37.641] it:0 	 Success 	 new_chi2: 46.986527 	 dT = -0.035048, 0.000000, -0.029363
+[12:39:37.641] it:1 	 FAILURE 	 new_chi2: 51.235700
+[12:39:37.641] n deleted obs = 67 	 scale =1.281645 	 error init =0.701291 	 error end=0.701291
+[12:39:37.641] After pose optimization, distance between two frames x:-0.001490 ,z=0.001432,angle between two frames:0.002180
+[12:39:37.641] Update EKF and 3D points, distance between two frames x:-0.001743 ,z=0.001677,angle between two frames:0.002480
+[12:39:37.746] After Reprojection Map nPoint:70 ,nCell:20 ,nMatches:20 ,distance between two frames x:-0.001494 ,z=0.001447,angle between two frames:0.003739
+[12:39:37.746] Init estimate scale:1.286130
+[12:39:37.746] it:0 	 Success 	 new_chi2: 50.947117 	 dT = -0.063851, 0.000000, -0.074770
+[12:39:37.746] it:1 	 FAILURE 	 new_chi2: 60.893125
+[12:39:37.746] n deleted obs = 69 	 scale =1.286130 	 error init =0.738364 	 error end=0.738364
+[12:39:37.746] After pose optimization, distance between two frames x:-0.001494 ,z=0.001447,angle between two frames:0.003739
+[12:39:37.746] Update EKF and 3D points, distance between two frames x:-0.001732 ,z=0.001680,angle between two frames:0.004112
+[12:39:37.852] After Reprojection Map nPoint:74 ,nCell:22 ,nMatches:21 ,distance between two frames x:-0.001460 ,z=0.001432,angle between two frames:0.003202
+[12:39:37.852] Init estimate scale:1.292002
+[12:39:37.852] it:0 	 Success 	 new_chi2: 55.132427 	 dT = -0.115650, 0.000000, -0.140951
+[12:39:37.852] it:1 	 FAILURE 	 new_chi2: 75.981961
+[12:39:37.852] n deleted obs = 72 	 scale =1.292002 	 error init =0.765728 	 error end=0.765728
+[12:39:37.852] After pose optimization, distance between two frames x:-0.001460 ,z=0.001432,angle between two frames:0.003202
+[12:39:37.852] Update EKF and 3D points, distance between two frames x:-0.001684 ,z=0.001650,angle between two frames:0.003332
+[12:39:37.954] After Reprojection Map nPoint:71 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001377 ,z=0.001347,angle between two frames:0.001785
+[12:39:37.954] Init estimate scale:1.293966
+[12:39:37.954] it:0 	 Success 	 new_chi2: 46.460281 	 dT = -0.109280, 0.000000, -0.129539
+[12:39:37.954] it:1 	 FAILURE 	 new_chi2: 62.065135
+[12:39:37.954] n deleted obs = 64 	 scale =1.293966 	 error init =0.725942 	 error end=0.725942
+[12:39:37.954] After pose optimization, distance between two frames x:-0.001377 ,z=0.001347,angle between two frames:0.001785
+[12:39:37.954] Update EKF and 3D points, distance between two frames x:-0.001598 ,z=0.001568,angle between two frames:0.002446
+[12:39:38.046] After Reprojection Map nPoint:70 ,nCell:14 ,nMatches:14 ,distance between two frames x:-0.001365 ,z=0.001364,angle between two frames:0.005925
+[12:39:38.046] Init estimate scale:1.289646
+[12:39:38.047] it:0 	 Success 	 new_chi2: 43.587673 	 dT = -0.074458, 0.000000, -0.087791
+[12:39:38.047] it:1 	 FAILURE 	 new_chi2: 54.002594
+[12:39:38.047] n deleted obs = 61 	 scale =1.289646 	 error init =0.714552 	 error end=0.714552
+[12:39:38.047] After pose optimization, distance between two frames x:-0.001365 ,z=0.001364,angle between two frames:0.005925
+[12:39:38.047] Update EKF and 3D points, distance between two frames x:-0.001603 ,z=0.001601,angle between two frames:0.006096
+[12:39:38.154] After Reprojection Map nPoint:69 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001461 ,z=0.001460,angle between two frames:0.000444
+[12:39:38.154] Init estimate scale:1.301935
+[12:39:38.154] it:0 	 Success 	 new_chi2: 44.283051 	 dT = -0.094323, 0.000000, -0.113485
+[12:39:38.154] it:1 	 FAILURE 	 new_chi2: 56.761676
+[12:39:38.154] n deleted obs = 62 	 scale =1.301935 	 error init =0.714243 	 error end=0.714243
+[12:39:38.154] After pose optimization, distance between two frames x:-0.001461 ,z=0.001460,angle between two frames:0.000444
+[12:39:38.154] Update EKF and 3D points, distance between two frames x:-0.001687 ,z=0.001682,angle between two frames:0.000666
+[12:39:38.244] After Reprojection Map nPoint:64 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.001393 ,z=0.001372,angle between two frames:0.001251
+[12:39:38.244] Init estimate scale:1.303203
+[12:39:38.244] it:0 	 Success 	 new_chi2: 44.997175 	 dT = -0.076678, 0.000000, -0.094458
+[12:39:38.244] it:1 	 FAILURE 	 new_chi2: 56.037906
+[12:39:38.244] n deleted obs = 61 	 scale =1.303203 	 error init =0.737659 	 error end=0.737659
+[12:39:38.244] After pose optimization, distance between two frames x:-0.001393 ,z=0.001372,angle between two frames:0.001251
+[12:39:38.244] Update EKF and 3D points, distance between two frames x:-0.001650 ,z=0.001623,angle between two frames:0.001691
+[12:39:38.346] After Reprojection Map nPoint:64 ,nCell:15 ,nMatches:13 ,distance between two frames x:-0.001516 ,z=0.001486,angle between two frames:0.008425
+[12:39:38.346] Init estimate scale:1.314752
+[12:39:38.346] it:0 	 Success 	 new_chi2: 41.109594 	 dT = -0.314960, 0.000000, -0.370993
+[12:39:38.346] it:1 	 FAILURE 	 new_chi2: 95.025962
+[12:39:38.346] n deleted obs = 56 	 scale =1.314752 	 error init =0.734100 	 error end=0.734100
+[12:39:38.346] After pose optimization, distance between two frames x:-0.001516 ,z=0.001486,angle between two frames:0.008425
+[12:39:38.346] Update EKF and 3D points, distance between two frames x:-0.001782 ,z=0.001740,angle between two frames:0.009117
+[12:39:38.457] After Reprojection Map nPoint:66 ,nCell:16 ,nMatches:14 ,distance between two frames x:-0.001572 ,z=0.001501,angle between two frames:0.004288
+[12:39:38.457] Init estimate scale:1.312088
+[12:39:38.457] it:0 	 Success 	 new_chi2: 42.410102 	 dT = -0.110733, 0.000000, -0.139646
+[12:39:38.457] it:1 	 FAILURE 	 new_chi2: 58.122194
+[12:39:38.457] n deleted obs = 57 	 scale =1.312088 	 error init =0.744037 	 error end=0.744037
+[12:39:38.457] After pose optimization, distance between two frames x:-0.001572 ,z=0.001501,angle between two frames:0.004288
+[12:39:38.457] Update EKF and 3D points, distance between two frames x:-0.001799 ,z=0.001717,angle between two frames:0.004752
+[12:39:38.544] After Reprojection Map nPoint:62 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001398 ,z=0.001333,angle between two frames:0.005276
+[12:39:38.544] Init estimate scale:1.303274
+[12:39:38.544] it:0 	 Success 	 new_chi2: 41.032396 	 dT = -0.077361, 0.000000, -0.094152
+[12:39:38.544] it:1 	 FAILURE 	 new_chi2: 51.057922
+[12:39:38.544] n deleted obs = 57 	 scale =1.303274 	 error init =0.719867 	 error end=0.719867
+[12:39:38.544] After pose optimization, distance between two frames x:-0.001398 ,z=0.001333,angle between two frames:0.005276
+[12:39:38.544] Update EKF and 3D points, distance between two frames x:-0.001654 ,z=0.001572,angle between two frames:0.006228
+[12:39:38.640] After Reprojection Map nPoint:66 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.001516 ,z=0.001408,angle between two frames:0.008038
+[12:39:38.640] Init estimate scale:1.305477
+[12:39:38.640] it:0 	 Success 	 new_chi2: 46.267076 	 dT = -0.084233, 0.000000, -0.104584
+[12:39:38.640] it:1 	 FAILURE 	 new_chi2: 58.916011
+[12:39:38.640] n deleted obs = 63 	 scale =1.305477 	 error init =0.734398 	 error end=0.734398
+[12:39:38.640] After pose optimization, distance between two frames x:-0.001516 ,z=0.001408,angle between two frames:0.008038
+[12:39:38.640] Update EKF and 3D points, distance between two frames x:-0.002305 ,z=0.002141,angle between two frames:0.008871
+[12:39:38.742] After Reprojection Map nPoint:64 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.003559 ,z=0.003287,angle between two frames:0.008138
+[12:39:38.742] Init estimate scale:1.304868
+[12:39:38.742] it:0 	 Success 	 new_chi2: 42.811240 	 dT = -0.068662, 0.000000, -0.087327
+[12:39:38.742] it:1 	 FAILURE 	 new_chi2: 52.432487
+[12:39:38.742] n deleted obs = 57 	 scale =1.304868 	 error init =0.751074 	 error end=0.751074
+[12:39:38.742] After pose optimization, distance between two frames x:-0.003559 ,z=0.003287,angle between two frames:0.008138
+[12:39:38.742] Update EKF and 3D points, distance between two frames x:-0.003800 ,z=0.003504,angle between two frames:0.008570
+[12:39:38.843] After Reprojection Map nPoint:63 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001476 ,z=0.001335,angle between two frames:0.002426
+[12:39:38.843] Init estimate scale:1.313097
+[12:39:38.843] it:0 	 Success 	 new_chi2: 45.366545 	 dT = -0.087605, 0.000000, -0.108470
+[12:39:38.843] it:1 	 FAILURE 	 new_chi2: 57.450986
+[12:39:38.843] n deleted obs = 59 	 scale =1.313097 	 error init =0.768924 	 error end=0.768924
+[12:39:38.843] After pose optimization, distance between two frames x:-0.001476 ,z=0.001335,angle between two frames:0.002426
+[12:39:38.843] Update EKF and 3D points, distance between two frames x:-0.001706 ,z=0.001546,angle between two frames:0.002300
+[12:39:38.944] After Reprojection Map nPoint:65 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001414 ,z=0.001297,angle between two frames:0.000576
+[12:39:38.945] Init estimate scale:1.315252
+[12:39:38.945] it:0 	 Success 	 new_chi2: 44.191819 	 dT = -0.057447, 0.000000, -0.076117
+[12:39:38.945] it:1 	 FAILURE 	 new_chi2: 52.454534
+[12:39:38.945] n deleted obs = 58 	 scale =1.315252 	 error init =0.761928 	 error end=0.761928
+[12:39:38.945] After pose optimization, distance between two frames x:-0.001414 ,z=0.001297,angle between two frames:0.000576
+[12:39:38.945] Update EKF and 3D points, distance between two frames x:-0.001690 ,z=0.001548,angle between two frames:0.000410
+[12:39:39.041] After Reprojection Map nPoint:68 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001632 ,z=0.001484,angle between two frames:0.001006
+[12:39:39.042] Init estimate scale:1.314579
+[12:39:39.042] it:0 	 Success 	 new_chi2: 49.127754 	 dT = -0.084266, 0.000000, -0.113523
+[12:39:39.042] it:1 	 FAILURE 	 new_chi2: 63.303339
+[12:39:39.042] n deleted obs = 65 	 scale =1.314579 	 error init =0.755812 	 error end=0.755812
+[12:39:39.042] After pose optimization, distance between two frames x:-0.001632 ,z=0.001484,angle between two frames:0.001006
+[12:39:39.042] Update EKF and 3D points, distance between two frames x:-0.001878 ,z=0.001708,angle between two frames:0.001007
+[12:39:39.152] After Reprojection Map nPoint:69 ,nCell:19 ,nMatches:19 ,distance between two frames x:-0.001452 ,z=0.001323,angle between two frames:0.006187
+[12:39:39.152] Init estimate scale:1.312314
+[12:39:39.152] it:0 	 Success 	 new_chi2: 52.078431 	 dT = -0.066964, 0.000000, -0.085148
+[12:39:39.152] it:1 	 FAILURE 	 new_chi2: 63.591507
+[12:39:39.152] n deleted obs = 70 	 scale =1.312314 	 error init =0.743978 	 error end=0.743978
+[12:39:39.152] After pose optimization, distance between two frames x:-0.001452 ,z=0.001323,angle between two frames:0.006187
+[12:39:39.152] Update EKF and 3D points, distance between two frames x:-0.001698 ,z=0.001541,angle between two frames:0.006813
+[12:39:39.242] After Reprojection Map nPoint:72 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001522 ,z=0.001345,angle between two frames:0.004920
+[12:39:39.242] Init estimate scale:1.318495
+[12:39:39.242] it:0 	 Success 	 new_chi2: 52.417828 	 dT = -0.097323, 0.000000, -0.119073
+[12:39:39.242] it:1 	 FAILURE 	 new_chi2: 68.486392
+[12:39:39.242] n deleted obs = 68 	 scale =1.318495 	 error init =0.770850 	 error end=0.770850
+[12:39:39.242] After pose optimization, distance between two frames x:-0.001522 ,z=0.001345,angle between two frames:0.004920
+[12:39:39.242] Update EKF and 3D points, distance between two frames x:-0.001799 ,z=0.001591,angle between two frames:0.004771
+[12:39:39.360] After Reprojection Map nPoint:68 ,nCell:19 ,nMatches:19 ,distance between two frames x:-0.001633 ,z=0.001459,angle between two frames:0.002247
+[12:39:39.361] Init estimate scale:1.312371
+[12:39:39.361] it:0 	 Success 	 new_chi2: 52.198702 	 dT = -0.071866, 0.000000, -0.093779
+[12:39:39.361] it:1 	 FAILURE 	 new_chi2: 64.958763
+[12:39:39.361] n deleted obs = 70 	 scale =1.312371 	 error init =0.745696 	 error end=0.745696
+[12:39:39.361] After pose optimization, distance between two frames x:-0.001633 ,z=0.001459,angle between two frames:0.002247
+[12:39:39.361] Update EKF and 3D points, distance between two frames x:-0.001873 ,z=0.001674,angle between two frames:0.002171
+[12:39:39.447] After Reprojection Map nPoint:61 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.001485 ,z=0.001327,angle between two frames:0.000493
+[12:39:39.448] Init estimate scale:1.316111
+[12:39:39.448] it:0 	 Success 	 new_chi2: 46.415238 	 dT = -0.057729, 0.000000, -0.074591
+[12:39:39.448] it:1 	 FAILURE 	 new_chi2: 55.370453
+[12:39:39.448] n deleted obs = 62 	 scale =1.316111 	 error init =0.748633 	 error end=0.748633
+[12:39:39.448] After pose optimization, distance between two frames x:-0.001485 ,z=0.001327,angle between two frames:0.000493
+[12:39:39.448] Update EKF and 3D points, distance between two frames x:-0.001700 ,z=0.001520,angle between two frames:0.000392
+[12:39:39.544] After Reprojection Map nPoint:71 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.001326 ,z=0.001188,angle between two frames:0.002432
+[12:39:39.544] Init estimate scale:1.322044
+[12:39:39.544] it:0 	 Success 	 new_chi2: 51.353026 	 dT = -0.066118, 0.000000, -0.085251
+[12:39:39.545] it:1 	 FAILURE 	 new_chi2: 62.532292
+[12:39:39.545] n deleted obs = 67 	 scale =1.322044 	 error init =0.766463 	 error end=0.766463
+[12:39:39.545] After pose optimization, distance between two frames x:-0.001326 ,z=0.001188,angle between two frames:0.002432
+[12:39:39.545] Update EKF and 3D points, distance between two frames x:-0.001608 ,z=0.001443,angle between two frames:0.002757
+[12:39:39.646] After Reprojection Map nPoint:69 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.001667 ,z=0.001510,angle between two frames:0.002983
+[12:39:39.646] Init estimate scale:1.321911
+[12:39:39.646] it:0 	 Success 	 new_chi2: 49.238896 	 dT = -0.076021, 0.000000, -0.099309
+[12:39:39.646] it:1 	 FAILURE 	 new_chi2: 61.721638
+[12:39:39.646] n deleted obs = 65 	 scale =1.321911 	 error init =0.757521 	 error end=0.757521
+[12:39:39.646] After pose optimization, distance between two frames x:-0.001667 ,z=0.001510,angle between two frames:0.002983
+[12:39:39.646] Update EKF and 3D points, distance between two frames x:-0.001911 ,z=0.001731,angle between two frames:0.003002
+[12:39:39.762] After Reprojection Map nPoint:70 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001499 ,z=0.001357,angle between two frames:0.000274
+[12:39:39.762] Init estimate scale:1.325576
+[12:39:39.762] it:0 	 Success 	 new_chi2: 50.548483 	 dT = -0.069161, 0.000000, -0.088489
+[12:39:39.762] it:1 	 FAILURE 	 new_chi2: 61.925476
+[12:39:39.762] n deleted obs = 66 	 scale =1.325576 	 error init =0.765886 	 error end=0.765886
+[12:39:39.762] After pose optimization, distance between two frames x:-0.001499 ,z=0.001357,angle between two frames:0.000274
+[12:39:39.762] Update EKF and 3D points, distance between two frames x:-0.001721 ,z=0.001558,angle between two frames:0.000431
+[12:39:39.842] After Reprojection Map nPoint:68 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.001369 ,z=0.001242,angle between two frames:0.001478
+[12:39:39.842] Init estimate scale:1.329226
+[12:39:39.842] it:0 	 Success 	 new_chi2: 51.275945 	 dT = -0.124117, 0.000000, -0.171204
+[12:39:39.842] it:1 	 FAILURE 	 new_chi2: 74.352542
+[12:39:39.842] n deleted obs = 67 	 scale =1.329226 	 error init =0.765313 	 error end=0.765313
+[12:39:39.842] After pose optimization, distance between two frames x:-0.001369 ,z=0.001242,angle between two frames:0.001478
+[12:39:39.842] Update EKF and 3D points, distance between two frames x:-0.001651 ,z=0.001500,angle between two frames:0.001793
+[12:39:39.956] After Reprojection Map nPoint:72 ,nCell:13 ,nMatches:13 ,distance between two frames x:-0.001672 ,z=0.001530,angle between two frames:0.002678
+[12:39:39.956] Init estimate scale:1.329999
+[12:39:39.956] it:0 	 Success 	 new_chi2: 50.775046 	 dT = -0.072978, 0.000000, -0.102635
+[12:39:39.956] it:1 	 FAILURE 	 new_chi2: 63.435936
+[12:39:39.956] n deleted obs = 66 	 scale =1.329999 	 error init =0.769319 	 error end=0.769319
+[12:39:39.956] After pose optimization, distance between two frames x:-0.001672 ,z=0.001530,angle between two frames:0.002678
+[12:39:39.956] Update EKF and 3D points, distance between two frames x:-0.001900 ,z=0.001740,angle between two frames:0.003074
+[12:39:40.042] After Reprojection Map nPoint:72 ,nCell:12 ,nMatches:11 ,distance between two frames x:-0.001408 ,z=0.001299,angle between two frames:0.003956
+[12:39:40.042] Init estimate scale:1.334320
+[12:39:40.042] it:0 	 Success 	 new_chi2: 49.231943 	 dT = -0.095585, 0.000000, -0.129580
+[12:39:40.042] it:1 	 FAILURE 	 new_chi2: 65.076176
+[12:39:40.042] n deleted obs = 63 	 scale =1.334320 	 error init =0.781459 	 error end=0.781459
+[12:39:40.042] After pose optimization, distance between two frames x:-0.001408 ,z=0.001299,angle between two frames:0.003956
+[12:39:40.042] Update EKF and 3D points, distance between two frames x:-0.001670 ,z=0.001541,angle between two frames:0.004106
+[12:39:40.143] After Reprojection Map nPoint:73 ,nCell:13 ,nMatches:13 ,distance between two frames x:-0.001549 ,z=0.001433,angle between two frames:0.000012
+[12:39:40.143] Init estimate scale:1.338493
+[12:39:40.143] it:0 	 Success 	 new_chi2: 51.159669 	 dT = -0.053781, 0.000000, -0.061482
+[12:39:40.143] it:1 	 FAILURE 	 new_chi2: 59.002339
+[12:39:40.143] n deleted obs = 67 	 scale =1.338493 	 error init =0.763577 	 error end=0.763577
+[12:39:40.143] After pose optimization, distance between two frames x:-0.001549 ,z=0.001433,angle between two frames:0.000012
+[12:39:40.143] Update EKF and 3D points, distance between two frames x:-0.001812 ,z=0.001675,angle between two frames:0.000090
+[12:39:40.247] After Reprojection Map nPoint:69 ,nCell:14 ,nMatches:12 ,distance between two frames x:-0.001556 ,z=0.001430,angle between two frames:0.000531
+[12:39:40.247] Init estimate scale:1.340800
+[12:39:40.247] it:0 	 Success 	 new_chi2: 48.080207 	 dT = -0.050577, 0.000000, -0.066725
+[12:39:40.247] it:1 	 FAILURE 	 new_chi2: 55.618430
+[12:39:40.247] n deleted obs = 62 	 scale =1.340800 	 error init =0.775487 	 error end=0.775487
+[12:39:40.247] After pose optimization, distance between two frames x:-0.001556 ,z=0.001430,angle between two frames:0.000531
+[12:39:40.247] Update EKF and 3D points, distance between two frames x:-0.001784 ,z=0.001641,angle between two frames:0.000763
+[12:39:40.342] After Reprojection Map nPoint:59 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001407 ,z=0.001307,angle between two frames:0.002040
+[12:39:40.342] Init estimate scale:1.341506
+[12:39:40.343] it:0 	 Success 	 new_chi2: 45.757582 	 dT = -0.070625, 0.000000, -0.098222
+[12:39:40.343] it:1 	 FAILURE 	 new_chi2: 56.225570
+[12:39:40.343] n deleted obs = 58 	 scale =1.341506 	 error init =0.788924 	 error end=0.788924
+[12:39:40.343] After pose optimization, distance between two frames x:-0.001407 ,z=0.001307,angle between two frames:0.002040
+[12:39:40.343] Update EKF and 3D points, distance between two frames x:-0.001648 ,z=0.001529,angle between two frames:0.001824
+[12:39:40.447] After Reprojection Map nPoint:66 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001477 ,z=0.001361,angle between two frames:0.004457
+[12:39:40.447] Init estimate scale:1.349974
+[12:39:40.447] it:0 	 Success 	 new_chi2: 47.413337 	 dT = -0.047145, 0.000000, -0.051331
+[12:39:40.447] it:1 	 FAILURE 	 new_chi2: 52.912430
+[12:39:40.447] n deleted obs = 59 	 scale =1.349974 	 error init =0.803616 	 error end=0.803616
+[12:39:40.447] After pose optimization, distance between two frames x:-0.001477 ,z=0.001361,angle between two frames:0.004457
+[12:39:40.447] Update EKF and 3D points, distance between two frames x:-0.001721 ,z=0.001581,angle between two frames:0.005027
+[12:39:40.542] After Reprojection Map nPoint:58 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001496 ,z=0.001351,angle between two frames:0.007819
+[12:39:40.542] Init estimate scale:1.356574
+[12:39:40.542] it:0 	 Success 	 new_chi2: 45.723607 	 dT = -0.079283, 0.000000, -0.107542
+[12:39:40.542] it:1 	 FAILURE 	 new_chi2: 56.252383
+[12:39:40.542] n deleted obs = 55 	 scale =1.356574 	 error init =0.831338 	 error end=0.831338
+[12:39:40.542] After pose optimization, distance between two frames x:-0.001496 ,z=0.001351,angle between two frames:0.007819
+[12:39:40.542] Update EKF and 3D points, distance between two frames x:-0.001766 ,z=0.001589,angle between two frames:0.008735
+[12:39:40.642] After Reprojection Map nPoint:59 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001595 ,z=0.001405,angle between two frames:0.008194
+[12:39:40.643] Init estimate scale:1.354207
+[12:39:40.643] it:0 	 Success 	 new_chi2: 47.549575 	 dT = -0.291446, 0.000000, -0.369063
+[12:39:40.643] it:1 	 FAILURE 	 new_chi2: 99.286099
+[12:39:40.643] n deleted obs = 58 	 scale =1.354207 	 error init =0.819820 	 error end=0.819820
+[12:39:40.643] After pose optimization, distance between two frames x:-0.001595 ,z=0.001405,angle between two frames:0.008194
+[12:39:40.643] Update EKF and 3D points, distance between two frames x:-0.001863 ,z=0.001640,angle between two frames:0.008737
+[12:39:40.744] After Reprojection Map nPoint:60 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001583 ,z=0.001383,angle between two frames:0.007213
+[12:39:40.744] Init estimate scale:1.351377
+[12:39:40.744] it:0 	 Success 	 new_chi2: 46.129771 	 dT = -0.053432, 0.000000, -0.072165
+[12:39:40.744] it:1 	 FAILURE 	 new_chi2: 54.042784
+[12:39:40.744] n deleted obs = 58 	 scale =1.351377 	 error init =0.795341 	 error end=0.795341
+[12:39:40.744] After pose optimization, distance between two frames x:-0.001583 ,z=0.001383,angle between two frames:0.007213
+[12:39:40.744] Update EKF and 3D points, distance between two frames x:-0.001855 ,z=0.001616,angle between two frames:0.008078
+[12:39:40.848] After Reprojection Map nPoint:65 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.001613 ,z=0.001375,angle between two frames:0.008607
+[12:39:40.848] Init estimate scale:1.355596
+[12:39:40.848] it:0 	 Success 	 new_chi2: 50.081860 	 dT = -0.038150, 0.000000, -0.060431
+[12:39:40.848] it:1 	 FAILURE 	 new_chi2: 56.756034
+[12:39:40.848] n deleted obs = 63 	 scale =1.355596 	 error init =0.794950 	 error end=0.794950
+[12:39:40.848] After pose optimization, distance between two frames x:-0.001613 ,z=0.001375,angle between two frames:0.008607
+[12:39:40.848] Update EKF and 3D points, distance between two frames x:-0.001846 ,z=0.001573,angle between two frames:0.008784
+[12:39:40.942] After Reprojection Map nPoint:66 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001439 ,z=0.001223,angle between two frames:0.000638
+[12:39:40.942] Init estimate scale:1.346338
+[12:39:40.942] it:0 	 Success 	 new_chi2: 51.380410 	 dT = -0.111896, 0.000000, -0.150540
+[12:39:40.942] it:1 	 FAILURE 	 new_chi2: 71.372460
+[12:39:40.942] n deleted obs = 65 	 scale =1.346338 	 error init =0.790468 	 error end=0.790468
+[12:39:40.942] After pose optimization, distance between two frames x:-0.001439 ,z=0.001223,angle between two frames:0.000638
+[12:39:40.942] Update EKF and 3D points, distance between two frames x:-0.001719 ,z=0.001461,angle between two frames:0.000817
+[12:39:41.043] After Reprojection Map nPoint:64 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001660 ,z=0.001413,angle between two frames:0.004677
+[12:39:41.044] Init estimate scale:1.346760
+[12:39:41.044] it:0 	 Success 	 new_chi2: 46.398686 	 dT = -0.091407, 0.000000, -0.131255
+[12:39:41.044] it:1 	 FAILURE 	 new_chi2: 61.761836
+[12:39:41.044] n deleted obs = 60 	 scale =1.346760 	 error init =0.773311 	 error end=0.773311
+[12:39:41.044] After pose optimization, distance between two frames x:-0.001660 ,z=0.001413,angle between two frames:0.004677
+[12:39:41.044] Update EKF and 3D points, distance between two frames x:-0.001933 ,z=0.001643,angle between two frames:0.004709
+[12:39:41.145] After Reprojection Map nPoint:66 ,nCell:14 ,nMatches:14 ,distance between two frames x:-0.001614 ,z=0.001363,angle between two frames:0.000854
+[12:39:41.145] Init estimate scale:1.347409
+[12:39:41.145] it:0 	 Success 	 new_chi2: 46.218674 	 dT = -0.122492, 0.000000, -0.167770
+[12:39:41.145] it:1 	 FAILURE 	 new_chi2: 67.722288
+[12:39:41.145] n deleted obs = 60 	 scale =1.347409 	 error init =0.770311 	 error end=0.770311
+[12:39:41.145] After pose optimization, distance between two frames x:-0.001614 ,z=0.001363,angle between two frames:0.000854
+[12:39:41.145] Update EKF and 3D points, distance between two frames x:-0.001847 ,z=0.001561,angle between two frames:0.000938
+[12:39:41.243] After Reprojection Map nPoint:63 ,nCell:15 ,nMatches:12 ,distance between two frames x:-0.001440 ,z=0.001224,angle between two frames:0.000194
+[12:39:41.243] Init estimate scale:1.353532
+[12:39:41.243] it:0 	 Success 	 new_chi2: 45.052480 	 dT = -0.069861, 0.000000, -0.099624
+[12:39:41.243] it:1 	 FAILURE 	 new_chi2: 55.883190
+[12:39:41.243] n deleted obs = 56 	 scale =1.353532 	 error init =0.804509 	 error end=0.804509
+[12:39:41.243] After pose optimization, distance between two frames x:-0.001440 ,z=0.001224,angle between two frames:0.000194
+[12:39:41.243] Update EKF and 3D points, distance between two frames x:-0.001726 ,z=0.001466,angle between two frames:0.000157
+[12:39:41.344] After Reprojection Map nPoint:68 ,nCell:14 ,nMatches:14 ,distance between two frames x:-0.001690 ,z=0.001432,angle between two frames:0.000174
+[12:39:41.344] Init estimate scale:1.354411
+[12:39:41.345] it:0 	 Success 	 new_chi2: 46.858249 	 dT = -0.025043, 0.000000, -0.016153
+[12:39:41.345] it:1 	 FAILURE 	 new_chi2: 49.260819
+[12:39:41.345] n deleted obs = 60 	 scale =1.354411 	 error init =0.780971 	 error end=0.780971
+[12:39:41.345] After pose optimization, distance between two frames x:-0.001690 ,z=0.001432,angle between two frames:0.000174
+[12:39:41.345] Update EKF and 3D points, distance between two frames x:-0.001926 ,z=0.001632,angle between two frames:0.000070
+[12:39:41.460] After Reprojection Map nPoint:67 ,nCell:15 ,nMatches:13 ,distance between two frames x:-0.001454 ,z=0.001229,angle between two frames:0.000432
+[12:39:41.460] Init estimate scale:1.353426
+[12:39:41.460] it:0 	 Success 	 new_chi2: 48.117805 	 dT = -0.072479, 0.000000, -0.100134
+[12:39:41.460] it:1 	 FAILURE 	 new_chi2: 60.172425
+[12:39:41.460] n deleted obs = 61 	 scale =1.353426 	 error init =0.788816 	 error end=0.788816
+[12:39:41.460] After pose optimization, distance between two frames x:-0.001454 ,z=0.001229,angle between two frames:0.000432
+[12:39:41.460] Update EKF and 3D points, distance between two frames x:-0.001710 ,z=0.001447,angle between two frames:0.000231
+[12:39:41.555] After Reprojection Map nPoint:66 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001577 ,z=0.001341,angle between two frames:0.002064
+[12:39:41.555] Init estimate scale:1.355451
+[12:39:41.555] it:0 	 Success 	 new_chi2: 50.937867 	 dT = -0.078763, 0.000000, -0.106462
+[12:39:41.555] it:1 	 FAILURE 	 new_chi2: 63.395686
+[12:39:41.555] n deleted obs = 64 	 scale =1.355451 	 error init =0.795904 	 error end=0.795904
+[12:39:41.555] After pose optimization, distance between two frames x:-0.001577 ,z=0.001341,angle between two frames:0.002064
+[12:39:41.555] Update EKF and 3D points, distance between two frames x:-0.001820 ,z=0.001550,angle between two frames:0.002553
+[12:39:41.662] After Reprojection Map nPoint:61 ,nCell:17 ,nMatches:15 ,distance between two frames x:-0.001497 ,z=0.001290,angle between two frames:0.006045
+[12:39:41.662] Init estimate scale:1.354321
+[12:39:41.662] it:0 	 Success 	 new_chi2: 45.010094 	 dT = -0.070284, 0.000000, -0.098915
+[12:39:41.662] it:1 	 FAILURE 	 new_chi2: 55.852017
+[12:39:41.662] n deleted obs = 57 	 scale =1.354321 	 error init =0.789651 	 error end=0.789651
+[12:39:41.662] After pose optimization, distance between two frames x:-0.001497 ,z=0.001290,angle between two frames:0.006045
+[12:39:41.662] Update EKF and 3D points, distance between two frames x:-0.001740 ,z=0.001502,angle between two frames:0.006580
+[12:39:41.771] After Reprojection Map nPoint:59 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001497 ,z=0.001308,angle between two frames:0.003568
+[12:39:41.771] Init estimate scale:1.364046
+[12:39:41.771] it:0 	 Success 	 new_chi2: 45.501532 	 dT = -0.074493, 0.000000, -0.102080
+[12:39:41.771] it:1 	 FAILURE 	 new_chi2: 56.665820
+[12:39:41.771] n deleted obs = 56 	 scale =1.364046 	 error init =0.812527 	 error end=0.812527
+[12:39:41.771] After pose optimization, distance between two frames x:-0.001497 ,z=0.001308,angle between two frames:0.003568
+[12:39:41.771] Update EKF and 3D points, distance between two frames x:-0.001735 ,z=0.001517,angle between two frames:0.003974
+[12:39:41.869] After Reprojection Map nPoint:62 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001473 ,z=0.001292,angle between two frames:0.002927
+[12:39:41.869] Init estimate scale:1.368671
+[12:39:41.869] it:0 	 Success 	 new_chi2: 49.093239 	 dT = -0.143194, 0.000000, -0.188316
+[12:39:41.869] it:1 	 FAILURE 	 new_chi2: 73.131183
+[12:39:41.869] n deleted obs = 61 	 scale =1.368671 	 error init =0.804807 	 error end=0.804807
+[12:39:41.869] After pose optimization, distance between two frames x:-0.001473 ,z=0.001292,angle between two frames:0.002927
+[12:39:41.869] Update EKF and 3D points, distance between two frames x:-0.001703 ,z=0.001493,angle between two frames:0.002815
+[12:39:41.946] After Reprojection Map nPoint:69 ,nCell:20 ,nMatches:20 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[12:39:41.946] Init estimate scale:1.373705
+[12:39:41.946] it:0 	 Success 	 new_chi2: 58.062765 	 dT = -0.166692, 0.000000, -0.228050
+[12:39:41.946] it:1 	 FAILURE 	 new_chi2: 93.023787
+[12:39:41.946] n deleted obs = 70 	 scale =1.373705 	 error init =0.829468 	 error end=0.829468
+[12:39:41.946] After pose optimization, distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
+[12:39:41.946] Update EKF and 3D points, distance between two frames x:-0.000334 ,z=0.000291,angle between two frames:0.000270
+[12:39:42.045] After Reprojection Map nPoint:67 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.002055 ,z=0.001784,angle between two frames:0.001635
+[12:39:42.045] Init estimate scale:1.368966
+[12:39:42.045] it:0 	 Success 	 new_chi2: 50.802723 	 dT = -0.141627, 0.000000, -0.203176
+[12:39:42.045] it:1 	 FAILURE 	 new_chi2: 77.246240
+[12:39:42.045] n deleted obs = 63 	 scale =1.368966 	 error init =0.806392 	 error end=0.806392
+[12:39:42.045] After pose optimization, distance between two frames x:-0.002055 ,z=0.001784,angle between two frames:0.001635
+[12:39:42.045] Update EKF and 3D points, distance between two frames x:-0.002293 ,z=0.001990,angle between two frames:0.002061
+[12:39:42.147] After Reprojection Map nPoint:63 ,nCell:24 ,nMatches:19 ,distance between two frames x:-0.001462 ,z=0.001260,angle between two frames:0.005676
+[12:39:42.147] Init estimate scale:1.372244
+[12:39:42.147] it:0 	 Success 	 new_chi2: 50.975632 	 dT = -0.082579, 0.000000, -0.122563
+[12:39:42.147] it:1 	 FAILURE 	 new_chi2: 65.690669
+[12:39:42.147] n deleted obs = 63 	 scale =1.372244 	 error init =0.809137 	 error end=0.809137
+[12:39:42.147] After pose optimization, distance between two frames x:-0.001462 ,z=0.001260,angle between two frames:0.005676
+[12:39:42.147] Update EKF and 3D points, distance between two frames x:-0.001701 ,z=0.001464,angle between two frames:0.005991
+[12:39:42.239] After Reprojection Map nPoint:70 ,nCell:19 ,nMatches:17 ,distance between two frames x:-0.001472 ,z=0.001249,angle between two frames:0.001203
+[12:39:42.239] Init estimate scale:1.374427
+[12:39:42.239] it:0 	 Success 	 new_chi2: 51.485999 	 dT = -0.080885, 0.000000, -0.118152
+[12:39:42.239] it:1 	 FAILURE 	 new_chi2: 65.860451
+[12:39:42.239] n deleted obs = 64 	 scale =1.374427 	 error init =0.804469 	 error end=0.804469
+[12:39:42.239] After pose optimization, distance between two frames x:-0.001472 ,z=0.001249,angle between two frames:0.001203
+[12:39:42.239] Update EKF and 3D points, distance between two frames x:-0.001752 ,z=0.001488,angle between two frames:0.001608
+[12:39:42.340] After Reprojection Map nPoint:61 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001660 ,z=0.001408,angle between two frames:0.006385
+[12:39:42.340] Init estimate scale:1.376215
+[12:39:42.340] it:0 	 Success 	 new_chi2: 49.550642 	 dT = -0.068202, 0.000000, -0.101544
+[12:39:42.340] it:1 	 FAILURE 	 new_chi2: 61.087191
+[12:39:42.340] n deleted obs = 60 	 scale =1.376215 	 error init =0.825844 	 error end=0.825844
+[12:39:42.340] After pose optimization, distance between two frames x:-0.001660 ,z=0.001408,angle between two frames:0.006385
+[12:39:42.340] Update EKF and 3D points, distance between two frames x:-0.002539 ,z=0.002145,angle between two frames:0.007790
+[12:39:42.441] After Reprojection Map nPoint:67 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.003975 ,z=0.003296,angle between two frames:0.007840
+[12:39:42.441] Init estimate scale:1.371053
+[12:39:42.441] it:0 	 Success 	 new_chi2: 53.059865 	 dT = -0.136596, 0.000000, -0.190606
+[12:39:42.441] it:1 	 FAILURE 	 new_chi2: 79.160908
+[12:39:42.441] n deleted obs = 64 	 scale =1.371053 	 error init =0.829060 	 error end=0.829060
+[12:39:42.441] After pose optimization, distance between two frames x:-0.003975 ,z=0.003296,angle between two frames:0.007840
+[12:39:42.441] Update EKF and 3D points, distance between two frames x:-0.004241 ,z=0.003515,angle between two frames:0.008309
+[12:39:42.542] After Reprojection Map nPoint:67 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001570 ,z=0.001290,angle between two frames:0.005680
+[12:39:42.542] Init estimate scale:1.375622
+[12:39:42.542] it:0 	 Success 	 new_chi2: 54.038184 	 dT = -0.134552, 0.000000, -0.189306
+[12:39:42.542] it:1 	 FAILURE 	 new_chi2: 81.082492
+[12:39:42.542] n deleted obs = 66 	 scale =1.375622 	 error init =0.818760 	 error end=0.818760
+[12:39:42.542] After pose optimization, distance between two frames x:-0.001570 ,z=0.001290,angle between two frames:0.005680
+[12:39:42.542] Update EKF and 3D points, distance between two frames x:-0.001848 ,z=0.001514,angle between two frames:0.006378
+[12:39:42.640] After Reprojection Map nPoint:63 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001647 ,z=0.001326,angle between two frames:0.006382
+[12:39:42.640] Init estimate scale:1.388433
+[12:39:42.640] it:0 	 Success 	 new_chi2: 53.626213 	 dT = -0.126211, 0.000000, -0.192452
+[12:39:42.640] it:1 	 FAILURE 	 new_chi2: 79.196351
+[12:39:42.641] n deleted obs = 63 	 scale =1.388433 	 error init =0.851210 	 error end=0.851210
+[12:39:42.641] After pose optimization, distance between two frames x:-0.001647 ,z=0.001326,angle between two frames:0.006382
+[12:39:42.641] Update EKF and 3D points, distance between two frames x:-0.002503 ,z=0.002016,angle between two frames:0.006814
+[12:39:42.743] After Reprojection Map nPoint:69 ,nCell:20 ,nMatches:18 ,distance between two frames x:-0.003854 ,z=0.003097,angle between two frames:0.001794
+[12:39:42.743] Init estimate scale:1.381398
+[12:39:42.744] it:0 	 Success 	 new_chi2: 54.860796 	 dT = -0.072080, 0.000000, -0.109706
+[12:39:42.744] it:1 	 FAILURE 	 new_chi2: 68.997661
+[12:39:42.744] n deleted obs = 66 	 scale =1.381398 	 error init =0.831224 	 error end=0.831224
+[12:39:42.744] After pose optimization, distance between two frames x:-0.003854 ,z=0.003097,angle between two frames:0.001794
+[12:39:42.744] Update EKF and 3D points, distance between two frames x:-0.004129 ,z=0.003319,angle between two frames:0.001742
+[12:39:42.841] After Reprojection Map nPoint:68 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001630 ,z=0.001313,angle between two frames:0.001084
+[12:39:42.841] Init estimate scale:1.383417
+[12:39:42.841] it:0 	 Success 	 new_chi2: 54.103789 	 dT = -0.136047, 0.000000, -0.200603
+[12:39:42.841] it:1 	 FAILURE 	 new_chi2: 82.239627
+[12:39:42.841] n deleted obs = 65 	 scale =1.383417 	 error init =0.832366 	 error end=0.832366
+[12:39:42.841] After pose optimization, distance between two frames x:-0.001630 ,z=0.001313,angle between two frames:0.001084
+[12:39:42.841] Update EKF and 3D points, distance between two frames x:-0.001895 ,z=0.001526,angle between two frames:0.001132
+[12:39:42.939] After Reprojection Map nPoint:68 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001562 ,z=0.001262,angle between two frames:0.000851
+[12:39:42.940] Init estimate scale:1.385505
+[12:39:42.940] it:0 	 Success 	 new_chi2: 55.025320 	 dT = -0.131531, 0.000000, -0.194143
+[12:39:42.940] it:1 	 FAILURE 	 new_chi2: 82.483485
+[12:39:42.940] n deleted obs = 66 	 scale =1.385505 	 error init =0.833717 	 error end=0.833717
+[12:39:42.940] After pose optimization, distance between two frames x:-0.001562 ,z=0.001262,angle between two frames:0.000851
+[12:39:42.940] Update EKF and 3D points, distance between two frames x:-0.001843 ,z=0.001486,angle between two frames:0.001058
+[12:39:43.039] After Reprojection Map nPoint:67 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.001660 ,z=0.001329,angle between two frames:0.000061
+[12:39:43.039] Init estimate scale:1.388267
+[12:39:43.039] it:0 	 Success 	 new_chi2: 53.284742 	 dT = -0.234924, 0.000000, -0.354240
+[12:39:43.039] it:1 	 FAILURE 	 new_chi2: 108.697367
+[12:39:43.040] n deleted obs = 63 	 scale =1.388267 	 error init =0.845790 	 error end=0.845790
+[12:39:43.040] After pose optimization, distance between two frames x:-0.001660 ,z=0.001329,angle between two frames:0.000061
+[12:39:43.040] Update EKF and 3D points, distance between two frames x:-0.001938 ,z=0.001554,angle between two frames:0.000350
+[12:39:43.139] After Reprojection Map nPoint:69 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001641 ,z=0.001335,angle between two frames:0.004488
+[12:39:43.139] Init estimate scale:1.384266
+[12:39:43.140] it:0 	 Success 	 new_chi2: 57.448683 	 dT = -0.070670, 0.000000, -0.108646
+[12:39:43.140] it:1 	 FAILURE 	 new_chi2: 71.702008
+[12:39:43.140] n deleted obs = 68 	 scale =1.384266 	 error init =0.844834 	 error end=0.844834
+[12:39:43.140] After pose optimization, distance between two frames x:-0.001641 ,z=0.001335,angle between two frames:0.004488
+[12:39:43.140] Update EKF and 3D points, distance between two frames x:-0.002489 ,z=0.002027,angle between two frames:0.005032
+[12:39:43.243] After Reprojection Map nPoint:68 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.003808 ,z=0.003120,angle between two frames:0.004133
+[12:39:43.243] Init estimate scale:1.386706
+[12:39:43.243] it:0 	 Success 	 new_chi2: 54.049188 	 dT = -0.036485, 0.000000, -0.061276
+[12:39:43.243] it:1 	 FAILURE 	 new_chi2: 61.074965
+[12:39:43.243] n deleted obs = 65 	 scale =1.386706 	 error init =0.831526 	 error end=0.831526
+[12:39:43.243] After pose optimization, distance between two frames x:-0.003808 ,z=0.003120,angle between two frames:0.004133
+[12:39:43.243] Update EKF and 3D points, distance between two frames x:-0.004083 ,z=0.003348,angle between two frames:0.004395
+[12:39:43.342] After Reprojection Map nPoint:69 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001626 ,z=0.001343,angle between two frames:0.004003
+[12:39:43.342] Init estimate scale:1.391189
+[12:39:43.342] it:0 	 Success 	 new_chi2: 56.790377 	 dT = -0.069015, 0.000000, -0.094700
+[12:39:43.342] it:1 	 FAILURE 	 new_chi2: 69.155899
+[12:39:43.342] n deleted obs = 67 	 scale =1.391189 	 error init =0.847618 	 error end=0.847618
+[12:39:43.342] After pose optimization, distance between two frames x:-0.001626 ,z=0.001343,angle between two frames:0.004003
+[12:39:43.342] Update EKF and 3D points, distance between two frames x:-0.001886 ,z=0.001561,angle between two frames:0.004584
+[12:39:43.438] After Reprojection Map nPoint:65 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.001536 ,z=0.001290,angle between two frames:0.006888
+[12:39:43.438] Init estimate scale:1.388554
+[12:39:43.438] it:0 	 Success 	 new_chi2: 49.993433 	 dT = -0.070335, 0.000000, -0.101178
+[12:39:43.438] it:1 	 FAILURE 	 new_chi2: 61.600215
+[12:39:43.438] n deleted obs = 60 	 scale =1.388554 	 error init =0.833224 	 error end=0.833224
+[12:39:43.438] After pose optimization, distance between two frames x:-0.001536 ,z=0.001290,angle between two frames:0.006888
+[12:39:43.438] Update EKF and 3D points, distance between two frames x:-0.001808 ,z=0.001521,angle between two frames:0.007156
+[12:39:43.539] After Reprojection Map nPoint:62 ,nCell:14 ,nMatches:14 ,distance between two frames x:-0.001608 ,z=0.001359,angle between two frames:0.000268
+[12:39:43.539] Init estimate scale:1.404148
+[12:39:43.540] it:0 	 Success 	 new_chi2: 50.556425 	 dT = -0.135629, 0.000000, -0.200823
+[12:39:43.540] it:1 	 FAILURE 	 new_chi2: 75.012454
+[12:39:43.540] n deleted obs = 59 	 scale =1.404148 	 error init =0.856889 	 error end=0.856889
+[12:39:43.540] After pose optimization, distance between two frames x:-0.001608 ,z=0.001359,angle between two frames:0.000268
+[12:39:43.540] Update EKF and 3D points, distance between two frames x:-0.001883 ,z=0.001587,angle between two frames:0.000718
+[12:39:43.650] After Reprojection Map nPoint:65 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.001629 ,z=0.001352,angle between two frames:0.004076
+[12:39:43.650] Init estimate scale:1.408000
+[12:39:43.650] it:0 	 Success 	 new_chi2: 53.779318 	 dT = -0.064666, 0.000000, -0.089824
+[12:39:43.650] it:1 	 FAILURE 	 new_chi2: 64.678345
+[12:39:43.650] n deleted obs = 63 	 scale =1.408000 	 error init =0.853640 	 error end=0.853640
+[12:39:43.650] After pose optimization, distance between two frames x:-0.001629 ,z=0.001352,angle between two frames:0.004076
+[12:39:43.650] Update EKF and 3D points, distance between two frames x:-0.001882 ,z=0.001562,angle between two frames:0.004252
+[12:39:43.740] After Reprojection Map nPoint:67 ,nCell:16 ,nMatches:14 ,distance between two frames x:-0.001550 ,z=0.001284,angle between two frames:0.002106
+[12:39:43.740] Init estimate scale:1.401870
+[12:39:43.740] it:0 	 Success 	 new_chi2: 55.078645 	 dT = -0.066057, 0.000000, -0.090567
+[12:39:43.740] it:1 	 FAILURE 	 new_chi2: 66.520613
+[12:39:43.740] n deleted obs = 65 	 scale =1.401870 	 error init =0.847364 	 error end=0.847364
+[12:39:43.740] After pose optimization, distance between two frames x:-0.001550 ,z=0.001284,angle between two frames:0.002106
+[12:39:43.740] Update EKF and 3D points, distance between two frames x:-0.002397 ,z=0.001984,angle between two frames:0.002752
+[12:39:43.840] After Reprojection Map nPoint:72 ,nCell:20 ,nMatches:19 ,distance between two frames x:-0.003823 ,z=0.003139,angle between two frames:0.003946
+[12:39:43.840] Init estimate scale:1.404394
+[12:39:43.840] it:0 	 Success 	 new_chi2: 65.790365 	 dT = -0.069781, 0.000000, -0.078604
+[12:39:43.840] it:1 	 FAILURE 	 new_chi2: 78.245226
+[12:39:43.840] n deleted obs = 75 	 scale =1.404394 	 error init =0.877205 	 error end=0.877205
+[12:39:43.840] After pose optimization, distance between two frames x:-0.003823 ,z=0.003139,angle between two frames:0.003946
+[12:39:43.840] Update EKF and 3D points, distance between two frames x:-0.004086 ,z=0.003354,angle between two frames:0.004330
+[12:39:43.939] After Reprojection Map nPoint:69 ,nCell:19 ,nMatches:19 ,distance between two frames x:-0.001558 ,z=0.001267,angle between two frames:0.004964
+[12:39:43.939] Init estimate scale:1.405464
+[12:39:43.939] it:0 	 Success 	 new_chi2: 61.601485 	 dT = -0.150250, 0.000000, -0.221906
+[12:39:43.939] it:1 	 FAILURE 	 new_chi2: 95.988065
+[12:39:43.939] n deleted obs = 73 	 scale =1.405464 	 error init =0.843856 	 error end=0.843856
+[12:39:43.939] After pose optimization, distance between two frames x:-0.001558 ,z=0.001267,angle between two frames:0.004964
+[12:39:43.939] Update EKF and 3D points, distance between two frames x:-0.001837 ,z=0.001490,angle between two frames:0.005569
+[12:39:44.039] After Reprojection Map nPoint:74 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.001652 ,z=0.001318,angle between two frames:0.004789
+[12:39:44.039] Init estimate scale:1.398998
+[12:39:44.039] it:0 	 Success 	 new_chi2: 63.513627 	 dT = -0.115000, 0.000000, -0.170166
+[12:39:44.039] it:1 	 FAILURE 	 new_chi2: 89.334971
+[12:39:44.039] n deleted obs = 75 	 scale =1.398998 	 error init =0.846848 	 error end=0.846848
+[12:39:44.039] After pose optimization, distance between two frames x:-0.001652 ,z=0.001318,angle between two frames:0.004789
+[12:39:44.039] Update EKF and 3D points, distance between two frames x:-0.002513 ,z=0.002009,angle between two frames:0.005273
+[12:39:44.139] After Reprojection Map nPoint:63 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.003866 ,z=0.003082,angle between two frames:0.008206
+[12:39:44.139] Init estimate scale:1.391899
+[12:39:44.139] it:0 	 Success 	 new_chi2: 54.364362 	 dT = -0.121538, 0.000000, -0.188922
+[12:39:44.140] it:1 	 FAILURE 	 new_chi2: 79.670210
+[12:39:44.140] n deleted obs = 64 	 scale =1.391899 	 error init =0.849443 	 error end=0.849443
+[12:39:44.140] After pose optimization, distance between two frames x:-0.003866 ,z=0.003082,angle between two frames:0.008206
+[12:39:44.140] Update EKF and 3D points, distance between two frames x:-0.004727 ,z=0.003757,angle between two frames:0.009248
+[12:39:44.240] After Reprojection Map nPoint:66 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.003885 ,z=0.003021,angle between two frames:0.007767
+[12:39:44.240] Init estimate scale:1.407626
+[12:39:44.240] it:0 	 Success 	 new_chi2: 56.135656 	 dT = -0.219488, 0.000000, -0.341968
+[12:39:44.240] it:1 	 FAILURE 	 new_chi2: 110.295733
+[12:39:44.240] n deleted obs = 65 	 scale =1.407626 	 error init =0.863625 	 error end=0.863625
+[12:39:44.240] After pose optimization, distance between two frames x:-0.003885 ,z=0.003021,angle between two frames:0.007767
+[12:39:44.240] Update EKF and 3D points, distance between two frames x:-0.004753 ,z=0.003690,angle between two frames:0.008441
+[12:39:44.340] After Reprojection Map nPoint:71 ,nCell:20 ,nMatches:18 ,distance between two frames x:-0.003911 ,z=0.003000,angle between two frames:0.003732
+[12:39:44.340] Init estimate scale:1.406819
+[12:39:44.340] it:0 	 Success 	 new_chi2: 64.479558 	 dT = -0.056558, 0.000000, -0.060392
+[12:39:44.340] it:1 	 FAILURE 	 new_chi2: 74.377729
+[12:39:44.340] n deleted obs = 73 	 scale =1.406819 	 error init =0.883282 	 error end=0.883282
+[12:39:44.340] After pose optimization, distance between two frames x:-0.003911 ,z=0.003000,angle between two frames:0.003732
+[12:39:44.340] Update EKF and 3D points, distance between two frames x:-0.004181 ,z=0.003206,angle between two frames:0.003960
+[12:39:44.439] After Reprojection Map nPoint:73 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001601 ,z=0.001219,angle between two frames:0.002804
+[12:39:44.440] Init estimate scale:1.416940
+[12:39:44.440] it:0 	 Success 	 new_chi2: 66.558360 	 dT = -0.109872, 0.000000, -0.172419
+[12:39:44.440] it:1 	 FAILURE 	 new_chi2: 93.907745
+[12:39:44.440] n deleted obs = 74 	 scale =1.416940 	 error init =0.899437 	 error end=0.899437
+[12:39:44.440] After pose optimization, distance between two frames x:-0.001601 ,z=0.001219,angle between two frames:0.002804
+[12:39:44.440] Update EKF and 3D points, distance between two frames x:-0.001886 ,z=0.001435,angle between two frames:0.003180
+[12:39:44.540] After Reprojection Map nPoint:72 ,nCell:21 ,nMatches:21 ,distance between two frames x:-0.001690 ,z=0.001277,angle between two frames:0.003941
+[12:39:44.540] Init estimate scale:1.415343
+[12:39:44.540] it:0 	 Success 	 new_chi2: 68.153822 	 dT = -0.028620, 0.000000, -0.025367
+[12:39:44.540] it:1 	 FAILURE 	 new_chi2: 72.656060
+[12:39:44.540] n deleted obs = 78 	 scale =1.415343 	 error init =0.873767 	 error end=0.873767
+[12:39:44.540] After pose optimization, distance between two frames x:-0.001690 ,z=0.001277,angle between two frames:0.003941
+[12:39:44.540] Update EKF and 3D points, distance between two frames x:-0.001975 ,z=0.001493,angle between two frames:0.003876
+[12:39:44.641] After Reprojection Map nPoint:75 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.001691 ,z=0.001278,angle between two frames:0.000882
+[12:39:44.641] Init estimate scale:1.421397
+[12:39:44.641] it:0 	 Success 	 new_chi2: 66.255394 	 dT = -0.148504, 0.000000, -0.211510
+[12:39:44.641] it:1 	 FAILURE 	 new_chi2: 101.537786
+[12:39:44.641] n deleted obs = 74 	 scale =1.421397 	 error init =0.895343 	 error end=0.895343
+[12:39:44.641] After pose optimization, distance between two frames x:-0.001691 ,z=0.001278,angle between two frames:0.000882
+[12:39:44.641] Update EKF and 3D points, distance between two frames x:-0.001962 ,z=0.001485,angle between two frames:0.001032
+[12:39:44.739] After Reprojection Map nPoint:77 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.001606 ,z=0.001223,angle between two frames:0.001838
+[12:39:44.740] Init estimate scale:1.423149
+[12:39:44.740] it:0 	 Success 	 new_chi2: 70.197770 	 dT = -0.154144, 0.000000, -0.238551
+[12:39:44.740] it:1 	 FAILURE 	 new_chi2: 110.713176
+[12:39:44.740] n deleted obs = 76 	 scale =1.423149 	 error init =0.923655 	 error end=0.923655
+[12:39:44.740] After pose optimization, distance between two frames x:-0.001606 ,z=0.001223,angle between two frames:0.001838
+[12:39:44.740] Update EKF and 3D points, distance between two frames x:-0.001895 ,z=0.001445,angle between two frames:0.002412
+[12:39:44.838] After Reprojection Map nPoint:69 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.001712 ,z=0.001320,angle between two frames:0.005597
+[12:39:44.839] Init estimate scale:1.421332
+[12:39:44.839] it:0 	 Success 	 new_chi2: 64.923970 	 dT = -0.147019, 0.000000, -0.216616
+[12:39:44.839] it:1 	 FAILURE 	 new_chi2: 99.726839
+[12:39:44.839] n deleted obs = 72 	 scale =1.421332 	 error init =0.901722 	 error end=0.901722
+[12:39:44.839] After pose optimization, distance between two frames x:-0.001712 ,z=0.001320,angle between two frames:0.005597
+[12:39:44.839] Update EKF and 3D points, distance between two frames x:-0.002591 ,z=0.002000,angle between two frames:0.006164
+[12:39:44.939] After Reprojection Map nPoint:71 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.003950 ,z=0.003068,angle between two frames:0.003811
+[12:39:44.940] Init estimate scale:1.420260
+[12:39:44.940] it:0 	 Success 	 new_chi2: 61.840379 	 dT = -0.138812, 0.000000, -0.212870
+[12:39:44.940] it:1 	 FAILURE 	 new_chi2: 94.255445
+[12:39:44.940] n deleted obs = 71 	 scale =1.420260 	 error init =0.870991 	 error end=0.870991
+[12:39:44.940] After pose optimization, distance between two frames x:-0.003950 ,z=0.003068,angle between two frames:0.003811
+[12:39:44.940] Update EKF and 3D points, distance between two frames x:-0.004825 ,z=0.003750,angle between two frames:0.004194
+[12:39:45.038] After Reprojection Map nPoint:73 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.003932 ,z=0.003072,angle between two frames:0.002735
+[12:39:45.038] Init estimate scale:1.431864
+[12:39:45.039] it:0 	 Success 	 new_chi2: 64.563107 	 dT = -0.113449, 0.000000, -0.172613
+[12:39:45.039] it:1 	 FAILURE 	 new_chi2: 90.006329
+[12:39:45.039] n deleted obs = 73 	 scale =1.431864 	 error init =0.884426 	 error end=0.884426
+[12:39:45.039] After pose optimization, distance between two frames x:-0.003932 ,z=0.003072,angle between two frames:0.002735
+[12:39:45.039] Update EKF and 3D points, distance between two frames x:-0.004201 ,z=0.003283,angle between two frames:0.002753
+[12:39:45.139] After Reprojection Map nPoint:72 ,nCell:16 ,nMatches:16 ,distance between two frames x:-0.001590 ,z=0.001243,angle between two frames:0.001290
+[12:39:45.139] Init estimate scale:1.432027
+[12:39:45.139] it:0 	 Success 	 new_chi2: 64.856382 	 dT = -0.147561, 0.000000, -0.229795
+[12:39:45.139] it:1 	 FAILURE 	 new_chi2: 100.682310
+[12:39:45.139] n deleted obs = 73 	 scale =1.432027 	 error init =0.888444 	 error end=0.888444
+[12:39:45.139] After pose optimization, distance between two frames x:-0.001590 ,z=0.001243,angle between two frames:0.001290
+[12:39:45.139] Update EKF and 3D points, distance between two frames x:-0.001589 ,z=0.001242,angle between two frames:0.001689
+[12:39:45.239] After Reprojection Map nPoint:67 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.006226 ,z=0.004892,angle between two frames:0.002285
+[12:39:45.239] Init estimate scale:1.438637
+[12:39:45.239] it:0 	 Success 	 new_chi2: 62.269710 	 dT = -0.112146, 0.000000, -0.184233
+[12:39:45.239] it:1 	 FAILURE 	 new_chi2: 87.807105
+[12:39:45.239] n deleted obs = 69 	 scale =1.438637 	 error init =0.902460 	 error end=0.902460
+[12:39:45.239] After pose optimization, distance between two frames x:-0.006226 ,z=0.004892,angle between two frames:0.002285
+[12:39:45.239] Update EKF and 3D points, distance between two frames x:-0.007072 ,z=0.005561,angle between two frames:0.002497
+[12:39:45.339] After Reprojection Map nPoint:69 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.003804 ,z=0.003010,angle between two frames:0.000295
+[12:39:45.339] Init estimate scale:1.444249
+[12:39:45.339] it:0 	 Success 	 new_chi2: 60.952030 	 dT = -0.139161, 0.000000, -0.226540
+[12:39:45.339] it:1 	 FAILURE 	 new_chi2: 92.918412
+[12:39:45.339] n deleted obs = 68 	 scale =1.444249 	 error init =0.896353 	 error end=0.896353
+[12:39:45.339] After pose optimization, distance between two frames x:-0.003804 ,z=0.003010,angle between two frames:0.000295
+[12:39:45.339] Update EKF and 3D points, distance between two frames x:-0.004079 ,z=0.003226,angle between two frames:0.000499
+[12:39:45.438] After Reprojection Map nPoint:73 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001631 ,z=0.001279,angle between two frames:0.002313
+[12:39:45.439] Init estimate scale:1.450440
+[12:39:45.439] it:0 	 Success 	 new_chi2: 67.718076 	 dT = -0.155388, 0.000000, -0.254109
+[12:39:45.439] it:1 	 FAILURE 	 new_chi2: 108.291334
+[12:39:45.439] n deleted obs = 73 	 scale =1.450440 	 error init =0.927645 	 error end=0.927645
+[12:39:45.439] After pose optimization, distance between two frames x:-0.001631 ,z=0.001279,angle between two frames:0.002313
+[12:39:45.439] Update EKF and 3D points, distance between two frames x:-0.002504 ,z=0.001961,angle between two frames:0.003120
+[12:39:45.542] After Reprojection Map nPoint:73 ,nCell:21 ,nMatches:17 ,distance between two frames x:-0.003937 ,z=0.003053,angle between two frames:0.007247
+[12:39:45.542] Init estimate scale:1.454413
+[12:39:45.542] it:0 	 Success 	 new_chi2: 67.409291 	 dT = -0.270429, 0.000000, -0.411047
+[12:39:45.543] it:1 	 FAILURE 	 new_chi2: 145.581023
+[12:39:45.543] n deleted obs = 74 	 scale =1.454413 	 error init =0.910936 	 error end=0.910936
+[12:39:45.543] After pose optimization, distance between two frames x:-0.003937 ,z=0.003053,angle between two frames:0.007247
+[12:39:45.543] Update EKF and 3D points, distance between two frames x:-0.004187 ,z=0.003245,angle between two frames:0.007275
+[12:39:45.641] After Reprojection Map nPoint:71 ,nCell:19 ,nMatches:18 ,distance between two frames x:-0.001533 ,z=0.001181,angle between two frames:0.000312
+[12:39:45.641] Init estimate scale:1.452689
+[12:39:45.641] it:0 	 Success 	 new_chi2: 68.317242 	 dT = -0.117968, 0.000000, -0.190238
+[12:39:45.641] it:1 	 FAILURE 	 new_chi2: 96.429727
+[12:39:45.641] n deleted obs = 74 	 scale =1.452689 	 error init =0.923206 	 error end=0.923206
+[12:39:45.641] After pose optimization, distance between two frames x:-0.001533 ,z=0.001181,angle between two frames:0.000312
+[12:39:45.641] Update EKF and 3D points, distance between two frames x:-0.001814 ,z=0.001396,angle between two frames:0.000694
+[12:39:45.757] After Reprojection Map nPoint:79 ,nCell:21 ,nMatches:20 ,distance between two frames x:-0.001660 ,z=0.001267,angle between two frames:0.004841
+[12:39:45.758] Init estimate scale:1.452293
+[12:39:45.758] it:0 	 Success 	 new_chi2: 75.621758 	 dT = -0.129226, 0.000000, -0.202193
+[12:39:45.758] it:1 	 FAILURE 	 new_chi2: 110.524714
+[12:39:45.758] n deleted obs = 83 	 scale =1.452293 	 error init =0.911106 	 error end=0.911106
+[12:39:45.758] After pose optimization, distance between two frames x:-0.001660 ,z=0.001267,angle between two frames:0.004841
+[12:39:45.758] Update EKF and 3D points, distance between two frames x:-0.001926 ,z=0.001469,angle between two frames:0.005159
+[12:39:45.842] After Reprojection Map nPoint:72 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.001647 ,z=0.001248,angle between two frames:0.002842
+[12:39:45.842] Init estimate scale:1.454593
+[12:39:45.842] it:0 	 Success 	 new_chi2: 65.593162 	 dT = -0.249864, 0.000000, -0.380736
+[12:39:45.842] it:1 	 FAILURE 	 new_chi2: 134.708580
+[12:39:45.842] n deleted obs = 71 	 scale =1.454593 	 error init =0.923847 	 error end=0.923847
+[12:39:45.842] After pose optimization, distance between two frames x:-0.001647 ,z=0.001248,angle between two frames:0.002842
+[12:39:45.842] Update EKF and 3D points, distance between two frames x:-0.001893 ,z=0.001431,angle between two frames:0.003336
+[12:39:45.943] After Reprojection Map nPoint:74 ,nCell:21 ,nMatches:19 ,distance between two frames x:-0.001510 ,z=0.001127,angle between two frames:0.004486
+[12:39:45.943] Init estimate scale:1.459709
+[12:39:45.943] it:0 	 Success 	 new_chi2: 72.654947 	 dT = -0.101980, 0.000000, -0.142120
+[12:39:45.943] it:1 	 FAILURE 	 new_chi2: 95.956907
+[12:39:45.943] n deleted obs = 78 	 scale =1.459709 	 error init =0.931474 	 error end=0.931474
+[12:39:45.943] After pose optimization, distance between two frames x:-0.001510 ,z=0.001127,angle between two frames:0.004486
+[12:39:45.943] Update EKF and 3D points, distance between two frames x:-0.001769 ,z=0.001320,angle between two frames:0.004874
+[12:39:46.040] After Reprojection Map nPoint:71 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001592 ,z=0.001181,angle between two frames:0.005591
+[12:39:46.040] Init estimate scale:1.455187
+[12:39:46.040] it:0 	 Success 	 new_chi2: 67.792525 	 dT = -0.056739, 0.000000, -0.048813
+[12:39:46.041] it:1 	 FAILURE 	 new_chi2: 76.509602
+[12:39:46.041] n deleted obs = 74 	 scale =1.455187 	 error init =0.916115 	 error end=0.916115
+[12:39:46.041] After pose optimization, distance between two frames x:-0.001592 ,z=0.001181,angle between two frames:0.005591
+[12:39:46.041] Update EKF and 3D points, distance between two frames x:-0.001889 ,z=0.001396,angle between two frames:0.006556
+[12:39:46.140] After Reprojection Map nPoint:75 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.001760 ,z=0.001270,angle between two frames:0.007752
+[12:39:46.140] Init estimate scale:1.450307
+[12:39:46.140] it:0 	 Success 	 new_chi2: 70.226464 	 dT = -0.044483, 0.000000, -0.017492
+[12:39:46.140] it:1 	 FAILURE 	 new_chi2: 75.187807
+[12:39:46.140] n deleted obs = 75 	 scale =1.450307 	 error init =0.936353 	 error end=0.936353
+[12:39:46.140] After pose optimization, distance between two frames x:-0.001760 ,z=0.001270,angle between two frames:0.007752
+[12:39:46.140] Update EKF and 3D points, distance between two frames x:-0.002047 ,z=0.001478,angle between two frames:0.007972
+[12:39:46.240] After Reprojection Map nPoint:74 ,nCell:21 ,nMatches:19 ,distance between two frames x:-0.001702 ,z=0.001231,angle between two frames:0.001890
+[12:39:46.240] Init estimate scale:1.453473
+[12:39:46.240] it:0 	 Success 	 new_chi2: 72.458082 	 dT = -0.050590, 0.000000, -0.057155
+[12:39:46.240] it:1 	 FAILURE 	 new_chi2: 82.247083
+[12:39:46.240] n deleted obs = 79 	 scale =1.453473 	 error init =0.917191 	 error end=0.917191
+[12:39:46.240] After pose optimization, distance between two frames x:-0.001702 ,z=0.001231,angle between two frames:0.001890
+[12:39:46.240] Update EKF and 3D points, distance between two frames x:-0.001987 ,z=0.001438,angle between two frames:0.001829
+[12:39:46.348] After Reprojection Map nPoint:74 ,nCell:20 ,nMatches:20 ,distance between two frames x:-0.001685 ,z=0.001222,angle between two frames:0.000800
+[12:39:46.348] Init estimate scale:1.444696
+[12:39:46.348] it:0 	 Success 	 new_chi2: 73.378374 	 dT = -0.059480, 0.000000, -0.055295
+[12:39:46.348] it:1 	 FAILURE 	 new_chi2: 83.921487
+[12:39:46.348] n deleted obs = 80 	 scale =1.444696 	 error init =0.917230 	 error end=0.917230
+[12:39:46.348] After pose optimization, distance between two frames x:-0.001685 ,z=0.001222,angle between two frames:0.000800
+[12:39:46.348] Update EKF and 3D points, distance between two frames x:-0.001945 ,z=0.001411,angle between two frames:0.000849
+[12:39:46.439] After Reprojection Map nPoint:64 ,nCell:20 ,nMatches:20 ,distance between two frames x:-0.001609 ,z=0.001167,angle between two frames:0.001025
+[12:39:46.440] Init estimate scale:1.456397
+[12:39:46.440] it:0 	 Success 	 new_chi2: 66.963962 	 dT = -0.051839, 0.000000, -0.030240
+[12:39:46.440] it:1 	 FAILURE 	 new_chi2: 73.437656
+[12:39:46.440] n deleted obs = 71 	 scale =1.456397 	 error init =0.943154 	 error end=0.943154
+[12:39:46.440] After pose optimization, distance between two frames x:-0.001609 ,z=0.001167,angle between two frames:0.001025
+[12:39:46.440] Update EKF and 3D points, distance between two frames x:-0.001893 ,z=0.001377,angle between two frames:0.001579
+[12:39:46.539] After Reprojection Map nPoint:71 ,nCell:22 ,nMatches:22 ,distance between two frames x:-0.001683 ,z=0.001237,angle between two frames:0.003954
+[12:39:46.539] Init estimate scale:1.454037
+[12:39:46.540] it:0 	 Success 	 new_chi2: 72.015548 	 dT = -0.063323, 0.000000, -0.057017
+[12:39:46.540] it:1 	 FAILURE 	 new_chi2: 82.734069
+[12:39:46.540] n deleted obs = 78 	 scale =1.454037 	 error init =0.923276 	 error end=0.923276
+[12:39:46.540] After pose optimization, distance between two frames x:-0.001683 ,z=0.001237,angle between two frames:0.003954
+[12:39:46.540] Update EKF and 3D points, distance between two frames x:-0.001968 ,z=0.001447,angle between two frames:0.004097
+[12:39:46.642] After Reprojection Map nPoint:72 ,nCell:22 ,nMatches:22 ,distance between two frames x:-0.001688 ,z=0.001240,angle between two frames:0.001403
+[12:39:46.642] Init estimate scale:1.457394
+[12:39:46.642] it:0 	 Success 	 new_chi2: 71.589790 	 dT = -0.064382, 0.000000, -0.082763
+[12:39:46.642] it:1 	 FAILURE 	 new_chi2: 85.056242
+[12:39:46.642] n deleted obs = 79 	 scale =1.457394 	 error init =0.906200 	 error end=0.906200
+[12:39:46.642] After pose optimization, distance between two frames x:-0.001688 ,z=0.001240,angle between two frames:0.001403
+[12:39:46.642] Update EKF and 3D points, distance between two frames x:-0.001972 ,z=0.001451,angle between two frames:0.001734
+[12:39:46.740] After Reprojection Map nPoint:73 ,nCell:24 ,nMatches:21 ,distance between two frames x:-0.001683 ,z=0.001251,angle between two frames:0.003887
+[12:39:46.740] Init estimate scale:1.422955
+[12:39:46.740] it:0 	 Success 	 new_chi2: 72.039523 	 dT = -0.121536, 0.000000, -0.168487
+[12:39:46.740] it:1 	 FAILURE 	 new_chi2: 100.972663
+[12:39:46.740] n deleted obs = 79 	 scale =1.422955 	 error init =0.911893 	 error end=0.911893
+[12:39:46.740] After pose optimization, distance between two frames x:-0.001683 ,z=0.001251,angle between two frames:0.003887
+[12:39:46.740] Update EKF and 3D points, distance between two frames x:-0.001967 ,z=0.001463,angle between two frames:0.004154
+[12:39:46.849] After Reprojection Map nPoint:74 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001682 ,z=0.001259,angle between two frames:0.002826
+[12:39:46.849] Init estimate scale:1.469876
+[12:39:46.849] it:0 	 Success 	 new_chi2: 72.455709 	 dT = -0.104633, 0.000000, -0.139518
+[12:39:46.849] it:1 	 FAILURE 	 new_chi2: 95.370682
+[12:39:46.849] n deleted obs = 77 	 scale =1.469876 	 error init =0.940983 	 error end=0.940983
+[12:39:46.849] After pose optimization, distance between two frames x:-0.001682 ,z=0.001259,angle between two frames:0.002826
+[12:39:46.849] Update EKF and 3D points, distance between two frames x:-0.001938 ,z=0.001452,angle between two frames:0.003289
+[12:39:46.941] After Reprojection Map nPoint:74 ,nCell:20 ,nMatches:19 ,distance between two frames x:-0.001579 ,z=0.001197,angle between two frames:0.004126
+[12:39:46.941] Init estimate scale:1.472070
+[12:39:46.941] it:0 	 Success 	 new_chi2: 75.388156 	 dT = -0.031150, 0.000000, -0.041691
+[12:39:46.941] it:1 	 FAILURE 	 new_chi2: 81.819502
+[12:39:46.941] n deleted obs = 79 	 scale =1.472070 	 error init =0.954280 	 error end=0.954280
+[12:39:46.941] After pose optimization, distance between two frames x:-0.001579 ,z=0.001197,angle between two frames:0.004126
+[12:39:46.941] Update EKF and 3D points, distance between two frames x:-0.001862 ,z=0.001412,angle between two frames:0.004428
+[12:39:47.040] After Reprojection Map nPoint:71 ,nCell:18 ,nMatches:17 ,distance between two frames x:-0.001671 ,z=0.001272,angle between two frames:0.000878
+[12:39:47.041] Init estimate scale:1.471454
+[12:39:47.041] it:0 	 Success 	 new_chi2: 72.020811 	 dT = -0.115389, 0.000000, -0.160943
+[12:39:47.041] it:1 	 FAILURE 	 new_chi2: 98.439870
+[12:39:47.041] n deleted obs = 77 	 scale =1.471454 	 error init =0.935335 	 error end=0.935335
+[12:39:47.041] After pose optimization, distance between two frames x:-0.001671 ,z=0.001272,angle between two frames:0.000878
+[12:39:47.041] Update EKF and 3D points, distance between two frames x:-0.002582 ,z=0.001958,angle between two frames:0.000068
+[12:39:47.140] After Reprojection Map nPoint:76 ,nCell:20 ,nMatches:19 ,distance between two frames x:-0.004111 ,z=0.003073,angle between two frames:0.005254
+[12:39:47.140] Init estimate scale:1.478727
+[12:39:47.140] it:0 	 Success 	 new_chi2: 75.810194 	 dT = -0.129465, 0.000000, -0.188945
+[12:39:47.140] it:1 	 FAILURE 	 new_chi2: 108.625292
+[12:39:47.140] n deleted obs = 81 	 scale =1.478727 	 error init =0.935928 	 error end=0.935928
+[12:39:47.140] After pose optimization, distance between two frames x:-0.004111 ,z=0.003073,angle between two frames:0.005254
+[12:39:47.140] Update EKF and 3D points, distance between two frames x:-0.004382 ,z=0.003275,angle between two frames:0.005329
+[12:39:47.243] After Reprojection Map nPoint:80 ,nCell:20 ,nMatches:20 ,distance between two frames x:-0.001603 ,z=0.001194,angle between two frames:0.001440
+[12:39:47.243] Init estimate scale:1.478172
+[12:39:47.243] it:0 	 Success 	 new_chi2: 78.790706 	 dT = -0.067226, 0.000000, -0.055995
+[12:39:47.243] it:1 	 FAILURE 	 new_chi2: 90.446151
+[12:39:47.243] n deleted obs = 84 	 scale =1.478172 	 error init =0.937985 	 error end=0.937985
+[12:39:47.243] After pose optimization, distance between two frames x:-0.001603 ,z=0.001194,angle between two frames:0.001440
+[12:39:47.243] Update EKF and 3D points, distance between two frames x:-0.001864 ,z=0.001386,angle between two frames:0.001993
+[12:39:47.340] After Reprojection Map nPoint:67 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.001609 ,z=0.001178,angle between two frames:0.005146
+[12:39:47.340] Init estimate scale:1.476308
+[12:39:47.340] it:0 	 Success 	 new_chi2: 68.608419 	 dT = -0.061512, 0.000000, -0.081610
+[12:39:47.340] it:1 	 FAILURE 	 new_chi2: 80.831898
+[12:39:47.340] n deleted obs = 72 	 scale =1.476308 	 error init =0.952895 	 error end=0.952895
+[12:39:47.340] After pose optimization, distance between two frames x:-0.001609 ,z=0.001178,angle between two frames:0.005146
+[12:39:47.340] Update EKF and 3D points, distance between two frames x:-0.001896 ,z=0.001388,angle between two frames:0.005278
+[12:39:47.443] After Reprojection Map nPoint:71 ,nCell:17 ,nMatches:17 ,distance between two frames x:-0.001693 ,z=0.001242,angle between two frames:0.001544
+[12:39:47.443] Init estimate scale:1.486479
+[12:39:47.443] it:0 	 Success 	 new_chi2: 69.542797 	 dT = -0.062812, 0.000000, -0.078721
+[12:39:47.443] it:1 	 FAILURE 	 new_chi2: 81.688539
+[12:39:47.443] n deleted obs = 72 	 scale =1.486479 	 error init =0.965872 	 error end=0.965872
+[12:39:47.443] After pose optimization, distance between two frames x:-0.001693 ,z=0.001242,angle between two frames:0.001544
+[12:39:47.443] Update EKF and 3D points, distance between two frames x:-0.001987 ,z=0.001456,angle between two frames:0.001927
+[12:39:47.540] After Reprojection Map nPoint:76 ,nCell:21 ,nMatches:21 ,distance between two frames x:-0.001740 ,z=0.001264,angle between two frames:0.004886
+[12:39:47.540] Init estimate scale:1.492721
+[12:39:47.540] it:0 	 Success 	 new_chi2: 79.572304 	 dT = -0.072369, 0.000000, -0.099944
+[12:39:47.540] it:1 	 FAILURE 	 new_chi2: 96.232857
+[12:39:47.540] n deleted obs = 80 	 scale =1.492721 	 error init =0.994654 	 error end=0.994654
+[12:39:47.540] After pose optimization, distance between two frames x:-0.001740 ,z=0.001264,angle between two frames:0.004886
+[12:39:47.540] Update EKF and 3D points, distance between two frames x:-0.002599 ,z=0.001886,angle between two frames:0.005586
+[12:39:47.640] After Reprojection Map nPoint:64 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.003873 ,z=0.002782,angle between two frames:0.006155
+[12:39:47.640] Init estimate scale:1.484467
+[12:39:47.640] it:0 	 Success 	 new_chi2: 67.734431 	 dT = -0.057824, 0.000000, -0.061001
+[12:39:47.640] it:1 	 FAILURE 	 new_chi2: 77.167635
+[12:39:47.640] n deleted obs = 68 	 scale =1.484467 	 error init =0.996095 	 error end=0.996095
+[12:39:47.640] After pose optimization, distance between two frames x:-0.003873 ,z=0.002782,angle between two frames:0.006155
+[12:39:47.640] Update EKF and 3D points, distance between two frames x:-0.004805 ,z=0.003445,angle between two frames:0.007079
+[12:39:47.742] After Reprojection Map nPoint:68 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.004203 ,z=0.002964,angle between two frames:0.005375
+[12:39:47.742] Init estimate scale:1.477073
+[12:39:47.742] it:0 	 Success 	 new_chi2: 64.823734 	 dT = -0.042101, 0.000000, -0.021400
+[12:39:47.742] it:1 	 FAILURE 	 new_chi2: 69.465213
+[12:39:47.742] n deleted obs = 68 	 scale =1.477073 	 error init =0.953290 	 error end=0.953290
+[12:39:47.742] After pose optimization, distance between two frames x:-0.004203 ,z=0.002964,angle between two frames:0.005375
+[12:39:47.742] Update EKF and 3D points, distance between two frames x:-0.004481 ,z=0.003159,angle between two frames:0.005700
+[12:39:47.839] After Reprojection Map nPoint:54 ,nCell:15 ,nMatches:15 ,distance between two frames x:-0.001639 ,z=0.001148,angle between two frames:0.006444
+[12:39:47.839] Init estimate scale:1.485276
+[12:39:47.839] it:0 	 Success 	 new_chi2: 54.017833 	 dT = -0.042238, 0.000000, -0.055727
+[12:39:47.839] it:1 	 FAILURE 	 new_chi2: 60.522655
+[12:39:47.839] n deleted obs = 57 	 scale =1.485276 	 error init =0.947681 	 error end=0.947681
+[12:39:47.839] After pose optimization, distance between two frames x:-0.001639 ,z=0.001148,angle between two frames:0.006444
+[12:39:47.839] Update EKF and 3D points, distance between two frames x:-0.001921 ,z=0.001340,angle between two frames:0.007302
+[12:39:47.949] After Reprojection Map nPoint:64 ,nCell:18 ,nMatches:18 ,distance between two frames x:-0.001671 ,z=0.001128,angle between two frames:0.008485
+[12:39:47.949] Init estimate scale:1.473834
+[12:39:47.949] it:0 	 Success 	 new_chi2: 63.258979 	 dT = -0.078836, 0.000000, -0.117406
+[12:39:47.949] it:1 	 FAILURE 	 new_chi2: 79.323320
+[12:39:47.950] n deleted obs = 67 	 scale =1.473834 	 error init =0.944164 	 error end=0.944164
+[12:39:47.950] After pose optimization, distance between two frames x:-0.001671 ,z=0.001128,angle between two frames:0.008485
+[12:39:47.950] Update EKF and 3D points, distance between two frames x:-0.001992 ,z=0.001342,angle between two frames:0.009584
+[12:39:48.039] After Reprojection Map nPoint:51 ,nCell:12 ,nMatches:12 ,distance between two frames x:-0.001913 ,z=0.001267,angle between two frames:0.011221
+[12:39:48.039] Init estimate scale:1.432560
+[12:39:48.039] it:0 	 Success 	 new_chi2: 49.719828 	 dT = -0.038269, 0.000000, -0.034260
+[12:39:48.039] it:1 	 FAILURE 	 new_chi2: 54.185748
+[12:39:48.039] n deleted obs = 53 	 scale =1.432560 	 error init =0.938110 	 error end=0.938110
+[12:39:48.039] After pose optimization, distance between two frames x:-0.001913 ,z=0.001267,angle between two frames:0.011221
+[12:39:48.039] Update EKF and 3D points, distance between two frames x:-0.002784 ,z=0.001848,angle between two frames:0.010617
+[12:39:48.252] After Reprojection Map nPoint:48 ,nCell:13 ,nMatches:12 ,distance between two frames x:-0.008616 ,z=0.005278,angle between two frames:0.046078
+[12:39:48.252] Init estimate scale:1.534264
+[12:39:48.253] it:0 	 Success 	 new_chi2: 51.793009 	 dT = -0.077972, 0.000000, -0.154582
+[12:39:48.253] it:1 	 FAILURE 	 new_chi2: 68.200530
+[12:39:48.253] n deleted obs = 50 	 scale =1.534264 	 error init =1.035860 	 error end=1.035860
+[12:39:48.253] After pose optimization, distance between two frames x:-0.008616 ,z=0.005278,angle between two frames:0.046078
+[12:39:48.253] Update EKF and 3D points, distance between two frames x:-0.008837 ,z=0.005417,angle between two frames:0.044495
+[12:39:48.341] After Reprojection Map nPoint:51 ,nCell:17 ,nMatches:15 ,distance between two frames x:-0.001188 ,z=0.000749,angle between two frames:0.013483
+[12:39:48.341] Init estimate scale:1.519353
+[12:39:48.341] it:0 	 Success 	 new_chi2: 54.526205 	 dT = -0.055852, 0.000000, -0.076742
+[12:39:48.341] it:1 	 FAILURE 	 new_chi2: 63.613313
+[12:39:48.341] n deleted obs = 52 	 scale =1.519353 	 error init =1.048581 	 error end=1.048581
+[12:39:48.341] After pose optimization, distance between two frames x:-0.001188 ,z=0.000749,angle between two frames:0.013483
+[12:39:48.341] Update EKF and 3D points, distance between two frames x:-0.001456 ,z=0.000915,angle between two frames:0.013603
+[12:39:48.549] After Reprojection Map nPoint:59 ,nCell:17 ,nMatches:16 ,distance between two frames x:-0.005473 ,z=0.003631,angle between two frames:0.051878
+[12:39:48.549] Init estimate scale:1.492829
+[12:39:48.549] it:0 	 Success 	 new_chi2: 56.911071 	 dT = -0.018685, 0.000000, -0.007785
+[12:39:48.549] it:1 	 FAILURE 	 new_chi2: 58.517718
+[12:39:48.549] n deleted obs = 58 	 scale =1.492829 	 error init =0.981225 	 error end=0.981225
+[12:39:48.549] After pose optimization, distance between two frames x:-0.005473 ,z=0.003631,angle between two frames:0.051878
+[12:39:48.549] Update EKF and 3D points, distance between two frames x:-0.005709 ,z=0.003793,angle between two frames:0.051419
+[12:39:48.641] After Reprojection Map nPoint:60 ,nCell:18 ,nMatches:16 ,distance between two frames x:-0.001392 ,z=0.000938,angle between two frames:0.001388
+[12:39:48.641] Init estimate scale:1.478098
+[12:39:48.641] it:0 	 Success 	 new_chi2: 60.972945 	 dT = -0.070323, 0.000000, -0.115029
+[12:39:48.641] it:1 	 FAILURE 	 new_chi2: 74.906030
+[12:39:48.641] n deleted obs = 61 	 scale =1.478098 	 error init =0.999556 	 error end=0.999556
+[12:39:48.641] After pose optimization, distance between two frames x:-0.001392 ,z=0.000938,angle between two frames:0.001388
+[12:39:48.641] Update EKF and 3D points, distance between two frames x:-0.001663 ,z=0.001124,angle between two frames:0.001796
+[12:39:48.740] After Reprojection Map nPoint:26 ,nCell:8 ,nMatches:8 ,distance between two frames x:-0.001402 ,z=0.000972,angle between two frames:0.016993
+[12:39:48.846] After Reprojection Map nPoint:41 ,nCell:30 ,nMatches:9 ,distance between two frames x:-0.000057 ,z=-0.000041,angle between two frames:0.001128
+[12:39:48.846] Init estimate scale:1.412231
+[12:39:48.846] it:0 	 Success 	 new_chi2: 18.422773 	 dT = -0.003857, 0.000000, -0.000441
+[12:39:48.846] it:1 	 FAILURE 	 new_chi2: 18.507429
+[12:39:48.846] n deleted obs = 20 	 scale =1.412231 	 error init =0.921139 	 error end=0.921139
+[12:39:48.846] After pose optimization, distance between two frames x:-0.000057 ,z=-0.000041,angle between two frames:0.001128
+[12:39:48.846] Update EKF and 3D points, distance between two frames x:-0.000324 ,z=0.000142,angle between two frames:0.001338
+[12:39:48.940] After Reprojection Map nPoint:43 ,nCell:13 ,nMatches:12 ,distance between two frames x:-0.001641 ,z=0.001115,angle between two frames:0.003692
+[12:39:48.940] Init estimate scale:1.522116
+[12:39:48.940] it:0 	 Success 	 new_chi2: 39.643872 	 dT = -0.015905, 0.000000, -0.007195
+[12:39:48.940] it:1 	 FAILURE 	 new_chi2: 40.600438
+[12:39:48.940] n deleted obs = 40 	 scale =1.522116 	 error init =0.991097 	 error end=0.991097
+[12:39:48.940] After pose optimization, distance between two frames x:-0.001641 ,z=0.001115,angle between two frames:0.003692
+[12:39:48.941] Update EKF and 3D points, distance between two frames x:-0.001934 ,z=0.001315,angle between two frames:0.004207
+[12:39:49.040] After Reprojection Map nPoint:53 ,nCell:15 ,nMatches:14 ,distance between two frames x:-0.001719 ,z=0.001176,angle between two frames:0.000177
+[12:39:49.040] Init estimate scale:1.527238
+[12:39:49.040] it:0 	 Success 	 new_chi2: 53.354465 	 dT = -0.107773, 0.000000, -0.173824
+[12:39:49.040] it:1 	 FAILURE 	 new_chi2: 73.177022
+[12:39:49.040] n deleted obs = 53 	 scale =1.527238 	 error init =1.006688 	 error end=1.006688
+[12:39:49.040] After pose optimization, distance between two frames x:-0.001719 ,z=0.001176,angle between two frames:0.000177
+[12:39:49.040] Update EKF and 3D points, distance between two frames x:-0.001720 ,z=0.001175,angle between two frames:0.001099
+[12:39:49.155] After Reprojection Map nPoint:48 ,nCell:16 ,nMatches:15 ,distance between two frames x:0.000003 ,z=-0.000008,angle between two frames:0.001202
+[12:39:49.155] Init estimate scale:1.447008
+[12:39:49.155] it:0 	 Success 	 new_chi2: 50.319016 	 dT = -0.062257, 0.000000, -0.102540
+[12:39:49.155] it:1 	 FAILURE 	 new_chi2: 60.821709
+[12:39:49.155] n deleted obs = 51 	 scale =1.447008 	 error init =0.986647 	 error end=0.986647
+[12:39:49.155] After pose optimization, distance between two frames x:0.000003 ,z=-0.000008,angle between two frames:0.001202
+[12:39:49.155] Update EKF and 3D points, distance between two frames x:0.000003 ,z=-0.000011,angle between two frames:0.001337
+[12:39:49.240] After Reprojection Map nPoint:56 ,nCell:18 ,nMatches:16 ,distance between two frames x:0.000000 ,z=-0.000021,angle between two frames:0.005661
+[12:39:49.240] Init estimate scale:1.439827
+[12:39:49.240] it:0 	 Success 	 new_chi2: 55.413991 	 dT = -0.028637, 0.000000, -0.015009
+[12:39:49.240] it:1 	 FAILURE 	 new_chi2: 58.118206
+[12:39:49.240] n deleted obs = 57 	 scale =1.439827 	 error init =0.972175 	 error end=0.972175
+[12:39:49.240] After pose optimization, distance between two frames x:0.000000 ,z=-0.000021,angle between two frames:0.005661
+[12:39:49.240] Update EKF and 3D points, distance between two frames x:0.000001 ,z=-0.000021,angle between two frames:0.006718
+[12:39:49.341] After Reprojection Map nPoint:60 ,nCell:17 ,nMatches:17 ,distance between two frames x:0.000006 ,z=-0.000011,angle between two frames:0.001844
+[12:39:49.341] Init estimate scale:1.448336
+[12:39:49.341] it:0 	 Success 	 new_chi2: 59.889478 	 dT = -0.026761, 0.000000, -0.015194
+[12:39:49.341] it:1 	 FAILURE 	 new_chi2: 62.647956
+[12:39:49.341] n deleted obs = 60 	 scale =1.448336 	 error init =0.998158 	 error end=0.998158
+[12:39:49.341] After pose optimization, distance between two frames x:0.000006 ,z=-0.000011,angle between two frames:0.001844
+[12:39:49.341] Update EKF and 3D points, distance between two frames x:0.000006 ,z=-0.000013,angle between two frames:0.002084
+[12:39:49.453] After Reprojection Map nPoint:64 ,nCell:17 ,nMatches:16 ,distance between two frames x:0.000004 ,z=-0.000016,angle between two frames:0.009626
+[12:39:49.453] Init estimate scale:1.516072
+[12:39:49.453] it:0 	 Success 	 new_chi2: 66.622582 	 dT = -0.020426, 0.000000, -0.062320
+[12:39:49.453] it:1 	 FAILURE 	 new_chi2: 73.450342
+[12:39:49.453] n deleted obs = 65 	 scale =1.516072 	 error init =1.024963 	 error end=1.024963
+[12:39:49.453] After pose optimization, distance between two frames x:0.000004 ,z=-0.000016,angle between two frames:0.009626
+[12:39:49.453] Update EKF and 3D points, distance between two frames x:0.000005 ,z=-0.000017,angle between two frames:0.009337
+[12:39:49.549] After Reprojection Map nPoint:69 ,nCell:19 ,nMatches:16 ,distance between two frames x:0.000005 ,z=-0.000014,angle between two frames:0.002262
+[12:39:49.550] Init estimate scale:1.461961
+[12:39:49.550] it:0 	 Success 	 new_chi2: 68.214112 	 dT = -0.036846, 0.000000, -0.009904
+[12:39:49.550] it:1 	 FAILURE 	 new_chi2: 71.670551
+[12:39:49.550] n deleted obs = 69 	 scale =1.461961 	 error init =0.988610 	 error end=0.988610
+[12:39:49.550] After pose optimization, distance between two frames x:0.000005 ,z=-0.000014,angle between two frames:0.002262
+[12:39:49.550] Update EKF and 3D points, distance between two frames x:0.000005 ,z=-0.000016,angle between two frames:0.001788
+[12:39:49.640] After Reprojection Map nPoint:62 ,nCell:17 ,nMatches:14 ,distance between two frames x:0.000003 ,z=-0.000010,angle between two frames:0.005305
+[12:39:49.641] Init estimate scale:1.461396
+[12:39:49.641] it:0 	 Success 	 new_chi2: 60.447542 	 dT = -0.032312, 0.000000, -0.004230
+[12:39:49.641] it:1 	 FAILURE 	 new_chi2: 62.758613
+[12:39:49.641] n deleted obs = 60 	 scale =1.461396 	 error init =1.007459 	 error end=1.007459
+[12:39:49.641] After pose optimization, distance between two frames x:0.000003 ,z=-0.000010,angle between two frames:0.005305
+[12:39:49.641] Update EKF and 3D points, distance between two frames x:0.000004 ,z=-0.000011,angle between two frames:0.006214
+[12:39:49.743] After Reprojection Map nPoint:59 ,nCell:15 ,nMatches:14 ,distance between two frames x:-0.000003 ,z=-0.000027,angle between two frames:0.010662
+[12:39:49.743] Init estimate scale:1.463458
+[12:39:49.743] it:0 	 Success 	 new_chi2: 58.607678 	 dT = -0.030761, 0.000000, -0.014446
+[12:39:49.743] it:1 	 FAILURE 	 new_chi2: 61.566474
+[12:39:49.743] n deleted obs = 59 	 scale =1.463458 	 error init =0.993350 	 error end=0.993350
+[12:39:49.743] After pose optimization, distance between two frames x:-0.000003 ,z=-0.000027,angle between two frames:0.010662
+[12:39:49.743] Update EKF and 3D points, distance between two frames x:-0.000003 ,z=-0.000028,angle between two frames:0.010785
+[12:39:49.856] After Reprojection Map nPoint:69 ,nCell:16 ,nMatches:15 ,distance between two frames x:0.000008 ,z=-0.000009,angle between two frames:0.000971
+[12:39:49.856] Init estimate scale:1.465537
+[12:39:49.856] it:0 	 Success 	 new_chi2: 72.208468 	 dT = -0.029479, 0.000000, -0.008684
+[12:39:49.856] it:1 	 FAILURE 	 new_chi2: 75.184795
+[12:39:49.856] n deleted obs = 69 	 scale =1.465537 	 error init =1.046500 	 error end=1.046500
+[12:39:49.856] After pose optimization, distance between two frames x:0.000008 ,z=-0.000009,angle between two frames:0.000971
+[12:39:49.856] Update EKF and 3D points, distance between two frames x:0.000038 ,z=-0.000024,angle between two frames:0.000478
+[12:39:49.940] After Reprojection Map nPoint:72 ,nCell:15 ,nMatches:14 ,distance between two frames x:0.000203 ,z=-0.000108,angle between two frames:0.001207
+[12:39:49.940] Init estimate scale:1.482282
+[12:39:49.940] it:0 	 Success 	 new_chi2: 71.497499 	 dT = -0.036453, 0.000000, -0.012998
+[12:39:49.940] it:1 	 FAILURE 	 new_chi2: 75.403044
+[12:39:49.940] n deleted obs = 71 	 scale =1.482282 	 error init =1.007007 	 error end=1.007007
+[12:39:49.940] After pose optimization, distance between two frames x:0.000203 ,z=-0.000108,angle between two frames:0.001207
+[12:39:49.940] Update EKF and 3D points, distance between two frames x:0.000202 ,z=-0.000112,angle between two frames:0.001624
+[12:39:50.040] After Reprojection Map nPoint:67 ,nCell:16 ,nMatches:15 ,distance between two frames x:-0.000002 ,z=-0.000025,angle between two frames:0.002868
+[12:39:50.040] Init estimate scale:1.523129
+[12:39:50.040] it:0 	 Success 	 new_chi2: 72.810883 	 dT = -0.063771, 0.000000, -0.063039
+[12:39:50.040] it:1 	 FAILURE 	 new_chi2: 84.062063
+[12:39:50.040] n deleted obs = 70 	 scale =1.523129 	 error init =1.040155 	 error end=1.040155
+[12:39:50.040] After pose optimization, distance between two frames x:-0.000002 ,z=-0.000025,angle between two frames:0.002868
+[12:39:50.040] Update EKF and 3D points, distance between two frames x:-0.000002 ,z=-0.000025,angle between two frames:0.002922
+[12:39:50.143] After Reprojection Map nPoint:67 ,nCell:16 ,nMatches:15 ,distance between two frames x:0.000000 ,z=-0.000002,angle between two frames:0.002827
+[12:39:50.143] Init estimate scale:1.524337
+[12:39:50.143] it:0 	 Success 	 new_chi2: 71.690054 	 dT = -0.034106, 0.000000, -0.072450
+[12:39:50.143] it:1 	 FAILURE 	 new_chi2: 81.381321
+[12:39:50.143] n deleted obs = 69 	 scale =1.524337 	 error init =1.038986 	 error end=1.038986
+[12:39:50.143] After pose optimization, distance between two frames x:0.000000 ,z=-0.000002,angle between two frames:0.002827
+[12:39:50.143] Update EKF and 3D points, distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.002897
+[12:39:50.243] After Reprojection Map nPoint:73 ,nCell:19 ,nMatches:18 ,distance between two frames x:0.000005 ,z=-0.000004,angle between two frames:0.000897
+[12:39:50.243] Init estimate scale:1.530580
+[12:39:50.243] it:0 	 Success 	 new_chi2: 81.069276 	 dT = -0.030909, 0.000000, -0.006574
+[12:39:50.243] it:1 	 FAILURE 	 new_chi2: 84.227565
+[12:39:50.244] n deleted obs = 76 	 scale =1.530580 	 error init =1.066701 	 error end=1.066701
+[12:39:50.244] After pose optimization, distance between two frames x:0.000005 ,z=-0.000004,angle between two frames:0.000897
+[12:39:50.244] Update EKF and 3D points, distance between two frames x:0.000006 ,z=-0.000005,angle between two frames:0.001035
+[12:39:50.347] After Reprojection Map nPoint:78 ,nCell:17 ,nMatches:16 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001437
+[12:39:50.347] Init estimate scale:1.532285
+[12:39:50.347] it:0 	 Success 	 new_chi2: 84.284319 	 dT = -0.031470, 0.000000, -0.014985
+[12:39:50.347] it:1 	 FAILURE 	 new_chi2: 88.562877
+[12:39:50.347] n deleted obs = 80 	 scale =1.532285 	 error init =1.053554 	 error end=1.053554
+[12:39:50.347] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001437
+[12:39:50.348] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000003,angle between two frames:0.001573
+[12:39:50.465] After Reprojection Map nPoint:76 ,nCell:16 ,nMatches:16 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001337
+[12:39:50.465] Init estimate scale:1.529847
+[12:39:50.466] it:0 	 Success 	 new_chi2: 82.022442 	 dT = -0.052866, 0.000000, -0.045638
+[12:39:50.466] it:1 	 FAILURE 	 new_chi2: 91.529149
+[12:39:50.466] n deleted obs = 79 	 scale =1.529847 	 error init =1.038259 	 error end=1.038259
+[12:39:50.466] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001337
+[12:39:50.466] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001495
+[12:39:50.551] After Reprojection Map nPoint:79 ,nCell:16 ,nMatches:15 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001067
+[12:39:50.551] Init estimate scale:1.531005
+[12:39:50.551] it:0 	 Success 	 new_chi2: 83.292264 	 dT = -0.037628, 0.000000, -0.008265
+[12:39:50.551] it:1 	 FAILURE 	 new_chi2: 87.331523
+[12:39:50.551] n deleted obs = 79 	 scale =1.531005 	 error init =1.054332 	 error end=1.054332
+[12:39:50.551] After pose optimization, distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001067
+[12:39:50.551] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001199
+[12:39:50.653] After Reprojection Map nPoint:76 ,nCell:16 ,nMatches:16 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001314
+[12:39:50.653] Init estimate scale:1.535630
+[12:39:50.653] it:0 	 Success 	 new_chi2: 81.211254 	 dT = -0.055194, 0.000000, -0.037827
+[12:39:50.653] it:1 	 FAILURE 	 new_chi2: 90.065237
+[12:39:50.653] n deleted obs = 80 	 scale =1.535630 	 error init =1.015141 	 error end=1.015141
+[12:39:50.653] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001314
+[12:39:50.653] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001457
+[12:39:50.748] After Reprojection Map nPoint:80 ,nCell:18 ,nMatches:18 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001240
+[12:39:50.748] Init estimate scale:1.533682
+[12:39:50.748] it:0 	 Success 	 new_chi2: 90.798342 	 dT = -0.051740, 0.000000, -0.000464
+[12:39:50.748] it:1 	 FAILURE 	 new_chi2: 95.549552
+[12:39:50.748] n deleted obs = 85 	 scale =1.533682 	 error init =1.068216 	 error end=1.068216
+[12:39:50.748] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001240
+[12:39:50.748] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001373
+[12:39:50.849] After Reprojection Map nPoint:84 ,nCell:18 ,nMatches:18 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001180
+[12:39:50.849] Init estimate scale:1.538347
+[12:39:50.849] it:0 	 Success 	 new_chi2: 91.907931 	 dT = -0.034647, 0.000000, -0.015565
+[12:39:50.849] it:1 	 FAILURE 	 new_chi2: 96.945032
+[12:39:50.849] n deleted obs = 88 	 scale =1.538347 	 error init =1.044408 	 error end=1.044408
+[12:39:50.849] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001180
+[12:39:50.849] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001316
+[12:39:50.963] After Reprojection Map nPoint:84 ,nCell:18 ,nMatches:18 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001233
+[12:39:50.963] Init estimate scale:1.536587
+[12:39:50.963] it:0 	 Success 	 new_chi2: 91.535451 	 dT = -0.059479, 0.000000, -0.051977
+[12:39:50.964] it:1 	 FAILURE 	 new_chi2: 103.632400
+[12:39:50.964] n deleted obs = 88 	 scale =1.536587 	 error init =1.040176 	 error end=1.040176
+[12:39:50.964] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001233
+[12:39:50.964] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001399
+[12:39:51.055] After Reprojection Map nPoint:80 ,nCell:18 ,nMatches:17 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001105
+[12:39:51.055] Init estimate scale:1.537429
+[12:39:51.055] it:0 	 Success 	 new_chi2: 86.871880 	 dT = -0.038063, 0.000000, -0.024422
+[12:39:51.055] it:1 	 FAILURE 	 new_chi2: 93.060396
+[12:39:51.055] n deleted obs = 84 	 scale =1.537429 	 error init =1.034189 	 error end=1.034189
+[12:39:51.055] After pose optimization, distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001105
+[12:39:51.055] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001246
+[12:39:51.146] After Reprojection Map nPoint:82 ,nCell:20 ,nMatches:19 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001228
+[12:39:51.146] Init estimate scale:1.536936
+[12:39:51.146] it:0 	 Success 	 new_chi2: 93.818049 	 dT = -0.035033, 0.000000, -0.007732
+[12:39:51.146] it:1 	 FAILURE 	 new_chi2: 98.093398
+[12:39:51.146] n deleted obs = 89 	 scale =1.536936 	 error init =1.054135 	 error end=1.054135
+[12:39:51.146] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001228
+[12:39:51.146] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001353
+[12:39:51.252] After Reprojection Map nPoint:80 ,nCell:18 ,nMatches:18 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001397
+[12:39:51.252] Init estimate scale:1.540176
+[12:39:51.252] it:0 	 Success 	 new_chi2: 90.363960 	 dT = -0.058733, 0.000000, -0.035781
+[12:39:51.253] it:1 	 FAILURE 	 new_chi2: 100.215593
+[12:39:51.253] n deleted obs = 85 	 scale =1.540176 	 error init =1.063105 	 error end=1.063105
+[12:39:51.253] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001397
+[12:39:51.253] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001529
+[12:39:51.352] After Reprojection Map nPoint:79 ,nCell:18 ,nMatches:18 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001307
+[12:39:51.352] Init estimate scale:1.541546
+[12:39:51.352] it:0 	 Success 	 new_chi2: 86.647499 	 dT = -0.037968, 0.000000, -0.022137
+[12:39:51.352] it:1 	 FAILURE 	 new_chi2: 92.529464
+[12:39:51.352] n deleted obs = 84 	 scale =1.541546 	 error init =1.031518 	 error end=1.031518
+[12:39:51.352] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001307
+[12:39:51.352] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001439
+[12:39:51.450] After Reprojection Map nPoint:80 ,nCell:16 ,nMatches:16 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001162
+[12:39:51.450] Init estimate scale:1.542777
+[12:39:51.450] it:0 	 Success 	 new_chi2: 87.803191 	 dT = -0.058911, 0.000000, -0.047361
+[12:39:51.450] it:1 	 FAILURE 	 new_chi2: 98.908639
+[12:39:51.450] n deleted obs = 84 	 scale =1.542777 	 error init =1.045276 	 error end=1.045276
+[12:39:51.450] After pose optimization, distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001162
+[12:39:51.450] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001301
+[12:39:51.550] After Reprojection Map nPoint:77 ,nCell:17 ,nMatches:16 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001349
+[12:39:51.551] Init estimate scale:1.503460
+[12:39:51.551] it:0 	 Success 	 new_chi2: 81.757569 	 dT = -0.032911, 0.000000, -0.013467
+[12:39:51.551] it:1 	 FAILURE 	 new_chi2: 85.983346
+[12:39:51.551] n deleted obs = 79 	 scale =1.503460 	 error init =1.034906 	 error end=1.034906
+[12:39:51.551] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001349
+[12:39:51.551] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001484
+[12:39:51.655] After Reprojection Map nPoint:76 ,nCell:15 ,nMatches:15 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001315
+[12:39:51.655] Init estimate scale:1.505031
+[12:39:51.655] it:0 	 Success 	 new_chi2: 82.254134 	 dT = -0.054063, 0.000000, -0.042081
+[12:39:51.655] it:1 	 FAILURE 	 new_chi2: 91.690885
+[12:39:51.655] n deleted obs = 79 	 scale =1.505031 	 error init =1.041192 	 error end=1.041192
+[12:39:51.655] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001315
+[12:39:51.655] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001455
+[12:39:51.758] After Reprojection Map nPoint:82 ,nCell:18 ,nMatches:17 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001223
+[12:39:51.758] Init estimate scale:1.545107
+[12:39:51.758] it:0 	 Success 	 new_chi2: 90.681601 	 dT = -0.032795, 0.000000, -0.006679
+[12:39:51.758] it:1 	 FAILURE 	 new_chi2: 94.466606
+[12:39:51.758] n deleted obs = 85 	 scale =1.545107 	 error init =1.066842 	 error end=1.066842
+[12:39:51.758] After pose optimization, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001223
+[12:39:51.758] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001371
+[12:39:51.849] After Reprojection Map nPoint:82 ,nCell:17 ,nMatches:16 ,distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001135
+[12:39:51.849] Init estimate scale:1.541812
+[12:39:51.849] it:0 	 Success 	 new_chi2: 87.696471 	 dT = -0.083335, 0.000000, -0.117572
+[12:39:51.849] it:1 	 FAILURE 	 new_chi2: 111.098607
+[12:39:51.850] n deleted obs = 85 	 scale =1.541812 	 error init =1.031723 	 error end=1.031723
+[12:39:51.850] After pose optimization, distance between two frames x:0.000001 ,z=-0.000002,angle between two frames:0.001135
+[12:39:51.850] Update EKF and 3D points, distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.001269

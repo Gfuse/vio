@@ -176,51 +176,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->Cov_ = init_f.first;
   // sparse image align
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-/*#if VIO_DEBUG
-    fprintf(log_,"[%s] Before alignment, distance between two frames x:%f ,z=%f,angle between two frames:%f last_frame feature size : %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
-            new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
-            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()), last_frame_->fts_.size());
-    int nullcount = 0;
-    int nullpointcount = 0;
-    for(auto f = last_frame_->fts_.begin(); f!= last_frame_->fts_.end(); f++)
-    {
-        if(*f == nullptr) {
-            nullcount++;
-            continue;
-        }
-        if((*f)->point == nullptr) {
-            nullpointcount++;
-            continue;
-        }
-        fprintf(log_,"[%s] last frame : %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-                (*f)->point->pos_.x(), (*f)->point->pos_.y(), (*f)->point->pos_.z());
-    }
-    fprintf(log_,"null : %d, null point : %d\n", nullcount, nullpointcount);
-#endif*/
   if(!img_align.run(last_frame_, new_frame_, log_))new_frame_->T_f_w_=init_f.second;
-/*#if VIO_DEBUG
-    fprintf(log_,"[%s] After alignment, distance between two frames x:%f ,z=%f,angle between two frames:%f last_frame feature size : %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
-            new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
-            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()), last_frame_->fts_.size());
-    nullcount = 0;
-    nullpointcount = 0;
-    for(auto f = last_frame_->fts_.begin(); f!= last_frame_->fts_.end(); f++)
-    {
-        if(*f == nullptr) {
-            nullcount++;
-            continue;
-        }
-        if((*f)->point == nullptr) {
-            nullpointcount++;
-            continue;
-        }
-        fprintf(log_,"[%s] last frame : %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-                (*f)->point->pos_.x(), (*f)->point->pos_.y(), (*f)->point->pos_.z());
-    }
-    fprintf(log_,"null : %d, null point : %d\n", nullcount, nullpointcount);
-#endif*/
   reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;

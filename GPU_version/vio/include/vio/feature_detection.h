@@ -20,6 +20,9 @@
 #include <vio/global.h>
 #include <vio/frame.h>
 #include <vio/cl_class.h>
+#include <opencv2/xfeatures2d.hpp>
+#include <opencv2/features2d.hpp>
+#include <opencv2/core.hpp>
 
 namespace vio {
 
@@ -57,13 +60,15 @@ public:
       Frame* frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
-      Features& fts) = 0;
+      Features& fts,
+      cv::Mat* descriptors= nullptr) = 0;
 
   /// Flag the grid cell as occupied
   void setGridOccpuancy(const Vector2d& px);
 
   /// Set grid cells of existing features as occupied
   void setExistingFeatures(const Features& fts);
+  void resetGrid();
 
 protected:
 
@@ -74,8 +79,6 @@ protected:
   const int grid_n_rows_;
   vector<bool> grid_occupancy_;
 
-  void resetGrid();
-
   inline int getCellIndex(int x, int y, int level)
   {
     const int scale = (1<<level);
@@ -84,7 +87,7 @@ protected:
 };
 typedef boost::shared_ptr<AbstractDetector> DetectorPtr;
 
-/// FAST detector by Edward Rosten.
+/// FAST detector by Majid Geravand.
 class FastDetector : public AbstractDetector
 {
 public:
@@ -101,7 +104,8 @@ public:
       Frame* frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
-      Features& fts);
+      Features& fts,
+      cv::Mat* descriptors= nullptr);
   opencl* gpu_fast_;
 };
 
