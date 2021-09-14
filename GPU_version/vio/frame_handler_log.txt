@@ -1,0 +1,85 @@
+[14:55:14.266] Init: frame zero: 0.000000, 0.000000 0.000000
+[14:55:14.266] Init: Selected first frame. 
+[14:55:14.680] homography: x=-0.006705 y=0.007799 z=-0.000756 roll=-0.000000 pitch=0.128472 yaw=0.000000 	 ekf: x=-0.000164 z=-0.000128 pitch=0.516037
+[14:55:14.680] homography after fuse: x=-0.006324 y=0.000000 z=-0.000719 pitch=0.151098	 number of outlier: 12
+[14:55:14.680] Init finished: Homography RANSAC (inlier) is:90 ,While 20 inliers minimum required.  px average disparity is:41.026202 ,While minimum is: 40.000000  KLT tracked: 102
+[14:55:14.680] Init: distance between the first and current frame is x:-0.006324 ,z=-0.000719,angle between two frames: 0.151098 
+[14:55:14.680] Init: Selected Second frame. 	 The number of features: 90
+[14:55:14.838] After Reprojection Map nPoint:31 ,nCell:19 ,nMatches:8 ,distance between two frames x:0.002427 ,z=0.000212,angle between two frames:0.168558
+[14:55:14.838] Init estimate scale:0.980722
+[14:55:14.838] it:0 	 Success 	 new_chi2: 3.428272 	 dT = 0.001183, -0.003665, 0.007168
+[14:55:14.838] it:1 	 Success 	 new_chi2: 3.369354 	 dT = 0.001116, -0.003471, 0.007123
+[14:55:14.838] it:2 	 Success 	 new_chi2: 3.318738 	 dT = 0.001059, -0.003298, 0.007082
+[14:55:14.838] it:3 	 Success 	 new_chi2: 3.274965 	 dT = 0.001012, -0.003144, 0.007047
+[14:55:14.838] it:4 	 Success 	 new_chi2: 3.236922 	 dT = 0.000971, -0.003004, 0.007016
+[14:55:14.838] it:5 	 Success 	 new_chi2: 3.203736 	 dT = 0.000787, -0.002982, 0.007845
+[14:55:14.838] it:6 	 Success 	 new_chi2: 3.182479 	 dT = 0.000762, -0.002859, 0.007836
+[14:55:14.838] it:7 	 Success 	 new_chi2: 3.164779 	 dT = 0.000741, -0.002745, 0.007830
+[14:55:14.838] it:8 	 Success 	 new_chi2: 3.150180 	 dT = 0.000723, -0.002641, 0.007827
+[14:55:14.838] it:9 	 Success 	 new_chi2: 3.138309 	 dT = 0.000709, -0.002544, 0.007825
+[14:55:14.838] it:10 	 Success 	 new_chi2: 3.128858 	 dT = 0.000696, -0.002454, 0.007827
+[14:55:14.838] it:11 	 Success 	 new_chi2: 3.121574 	 dT = 0.000686, -0.002370, 0.007830
+[14:55:14.838] it:12 	 Success 	 new_chi2: 3.116243 	 dT = 0.000678, -0.002292, 0.007836
+[14:55:14.838] it:13 	 Success 	 new_chi2: 3.112688 	 dT = 0.000672, -0.002218, 0.007845
+[14:55:14.838] it:14 	 Success 	 new_chi2: 3.110758 	 dT = 0.000666, -0.002149, 0.007855
+[14:55:14.838] it:15 	 Success 	 new_chi2: 3.110324 	 dT = 0.000662, -0.002084, 0.007868
+[14:55:14.838] it:16 	 FAILURE 	 new_chi2: 3.111278
+[14:55:14.838] n deleted obs = 8 	 scale =0.980722 	 error init =0.428534 	 error end=0.388791
+[14:55:14.838] After pose optimization, distance between two frames x:0.014888 ,z=-0.041624,angle between two frames:0.282351
+[14:55:14.838] Update EKF and 3D points, distance between two frames x:0.014158 ,z=-0.039189,angle between two frames:0.277022
+[14:55:14.896] After Reprojection Map nPoint:6 ,nCell:5 ,nMatches:5 ,distance between two frames x:-0.000000 ,z=-0.000000,angle between two frames:0.018617
+[14:55:15.043] After Reprojection Map nPoint:6 ,nCell:6 ,nMatches:0 ,distance between two frames x:0.001446 ,z=0.001045,angle between two frames:0.029243
+[14:55:15.096] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.014229
+[14:55:15.221] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000010 ,z=-0.000015,angle between two frames:0.018657
+[14:55:15.306] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.017396
+[14:55:15.414] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=-0.000003,angle between two frames:0.020409
+[14:55:15.500] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=-0.000002,angle between two frames:0.021244
+[14:55:15.721] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000014 ,z=-0.000004,angle between two frames:0.071710
+[14:55:15.925] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000012 ,z=-0.000009,angle between two frames:0.057362
+[14:55:16.125] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000043 ,z=0.000004,angle between two frames:0.065702
+[14:55:16.195] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=-0.000001,angle between two frames:0.017498
+[14:55:16.314] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000001,angle between two frames:0.025212
+[14:55:16.525] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000005,angle between two frames:0.062094
+[14:55:16.595] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000003 ,z=0.000001,angle between two frames:0.013288
+[14:55:16.717] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=0.000001,angle between two frames:0.025246
+[14:55:16.921] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000008 ,z=-0.000001,angle between two frames:0.070554
+[14:55:17.018] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=0.000004,angle between two frames:0.013471
+[14:55:17.421] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000033 ,z=0.000017,angle between two frames:0.141198
+[14:55:17.498] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000006 ,z=-0.000001,angle between two frames:0.018214
+[14:55:17.621] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000010 ,z=0.000003,angle between two frames:0.023800
+[14:55:17.704] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=0.000007,angle between two frames:0.011339
+[14:55:18.425] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000050 ,z=0.000034,angle between two frames:0.244436
+[14:55:18.496] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000000 ,z=-0.000002,angle between two frames:0.011712
+[14:55:36.225] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000072,angle between two frames:0.118682
+[14:55:36.725] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000027 ,z=0.000032,angle between two frames:0.162602
+[14:55:36.797] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000001,angle between two frames:0.016448
+[14:55:37.018] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000045 ,z=0.000030,angle between two frames:0.076799
+[14:55:37.121] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000004,angle between two frames:0.020615
+[14:55:37.196] After Reprojection Map nPoint:27 ,nCell:12 ,nMatches:8 ,distance between two frames x:-0.000009 ,z=0.000005,angle between two frames:0.017260
+[14:55:37.196] Init estimate scale:3.127841
+[14:55:37.196] it:0 	 Success 	 new_chi2: 66.105932 	 dT = 0.217203, -0.163484, -1.160485
+[14:55:37.196] it:1 	 Success 	 new_chi2: 1.291241 	 dT = 0.001325, 0.003272, 0.019006
+[14:55:37.196] it:2 	 FAILURE 	 new_chi2: 1.330875
+[14:55:37.196] n deleted obs = 8 	 scale =3.127841 	 error init =8.263242 	 error end=0.161405
+[14:55:37.196] After pose optimization, distance between two frames x:0.217194 ,z=-0.163478,angle between two frames:1.143225
+[14:55:37.196] Update EKF and 3D points, distance between two frames x:0.204551 ,z=-0.153963,angle between two frames:0.709278
+[14:55:37.314] After Reprojection Map nPoint:7 ,nCell:7 ,nMatches:7 ,distance between two frames x:-0.078132 ,z=0.058811,angle between two frames:3.575972
+[14:55:37.534] After Reprojection Map nPoint:6 ,nCell:6 ,nMatches:0 ,distance between two frames x:0.000012 ,z=0.000015,angle between two frames:0.065152
+[14:55:37.596] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=-0.000000,angle between two frames:0.014877
+[14:55:37.722] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000001,angle between two frames:0.025139
+[14:55:37.797] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=0.000000,angle between two frames:0.020666
+[14:55:37.929] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000000,angle between two frames:0.016091
+[14:55:37.995] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000001,angle between two frames:0.008938
+[14:55:38.129] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000006 ,z=-0.000003,angle between two frames:0.013187
+[14:55:38.196] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000000,angle between two frames:0.006777
+[14:55:38.329] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000003,angle between two frames:0.019264
+[14:55:38.397] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000001,angle between two frames:0.004632
+[14:55:38.522] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=0.000001,angle between two frames:0.005123
+[14:55:38.598] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000000,angle between two frames:0.001184
+[14:55:38.722] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000000,angle between two frames:0.001550
+[14:55:38.799] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000000,angle between two frames:0.000778
+[14:55:38.922] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=0.000000,angle between two frames:0.001495
+[14:55:39.022] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.001139
+[14:55:39.104] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.000887
+[14:55:39.226] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=0.000000,angle between two frames:0.001372
+[14:55:39.298] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000000,angle between two frames:0.000753

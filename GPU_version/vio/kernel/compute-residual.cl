@@ -73,13 +73,13 @@ void jacobian_xyz2uv_(float3 xyz_in_f, float3 cur_p, float* J)
     double n1 = -1*sin(theta)*Xf_Xc + cos(theta)*Zf_Zc;
     double n2 = -1*cos(theta)*Xf_Xc - sin(theta)*Zf_Zc;
 
-    J[0] = ((-1*cos(theta)/z_n)*alpha)-((sin(theta)/z_n)*beta)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n1);
-    J[1] = 0;
-    J[2] = ((sin(theta)/z_n)*alpha)-((cos(theta)/z_n)*beta)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n2);
+    J[0] = ((-1*cos(theta)/z_n)*alpha)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*sin(theta));
+    J[1] = ((-1*sin(theta)/z_n)*alpha)+(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*cos(theta));
+    J[2] = ((1/z_n)*alpha*n1)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n2);
 
-    J[3] = ((-1*cos(theta)/z_n)*gamma)-((sin(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n1);
-    J[4] = 0;
-    J[5] = ((sin(theta)/z_n)*gamma)-((cos(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
+    J[3] = ((-1*cos(theta)/z_n)*gamma)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*sin(theta));
+    J[4] = ((-1*sin(theta)/z_n)*gamma)+(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*cos(theta));
+    J[5] = ((1/z_n)*gamma*n1)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
 }
 
 void compute_hessain(float3 j, __global float* H, float w)
