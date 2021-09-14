@@ -64,61 +64,6 @@ namespace vio {
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO - Original implementation
-    void Reprojector::reprojectMap(
-            FramePtr frame,
-            std::vector<std::pair<FramePtr, std::size_t> > &overlap_kfs) {
-        resetGrid();
-
-        list<pair<FramePtr, double> > close_kfs;
-        map_.getCloseKeyframes(frame, close_kfs);
-
-        close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
-                       boost::bind(&std::pair<FramePtr, double>::second, _2));
-
-        size_t n = 0;
-        overlap_kfs.reserve(options_.max_n_kfs);
-        for (auto it_frame = close_kfs.begin(), ite_frame = close_kfs.end();
-             it_frame != ite_frame && n < options_.max_n_kfs; ++it_frame, ++n) {
-            FramePtr ref_frame = it_frame->first;
-            overlap_kfs.push_back(pair<FramePtr, size_t>(ref_frame, 0));
-
-            for (auto it_ftr = ref_frame->fts_.begin(), ite_ftr = ref_frame->fts_.end();
-                 it_ftr != ite_ftr; ++it_ftr) {
-                if ((*it_ftr)->point == NULL)
-                    continue;
-                if ((*it_ftr)->point->last_frame_overlap_id_ == frame->id_)
-                    continue;
-                (*it_ftr)->point->last_frame_overlap_id_ = frame->id_;
-                if (reprojectPoint(frame, (*it_ftr)->point)) {
-                    overlap_kfs.back().second++;
-                }
-
-            }
-        }
-        {
-            boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
-            auto it = map_.point_candidates_.candidates_.begin();
-            while (it != map_.point_candidates_.candidates_.end()) {
-                if (!reprojectPoint(frame, it->first)) {
-                    it->first->n_failed_reproj_ += 3;
-                    if (it->first->n_failed_reproj_ > 30) {
-                        map_.point_candidates_.deleteCandidate(*it);
-                        it = map_.point_candidates_.candidates_.erase(it);
-                        continue;
-                    }
-                }
-                ++it;
-            }
-        }
-        for (size_t i = 0; i < grid_.cells.size(); ++i) {
-            if (reprojectCell(*grid_.cells.at(grid_.cell_order[i]), frame))
-                ++n_matches_;
-            if (n_matches_ > (size_t) Config::maxFts())
-                break;
-        }
-    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO - second reimplementation
     void Reprojector::reprojectMap2(
             FramePtr frame,
@@ -128,11 +73,12 @@ namespace vio {
         if(frame->id_<1)return;
         resetGrid();
         cv::Mat descriptors_cur;
-        std::vector<cv::KeyPoint> keypoints_cur;
+        Features keypoints_cur;
         cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
-        fast_detector(frame->img(), gpu_fast_, keypoints_cur);
-        extractor->compute(frame->img(), keypoints_cur, descriptors_cur);
+        feature_detection::FastDetector detector(
+                frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
+        detector.detect(frame.get(), frame->img_pyr_, Config::triangMinCornerScore(), keypoints_cur,&descriptors_cur);
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
         if (!last_frame->fts_.empty())
@@ -157,13 +103,15 @@ namespace vio {
                 for (auto &&match:matches) {
                     if (match.queryIdx != f.index)continue;
                     if(keypoints_cur.size() < match.trainIdx)continue;
+                    list<Feature*>::iterator point=keypoints_cur.begin();
+                    std::advance(point,match.trainIdx);
                     if (f.item->point == NULL){
-                        const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
+                        const int k = static_cast<int>((*point)->px.y() / grid_.cell_size) *
                                       grid_.grid_n_cols
-                                      + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
+                                      + static_cast<int>((*point)->px.x() / grid_.cell_size);
                         assert(grid_.cells.at(k) != nullptr);
-                        Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
-                                    (int) keypoints_cur.at(match.trainIdx).pt.y);
+                        Vector2d px((int) (*point)->px.x(),
+                                    (int) (*point)->px.y());
                         frame->fts_.push_back(new Feature(it_frame.item.first.get(),
                                                           new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item),
                                 px,it_frame.item.first->cam_->cam2world(f.item->px),0));
@@ -174,12 +122,12 @@ namespace vio {
                     }else{
                         if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
                         f.item->point->last_frame_overlap_id_ = frame->id_;
-                        const int k = static_cast<int>(keypoints_cur.at(match.trainIdx).pt.y / grid_.cell_size) *
+                        const int k = static_cast<int>((*point)->px.y()/ grid_.cell_size) *
                                       grid_.grid_n_cols
-                                      + static_cast<int>(keypoints_cur.at(match.trainIdx).pt.x / grid_.cell_size);
+                                      + static_cast<int>((*point)->px.x() / grid_.cell_size);
                         assert(grid_.cells.at(k) != nullptr);
-                        Vector2d px((int) keypoints_cur.at(match.trainIdx).pt.x,
-                                    (int) keypoints_cur.at(match.trainIdx).pt.y);
+                        Vector2d px((int) (*point)->px.x(),
+                                    (int) (*point)->px.y());
                         //f.item->point->addFrameRef(f.item);
                         grid_.cells.at(k)->push_back(Candidate(f.item->point, px));
                         overlap_kfs.back().second++;

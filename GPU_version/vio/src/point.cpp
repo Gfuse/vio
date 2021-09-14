@@ -104,6 +104,7 @@ bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr,int id) cons
   Vector3d obs_dir(Vector3d(framepos(0),1e-9,framepos(1)) + pos_); obs_dir.normalize();
   double max_cos_angle = 1.0;
   for(auto&& ob:obs_){
+      if(!ob->frame)continue;
       if(ob->frame->id_==id){
           ftr = ob;
           return true;

@@ -55,7 +55,7 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f)
                - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e *= 1.0 / (1<<(*it)->level);
-    chi2_vec_init.push_back(e.squaredNorm()); // just for debug
+    chi2_vec_init.push_back(e.norm()); // just for debug
     errors.push_back(e.norm());
   }
 
@@ -68,8 +68,6 @@ void optimizeGaussNewton(
 #endif
 
   num_obs = errors.size();
-  chi2_vec_init.reserve(num_obs);
-  chi2_vec_final.reserve(num_obs);
   double scale = estimated_scale;
   for(size_t iter=0; iter<n_iter; iter++)
   {
@@ -95,7 +93,7 @@ void optimizeGaussNewton(
       double weight = weight_function.value(e.norm()/scale);
       A.noalias() += J.transpose()*J*weight;
       b.noalias() -= J.transpose()*e*weight;
-      new_chi2 += e.squaredNorm();
+      new_chi2 += e.norm();
     }
 
     // solve linear system
@@ -134,14 +132,15 @@ void optimizeGaussNewton(
       continue;
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e /= (1<<(*it)->level);
-    chi2_vec_final.push_back(e.squaredNorm());
-    if(e.norm() > 0.01)
+    chi2_vec_final.push_back(e.norm());
+    if(e.norm() > 0.5)
     {
       // we don't need to delete a reference in the point since it was not created yet
       (*it)->point = NULL;
       ++n_deleted_refs;
     }
   }
+    num_obs -= n_deleted_refs;
 #if VIO_DEBUG
     error_init=0.0;
     error_final=0.0;
@@ -149,10 +148,9 @@ void optimizeGaussNewton(
         error_init /=chi2_vec_init.size();
     if(!chi2_vec_final.empty())for(auto&& i:chi2_vec_final)error_final+=i;
         error_final /= chi2_vec_final.size();
-    fprintf(log,"[%s] n deleted obs = %d \t scale =%f \t error init =%f \t error end=%f\n",
-            vio::time_in_HH_MM_SS_MMM().c_str(),n_deleted_refs,estimated_scale,error_init,error_final);
+    fprintf(log,"[%s] n deleted obs = %d \t n obs felt =%d \t error init =%f \t error end=%f\n",
+            vio::time_in_HH_MM_SS_MMM().c_str(),n_deleted_refs,num_obs,error_init,error_final);
 #endif
-  num_obs -= n_deleted_refs;
 }
 
 } // namespace pose_optimizer
