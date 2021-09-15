@@ -33,7 +33,7 @@ namespace vio {
     class Point;
     struct Feature;
 
-    typedef list<Feature*> Features;
+    typedef list<std::shared_ptr<Feature>> Features;
     typedef vector<cv::Mat> ImgPyr;
 
 
@@ -51,7 +51,7 @@ namespace vio {
         Matrix<double, 3, 3>          Cov_;                   //!< Covariance.
         ImgPyr                        img_pyr_;               //!< Image Pyramid.
         Features                      fts_;                   //!< List of features in the image.
-        vector<Feature*>              key_pts_;               //!< Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
+        vector<std::shared_ptr<Feature>>  key_pts_;               //!< Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
         bool                          is_keyframe_;           //!< Was this frames selected as keyframe?
         g2oFrameSE3*                  v_kf_;                  //!< Temporary pointer to the g2o node object of the keyframe.
         int                           last_published_ts_;     //!< Timestamp of last publishing.
@@ -66,7 +66,7 @@ namespace vio {
         void setKeyframe();
 
         /// Add a feature to the image
-        void addFeature(Feature* ftr);
+        void addFeature(std::shared_ptr<Feature> ftr);
 
         /// The KeyPoints are those five features which are closest to the 4 image corners
         /// and to the center and which have a 3D point assigned. These points are used
@@ -74,10 +74,10 @@ namespace vio {
         void setKeyPoints();
 
         /// Check if we can select five better key-points.
-        void checkKeyPoints(Feature* ftr);
+        void checkKeyPoints(std::shared_ptr<Feature> ftr);
 
         /// If a point is deleted, we must remove the corresponding key-point.
-        void removeKeyPoint(Feature* ftr);
+        void removeKeyPoint(std::shared_ptr<Feature> ftr);
 
         /// Return number of point observations.
         inline size_t nObs() const { return fts_.size(); }

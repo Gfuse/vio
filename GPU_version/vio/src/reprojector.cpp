@@ -78,7 +78,7 @@ namespace vio {
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
         feature_detection::FastDetector detector(
                 frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
-        detector.detect(frame.get(), frame->img_pyr_, Config::triangMinCornerScore(), keypoints_cur,&descriptors_cur);
+        detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints_cur,&descriptors_cur);
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
         if (!last_frame->fts_.empty())
@@ -103,7 +103,7 @@ namespace vio {
                 for (auto &&match:matches) {
                     if (match.queryIdx != f.index)continue;
                     if(keypoints_cur.size() < match.trainIdx)continue;
-                    list<Feature*>::iterator point=keypoints_cur.begin();
+                    list<std::shared_ptr<Feature>>::iterator point=keypoints_cur.begin();
                     std::advance(point,match.trainIdx);
                     if(!(*point))continue;
                     if (f.item->point == NULL){
@@ -113,9 +113,10 @@ namespace vio {
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*point)->px.x(),
                                     (int) (*point)->px.y());
-                        frame->fts_.push_back(new Feature(it_frame.item.first.get(),
-                                                          new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item),
-                                px,it_frame.item.first->cam_->cam2world(f.item->px),(*point)->level));
+                        frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
+                                                                        std::make_shared<Point>(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item),
+                                px,
+                                it_frame.item.first->cam_->cam2world(f.item->px),(*point)->level));
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
@@ -187,7 +188,7 @@ namespace vio {
             if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
                 it->pt->type_ = Point::TYPE_GOOD;
 
-            Feature* new_feature = new Feature(frame.get(), it->px, matcher_.search_level_);
+            std::shared_ptr<Feature> new_feature = std::make_shared<Feature>(frame, it->px, matcher_.search_level_);
             frame->addFeature(new_feature);
             // Here we add a reference in the feature to the 3D point, the other way
             // round is only done if this frame is selected as keyframe.
@@ -215,7 +216,7 @@ namespace vio {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO original implementation
-    bool Reprojector::reprojectPoint(FramePtr frame, Point *point) {
+    bool Reprojector::reprojectPoint(FramePtr frame, std::shared_ptr<Point> point) {
         Vector2d px(frame->w2c(point->pos_));
         if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
         {

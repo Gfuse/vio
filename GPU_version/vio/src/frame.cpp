@@ -40,7 +40,7 @@ Frame::Frame(vk::AbstractCamera* cam, const cv::Mat& img, double timestamp) :
 
 Frame::~Frame()
 {
-  std::for_each(fts_.begin(), fts_.end(), [&](Feature* i){delete i;});
+  for(auto&& f:fts_)f.reset();
 }
 
 void Frame::initFrame(const cv::Mat& img)
@@ -50,7 +50,7 @@ void Frame::initFrame(const cv::Mat& img)
     throw std::runtime_error("Frame: provided image has not the same size as the camera model or image is not grayscale");
 
   // Set keypoints to NULL
-  std::for_each(key_pts_.begin(), key_pts_.end(), [&](Feature* ftr){ ftr=NULL; });
+  for(auto&& ftr:key_pts_)ftr.reset();
 
   // Build Image Pyramid
   frame_utils::createImgPyramid(img, max(Config::nPyrLevels(), Config::kltMaxLevel()+1), img_pyr_);
@@ -62,7 +62,7 @@ void Frame::setKeyframe()
   setKeyPoints();
 }
 
-void Frame::addFeature(Feature* ftr)
+void Frame::addFeature(std::shared_ptr<Feature> ftr)
 {
   fts_.push_back(ftr);
 }
@@ -73,11 +73,10 @@ void Frame::setKeyPoints()
     if(key_pts_[i] != NULL)
       if(key_pts_[i]->point == NULL)
         key_pts_[i] = NULL;
-
-  std::for_each(fts_.begin(), fts_.end(), [&](Feature* ftr){ if(ftr->point != NULL) checkKeyPoints(ftr); });
+  for(auto&& ftr:fts_)if(ftr->point != NULL) checkKeyPoints(ftr);
 }
 
-void Frame::checkKeyPoints(Feature* ftr)
+void Frame::checkKeyPoints(std::shared_ptr<Feature> ftr)
 {
   const int cu = cam_->width()/2;
   const int cv = cam_->height()/2;
@@ -123,7 +122,7 @@ void Frame::checkKeyPoints(Feature* ftr)
   }
 }
 
-void Frame::removeKeyPoint(Feature* ftr)
+void Frame::removeKeyPoint(std::shared_ptr<Feature> ftr)
 {
     bool found = false;
     if(key_pts_.size()!=5 ){

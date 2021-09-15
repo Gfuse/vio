@@ -79,9 +79,9 @@ private:
   /// will search a maching feature in the image.
   struct Candidate {
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    Point* pt;       //!< 3D point.
+    std::shared_ptr<Point> pt;       //!< 3D point.
     Vector2d px;     //!< projected 2D pixel location.
-    Candidate(Point* pt, Vector2d& px) : pt(pt), px(px) {}
+    Candidate(std::shared_ptr<Point> pt, Vector2d& px) : pt(pt), px(px) {}
   };
   typedef std::list<Candidate > Cell;
   typedef std::vector<Cell*> CandidateGrid;
@@ -104,7 +104,7 @@ private:
   void initializeGrid(vk::AbstractCamera* cam);
   void resetGrid();
   bool reprojectCell(Cell& cell, FramePtr frame);
-  bool reprojectPoint(FramePtr frame, Point* point);
+  bool reprojectPoint(FramePtr frame, std::shared_ptr<Point>  point);
 };
 
 } // namespace vio

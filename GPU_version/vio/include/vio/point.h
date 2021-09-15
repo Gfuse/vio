@@ -53,7 +53,7 @@ public:
   Vector3d                    normal_;                  //!< Surface normal at point.
   Matrix3d                    normal_information_;      //!< Inverse covariance matrix of normal estimation.
   bool                        normal_set_;              //!< Flag whether the surface normal was estimated or not.
-  list<Feature*>              obs_;                     //!< References to keyframes which observe the point.
+  list<std::shared_ptr<Feature>>              obs_;                     //!< References to keyframes which observe the point.
   size_t                      n_obs_;                   //!< Number of obervations: Keyframes AND successful reprojections in intermediate frames.
   g2oPoint*                   v_pt_;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
   int                         last_published_ts_;       //!< Timestamp of last publishing.
@@ -64,23 +64,23 @@ public:
   int                         last_structure_optim_;    //!< Timestamp of last point optimization
 
   Point(const Vector3d& pos);
-  Point(const Vector3d& pos, Feature* ftr);
+  Point(const Vector3d& pos, std::shared_ptr<Feature> ftr);
   ~Point();
 
   /// Add a reference to a frame.
-  void addFrameRef(Feature* ftr);
+  void addFrameRef(std::shared_ptr<Feature> ftr);
 
   /// Remove reference to a frame.
-  bool deleteFrameRef(Frame* frame);
+  bool deleteFrameRef(FramePtr frame);
 
   /// Initialize point normal. The inital estimate will point towards the frame.
   void initNormal();
 
   /// Check whether mappoint has reference to a frame.
-  Feature* findFrameRef(Frame* frame);
+  std::shared_ptr<Feature> findFrameRef(FramePtr frame);
 
   /// Get Frame with similar viewpoint.
-  bool getCloseViewObs(const Vector2d& pos, Feature*& obs, int id=0) const;
+  bool getCloseViewObs(const Vector2d& pos, std::shared_ptr<Feature>& obs, int id=0) const;
 
   /// Get number of observations.
   inline size_t nRefs() const { return obs_.size(); }

@@ -45,6 +45,7 @@ EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Eigen::Vector2d)
 
 namespace vio
 {
+
     using namespace Eigen;
     using namespace Sophus;
 
@@ -128,8 +129,6 @@ namespace vio
             SE3 tem=SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));
             return tem;
         }
-        ~SE2_5(){
-        }
         bool empty() const{
             return T2_ == nullptr ? true : false;
         }
@@ -139,7 +138,7 @@ namespace vio
     };
 
     class Frame;
-    typedef boost::shared_ptr<Frame> FramePtr;
+    typedef std::shared_ptr<Frame> FramePtr;
 } // namespace vio
 
 #endif // SVO_GLOBAL_H_

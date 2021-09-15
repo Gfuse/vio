@@ -39,14 +39,14 @@ struct Seed
   static int seed_counter;
   int batch_id;                //!< Batch id is the id of the keyframe for which the seed was created.
   int id;                      //!< Seed ID, only used for visualization.
-  Feature* ftr;                //!< Feature in the keyframe for which the depth should be computed.
+  std::shared_ptr<Feature> ftr;                //!< Feature in the keyframe for which the depth should be computed.
   float a;                     //!< a of Beta distribution: When high, probability of inlier is large.
   float b;                     //!< b of Beta distribution: When high, probability of outlier is large.
   float mu;                    //!< Mean of normal distribution.
   float z_range;               //!< Max range of the possible depth.
   float sigma2;                //!< Variance of normal distribution.
   Matrix2d patch_cov;          //!< Patch covariance in reference image.
-  Seed(Feature* ftr, float depth_mean, float depth_min);
+  Seed(std::shared_ptr<Feature> ftr, float depth_mean, float depth_min);
 };
 
 /// Depth filter implements the Bayesian Update proposed in:
@@ -61,7 +61,7 @@ public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
   typedef boost::unique_lock<boost::mutex> lock_t;
-  typedef boost::function<void ( Point*, double )> callback_t;
+  typedef boost::function<void ( std::shared_ptr<Point>, double )> callback_t;
 
   /// Depth-filter config parameters
   struct Options
@@ -115,17 +115,17 @@ public:
   /// Can be used to compute the Next-Best-View in parallel.
   /// IMPORTANT! Make sure you hold a valid reference counting pointer to frame
   /// so it is not being deleted while you use it.
-  void getSeedsCopy(const FramePtr& frame, std::list<Seed>& seeds);
+  void getSeedsCopy(const FramePtr& frame, std::list<std::shared_ptr<Seed>>& seeds);
 
   /// Return a reference to the seeds. This is NOT THREAD SAFE!
   //std::list<Seed>& getSeeds() { return seeds_; } Bug 238
-  std::list<Seed, Eigen::aligned_allocator<Seed>>& getSeeds() { return seeds_; }
+  std::list<std::shared_ptr<Seed>, Eigen::aligned_allocator<Seed>>& getSeeds() { return seeds_; }
 
   /// Bayes update of the seed, x is the measurement, tau2 the measurement uncertainty
   static bool updateSeed(
       const float x,
       const float tau2,
-      Seed* seed);
+      std::shared_ptr<Seed> seed);
 
   /// Compute the uncertainty of the measurement.
   static double computeTau(
@@ -137,7 +137,7 @@ public:
 protected:
   feature_detection::DetectorPtr feature_detector_;
   callback_t seed_converged_cb_;
-  std::list<Seed, Eigen::aligned_allocator<Seed>> seeds_;
+  std::list<std::shared_ptr<Seed>, Eigen::aligned_allocator<Seed>> seeds_;
   boost::mutex seeds_mut_;
   bool seeds_updating_halt_;            //!< Set this value to true when seeds updating should be interrupted.
   boost::thread* thread_;

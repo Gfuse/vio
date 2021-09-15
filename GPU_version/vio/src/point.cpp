@@ -38,7 +38,7 @@ Point::Point(const Vector3d& pos) :
   last_structure_optim_(0)
 {}
 
-Point::Point(const Vector3d& pos, Feature* ftr) :
+Point::Point(const Vector3d& pos, std::shared_ptr<Feature> ftr) :
   id_(point_counter_++),
   pos_(pos),
   normal_set_(false),
@@ -57,14 +57,14 @@ Point::Point(const Vector3d& pos, Feature* ftr) :
 Point::~Point()
 {}
 
-void Point::addFrameRef(Feature* ftr)
+void Point::addFrameRef(std::shared_ptr<Feature> ftr)
 {
 
   obs_.push_front(ftr);
   ++n_obs_;
 }
 
-Feature* Point::findFrameRef(Frame* frame)
+std::shared_ptr<Feature> Point::findFrameRef(FramePtr frame)
 {
     boost::unique_lock<boost::mutex> lock(point_mut_);
   for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
@@ -73,7 +73,7 @@ Feature* Point::findFrameRef(Frame* frame)
   return NULL;    // no keyframe found
 }
 
-bool Point::deleteFrameRef(Frame* frame)
+bool Point::deleteFrameRef(FramePtr frame)
 {
     boost::unique_lock<boost::mutex> lock(point_mut_);
   for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
@@ -94,7 +94,7 @@ bool Point::deleteFrameRef(Frame* frame)
 void Point::initNormal()
 {
   assert(!obs_.empty());
-  const Feature* ftr = obs_.back();
+  const std::shared_ptr<Feature> ftr = obs_.back();
   assert(ftr->frame != NULL);
   normal_ = ftr->frame->se3().rotation_matrix().transpose()*(-ftr->f);
   double x=pow(20/(pos_-Vector3d(ftr->frame->pos()(0),0.0,ftr->frame->pos()(1))).norm(),2);
@@ -102,7 +102,7 @@ void Point::initNormal()
   normal_set_ = true;
 }
 
-bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr,int id) const
+bool Point::getCloseViewObs(const Vector2d& framepos, std::shared_ptr<Feature>& ftr,int id) const
 {
     boost::unique_lock<boost::mutex> lock(point_mut_);
     // TODO: get frame with same point of view AND same pyramid level!

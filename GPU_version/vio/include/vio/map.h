@@ -32,7 +32,7 @@ class Seed;
 class MapPointCandidates
 {
 public:
-  typedef pair<Point*, Feature*> PointCandidate;
+  typedef pair<std::shared_ptr<Point>, std::shared_ptr<Feature>> PointCandidate;
   typedef list<PointCandidate> PointCandidateList;
 
   /// The depth-filter is running in a parallel thread and fills the canidate list.
@@ -42,19 +42,19 @@ public:
   /// Candidate points are created from converged seeds.
   /// Until the next keyframe, these points can be used for reprojection and pose optimization.
   PointCandidateList candidates_;
-  list< Point* > trash_points_;
+  list< std::shared_ptr<Point> > trash_points_;
 
   MapPointCandidates();
   ~MapPointCandidates();
 
   /// Add a candidate point.
-  void newCandidatePoint(Point* point, double depth_sigma2);
+  void newCandidatePoint(std::shared_ptr<Point>  point, double depth_sigma2);
 
   /// Adds the feature to the frame and deletes candidate from list.
   void addCandidatePointToFrame(FramePtr frame);
 
   /// Remove a candidate point from the list of candidates.
-  bool deleteCandidatePoint(Point* point);
+  bool deleteCandidatePoint(std::shared_ptr<Point> point);
 
   /// Remove all candidates that belong to a frame.
   void removeFrameCandidates(FramePtr frame);
@@ -72,7 +72,7 @@ class Map : boost::noncopyable
 {
 public:
   list< FramePtr > keyframes_;          //!< List of keyframes in the map.
-  list< Point* > trash_points_;         //!< A deleted point is moved to the trash bin. Now and then this is cleaned. One reason is that the visualizer must remove the points also.
+  list< std::shared_ptr<Point> > trash_points_;         //!< A deleted point is moved to the trash bin. Now and then this is cleaned. One reason is that the visualizer must remove the points also.
   MapPointCandidates point_candidates_;
 
 
@@ -83,16 +83,16 @@ public:
   void reset();
 
   /// Delete a point in the map and remove all references in keyframes to it.
-  void safeDeletePoint(Point* pt);
+  void safeDeletePoint(std::shared_ptr<Point> pt);
 
   /// Moves the point to the trash queue which is cleaned now and then.
-  void deletePoint(Point* pt);
+  void deletePoint(std::shared_ptr<Point> pt);
 
   /// Moves the frame to the trash queue which is cleaned now and then.
   bool safeDeleteFrame(FramePtr frame);
 
   /// Remove the references between a point and a frame.
-  void removePtFrameRef(Frame* frame, Feature* ftr);
+  void removePtFrameRef(FramePtr frame, std::shared_ptr<Feature> ftr);
 
   /// Add a new keyframe to the map.
   void addKeyframe(FramePtr new_keyframe);
@@ -128,8 +128,8 @@ namespace map_debug {
 
 void mapStatistics(Map* map);
 void mapValidation(Map* map, int id);
-void frameValidation(Frame* frame, int id);
-void pointValidation(Point* point, int id);
+void frameValidation(FramePtr frame, int id);
+void pointValidation(std::shared_ptr<Point> point, int id);
 
 } // namespace map_debug
 } // namespace vio

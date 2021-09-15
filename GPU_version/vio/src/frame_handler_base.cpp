@@ -123,16 +123,15 @@ void FrameHandlerBase::optimizeStructure(
     size_t max_n_pts,
     int max_iter)
 {
-  deque<Point*> pts;
+  deque<std::shared_ptr<Point>> pts;
   for(auto&& it:frame->fts_){
       if(it->point!=NULL)pts.push_back(it->point);
   }
   //max_n_pts = min(max_n_pts, pts.size());
   //nth_element(pts.begin(), pts.begin() + max_n_pts, pts.end(), ptLastOptimComparator);
-  for(deque<Point*>::iterator it=pts.begin(); it!=pts.begin(); ++it)
-  {
-    (*it)->optimize(max_iter);
-    (*it)->last_structure_optim_ = frame->id_;
+  for(auto&& pt:pts){
+      pt->optimize(max_iter);
+      pt->last_frame_overlap_id_= frame->id_;
   }
 }
 

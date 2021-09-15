@@ -20,6 +20,7 @@
 #include <vio/frame.h>
 #include <vio/feature.h>
 #include <boost/bind.hpp>
+#include <vio/for_it.hpp>
 
 namespace vio {
 
@@ -28,7 +29,6 @@ Map::Map() {}
 Map::~Map()
 {
   reset();
-  SVO_INFO_STREAM("Map destructed");
 }
 
 void Map::reset()
@@ -42,19 +42,18 @@ bool Map::safeDeleteFrame(FramePtr frame)
 {
   if(syn_==true)return false;
   bool found = false;
-  for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
-  {
-    if(it->get()->id_ == frame->id_)
-    {
-      std::for_each((*it)->fts_.begin(), (*it)->fts_.end(), [&](Feature* ftr){
-        removePtFrameRef(it->get(), ftr);
-      });
-      keyframes_.erase(it);
-      found = true;
-      break;
-    }
+  size_t position;
+  for(auto&& keyframe:_for(keyframes_)){
+      if(keyframe.item->id_==frame->id_){
+          for(auto&& fts:keyframe.item->fts_)removePtFrameRef(keyframe.item, fts);
+          found = true;
+          position=keyframe.index;
+          break;
+      }
   }
-
+  std::list<std::shared_ptr<Frame>>::iterator left=keyframes_.begin();
+  std::advance(left,position);
+  keyframes_.erase(left);
   point_candidates_.removeFrameCandidates(frame);
 
   if(found)
@@ -64,40 +63,37 @@ bool Map::safeDeleteFrame(FramePtr frame)
   return false;
 }
 
-void Map::removePtFrameRef(Frame* frame, Feature* ftr)
+void Map::removePtFrameRef(FramePtr frame, std::shared_ptr<Feature> ftr)
 {
   if(ftr->point == NULL)
     return; // mappoint may have been deleted in a previous ref. removal
-  Point* pt = ftr->point;
-  delete ftr->point;
-  if(pt->obs_.size() <= 2)
+  if(ftr->point->obs_.size() <= 2)
   {
     // If the references list of mappoint has only size=2, delete mappoint
-    safeDeletePoint(pt);
+    safeDeletePoint(ftr->point);
     return;
   }
-  pt->deleteFrameRef(frame);  // Remove reference from map_point
+  ftr->point->deleteFrameRef(frame);  // Remove reference from map_point
   frame->removeKeyPoint(ftr); // Check if mp was keyMp in keyframe
 }
 
-void Map::safeDeletePoint(Point* pt)
+void Map::safeDeletePoint(std::shared_ptr<Point> pt)
 {
   // Delete references to mappoints in all keyframes
   if(pt->obs_.size()>1){
       for(auto&& ftr:pt->obs_){
-          ftr->frame->removeKeyPoint(ftr);
-          delete ftr->point;
+          if(ftr->frame)ftr->frame->removeKeyPoint(ftr);
+          ftr->point.reset();
       }
   }else{
-      delete pt->obs_.back()->point;
+      pt->obs_.back()->point.reset();
   }
   pt->obs_.clear();
-
   // Delete mappoint
   deletePoint(pt);
 }
 
-void Map::deletePoint(Point* pt)
+void Map::deletePoint(std::shared_ptr<Point> pt)
 {
   pt->type_ = Point::TYPE_DELETED;
   trash_points_.push_back(pt);
@@ -210,9 +206,7 @@ void Map::transform(const Matrix2d& R, const Vector2d& t, const double& s)
 
 void Map::emptyTrash()
 {
-  std::for_each(trash_points_.begin(), trash_points_.end(), [&](Point*& pt){
-    delete pt;
-  });
+  for(auto&& t:trash_points_)t.reset();
   trash_points_.clear();
   point_candidates_.emptyTrash();
 }
@@ -225,7 +219,7 @@ MapPointCandidates::~MapPointCandidates()
   reset();
 }
 
-void MapPointCandidates::newCandidatePoint(Point* point, double depth_sigma2)
+void MapPointCandidates::newCandidatePoint(std::shared_ptr<Point> point, double depth_sigma2)
 {
   point->type_ = Point::TYPE_CANDIDATE;
   boost::unique_lock<boost::mutex> lock(mut_);
@@ -238,7 +232,7 @@ void MapPointCandidates::addCandidatePointToFrame(FramePtr frame)
   PointCandidateList::iterator it=candidates_.begin();
   while(it != candidates_.end())
   {
-    if(it->first->obs_.front()->frame == frame.get())
+    if(it->first->obs_.front()->frame == frame)
     {
       // insert feature in the frame
       it->first->type_ = Point::TYPE_UNKNOWN;
@@ -251,7 +245,7 @@ void MapPointCandidates::addCandidatePointToFrame(FramePtr frame)
   }
 }
 
-bool MapPointCandidates::deleteCandidatePoint(Point* point)
+bool MapPointCandidates::deleteCandidatePoint(std::shared_ptr<Point>  point)
 {
   boost::unique_lock<boost::mutex> lock(mut_);
   for(auto it=candidates_.begin(), ite=candidates_.end(); it!=ite; ++it)
@@ -286,8 +280,8 @@ void MapPointCandidates::reset()
 {
   boost::unique_lock<boost::mutex> lock(mut_);
   std::for_each(candidates_.begin(), candidates_.end(), [&](PointCandidate& c){
-    delete c.first;
-    delete c.second;
+     c.first.reset();
+     c.second.reset();
   });
   candidates_.clear();
 }
@@ -296,16 +290,14 @@ void MapPointCandidates::deleteCandidate(PointCandidate& c)
 {
   // camera-rig: another frame might still be pointing to the candidate point
   // therefore, we can't delete it right now.
-  delete c.second;
+  c.second.reset();
   c.first->type_ = Point::TYPE_DELETED;
   trash_points_.push_back(c.first);
 }
 
 void MapPointCandidates::emptyTrash()
 {
-  std::for_each(trash_points_.begin(), trash_points_.end(), [&](Point*& p){
-    delete p;
-  });
+  for(auto&& point:trash_points_)point.reset();
   trash_points_.clear();
 }
 
@@ -313,11 +305,12 @@ namespace map_debug {
 
 void mapValidation(Map* map, int id)
 {
-  for(auto it=map->keyframes_.begin(); it!=map->keyframes_.end(); ++it)
-    frameValidation(it->get(), id);
+  for(auto&& it:map->keyframes_)
+    frameValidation(it, id);
+
 }
 
-void frameValidation(Frame* frame, int id)
+void frameValidation(FramePtr frame, int id)
 {
   for(auto it = frame->fts_.begin(); it!=frame->fts_.end(); ++it)
   {
@@ -338,7 +331,7 @@ void frameValidation(Frame* frame, int id)
         printf("ERROR DataValidation %i: KeyPoints not correct!\n", id);
 }
 
-void pointValidation(Point* point, int id)
+void pointValidation(std::shared_ptr<Point> point, int id)
 {
   for(auto it=point->obs_.begin(); it!=point->obs_.end(); ++it)
   {
@@ -363,7 +356,7 @@ void mapStatistics(Map* map)
   // compute average number of observations that each point has
   size_t n_frame_obs(0);
   size_t n_pts(0);
-  std::set<Point*> points;
+  std::set<std::shared_ptr<Point>> points;
   for(auto it=map->keyframes_.begin(); it!=map->keyframes_.end(); ++it)
   {
     for(auto ftr=(*it)->fts_.begin(); ftr!=(*it)->fts_.end(); ++ftr)

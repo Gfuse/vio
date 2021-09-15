@@ -89,13 +89,13 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
         if(frame_cur->cam_->isInFrame(px_cur.cast<int>(), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>(), 10))
         {
             Vector3d pos = frame_cur->getSE3Inv() * (xyz_in_cur_[*it]/* *scale */);
-            Point* new_point = new Point(pos);
+            std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
 
-            Feature* ftr_cur(new Feature(frame_cur.get(), new_point, px_cur, f_cur_[*it], 0));
+            std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, px_cur, f_cur_[*it], 0);
             frame_cur->addFeature(ftr_cur);
             new_point->addFrameRef(ftr_cur);
 
-            Feature* ftr_ref(new Feature(frame_ref_.get(), new_point, px_ref, f_ref_[*it], 0));
+            std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, px_ref, f_ref_[*it], 0);
             frame_ref_->addFeature(ftr_ref);
             new_point->addFrameRef(ftr_ref);
         }
@@ -127,14 +127,14 @@ void detectFeatures(
   Features new_features;
   feature_detection::FastDetector detector(
       frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
-  detector.detect(frame.get(), frame->img_pyr_, Config::triangMinCornerScore(), new_features);
+  detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), new_features);
   // now for all maximum corners, initialize a new seed
   px_vec.clear();
   f_vec.clear();
   for(auto&& ftr:new_features){
       px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
       f_vec.push_back(ftr->f);
-      delete ftr;
+      ftr.reset();
   }
 }
 void trackKlt(

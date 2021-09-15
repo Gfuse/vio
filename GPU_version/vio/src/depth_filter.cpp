@@ -37,7 +37,7 @@ namespace vio {
     int Seed::batch_counter = 0;
     int Seed::seed_counter = 0;
 
-    Seed::Seed(Feature* ftr, float depth_mean, float depth_min) :
+    Seed::Seed(std::shared_ptr<Feature> ftr, float depth_mean, float depth_min) :
             batch_id(batch_counter),
             id(seed_counter++),
             ftr(ftr),
@@ -148,16 +148,14 @@ namespace vio {
         fprintf(log_,"[%s] init seeds\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         feature_detector_->setExistingFeatures(frame->fts_);
-        feature_detector_->detect(frame.get(), frame->img_pyr_,
+        feature_detector_->detect(frame, frame->img_pyr_,
                                   Config::triangMinCornerScore(), new_features);
 
         // initialize a seed for every new feature
         seeds_updating_halt_ = true;
         seeds_mut_.lock();
         ++Seed::batch_counter;
-        std::for_each(new_features.begin(), new_features.end(), [&](Feature* ftr){
-            seeds_.push_back(Seed(ftr, new_keyframe_mean_depth_, new_keyframe_min_depth_));
-        });
+        for(auto&& ftr:new_features)seeds_.push_back(make_shared<Seed>(ftr, new_keyframe_mean_depth_, new_keyframe_min_depth_));
 
 #if VIO_DEBUG
         fprintf(log_,"[%s] DepthFilter: Initialized %d new seeds\n",vio::time_in_HH_MM_SS_MMM().c_str(),new_features.size());
@@ -173,11 +171,11 @@ namespace vio {
         fprintf(log_,"[%s] remove key frame\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         seeds_mut_.lock();
-        std::list<Seed>::iterator it=seeds_.begin();
+        std::list<std::shared_ptr<Seed>>::iterator it=seeds_.begin();
         size_t n_removed = 0;
         while(it!=seeds_.end())
         {
-            if(it->ftr->frame->id_ == frame->id_)
+            if((*it)->ftr->frame->id_ == frame->id_)
             {
                 it = seeds_.erase(it);
                 ++n_removed;
@@ -240,7 +238,7 @@ namespace vio {
         // for all the seeds in every frame!
         size_t n_updates=0, n_failed_matches=0;
         lock_t lock(seeds_mut_);
-        std::list<Seed>::iterator it=seeds_.begin();
+        std::list<std::shared_ptr<Seed>>::iterator it=seeds_.begin();
 #if VIO_DEBUG
         fprintf(log_,"[%s] update seed\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
@@ -253,19 +251,19 @@ namespace vio {
             if(seeds_updating_halt_)
                 return;
 
-            if(it->ftr->frame == NULL){
+            if((*it)->ftr->frame == NULL){
                 it = seeds_.erase(it);
                 continue;
             }
             // check if point is visible in the current image
-            SE2 T(frame->T_f_w_.pitch()-it->ftr->frame->T_f_w_.pitch(),frame->T_f_w_.se2().translation()+it->ftr->frame->T_f_w_.inverse().translation());
+            SE2 T(frame->T_f_w_.pitch()-(*it)->ftr->frame->T_f_w_.pitch(),frame->T_f_w_.se2().translation()+(*it)->ftr->frame->T_f_w_.inverse().translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
             q = AngleAxisd(0.0, Vector3d::UnitX())
                 * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
             SE3 T_cur_ref(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
-            const Vector3d xyz_f(T_cur_ref*(1.0/it->mu * it->ftr->f) );
+            const Vector3d xyz_f(T_cur_ref*(1.0/(*it)->mu * (*it)->ftr->f) );
 #if VIO_DEBUG
             fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
 #endif
@@ -278,8 +276,8 @@ namespace vio {
                 continue;
             }
 
-            float z_min = it->mu + sqrt(it->sigma2);
-            float z_max = max(it->mu - sqrt(it->sigma2), 0.00000001f);
+            float z_min = (*it)->mu + sqrt((*it)->sigma2);
+            float z_max = max((*it)->mu - sqrt((*it)->sigma2), 0.00000001f);
 
             if(z_min < 0){
                 ++it;
@@ -288,18 +286,18 @@ namespace vio {
 
             double z;
             if(!matcher_.findEpipolarMatchDirect(
-                    *it->ftr->frame, *frame, *it->ftr, 1.0/it->mu, 1.0/z_min, 1.0/z_max, z))
+                    *(*it)->ftr->frame, *frame, *(*it)->ftr, 1.0/(*it)->mu, 1.0/z_min, 1.0/z_max, z))
             {
-                it->b++; // increase outlier probability when no match was found
+                (*it)->b++; // increase outlier probability when no match was found
                 ++it;
                 ++n_failed_matches;
                 continue;
             }
-            double tau = computeTau(T_cur_ref.inverse(), it->ftr->f, z, px_error_angle);
+            double tau = computeTau(T_cur_ref.inverse(), (*it)->ftr->f, z, px_error_angle);
             double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
 
             // update the estimate
-            if(!updateSeed(1.0/z, tau_inverse*tau_inverse, &*it)){
+            if(!updateSeed(1.0/z, tau_inverse*tau_inverse, *it)){
                 ++it;
                 ++n_failed_matches;
                 continue;
@@ -313,13 +311,13 @@ namespace vio {
             }
 
             // if the seed has converged, we initialize a new candidate point and remove the seed
-            if(sqrt(it->sigma2) < it->z_range/options_.seed_convergence_sigma2_thresh)
+            if(sqrt((*it)->sigma2) < (*it)->z_range/options_.seed_convergence_sigma2_thresh)
             {
-                assert(it->ftr->point == NULL); // TODO this should not happen anymore
-                Vector3d xyz_world(it->ftr->frame->getSE3Inv() * (it->ftr->f/it->mu));
-                Point* point = new Point(xyz_world, it->ftr);
-                it->ftr->point = point;
-                seed_converged_cb_(point, it->sigma2); // put in candidate list
+                assert((*it)->ftr->point == NULL); // TODO this should not happen anymore
+                Vector3d xyz_world((*it)->ftr->frame->getSE3Inv() * ((*it)->ftr->f/(*it)->mu));
+                std::shared_ptr<Point> point = std::make_shared<Point>(xyz_world, (*it)->ftr);
+                (*it)->ftr->point = point;
+                seed_converged_cb_(point, (*it)->sigma2); // put in candidate list
                 it = seeds_.erase(it);
             }
             else if(isnan(z_min))
@@ -337,16 +335,16 @@ namespace vio {
             frame_queue_.pop();
     }
 
-    void DepthFilter::getSeedsCopy(const FramePtr& frame, std::list<Seed>& seeds)
+    void DepthFilter::getSeedsCopy(const FramePtr& frame, std::list<std::shared_ptr<Seed>>& seeds)
     {
         lock_t lock(seeds_mut_);
-        for(std::list<Seed>::iterator it=seeds_.begin(); it!=seeds_.end(); ++it)
+        for(std::list<std::shared_ptr<Seed>>::iterator it=seeds_.begin(); it!=seeds_.end(); ++it)
         {
-            if (it->ftr->frame->id_ == frame->id_)
+            if ((*it)->ftr->frame->id_ == frame->id_)
                 seeds.push_back(*it);
         }
     }
-    bool DepthFilter::updateSeed(const float x, const float tau2, Seed* seed)
+    bool DepthFilter::updateSeed(const float x, const float tau2, std::shared_ptr<Seed> seed)
     {
         float norm_scale = sqrt(seed->sigma2 + tau2);
         if(std::isnan(norm_scale))

@@ -41,11 +41,11 @@ void AbstractDetector::resetGrid()
 
 void AbstractDetector::setExistingFeatures(const Features& fts)
 {
-  std::for_each(fts.begin(), fts.end(), [&](Feature* i){
+  for(auto&& i:fts){
     grid_occupancy_.at(
         static_cast<int>(i->px[1]/cell_size_)*grid_n_cols_
         + static_cast<int>(i->px[0]/cell_size_)) = true;
-  });
+  };
 }
 
 void AbstractDetector::setGridOccpuancy(const Vector2d& px)
@@ -66,7 +66,7 @@ FastDetector::FastDetector(
 }
 
 void FastDetector::detect(
-    Frame* frame,
+    std::shared_ptr<Frame> frame,
     const ImgPyr& img_pyr,
     const double detection_threshold,
     Features& fts,
@@ -102,7 +102,7 @@ void FastDetector::detect(
           corners.at(k) = Corner(fast_corners[i].x*scale, fast_corners[i].y*scale, score, L, 0.0f);
           // Create feature for every corner that has high enough corner score
           if(corners.at(k).score > detection_threshold){
-              fts.push_back(new Feature(frame, Vector2d(corners.at(k).x, corners.at(k).y), corners.at(k).level));
+              fts.push_back(make_shared<Feature>(frame, Vector2d(corners.at(k).x, corners.at(k).y), corners.at(k).level));
               if(descriptors)keypoints.push_back(cv::KeyPoint(fast_corners[i].x, fast_corners[i].y, 1));
           }
       }

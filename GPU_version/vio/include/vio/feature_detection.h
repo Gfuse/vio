@@ -57,7 +57,7 @@ public:
   };
 
   virtual void detect(
-      Frame* frame,
+          std::shared_ptr<Frame> frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
       Features& fts,
@@ -101,7 +101,7 @@ public:
   virtual ~FastDetector() {}
 
   virtual void detect(
-      Frame* frame,
+      std::shared_ptr<Frame> frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
       Features& fts,

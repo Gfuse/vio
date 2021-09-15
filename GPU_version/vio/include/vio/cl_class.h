@@ -51,6 +51,7 @@ public:
 
     template<typename T>
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
+        assert(buf);
         for(auto&& i:_buffers)if(i.second==id){
                 cl_int error;
                 cl::Event event;

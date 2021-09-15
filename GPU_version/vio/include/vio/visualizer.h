@@ -35,7 +35,7 @@ class Point;
 class Map;
 class FrameHandlerMono;
 
-typedef boost::shared_ptr<Frame> FramePtr;
+typedef std::shared_ptr<Frame> FramePtr;
 
 /// This class bundles all functions to publish visualisation messages.
 class Visualizer

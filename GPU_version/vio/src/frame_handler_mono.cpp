@@ -81,8 +81,7 @@ void FrameHandlerMono::initialize()
   feature_detection::DetectorPtr feature_detector(
       new feature_detection::FastDetector(
           cam_->width(), cam_->height(), Config::gridSize(),gpu_fast_, Config::nPyrLevels()));
-  DepthFilter::callback_t depth_filter_cb = boost::bind(
-      &MapPointCandidates::newCandidatePoint, &map_.point_candidates_, _1, _2);
+  DepthFilter::callback_t depth_filter_cb = boost::bind(&MapPointCandidates::newCandidatePoint, &map_.point_candidates_, _1, _2);
   depth_filter_ = new DepthFilter(feature_detector, depth_filter_cb);
   depth_filter_->startThread();
 }
@@ -103,7 +102,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   overlap_kfs_.clear();
 
   // create new frame
-  new_frame_=boost::make_shared<Frame>(cam_, img.clone(), timestamp);
+  new_frame_=std::make_shared<Frame>(cam_, img.clone(), timestamp);
   time_=time;
   // process frame
   UpdateResult res = RESULT_FAILURE;
