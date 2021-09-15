@@ -54,7 +54,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
         featue_px[feature_counter_].y=(*it)->px(1);
         ++feature_counter_;
   }
-  if(feature_counter_<10) // more than 10
+  if(!feature_counter_) // more than 10
   {
       return 0;
   }

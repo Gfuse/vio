@@ -28,10 +28,9 @@ namespace initialization {
 InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 {
   reset();
-  detectFeatures(frame_ref, px_ref_, px_level, f_ref_, gpu_fast_);
+  detectFeatures(frame_ref, px_ref_, features_ref_, gpu_fast_);
   if(px_ref_.size() < 100)
   {
-//    SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 100 features. Retry in more textured environment.");
     return FAILURE;
   }
 #if VIO_DEBUG
@@ -47,7 +46,7 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 
 InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
-  trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, f_ref_, f_cur_, disparities_);
+  trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, features_ref_, disparities_);
   if(disparities_.size() < 1){
       ukf_->UpdateSvo(0.0,0.0,0.0);
       return NO_KEYFRAME;
@@ -64,8 +63,8 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 #endif
         return NO_KEYFRAME;
     }
-  computeHomography(
-      f_ref_, f_cur_,
+  computeHomography(frame_cur,
+       features_ref_, px_cur_,
       frame_ref_->cam_->errorMultiplier2(), Config::poseOptimThresh(),
       inliers_, xyz_in_cur_, T_cur_from_ref_);
   if(inliers_.size() < Config::initMinInliers()){
@@ -82,24 +81,23 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   }
     frame_cur->T_f_w_ = T_cur_from_ref_;
   // For each inlier create 3D point and add feature in both frames
-    for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
-    {
-        Vector2d px_cur(px_cur_[*it].x, px_cur_[*it].y);
-        Vector2d px_ref(px_ref_[*it].x, px_ref_[*it].y);
-        if(frame_cur->cam_->isInFrame(px_cur.cast<int>()*(1<<px_level[*it]), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>()*(1<<px_level[*it]), 10))
-        {
-            Vector3d pos = frame_cur->getSE3Inv() * (xyz_in_cur_[*it]/* *scale */);
-            std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
+  for(auto&& id:inliers_){
+      Features::iterator first=features_ref_.begin();
+      std::advance(first,id);
+      if(frame_cur->cam_->isInFrame(Vector2d(px_cur_.at(id).x,px_cur_.at(id).y).cast<int>(), 10) &&
+      frame_ref_->cam_->isInFrame((*first)->px.cast<int>(), 10)){
+          Vector3d pos = frame_cur->getSE3Inv() * (xyz_in_cur_.at(id)/* *scale */);
+          std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
+          std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, Vector2d(px_cur_.at(id).x,px_cur_.at(id).y),
+                                                                     frame_cur->c2f(px_cur_.at(id).x,px_cur_.at(id).y), (*first)->level);
+          frame_cur->addFeature(ftr_cur);
+          new_point->addFrameRef(ftr_cur);
 
-            std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, px_cur, f_cur_[*it], px_level[*it]);
-            frame_cur->addFeature(ftr_cur);
-            new_point->addFrameRef(ftr_cur);
-
-            std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, px_ref, f_ref_[*it], px_level[*it]);
-            frame_ref_->addFeature(ftr_ref);
-            new_point->addFrameRef(ftr_ref);
-        }
-    }
+          std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, (*first)->px, (*first)->f, (*first)->level);
+          frame_ref_->addFeature(ftr_ref);
+          new_point->addFrameRef(ftr_ref);
+      }
+  }
 #if VIO_DEBUG
     fprintf(log_,"[%s] Init finished: Homography RANSAC (inlier) is:%d ,While %d inliers minimum required.  px average disparity is:%f ,While minimum is: %f  KLT tracked: %d\n",
             vio::time_in_HH_MM_SS_MMM().c_str(),
@@ -121,11 +119,9 @@ void KltHomographyInit::reset()
 void detectFeatures(
     FramePtr frame,
     vector<cv::Point2f>& px_vec,
-    vector<int>& px_lvl,
-    vector<Vector3d>& f_vec,
+    Features& new_features,
     opencl* gpu_fast)
 {
-  Features new_features;
   feature_detection_mut_.lock();
   feature_detection::FastDetector detector(
       frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
@@ -133,12 +129,8 @@ void detectFeatures(
   feature_detection_mut_.unlock();
   // now for all maximum corners, initialize a new seed
   px_vec.clear();
-  f_vec.clear();
   for(auto&& ftr:new_features){
       px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
-      px_lvl.push_back(ftr->level);
-      f_vec.push_back(ftr->f);
-      ftr.reset();
   }
 }
 void trackKlt(
@@ -146,8 +138,7 @@ void trackKlt(
             FramePtr frame_cur,
             vector<cv::Point2f>& px_ref,
             vector<cv::Point2f>& px_cur,
-            vector<Vector3d>& f_ref,
-            vector<Vector3d>& f_cur,
+            Features& features_ref,
             vector<double>& disparities)
     {
         disparities.clear();
@@ -166,19 +157,16 @@ void trackKlt(
                                  4, termcrit, cv::OPTFLOW_USE_INITIAL_FLOW);
         vector<cv::Point2f>::iterator px_ref_it = px_ref.begin();
         vector<cv::Point2f>::iterator px_cur_it = px_cur.begin();
-        vector<Vector3d>::iterator f_ref_it = f_ref.begin();
-        f_cur.clear(); //f_cur.reserve(px_cur.size());
-        //disparities.reserve(px_cur.size());
+        Features::iterator f_ref_it = features_ref.begin();
         for(size_t i=0; px_ref_it != px_ref.end(); ++i)
         {
             if(!status[i])
             {
                 px_ref_it = px_ref.erase(px_ref_it);
                 px_cur_it = px_cur.erase(px_cur_it);
-                f_ref_it = f_ref.erase(f_ref_it);
+                f_ref_it = features_ref.erase(f_ref_it);
                 continue;
             }
-            f_cur.push_back(frame_cur->c2f(px_cur_it->x, px_cur_it->y));
             disparities.push_back(Vector2d(px_ref_it->x - px_cur_it->x, px_ref_it->y - px_cur_it->y).norm());
             ++px_ref_it;
             ++px_cur_it;

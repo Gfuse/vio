@@ -21,6 +21,8 @@
 #include <vio/cl_class.h>
 #include <vio/ukf.h>
 #include <vio/homography.h>
+#include <vio/for_it.hpp>
+#include <vio/feature.h>
 
 namespace vio {
 
@@ -46,10 +48,9 @@ public:
 
 protected:
   vector<cv::Point2f> px_ref_;      //!< keypoints to be tracked in reference frame.
-  vector<int> px_level;
+  list<std::shared_ptr<Feature>>    features_ref_;
   vector<cv::Point2f> px_cur_;      //!< tracked keypoints in current frame.
-  vector<Vector3d> f_ref_;          //!< bearing vectors corresponding to the keypoints in the reference image.
-  vector<Vector3d> f_cur_;          //!< bearing vectors corresponding to the keypoints in the current image.
+  //vector<Vector3d> f_cur_;          //!< bearing vectors corresponding to the keypoints in the current image.
   vector<double> disparities_;      //!< disparity between first and second frame.
   vector<int> inliers_;             //!< inliers after the geometric check (e.g., Homography).
   vector<Vector3d> xyz_in_cur_;     //!< 3D points computed during the geometric check.
@@ -59,20 +60,24 @@ protected:
   UKF* ukf_= nullptr;
 
   void computeHomography(
-            const vector<Vector3d>& f_ref,
-            const vector<Vector3d>& f_cur,
+            FramePtr frame,
+            list<std::shared_ptr<Feature>>& features_ref,
+            const vector<cv::Point2f>& px_cur_,
             double focal_length,
             double reprojection_threshold,
             vector<int>& inliers,
             vector<Vector3d>& xyz_in_cur,
             SE2_5& T_cur_from_ref)
     {
-        vector<Vector2d > uv_ref(f_ref.size());
-        vector<Vector2d > uv_cur(f_cur.size());
-        for(size_t i=0, i_max=f_ref.size(); i<i_max; ++i)
-        {
-            uv_ref[i] = vk::project2d(f_ref[i]);
-            uv_cur[i] = vk::project2d(f_cur[i]);
+        vector<Vector2d> uv_ref(features_ref.size());
+        vector<Vector2d> uv_cur(features_ref.size());
+        vector<Vector3d> f_ref(features_ref.size());
+        vector<Vector3d> f_cur(features_ref.size());
+        for(auto&& ftr:_for(features_ref)){
+            uv_ref.at(ftr.index) = ftr.item->px;
+            uv_cur.at(ftr.index) = Vector2d(px_cur_.at(ftr.index).x,px_cur_.at(ftr.index).y);
+            f_cur.at(ftr.index) = frame->c2f(px_cur_.at(ftr.index).x,px_cur_.at(ftr.index).y);
+            f_ref.at(ftr.index) = ftr.item->f;
         }
         vk::Homography Homography(uv_ref, uv_cur, focal_length, reprojection_threshold);
         Homography.computeSE3fromMatches();
@@ -89,7 +94,7 @@ protected:
               euler(0),euler(1),euler(2)
               ,res.second.se2().translation().x(),res.second.se2().translation().y(),res.second.pitch());
 #endif
-        if(in>10)
+        if(in>20)
         res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
         vk::computeInliers(f_cur, f_ref,
                            res.second.se3().rotation_matrix(), res.second.se3().translation(),
@@ -108,16 +113,14 @@ protected:
 void detectFeatures(
     FramePtr frame,
     vector<cv::Point2f>& px_vec,
-    vector<int>& px_lvl,
-    vector<Vector3d>& f_vec,
+    list<std::shared_ptr<Feature>>& new_features,
     opencl* gpu_fast);
 void trackKlt(
             FramePtr frame_ref,
             FramePtr frame_cur,
             vector<cv::Point2f>& px_ref,
             vector<cv::Point2f>& px_cur,
-            vector<Vector3d>& f_ref,
-            vector<Vector3d>& f_cur,
+            Features& features_ref,
             vector<double>& disparities);
 } // namespace initialization
 } // namespace vio

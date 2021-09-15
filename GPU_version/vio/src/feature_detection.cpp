@@ -108,7 +108,7 @@ void FastDetector::detect(
           corners.at(k) = Corner(fast_corners[i].x, fast_corners[i].y, score, L, 0.0f);
           // Create feature for every corner that has high enough corner score
           if(corners.at(k).score > detection_threshold){
-              fts.push_back(make_shared<Feature>(frame, Vector2d(corners.at(k).x, corners.at(k).y), corners.at(k).level));
+              fts.push_back(make_shared<Feature>(frame, Vector2d(corners.at(k).x, corners.at(k).y)*scale, corners.at(k).level));
               if(descriptors)keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 1));
           }
       }
