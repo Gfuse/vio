@@ -126,7 +126,7 @@ void Frame::checkKeyPoints(Feature* ftr)
 void Frame::removeKeyPoint(Feature* ftr)
 {
     bool found = false;
-    if(key_pts_.size()!=5){
+    if(key_pts_.size()!=5 ){
         key_pts_.clear();
         key_pts_.reserve(5);
         found=true;

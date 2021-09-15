@@ -69,7 +69,7 @@ void Map::removePtFrameRef(Frame* frame, Feature* ftr)
   if(ftr->point == NULL)
     return; // mappoint may have been deleted in a previous ref. removal
   Point* pt = ftr->point;
-  ftr->point = NULL;
+  delete ftr->point;
   if(pt->obs_.size() <= 2)
   {
     // If the references list of mappoint has only size=2, delete mappoint
@@ -86,10 +86,10 @@ void Map::safeDeletePoint(Point* pt)
   if(pt->obs_.size()>1){
       for(auto&& ftr:pt->obs_){
           ftr->frame->removeKeyPoint(ftr);
-          ftr->point=NULL;
+          delete ftr->point;
       }
   }else{
-      pt->obs_.back()->point=NULL;
+      delete pt->obs_.back()->point;
   }
   pt->obs_.clear();
 
@@ -212,7 +212,6 @@ void Map::emptyTrash()
 {
   std::for_each(trash_points_.begin(), trash_points_.end(), [&](Point*& pt){
     delete pt;
-    pt=NULL;
   });
   trash_points_.clear();
   point_candidates_.emptyTrash();
@@ -297,7 +296,7 @@ void MapPointCandidates::deleteCandidate(PointCandidate& c)
 {
   // camera-rig: another frame might still be pointing to the candidate point
   // therefore, we can't delete it right now.
-  delete c.second; c.second=NULL;
+  delete c.second;
   c.first->type_ = Point::TYPE_DELETED;
   trash_points_.push_back(c.first);
 }
@@ -305,7 +304,7 @@ void MapPointCandidates::deleteCandidate(PointCandidate& c)
 void MapPointCandidates::emptyTrash()
 {
   std::for_each(trash_points_.begin(), trash_points_.end(), [&](Point*& p){
-    delete p; p=NULL;
+    delete p;
   });
   trash_points_.clear();
 }

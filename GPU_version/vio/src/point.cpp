@@ -66,6 +66,7 @@ void Point::addFrameRef(Feature* ftr)
 
 Feature* Point::findFrameRef(Frame* frame)
 {
+    boost::unique_lock<boost::mutex> lock(point_mut_);
   for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
     if((*it)->frame == frame)
       return *it;
@@ -74,8 +75,13 @@ Feature* Point::findFrameRef(Frame* frame)
 
 bool Point::deleteFrameRef(Frame* frame)
 {
+    boost::unique_lock<boost::mutex> lock(point_mut_);
   for(auto it=obs_.begin(), ite=obs_.end(); it!=ite; ++it)
   {
+    if(!(*it)->frame){
+        obs_.erase(it);
+        continue;
+    }
     if((*it)->frame->id_ == frame->id_)
     {
       obs_.erase(it);
@@ -98,26 +104,34 @@ void Point::initNormal()
 
 bool Point::getCloseViewObs(const Vector2d& framepos, Feature*& ftr,int id) const
 {
-  // TODO: get frame with same point of view AND same pyramid level!
+    boost::unique_lock<boost::mutex> lock(point_mut_);
+    // TODO: get frame with same point of view AND same pyramid level!
   ftr= nullptr;
   if(id_<1)return false;
+  if(obs_.size()<1)return false;
   Vector3d obs_dir(Vector3d(framepos(0),1e-9,framepos(1)) + pos_); obs_dir.normalize();
   double max_cos_angle = 1.0;
-  for(auto&& ob:obs_){
-      if(!ob->frame)continue;
-      if(ob->frame->id_==id){
-          ftr = ob;
-          return true;
+  try{
+      for(auto&& ob:obs_){
+          if(!ob->frame)continue;
+          if(ob->frame->id_==id){
+              ftr = ob;
+              return true;
+          }
+          Vector2d t=ob->frame->pos();
+          Vector3d dir(Vector3d(t.x(),1e-9,t.y()) + pos_);
+          double cos_angle = obs_dir.dot(dir.normalized());
+          if(cos_angle < max_cos_angle)
+          {
+              max_cos_angle = cos_angle;
+              ftr = ob;
+          }
       }
-      Vector2d t=ob->frame->pos();
-      Vector3d dir(Vector3d(t.x(),1e-9,t.y()) + pos_);
-      double cos_angle = obs_dir.dot(dir.normalized());
-      if(cos_angle < max_cos_angle)
-      {
-          max_cos_angle = cos_angle;
-          ftr = ob;
-      }
+  } catch (std::exception& e) {
+      std::cerr << "Exception caught : " << e.what() << std::endl;
+      exit(0);
   }
+ 
   if(ftr== nullptr)return false;
   return true;
 }

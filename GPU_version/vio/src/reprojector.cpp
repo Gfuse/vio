@@ -105,6 +105,7 @@ namespace vio {
                     if(keypoints_cur.size() < match.trainIdx)continue;
                     list<Feature*>::iterator point=keypoints_cur.begin();
                     std::advance(point,match.trainIdx);
+                    if(!(*point))continue;
                     if (f.item->point == NULL){
                         const int k = static_cast<int>((*point)->px.y() / grid_.cell_size) *
                                       grid_.grid_n_cols
@@ -114,7 +115,7 @@ namespace vio {
                                     (int) (*point)->px.y());
                         frame->fts_.push_back(new Feature(it_frame.item.first.get(),
                                                           new Point(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item),
-                                px,it_frame.item.first->cam_->cam2world(f.item->px),0));
+                                px,it_frame.item.first->cam_->cam2world(f.item->px),(*point)->level));
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
@@ -128,7 +129,6 @@ namespace vio {
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*point)->px.x(),
                                     (int) (*point)->px.y());
-                        //f.item->point->addFrameRef(f.item);
                         grid_.cells.at(k)->push_back(Candidate(f.item->point, px));
                         overlap_kfs.back().second++;
                         break;
@@ -171,6 +171,7 @@ namespace vio {
             }
 
             syn_=true;
+
             if(!matcher_.findMatchDirect(*it->pt, *frame, it->px))
             {
                 it->pt->n_failed_reproj_++;

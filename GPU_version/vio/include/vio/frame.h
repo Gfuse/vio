@@ -119,6 +119,7 @@ namespace vio {
 
         /// Return the pose of the frame in the (w)orld coordinate frame.
         inline Vector2d pos() const {
+            assert(!T_f_w_.empty());
             SE2 tem=T_f_w_.se2();
             return tem.translation();
         }

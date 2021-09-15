@@ -19,7 +19,10 @@
 
 #include <boost/noncopyable.hpp>
 #include <vio/global.h>
+#include <boost/thread.hpp>
+#include <boost/function.hpp>
 
+static boost::mutex point_mut_;
 namespace g2o {
   class VertexSBAPointXYZ;
 }
@@ -36,7 +39,7 @@ class Point : boost::noncopyable
 {
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-  
+
   enum PointType {
     TYPE_DELETED,
     TYPE_CANDIDATE,
@@ -59,7 +62,6 @@ public:
   int                         n_failed_reproj_;         //!< Number of failed reprojections. Used to assess the quality of the point.
   int                         n_succeeded_reproj_;      //!< Number of succeeded reprojections. Used to assess the quality of the point.
   int                         last_structure_optim_;    //!< Timestamp of last point optimization
-  bool                        syn_on=false;
 
   Point(const Vector3d& pos);
   Point(const Vector3d& pos, Feature* ftr);
