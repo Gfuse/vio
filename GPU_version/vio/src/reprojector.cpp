@@ -76,9 +76,11 @@ namespace vio {
         Features keypoints_cur;
         cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
+        feature_detection_mut_.lock();
         feature_detection::FastDetector detector(
                 frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
         detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints_cur,&descriptors_cur);
+        feature_detection_mut_.unlock();
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
         if (!last_frame->fts_.empty())

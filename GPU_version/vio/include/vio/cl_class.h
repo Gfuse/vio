@@ -25,6 +25,7 @@ public:
     };
     template<typename T>
     int32_t write(size_t id/*buffer ID*/,T* buf,cl::CommandQueue* queue,cl::Context* context,size_t buf_size){
+        assert(buf);
         cl_int error;
         _buffers.push_back(std::pair<std::pair<cl::Buffer,size_t>,size_t>(std::pair<cl::Buffer,size_t>(cl::Buffer(*context, CL_MEM_READ_WRITE | CL_MEM_USE_HOST_PTR
                 , sizeof(T) * buf_size,buf,&error),
@@ -36,6 +37,7 @@ public:
 
     };
     int32_t write(size_t id/*buffer ID*/,cv::Mat& buf,cl::Context* context){
+        assert(!buf.empty());
         cl_int error;
         _images.push_back(std::pair<cl::Image2D,size_t>(cl::Image2D(*context, CL_MEM_READ_ONLY | CL_MEM_USE_HOST_PTR,
                                                                     cl::ImageFormat(CL_R, CL_UNSIGNED_INT8),
@@ -51,6 +53,7 @@ public:
 
     template<typename T>
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
+        assert(buf);
         cl_int error;
         for(auto&& i:_buffers)if(i.second==id){
                 cl::Event event;
@@ -65,6 +68,7 @@ public:
         return error;
     };
     int32_t reload(size_t id,cv::Mat& buf,cl::Context* context){
+        assert(!buf.empty());
         cl_int error;
         try{
             for(auto&& i:_images)if(i.second==id){
@@ -161,6 +165,7 @@ public:
     }
     template<typename T>
     void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,size_t size/*size*/, T* out){
+        assert(out);
         cl_int error;
         cl::Event event;
         T* Map_buf=(T*)queue->enqueueMapBuffer(_kernels.at(id1).read(id2).first,CL_NON_BLOCKING,CL_MAP_READ,0,sizeof(T) * size,NULL,&event,&error);

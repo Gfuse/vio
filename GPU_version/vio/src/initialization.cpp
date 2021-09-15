@@ -31,7 +31,7 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
   detectFeatures(frame_ref, px_ref_, px_level, f_ref_, gpu_fast_);
   if(px_ref_.size() < 100)
   {
-    SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 100 features. Retry in more textured environment.");
+//    SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 100 features. Retry in more textured environment.");
     return FAILURE;
   }
 #if VIO_DEBUG
@@ -126,9 +126,11 @@ void detectFeatures(
     opencl* gpu_fast)
 {
   Features new_features;
+  feature_detection_mut_.lock();
   feature_detection::FastDetector detector(
       frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
   detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), new_features);
+  feature_detection_mut_.unlock();
   // now for all maximum corners, initialize a new seed
   px_vec.clear();
   f_vec.clear();

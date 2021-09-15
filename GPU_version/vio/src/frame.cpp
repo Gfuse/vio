@@ -187,7 +187,7 @@ bool getSceneDepth(const Frame& frame, double& depth_mean, double& depth_min)
   }
   if(depth_vec.empty())
   {
-    SVO_WARN_STREAM("Cannot set scene depth. Frame has no point-observations!");
+    //SVO_WARN_STREAM("Cannot set scene depth. Frame has no point-observations!");
     return false;
   }
   depth_mean = vk::getMedian(depth_vec);

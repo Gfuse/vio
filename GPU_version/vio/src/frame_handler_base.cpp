@@ -38,13 +38,10 @@ FrameHandlerBase::FrameHandlerBase() :
   num_obs_last_(0),
   tracking_quality_(TRACKING_INSUFFICIENT)
 {
-
-  SVO_INFO_STREAM("SVO initialized");
 }
 
 FrameHandlerBase::~FrameHandlerBase()
 {
-  SVO_INFO_STREAM("SVO destructor invoked");
 }
 
 bool FrameHandlerBase::startFrameProcessingCommon(const double timestamp)
@@ -58,7 +55,6 @@ bool FrameHandlerBase::startFrameProcessingCommon(const double timestamp)
   if(stage_ == STAGE_PAUSED)
     return false;
 
-  SVO_DEBUG_STREAM("New Frame");
 
   // some cleanup from last iteration, can't do before because of visualization
   map_.emptyTrash();
@@ -94,7 +90,6 @@ void FrameHandlerBase::resetCommon()
   set_start_ = false;
   tracking_quality_ = TRACKING_INSUFFICIENT;
   num_obs_last_ = 0;
-  SVO_INFO_STREAM("RESET");
 }
 
 void FrameHandlerBase::setTrackingQuality(const size_t num_observations)
@@ -102,13 +97,13 @@ void FrameHandlerBase::setTrackingQuality(const size_t num_observations)
   tracking_quality_ = TRACKING_GOOD;
   if(num_observations < Config::qualityMinFts())
   {
-    SVO_WARN_STREAM_THROTTLE(0.5, "Tracking less than "<< Config::qualityMinFts() <<" features!");
+    //SVO_WARN_STREAM_THROTTLE(0.5, "Tracking less than "<< Config::qualityMinFts() <<" features!");
     tracking_quality_ = TRACKING_INSUFFICIENT;
   }
   const int feature_drop = static_cast<int>(std::min(num_obs_last_, Config::maxFts())) - num_observations;
   if(feature_drop > Config::qualityMaxFtsDrop())
   {
-    SVO_WARN_STREAM("Lost "<< feature_drop <<" features!");
+    //SVO_WARN_STREAM("Lost "<< feature_drop <<" features!");
     tracking_quality_ = TRACKING_INSUFFICIENT;
   }
 }

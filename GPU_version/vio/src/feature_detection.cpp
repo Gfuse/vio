@@ -89,7 +89,7 @@ void FastDetector::detect(
     gpu_fast_->run(0,img.cols,img.rows);
     int count[1]={0};
     gpu_fast_->read(0,2,1,count);
-    cl_int2 fast_corners[350000];
+    cl_int2 fast_corners[350000]={0};
     gpu_fast_->read(0,1,count[0],fast_corners);
     for(uint i=0;i<count[0];++i)
     {

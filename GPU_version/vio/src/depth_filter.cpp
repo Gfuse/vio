@@ -148,9 +148,11 @@ namespace vio {
         fprintf(log_,"[%s] init seeds\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
         feature_detector_->setExistingFeatures(frame->fts_);
+        feature_detection_mut_.lock();
         feature_detector_->detect(frame, frame->img_pyr_,
                                   Config::triangMinCornerScore(), new_features);
 
+        feature_detection_mut_.unlock();
         // initialize a seed for every new feature
         seeds_updating_halt_ = true;
         seeds_mut_.lock();

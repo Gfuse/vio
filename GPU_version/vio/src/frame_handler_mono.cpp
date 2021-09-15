@@ -181,7 +181,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->Cov_ = init_f.first;
   // sparse image align
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
+  feature_detection_mut_.lock();
   size_t err=img_align.run(last_frame_, new_frame_, log_);
+  feature_detection_mut_.unlock();
   if(err==-1){
 #if VIO_DEBUG
       fprintf(log_,"[%s] Image Alignment failed -1\n",vio::time_in_HH_MM_SS_MMM().c_str());

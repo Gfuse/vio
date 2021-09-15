@@ -36,11 +36,8 @@ EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Eigen::Vector3d)
 EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Eigen::Vector2d)
 #endif
 #include <ros/console.h>
-#define SVO_DEBUG_STREAM(x) ROS_DEBUG_STREAM(x)
-#define SVO_INFO_STREAM(x) ROS_INFO_STREAM(x)
-#define SVO_WARN_STREAM(x) ROS_WARN_STREAM(x)
-#define SVO_WARN_STREAM_THROTTLE(rate, x) ROS_WARN_STREAM_THROTTLE(rate, x)
-#define SVO_ERROR_STREAM(x) ROS_ERROR_STREAM(x)
+#include <boost/thread.hpp>
+#include <boost/function.hpp>
 
 
 namespace vio
@@ -51,6 +48,8 @@ namespace vio
 
     const double EPS = 0.0000000001;
     const double PI = 3.14159265;
+
+    static boost::mutex feature_detection_mut_;
     static std::string time_in_HH_MM_SS_MMM()
     {
         using namespace std::chrono;
