@@ -63,9 +63,9 @@ void optimizeGaussNewton(
     return;
   vk::robust_cost::MADScaleEstimator scale_estimator;
   estimated_scale = scale_estimator.compute(errors);
-#if VIO_DEBUG
-    fprintf(log,"[%s] Init estimate scale:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),estimated_scale);
-#endif
+//#if VIO_DEBUG
+//    fprintf(log,"[%s] Init estimate scale:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),estimated_scale);
+//#endif
 
   num_obs = errors.size();
   double scale = estimated_scale;
@@ -102,10 +102,10 @@ void optimizeGaussNewton(
     // check if error increased
     if((iter > 0 && new_chi2 > chi2) || (bool) std::isnan((double)dT[0]))
     {
-#if VIO_DEBUG
-          fprintf(log,"[%s] it:%d \t FAILURE \t new_chi2: %f\n",
-                  vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2);
-#endif
+//#if VIO_DEBUG
+//          fprintf(log,"[%s] it:%d \t FAILURE \t new_chi2: %f\n",
+//                  vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2);
+//#endif
       frame->T_f_w_ = T_old; // roll-back
       break;
     }
@@ -115,10 +115,10 @@ void optimizeGaussNewton(
     frame->T_f_w_=SE2_5(T_old.se2().translation().x()+dT.x(),T_old.se2().translation().y()+dT.y(),T_old.pitch()+dT.z());
 
     chi2 = new_chi2;
-#if VIO_DEBUG
-      fprintf(log,"[%s] it:%d \t Success \t new_chi2: %f \t dT = %f, %f, %f\n",
-              vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2,dT.x(),dT.y(),dT.z());
-#endif
+//#if VIO_DEBUG
+//      fprintf(log,"[%s] it:%d \t Success \t new_chi2: %f \t dT = %f, %f, %f\n",
+//              vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2,dT.x(),dT.y(),dT.z());
+//#endif
 
     // stop when converged
     if(vk::norm_max(dT) <= EPS)

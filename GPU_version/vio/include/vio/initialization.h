@@ -46,6 +46,7 @@ public:
 
 protected:
   vector<cv::Point2f> px_ref_;      //!< keypoints to be tracked in reference frame.
+  vector<int> px_level;
   vector<cv::Point2f> px_cur_;      //!< tracked keypoints in current frame.
   vector<Vector3d> f_ref_;          //!< bearing vectors corresponding to the keypoints in the reference image.
   vector<Vector3d> f_cur_;          //!< bearing vectors corresponding to the keypoints in the current image.
@@ -107,6 +108,7 @@ protected:
 void detectFeatures(
     FramePtr frame,
     vector<cv::Point2f>& px_vec,
+    vector<int>& px_lvl,
     vector<Vector3d>& f_vec,
     opencl* gpu_fast);
 void trackKlt(

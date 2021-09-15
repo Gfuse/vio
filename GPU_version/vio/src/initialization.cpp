@@ -28,7 +28,7 @@ namespace initialization {
 InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 {
   reset();
-  detectFeatures(frame_ref, px_ref_, f_ref_,gpu_fast_);
+  detectFeatures(frame_ref, px_ref_, px_level, f_ref_, gpu_fast_);
   if(px_ref_.size() < 100)
   {
     SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 100 features. Retry in more textured environment.");
@@ -91,11 +91,11 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
             Vector3d pos = frame_cur->getSE3Inv() * (xyz_in_cur_[*it]/* *scale */);
             std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
 
-            std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, px_cur, f_cur_[*it], 0);
+            std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, px_cur, f_cur_[*it], px_level[*it]);
             frame_cur->addFeature(ftr_cur);
             new_point->addFrameRef(ftr_cur);
 
-            std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, px_ref, f_ref_[*it], 0);
+            std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, px_ref, f_ref_[*it], px_level[*it]);
             frame_ref_->addFeature(ftr_ref);
             new_point->addFrameRef(ftr_ref);
         }
@@ -121,6 +121,7 @@ void KltHomographyInit::reset()
 void detectFeatures(
     FramePtr frame,
     vector<cv::Point2f>& px_vec,
+    vector<int>& px_lvl,
     vector<Vector3d>& f_vec,
     opencl* gpu_fast)
 {
@@ -133,6 +134,7 @@ void detectFeatures(
   f_vec.clear();
   for(auto&& ftr:new_features){
       px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
+      px_lvl.push_back(ftr->level);
       f_vec.push_back(ftr->f);
       ftr.reset();
   }
