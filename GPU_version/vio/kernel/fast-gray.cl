@@ -7,10 +7,8 @@
 __kernel void fast_gray(
     __read_only  image2d_t   image,
     __global     int2      * corners,
-    __global     int       * icorner,
-               int       fast_count
+    __global     int       * icorner
 ) {
-    
     // Prepare a suitable OpenCL image sampler.
     sampler_t const sampler = CLK_ADDRESS_CLAMP | CLK_FILTER_NEAREST;
 
@@ -72,7 +70,7 @@ __kernel void fast_gray(
             if (p00 >= sco) {
                 // Atomically append to corner buffer.
                 int const icorn = atom_inc(icorner);
-                if (icorn < fast_count)
+                if (icorn < 262144)
                     corners[icorn] = xy;
             }
         }

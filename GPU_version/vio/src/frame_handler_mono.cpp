@@ -41,30 +41,36 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     gpu_fast_= new opencl(cam_);
     gpu_fast_->make_kernel("fast_gray");
     cv::Mat img=cv::Mat(cv::Size(700, 500),CV_8UC1);
-    gpu_fast_->write_buf(0,0,img);
+    std::vector<bool> errors;
+    errors.push_back(gpu_fast_->write_buf(0,0,img));
     cl_int2 corners_[350000]={0};
-    gpu_fast_->write_buf(0,1,350000,corners_);
-    int icorner[1]={0};
-    gpu_fast_->write_buf(0,2,1,icorner);
-    gpu_fast_->write_buf(0,3,(1 << 18));
+    errors.push_back(gpu_fast_->write_buf(0,1,350000,corners_));
+    cl_int icorner[1]={0};
+    errors.push_back(gpu_fast_->write_buf(0,2,1,icorner));
     gpu_fast_->make_kernel("compute_residual");
-    gpu_fast_->write_buf(1,0,img);
-    gpu_fast_->write_buf(1,1,img);
+    errors.push_back(gpu_fast_->write_buf(1,0,img));
+    errors.push_back(gpu_fast_->write_buf(1,1,img));
     cl_float3 pose[1]={0.0};
-    gpu_fast_->write_buf(1,2,3,pose);
-    gpu_fast_->write_buf(1,3,3,pose);
+    errors.push_back(gpu_fast_->write_buf(1,2,3,pose));
+    errors.push_back(gpu_fast_->write_buf(1,3,3,pose));
     cl_float3 f[300]={0};
-    gpu_fast_->write_buf(1,4,300,f);
+    errors.push_back(gpu_fast_->write_buf(1,4,300,f));
     cl_float2 px[300]={0};
-    gpu_fast_->write_buf(1,5,300,px);
+    errors.push_back(gpu_fast_->write_buf(1,5,300,px));
     float  e[300]={0};
-    gpu_fast_->write_buf(1,7,300,e);
+    errors.push_back(gpu_fast_->write_buf(1,7,300,e));
     float H[9*300]={0};
-    gpu_fast_->write_buf(1,8,9*300,H);
+    errors.push_back(gpu_fast_->write_buf(1,8,9*300,H));
     cl_float3 J[300];
-    gpu_fast_->write_buf(1,9,300,J);
+    errors.push_back(gpu_fast_->write_buf(1,9,300,J));
     float chi2[300]={0.01};
-    gpu_fast_->write_buf(1,10,300,chi2);
+    errors.push_back(gpu_fast_->write_buf(1,10,300,chi2));
+    for(auto e:errors){
+        if(e!=true){
+            std::cerr<<"Failed to write into GPU goodbye :) "<<'\n';
+            exit(0);
+        }
+    }
     initialize();
 #if VIO_DEBUG
     log_ =fopen((std::string(PROJECT_DIR)+"/frame_handler_log.txt").c_str(),"w+");
@@ -175,7 +181,18 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->Cov_ = init_f.first;
   // sparse image align
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-  if(!img_align.run(last_frame_, new_frame_, log_))new_frame_->T_f_w_=init_f.second;
+  size_t err=img_align.run(last_frame_, new_frame_, log_);
+  if(err==-1){
+#if VIO_DEBUG
+      fprintf(log_,"[%s] Image Alignment failed -1\n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
+      new_frame_->T_f_w_=init_f.second;
+  }else if(err==0){
+#if VIO_DEBUG
+      fprintf(log_,"[%s] Image Alignment failed 0\n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
+      new_frame_->T_f_w_=init_f.second;
+  }
   reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;

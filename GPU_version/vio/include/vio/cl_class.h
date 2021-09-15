@@ -29,10 +29,10 @@ public:
         _buffers.push_back(std::pair<std::pair<cl::Buffer,size_t>,size_t>(std::pair<cl::Buffer,size_t>(cl::Buffer(*context, CL_MEM_READ_WRITE | CL_MEM_USE_HOST_PTR
                 , sizeof(T) * buf_size,buf,&error),
                                                                                                        buf_size),id));
-        assert(error == CL_SUCCESS);
         cl_int err=_kernel->setArg(id,_buffers.back().first.first);
         assert(err == CL_SUCCESS);
-        return CL_SUCCESS;
+        assert(error == CL_SUCCESS);
+        return error;
 
     };
     int32_t write(size_t id/*buffer ID*/,cv::Mat& buf,cl::Context* context){
@@ -43,32 +43,31 @@ public:
                                                                     buf.size().height,
                                                                     0,
                                                                     reinterpret_cast<uchar*>(buf.data),&error),id));
-        assert(error == CL_SUCCESS);
         cl_int err=_kernel->setArg(id,_images.back().first);
         assert(err == CL_SUCCESS);
-        return CL_SUCCESS;
+        assert(error == CL_SUCCESS);
+        return error;
     };
 
     template<typename T>
     int32_t reload(size_t id,T* buf,cl::CommandQueue* queue){
-        assert(buf);
+        cl_int error;
         for(auto&& i:_buffers)if(i.second==id){
-                cl_int error;
                 cl::Event event;
                 T* Map_buf=(T*)queue->enqueueMapBuffer(i.first.first,CL_NON_BLOCKING,CL_MAP_WRITE,0,sizeof(T) * i.first.second,NULL,&event,&error);
-                assert(error == CL_SUCCESS);
                 event.wait();
                 memcpy(Map_buf,buf,sizeof(T) * i.first.second);
                 assert(queue->enqueueUnmapMemObject(i.first.first,Map_buf,NULL,&event)==CL_SUCCESS);
                 event.wait();
 
         }
-        return CL_SUCCESS;
+        assert(error == CL_SUCCESS);
+        return error;
     };
     int32_t reload(size_t id,cv::Mat& buf,cl::Context* context){
+        cl_int error;
         try{
             for(auto&& i:_images)if(i.second==id){
-                    cl_int error;
                     i.first.setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
                     i.first=cl::Image2D(*context, CL_MEM_READ_ONLY | CL_MEM_USE_HOST_PTR,
                                         cl::ImageFormat(CL_R, CL_UNSIGNED_INT8),
@@ -76,11 +75,11 @@ public:
                                         buf.size().height,
                                         0,
                                         reinterpret_cast<uchar*>(buf.data),&error);
-                    assert(error == CL_SUCCESS);
                     cl_int err=_kernel->setArg(id,i.first);
                     assert(err == CL_SUCCESS);
                 }
-            return CL_SUCCESS;
+            assert(error == CL_SUCCESS);
+            return error;
         }catch (std::exception& err){
             std::cerr<<"Reload buffer on GPU failed\n"<<err.what()<<'\n';
             return CL_MAP_FAILURE;
@@ -122,48 +121,29 @@ public:
     ~opencl();
     int32_t make_kernel(std::string name){_kernels.push_back(kernel(program,name));};
     template<typename T>
-    int32_t write_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/, int size,T* buf) {
-        try{
-            _kernels.at(id1).write(id2,buf,queue,context,size);
-            return CL_SUCCESS;
-        }catch (std::exception& err){
-            std::cerr<<"Write buffer on GPU failed\n"<<err.what()<<'\n';
-            return CL_MAP_FAILURE;
-        }
+    bool write_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/, int size,T* buf) {
+            if(_kernels.at(id1).write(id2,buf,queue,context,size)!= CL_SUCCESS)return false;
+            return true;
     }
-    int32_t write_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,cv::Mat& buf) {
-        try{
-            _kernels.at(id1).write(id2,buf,context);
-            return CL_SUCCESS;
-        }catch (std::exception& err){
-            std::cerr<<"Write image on GPU failed\n"<<err.what()<<'\n';
-            return CL_MAP_FAILURE;
-        }
+    bool write_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,cv::Mat& buf) {
+            if(_kernels.at(id1).write(id2,buf,context)!= CL_SUCCESS)return false;
+            return true;
     }
     template<typename T>
-    int32_t write_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,T&& value){
-        _kernels.at(id1)._kernel->setArg(id2,value);
+    bool write_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,T&& value){
+        if(_kernels.at(id1)._kernel->setArg(id2,value)!= CL_SUCCESS)return false;
+        return true;
     };
     template<typename T>
-    int32_t reload_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,T* buf) {
-        try{
-            _kernels.at(id1).reload(id2,buf,queue);
-            return CL_SUCCESS;
-        }catch (std::exception& err){
-            std::cerr<<"Reload buffer on GPU failed\n"<<err.what()<<'\n';
-            return CL_MAP_FAILURE;
-        }
+    bool reload_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,T* buf) {
+            if(_kernels.at(id1).reload(id2,buf,queue)!= CL_SUCCESS)return false;
+            return true;
     }
-    int32_t reload_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,cv::Mat& buf) {
-        try{
-            _kernels.at(id1).reload(id2,buf,context);
-            return CL_SUCCESS;
-        }catch (std::exception& err){
-            std::cerr<<"Write buffer on GPU failed\n"<<err.what()<<'\n';
-            return CL_MAP_FAILURE;
-        }
+    bool reload_buf(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,cv::Mat& buf) {
+            if(_kernels.at(id1).reload(id2,buf,context)!= CL_SUCCESS)return false;
+            return true;
     }
-    int32_t run(size_t id1/*kernal ID*/,std::size_t  x=1,std::size_t y=1,std::size_t z=1) {
+    cl_int run(size_t id1/*kernal ID*/,std::size_t  x=1,std::size_t y=1,std::size_t z=1) {
         cl_int err=0;
         cl::Event event;
         queue->flush();
@@ -174,16 +154,11 @@ public:
         }else{
             err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         };
-        assert(err==CL_SUCCESS);
+        if(err!=CL_SUCCESS)return -1;
         event.wait();
         return queue->finish();
 
     }
-    /*
-    template<typename T>
-    void read(size_t id1/*kernal ID*///,size_t id2/*buffer ID*/, T* out){
-    //    queue->enqueueReadBuffer(_kernels.at(id1).read(id2).first, CL_TRUE, 0, sizeof(T) * _kernels.at(id1).read(id2).second, out);
-  //  }
     template<typename T>
     void read(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,size_t size/*size*/, T* out){
         cl_int error;

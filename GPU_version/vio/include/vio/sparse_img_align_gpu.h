@@ -63,6 +63,7 @@ protected:
   int min_level_;                 //!< finest pyramid level for the alignment.
   size_t feature_counter_=0;
   opencl* residual_= nullptr;
+  std::vector<bool> errors;
 
   // cache:
   std::vector<bool> visible_fts_;

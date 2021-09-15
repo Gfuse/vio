@@ -35,22 +35,11 @@ SparseImgAlignGpu::SparseImgAlignGpu(
 size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
 {
   reset();
-  /*if(ref_frame->fts_.empty()) // more than 10
-  {
-    return 0;
-  }*/
+  errors.clear();
   cl_float3 ref_pos[1]={(float)ref_frame->pos()(0),(float)ref_frame->pos()(1),(float)ref_frame->T_f_w_.pitch()};
-/*#if VIO_DEBUG
-    fprintf(log,"[%s] ref pose : , x:%f, z=%f, pitch:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            ref_pos[0].x, ref_pos[0].y, ref_pos[0].z);
-#endif*/
   cl_float3 cur_pos[1]={(float)cur_frame->pos()(0),(float)cur_frame->pos()(1),(float)cur_frame->T_f_w_.pitch()};
-/*#if VIO_DEBUG
-    fprintf(log,"[%s] cur pose : , x:%f, z=%f, pitch:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            cur_pos[0].x, cur_pos[0].y, cur_pos[0].z);
-#endif*/
-  residual_->reload_buf(1,2,cur_pos);
-  residual_->reload_buf(1,3,ref_pos);
+  errors.push_back(residual_->reload_buf(1,2,cur_pos));
+  errors.push_back(residual_->reload_buf(1,3,ref_pos));
   cl_float3 features[ref_frame->fts_.size()];
   cl_float2 featue_px[ref_frame->fts_.size()];
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
@@ -69,19 +58,22 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   {
       return 0;
   }
-  residual_->reload_buf(1,4,features);
-  residual_->reload_buf(1,5,featue_px);
+  errors.push_back(residual_->reload_buf(1,4,features));
+  errors.push_back(residual_->reload_buf(1,5,featue_px));
   SE2 T_cur(cur_frame->T_f_w_.se2());///TODO temporary, we can remove it
   for(level_=max_level_; level_>=min_level_; --level_)
   {
       cv::Mat cur_img = cur_frame->img_pyr_.at(level_);
       cv::Mat ref_img = ref_frame->img_pyr_.at(level_);
-      residual_->reload_buf(1,0,cur_img);
-      residual_->reload_buf(1,1,ref_img);
-      residual_->write_buf(1,6,level_);
+      errors.push_back(residual_->reload_buf(1,0,cur_img));
+      errors.push_back(residual_->reload_buf(1,1,ref_img));
+      errors.push_back(residual_->write_buf(1,6,level_));
       mu_ = 1.0;
+      for(auto&& e:errors)if(!e)return -1;
+      errors.clear();
       optimize(T_cur);
   }
+  for(auto&& e:errors)if(!e)return -1;
   cl_float3 pos[1]={0};
   residual_->read(1,2,1,pos);
   if(isnan(pos[0].x) || isnan(pos[0].y) || isnan(pos[0].z))return 0;
@@ -97,10 +89,10 @@ double SparseImgAlignGpu::computeResiduals(
     cl_float3 J[300]={0.0};
     float chi2_[300]={0.0};
     float scale=(float)scale_;
-    residual_->write_buf(1,11,scale);
-    residual_->reload_buf(1,10,chi2_);
-    residual_->reload_buf(1,8,H);
-    residual_->reload_buf(1,9,J);
+    errors.push_back(residual_->write_buf(1,11,scale));
+    errors.push_back(residual_->reload_buf(1,10,chi2_));
+    errors.push_back(residual_->reload_buf(1,8,H));
+    errors.push_back(residual_->reload_buf(1,9,J));
     residual_->run(1,feature_counter_);
     float error[300]={0.0};
     float chi[300]={0.0};
@@ -153,7 +145,7 @@ void SparseImgAlignGpu::update()
     pos[0].x=(float)update.translation()(0);
     pos[0].y=(float)update.translation()(1);
     pos[0].z=(float)atan2(update.so2().unit_complex().imag(),update.so2().unit_complex().real());
-    residual_->reload_buf(1,2,pos);
+    errors.push_back(residual_->reload_buf(1,2,pos));
 }
 
 void SparseImgAlignGpu::startIteration()

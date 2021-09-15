@@ -86,7 +86,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
     {
         Vector2d px_cur(px_cur_[*it].x, px_cur_[*it].y);
         Vector2d px_ref(px_ref_[*it].x, px_ref_[*it].y);
-        if(frame_cur->cam_->isInFrame(px_cur.cast<int>(), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>(), 10))
+        if(frame_cur->cam_->isInFrame(px_cur.cast<int>()*(1<<px_level[*it]), 10) && frame_ref_->cam_->isInFrame(px_ref.cast<int>()*(1<<px_level[*it]), 10))
         {
             Vector3d pos = frame_cur->getSE3Inv() * (xyz_in_cur_[*it]/* *scale */);
             std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);

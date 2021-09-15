@@ -77,9 +77,15 @@ void FastDetector::detect(
   {
     const int scale = (1<<L);
     cv::Mat img=img_pyr.at(L);
-    gpu_fast_->reload_buf(0,0,img);
-    int icorner[1]={0};
-    gpu_fast_->reload_buf(0,2,icorner);
+    if(!gpu_fast_->reload_buf(0,0,img)){
+        std::cerr<<"Failed to write into GPU goodbye :)"<<'\n';
+        exit(0);
+    };
+    cl_int icorner[1]={0};
+    if(!gpu_fast_->reload_buf(0,2,icorner)){
+          std::cerr<<"Failed to write into GPU goodbye :)"<<'\n';
+          exit(0);
+      };
     gpu_fast_->run(0,img.cols,img.rows);
     int count[1]={0};
     gpu_fast_->read(0,2,1,count);
