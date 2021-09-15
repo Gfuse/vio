@@ -149,6 +149,10 @@ void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     vo_->UpdateIMU(imu_in,imu->header.stamp);
     imu_time_=imu->header.stamp;
 #if VIO_DEBUG
+    auto odom=vo_->ukfPtr_.get_location();
+    fprintf(vo_->log_,"[%s] Odometry x=%f, y=%f, theta=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            odom.second.se2().translation()(0),odom.second.se2().translation()(1),
+            -odom.second.pitch());
     visualizer_.publishMinimal(vo_->ukfPtr_, imu->header.stamp.toSec());
 #endif
 }
@@ -166,7 +170,7 @@ void VioNode::imu_th(){
     while(start_ && !boost::this_thread::interruption_requested())
     {
         Q.callOne(ros::WallDuration(10,0.0));
-        usleep(1000);
+        usleep(20000);
     }
 
 }
