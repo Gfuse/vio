@@ -109,7 +109,7 @@ void FastDetector::detect(
       }
       const float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
       if(score > corners.at(k).score){
-          corners.at(k) = Corner(fast_corners[i].x*scale, fast_corners[i].y*scale, score, L, 0.0f);
+          corners.at(k) = Corner(fast_corners[i].x, fast_corners[i].y, score, L, 0.0f);
           fts.push_back(make_shared<Feature>(frame, Vector2d(corners.at(k).x, corners.at(k).y)*scale, corners.at(k).level));
           if(descriptors)keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 1));
       }

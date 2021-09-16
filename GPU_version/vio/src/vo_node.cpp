@@ -127,9 +127,9 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
           cv::Laplacian(frame,imgbul,CV_64F);
           cv::Scalar mean, stddev;
           meanStdDev(imgbul, mean, stddev, cv::Mat());
-          cv::cvtColor(frame,show,CV_GRAY2RGB);
+/*          cv::cvtColor(frame,show,CV_GRAY2RGB);
           imshow("New Image", show);
-          cv::waitKey(10);
+          cv::waitKey(10);*/
           if(stddev.val[0] * stddev.val[0]< 30.0){
               ROS_WARN("Frame is blur or too dark");
               return;
