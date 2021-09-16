@@ -104,7 +104,7 @@ public:
       std::shared_ptr<Frame> frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
-      Features& fts,
+      list<shared_ptr<Feature>>& fts,
       cv::Mat* descriptors= nullptr);
   opencl* gpu_fast_;
 };

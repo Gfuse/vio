@@ -269,7 +269,7 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
 #endif
-            if(xyz_f.z() > 0.0)  {
+            if(xyz_f.z() < 0.0)  {
                 ++it; // behind the camera
                 continue;
             }

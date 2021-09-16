@@ -102,10 +102,7 @@ void optimizeGaussNewton(
     // check if error increased
     if((iter > 0 && new_chi2 > chi2) || (bool) std::isnan((double)dT[0]))
     {
-//#if VIO_DEBUG
-//          fprintf(log,"[%s] it:%d \t FAILURE \t new_chi2: %f\n",
-//                  vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2);
-//#endif
+
       frame->T_f_w_ = T_old; // roll-back
       break;
     }
@@ -113,12 +110,7 @@ void optimizeGaussNewton(
     // update the model
     T_old = frame->T_f_w_;
     frame->T_f_w_=SE2_5(T_old.se2().translation().x()+dT.x(),T_old.se2().translation().y()+dT.y(),T_old.pitch()+dT.z());
-
     chi2 = new_chi2;
-//#if VIO_DEBUG
-//      fprintf(log,"[%s] it:%d \t Success \t new_chi2: %f \t dT = %f, %f, %f\n",
-//              vio::time_in_HH_MM_SS_MMM().c_str(),iter,new_chi2,dT.x(),dT.y(),dT.z());
-//#endif
 
     // stop when converged
     if(vk::norm_max(dT) <= EPS)
@@ -148,7 +140,7 @@ void optimizeGaussNewton(
         error_init /=chi2_vec_init.size();
     if(!chi2_vec_final.empty())for(auto&& i:chi2_vec_final)error_final+=i;
         error_final /= chi2_vec_final.size();
-    fprintf(log,"[%s] n deleted obs = %d \t n obs felt =%d \t error init =%f \t error end=%f\n",
+    fprintf(log,"[%s] n deleted obs = %d \t n obs with reprojection error less than 0.5 px =%d \t error init =%f \t error end=%f\n",
             vio::time_in_HH_MM_SS_MMM().c_str(),n_deleted_refs,num_obs,error_init,error_final);
 #endif
 }

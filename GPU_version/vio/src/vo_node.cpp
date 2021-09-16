@@ -119,12 +119,22 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
       try {
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
           if(img.empty())return;
-          cv::Mat imgbul;//tem;
-          cv::Laplacian(img,imgbul,CV_64F);
+          cv::Mat imgbul,float_img,frame,show;//tem;
+          img.convertTo(float_img,CV_64F,1.f/255);
+          float_img*=2.0;
+          float_img+=0.2;
+          float_img.convertTo(frame,CV_8UC1,255);
+          cv::Laplacian(frame,imgbul,CV_64F);
           cv::Scalar mean, stddev;
           meanStdDev(imgbul, mean, stddev, cv::Mat());
-          if(stddev.val[0] * stddev.val[0]< 50.0)return;
-          vo_->addImage(img, msg->header.stamp.toSec(),msg->header.stamp);
+          cv::cvtColor(frame,show,CV_GRAY2RGB);
+          imshow("New Image", show);
+          cv::waitKey(10);
+          if(stddev.val[0] * stddev.val[0]< 30.0){
+              ROS_WARN("Frame is blur or too dark");
+              return;
+          }
+          vo_->addImage(frame, msg->header.stamp.toSec(),msg->header.stamp);
       } catch (cv_bridge::Exception& e) {
         ROS_ERROR("vo exception: %s", e.what());
       }
@@ -152,7 +162,7 @@ void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     auto odom=vo_->ukfPtr_.get_location();
     fprintf(vo_->log_,"[%s] Odometry x=%f, y=%f, theta=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             odom.second.se2().translation()(0),odom.second.se2().translation()(1),
-            -odom.second.pitch());
+            odom.second.pitch());
     visualizer_.publishMinimal(vo_->ukfPtr_, imu->header.stamp.toSec());
 #endif
 }
@@ -170,7 +180,7 @@ void VioNode::imu_th(){
     while(start_ && !boost::this_thread::interruption_requested())
     {
         Q.callOne(ros::WallDuration(10,0.0));
-        usleep(20000);
+        usleep(10000);
     }
 
 }

@@ -112,6 +112,7 @@ namespace vio {
                         const int k = static_cast<int>((*point)->px.y() / grid_.cell_size) *
                                       grid_.grid_n_cols
                                       + static_cast<int>((*point)->px.x() / grid_.cell_size);
+                        if(k>grid_.cells.size()-1)continue;
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*point)->px.x(),
                                     (int) (*point)->px.y());
@@ -129,6 +130,7 @@ namespace vio {
                         const int k = static_cast<int>((*point)->px.y()/ grid_.cell_size) *
                                       grid_.grid_n_cols
                                       + static_cast<int>((*point)->px.x() / grid_.cell_size);
+                        if(k>grid_.cells.size()-1)continue;
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*point)->px.x(),
                                     (int) (*point)->px.y());

@@ -131,8 +131,9 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
     ukfPtr_.start_=true;
-  if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE)
-    return RESULT_NO_KEYFRAME;
+  if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE){
+      return RESULT_NO_KEYFRAME;
+  }
   new_frame_->setKeyframe();
   map_.reset();
   map_.addKeyframe(new_frame_);
@@ -224,7 +225,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
 #endif
     if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch())>M_PI_2){
+       fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch())>M_PI_2 ||
+            sfba_n_edges_final < Config::qualityMinFts()/*10*/){
         auto init_f= ukfPtr_.get_location();
         new_frame_->T_f_w_=init_f.second;
         new_frame_->Cov_ = init_f.first;
@@ -242,7 +244,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 #endif
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   depth_filter_->addFrame(new_frame_);
-  if(sfba_n_edges_final < Config::qualityMinFts() || reprojector_.n_matches_ < Config::qualityMinFts()/*10*/){
+  if(sfba_n_edges_final < Config::qualityMinFts()){
       return RESULT_FAILURE;
   }
 
