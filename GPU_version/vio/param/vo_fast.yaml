@@ -10,8 +10,7 @@ svo:
   kfselect_mindist: 0.01
   poseoptim_thresh: 8.0
   init_min_inliers: 30
-  map_scale: 0.5
-  ACC_noise: 2000          #acc white noise in continuous in EKF
-  GYO_noise: 2000         #gyro white noise in continuous in EKF
-  svo_ekf: 0.0001              #Svo noise that will be devided by number of Reprojected points after opmization in EKF
-  Cmd_Cov: 2000  #control vector noise in EKF
+  ACC_noise: 0.5          #acc white noise in continuous in EKF
+  GYO_noise: 0.5         #gyro white noise in continuous in EKF
+  svo_ekf: 0.05              #Svo noise that will be devided by number of Reprojected points after opmization in EKF
+  Cmd_Cov: 0.5  #control vector noise in EKF
