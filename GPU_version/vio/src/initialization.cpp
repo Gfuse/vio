@@ -54,7 +54,8 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       ukf_->UpdateSvo(0.0,0.0,0.0);
       return NO_KEYFRAME;
   }
-  double disparity = vk::getMedian(disparities_);
+  double min,max;
+  double disparity = vk::getMean(disparities_,min,max);
     if(disparity < Config::initMinDisparity()){
         auto result=ukf_->get_location();
         if(fabs(result.second.se2().translation().x())>0.2 || fabs(result.second.pitch())>0.0698132)ukf_->UpdateSvo(0.0,result.second.se2().translation().y(),0.0);

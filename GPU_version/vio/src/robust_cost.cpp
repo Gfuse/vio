@@ -70,7 +70,8 @@ float MADScaleEstimator::
 compute(std::vector<float>& errors) const
 {
   // error must be in absolute values!
-  return NORMALIZER * vk::getMedian(errors);
+  float min,max;
+  return NORMALIZER * vk::getMean(errors,min,max);
 }
 
 float NormalDistributionScaleEstimator::

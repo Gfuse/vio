@@ -281,12 +281,12 @@ namespace vio {
             float z_min = (*it)->mu + sqrt((*it)->sigma2);
             float z_max = max((*it)->mu - sqrt((*it)->sigma2), 0.00000001f);
 #if VIO_DEBUG
-            fprintf(log_,"[%s]  Z min: %f, Z max: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z_min,z_max);
+            fprintf(log_,"[%s]  Z inverse min: %f, Z inverse max: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z_min,z_max);
 #endif
-            if(z_min < 0){
+/*            if(z_min < 0){
                 ++it;
                 continue;
-            }
+            }*/
 
             double z;
             if(!matcher_.findEpipolarMatchDirect(

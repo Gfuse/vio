@@ -142,27 +142,13 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     if(!start_)return;
     double imu_in[3];
-    if(abs(imu->linear_acceleration.x)>5.0){
-        return;
-    }else{
-        imu_in[0]=imu->linear_acceleration.x;
-    };
-    if(abs(imu->linear_acceleration.y)>5.0){
-        return;
-    }else{
-        imu_in[1]=imu->linear_acceleration.y;
-    };
-    imu_in[0] = 0.5*imu_[0]+0.5*imu->linear_acceleration.x;
-    imu_in[1] = 0.5*imu_[1]+0.5*imu->linear_acceleration.y;
+    imu_in[0] = imu->linear_acceleration.x;
+    imu_in[1] = imu->linear_acceleration.y;
     imu_in[2] = imu->angular_velocity.z;
     memcpy(imu_, imu_in, static_cast<std::size_t>(3*sizeof(double)));
     vo_->UpdateIMU(imu_in,imu->header.stamp);
     imu_time_=imu->header.stamp;
 #if VIO_DEBUG
-    auto odom=vo_->ukfPtr_.get_location();
-    fprintf(vo_->log_,"[%s] Odometry x=%f, y=%f, theta=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            odom.second.se2().translation()(0),odom.second.se2().translation()(1),
-            odom.second.pitch());
     visualizer_.publishMinimal(vo_->ukfPtr_, imu->header.stamp.toSec());
 #endif
 }
@@ -170,17 +156,23 @@ void VioNode::cmdCb(const geometry_msgs::TwistPtr &cmd) {
     if(!start_)return;
     double _cmd[3]={cmd->linear.x,cmd->linear.y,cmd->angular.z};
     vo_->UpdateCmd(_cmd,imu_time_);
+#if VIO_DEBUG
+    auto odom=vo_->ukfPtr_.get_location();
+    fprintf(vo_->log_,"[%s] Odometry x=%f, y=%f, theta=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            10.0*odom.second.se2().translation()(0),10.0*odom.second.se2().translation()(1),
+            odom.second.pitch());
+#endif
 }
 void VioNode::imu_th(){
     ros::NodeHandle nh;
     ros::CallbackQueue Q;
     nh.setCallbackQueue(&Q);
-    ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),10,&VioNode::imuCb, this,ros::TransportHints().tcpNoDelay());
-    ros::Subscriber cmd_sub=nh.subscribe(vk::getParam<std::string>("vio/cmd_topic", "cmd/raw"),10,&VioNode::cmdCb, this,ros::TransportHints().tcpNoDelay());
+    ros::Subscriber imu_sub=nh.subscribe(vk::getParam<std::string>("vio/imu_topic", "imu/raw"),1,&VioNode::imuCb, this,ros::TransportHints().tcpNoDelay());
+    ros::Subscriber cmd_sub=nh.subscribe(vk::getParam<std::string>("vio/cmd_topic", "cmd/raw"),1,&VioNode::cmdCb, this,ros::TransportHints().tcpNoDelay());
     while(start_ && !boost::this_thread::interruption_requested())
     {
         Q.callOne(ros::WallDuration(10,0.0));
-        usleep(10000);
+        usleep(5000);
     }
 
 }

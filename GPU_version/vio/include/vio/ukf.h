@@ -6,8 +6,10 @@
 
 #include <iostream>
 #include <fstream>
-#include "vio/config.h"
+#include <vio/config.h>
 #include <Eigen/Dense>
+#include <boost/thread.hpp>
+#include <boost/function.hpp>
 class Base{
 public:
     Base(const Eigen::Matrix<double, 3, 1> &init) {
@@ -112,36 +114,31 @@ public:
     };
     void UpdateIMU(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
         if(!start_)return;
-        while(lock)usleep(5);
-        lock=true;
-        x=pow(x,3);//picked up from your code
-        y=pow(y,3);//picked up from your code
+        /*x=pow(x,3);//picked up from your code
+        y=pow(y,3);//picked up from your code*/
+        boost::unique_lock<boost::mutex> lock(ekf_mut_);
         filter_->correct(x,y,theta,1e-9*time.toNSec());
-        lock=false;
     };
     //IMU frame y front, x right, z up -> left hands (theta counts from y)
     void UpdateCmd(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
         if(!start_)return;
-        while(lock)usleep(5);
-        lock=true;
+        boost::unique_lock<boost::mutex> lock(ekf_mut_);
         filter_->predict(x,y,theta,1e-9*time.toNSec());
-        lock=false;
     };
-    //Camera frame z front, x right, y down -> right hands (pitch counts from x)correct
+    //Camera frame z back, x right, y down -> right hands (pitch counts from x)correct
     //Notice T_F_W is the position of the first frame with respect to the new frame while they are looking at one feature
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/) {
-        while(lock)usleep(5);
-        lock=true;
-        filter_->correct(10.0*x,-10.0*z,pitch);
-        lock=false;
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(0.1*filter_->state_(0),-0.1*filter_->state_(1),(filter_->state_(2))));
+        boost::unique_lock<boost::mutex> lock(ekf_mut_);
+        filter_->correct(10.0*x,-10.0*z,-1.0*pitch);
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(0.1*filter_->state_(0),-0.1*filter_->state_(1),-1.0*(filter_->state_(2))));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(0.1*filter_->state_(0),-0.1*filter_->state_(1),(filter_->state_(2))));
+        boost::unique_lock<boost::mutex> lock(ekf_mut_);
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(0.1*filter_->state_(0),-0.1*filter_->state_(1),-1.0*(filter_->state_(2))));
     }
     bool start_=false;
 private:
      Base* filter_= nullptr;
-     bool lock=false;
+    boost::mutex ekf_mut_;
 };
 #endif //VIO_UKF_H

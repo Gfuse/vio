@@ -129,6 +129,20 @@ T getMedian(vector<T>& data_vec)
   nth_element(data_vec.begin(), it, data_vec.end());
   return *it;
 }
+template<class T>
+T getMean(vector<T>& data_vec,T& min=0,T& max=0)
+{
+    assert(!data_vec.empty());
+    T sum=0;
+    min=std::numeric_limits<T>::max();
+    max=std::numeric_limits<T>::min();
+    for(auto&& i:data_vec){
+        sum+=i;
+        if(i<min)min=i;
+        if(i>max)max=i;
+    }
+    return sum/data_vec.size();
+}
 
 inline double pyrFromZero_d(double x_0, int level)
 {

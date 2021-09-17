@@ -180,17 +180,21 @@ bool getSceneDepth(const Frame& frame, double& depth_mean, double& depth_min)
   {
     if((*it)->point != NULL)
     {
-      const double z = frame.w2f((*it)->point->pos_).z();
-      depth_vec.push_back(z);
-      depth_min = fmin(z, depth_min);
+      double z = frame.w2f((*it)->point->pos_).z();
+      if(z>0 && z<20.0){
+          depth_vec.push_back(z);
+          depth_min = fmin(z, depth_min);
+      }else{
+          (*it)->point.reset();
+      }
     }
   }
   if(depth_vec.empty())
   {
-    //SVO_WARN_STREAM("Cannot set scene depth. Frame has no point-observations!");
     return false;
   }
-  depth_mean = vk::getMedian(depth_vec);
+  double min,max;
+  depth_mean = vk::getMean(depth_vec,min,max);
   return true;
 }
 
