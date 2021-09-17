@@ -198,7 +198,7 @@ bool Matcher::findEpipolarMatchDirect(
     double& depth)
 {
   if(isnan(d_min) || isnan(d_max))return false;
-  SE2_5 T_cur_ref(SE2(cur_frame.T_f_w_.pitch() - ref_frame.T_f_w_.pitch(),cur_frame.T_f_w_.se2().translation() - ref_frame.T_f_w_.se2().translation()));
+  SE2_5 T_cur_ref(SE2(cur_frame.T_f_w_.so2() * ref_frame.T_f_w_.inverse().so2(),cur_frame.T_f_w_.se2().translation() - ref_frame.T_f_w_.se2().translation()));
   int zmssd_best = PatchScore::threshold();
   Vector2d uv_best;
 

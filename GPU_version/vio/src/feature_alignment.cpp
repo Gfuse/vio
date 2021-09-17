@@ -69,7 +69,7 @@ bool align1D(
   float v = cur_px_estimate.y();
 
   // termination condition
-  const float min_update_squared = 0.05;
+  const float min_update_squared = 0.001;
   const int cur_step = cur_img.step.p[0];
   float chi2 = 0;
   Vector2f update; update.setZero();
@@ -202,7 +202,7 @@ bool align2D(
   bool sign=true;// +
 
   // termination condition
-  const float min_update_squared = 0.05;//0.001
+  const float min_update_squared = 0.001;//0.001
   const int cur_step = cur_img.step.p[0];
 //  float chi2 = 0;
   Vector3f update; update.setZero();

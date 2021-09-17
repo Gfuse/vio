@@ -258,7 +258,7 @@ namespace vio {
                 continue;
             }
             // check if point is visible in the current image
-            SE2 T(frame->T_f_w_.pitch()-(*it)->ftr->frame->T_f_w_.pitch(),frame->T_f_w_.se2().translation()+(*it)->ftr->frame->T_f_w_.inverse().translation());
+            SE2 T(frame->T_f_w_.so2()*(*it)->ftr->frame->T_f_w_.inverse().so2(),frame->T_f_w_.se2().translation()+(*it)->ftr->frame->T_f_w_.inverse().translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
             q = AngleAxisd(0.0, Vector3d::UnitX())
@@ -269,10 +269,10 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
 #endif
-            if(xyz_f.z() < 0.0)  {
+/*            if(xyz_f.z() > 0.0)  {
                 ++it; // behind the camera
                 continue;
-            }
+            }*/
             if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
                 ++it; // point does not project in image
                 continue;
@@ -280,7 +280,9 @@ namespace vio {
 
             float z_min = (*it)->mu + sqrt((*it)->sigma2);
             float z_max = max((*it)->mu - sqrt((*it)->sigma2), 0.00000001f);
-
+#if VIO_DEBUG
+            fprintf(log_,"[%s]  Z min: %f, Z max: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z_min,z_max);
+#endif
             if(z_min < 0){
                 ++it;
                 continue;
