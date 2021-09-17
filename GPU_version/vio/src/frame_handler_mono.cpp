@@ -224,7 +224,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
             fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
 #endif
-    if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
+    if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.005 ||
        fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch())>M_PI_2 || sfba_n_edges_final < Config::qualityMinFts()){
         auto init_f= ukfPtr_.get_location();
         new_frame_->T_f_w_=init_f.second;
