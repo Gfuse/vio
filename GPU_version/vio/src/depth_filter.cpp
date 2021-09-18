@@ -261,7 +261,7 @@ namespace vio {
             SE2 T(frame->T_f_w_.so2()*(*it)->ftr->frame->T_f_w_.inverse().so2(),frame->T_f_w_.se2().translation()+(*it)->ftr->frame->T_f_w_.inverse().translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
-            q = AngleAxisd(0.0, Vector3d::UnitX())
+            q = AngleAxisd(-0.122173, Vector3d::UnitX())
                 * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
             SE3 T_cur_ref(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));

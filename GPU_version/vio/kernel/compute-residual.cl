@@ -26,7 +26,7 @@ float3 xyz_cur(float3 cur, float3 ref, float3 ref_feature)
     float3 error=ref+cur;
     float yaw=0.0;
     float pitch=error.z;
-    float roll=-0.26;
+    float roll=-0.122173;
     float R00=cos(yaw)*cos(pitch);//cos(pitch)
     float R01=cos(yaw)*sin(pitch)*sin(roll)-sin(yaw)*cos(roll);//0
     float R02=cos(yaw)*sin(pitch)*cos(roll)+sin(yaw)*sin(roll);//sin(pitch)
