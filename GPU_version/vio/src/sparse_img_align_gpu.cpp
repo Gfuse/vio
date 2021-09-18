@@ -85,17 +85,17 @@ double SparseImgAlignGpu::computeResiduals(
     bool linearize_system,
     bool compute_weight_scale)
 {
-    float H[9*300]={0};
+    cl_float H[9*300]={0};
     cl_float3 J[300]={0.0};
-    float chi2_[300]={0.0};
-    float scale=(float)scale_;
+    cl_float chi2_[300]={0.0};
+    cl_float scale=(float)scale_;
     errors.push_back(residual_->write_buf(1,11,scale));
     errors.push_back(residual_->reload_buf(1,10,chi2_));
     errors.push_back(residual_->reload_buf(1,8,H));
     errors.push_back(residual_->reload_buf(1,9,J));
     residual_->run(1,feature_counter_);
-    float error[300]={0.0};
-    float chi[300]={0.0};
+    cl_float error[300]={0.0};
+    cl_float chi[300]={0.0};
     residual_->read(1,10,feature_counter_,chi);
     residual_->read(1,7,feature_counter_,error);
     for(int i = 1; i < feature_counter_; ++i){
@@ -108,7 +108,7 @@ double SparseImgAlignGpu::computeResiduals(
 
 int SparseImgAlignGpu::solve()
 {
-    float H[300*9]={0.0};
+    cl_float H[300*9]={0.0};
     cl_float3 J[300]={0.0};
     residual_->read(1,8,feature_counter_*9,H);
     residual_->read(1,9,feature_counter_,J);
@@ -130,6 +130,10 @@ int SparseImgAlignGpu::solve()
                   (double)H[3],(double)H[4],(double)H[5],
                   (double)H[6],(double)H[7],(double)H[8]};
     double Jd[3]={(double)J[0].x,(double)J[0].y,(double)J[0].z};
+    for(int i=0;i<9;++i){
+        if(i==0)std::cerr<<'\n'<<(double)J[0].x<<","<<(double)J[0].y<<","<<(double)J[0].z<<'\t';
+        std::cerr<<Hd[i]<<",";
+    }
     x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d(Jd[0],Jd[1],Jd[2]));
     if((bool) std::isnan((double) x_[0]) || (bool) std::isnan((double) x_[1]) ||(bool) std::isnan((double) x_[2]))
         return 0;

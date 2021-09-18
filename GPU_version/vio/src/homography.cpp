@@ -151,7 +151,7 @@ namespace vk {
             decomp.R(2,2) = dCosTheta;
 
             // Eq 14
-            decomp.t[0] = (d1 - d3) * x1_PM * e1[signs];
+            decomp.t[0] = 0.0;//(d1 - d3) * x1_PM * e1[signs];
             decomp.t[1] = 0.0;
             decomp.t[2] = (d1 - d3) * -x3_PM * e3[signs];
 
@@ -180,7 +180,7 @@ namespace vk {
             decomp.R(2,2) = -dCosPhi;
 
             // Eq 16
-            decomp.t[0] = (d1 + d3) * x1_PM * e1[signs];
+            decomp.t[0] = 0.0;//(d1 + d3) * x1_PM * e1[signs];
             decomp.t[1] = 0.0;
             decomp.t[2] = (d1 + d3) * x3_PM * e3[signs];
 

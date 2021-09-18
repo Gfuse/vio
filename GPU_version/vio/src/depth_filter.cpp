@@ -269,10 +269,7 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
 #endif
-/*            if(xyz_f.z() > 0.0)  {
-                ++it; // behind the camera
-                continue;
-            }*/
+
             if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
                 ++it; // point does not project in image
                 continue;
@@ -283,10 +280,6 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s]  Z inverse min: %f, Z inverse max: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z_min,z_max);
 #endif
-/*            if(z_min < 0){
-                ++it;
-                continue;
-            }*/
 
             double z;
             if(!matcher_.findEpipolarMatchDirect(

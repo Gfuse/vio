@@ -57,13 +57,13 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
     errors.push_back(gpu_fast_->write_buf(1,4,300,f));
     cl_float2 px[300]={0};
     errors.push_back(gpu_fast_->write_buf(1,5,300,px));
-    float  e[300]={0};
+    cl_float  e[300]={0};
     errors.push_back(gpu_fast_->write_buf(1,7,300,e));
-    float H[9*300]={0};
+    cl_float H[9*300]={0};
     errors.push_back(gpu_fast_->write_buf(1,8,9*300,H));
     cl_float3 J[300];
     errors.push_back(gpu_fast_->write_buf(1,9,300,J));
-    float chi2[300]={0.01};
+    cl_float chi2[300]={0.01};
     errors.push_back(gpu_fast_->write_buf(1,10,300,chi2));
     for(auto e:errors){
         if(e!=true){
