@@ -41,9 +41,10 @@ public:
     bool start(vio::start::Request& req, vio::start::Response& res){
         if(req.on==1 && !start_){
             start_=true;
-            if(vo_->stage()!=vio::FrameHandlerBase::STAGE_DEFAULT_FRAME)
+            if(vo_->stage()!=vio::FrameHandlerBase::STAGE_DEFAULT_FRAME) {
+                vo_->depthFilter()->startThread();
                 vo_->start();
-            else{
+            }else{
                 vo_->depthFilter()->startThread();
                 vo_->reset();
             }

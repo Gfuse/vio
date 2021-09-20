@@ -16,7 +16,11 @@
 
 class kernel{
 public:
-    kernel(cl::Program* program,std::string name){_kernel = new cl::Kernel(*program,name.c_str());};
+    kernel(cl::Program* program,std::string name){
+        cl_int error;
+        _kernel = new cl::Kernel(*program,name.c_str(),&error);
+        assert(error== CL_SUCCESS);
+    };
     ~kernel(){
         for(auto&& i:_images)i.first.setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
         for(auto&& i:_buffers)i.first.first.setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
@@ -150,7 +154,10 @@ public:
     cl_int run(size_t id1/*kernal ID*/,std::size_t  x=1,std::size_t y=1,std::size_t z=1) {
         cl_int err=0;
         cl::Event event;
-        queue->flush();
+        if(queue->flush()==CL_OUT_OF_HOST_MEMORY){
+            std::cerr<<"GPU out of memory goodbye:)\n";
+            exit(0);
+        }
         if(z>1 && y>1){
             err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x,y,z)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         }else if(z<2 && y>1){
@@ -160,7 +167,11 @@ public:
         };
         if(err!=CL_SUCCESS)return -1;
         event.wait();
-        return queue->finish();
+        if(queue->finish()==CL_OUT_OF_HOST_MEMORY){
+            std::cerr<<"GPU out of memory goodbye:)\n";
+            exit(0);
+        }
+        return 1;
 
     }
     template<typename T>

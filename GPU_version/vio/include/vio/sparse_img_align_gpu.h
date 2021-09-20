@@ -73,7 +73,7 @@ protected:
         return 0.0;
     };
   virtual double computeResiduals(bool linearize_system, bool compute_weight_scale = false);
-  virtual int solve();
+  virtual bool solve();
   virtual void update();
   virtual void update(const ModelType& old_model, ModelType& new_model) { };
   virtual void startIteration();

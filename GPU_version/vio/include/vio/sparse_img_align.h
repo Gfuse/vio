@@ -73,7 +73,7 @@ protected:
   void precomputeReferencePatches();
   virtual double computeResiduals(const SE2& model, bool linearize_system, bool compute_weight_scale = false);
   virtual double computeResiduals(bool linearize_system, bool compute_weight_scale = false){};
-  virtual int solve();
+  virtual bool solve();
   virtual void update (const ModelType& old_model, ModelType& new_model);
   virtual void update(){};
   virtual void startIteration();

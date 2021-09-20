@@ -28,7 +28,7 @@ FIND_PACKAGE(OpenCV 4 REQUIRED)
 FIND_PACKAGE(Eigen REQUIRED)
 FIND_PACKAGE(Boost REQUIRED COMPONENTS thread system)
 FIND_PACKAGE(OpenCL REQUIRED)
-FIND_PACKAGE(G2O REQUIRED)
+#FIND_PACKAGE(G2O REQUIRED)
 
 
 FIND_PACKAGE(catkin REQUIRED COMPONENTS roscpp roslib cmake_modules image_transport cv_bridge tf geometry_msgs message_generation)
@@ -53,8 +53,8 @@ INCLUDE_DIRECTORIES(
         ${Boost_INCLUDE_DIRS}
         ${OpenCL_INCLUDE_DIRS}
         ${catkin_INCLUDE_DIRS}
-        ${G2O_INCLUDE_DIR}
-        /usr/include/suitesparse # for cholmod
+        #${G2O_INCLUDE_DIR}
+        #/usr/include/suitesparse # for cholmod
 )
 
 # Set link libraries
@@ -63,8 +63,8 @@ LIST(APPEND LINK_LIBS
   ${Boost_LIBRARIES}
   ${OpenCL_LIBRARIES}
   ${catkin_LIBRARIES}
-  ${G2O_CORE_LIBRARY} ${G2O_STUFF_LIBRARY} ${G2O_SOLVER_CHOLMOD} ${G2O_SOLVER_CSPARSE} ${G2O_SOLVER_DENSE}
-  ${G2O_SOLVER_PCG} ${G2O_TYPES_SBA} cholmod cxsparse
+ # ${G2O_CORE_LIBRARY} ${G2O_STUFF_LIBRARY} ${G2O_SOLVER_CHOLMOD} ${G2O_SOLVER_CSPARSE} ${G2O_SOLVER_DENSE}
+ # ${G2O_SOLVER_PCG} ${G2O_TYPES_SBA} cholmod cxsparse
 )
 
 file(GLOB SRC  CONFIGURE_DEPENDS "src/*.cpp" "include/sophus/*.cpp")

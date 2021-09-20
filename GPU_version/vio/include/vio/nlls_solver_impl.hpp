@@ -33,13 +33,15 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
     rho_ = 0;
     n_meas_ = 0;
     double new_chi2 = computeResiduals(true, false);
+      std::cerr<<"36\t";
     // solve the linear system
     if(!solve())
     {
       // matrix was singular and could not be computed
-      if(verbose_)std::cout << "Matrix is close to singular! Stop Optimizing." << std::endl;
+      std::cout << "Matrix is close to singular! Stop Optimizing." << std::endl;
       stop_ = true;
     }
+    std::cerr<<"43\t";
     // check if error increased since last optimization
     if((iter_ > 0 && new_chi2 > chi2_) || stop_)
     {
@@ -52,8 +54,10 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
       }
       break;
     }
+      std::cerr<<"57\t";
     // update the model
     update();
+      std::cerr<<"60\n";
     chi2_ = new_chi2;
     if(verbose_)
     {

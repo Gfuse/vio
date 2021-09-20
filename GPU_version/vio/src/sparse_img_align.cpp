@@ -235,7 +235,7 @@ double SparseImgAlign::computeResiduals(
   return chi2/n_meas_;
 }
 
-int SparseImgAlign::solve()
+bool SparseImgAlign::solve()
 {
   x_ = H_.ldlt().solve(Jres_);
   if((bool) std::isnan((double) x_[0]))

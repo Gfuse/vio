@@ -106,40 +106,33 @@ double SparseImgAlignGpu::computeResiduals(
     return chi[0]/(feature_counter_*8);
 }
 
-int SparseImgAlignGpu::solve()
+bool SparseImgAlignGpu::solve()
 {
     cl_float H[300*9]={0.0};
     cl_float3 J[300]={0.0};
     residual_->read(1,8,feature_counter_*9,H);
     residual_->read(1,9,feature_counter_,J);
     for(int i = 1; i < feature_counter_; ++i){
-        H[0] += H[i*9];
-        H[1] += H[i*9+1];
-        H[2] += H[i*9+2];
-        H[3] += H[i*9+3];
-        H[4] += H[i*9+4];
-        H[5] += H[i*9+5];
-        H[6] += H[i*9+6];
-        H[7] += H[i*9+7];
-        H[8] += H[i*9+8];
-        J[0].x -= J[i].x;
-        J[0].y -= J[i].y;
-        J[0].z -= J[i].z;
+        H[0] += std::isnan(H[i*9]) ? 0.0 : H[i*9] ;
+        H[1] += std::isnan(H[i*9+1]) ? 0.0 : H[i*9+1];
+        H[2] += std::isnan(H[i*9+2]) ? 0.0 : H[i*9+2];
+        H[3] += std::isnan(H[i*9+3]) ? 0.0 : H[i*9+3];
+        H[4] += std::isnan(H[i*9+4]) ? 0.0 : H[i*9+4];
+        H[5] += std::isnan(H[i*9+5]) ? 0.0 : H[i*9+5];
+        H[6] += std::isnan(H[i*9+6]) ? 0.0 : H[i*9+6];
+        H[7] += std::isnan(H[i*9+7]) ? 0.0 : H[i*9+7];
+        H[8] += std::isnan(H[i*9+8]) ? 0.0 : H[i*9+8];
+        J[0].x -= std::isnan(J[i].x) ? 0.0 : J[i].x;
+        J[0].y -= std::isnan(J[i].y) ? 0.0 : J[i].y;
+        J[0].z -= std::isnan(J[i].z) ? 0.0 : J[i].z;
     }
     double Hd[9]={(double)H[0],(double)H[1],(double)H[2],
                   (double)H[3],(double)H[4],(double)H[5],
                   (double)H[6],(double)H[7],(double)H[8]};
-    double Jd[3]={(double)J[0].x,(double)J[0].y,(double)J[0].z};
-    for(int i=0;i<9;++i){
-        if(i==0)std::cerr<<'\n'<<(double)J[0].x<<","<<(double)J[0].y<<","<<(double)J[0].z<<'\t';
-        std::cerr<<Hd[i]<<",";
-    }
-    x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d(Jd[0],Jd[1],Jd[2]));
-    if((bool) std::isnan((double) x_[0]) || (bool) std::isnan((double) x_[1]) ||(bool) std::isnan((double) x_[2]))
-        return 0;
+    x_ = Eigen::Matrix<double,3,3>(Hd).ldlt().solve(Eigen::Vector3d((double)J[0].x,(double)J[0].y,(double)J[0].z));
     double norm=x_.norm();
     if(norm<=0 ||norm > 1.0)x_=Eigen::Vector3d(0.1,0.1,0.1);
-    return 1;
+    return true;
 }
 void SparseImgAlignGpu::update()
 {
