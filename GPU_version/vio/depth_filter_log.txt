@@ -1,0 +1,181 @@
+[16:40:15.960] init depth filter
+[16:40:43.554] init depth filter
+[16:40:48.325] DepthFilter: RESET.
+[16:41:03.100] add key frame
+[16:41:03.100] update seed
+[16:41:03.100] init seeds
+[16:41:03.106] DepthFilter: Initialized 85 new seeds
+[16:41:03.253] add new frame
+[16:41:03.253] update seed
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
+[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
+[16:42:35.541] DepthFilter stop thread invoked.
+[16:42:35.541] DepthFilter interrupt and join thread 

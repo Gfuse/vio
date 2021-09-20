@@ -269,7 +269,6 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
 #endif
-
             if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
                 ++it; // point does not project in image
                 continue;
@@ -290,6 +289,9 @@ namespace vio {
                 ++n_failed_matches;
                 continue;
             }
+#if VIO_DEBUG
+            fprintf(log_,"[%s]  calculated Z=  %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z);
+#endif
             double tau = computeTau(T_cur_ref.inverse(), (*it)->ftr->f, z, px_error_angle);
             double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
 
@@ -299,6 +301,9 @@ namespace vio {
                 ++n_failed_matches;
                 continue;
             }
+#if VIO_DEBUG
+            fprintf(log_,"[%s]  update seeds \n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
             ++n_updates;
 
             if(frame->isKeyframe())

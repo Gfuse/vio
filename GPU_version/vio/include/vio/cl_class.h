@@ -165,7 +165,7 @@ public:
         }else{
             err=queue->enqueueNDRangeKernel(*_kernels.at(id1)._kernel, cl::NullRange/*offset*/, cl::NDRange(x)/*Global*/, cl::NullRange/*local*/,NULL,&event);
         };
-        if(err!=CL_SUCCESS)return -1;
+        assert(err==CL_SUCCESS);
         event.wait();
         if(queue->finish()==CL_OUT_OF_HOST_MEMORY){
             std::cerr<<"GPU out of memory goodbye:)\n";

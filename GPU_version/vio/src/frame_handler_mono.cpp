@@ -163,8 +163,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   double depth_mean, depth_min;
   frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
   depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
-  frame_utils::getSceneDepth(*klt_homography_init_->frame_ref_, depth_mean, depth_min);
-  depth_filter_->addKeyframe(klt_homography_init_->frame_ref_, depth_mean, 0.5*depth_min);
+/*  frame_utils::getSceneDepth(*klt_homography_init_->frame_ref_, depth_mean, depth_min);
+  depth_filter_->addKeyframe(klt_homography_init_->frame_ref_, depth_mean, 0.5*depth_min);*/
   // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
