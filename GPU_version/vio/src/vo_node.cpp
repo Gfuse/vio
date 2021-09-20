@@ -159,7 +159,7 @@ void VioNode::cmdCb(const geometry_msgs::TwistPtr &cmd) {
 #if VIO_DEBUG
     auto odom=vo_->ukfPtr_.get_location();
     fprintf(vo_->log_,"[%s] Odometry x=%f, y=%f, theta=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            10.0*odom.second.se2().translation()(0),10.0*odom.second.se2().translation()(1),
+            odom.second.se2().translation()(0),odom.second.se2().translation()(1),
             odom.second.pitch());
 #endif
 }

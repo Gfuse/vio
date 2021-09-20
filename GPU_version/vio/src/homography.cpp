@@ -21,12 +21,16 @@ namespace vk {
     Homography::
     Homography(const vector<Vector2d, aligned_allocator<Vector2d> >& _fts1,
                const vector<Vector2d, aligned_allocator<Vector2d> >& _fts2,
+               const vector<Vector3d, aligned_allocator<Vector3d> >& _pfts1,
+               const vector<Vector3d, aligned_allocator<Vector3d> >& _pfts2,
                double _error_multiplier2,
                double _thresh_in_px) :
             thresh(_thresh_in_px),
             error_multiplier2(_error_multiplier2),
             fts_c1(_fts1),
-            fts_c2(_fts2)
+            fts_c2(_fts2),
+            pfts_c1(_pfts1),
+            pfts_c2(_pfts2)
     {
     }
 
@@ -49,7 +53,7 @@ namespace vk {
 
         // TODO: replace this function to remove dependency from opencv!
 //        cv::Mat cvH = cv::findHomography(src_pts, dst_pts, CV_RANSAC, 2./error_multiplier2);
-        cv::Mat cvH = cv::findHomography(src_pts, dst_pts, cv::RANSAC, 2./error_multiplier2);//2./error_multiplier2
+        cv::Mat cvH = cv::findHomography(src_pts, dst_pts, cv::RANSAC,2./error_multiplier2 );//2./error_multiplier2
         H_c2_from_c1(0,0) = cvH.at<double>(0,0);
         H_c2_from_c1(0,1) = cvH.at<double>(0,1);
         H_c2_from_c1(0,2) = cvH.at<double>(0,2);
@@ -68,10 +72,8 @@ namespace vk {
         size_t n_inliers = 0;
         for(size_t i=0; i<fts_c1.size(); i++)
         {
-            Vector2d projected = project2d(H_c2_from_c1 * unproject2d(fts_c1[i]));
-            Vector2d e = fts_c2[i] - projected;
-            double e_px = error_multiplier2 * e.norm();
-            inliers[i] = (e_px < thresh);
+            Vector3d e = pfts_c2[i] - (H_c2_from_c1 * pfts_c1[i]);
+            inliers[i] = (e.norm() < 15.0);
             n_inliers += inliers[i];
         }
         return n_inliers;
@@ -85,7 +87,7 @@ namespace vk {
         bool res = decompose();
         if(!res)
             return false;
-        computeMatchesInliers();
+        //computeMatchesInliers();
         findBestDecomposition();
         Eigen::Quaternion<double> q(decompositions.front().T.rotation_matrix());
         q.vec() *= 1/q.norm();
@@ -155,7 +157,7 @@ namespace vk {
             decomp.t[1] = 0.0;
             decomp.t[2] = (d1 - d3) * -x3_PM * e3[signs];
 
-            np[0] = x1_PM * e1[signs];
+            np[0] = 0.0;//x1_PM * e1[signs];
             np[1] = 0.0;
             np[2] = x3_PM * e3[signs];
             decomp.n = V * np;
@@ -171,9 +173,9 @@ namespace vk {
             decomp.R = -1 * Matrix3d::Identity();
             double dSinPhi = (d1 + d3) * x1_PM * x3_PM * e1[signs] * e3[signs] / d2;
             double dCosPhi = (d3 * x1_PM * x1_PM - d1 * x3_PM * x3_PM) / d2;
-            /*
-            * correct the rotation matrix by Majid
-           */
+
+            // correct the rotation matrix by Majid
+
             decomp.R(0,0) = dCosPhi;
             decomp.R(0,2) = dSinPhi;
             decomp.R(2,0) = dSinPhi;
@@ -184,7 +186,7 @@ namespace vk {
             decomp.t[1] = 0.0;
             decomp.t[2] = (d1 + d3) * x3_PM * e3[signs];
 
-            np[0] = x1_PM * e1[signs];
+            np[0] = 0.0;//x1_PM * e1[signs];
             np[1] = 0.0;
             np[2] = x3_PM * e3[signs];
             decomp.n = V * np;
@@ -217,8 +219,8 @@ namespace vk {
             size_t nPositive = 0;
             for(size_t m=0; m<fts_c1.size(); m++)
             {
-                if(!inliers[m])
-                    continue;
+/*                if(!inliers[m])
+                    continue;*/
                 const Vector2d& v2 = fts_c1[m];
                 double dVisibilityTest = (H_c2_from_c1(2,0) * v2[0] + H_c2_from_c1(2,1) * v2[1] + H_c2_from_c1(2,2)) / decom.d;
                 if(dVisibilityTest > 0.0)
@@ -236,9 +238,9 @@ namespace vk {
             int nPositive = 0;
             for(size_t m=0; m<fts_c1.size(); m++)
             {
-                if(!inliers[m])
-                    continue;
-                Vector3d v3 = unproject2d(fts_c1[m]);
+/*                if(!inliers[m])
+                    continue;*/
+                Vector3d v3 = pfts_c1[m];
                 double dVisibilityTest = v3.dot(decom.n) / decom.d;
                 if(dVisibilityTest > 0.0)
                     nPositive++;

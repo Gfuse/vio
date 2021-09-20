@@ -129,12 +129,12 @@ public:
     //Notice T_F_W is the position of the first frame with respect to the new frame while they are looking at one feature
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> UpdateSvo(double x/*in camera frame*/,double z/*in camera frame*/,double pitch/*in camera frame*/) {
         boost::unique_lock<boost::mutex> lock(ekf_mut_);
-        filter_->correct(10.0*x,-10.0*z,-1.0*pitch);
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(0.1*filter_->state_(0),-0.1*filter_->state_(1),-1.0*(filter_->state_(2))));
+        filter_->correct(x,-1.0*z,-1.0*pitch);
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),-1.0*filter_->state_(1),-1.0*(filter_->state_(2))));
     };
     std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5> get_location(){
         boost::unique_lock<boost::mutex> lock(ekf_mut_);
-        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(0.1*filter_->state_(0),-0.1*filter_->state_(1),-1.0*(filter_->state_(2))));
+        return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(filter_->cov_,vio::SE2_5(filter_->state_(0),-1.0*filter_->state_(1),-1.0*(filter_->state_(2))));
     }
     bool start_=false;
 private:

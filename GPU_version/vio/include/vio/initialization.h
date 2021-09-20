@@ -79,33 +79,31 @@ protected:
             f_cur.at(ftr.index) = frame->c2f(px_cur_.at(ftr.index).x,px_cur_.at(ftr.index).y);
             f_ref.at(ftr.index) = ftr.item->f;
         }
-        vk::Homography Homography(uv_ref, uv_cur, focal_length, reprojection_threshold);
+        vk::Homography Homography(uv_ref, uv_cur,f_ref,f_cur, focal_length, reprojection_threshold);
         Homography.computeSE3fromMatches();
-        vector<int> outliers;
+        vector<int> outliers_hom, inlier_hom;
+        vector<int> outliers_ekf,inlier_ekf;
         assert(ukf_!= nullptr);
-        auto euler =Homography.T_c2_from_c1.unit_quaternion().normalized().toRotationMatrix().eulerAngles(0,1,2);
+        vk::computeInliers(f_cur, f_ref,
+                           Homography.T_c2_from_c1.rotation_matrix(), Homography.T_c2_from_c1.translation(),
+                           reprojection_threshold, focal_length,
+                           xyz_in_cur, inlier_hom, outliers_hom);
         auto res=ukf_->get_location();
-        size_t in=0;
-        for(auto&& i:Homography.inliers)if(i)++in;
-#if VIO_DEBUG
-      fprintf(log_,"[%s] homography: x=%f y=%f z=%f roll=%f pitch=%f yaw=%f \t ekf: x=%f z=%f pitch=%f\n",
-              vio::time_in_HH_MM_SS_MMM().c_str(),
-              Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().y(),Homography.T_c2_from_c1.translation().z(),
-              euler(0),euler(1),euler(2)
-              ,res.second.se2().translation().x(),res.second.se2().translation().y(),res.second.pitch());
-#endif
-        if(in>20)
-        res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
         vk::computeInliers(f_cur, f_ref,
                            res.second.se3().rotation_matrix(), res.second.se3().translation(),
                                reprojection_threshold, focal_length,
-                               xyz_in_cur, inliers, outliers);
-#if VIO_DEBUG
-      fprintf(log_,"[%s] homography after fuse: x=%f y=%f z=%f pitch=%f\t number of outlier: %d\n",
-              vio::time_in_HH_MM_SS_MMM().c_str(),
-              res.second.se3().translation().x(),res.second.se3().translation().y(),res.second.se3().translation().z(),res.second.pitch(),outliers.size());
-#endif
-        T_cur_from_ref=res.second;
+                               xyz_in_cur, inlier_ekf, outliers_ekf);
+
+        if(inlier_ekf.size()>inlier_hom.size()){
+            T_cur_from_ref=res.second;
+            inliers=inlier_ekf;
+        }else if((Homography.T_c2_from_c1.translation()-res.second.se3().translation()).norm()<0.1 && inlier_ekf.size()<inlier_hom.size()){
+            auto euler =Homography.T_c2_from_c1.unit_quaternion().normalized().toRotationMatrix().eulerAngles(0,1,2);
+            res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
+            T_cur_from_ref=res.second;
+            inliers=inlier_hom;
+        }
+
     }
 };
 
