@@ -222,7 +222,7 @@ MapPointCandidates::~MapPointCandidates()
 void MapPointCandidates::newCandidatePoint(std::shared_ptr<Point> point, double depth_sigma2)
 {
   point->type_ = Point::TYPE_CANDIDATE;
-  //boost::unique_lock<boost::mutex> lock(mut_);
+  boost::unique_lock<boost::mutex> lock(mut_);
   candidates_.push_back(PointCandidate(point, point->obs_.front()));
 }
 

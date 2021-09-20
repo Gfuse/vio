@@ -1,810 +1,834 @@
-[16:40:48.426] Init: frame zero: 0.000000, 0.000000 0.000000
-[16:40:48.426] Init: Selected first frame. 
-[16:40:48.532] Init: px average disparity is:0.180039 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:48.532] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:48.629] Init: px average disparity is:0.236903 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:48.629] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:48.725] Init: px average disparity is:0.247999 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:48.725] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:48.826] Init: px average disparity is:0.304020 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:48.826] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:48.926] Init: px average disparity is:0.458450 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:48.926] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.027] Init: px average disparity is:0.360611 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.027] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.126] Init: px average disparity is:0.501986 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.126] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.228] Init: px average disparity is:0.499503 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.228] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.326] Init: px average disparity is:0.496040 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.326] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.427] Init: px average disparity is:0.564079 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.428] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.526] Init: px average disparity is:0.635364 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.526] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.627] Init: px average disparity is:0.707101 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.627] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.727] Init: px average disparity is:0.692861 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.727] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.826] Init: px average disparity is:0.665708 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.826] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:49.925] Init: px average disparity is:0.725993 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:49.925] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.025] Init: px average disparity is:0.618970 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.025] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.124] Init: px average disparity is:0.643709 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.124] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.224] Init: px average disparity is:0.693985 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.225] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.325] Init: px average disparity is:0.760127 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.325] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.425] Init: px average disparity is:0.639421 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.425] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.526] Init: px average disparity is:0.675828 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.526] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.626] Init: px average disparity is:0.685111 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.627] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.726] Init: px average disparity is:0.635898 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.726] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.825] Init: px average disparity is:0.633533 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.826] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:50.926] Init: px average disparity is:0.687717 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:50.926] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.027] Init: px average disparity is:0.582819 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.027] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.126] Init: px average disparity is:0.701395 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.126] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.227] Init: px average disparity is:0.660810 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.227] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.325] Init: px average disparity is:0.634058 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.325] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.426] Init: px average disparity is:0.626220 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.426] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.526] Init: px average disparity is:0.691617 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.526] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.624] Init: px average disparity is:0.715179 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.624] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.724] Init: px average disparity is:0.595055 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.725] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.826] Init: px average disparity is:0.547822 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.826] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:51.924] Init: px average disparity is:0.633333 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:51.924] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.026] Init: px average disparity is:0.649269 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.027] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.124] Init: px average disparity is:0.606178 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.124] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.226] Init: px average disparity is:0.577103 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.226] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.325] Init: px average disparity is:0.703724 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.325] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.425] Init: px average disparity is:0.574262 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.426] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.525] Init: px average disparity is:0.688359 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.525] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.625] Init: px average disparity is:0.601962 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.625] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.726] Init: px average disparity is:0.674725 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.726] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.822] Init: px average disparity is:0.663489 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.822] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:52.924] Init: px average disparity is:0.709665 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:52.924] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.026] Init: px average disparity is:0.627627 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.026] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.125] Init: px average disparity is:0.703663 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.126] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.226] Init: px average disparity is:0.524369 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.226] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.325] Init: px average disparity is:0.723811 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.326] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.417] Init: px average disparity is:0.701386 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.417] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.529] Init: px average disparity is:0.695519 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.529] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.626] Init: px average disparity is:0.609904 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.627] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.730] Init: px average disparity is:0.655241 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.730] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.811] Odometry x=-0.000315, y=-0.012623, theta=0.058136
-[16:40:53.826] Init: px average disparity is:0.640421 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.826] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:53.912] Odometry x=-0.000332, y=-0.012868, theta=0.060750
-[16:40:53.926] Init: px average disparity is:0.594451 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:53.927] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.012] Odometry x=-0.000119, y=-0.009295, theta=0.063280
-[16:40:54.026] Init: px average disparity is:0.661276 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:54.026] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.113] Odometry x=0.000084, y=-0.005195, theta=0.068812
-[16:40:54.127] Init: px average disparity is:5.136573 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:54.127] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.206] Odometry x=0.000366, y=-0.001386, theta=0.065439
-[16:40:54.227] Init: px average disparity is:9.975437 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:54.227] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.313] Odometry x=0.000708, y=0.002240, theta=0.056478
-[16:40:54.327] Init: px average disparity is:9.444013 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:54.327] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.410] Odometry x=0.001111, y=0.006061, theta=0.052066
-[16:40:54.431] Init: px average disparity is:10.911169 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:54.432] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.510] Odometry x=0.001409, y=0.009605, theta=0.050043
-[16:40:54.527] Init: px average disparity is:13.731557 ,While minimum is: 40.000000  KLT tracked : 119
-[16:40:54.527] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.611] Odometry x=0.001683, y=0.013238, theta=0.057282
-[16:40:54.627] Init: px average disparity is:17.303048 ,While minimum is: 40.000000  KLT tracked : 118
-[16:40:54.627] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.713] Odometry x=0.001832, y=0.017086, theta=0.052460
-[16:40:54.726] Init: px average disparity is:18.739879 ,While minimum is: 40.000000  KLT tracked : 117
-[16:40:54.727] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.806] Odometry x=0.002043, y=0.021056, theta=0.045945
-[16:40:54.827] Init: px average disparity is:21.151078 ,While minimum is: 40.000000  KLT tracked : 116
-[16:40:54.827] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:54.912] Odometry x=0.002232, y=0.024370, theta=0.043616
-[16:40:54.926] Init: px average disparity is:23.304610 ,While minimum is: 40.000000  KLT tracked : 116
-[16:40:54.926] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.007] Odometry x=0.002546, y=0.028455, theta=0.043675
-[16:40:55.025] Init: px average disparity is:26.207851 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.025] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.107] Odometry x=0.002822, y=0.032469, theta=0.047318
-[16:40:55.127] Init: px average disparity is:25.438680 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.127] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.209] Odometry x=0.003074, y=0.036344, theta=0.054030
-[16:40:55.228] Init: px average disparity is:18.534907 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.228] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.310] Odometry x=0.003357, y=0.040194, theta=0.055921
-[16:40:55.326] Init: px average disparity is:15.077748 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.326] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.411] Odometry x=0.003611, y=0.043838, theta=0.065643
-[16:40:55.429] Init: px average disparity is:11.815838 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.429] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.522] Odometry x=0.003932, y=0.047392, theta=0.072628
-[16:40:55.538] Init: px average disparity is:10.688229 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.538] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.609] Odometry x=0.001716, y=0.051009, theta=0.031218
-[16:40:55.627] Init: px average disparity is:10.552707 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.627] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.715] Odometry x=0.001899, y=0.054656, theta=0.039747
-[16:40:55.728] Init: px average disparity is:10.006608 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.728] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.809] Odometry x=0.001979, y=0.058412, theta=0.041135
-[16:40:55.828] Init: px average disparity is:11.045814 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.829] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:55.912] Odometry x=0.002247, y=0.061833, theta=0.029103
-[16:40:55.920] Init: px average disparity is:13.668932 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:55.920] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.011] Odometry x=0.002403, y=0.065548, theta=0.031268
-[16:40:56.019] Init: px average disparity is:14.264462 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.019] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.114] Odometry x=0.002659, y=0.069365, theta=0.028181
-[16:40:56.129] Init: px average disparity is:15.221798 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.130] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.213] Odometry x=0.002789, y=0.073027, theta=0.024692
-[16:40:56.229] Init: px average disparity is:17.323704 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.229] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.312] Odometry x=0.003051, y=0.076732, theta=0.032107
-[16:40:56.328] Init: px average disparity is:16.200760 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.328] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.411] Odometry x=0.003160, y=0.080513, theta=0.030296
-[16:40:56.428] Init: px average disparity is:20.515656 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.429] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.511] Odometry x=0.003327, y=0.084393, theta=0.022000
-[16:40:56.528] Init: px average disparity is:23.089232 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.528] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.615] Odometry x=0.003404, y=0.088202, theta=0.023823
-[16:40:56.629] Init: px average disparity is:24.072324 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.629] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.715] Odometry x=0.003519, y=0.092207, theta=0.020137
-[16:40:56.728] Init: px average disparity is:25.174151 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.728] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.815] Odometry x=0.003612, y=0.096067, theta=0.036275
-[16:40:56.828] Init: px average disparity is:21.005192 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.828] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:56.915] Odometry x=0.003845, y=0.099987, theta=0.035974
-[16:40:56.928] Init: px average disparity is:19.614601 ,While minimum is: 40.000000  KLT tracked : 115
-[16:40:56.928] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.019] Odometry x=0.003956, y=0.103717, theta=0.054327
-[16:40:57.032] Init: px average disparity is:14.279696 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.032] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.112] Odometry x=0.004271, y=0.107587, theta=0.071001
-[16:40:57.119] Init: px average disparity is:12.346450 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.119] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.216] Odometry x=0.001902, y=0.111058, theta=0.046615
-[16:40:57.230] Init: px average disparity is:13.402972 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.230] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.316] Odometry x=0.002116, y=0.114709, theta=0.062470
-[16:40:57.324] Init: px average disparity is:15.987081 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.324] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.411] Odometry x=0.002313, y=0.118411, theta=0.055586
-[16:40:57.425] Init: px average disparity is:13.758488 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.425] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.508] Odometry x=0.002491, y=0.122014, theta=0.058853
-[16:40:57.526] Init: px average disparity is:16.116715 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.526] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.614] Odometry x=0.002759, y=0.125427, theta=0.048565
-[16:40:57.630] Init: px average disparity is:14.145615 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.630] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.707] Odometry x=0.003106, y=0.129343, theta=0.044568
-[16:40:57.729] Init: px average disparity is:14.043955 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.729] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.808] Odometry x=0.003291, y=0.132812, theta=0.041515
-[16:40:57.828] Init: px average disparity is:15.604550 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.828] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:57.906] Odometry x=0.003610, y=0.136327, theta=0.037664
-[16:40:57.930] Init: px average disparity is:16.592214 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:57.930] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.012] Odometry x=0.003757, y=0.140415, theta=0.019115
-[16:40:58.037] Init: px average disparity is:23.449684 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.037] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.112] Odometry x=0.004231, y=0.144035, theta=0.021513
-[16:40:58.125] Init: px average disparity is:22.574838 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.125] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.214] Odometry x=0.004405, y=0.148115, theta=0.027268
-[16:40:58.220] Init: px average disparity is:21.461218 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.220] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.307] Odometry x=0.004593, y=0.151742, theta=0.040476
-[16:40:58.319] Init: px average disparity is:19.463690 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.319] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.409] Odometry x=0.004767, y=0.155377, theta=0.039739
-[16:40:58.418] Init: px average disparity is:20.382672 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.418] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.509] Odometry x=0.005056, y=0.159278, theta=0.042832
-[16:40:58.520] Init: px average disparity is:20.760859 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.520] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.613] Odometry x=0.005304, y=0.163217, theta=0.051806
-[16:40:58.619] Init: px average disparity is:19.600786 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.619] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.709] Odometry x=0.005658, y=0.167133, theta=0.049136
-[16:40:58.721] Init: px average disparity is:22.187608 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.721] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.808] Odometry x=0.005931, y=0.170662, theta=0.067637
-[16:40:58.830] Init: px average disparity is:21.528185 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.830] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:58.910] Odometry x=0.006430, y=0.174250, theta=0.084908
-[16:40:58.935] Init: px average disparity is:21.330895 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:58.935] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.011] Odometry x=0.002889, y=0.178102, theta=0.046058
-[16:40:59.030] Init: px average disparity is:22.620537 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.030] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.111] Odometry x=0.003216, y=0.181629, theta=0.046524
-[16:40:59.132] Init: px average disparity is:23.454259 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.132] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.210] Odometry x=0.003419, y=0.185615, theta=0.044651
-[16:40:59.222] Init: px average disparity is:22.501303 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.222] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.308] Odometry x=0.003729, y=0.189255, theta=0.040108
-[16:40:59.332] Init: px average disparity is:22.572086 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.332] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.410] Odometry x=0.003957, y=0.192849, theta=0.038163
-[16:40:59.430] Init: px average disparity is:22.058267 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.430] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.513] Odometry x=0.004314, y=0.196779, theta=0.036542
-[16:40:59.531] Init: px average disparity is:23.511469 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.531] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.610] Odometry x=0.004520, y=0.200576, theta=0.037145
-[16:40:59.631] Init: px average disparity is:24.454396 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.631] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.713] Odometry x=0.004730, y=0.204177, theta=0.033820
-[16:40:59.729] Init: px average disparity is:26.548847 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.730] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.807] Odometry x=0.004890, y=0.207944, theta=0.028446
-[16:40:59.829] Init: px average disparity is:26.675716 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.830] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:40:59.909] Odometry x=0.005107, y=0.211422, theta=0.024521
-[16:40:59.932] Init: px average disparity is:25.631122 ,While minimum is: 40.000000  KLT tracked : 114
-[16:40:59.932] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.010] Odometry x=0.005226, y=0.215226, theta=0.024664
-[16:41:00.031] Init: px average disparity is:23.699713 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.031] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.111] Odometry x=0.005397, y=0.219032, theta=0.017836
-[16:41:00.134] Init: px average disparity is:24.830997 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.134] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.212] Odometry x=0.005450, y=0.223002, theta=0.016897
-[16:41:00.230] Init: px average disparity is:25.198499 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.230] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.308] Odometry x=0.005555, y=0.226792, theta=0.014357
-[16:41:00.329] Init: px average disparity is:26.523793 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.329] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.407] Odometry x=0.005597, y=0.230661, theta=0.024656
-[16:41:00.431] Init: px average disparity is:25.310277 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.431] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.511] Odometry x=0.005745, y=0.234389, theta=0.029864
-[16:41:00.529] Init: px average disparity is:26.612717 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.529] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.609] Odometry x=0.005973, y=0.238292, theta=0.036818
-[16:41:00.631] Init: px average disparity is:26.182313 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.631] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.715] Odometry x=0.006214, y=0.241917, theta=0.048429
-[16:41:00.730] Init: px average disparity is:27.971842 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.730] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.812] Odometry x=0.006406, y=0.245896, theta=0.062426
-[16:41:00.829] Init: px average disparity is:28.676399 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.830] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:00.907] Odometry x=0.006666, y=0.249598, theta=0.070973
-[16:41:00.929] Init: px average disparity is:31.777546 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:00.929] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.011] Odometry x=0.002926, y=0.253044, theta=0.038818
-[16:41:01.040] Init: px average disparity is:29.990076 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:01.040] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.111] Odometry x=0.003146, y=0.256823, theta=0.045919
-[16:41:01.130] Init: px average disparity is:29.140964 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:01.130] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.211] Odometry x=0.003365, y=0.260711, theta=0.040166
-[16:41:01.230] Init: px average disparity is:29.803489 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:01.230] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.310] Odometry x=0.003566, y=0.264469, theta=0.033378
-[16:41:01.327] Init: px average disparity is:32.507392 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:01.327] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.408] Odometry x=0.003652, y=0.268052, theta=0.026469
-[16:41:01.432] Init: px average disparity is:32.407136 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:01.432] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.511] Odometry x=0.003856, y=0.271809, theta=0.018313
-[16:41:01.530] Init: px average disparity is:33.928681 ,While minimum is: 40.000000  KLT tracked : 114
-[16:41:01.530] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.609] Odometry x=0.004018, y=0.275519, theta=0.016460
-[16:41:01.640] Init: px average disparity is:36.186426 ,While minimum is: 40.000000  KLT tracked : 113
-[16:41:01.640] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.708] Odometry x=0.004183, y=0.279105, theta=0.012329
-[16:41:01.730] Init: px average disparity is:35.936952 ,While minimum is: 40.000000  KLT tracked : 113
-[16:41:01.730] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.811] Odometry x=0.004277, y=0.282848, theta=0.022976
-[16:41:01.829] Init: px average disparity is:32.570496 ,While minimum is: 40.000000  KLT tracked : 112
-[16:41:01.829] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:01.909] Odometry x=0.004319, y=0.286603, theta=0.018003
-[16:41:01.932] Init: px average disparity is:29.141144 ,While minimum is: 40.000000  KLT tracked : 110
-[16:41:01.932] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.009] Odometry x=0.004424, y=0.290406, theta=0.026188
-[16:41:02.030] Init: px average disparity is:29.042551 ,While minimum is: 40.000000  KLT tracked : 110
-[16:41:02.030] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.114] Odometry x=0.004489, y=0.294297, theta=0.005679
-[16:41:02.130] Init: px average disparity is:34.758604 ,While minimum is: 40.000000  KLT tracked : 110
-[16:41:02.131] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.209] Odometry x=0.004590, y=0.298102, theta=0.011238
-[16:41:02.230] Init: px average disparity is:34.776916 ,While minimum is: 40.000000  KLT tracked : 108
-[16:41:02.230] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.309] Odometry x=0.004740, y=0.301677, theta=0.023448
-[16:41:02.330] Init: px average disparity is:33.202363 ,While minimum is: 40.000000  KLT tracked : 107
-[16:41:02.330] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.407] Odometry x=0.004927, y=0.305479, theta=0.040867
-[16:41:02.420] Init: px average disparity is:31.464470 ,While minimum is: 40.000000  KLT tracked : 106
-[16:41:02.420] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.514] Odometry x=0.005100, y=0.309191, theta=0.053331
-[16:41:02.530] Init: px average disparity is:32.963785 ,While minimum is: 40.000000  KLT tracked : 106
-[16:41:02.530] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.608] Odometry x=0.005267, y=0.313118, theta=0.062323
-[16:41:02.633] Init: px average disparity is:33.661779 ,While minimum is: 40.000000  KLT tracked : 106
-[16:41:02.633] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.708] Odometry x=0.005504, y=0.316635, theta=0.071985
-[16:41:02.732] Init: px average disparity is:35.335995 ,While minimum is: 40.000000  KLT tracked : 106
-[16:41:02.732] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.809] Odometry x=0.002469, y=0.320280, theta=0.031864
-[16:41:02.834] Init: px average disparity is:37.231235 ,While minimum is: 40.000000  KLT tracked : 106
-[16:41:02.834] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:02.910] Odometry x=0.002636, y=0.324018, theta=0.041816
-[16:41:02.941] Init: px average disparity is:39.299241 ,While minimum is: 40.000000  KLT tracked : 106
-[16:41:02.941] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[16:41:03.014] Odometry x=0.002846, y=0.327720, theta=0.050113
-[16:41:03.100] Init finished: Homography RANSAC (inlier) is:52 ,While 30 inliers minimum required.  px average disparity is:40.949818 ,While minimum is: 40.000000  KLT tracked: 105
-[16:41:03.100] Init: distance between the first and current frame is x:0.002999 ,z=0.331347,angle between two frames: 0.050964 
-[16:41:03.100] Init: Selected Second frame. 	 The number of features: 52
-[16:41:03.114] Image Alignment failed 0
-[16:41:03.115] Odometry x=0.002998, y=0.331318, theta=0.050086
-[16:41:03.212] Odometry x=0.003178, y=0.334891, theta=0.032432
-[16:41:03.253] After Reprojection Map nPoint:38 ,nCell:24 ,nMatches:24 ,distance between two frames x:-0.000001 ,z=-0.000030,angle between two frames:0.000879
-[16:41:03.253] n deleted obs = 9 	 n obs with reprojection error less than 0.5 px =53 	 error init =0.182574 	 error end=0.182574
-[16:41:03.253] After pose optimization, distance between two frames x:-0.000001 ,z=-0.000030,angle between two frames:0.000879
-[16:41:03.253] Update EKF and 3D points, distance between two frames x:0.000019 ,z=0.000403,angle between two frames:0.001942
-[16:41:03.305] Odometry x=0.003142, y=0.334330, theta=0.045112
-[16:41:03.413] After Reprojection Map nPoint:34 ,nCell:34 ,nMatches:0 ,distance between two frames x:0.000525 ,z=0.004026,angle between two frames:0.006513
-[16:41:03.413] After pose optimization, distance between two frames x:0.000525 ,z=0.004026,angle between two frames:0.006513
-[16:41:03.414] Odometry x=0.003394, y=0.337775, theta=0.044251
-[16:41:03.417] Image Alignment failed 0
-[16:41:03.486] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[16:41:03.508] Odometry x=0.003611, y=0.341740, theta=0.037063
-[16:41:03.515] Image Alignment failed 0
-[16:41:03.585] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000147 ,z=0.003662,angle between two frames:0.001606
-[16:41:03.610] Odometry x=0.003766, y=0.345401, theta=0.031506
-[16:41:03.615] Image Alignment failed 0
-[16:41:03.687] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000022 ,z=-0.000005,angle between two frames:0.001389
-[16:41:03.709] Odometry x=0.003864, y=0.349215, theta=0.024623
-[16:41:03.714] Image Alignment failed 0
-[16:41:03.786] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000005,angle between two frames:0.000765
-[16:41:03.812] Odometry x=0.003978, y=0.353058, theta=0.026347
-[16:41:03.814] Image Alignment failed 0
-[16:41:03.886] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000017 ,z=0.000004,angle between two frames:0.001019
-[16:41:03.909] Odometry x=0.004171, y=0.356864, theta=0.022003
-[16:41:03.916] Image Alignment failed 0
-[16:41:03.988] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000108 ,z=0.003779,angle between two frames:0.000953
-[16:41:04.007] Odometry x=0.004339, y=0.360682, theta=0.034976
-[16:41:04.018] Image Alignment failed 0
-[16:41:04.087] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000158 ,z=0.003654,angle between two frames:0.001605
-[16:41:04.107] Odometry x=0.004517, y=0.364261, theta=0.032785
-[16:41:04.116] Image Alignment failed 0
-[16:41:04.186] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000127 ,z=0.003816,angle between two frames:0.000309
-[16:41:04.205] Odometry x=0.004692, y=0.368105, theta=0.043792
-[16:41:04.220] Image Alignment failed 0
-[16:41:04.307] Odometry x=0.004874, y=0.371884, theta=0.052060
-[16:41:04.314] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000149 ,z=0.003821,angle between two frames:0.003652
-[16:41:04.321] Image Alignment failed 0
-[16:41:04.405] Odometry x=0.005102, y=0.375597, theta=0.061073
-[16:41:04.411] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000006,angle between two frames:0.000287
-[16:41:04.416] Image Alignment failed 0
-[16:41:04.493] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000010,angle between two frames:0.000688
-[16:41:04.507] Odometry x=0.005362, y=0.379337, theta=0.070961
-[16:41:04.516] Image Alignment failed 0
-[16:41:04.588] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000283 ,z=0.003803,angle between two frames:0.001094
-[16:41:04.606] Odometry x=0.005657, y=0.383048, theta=0.078437
-[16:41:04.615] Image Alignment failed 0
-[16:41:04.692] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000344 ,z=0.003747,angle between two frames:0.001798
-[16:41:04.704] Odometry x=0.006080, y=0.386722, theta=0.089769
-[16:41:04.716] Image Alignment failed 0
-[16:41:04.796] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000345 ,z=0.003834,angle between two frames:0.003505
-[16:41:04.806] Odometry x=0.006464, y=0.390460, theta=0.103082
-[16:41:04.817] Image Alignment failed 0
-[16:41:04.894] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000417 ,z=0.003748,angle between two frames:0.001440
-[16:41:04.908] Odometry x=0.006865, y=0.394087, theta=0.106206
-[16:41:04.915] Image Alignment failed 0
-[16:41:04.987] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000404 ,z=0.003780,angle between two frames:0.000694
-[16:41:05.006] Odometry x=0.007290, y=0.397686, theta=0.092452
-[16:41:05.016] Image Alignment failed 0
-[16:41:05.086] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000373 ,z=0.003740,angle between two frames:0.002988
-[16:41:05.108] Odometry x=0.007728, y=0.401310, theta=0.085697
-[16:41:05.115] Image Alignment failed 0
-[16:41:05.196] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000337 ,z=0.003759,angle between two frames:0.000055
-[16:41:05.205] Odometry x=0.008147, y=0.404972, theta=0.078887
-[16:41:05.216] Image Alignment failed 0
-[16:41:05.291] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000345 ,z=0.003787,angle between two frames:0.002730
-[16:41:05.309] Odometry x=0.008507, y=0.408685, theta=0.067839
-[16:41:05.317] Image Alignment failed 0
-[16:41:05.387] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000253 ,z=0.003790,angle between two frames:0.000672
-[16:41:05.411] Odometry x=0.008839, y=0.412448, theta=0.069197
-[16:41:05.415] Image Alignment failed 0
-[16:41:05.485] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000021 ,z=-0.000022,angle between two frames:0.000721
-[16:41:05.510] Odometry x=0.009098, y=0.416192, theta=0.070586
-[16:41:05.516] Image Alignment failed 0
-[16:41:05.585] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000265 ,z=0.003807,angle between two frames:0.001164
-[16:41:05.607] Odometry x=0.009437, y=0.419999, theta=0.076013
-[16:41:05.615] Image Alignment failed 0
-[16:41:05.684] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000321 ,z=0.003831,angle between two frames:0.000637
-[16:41:05.708] Odometry x=0.009786, y=0.423846, theta=0.073351
-[16:41:05.721] Image Alignment failed 0
-[16:41:05.794] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000281 ,z=0.003590,angle between two frames:0.000610
-[16:41:05.810] Odometry x=0.010147, y=0.427342, theta=0.080186
-[16:41:05.815] Image Alignment failed 0
-[16:41:05.885] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000333 ,z=0.003944,angle between two frames:0.000986
-[16:41:05.909] Odometry x=0.010501, y=0.431188, theta=0.083068
-[16:41:05.914] Image Alignment failed 0
-[16:41:05.984] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000006 ,z=-0.000023,angle between two frames:0.001765
-[16:41:06.012] Odometry x=0.010875, y=0.435048, theta=0.094048
-[16:41:06.024] Image Alignment failed 0
-[16:41:06.095] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000410 ,z=0.003599,angle between two frames:0.003939
-[16:41:06.115] Odometry x=0.011298, y=0.438600, theta=0.104877
-[16:41:06.119] Image Alignment failed 0
-[16:41:06.191] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000011,angle between two frames:0.001014
-[16:41:06.215] Odometry x=0.011745, y=0.442774, theta=0.112955
-[16:41:06.218] Image Alignment failed 0
-[16:41:06.289] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000010 ,z=-0.000018,angle between two frames:0.001458
-[16:41:06.313] Odometry x=0.012265, y=0.446623, theta=0.123348
-[16:41:06.314] Image Alignment failed 0
-[16:41:06.385] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000003,angle between two frames:0.002682
-[16:41:06.411] Odometry x=0.012741, y=0.450260, theta=0.133346
-[16:41:06.417] Image Alignment failed 0
-[16:41:06.495] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000545 ,z=0.003677,angle between two frames:0.002680
-[16:41:06.505] Odometry x=0.013301, y=0.453852, theta=0.141901
-[16:41:06.514] Image Alignment failed 0
-[16:41:06.584] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000497 ,z=0.003429,angle between two frames:0.000045
-[16:41:06.609] Odometry x=0.013838, y=0.457124, theta=0.138035
-[16:41:06.618] Image Alignment failed 0
-[16:41:06.692] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000602 ,z=0.004023,angle between two frames:0.001456
-[16:41:06.710] Odometry x=0.014452, y=0.461176, theta=0.138679
-[16:41:06.715] Image Alignment failed 0
-[16:41:06.787] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=0.000012,angle between two frames:0.001159
-[16:41:06.810] Odometry x=0.015053, y=0.464635, theta=0.132568
-[16:41:06.814] Image Alignment failed 0
-[16:41:06.885] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000014 ,z=-0.000153,angle between two frames:0.004781
-[16:41:06.911] Odometry x=0.015521, y=0.468243, theta=0.126682
-[16:41:06.915] Image Alignment failed 0
-[16:41:06.984] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000020,angle between two frames:0.000530
-[16:41:07.011] Odometry x=0.016072, y=0.471823, theta=0.114125
-[16:41:07.015] Image Alignment failed 0
-[16:41:07.088] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000038 ,z=-0.000008,angle between two frames:0.005195
-[16:41:07.111] Odometry x=0.016572, y=0.475654, theta=0.107308
-[16:41:07.114] Image Alignment failed 0
-[16:41:07.183] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000001 ,z=-0.000016,angle between two frames:0.000247
-[16:41:07.211] Odometry x=0.017051, y=0.479236, theta=0.104180
-[16:41:07.215] Image Alignment failed 0
-[16:41:07.285] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000010 ,z=-0.000041,angle between two frames:0.002166
-[16:41:07.305] Odometry x=0.017477, y=0.482985, theta=0.098889
-[16:41:07.314] Image Alignment failed 0
-[16:41:07.386] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000368 ,z=0.003586,angle between two frames:0.000478
-[16:41:07.410] Odometry x=0.017951, y=0.486552, theta=0.109276
-[16:41:07.415] Image Alignment failed 0
-[16:41:07.485] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000031 ,z=-0.000012,angle between two frames:0.002789
-[16:41:07.511] Odometry x=0.018436, y=0.490475, theta=0.118950
-[16:41:07.515] Image Alignment failed 0
-[16:41:07.584] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=0.000001,angle between two frames:0.000742
-[16:41:07.606] Odometry x=0.018918, y=0.494437, theta=0.119369
-[16:41:07.614] Image Alignment failed 0
-[16:41:07.683] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000433 ,z=0.003391,angle between two frames:0.000187
-[16:41:07.711] Odometry x=0.019418, y=0.497720, theta=0.116681
-[16:41:07.715] Image Alignment failed 0
-[16:41:07.784] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000013 ,z=-0.000038,angle between two frames:0.000501
-[16:41:07.811] Odometry x=0.019960, y=0.501653, theta=0.124566
-[16:41:07.814] Image Alignment failed 0
-[16:41:07.884] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000032 ,z=-0.000013,angle between two frames:0.001940
-[16:41:07.911] Odometry x=0.020540, y=0.505501, theta=0.131664
-[16:41:07.914] Image Alignment failed 0
-[16:41:07.985] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000011 ,z=-0.000019,angle between two frames:0.001578
-[16:41:08.011] Odometry x=0.021064, y=0.509072, theta=0.142202
-[16:41:08.015] Image Alignment failed 0
-[16:41:08.087] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000013 ,z=-0.000017,angle between two frames:0.001917
-[16:41:08.105] Odometry x=0.021685, y=0.512875, theta=0.151653
-[16:41:08.115] Image Alignment failed 0
-[16:41:08.184] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000540 ,z=0.003385,angle between two frames:0.002422
-[16:41:08.211] Odometry x=0.022231, y=0.516172, theta=0.163425
-[16:41:08.215] Image Alignment failed 0
-[16:41:08.285] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000028,angle between two frames:0.001338
-[16:41:08.310] Odometry x=0.022931, y=0.520141, theta=0.166677
-[16:41:08.317] Image Alignment failed 0
-[16:41:08.393] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000634 ,z=0.003725,angle between two frames:0.001016
-[16:41:08.411] Odometry x=0.023624, y=0.523653, theta=0.176197
-[16:41:08.415] Image Alignment failed 0
-[16:41:08.484] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000017 ,z=-0.000014,angle between two frames:0.002266
-[16:41:08.510] Odometry x=0.024375, y=0.527427, theta=0.181854
-[16:41:08.514] Image Alignment failed 0
-[16:41:08.584] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000000,angle between two frames:0.000375
-[16:41:08.613] Odometry x=0.025160, y=0.530916, theta=0.179700
-[16:41:08.614] Image Alignment failed 0
-[16:41:08.684] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000043 ,z=-0.000116,angle between two frames:0.000034
-[16:41:08.707] Odometry x=0.025843, y=0.534617, theta=0.171994
-[16:41:08.715] Image Alignment failed 0
-[16:41:08.784] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000612 ,z=0.003522,angle between two frames:0.001060
-[16:41:08.813] Odometry x=0.026514, y=0.538024, theta=0.164075
-[16:41:08.814] Image Alignment failed 0
-[16:41:08.883] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000026 ,z=-0.000016,angle between two frames:0.003929
-[16:41:08.909] Odometry x=0.027212, y=0.541916, theta=0.153731
-[16:41:08.916] Image Alignment failed 0
-[16:41:08.991] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000558 ,z=0.003632,angle between two frames:0.000160
-[16:41:09.009] Odometry x=0.027856, y=0.545520, theta=0.151132
-[16:41:09.021] Image Alignment failed 0
-[16:41:09.107] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000591 ,z=0.003726,angle between two frames:0.005210
-[16:41:09.109] Odometry x=0.028483, y=0.549214, theta=0.137817
-[16:41:09.114] Image Alignment failed 0
-[16:41:09.192] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[16:41:09.212] Odometry x=0.029115, y=0.553012, theta=0.152447
-[16:41:09.214] Image Alignment failed 0
-[16:41:09.288] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000028 ,z=0.000012,angle between two frames:0.002202
-[16:41:09.311] Odometry x=0.029785, y=0.556850, theta=0.154216
-[16:41:09.315] Image Alignment failed 0
-[16:41:09.387] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000006,angle between two frames:0.000285
-[16:41:09.411] Odometry x=0.030455, y=0.560632, theta=0.156378
-[16:41:09.415] Image Alignment failed 0
-[16:41:09.485] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000042 ,z=-0.000016,angle between two frames:0.001122
-[16:41:09.511] Odometry x=0.031108, y=0.564312, theta=0.152442
-[16:41:09.515] Image Alignment failed 0
-[16:41:09.585] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000016 ,z=-0.000032,angle between two frames:0.000479
-[16:41:09.613] Odometry x=0.031725, y=0.568080, theta=0.160670
-[16:41:09.615] Image Alignment failed 0
-[16:41:09.686] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000023 ,z=-0.000007,angle between two frames:0.001660
-[16:41:09.710] Odometry x=0.032455, y=0.572015, theta=0.166407
-[16:41:09.715] Image Alignment failed 0
-[16:41:09.793] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000019 ,z=0.000002,angle between two frames:0.001500
-[16:41:09.812] Odometry x=0.033119, y=0.575512, theta=0.175504
-[16:41:09.815] Image Alignment failed 0
-[16:41:09.887] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000014 ,z=-0.000018,angle between two frames:0.001150
-[16:41:09.911] Odometry x=0.033887, y=0.579176, theta=0.187068
-[16:41:09.915] Image Alignment failed 0
-[16:41:09.998] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000013 ,z=-0.000008,angle between two frames:0.002628
-[16:41:10.012] Odometry x=0.034640, y=0.582879, theta=0.196700
-[16:41:10.016] Image Alignment failed 0
-[16:41:10.093] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000018,angle between two frames:0.000941
-[16:41:10.109] Odometry x=0.035421, y=0.586506, theta=0.205316
-[16:41:10.116] Image Alignment failed 0
-[16:41:10.206] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000753 ,z=0.003557,angle between two frames:0.002126
-[16:41:10.215] Odometry x=0.036285, y=0.589933, theta=0.213844
-[16:41:10.218] Image Alignment failed 0
-[16:41:10.312] Odometry x=0.037188, y=0.593795, theta=0.222730
-[16:41:10.319] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000003,angle between two frames:0.000356
-[16:41:10.325] Image Alignment failed 0
-[16:41:10.406] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000011 ,z=-0.000016,angle between two frames:0.000616
-[16:41:10.414] Odometry x=0.038107, y=0.597326, theta=0.229352
-[16:41:10.419] Image Alignment failed 0
-[16:41:10.509] Odometry x=0.038976, y=0.601002, theta=0.226402
-[16:41:10.510] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000006,angle between two frames:0.000096
-[16:41:10.518] Image Alignment failed 0
-[16:41:10.612] Odometry x=0.039821, y=0.604333, theta=0.220985
-[16:41:10.622] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000826 ,z=0.003535,angle between two frames:0.000161
-[16:41:10.629] Image Alignment failed 0
-[16:41:10.705] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000012 ,z=-0.000020,angle between two frames:0.001332
-[16:41:10.709] Odometry x=0.040734, y=0.608175, theta=0.209452
-[16:41:10.717] Image Alignment failed 0
-[16:41:10.796] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000762 ,z=0.003536,angle between two frames:0.000785
-[16:41:10.806] Odometry x=0.041622, y=0.611590, theta=0.204948
-[16:41:10.817] Image Alignment failed 0
-[16:41:10.891] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000814 ,z=0.003694,angle between two frames:0.000818
-[16:41:10.914] Image Alignment failed 0
-[16:41:10.914] Odometry x=0.042470, y=0.615213, theta=0.196386
-[16:41:10.988] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000007 ,z=-0.000022,angle between two frames:0.001272
-[16:41:11.010] Odometry x=0.043350, y=0.619094, theta=0.192565
-[16:41:11.017] Image Alignment failed 0
-[16:41:11.089] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000721 ,z=0.003543,angle between two frames:0.001689
-[16:41:11.112] Odometry x=0.044104, y=0.622602, theta=0.182484
-[16:41:11.116] Image Alignment failed 0
-[16:41:11.193] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000019 ,z=-0.000001,angle between two frames:0.003075
-[16:41:11.209] Odometry x=0.044902, y=0.626519, theta=0.175720
-[16:41:11.217] Image Alignment failed 0
-[16:41:11.289] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000686 ,z=0.003629,angle between two frames:0.001087
-[16:41:11.308] Odometry x=0.045630, y=0.630127, theta=0.164520
-[16:41:11.314] Image Alignment failed 0
-[16:41:11.388] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000647 ,z=0.003749,angle between two frames:0.004774
-[16:41:11.410] Odometry x=0.046348, y=0.633901, theta=0.158542
-[16:41:11.416] Image Alignment failed 0
-[16:41:11.492] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000659 ,z=0.003807,angle between two frames:0.000335
-[16:41:11.510] Odometry x=0.047062, y=0.637656, theta=0.154831
-[16:41:11.515] Image Alignment failed 0
-[16:41:11.590] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000627 ,z=0.003761,angle between two frames:0.000646
-[16:41:11.607] Odometry x=0.047726, y=0.641400, theta=0.153521
-[16:41:11.622] Image Alignment failed 0
-[16:41:11.716] Odometry x=0.048347, y=0.644827, theta=0.151087
-[16:41:11.723] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000567 ,z=0.003608,angle between two frames:0.001548
-[16:41:11.730] Image Alignment failed 0
-[16:41:11.814] Odometry x=0.049030, y=0.648938, theta=0.148716
-[16:41:11.833] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000008 ,z=-0.000031,angle between two frames:0.000029
-[16:41:11.839] Image Alignment failed 0
-[16:41:11.913] Odometry x=0.049605, y=0.652504, theta=0.143937
-[16:41:11.943] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000002,angle between two frames:0.000153
-[16:41:11.950] Image Alignment failed 0
-[16:41:12.010] Odometry x=0.050240, y=0.655942, theta=0.156352
-[16:41:12.029] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000012 ,z=-0.000022,angle between two frames:0.001271
-[16:41:12.036] Image Alignment failed 0
-[16:41:12.110] Odometry x=0.050937, y=0.659223, theta=0.168604
-[16:41:12.122] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000005 ,z=-0.000015,angle between two frames:0.000641
-[16:41:12.127] Image Alignment failed 0
-[16:41:12.203] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[16:41:12.209] Odometry x=0.051775, y=0.662548, theta=0.184004
-[16:41:12.218] Image Alignment failed 0
-[16:41:12.290] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000713 ,z=0.003879,angle between two frames:0.000938
-[16:41:12.304] Odometry x=0.052465, y=0.666382, theta=0.186868
-[16:41:12.318] Image Alignment failed 0
-[16:41:12.394] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000596 ,z=0.003154,angle between two frames:0.000501
-[16:41:12.411] Odometry x=0.053115, y=0.669436, theta=0.198398
-[16:41:12.414] Image Alignment failed 0
-[16:41:12.507] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000002 ,z=-0.000013,angle between two frames:0.002266
-[16:41:12.512] Odometry x=0.054033, y=0.673830, theta=0.203255
-[16:41:12.515] Image Alignment failed 0
-[16:41:12.585] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[16:41:12.612] Odometry x=0.054883, y=0.677458, theta=0.201860
-[16:41:12.615] Image Alignment failed 0
-[16:41:12.686] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000045 ,z=-0.000051,angle between two frames:0.002298
-[16:41:12.711] Odometry x=0.055776, y=0.680995, theta=0.223374
-[16:41:12.715] Image Alignment failed 0
-[16:41:12.786] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000009 ,z=-0.000038,angle between two frames:0.005473
-[16:41:12.811] Odometry x=0.056567, y=0.684545, theta=0.252471
-[16:41:12.819] Image Alignment failed 0
-[16:41:12.891] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000964 ,z=0.003675,angle between two frames:0.007089
-[16:41:12.913] Odometry x=0.057574, y=0.688125, theta=0.259044
-[16:41:12.915] Image Alignment failed 0
-[16:41:12.988] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=-0.000030,angle between two frames:0.000282
-[16:41:13.012] Odometry x=0.058556, y=0.691858, theta=0.258583
-[16:41:13.016] Image Alignment failed 0
-[16:41:13.087] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000045,angle between two frames:0.000597
-[16:41:13.111] Odometry x=0.059507, y=0.695214, theta=0.263690
-[16:41:13.116] Image Alignment failed 0
-[16:41:13.188] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=-0.000023,angle between two frames:0.001095
-[16:41:13.211] Odometry x=0.060514, y=0.698753, theta=0.273499
-[16:41:13.216] Image Alignment failed 0
-[16:41:13.294] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000014 ,z=-0.000015,angle between two frames:0.001974
-[16:41:13.311] Odometry x=0.061525, y=0.702309, theta=0.281696
-[16:41:13.318] Image Alignment failed 0
-[16:41:13.410] Odometry x=0.062638, y=0.705886, theta=0.283244
-[16:41:13.417] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.001049 ,z=0.003658,angle between two frames:0.000374
-[16:41:13.422] Image Alignment failed 0
-[16:41:13.510] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000009,angle between two frames:0.000626
-[16:41:13.513] Odometry x=0.063741, y=0.709544, theta=0.293775
-[16:41:13.515] Image Alignment failed 0
-[16:41:13.591] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[16:41:13.612] Odometry x=0.064933, y=0.713356, theta=0.301878
-[16:41:13.615] Image Alignment failed 0
-[16:41:13.690] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000003 ,z=-0.000048,angle between two frames:0.001795
-[16:41:13.710] Odometry x=0.066023, y=0.716729, theta=0.306838
-[16:41:13.717] Image Alignment failed 0
-[16:41:13.803] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.001176 ,z=0.003670,angle between two frames:0.001591
-[16:41:13.813] Odometry x=0.067261, y=0.720288, theta=0.313328
-[16:41:13.822] Image Alignment failed 0
-[16:41:13.894] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.001239 ,z=0.003787,angle between two frames:0.000712
-[16:41:13.913] Odometry x=0.068533, y=0.724134, theta=0.316083
-[16:41:13.915] Image Alignment failed 0
-[16:41:13.994] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000010 ,z=-0.000008,angle between two frames:0.000756
-[16:41:14.011] Odometry x=0.069732, y=0.727379, theta=0.309405
-[16:41:14.015] Image Alignment failed 0
-[16:41:14.087] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000006 ,z=-0.000023,angle between two frames:0.001150
-[16:41:14.115] Odometry x=0.070907, y=0.730985, theta=0.306835
-[16:41:14.116] Image Alignment failed 0
-[16:41:14.188] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000008 ,z=-0.000003,angle between two frames:0.000294
-[16:41:14.208] Odometry x=0.072115, y=0.734431, theta=0.309474
-[16:41:14.214] Image Alignment failed 0
-[16:41:14.288] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.001123 ,z=0.003406,angle between two frames:0.000606
-[16:41:14.310] Odometry x=0.073213, y=0.737819, theta=0.300819
-[16:41:14.315] Image Alignment failed 0
-[16:41:14.390] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.001153 ,z=0.003647,angle between two frames:0.002688
-[16:41:14.410] Odometry x=0.074459, y=0.741355, theta=0.291844
-[16:41:14.415] Image Alignment failed 0
-[16:41:14.488] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000015 ,z=-0.000027,angle between two frames:0.000589
-[16:41:14.509] Odometry x=0.075548, y=0.744813, theta=0.281905
-[16:41:14.521] Image Alignment failed 0
-[16:41:14.605] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.001062 ,z=0.003605,angle between two frames:0.000043
-[16:41:14.615] Image Alignment failed 0
-[16:41:14.685] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000004 ,z=-0.000002,angle between two frames:0.000616
-[16:41:14.714] Image Alignment failed 0
-[16:41:14.783] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000020 ,z=-0.000023,angle between two frames:0.001479
-[16:41:14.814] Image Alignment failed 0
-[16:41:14.885] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000020 ,z=-0.000025,angle between two frames:0.003069
-[16:41:14.914] Image Alignment failed 0
-[16:41:14.985] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000046 ,z=-0.000040,angle between two frames:0.002128
-[16:41:15.017] Image Alignment failed 0
-[16:41:15.089] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000031 ,z=-0.000034,angle between two frames:0.002600
-[16:41:15.119] Image Alignment failed 0
-[16:41:15.218] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000022 ,z=0.000028,angle between two frames:0.002547
-[16:41:15.224] Image Alignment failed 0
-[16:41:15.322] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000002 ,z=-0.000005,angle between two frames:0.000753
-[16:41:15.329] Image Alignment failed 0
-[16:41:15.419] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000001 ,z=0.000004,angle between two frames:0.000619
-[16:41:15.426] Image Alignment failed 0
-[16:41:15.531] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000027,angle between two frames:0.001312
-[16:41:15.536] Image Alignment failed 0
-[16:41:15.608] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[16:41:15.616] Image Alignment failed 0
-[16:41:15.688] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000013 ,z=-0.000044,angle between two frames:0.000783
-[16:41:15.715] Image Alignment failed 0
-[16:41:15.786] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:0.000011 ,z=-0.000001,angle between two frames:0.001032
-[16:41:15.816] Image Alignment failed 0
-[16:41:15.886] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000020 ,z=-0.000061,angle between two frames:0.000184
-[16:41:15.915] Image Alignment failed 0
-[16:41:16.002] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000044,angle between two frames:0.000748
-[16:41:16.016] Image Alignment failed 0
-[16:41:16.093] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000005 ,z=-0.000022,angle between two frames:0.000382
-[16:41:16.115] Image Alignment failed 0
-[16:41:16.187] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000028,angle between two frames:0.000526
-[16:41:16.214] Image Alignment failed 0
-[16:41:16.287] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000041,angle between two frames:0.000797
-[16:41:16.315] Image Alignment failed 0
-[16:41:16.386] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=-0.000034,angle between two frames:0.000643
-[16:41:16.415] Image Alignment failed 0
-[16:41:16.485] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000041,angle between two frames:0.000778
-[16:41:16.516] Image Alignment failed 0
-[16:41:16.597] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000015 ,z=-0.000054,angle between two frames:0.000791
-[16:41:16.615] Image Alignment failed 0
-[16:41:16.687] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000039,angle between two frames:0.000605
-[16:41:16.715] Image Alignment failed 0
-[16:41:16.789] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000013 ,z=-0.000047,angle between two frames:0.000743
-[16:41:16.815] Image Alignment failed 0
-[16:41:16.887] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000015 ,z=-0.000054,angle between two frames:0.000860
-[16:41:16.915] Image Alignment failed 0
-[16:41:16.986] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000007 ,z=-0.000027,angle between two frames:0.000527
-[16:41:17.015] Image Alignment failed 0
-[16:41:17.085] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000008 ,z=-0.000027,angle between two frames:0.000512
-[16:41:17.115] Image Alignment failed 0
-[16:41:17.185] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000012 ,z=-0.000041,angle between two frames:0.000785
-[16:41:17.217] Image Alignment failed 0
-[16:41:17.306] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000015 ,z=-0.000053,angle between two frames:0.000859
-[16:41:17.315] Image Alignment failed 0
-[16:41:17.385] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000004 ,z=-0.000013,angle between two frames:0.000263
-[16:41:17.415] Image Alignment failed 0
-[16:41:17.486] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000013 ,z=-0.000045,angle between two frames:0.000819
-[16:41:17.514] Image Alignment failed 0
-[16:41:17.585] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000036,angle between two frames:0.000667
-[16:41:17.614] Image Alignment failed 0
-[16:41:17.685] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000013 ,z=-0.000042,angle between two frames:0.000800
-[16:41:17.715] Image Alignment failed 0
-[16:41:17.791] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000017 ,z=-0.000054,angle between two frames:0.000785
-[16:41:17.817] Image Alignment failed 0
-[16:41:17.892] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000010 ,z=-0.000034,angle between two frames:0.000657
-[16:41:17.918] Image Alignment failed 0
-[16:41:17.987] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000036,angle between two frames:0.000581
-[16:41:18.014] Image Alignment failed 0
-[16:41:18.086] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000011 ,z=-0.000034,angle between two frames:0.000648
-[16:41:18.115] Image Alignment failed 0
-[16:41:18.184] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000020 ,z=-0.000060,angle between two frames:0.000913
-[16:41:18.216] Image Alignment failed 0
-[16:41:18.296] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000013 ,z=-0.000041,angle between two frames:0.000783
-[16:41:18.315] Image Alignment failed 0
-[16:41:18.386] After Reprojection Map nPoint:0 ,nCell:0 ,nMatches:0 ,distance between two frames x:-0.000009 ,z=-0.000027,angle between two frames:0.000527
+[16:56:47.087] Init: frame zero: 0.000000, 0.000000 0.000000
+[16:56:47.087] Init: Selected first frame. 
+[16:56:47.188] Init: px average disparity is:0.199845 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.188] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.281] Init: px average disparity is:0.228584 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.281] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.381] Init: px average disparity is:0.247869 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.381] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.482] Init: px average disparity is:0.264516 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.482] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.582] Init: px average disparity is:0.244909 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.582] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.681] Init: px average disparity is:0.247212 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.681] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.786] Init: px average disparity is:0.245599 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.786] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.884] Init: px average disparity is:0.243039 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.884] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:47.980] Init: px average disparity is:0.265452 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:47.980] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.081] Init: px average disparity is:0.234299 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.081] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.180] Init: px average disparity is:0.243746 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.180] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.279] Init: px average disparity is:0.254030 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.279] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.380] Init: px average disparity is:0.239410 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.380] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.480] Init: px average disparity is:0.257267 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.480] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.580] Init: px average disparity is:0.238989 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.580] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.680] Init: px average disparity is:0.256103 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.680] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.781] Init: px average disparity is:0.261871 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.781] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.880] Init: px average disparity is:0.252308 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.880] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:48.981] Init: px average disparity is:0.232597 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:48.981] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.080] Init: px average disparity is:0.237933 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.080] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.179] Init: px average disparity is:0.266207 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.179] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.279] Init: px average disparity is:0.267942 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.279] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.381] Init: px average disparity is:0.241865 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.381] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.479] Init: px average disparity is:0.233046 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.479] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.579] Init: px average disparity is:0.264817 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.579] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.682] Init: px average disparity is:0.254301 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.682] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.780] Init: px average disparity is:0.224649 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.780] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.882] Init: px average disparity is:0.269531 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.882] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:49.980] Init: px average disparity is:0.232919 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:49.980] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.016] Odometry x=0.001748, y=-0.001846, theta=0.046293
+[16:56:50.080] Init: px average disparity is:0.233538 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.080] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.116] Odometry x=0.001858, y=-0.001908, theta=0.049126
+[16:56:50.180] Init: px average disparity is:0.216412 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.180] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.217] Odometry x=0.001830, y=-0.005507, theta=0.052242
+[16:56:50.280] Init: px average disparity is:1.668148 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.281] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.317] Odometry x=0.001727, y=-0.009872, theta=0.055510
+[16:56:50.381] Init: px average disparity is:5.889293 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.381] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.418] Odometry x=0.001632, y=-0.013943, theta=0.064133
+[16:56:50.480] Init: px average disparity is:7.604896 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.481] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.517] Odometry x=0.001490, y=-0.018079, theta=0.065692
+[16:56:50.581] Init: px average disparity is:4.900131 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.581] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.618] Odometry x=0.001368, y=-0.021957, theta=0.065981
+[16:56:50.680] Init: px average disparity is:5.242668 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.680] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.719] Odometry x=0.001295, y=-0.026015, theta=0.068299
+[16:56:50.782] Init: px average disparity is:4.227580 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.782] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.818] Odometry x=0.000528, y=-0.029837, theta=0.029658
+[16:56:50.882] Init: px average disparity is:5.631726 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.882] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:50.917] Odometry x=0.000539, y=-0.033897, theta=0.022544
+[16:56:50.983] Init: px average disparity is:4.536826 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:50.983] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.017] Odometry x=0.000558, y=-0.037777, theta=0.039868
+[16:56:51.081] Init: px average disparity is:6.439505 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.081] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.117] Odometry x=0.000595, y=-0.041802, theta=0.039951
+[16:56:51.183] Init: px average disparity is:7.900317 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.183] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.217] Odometry x=0.000589, y=-0.045501, theta=0.057023
+[16:56:51.280] Init: px average disparity is:9.271796 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.280] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.320] Odometry x=0.000434, y=-0.049494, theta=0.057566
+[16:56:51.382] Init: px average disparity is:12.623408 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.382] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.419] Odometry x=0.000135, y=-0.053327, theta=0.035957
+[16:56:51.482] Init: px average disparity is:15.328059 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.482] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.522] Odometry x=0.000252, y=-0.057327, theta=0.038459
+[16:56:51.583] Init: px average disparity is:13.620907 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.583] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.616] Odometry x=-0.000035, y=-0.061318, theta=0.043685
+[16:56:51.683] Init: px average disparity is:12.845169 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.683] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.717] Odometry x=0.000016, y=-0.065465, theta=0.040170
+[16:56:51.784] Init: px average disparity is:11.228482 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.784] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.817] Odometry x=-0.000014, y=-0.069456, theta=0.037026
+[16:56:51.882] Init: px average disparity is:12.517680 ,While minimum is: 40.000000  KLT tracked : 141
+[16:56:51.882] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:51.920] Odometry x=-0.000023, y=-0.073584, theta=0.027114
+[16:56:51.982] Init: px average disparity is:12.672291 ,While minimum is: 40.000000  KLT tracked : 140
+[16:56:51.982] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.020] Odometry x=0.000088, y=-0.077726, theta=0.015746
+[16:56:52.082] Init: px average disparity is:18.810323 ,While minimum is: 40.000000  KLT tracked : 140
+[16:56:52.082] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.131] Odometry x=0.000199, y=-0.082119, theta=-0.001302
+[16:56:52.183] Init: px average disparity is:13.644659 ,While minimum is: 40.000000  KLT tracked : 140
+[16:56:52.183] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.217] Odometry x=0.000506, y=-0.086442, theta=-0.005196
+[16:56:52.282] Init: px average disparity is:13.433403 ,While minimum is: 40.000000  KLT tracked : 140
+[16:56:52.282] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.322] Odometry x=0.000629, y=-0.090230, theta=0.006733
+[16:56:52.383] Init: px average disparity is:8.942875 ,While minimum is: 40.000000  KLT tracked : 140
+[16:56:52.383] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.420] Odometry x=0.000856, y=-0.094088, theta=0.004129
+[16:56:52.481] Init: px average disparity is:9.564199 ,While minimum is: 40.000000  KLT tracked : 140
+[16:56:52.481] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.520] Odometry x=0.001121, y=-0.098073, theta=0.020498
+[16:56:52.581] Init: px average disparity is:9.621380 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:52.581] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.620] Odometry x=0.001276, y=-0.102021, theta=0.022698
+[16:56:52.682] Init: px average disparity is:10.655478 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:52.682] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.724] Odometry x=0.001333, y=-0.105727, theta=0.046843
+[16:56:52.784] Init: px average disparity is:11.881271 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:52.784] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.824] Odometry x=0.001482, y=-0.109798, theta=0.051030
+[16:56:52.882] Init: px average disparity is:10.134313 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:52.882] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:52.924] Odometry x=0.001336, y=-0.113695, theta=0.053150
+[16:56:52.982] Init: px average disparity is:12.372132 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:52.983] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.024] Odometry x=0.001275, y=-0.117747, theta=0.058155
+[16:56:53.082] Init: px average disparity is:14.799960 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.082] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.124] Odometry x=0.001031, y=-0.121803, theta=0.067822
+[16:56:53.183] Init: px average disparity is:15.967116 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.183] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.224] Odometry x=0.000428, y=-0.125687, theta=0.030984
+[16:56:53.278] Init: px average disparity is:16.881765 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.278] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.317] Odometry x=0.000283, y=-0.129749, theta=0.032906
+[16:56:53.383] Init: px average disparity is:17.417264 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.383] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.417] Odometry x=0.000290, y=-0.133622, theta=0.039261
+[16:56:53.483] Init: px average disparity is:17.972542 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.483] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.516] Odometry x=0.000146, y=-0.137629, theta=0.040263
+[16:56:53.586] Init: px average disparity is:20.458865 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.586] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.621] Odometry x=0.000117, y=-0.141583, theta=0.048100
+[16:56:53.685] Init: px average disparity is:23.029251 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.685] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.720] Odometry x=-0.000091, y=-0.145625, theta=0.048468
+[16:56:53.785] Init: px average disparity is:21.158786 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.785] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.819] Odometry x=-0.000137, y=-0.149689, theta=0.031550
+[16:56:53.885] Init: px average disparity is:20.309493 ,While minimum is: 40.000000  KLT tracked : 139
+[16:56:53.885] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:53.919] Odometry x=-0.000223, y=-0.153613, theta=0.036548
+[16:56:53.992] Init: px average disparity is:20.115124 ,While minimum is: 40.000000  KLT tracked : 138
+[16:56:53.992] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.019] Odometry x=-0.000413, y=-0.157640, theta=0.022272
+[16:56:54.085] Init: px average disparity is:20.367568 ,While minimum is: 40.000000  KLT tracked : 138
+[16:56:54.085] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.118] Odometry x=-0.000283, y=-0.161637, theta=0.015980
+[16:56:54.187] Init: px average disparity is:22.556545 ,While minimum is: 40.000000  KLT tracked : 138
+[16:56:54.187] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.218] Odometry x=-0.000381, y=-0.165710, theta=0.012817
+[16:56:54.287] Init: px average disparity is:22.160010 ,While minimum is: 40.000000  KLT tracked : 138
+[16:56:54.287] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.319] Odometry x=-0.000277, y=-0.169798, theta=0.003755
+[16:56:54.386] Init: px average disparity is:23.012553 ,While minimum is: 40.000000  KLT tracked : 133
+[16:56:54.386] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.418] Odometry x=-0.000329, y=-0.173760, theta=0.012404
+[16:56:54.487] Init: px average disparity is:23.446189 ,While minimum is: 40.000000  KLT tracked : 133
+[16:56:54.488] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.518] Odometry x=-0.000242, y=-0.177762, theta=0.015281
+[16:56:54.586] Init: px average disparity is:22.011711 ,While minimum is: 40.000000  KLT tracked : 133
+[16:56:54.586] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.618] Odometry x=-0.000251, y=-0.181711, theta=0.040094
+[16:56:54.685] Init: px average disparity is:22.996573 ,While minimum is: 40.000000  KLT tracked : 133
+[16:56:54.685] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.718] Odometry x=-0.000262, y=-0.185528, theta=0.044769
+[16:56:54.785] Init: px average disparity is:22.768269 ,While minimum is: 40.000000  KLT tracked : 133
+[16:56:54.785] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.818] Odometry x=-0.000546, y=-0.189502, theta=0.054347
+[16:56:54.884] Init: px average disparity is:24.337389 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:54.884] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:54.918] Odometry x=-0.000681, y=-0.193387, theta=0.060758
+[16:56:54.986] Init: px average disparity is:23.094483 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:54.986] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.018] Odometry x=-0.000957, y=-0.197461, theta=0.063246
+[16:56:55.086] Init: px average disparity is:24.222666 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:55.086] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.124] Odometry x=-0.001073, y=-0.201378, theta=0.066331
+[16:56:55.186] Init: px average disparity is:23.117713 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:55.186] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.221] Odometry x=-0.001473, y=-0.205617, theta=0.069284
+[16:56:55.285] Init: px average disparity is:25.206573 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:55.285] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.318] Odometry x=-0.000616, y=-0.209498, theta=0.032237
+[16:56:55.389] Init: px average disparity is:23.432607 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:55.389] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.421] Odometry x=-0.000903, y=-0.213591, theta=0.018187
+[16:56:55.484] Init: px average disparity is:24.976364 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:55.484] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.518] Odometry x=-0.000725, y=-0.217456, theta=0.029001
+[16:56:55.587] Init: px average disparity is:23.540417 ,While minimum is: 40.000000  KLT tracked : 132
+[16:56:55.587] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.620] Odometry x=-0.000918, y=-0.221552, theta=0.016630
+[16:56:55.687] Init: px average disparity is:25.422799 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:55.687] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.720] Odometry x=-0.000904, y=-0.225706, theta=0.002476
+[16:56:55.786] Init: px average disparity is:25.606499 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:55.786] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.822] Odometry x=-0.000798, y=-0.229909, theta=0.003524
+[16:56:55.885] Init: px average disparity is:27.805471 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:55.885] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:55.918] Odometry x=-0.001015, y=-0.233660, theta=-0.009173
+[16:56:55.989] Init: px average disparity is:29.274710 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:55.989] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.024] Odometry x=-0.000745, y=-0.237615, theta=-0.016914
+[16:56:56.086] Init: px average disparity is:29.080838 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.086] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.123] Odometry x=-0.000785, y=-0.241570, theta=0.000758
+[16:56:56.185] Init: px average disparity is:28.571370 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.185] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.218] Odometry x=-0.000569, y=-0.245722, theta=-0.002792
+[16:56:56.288] Init: px average disparity is:27.890500 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.288] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.319] Odometry x=-0.000727, y=-0.249482, theta=0.023446
+[16:56:56.386] Init: px average disparity is:27.323397 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.386] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.419] Odometry x=-0.000718, y=-0.253662, theta=0.025499
+[16:56:56.488] Init: px average disparity is:26.864283 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.488] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.525] Odometry x=-0.000854, y=-0.257585, theta=0.047857
+[16:56:56.587] Init: px average disparity is:27.671257 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.587] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.618] Odometry x=-0.000999, y=-0.261466, theta=0.053275
+[16:56:56.687] Init: px average disparity is:27.577535 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.687] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.718] Odometry x=-0.001273, y=-0.265342, theta=0.052462
+[16:56:56.790] Init: px average disparity is:28.541893 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.790] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.824] Odometry x=-0.001380, y=-0.269318, theta=0.053591
+[16:56:56.889] Init: px average disparity is:28.339669 ,While minimum is: 40.000000  KLT tracked : 129
+[16:56:56.889] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:56.922] Odometry x=-0.001619, y=-0.273381, theta=0.054341
+[16:56:56.990] Init: px average disparity is:29.375958 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:56.990] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.018] Odometry x=-0.001716, y=-0.277285, theta=0.047431
+[16:56:57.087] Init: px average disparity is:29.436318 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.087] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.123] Odometry x=-0.002021, y=-0.281255, theta=0.048654
+[16:56:57.187] Init: px average disparity is:30.050139 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.187] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.219] Odometry x=-0.002118, y=-0.285362, theta=0.040875
+[16:56:57.288] Init: px average disparity is:31.933067 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.288] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.320] Odometry x=-0.002281, y=-0.289207, theta=0.044516
+[16:56:57.386] Init: px average disparity is:31.196739 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.386] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.423] Odometry x=-0.002477, y=-0.293131, theta=0.044912
+[16:56:57.487] Init: px average disparity is:33.847034 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.488] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.524] Odometry x=-0.002510, y=-0.297018, theta=0.032715
+[16:56:57.587] Init: px average disparity is:32.836846 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.587] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.618] Odometry x=-0.002781, y=-0.301129, theta=0.029614
+[16:56:57.687] Init: px average disparity is:36.742226 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.687] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.719] Odometry x=-0.002692, y=-0.304867, theta=0.029751
+[16:56:57.788] Init: px average disparity is:33.684067 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.788] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.820] Odometry x=-0.002990, y=-0.308861, theta=0.039648
+[16:56:57.886] Init: px average disparity is:36.308023 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.886] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:57.922] Odometry x=-0.002959, y=-0.312797, theta=0.033273
+[16:56:57.988] Init: px average disparity is:35.402450 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:57.988] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.018] Odometry x=-0.003221, y=-0.317000, theta=0.050796
+[16:56:58.088] Init: px average disparity is:35.080882 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:58.088] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.117] Odometry x=-0.003375, y=-0.320814, theta=0.046080
+[16:56:58.190] Init: px average disparity is:33.866669 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:58.190] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.219] Odometry x=-0.003647, y=-0.324776, theta=0.064601
+[16:56:58.280] Init: px average disparity is:34.136894 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:58.280] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.318] Odometry x=-0.001494, y=-0.328705, theta=0.031319
+[16:56:58.387] Init: px average disparity is:33.815742 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:58.387] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.418] Odometry x=-0.001661, y=-0.332476, theta=0.047700
+[16:56:58.487] Init: px average disparity is:34.465015 ,While minimum is: 40.000000  KLT tracked : 128
+[16:56:58.488] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.518] Odometry x=-0.001637, y=-0.336670, theta=0.056361
+[16:56:58.590] Init: px average disparity is:35.652162 ,While minimum is: 40.000000  KLT tracked : 123
+[16:56:58.590] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.617] Odometry x=-0.001928, y=-0.340685, theta=0.056105
+[16:56:58.689] Init: px average disparity is:35.245859 ,While minimum is: 40.000000  KLT tracked : 123
+[16:56:58.689] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.721] Odometry x=-0.001971, y=-0.344761, theta=0.066375
+[16:56:58.792] Init: px average disparity is:36.054419 ,While minimum is: 40.000000  KLT tracked : 119
+[16:56:58.792] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.819] Odometry x=-0.002205, y=-0.348495, theta=0.062097
+[16:56:58.887] Init: px average disparity is:35.766178 ,While minimum is: 40.000000  KLT tracked : 119
+[16:56:58.887] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:58.919] Odometry x=-0.002272, y=-0.352565, theta=0.067690
+[16:56:58.990] Init: px average disparity is:37.025734 ,While minimum is: 40.000000  KLT tracked : 119
+[16:56:58.990] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.019] Odometry x=-0.002597, y=-0.356386, theta=0.063527
+[16:56:59.089] Init: px average disparity is:39.402319 ,While minimum is: 40.000000  KLT tracked : 118
+[16:56:59.089] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.119] Odometry x=-0.002604, y=-0.360311, theta=0.053191
+[16:56:59.189] Init: px average disparity is:39.908562 ,While minimum is: 40.000000  KLT tracked : 118
+[16:56:59.189] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.219] Odometry x=-0.002913, y=-0.364224, theta=0.057275
+[16:56:59.318] Odometry x=-0.002933, y=-0.368153, theta=0.032662
+[16:56:59.359] Init: Homography RANSAC (inlier) is:19 ,While 30 inliers minimum required.  px average disparity is:42.799618 ,While minimum is: 40.000000  KLT tracked: 117
+[16:56:59.359] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.421] Odometry x=-0.003066, y=-0.372017, theta=0.044534
+[16:56:59.443] Init: Homography RANSAC (inlier) is:19 ,While 30 inliers minimum required.  px average disparity is:42.733281 ,While minimum is: 40.000000  KLT tracked: 117
+[16:56:59.443] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.518] Odometry x=-0.003089, y=-0.375886, theta=0.042443
+[16:56:59.543] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:44.212266 ,While minimum is: 40.000000  KLT tracked: 117
+[16:56:59.543] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.621] Odometry x=-0.003235, y=-0.379836, theta=0.061590
+[16:56:59.640] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:41.919257 ,While minimum is: 40.000000  KLT tracked: 117
+[16:56:59.640] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.719] Odometry x=-0.003338, y=-0.383913, theta=0.057502
+[16:56:59.741] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:43.720157 ,While minimum is: 40.000000  KLT tracked: 117
+[16:56:59.741] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.818] Odometry x=-0.003577, y=-0.387721, theta=0.080515
+[16:56:59.841] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:40.664316 ,While minimum is: 40.000000  KLT tracked: 116
+[16:56:59.841] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:56:59.921] Odometry x=-0.003721, y=-0.391560, theta=0.096118
+[16:56:59.940] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:41.536004 ,While minimum is: 40.000000  KLT tracked: 116
+[16:56:59.941] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.022] Odometry x=-0.004241, y=-0.395581, theta=0.091328
+[16:57:00.041] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:40.484126 ,While minimum is: 40.000000  KLT tracked: 116
+[16:57:00.041] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.120] Odometry x=-0.004406, y=-0.399443, theta=0.105963
+[16:57:00.140] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:42.972791 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.140] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.218] Odometry x=-0.004758, y=-0.403410, theta=0.091724
+[16:57:00.241] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:42.124904 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.241] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.316] Odometry x=-0.004980, y=-0.407058, theta=0.101284
+[16:57:00.341] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:43.877975 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.341] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.414] Odometry x=-0.005281, y=-0.411017, theta=0.094386
+[16:57:00.442] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:43.138903 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.442] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.523] Odometry x=-0.005637, y=-0.414845, theta=0.102645
+[16:57:00.540] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:45.000427 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.540] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.620] Odometry x=-0.005895, y=-0.419047, theta=0.104206
+[16:57:00.641] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:43.806255 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.641] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.721] Odometry x=-0.006352, y=-0.422797, theta=0.102488
+[16:57:00.739] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:42.862623 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.739] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.819] Odometry x=-0.006467, y=-0.426652, theta=0.092999
+[16:57:00.840] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:44.241816 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.840] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:00.918] Odometry x=-0.006937, y=-0.430801, theta=0.093203
+[16:57:00.939] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:43.744958 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:00.939] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.017] Odometry x=-0.007161, y=-0.434686, theta=0.074563
+[16:57:01.040] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:47.034720 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.040] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.117] Odometry x=-0.007478, y=-0.438573, theta=0.079855
+[16:57:01.140] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:46.988252 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.140] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.220] Odometry x=-0.007721, y=-0.442449, theta=0.080750
+[16:57:01.240] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:49.191608 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.240] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.318] Odometry x=-0.007989, y=-0.446442, theta=0.094894
+[16:57:01.342] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:50.458442 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.342] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.417] Odometry x=-0.008269, y=-0.450400, theta=0.090314
+[16:57:01.445] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:50.910475 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.445] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.520] Odometry x=-0.008561, y=-0.454282, theta=0.097253
+[16:57:01.542] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:50.026571 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.542] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.618] Odometry x=-0.008816, y=-0.458317, theta=0.106177
+[16:57:01.642] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:48.747043 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.642] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.716] Odometry x=-0.009344, y=-0.462087, theta=0.120254
+[16:57:01.742] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:48.211866 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.742] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.819] Odometry x=-0.009683, y=-0.465887, theta=0.138566
+[16:57:01.840] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:47.226457 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.840] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:01.916] Odometry x=-0.010273, y=-0.469823, theta=0.137745
+[16:57:01.940] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:47.204117 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:01.940] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.019] Odometry x=-0.010690, y=-0.473533, theta=0.155984
+[16:57:02.041] Init: Homography RANSAC (inlier) is:27 ,While 30 inliers minimum required.  px average disparity is:46.898639 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.041] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.118] Odometry x=-0.011223, y=-0.477441, theta=0.145973
+[16:57:02.140] Init: Homography RANSAC (inlier) is:26 ,While 30 inliers minimum required.  px average disparity is:47.868773 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.140] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.221] Odometry x=-0.011838, y=-0.481456, theta=0.150806
+[16:57:02.241] Init: Homography RANSAC (inlier) is:26 ,While 30 inliers minimum required.  px average disparity is:47.294273 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.241] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.320] Odometry x=-0.012345, y=-0.485334, theta=0.152724
+[16:57:02.340] Init: Homography RANSAC (inlier) is:26 ,While 30 inliers minimum required.  px average disparity is:48.700626 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.340] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.418] Odometry x=-0.012997, y=-0.489307, theta=0.149647
+[16:57:02.441] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:48.353654 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.441] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.521] Odometry x=-0.013521, y=-0.493160, theta=0.152365
+[16:57:02.541] Init: Homography RANSAC (inlier) is:27 ,While 30 inliers minimum required.  px average disparity is:51.413175 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.541] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.623] Odometry x=-0.014160, y=-0.497130, theta=0.142399
+[16:57:02.641] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:48.726179 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.641] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.716] Odometry x=-0.014655, y=-0.500996, theta=0.144415
+[16:57:02.740] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:49.939785 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.740] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.817] Odometry x=-0.015196, y=-0.504841, theta=0.138633
+[16:57:02.840] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:48.905919 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.840] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:02.920] Odometry x=-0.015702, y=-0.508799, theta=0.133739
+[16:57:02.941] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:50.259221 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:02.941] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.014] Odometry x=-0.016313, y=-0.512975, theta=0.132449
+[16:57:03.043] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:50.525339 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:03.043] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.122] Odometry x=-0.016774, y=-0.516729, theta=0.129860
+[16:57:03.140] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:51.588312 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:03.140] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.234] Odometry x=-0.017269, y=-0.520933, theta=0.127142
+[16:57:03.241] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:53.369681 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:03.241] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.317] Odometry x=-0.017740, y=-0.525162, theta=0.131926
+[16:57:03.342] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:55.476506 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:03.342] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.430] Odometry x=-0.018188, y=-0.528566, theta=0.138793
+[16:57:03.445] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:55.603795 ,While minimum is: 40.000000  KLT tracked: 114
+[16:57:03.445] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.523] Odometry x=-0.018758, y=-0.532754, theta=0.145018
+[16:57:03.541] Init: Homography RANSAC (inlier) is:29 ,While 30 inliers minimum required.  px average disparity is:54.641108 ,While minimum is: 40.000000  KLT tracked: 112
+[16:57:03.541] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.622] Odometry x=-0.019305, y=-0.536573, theta=0.146286
+[16:57:03.641] Init: Homography RANSAC (inlier) is:17 ,While 30 inliers minimum required.  px average disparity is:55.714571 ,While minimum is: 40.000000  KLT tracked: 112
+[16:57:03.641] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.719] Odometry x=-0.019782, y=-0.540184, theta=0.158947
+[16:57:03.740] Init: Homography RANSAC (inlier) is:21 ,While 30 inliers minimum required.  px average disparity is:56.139668 ,While minimum is: 40.000000  KLT tracked: 112
+[16:57:03.740] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[16:57:03.819] Odometry x=-0.020360, y=-0.544179, theta=0.177084
+[16:57:03.840] Init finished: Homography RANSAC (inlier) is:30 ,While 30 inliers minimum required.  px average disparity is:54.009591 ,While minimum is: 40.000000  KLT tracked: 111
+[16:57:03.840] Init: distance between the first and current frame is x:-0.021045 ,z=-0.548093,angle between two frames: 0.179187 
+[16:57:03.840] Init: Selected Second frame. 	 The number of features: 30
+[16:57:03.915] Odometry x=-0.021006, y=-0.548187, theta=0.186057
+[16:57:04.011] After Reprojection Map nPoint:31 ,nCell:14 ,nMatches:9 ,distance between two frames x:-0.000011 ,z=-0.000017,angle between two frames:0.002546
+[16:57:04.011] n deleted obs = 8 	 n obs with reprojection error less than 0.5 px =23 	 error init =0.320186 	 error end=0.306870
+[16:57:04.011] After pose optimization, distance between two frames x:-0.044057 ,z=0.011984,angle between two frames:0.018650
+[16:57:04.019] Odometry x=-0.021638, y=-0.551806, theta=0.197303
+[16:57:04.118] Odometry x=-0.022426, y=-0.556072, theta=0.195814
+[16:57:04.161] After Reprojection Map nPoint:29 ,nCell:23 ,nMatches:7 ,distance between two frames x:0.001225 ,z=0.000604,angle between two frames:0.000808
+[16:57:04.161] n deleted obs = 3 	 n obs with reprojection error less than 0.5 px =14 	 error init =0.332397 	 error end=0.287844
+[16:57:04.161] After pose optimization, distance between two frames x:-0.029314 ,z=0.041206,angle between two frames:0.005888
+[16:57:04.221] Odometry x=-0.023161, y=-0.559878, theta=0.206286
+[16:57:04.305] After Reprojection Map nPoint:29 ,nCell:25 ,nMatches:9 ,distance between two frames x:-0.000469 ,z=0.000091,angle between two frames:0.000607
+[16:57:04.306] n deleted obs = 4 	 n obs with reprojection error less than 0.5 px =17 	 error init =0.404105 	 error end=0.306786
+[16:57:04.306] After pose optimization, distance between two frames x:-0.078383 ,z=0.119370,angle between two frames:0.020204
+[16:57:04.320] Odometry x=-0.023770, y=-0.563553, theta=0.208526
+[16:57:04.419] Odometry x=-0.024662, y=-0.567688, theta=0.199490
+[16:57:04.452] After Reprojection Map nPoint:26 ,nCell:23 ,nMatches:9 ,distance between two frames x:-0.001145 ,z=-0.000128,angle between two frames:0.000452
+[16:57:04.453] n deleted obs = 5 	 n obs with reprojection error less than 0.5 px =14 	 error init =0.392450 	 error end=0.276496
+[16:57:04.453] After pose optimization, distance between two frames x:-0.084639 ,z=0.114951,angle between two frames:0.016781
+[16:57:04.521] Odometry x=-0.025372, y=-0.571478, theta=0.192947
+[16:57:04.597] After Reprojection Map nPoint:25 ,nCell:21 ,nMatches:8 ,distance between two frames x:-0.002004 ,z=-0.000369,angle between two frames:0.001182
+[16:57:04.598] n deleted obs = 3 	 n obs with reprojection error less than 0.5 px =15 	 error init =0.333162 	 error end=0.211289
+[16:57:04.598] After pose optimization, distance between two frames x:-0.081410 ,z=0.156270,angle between two frames:0.008023
+[16:57:04.619] Odometry x=-0.026146, y=-0.575497, theta=0.192885
+[16:57:04.719] Odometry x=-0.026835, y=-0.579372, theta=0.187491
+[16:57:04.743] After Reprojection Map nPoint:32 ,nCell:28 ,nMatches:12 ,distance between two frames x:-0.000748 ,z=-0.000129,angle between two frames:0.000402
+[16:57:04.744] n deleted obs = 8 	 n obs with reprojection error less than 0.5 px =18 	 error init =0.453924 	 error end=0.272833
+[16:57:04.744] After pose optimization, distance between two frames x:-0.145987 ,z=0.201035,angle between two frames:0.055548
+[16:57:04.818] Odometry x=-0.027496, y=-0.583251, theta=0.179033
+[16:57:04.890] After Reprojection Map nPoint:35 ,nCell:31 ,nMatches:11 ,distance between two frames x:0.001649 ,z=0.000677,angle between two frames:0.000484
+[16:57:04.890] n deleted obs = 7 	 n obs with reprojection error less than 0.5 px =18 	 error init =0.439960 	 error end=0.321213
+[16:57:04.890] After pose optimization, distance between two frames x:-0.078617 ,z=0.102380,angle between two frames:0.010314
+[16:57:04.917] Odometry x=-0.028168, y=-0.587159, theta=0.172317
+[16:57:05.018] Odometry x=-0.028729, y=-0.591077, theta=0.171013
+[16:57:05.036] After Reprojection Map nPoint:31 ,nCell:26 ,nMatches:11 ,distance between two frames x:-0.000474 ,z=-0.000073,angle between two frames:0.000689
+[16:57:05.037] n deleted obs = 5 	 n obs with reprojection error less than 0.5 px =19 	 error init =0.419491 	 error end=0.302210
+[16:57:05.037] After pose optimization, distance between two frames x:-0.073334 ,z=0.114291,angle between two frames:0.008850
+[16:57:05.120] Odometry x=-0.029387, y=-0.595004, theta=0.174559
+[16:57:05.188] After Reprojection Map nPoint:31 ,nCell:26 ,nMatches:10 ,distance between two frames x:0.002253 ,z=0.000560,angle between two frames:0.001314
+[16:57:05.189] n deleted obs = 6 	 n obs with reprojection error less than 0.5 px =16 	 error init =0.443003 	 error end=0.332857
+[16:57:05.189] After pose optimization, distance between two frames x:-0.058298 ,z=0.132800,angle between two frames:0.030072
+[16:57:05.218] Odometry x=-0.030043, y=-0.598864, theta=0.188462
+[16:57:05.319] Odometry x=-0.030728, y=-0.602719, theta=0.198780
+[16:57:05.339] After Reprojection Map nPoint:31 ,nCell:24 ,nMatches:9 ,distance between two frames x:0.004000 ,z=0.001724,angle between two frames:0.003083
+[16:57:05.339] n deleted obs = 6 	 n obs with reprojection error less than 0.5 px =15 	 error init =0.901406 	 error end=0.818028
+[16:57:05.339] After pose optimization, distance between two frames x:-0.054497 ,z=0.037545,angle between two frames:0.014091
+[16:57:05.421] Odometry x=-0.031498, y=-0.606514, theta=0.219147
+[16:57:05.486] After Reprojection Map nPoint:30 ,nCell:26 ,nMatches:9 ,distance between two frames x:-0.000246 ,z=0.000014,angle between two frames:0.000079
+[16:57:05.487] n deleted obs = 5 	 n obs with reprojection error less than 0.5 px =16 	 error init =0.417430 	 error end=0.296814
+[16:57:05.487] After pose optimization, distance between two frames x:-0.070377 ,z=0.107558,angle between two frames:0.020433
+[16:57:05.519] Odometry x=-0.032325, y=-0.610511, theta=0.230366
+[16:57:05.616] Odometry x=-0.033141, y=-0.614246, theta=0.241339
+[16:57:05.643] After Reprojection Map nPoint:31 ,nCell:28 ,nMatches:10 ,distance between two frames x:-0.000736 ,z=-0.000216,angle between two frames:0.000213
+[16:57:05.644] n deleted obs = 6 	 n obs with reprojection error less than 0.5 px =17 	 error init =0.524247 	 error end=0.340504
+[16:57:05.644] After pose optimization, distance between two frames x:-0.119881 ,z=0.155360,angle between two frames:0.013792
+[16:57:05.719] Odometry x=-0.033988, y=-0.617995, theta=0.242211
+[16:57:05.791] After Reprojection Map nPoint:30 ,nCell:24 ,nMatches:10 ,distance between two frames x:0.000225 ,z=0.000154,angle between two frames:0.000244
+[16:57:05.792] n deleted obs = 6 	 n obs with reprojection error less than 0.5 px =17 	 error init =0.894112 	 error end=0.345368
+[16:57:05.792] After pose optimization, distance between two frames x:-0.176334 ,z=0.244320,angle between two frames:0.120512
+[16:57:05.821] Odometry x=-0.034907, y=-0.621891, theta=0.240063
+[16:57:05.919] Odometry x=-0.035778, y=-0.625814, theta=0.243675
+[16:57:05.937] After Reprojection Map nPoint:30 ,nCell:27 ,nMatches:11 ,distance between two frames x:0.000269 ,z=0.000170,angle between two frames:0.000490
+[16:57:05.937] n deleted obs = 5 	 n obs with reprojection error less than 0.5 px =17 	 error init =0.437482 	 error end=0.316087
+[16:57:05.937] After pose optimization, distance between two frames x:-0.064134 ,z=0.145069,angle between two frames:0.036484
+[16:57:06.019] Odometry x=-0.036656, y=-0.629517, theta=0.240250
+[16:57:06.082] After Reprojection Map nPoint:26 ,nCell:25 ,nMatches:9 ,distance between two frames x:-0.000954 ,z=-0.000218,angle between two frames:0.000525
+[16:57:06.082] n deleted obs = 6 	 n obs with reprojection error less than 0.5 px =13 	 error init =0.598469 	 error end=0.471030
+[16:57:06.082] After pose optimization, distance between two frames x:-0.084128 ,z=0.103365,angle between two frames:0.018333
+[16:57:06.119] Odometry x=-0.037575, y=-0.633114, theta=0.238920
+[16:57:06.215] Odometry x=-0.038567, y=-0.637235, theta=0.235605
+[16:57:06.226] After Reprojection Map nPoint:29 ,nCell:23 ,nMatches:8 ,distance between two frames x:-0.000292 ,z=-0.000047,angle between two frames:0.000140
+[16:57:06.227] n deleted obs = 5 	 n obs with reprojection error less than 0.5 px =16 	 error init =0.488488 	 error end=0.299266
+[16:57:06.227] After pose optimization, distance between two frames x:-0.084316 ,z=0.189263,angle between two frames:0.082876
+[16:57:06.319] Odometry x=-0.039446, y=-0.640984, theta=0.232506
+[16:57:06.374] After Reprojection Map nPoint:33 ,nCell:31 ,nMatches:11 ,distance between two frames x:0.001414 ,z=0.000845,angle between two frames:0.000858
+[16:57:06.374] n deleted obs = 7 	 n obs with reprojection error less than 0.5 px =16 	 error init =0.470497 	 error end=0.452040
+[16:57:06.374] After pose optimization, distance between two frames x:-0.054791 ,z=0.016222,angle between two frames:0.023115
+[16:57:06.423] Odometry x=-0.040385, y=-0.645011, theta=0.232381
+[16:57:06.518] Odometry x=-0.041277, y=-0.648930, theta=0.230315
+[16:57:06.518] After Reprojection Map nPoint:31 ,nCell:26 ,nMatches:9 ,distance between two frames x:-0.000567 ,z=-0.000022,angle between two frames:0.000199
+[16:57:06.518] n deleted obs = 6 	 n obs with reprojection error less than 0.5 px =14 	 error init =0.472911 	 error end=0.416737
+[16:57:06.518] After pose optimization, distance between two frames x:-0.058418 ,z=0.015028,angle between two frames:0.023782
+[16:57:06.613] Odometry x=-0.042128, y=-0.652635, theta=0.228827
+[16:57:06.661] After Reprojection Map nPoint:29 ,nCell:24 ,nMatches:8 ,distance between two frames x:-0.000904 ,z=-0.000101,angle between two frames:0.000348
+[16:57:06.661] n deleted obs = 7 	 n obs with reprojection error less than 0.5 px =11 	 error init =0.480341 	 error end=0.480341
+[16:57:06.661] After pose optimization, distance between two frames x:-0.000904 ,z=-0.000101,angle between two frames:0.000348
+[16:57:06.661] Update EKF and 3D points, distance between two frames x:-0.000949 ,z=-0.000518,angle between two frames:0.000584
+[16:57:06.719] Odometry x=-0.042509, y=-0.652019, theta=0.227237
+[16:57:06.808] After Reprojection Map nPoint:29 ,nCell:28 ,nMatches:11 ,distance between two frames x:-0.002960 ,z=-0.003318,angle between two frames:0.002998
+[16:57:06.809] n deleted obs = 10 	 n obs with reprojection error less than 0.5 px =12 	 error init =0.884337 	 error end=0.437390
+[16:57:06.809] After pose optimization, distance between two frames x:-0.133865 ,z=0.190830,angle between two frames:0.036201
+[16:57:06.814] Odometry x=-0.043457, y=-0.656211, theta=0.223775
+[16:57:06.916] Odometry x=-0.044256, y=-0.659937, theta=0.222031
+[16:57:06.953] After Reprojection Map nPoint:29 ,nCell:24 ,nMatches:10 ,distance between two frames x:0.000259 ,z=0.000139,angle between two frames:0.000164
+[16:57:06.953] n deleted obs = 13 	 n obs with reprojection error less than 0.5 px =12 	 error init =0.991870 	 error end=0.991870
+[16:57:06.953] After pose optimization, distance between two frames x:0.000259 ,z=0.000139,angle between two frames:0.000164
+[16:57:06.953] Update EKF and 3D points, distance between two frames x:0.000148 ,z=-0.000307,angle between two frames:0.000129
+[16:57:07.019] Odometry x=-0.043969, y=-0.659322, theta=0.226920
+[16:57:07.115] After Reprojection Map nPoint:32 ,nCell:22 ,nMatches:9 ,distance between two frames x:0.000366 ,z=0.000288,angle between two frames:0.000267
+[16:57:07.115] n deleted obs = 13 	 n obs with reprojection error less than 0.5 px =13 	 error init =1.075156 	 error end=1.075156
+[16:57:07.115] After pose optimization, distance between two frames x:0.000366 ,z=0.000288,angle between two frames:0.000267
+[16:57:07.115] Update EKF and 3D points, distance between two frames x:0.000258 ,z=-0.000114,angle between two frames:0.000592
+[16:57:07.120] Odometry x=-0.043716, y=-0.659116, theta=0.226605
+[16:57:07.217] Odometry x=-0.044589, y=-0.662854, theta=0.230779
+[16:57:07.261] After Reprojection Map nPoint:34 ,nCell:23 ,nMatches:8 ,distance between two frames x:-0.001247 ,z=-0.002600,angle between two frames:0.001889
+[16:57:07.263] n deleted obs = 11 	 n obs with reprojection error less than 0.5 px =16 	 error init =1.683323 	 error end=0.610423
+[16:57:07.263] After pose optimization, distance between two frames x:-0.127539 ,z=0.293230,angle between two frames:0.220580
+[16:57:07.320] Odometry x=-0.045453, y=-0.666570, theta=0.247918
+[16:57:07.412] After Reprojection Map nPoint:37 ,nCell:26 ,nMatches:14 ,distance between two frames x:0.000582 ,z=0.000379,angle between two frames:0.001197
+[16:57:07.412] n deleted obs = 28 	 n obs with reprojection error less than 0.5 px =7 	 error init =1.833810 	 error end=0.934215
+[16:57:07.412] After pose optimization, distance between two frames x:-0.281233 ,z=0.099094,angle between two frames:0.100665
+[16:57:07.417] Odometry x=-0.046366, y=-0.670380, theta=0.262991
+[16:57:07.519] Odometry x=-0.047350, y=-0.674162, theta=0.275379
+[16:57:07.564] After Reprojection Map nPoint:34 ,nCell:19 ,nMatches:15 ,distance between two frames x:0.000253 ,z=0.000146,angle between two frames:0.000137
+[16:57:07.565] n deleted obs = 19 	 n obs with reprojection error less than 0.5 px =22 	 error init =2.921414 	 error end=0.693298
+[16:57:07.565] After pose optimization, distance between two frames x:-0.403667 ,z=0.519699,angle between two frames:0.521608
+[16:57:07.617] Odometry x=-0.048354, y=-0.677981, theta=0.285735
+[16:57:07.710] After Reprojection Map nPoint:41 ,nCell:28 ,nMatches:14 ,distance between two frames x:-0.000268 ,z=-0.000118,angle between two frames:0.000334
+[16:57:07.712] n deleted obs = 4 	 n obs with reprojection error less than 0.5 px =32 	 error init =2.828647 	 error end=0.248795
+[16:57:07.712] After pose optimization, distance between two frames x:-0.383334 ,z=0.801532,angle between two frames:0.265850
+[16:57:07.715] Odometry x=-0.049379, y=-0.681786, theta=0.286618
+[16:57:07.816] Odometry x=-0.050363, y=-0.685504, theta=0.287190
+[16:57:07.864] After Reprojection Map nPoint:40 ,nCell:34 ,nMatches:11 ,distance between two frames x:-0.000345 ,z=-0.000186,angle between two frames:0.000161
+[16:57:07.865] n deleted obs = 2 	 n obs with reprojection error less than 0.5 px =24 	 error init =5.617108 	 error end=0.328347
+[16:57:07.865] After pose optimization, distance between two frames x:4.273812 ,z=34.032846,angle between two frames:2.440983
+[16:57:07.918] Odometry x=-0.051468, y=-0.689338, theta=0.287511
+[16:57:08.016] Odometry x=-0.052566, y=-0.693224, theta=0.284596
+[16:57:08.030] After Reprojection Map nPoint:36 ,nCell:29 ,nMatches:12 ,distance between two frames x:-0.000729 ,z=-0.000216,angle between two frames:0.000320
+[16:57:08.030] n deleted obs = 22 	 n obs with reprojection error less than 0.5 px =7 	 error init =8.404643 	 error end=0.761826
+[16:57:08.030] After pose optimization, distance between two frames x:12.495614 ,z=20.647873,angle between two frames:3.410851
+[16:57:08.118] Odometry x=-0.053648, y=-0.697068, theta=0.279036
+[16:57:08.180] After Reprojection Map nPoint:35 ,nCell:16 ,nMatches:12 ,distance between two frames x:0.000471 ,z=0.000181,angle between two frames:0.000241
+[16:57:08.180] n deleted obs = 39 	 n obs with reprojection error less than 0.5 px =0 	 error init =12.362821 	 error end=4.386689
+[16:57:08.180] After pose optimization, distance between two frames x:21.370085 ,z=5.977602,angle between two frames:3.120183
+[16:57:08.185] Image Alignment failed 0
+[16:57:08.220] Odometry x=-0.054692, y=-0.700945, theta=0.277710
+[16:57:08.317] Odometry x=-0.055749, y=-0.704757, theta=0.276979
+[16:57:08.325] After Reprojection Map nPoint:41 ,nCell:22 ,nMatches:20 ,distance between two frames x:-0.000002 ,z=-0.000008,angle between two frames:0.000097
+[16:57:08.327] n deleted obs = 35 	 n obs with reprojection error less than 0.5 px =21 	 error init =13.420795 	 error end=0.652936
+[16:57:08.327] After pose optimization, distance between two frames x:6.204062 ,z=17.927219,angle between two frames:2.849369
+[16:57:08.419] Odometry x=-0.056766, y=-0.708528, theta=0.274070
+[16:57:08.495] After Reprojection Map nPoint:54 ,nCell:31 ,nMatches:21 ,distance between two frames x:0.002239 ,z=0.001227,angle between two frames:0.000916
+[16:57:08.496] n deleted obs = 20 	 n obs with reprojection error less than 0.5 px =39 	 error init =10.577184 	 error end=0.443697
+[16:57:08.496] After pose optimization, distance between two frames x:-34.598309 ,z=-267.704768,angle between two frames:0.483368
+[16:57:08.516] Odometry x=-0.057834, y=-0.712518, theta=0.268929
+[16:57:08.618] Odometry x=-0.058829, y=-0.716291, theta=0.264262
+[16:57:08.647] After Reprojection Map nPoint:51 ,nCell:38 ,nMatches:15 ,distance between two frames x:-0.001071 ,z=-0.000350,angle between two frames:0.000452
+[16:57:08.647] n deleted obs = 30 	 n obs with reprojection error less than 0.5 px =10 	 error init =3.426891 	 error end=3.426891
+[16:57:08.647] After pose optimization, distance between two frames x:-0.001071 ,z=-0.000350,angle between two frames:0.000452
+[16:57:08.647] Update EKF and 3D points, distance between two frames x:-0.001125 ,z=-0.000768,angle between two frames:0.000743
+[16:57:08.647] Choose frame as a key frame Scene Depth mean:0.303688 ,depth min:0.157525
+[16:57:08.715] Odometry x=-0.059306, y=-0.715961, theta=0.265280
+[16:57:08.814] Odometry x=-0.060238, y=-0.719764, theta=0.275873
+[16:57:08.819] After Reprojection Map nPoint:49 ,nCell:26 ,nMatches:18 ,distance between two frames x:-0.009117 ,z=-0.008677,angle between two frames:0.006741
+[16:57:08.819] n deleted obs = 50 	 n obs with reprojection error less than 0.5 px =7 	 error init =4.615433 	 error end=4.615433
+[16:57:08.819] After pose optimization, distance between two frames x:-0.009117 ,z=-0.008677,angle between two frames:0.006741
+[16:57:08.917] Odometry x=-0.061313, y=-0.723658, theta=0.285102
+[16:57:08.967] After Reprojection Map nPoint:61 ,nCell:29 ,nMatches:24 ,distance between two frames x:-0.000993 ,z=-0.003628,angle between two frames:0.000558
+[16:57:08.967] n deleted obs = 61 	 n obs with reprojection error less than 0.5 px =13 	 error init =3.446296 	 error end=3.446296
+[16:57:08.967] After pose optimization, distance between two frames x:-0.000993 ,z=-0.003628,angle between two frames:0.000558
+[16:57:08.967] Update EKF and 3D points, distance between two frames x:-0.001058 ,z=-0.003865,angle between two frames:0.001265
+[16:57:08.967] Choose frame as a key frame Scene Depth mean:0.459989 ,depth min:0.154646
+[16:57:09.020] Odometry x=-0.061694, y=-0.725182, theta=0.287107
+[16:57:09.119] Odometry x=-0.062800, y=-0.729061, theta=0.298968
+[16:57:09.122] After Reprojection Map nPoint:100 ,nCell:35 ,nMatches:25 ,distance between two frames x:-0.000552 ,z=-0.001524,angle between two frames:0.004609
+[16:57:09.122] n deleted obs = 90 	 n obs with reprojection error less than 0.5 px =18 	 error init =3.626424 	 error end=3.626424
+[16:57:09.122] After pose optimization, distance between two frames x:-0.000552 ,z=-0.001524,angle between two frames:0.004609
+[16:57:09.122] Update EKF and 3D points, distance between two frames x:-0.000773 ,z=-0.002302,angle between two frames:0.005612
+[16:57:09.122] Choose frame as a key frame Scene Depth mean:0.315688 ,depth min:0.151923
+[16:57:09.217] Odometry x=-0.063312, y=-0.730826, theta=0.289295
+[16:57:09.276] After Reprojection Map nPoint:114 ,nCell:30 ,nMatches:23 ,distance between two frames x:-0.001572 ,z=-0.004789,angle between two frames:0.006170
+[16:57:09.276] n deleted obs = 87 	 n obs with reprojection error less than 0.5 px =24 	 error init =3.404891 	 error end=3.404891
+[16:57:09.276] After pose optimization, distance between two frames x:-0.001572 ,z=-0.004789,angle between two frames:0.006170
+[16:57:09.323] Odometry x=-0.064413, y=-0.734539, theta=0.303506
+[16:57:09.418] Odometry x=-0.065584, y=-0.738425, theta=0.312618
+[16:57:09.444] After Reprojection Map nPoint:130 ,nCell:33 ,nMatches:27 ,distance between two frames x:-0.003672 ,z=-0.001897,angle between two frames:0.000490
+[16:57:09.445] n deleted obs = 100 	 n obs with reprojection error less than 0.5 px =24 	 error init =3.516763 	 error end=3.516763
+[16:57:09.445] After pose optimization, distance between two frames x:-0.003672 ,z=-0.001897,angle between two frames:0.000490
+[16:57:09.445] Update EKF and 3D points, distance between two frames x:-0.003593 ,z=-0.002228,angle between two frames:0.000831
+[16:57:09.445] Choose frame as a key frame Scene Depth mean:0.292367 ,depth min:0.123542
+[16:57:09.521] Odometry x=-0.067527, y=-0.738852, theta=0.318795
+[16:57:09.618] Odometry x=-0.068688, y=-0.742738, theta=0.324676
+[16:57:09.631] After Reprojection Map nPoint:150 ,nCell:36 ,nMatches:28 ,distance between two frames x:-0.002625 ,z=-0.004213,angle between two frames:0.007324
+[16:57:09.636] n deleted obs = 21 	 n obs with reprojection error less than 0.5 px =130 	 error init =5.260816 	 error end=0.300573
+[16:57:09.636] After pose optimization, distance between two frames x:-2.781231 ,z=11.102395,angle between two frames:0.528309
+[16:57:09.720] Odometry x=-0.069949, y=-0.746524, theta=0.336334
+[16:57:09.807] After Reprojection Map nPoint:170 ,nCell:71 ,nMatches:30 ,distance between two frames x:-0.000516 ,z=-0.000175,angle between two frames:0.000305
+[16:57:09.807] n deleted obs = 138 	 n obs with reprojection error less than 0.5 px =0 	 error init =59.062118 	 error end=2.173062
+[16:57:09.807] After pose optimization, distance between two frames x:36.270899 ,z=14.127681,angle between two frames:2.388093
+[16:57:09.812] Image Alignment failed 0
+[16:57:09.813] Odometry x=-0.071137, y=-0.750430, theta=0.343618
+[16:57:09.915] Odometry x=-0.072402, y=-0.753988, theta=0.342746
+[16:57:09.963] After Reprojection Map nPoint:153 ,nCell:40 ,nMatches:34 ,distance between two frames x:-0.000001 ,z=-0.000009,angle between two frames:0.000023
+[16:57:09.963] n deleted obs = 129 	 n obs with reprojection error less than 0.5 px =35 	 error init =3.419291 	 error end=3.419291
+[16:57:09.963] After pose optimization, distance between two frames x:-0.000001 ,z=-0.000009,angle between two frames:0.000023
+[16:57:09.963] Update EKF and 3D points, distance between two frames x:-0.000149 ,z=-0.000436,angle between two frames:0.000234
+[16:57:09.963] Choose frame as a key frame Scene Depth mean:0.385474 ,depth min:0.099109
+[16:57:10.017] Odometry x=-0.072228, y=-0.753596, theta=0.339623
+[16:57:10.120] Odometry x=-0.073550, y=-0.757370, theta=0.337384
+[16:57:10.158] After Reprojection Map nPoint:193 ,nCell:47 ,nMatches:32 ,distance between two frames x:-0.000823 ,z=-0.000424,angle between two frames:0.000384
+[16:57:10.158] n deleted obs = 154 	 n obs with reprojection error less than 0.5 px =34 	 error init =4.230090 	 error end=4.230090
+[16:57:10.158] After pose optimization, distance between two frames x:-0.000823 ,z=-0.000424,angle between two frames:0.000384
+[16:57:10.158] Update EKF and 3D points, distance between two frames x:-0.000981 ,z=-0.000997,angle between two frames:0.000837
+[16:57:10.158] Choose frame as a key frame Scene Depth mean:0.364365 ,depth min:0.098316
+[16:57:10.220] Odometry x=-0.073228, y=-0.755495, theta=0.326669
+[16:57:10.323] Odometry x=-0.074548, y=-0.759349, theta=0.312902
+[16:57:10.342] After Reprojection Map nPoint:223 ,nCell:49 ,nMatches:35 ,distance between two frames x:-0.001145 ,z=-0.003596,angle between two frames:0.003262
+[16:57:10.342] n deleted obs = 169 	 n obs with reprojection error less than 0.5 px =41 	 error init =4.115191 	 error end=4.115191
+[16:57:10.342] After pose optimization, distance between two frames x:-0.001145 ,z=-0.003596,angle between two frames:0.003262
+[16:57:10.342] Update EKF and 3D points, distance between two frames x:-0.001279 ,z=-0.004039,angle between two frames:0.004930
+[16:57:10.342] Choose frame as a key frame Scene Depth mean:0.476566 ,depth min:0.095463
+[16:57:10.416] Odometry x=-0.074392, y=-0.758833, theta=0.320299
+[16:57:10.518] Odometry x=-0.075528, y=-0.762435, theta=0.317420
+[16:57:10.522] After Reprojection Map nPoint:259 ,nCell:46 ,nMatches:32 ,distance between two frames x:-0.000867 ,z=-0.002733,angle between two frames:0.010676
+[16:57:10.522] n deleted obs = 179 	 n obs with reprojection error less than 0.5 px =56 	 error init =4.209288 	 error end=4.209288
+[16:57:10.522] After pose optimization, distance between two frames x:-0.000867 ,z=-0.002733,angle between two frames:0.010676
+[16:57:10.522] Update EKF and 3D points, distance between two frames x:-0.001116 ,z=-0.003508,angle between two frames:0.011231
+[16:57:10.522] Choose frame as a key frame Scene Depth mean:0.388197 ,depth min:0.094579
+[16:57:10.620] Odometry x=-0.076208, y=-0.764292, theta=0.322887
+[16:57:10.707] After Reprojection Map nPoint:311 ,nCell:44 ,nMatches:34 ,distance between two frames x:-0.001534 ,z=-0.004801,angle between two frames:0.003936
+[16:57:10.707] n deleted obs = 240 	 n obs with reprojection error less than 0.5 px =40 	 error init =3.663614 	 error end=3.663614
+[16:57:10.707] After pose optimization, distance between two frames x:-0.001534 ,z=-0.004801,angle between two frames:0.003936
+[16:57:10.718] Odometry x=-0.077338, y=-0.768014, theta=0.318433
+[16:57:10.815] Odometry x=-0.078498, y=-0.771714, theta=0.312232
+[16:57:10.892] After Reprojection Map nPoint:326 ,nCell:45 ,nMatches:36 ,distance between two frames x:0.000167 ,z=0.000080,angle between two frames:0.000529
+[16:57:10.892] n deleted obs = 230 	 n obs with reprojection error less than 0.5 px =57 	 error init =3.662255 	 error end=3.662255
+[16:57:10.892] After pose optimization, distance between two frames x:0.000167 ,z=0.000080,angle between two frames:0.000529
+[16:57:10.892] Update EKF and 3D points, distance between two frames x:0.000024 ,z=-0.000357,angle between two frames:0.000656
+[16:57:10.892] Choose frame as a key frame Scene Depth mean:0.332232 ,depth min:0.087272
+[16:57:10.916] Odometry x=-0.078206, y=-0.771052, theta=0.318154
+[16:57:11.019] Odometry x=-0.079370, y=-0.774753, theta=0.323167
+[16:57:11.096] After Reprojection Map nPoint:330 ,nCell:39 ,nMatches:33 ,distance between two frames x:-0.001535 ,z=-0.003173,angle between two frames:0.000978
+[16:57:11.097] n deleted obs = 247 	 n obs with reprojection error less than 0.5 px =51 	 error init =3.870413 	 error end=3.870413
+[16:57:11.097] After pose optimization, distance between two frames x:-0.001535 ,z=-0.003173,angle between two frames:0.000978
+[16:57:11.097] Update EKF and 3D points, distance between two frames x:-0.001633 ,z=-0.003582,angle between two frames:0.000725
+[16:57:11.097] Choose frame as a key frame Scene Depth mean:0.290793 ,depth min:0.083851
+[16:57:11.116] Odometry x=-0.079567, y=-0.774488, theta=0.319371
+[16:57:11.223] Odometry x=-0.080769, y=-0.778193, theta=0.318885
+[16:57:11.295] After Reprojection Map nPoint:413 ,nCell:43 ,nMatches:37 ,distance between two frames x:-0.000660 ,z=-0.002562,angle between two frames:0.001466
+[16:57:11.295] n deleted obs = 322 	 n obs with reprojection error less than 0.5 px =45 	 error init =4.487689 	 error end=4.487689
+[16:57:11.295] After pose optimization, distance between two frames x:-0.000660 ,z=-0.002562,angle between two frames:0.001466
+[16:57:11.295] Update EKF and 3D points, distance between two frames x:-0.000801 ,z=-0.003010,angle between two frames:0.001859
+[16:57:11.296] Choose frame as a key frame Scene Depth mean:0.396633 ,depth min:0.080427
+[16:57:11.320] Odometry x=-0.080627, y=-0.777805, theta=0.326490
+[16:57:11.415] Odometry x=-0.081838, y=-0.781638, theta=0.333647
+[16:57:11.511] After Reprojection Map nPoint:447 ,nCell:45 ,nMatches:41 ,distance between two frames x:-0.000914 ,z=-0.002757,angle between two frames:0.002904
+[16:57:11.512] n deleted obs = 353 	 n obs with reprojection error less than 0.5 px =50 	 error init =3.611283 	 error end=3.611283
+[16:57:11.512] After pose optimization, distance between two frames x:-0.000914 ,z=-0.002757,angle between two frames:0.002904
+[16:57:11.512] Update EKF and 3D points, distance between two frames x:-0.001049 ,z=-0.003185,angle between two frames:0.003850
+[16:57:11.512] Choose frame as a key frame Scene Depth mean:0.283221 ,depth min:0.076375
+[16:57:11.518] Odometry x=-0.081644, y=-0.780792, theta=0.330331
+[16:57:11.618] Odometry x=-0.082866, y=-0.784612, theta=0.341181
+[16:57:11.721] Odometry x=-0.084203, y=-0.788492, theta=0.352987
+[16:57:11.727] After Reprojection Map nPoint:436 ,nCell:43 ,nMatches:40 ,distance between two frames x:-0.000796 ,z=-0.002623,angle between two frames:0.006309
+[16:57:11.728] n deleted obs = 332 	 n obs with reprojection error less than 0.5 px =71 	 error init =3.095068 	 error end=3.095068
+[16:57:11.728] After pose optimization, distance between two frames x:-0.000796 ,z=-0.002623,angle between two frames:0.006309
+[16:57:11.728] Update EKF and 3D points, distance between two frames x:-0.001024 ,z=-0.003287,angle between two frames:0.007672
+[16:57:11.728] Choose frame as a key frame Scene Depth mean:0.284055 ,depth min:0.056632
+[16:57:11.820] Odometry x=-0.083233, y=-0.785667, theta=0.342864
+[16:57:11.917] Odometry x=-0.084559, y=-0.789503, theta=0.334729
+[16:57:11.993] After Reprojection Map nPoint:461 ,nCell:39 ,nMatches:35 ,distance between two frames x:-0.003598 ,z=-0.005813,angle between two frames:0.007424
+[16:57:11.994] n deleted obs = 361 	 n obs with reprojection error less than 0.5 px =61 	 error init =3.579419 	 error end=3.579419
+[16:57:11.994] After pose optimization, distance between two frames x:-0.003598 ,z=-0.005813,angle between two frames:0.007424
+[16:57:12.025] Odometry x=-0.085783, y=-0.793069, theta=0.328878
+[16:57:12.115] Odometry x=-0.087099, y=-0.797008, theta=0.327133
+[16:57:12.220] Odometry x=-0.088187, y=-0.800445, theta=0.319522
+[16:57:12.222] After Reprojection Map nPoint:515 ,nCell:55 ,nMatches:47 ,distance between two frames x:-0.000095 ,z=-0.000142,angle between two frames:0.000376
+[16:57:12.223] n deleted obs = 395 	 n obs with reprojection error less than 0.5 px =78 	 error init =3.187368 	 error end=3.187368
+[16:57:12.223] After pose optimization, distance between two frames x:-0.000095 ,z=-0.000142,angle between two frames:0.000376
+[16:57:12.223] Update EKF and 3D points, distance between two frames x:-0.000420 ,z=-0.001132,angle between two frames:0.000969
+[16:57:12.223] Choose frame as a key frame Scene Depth mean:0.331601 ,depth min:0.059186
+[16:57:12.319] Odometry x=-0.088244, y=-0.800432, theta=0.318796
+[16:57:12.421] Odometry x=-0.089451, y=-0.804226, theta=0.319223
+[16:57:12.455] After Reprojection Map nPoint:542 ,nCell:49 ,nMatches:40 ,distance between two frames x:-0.002159 ,z=-0.006192,angle between two frames:0.003717
+[16:57:12.456] n deleted obs = 410 	 n obs with reprojection error less than 0.5 px =85 	 error init =5.028159 	 error end=5.028159
+[16:57:12.456] After pose optimization, distance between two frames x:-0.002159 ,z=-0.006192,angle between two frames:0.003717
+[16:57:12.519] Odometry x=-0.090758, y=-0.808181, theta=0.338048
+[16:57:12.620] Odometry x=-0.091918, y=-0.811570, theta=0.344830
+[16:57:12.686] After Reprojection Map nPoint:554 ,nCell:51 ,nMatches:43 ,distance between two frames x:-0.000664 ,z=-0.000384,angle between two frames:0.000794
+[16:57:12.688] n deleted obs = 117 	 n obs with reprojection error less than 0.5 px =381 	 error init =132.584561 	 error end=0.417699
+[16:57:12.688] After pose optimization, distance between two frames x:4630.350083 ,z=-66878.623095,angle between two frames:0.296461
+[16:57:12.717] Odometry x=-0.093160, y=-0.815324, theta=0.350337
+[16:57:12.818] Odometry x=-0.094485, y=-0.818947, theta=0.361652
+[16:57:12.910] After Reprojection Map nPoint:551 ,nCell:84 ,nMatches:37 ,distance between two frames x:0.000080 ,z=0.000031,angle between two frames:0.000142
+[16:57:12.911] n deleted obs = 386 	 n obs with reprojection error less than 0.5 px =64 	 error init =12.796887 	 error end=12.796887
+[16:57:12.911] After pose optimization, distance between two frames x:0.000080 ,z=0.000031,angle between two frames:0.000142
+[16:57:12.911] Update EKF and 3D points, distance between two frames x:-0.000080 ,z=-0.000399,angle between two frames:0.001528
+[16:57:12.911] Choose frame as a key frame Scene Depth mean:0.280771 ,depth min:0.045475
+[16:57:13.154] After Reprojection Map nPoint:617 ,nCell:41 ,nMatches:36 ,distance between two frames x:-0.000981 ,z=-0.002950,angle between two frames:0.008825
+[16:57:13.155] n deleted obs = 479 	 n obs with reprojection error less than 0.5 px =80 	 error init =11.081945 	 error end=11.081945
+[16:57:13.155] After pose optimization, distance between two frames x:-0.000981 ,z=-0.002950,angle between two frames:0.008825
+[16:57:13.155] Update EKF and 3D points, distance between two frames x:-0.000982 ,z=-0.002945,angle between two frames:0.010647
+[16:57:13.155] Choose frame as a key frame Scene Depth mean:0.308601 ,depth min:0.081042
+[16:57:13.410] After Reprojection Map nPoint:653 ,nCell:41 ,nMatches:35 ,distance between two frames x:0.000205 ,z=-0.000428,angle between two frames:0.011692
+[16:57:13.426] n deleted obs = 147 	 n obs with reprojection error less than 0.5 px =446 	 error init =17.986318 	 error end=0.383636
+[16:57:13.426] After pose optimization, distance between two frames x:-3.753411 ,z=53.461298,angle between two frames:1.551438
+[16:57:13.676] After Reprojection Map nPoint:655 ,nCell:88 ,nMatches:39 ,distance between two frames x:0.000225 ,z=-0.000009,angle between two frames:0.000049
+[16:57:13.679] n deleted obs = 122 	 n obs with reprojection error less than 0.5 px =434 	 error init =11.457302 	 error end=0.363173
+[16:57:13.679] After pose optimization, distance between two frames x:-3.046133 ,z=34.763231,angle between two frames:1.192111
+[16:57:13.931] After Reprojection Map nPoint:625 ,nCell:86 ,nMatches:36 ,distance between two frames x:0.000071 ,z=0.000018,angle between two frames:0.000434
+[16:57:13.931] n deleted obs = 444 	 n obs with reprojection error less than 0.5 px =75 	 error init =14.838809 	 error end=14.838809
+[16:57:13.931] After pose optimization, distance between two frames x:0.000071 ,z=0.000018,angle between two frames:0.000434
+[16:57:13.931] Update EKF and 3D points, distance between two frames x:0.000065 ,z=-0.000011,angle between two frames:0.000913
+[16:57:13.932] Choose frame as a key frame Scene Depth mean:0.318475 ,depth min:0.009242
+[16:57:14.190] After Reprojection Map nPoint:723 ,nCell:39 ,nMatches:37 ,distance between two frames x:0.000249 ,z=-0.000237,angle between two frames:0.003028
+[16:57:14.191] n deleted obs = 198 	 n obs with reprojection error less than 0.5 px =452 	 error init =14.658043 	 error end=0.425869
+[16:57:14.191] After pose optimization, distance between two frames x:1.413224 ,z=10.578393,angle between two frames:0.999683
+[16:57:14.454] After Reprojection Map nPoint:669 ,nCell:70 ,nMatches:37 ,distance between two frames x:0.000025 ,z=0.000009,angle between two frames:0.000193
+[16:57:14.455] n deleted obs = 486 	 n obs with reprojection error less than 0.5 px =79 	 error init =8.830209 	 error end=8.830209
+[16:57:14.455] After pose optimization, distance between two frames x:0.000025 ,z=0.000009,angle between two frames:0.000193
+[16:57:14.455] Update EKF and 3D points, distance between two frames x:0.000022 ,z=-0.000019,angle between two frames:0.000657
+[16:57:14.455] Choose frame as a key frame Scene Depth mean:0.328377 ,depth min:0.005036
+[16:57:14.726] After Reprojection Map nPoint:749 ,nCell:44 ,nMatches:40 ,distance between two frames x:-0.000015 ,z=-0.000219,angle between two frames:0.002936
+[16:57:14.727] n deleted obs = 593 	 n obs with reprojection error less than 0.5 px =86 	 error init =15.421143 	 error end=15.421143
+[16:57:14.727] After pose optimization, distance between two frames x:-0.000015 ,z=-0.000219,angle between two frames:0.002936
+[16:57:14.727] Update EKF and 3D points, distance between two frames x:-0.000017 ,z=-0.000245,angle between two frames:0.003423
+[16:57:14.727] Choose frame as a key frame Scene Depth mean:0.351507 ,depth min:0.003695
+[16:57:15.014] After Reprojection Map nPoint:801 ,nCell:48 ,nMatches:40 ,distance between two frames x:0.000878 ,z=-0.000299,angle between two frames:0.003085
+[16:57:15.016] n deleted obs = 317 	 n obs with reprojection error less than 0.5 px =410 	 error init =8.655468 	 error end=0.497873
+[16:57:15.016] After pose optimization, distance between two frames x:2.227401 ,z=4.045424,angle between two frames:0.487325
+[16:57:15.290] After Reprojection Map nPoint:803 ,nCell:57 ,nMatches:35 ,distance between two frames x:-0.000030 ,z=-0.000009,angle between two frames:0.000140
+[16:57:15.291] n deleted obs = 597 	 n obs with reprojection error less than 0.5 px =88 	 error init =11.631466 	 error end=11.631466
+[16:57:15.291] After pose optimization, distance between two frames x:-0.000030 ,z=-0.000009,angle between two frames:0.000140
+[16:57:15.291] Update EKF and 3D points, distance between two frames x:-0.000030 ,z=-0.000035,angle between two frames:0.000619
+[16:57:15.291] Choose frame as a key frame Scene Depth mean:0.370439 ,depth min:0.055015
+[16:57:15.586] After Reprojection Map nPoint:940 ,nCell:46 ,nMatches:40 ,distance between two frames x:0.000165 ,z=-0.000387,angle between two frames:0.003046
+[16:57:15.587] n deleted obs = 719 	 n obs with reprojection error less than 0.5 px =130 	 error init =13.403856 	 error end=13.403856
+[16:57:15.588] After pose optimization, distance between two frames x:0.000165 ,z=-0.000387,angle between two frames:0.003046
+[16:57:15.588] Update EKF and 3D points, distance between two frames x:0.000153 ,z=-0.000405,angle between two frames:0.003576
+[16:57:15.588] Choose frame as a key frame Scene Depth mean:0.341954 ,depth min:0.054013
+[16:57:15.895] After Reprojection Map nPoint:945 ,nCell:41 ,nMatches:33 ,distance between two frames x:0.000216 ,z=-0.000290,angle between two frames:0.003318
+[16:57:15.898] n deleted obs = 190 	 n obs with reprojection error less than 0.5 px =647 	 error init =12.778012 	 error end=0.378965
+[16:57:15.898] After pose optimization, distance between two frames x:91.374530 ,z=-911.030551,angle between two frames:1.145878
+[16:57:16.206] After Reprojection Map nPoint:942 ,nCell:77 ,nMatches:34 ,distance between two frames x:-0.000403 ,z=-0.000352,angle between two frames:0.000049
+[16:57:16.208] n deleted obs = 689 	 n obs with reprojection error less than 0.5 px =102 	 error init =23.829769 	 error end=23.829769
+[16:57:16.208] After pose optimization, distance between two frames x:-0.000403 ,z=-0.000352,angle between two frames:0.000049
+[16:57:16.208] Update EKF and 3D points, distance between two frames x:-0.000382 ,z=-0.000364,angle between two frames:0.000513
+[16:57:16.208] Choose frame as a key frame Scene Depth mean:0.349214 ,depth min:0.050744
+[16:57:16.530] After Reprojection Map nPoint:961 ,nCell:35 ,nMatches:34 ,distance between two frames x:0.000318 ,z=-0.000138,angle between two frames:0.003562
+[16:57:16.535] n deleted obs = 250 	 n obs with reprojection error less than 0.5 px =620 	 error init =12.213993 	 error end=0.411763
+[16:57:16.535] After pose optimization, distance between two frames x:6.276927 ,z=-148.314403,angle between two frames:0.950186
+[16:57:16.843] After Reprojection Map nPoint:989 ,nCell:64 ,nMatches:42 ,distance between two frames x:-0.000040 ,z=-0.000174,angle between two frames:0.000053
+[16:57:16.846] n deleted obs = 184 	 n obs with reprojection error less than 0.5 px =670 	 error init =13.528270 	 error end=0.372262
+[16:57:16.846] After pose optimization, distance between two frames x:-772.120755 ,z=5799.458727,angle between two frames:0.897264
+[16:57:17.169] After Reprojection Map nPoint:1028 ,nCell:78 ,nMatches:40 ,distance between two frames x:-0.000255 ,z=-0.000261,angle between two frames:0.000002
+[16:57:17.173] n deleted obs = 218 	 n obs with reprojection error less than 0.5 px =658 	 error init =19.641106 	 error end=0.380484
+[16:57:17.173] After pose optimization, distance between two frames x:47.517090 ,z=-937.379122,angle between two frames:1.567944
+[16:57:17.490] After Reprojection Map nPoint:987 ,nCell:68 ,nMatches:38 ,distance between two frames x:-0.000060 ,z=-0.000160,angle between two frames:0.000087
+[16:57:17.492] n deleted obs = 257 	 n obs with reprojection error less than 0.5 px =600 	 error init =55.783201 	 error end=0.467115
+[16:57:17.492] After pose optimization, distance between two frames x:2656.743532 ,z=-6511.028731,angle between two frames:2.559673
+[16:57:17.823] After Reprojection Map nPoint:1074 ,nCell:89 ,nMatches:42 ,distance between two frames x:-0.000359 ,z=-0.000426,angle between two frames:0.000075
+[16:57:17.826] n deleted obs = 216 	 n obs with reprojection error less than 0.5 px =697 	 error init =8.406800 	 error end=0.402245
+[16:57:17.826] After pose optimization, distance between two frames x:-80.345420 ,z=595.224475,angle between two frames:0.414437
+[16:57:18.144] After Reprojection Map nPoint:1056 ,nCell:66 ,nMatches:44 ,distance between two frames x:-0.000035 ,z=-0.000073,angle between two frames:0.000121
+[16:57:18.146] n deleted obs = 397 	 n obs with reprojection error less than 0.5 px =521 	 error init =13.713360 	 error end=0.557514
+[16:57:18.146] After pose optimization, distance between two frames x:262.151117 ,z=-447.091004,angle between two frames:0.063391
+[16:57:18.467] After Reprojection Map nPoint:1028 ,nCell:76 ,nMatches:38 ,distance between two frames x:-0.000138 ,z=-0.000154,angle between two frames:0.000101
+[16:57:18.469] n deleted obs = 253 	 n obs with reprojection error less than 0.5 px =624 	 error init =20.823346 	 error end=0.414697
+[16:57:18.469] After pose optimization, distance between two frames x:-16.538165 ,z=2059.648834,angle between two frames:1.581722

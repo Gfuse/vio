@@ -1,181 +1,870 @@
-[16:40:15.960] init depth filter
-[16:40:43.554] init depth filter
-[16:40:48.325] DepthFilter: RESET.
-[16:41:03.100] add key frame
-[16:41:03.100] update seed
-[16:41:03.100] init seeds
-[16:41:03.106] DepthFilter: Initialized 85 new seeds
-[16:41:03.253] add new frame
-[16:41:03.253] update seed
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.254]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.254]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:41:03.255]  If point is visible? 0.000019, 0.000000, 0.000403
-[16:41:03.255]  Z inverse min: inf, Z inverse max: inf
-[16:42:35.541] DepthFilter stop thread invoked.
-[16:42:35.541] DepthFilter interrupt and join thread 
+[16:56:40.309] init depth filter
+[16:56:43.421] init depth filter
+[16:56:47.074] DepthFilter: RESET.
+[16:57:03.840] add key frame
+[16:57:03.840] update seed
+[16:57:03.840] init seeds
+[16:57:03.845] DepthFilter: Initialized 65 new seeds
+[16:57:06.661] add new frame
+[16:57:06.661] update seed
+[16:57:06.662]  If point is visible? -0.179351, -1.189585, -1.699112
+[16:57:06.662]  If point is visible? -0.164602, -1.167021, -1.717044
+[16:57:06.662]  If point is visible? -0.078735, -0.579468, -2.012863
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.074434, -0.520351, -2.029918
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 0.389323, -0.512534, -1.988616
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 1.177754, -0.442963, -1.637355
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.036256, -0.353963, -2.067936
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.402407, 0.042201, -2.062437
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.402295, 0.046593, -2.062360
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.366723, 0.098568, -2.067021
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.372412, 0.098693, -2.066006
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.378098, 0.098819, -2.064975
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.406483, 0.099476, -2.059570
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.444479, 0.148868, -2.048562
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 1.271653, 0.185938, -1.613627
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.427221, 0.157244, -2.051577
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.860018, 0.309218, -1.888446
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.398598, 0.403606, -2.021672
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 0.108153, 0.532170, -2.023080
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 0.371849, 0.574091, -1.974562
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.860419, 0.680836, -1.782159
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.152893, -1.170822, -1.715290
+[16:57:06.662]  If point is visible? 0.927863, -1.117044, -1.459474
+[16:57:06.662]  If point is visible? 1.161718, -0.523909, -1.624256
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 1.172412, -0.451542, -1.639017
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 1.183086, -0.442316, -1.633365
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.018651, -0.362530, -2.066431
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.030337, -0.362546, -2.066408
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 0.404675, -0.279093, -2.033636
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 0.156952, -0.189051, -2.082639
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 1.276995, 0.149535, -1.613087
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.427535, 0.148437, -2.052201
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.417949, 0.095351, -2.057484
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -1.109430, 0.291846, -1.751658
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -1.119416, 0.292459, -1.744920
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.388579, 0.270999, -2.046743
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.298729, 0.463126, -2.025268
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.310075, 0.463355, -2.023541
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.257290, 0.391844, -2.046520
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.478181, 0.476118, -1.987467
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? -0.801438, 0.530573, -1.862789
+[16:57:06.662]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.662]  If point is visible? 0.957923, 0.569725, -1.747480
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.287807, 0.630652, -1.972120
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.068241, -0.895469, -1.885479
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 1.012133, -0.918253, -1.544280
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.922482, -0.810057, -1.665409
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 1.012271, -0.932869, -1.534774
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.481551, -0.686706, -1.909297
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.361877, -1.133419, -1.701851
+[16:57:06.663]  If point is visible? 0.969712, -1.011761, -1.511117
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.004914, -0.379619, -2.063029
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.018477, -0.379682, -2.063189
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.005110, -0.396742, -2.059635
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.018279, -0.396811, -2.059796
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.315094, -0.581611, -1.990350
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 1.183082, -0.450241, -1.631058
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.015009, -0.566682, -2.017547
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.019211, -0.241867, -2.084901
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.019197, -0.224550, -2.086936
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -1.819097, 0.137130, -0.962549
+[16:57:06.663]  If point is visible? -1.109987, 0.283157, -1.752803
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.299806, 0.445532, -2.029262
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  calculated Z=  0.921898
+[16:57:06.663]  update seeds 
+[16:57:06.663]  If point is visible? -0.306563, 0.322203, -2.052688
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? -0.478777, 0.467328, -1.989520
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.663]  If point is visible? 0.903568, 0.611183, -1.763959
+[16:57:06.663]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953] add new frame
+[16:57:06.953] update seed
+[16:57:06.953]  If point is visible? -0.180433, -1.189585, -1.706183
+[16:57:06.953]  If point is visible? -0.165685, -1.167021, -1.724115
+[16:57:06.953]  If point is visible? -0.079818, -0.579468, -2.019934
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.075517, -0.520351, -2.036989
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 0.388240, -0.512534, -1.995687
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 1.176671, -0.442963, -1.644426
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.037339, -0.353963, -2.075007
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.403490, 0.042201, -2.069508
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.403378, 0.046593, -2.069430
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.367806, 0.098568, -2.074092
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.373495, 0.098693, -2.073077
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.379181, 0.098819, -2.072046
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.407566, 0.099476, -2.066641
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.445561, 0.148868, -2.055633
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 1.270570, 0.185938, -1.620698
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.428303, 0.157244, -2.058648
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.861101, 0.309218, -1.895517
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.399681, 0.403606, -2.028743
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 0.107071, 0.532170, -2.030151
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 0.370766, 0.574091, -1.981633
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.861502, 0.680836, -1.789229
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.153976, -1.170822, -1.722361
+[16:57:06.953]  If point is visible? 0.926780, -1.117044, -1.466545
+[16:57:06.953]  If point is visible? 1.160635, -0.523909, -1.631327
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 1.171329, -0.451542, -1.646088
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 1.182003, -0.442316, -1.640436
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.019733, -0.362530, -2.073502
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? -0.031420, -0.362546, -2.073479
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 0.403592, -0.279093, -2.040707
+[16:57:06.953]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.953]  If point is visible? 0.155869, -0.189051, -2.089710
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 1.275913, 0.149535, -1.620158
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.428617, 0.148437, -2.059272
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.419032, 0.095351, -2.064555
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -1.110512, 0.291846, -1.758729
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -1.120499, 0.292459, -1.751991
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.389662, 0.270999, -2.053814
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.299811, 0.463126, -2.032338
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.311158, 0.463355, -2.030612
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.258373, 0.391844, -2.053591
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.479264, 0.476118, -1.994538
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.802520, 0.530573, -1.869860
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.956840, 0.569725, -1.754551
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.286725, 0.630652, -1.979191
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.067158, -0.895469, -1.892550
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 1.011050, -0.918253, -1.551351
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.921400, -0.810057, -1.672480
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 1.011188, -0.932869, -1.541845
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.480468, -0.686706, -1.916368
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.360794, -1.133419, -1.708922
+[16:57:06.954]  If point is visible? 0.968629, -1.011761, -1.518188
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.003832, -0.379619, -2.070100
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.019559, -0.379682, -2.070260
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.004027, -0.396742, -2.066706
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.019362, -0.396811, -2.066867
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.316177, -0.581611, -1.997421
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 1.181999, -0.450241, -1.638129
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.016092, -0.566682, -2.024618
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.020294, -0.241867, -2.091972
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.020280, -0.224550, -2.094007
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -1.820180, 0.137130, -0.969620
+[16:57:06.954]  If point is visible? -1.111070, 0.283157, -1.759874
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.226345, 0.326334, -1.520538
+[16:57:06.954]  Z inverse min: 1.042875, Z inverse max: 0.323593
+[16:57:06.954]  If point is visible? -0.307646, 0.322203, -2.059759
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? -0.479860, 0.467328, -1.996591
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:06.954]  If point is visible? 0.902485, 0.611183, -1.771030
+[16:57:06.954]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115] add new frame
+[16:57:07.115] update seed
+[16:57:07.115]  If point is visible? -0.180175, -1.189585, -1.706297
+[16:57:07.115]  If point is visible? -0.165427, -1.167021, -1.724228
+[16:57:07.115]  If point is visible? -0.079560, -0.579468, -2.020047
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.075259, -0.520351, -2.037103
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 0.388498, -0.512534, -1.995800
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 1.176929, -0.442963, -1.644540
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.037081, -0.353963, -2.075120
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.403232, 0.042201, -2.069622
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.403120, 0.046593, -2.069544
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.367548, 0.098568, -2.074206
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.373237, 0.098693, -2.073191
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.378923, 0.098819, -2.072159
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.407308, 0.099476, -2.066754
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.445303, 0.148868, -2.055747
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 1.270828, 0.185938, -1.620811
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.428045, 0.157244, -2.058761
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.860843, 0.309218, -1.895631
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.399423, 0.403606, -2.028856
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 0.107329, 0.532170, -2.030264
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 0.371024, 0.574091, -1.981747
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.861244, 0.680836, -1.789343
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.153718, -1.170822, -1.722475
+[16:57:07.115]  If point is visible? 0.927038, -1.117044, -1.466658
+[16:57:07.115]  If point is visible? 1.160893, -0.523909, -1.631440
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 1.171587, -0.451542, -1.646201
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 1.182261, -0.442316, -1.640550
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.019475, -0.362530, -2.073615
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.031162, -0.362546, -2.073593
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 0.403850, -0.279093, -2.040821
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 0.156127, -0.189051, -2.089823
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? 1.276171, 0.149535, -1.620272
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.428360, 0.148437, -2.059386
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -0.418774, 0.095351, -2.064669
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -1.110254, 0.291846, -1.758842
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.115]  If point is visible? -1.120241, 0.292459, -1.752105
+[16:57:07.115]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.389404, 0.270999, -2.053928
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.299553, 0.463126, -2.032452
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.310900, 0.463355, -2.030726
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.258115, 0.391844, -2.053705
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.479006, 0.476118, -1.994652
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.802262, 0.530573, -1.869974
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.957098, 0.569725, -1.754664
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.286983, 0.630652, -1.979304
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.067416, -0.895469, -1.892663
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 1.011308, -0.918253, -1.551464
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.921658, -0.810057, -1.672593
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 1.011446, -0.932869, -1.541959
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.480726, -0.686706, -1.916481
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.361052, -1.133419, -1.709035
+[16:57:07.116]  If point is visible? 0.968887, -1.011761, -1.518302
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.004090, -0.379619, -2.070214
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.019301, -0.379682, -2.070373
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.004285, -0.396742, -2.066820
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.019104, -0.396811, -2.066980
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.315919, -0.581611, -1.997534
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 1.182257, -0.450241, -1.638243
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.015834, -0.566682, -2.024731
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.020036, -0.241867, -2.092085
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.020022, -0.224550, -2.094120
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -1.819922, 0.137130, -0.969733
+[16:57:07.116]  If point is visible? -1.110812, 0.283157, -1.759988
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.226087, 0.326334, -1.520651
+[16:57:07.116]  Z inverse min: 1.042875, Z inverse max: 0.323593
+[16:57:07.116]  If point is visible? -0.307388, 0.322203, -2.059872
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? -0.479602, 0.467328, -1.996705
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:07.116]  If point is visible? 0.902743, 0.611183, -1.771144
+[16:57:07.116]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:08.647] add new frame
+[16:57:08.647] add key frame
+[16:57:08.647] update seed
+[16:57:08.647] init seeds
+[16:57:08.647] update seed
+[16:57:08.647] init seeds
+[16:57:08.650] DepthFilter: Initialized 54 new seeds
+[16:57:08.655] DepthFilter: Initialized 96 new seeds
+[16:57:08.967] add new frame
+[16:57:08.967] add key frame
+[16:57:08.967] update seed
+[16:57:08.967] init seeds
+[16:57:08.967] update seed
+[16:57:08.967] init seeds
+[16:57:08.971] DepthFilter: Initialized 22 new seeds
+[16:57:08.974] DepthFilter: Initialized 83 new seeds
+[16:57:09.122] add new frame
+[16:57:09.122] add key frame
+[16:57:09.122] update seed
+[16:57:09.122] init seeds
+[16:57:09.125] DepthFilter: Initialized 24 new seeds
+[16:57:09.445] add new frame
+[16:57:09.445] add key frame
+[16:57:09.445] update seed
+[16:57:09.445] init seeds
+[16:57:09.448] DepthFilter: Initialized 13 new seeds
+[16:57:09.963] add new frame
+[16:57:09.963] add key frame
+[16:57:09.963] update seed
+[16:57:09.963] init seeds
+[16:57:09.963] update seed
+[16:57:09.963] init seeds
+[16:57:09.966] DepthFilter: Initialized 13 new seeds
+[16:57:09.969] DepthFilter: Initialized 93 new seeds
+[16:57:10.158] add new frame
+[16:57:10.158] update seed
+[16:57:10.158]  If point is visible? -0.209392, -1.189585, -1.801518
+[16:57:10.158]  If point is visible? -0.194643, -1.167021, -1.819450
+[16:57:10.158]  If point is visible? -0.108776, -0.579468, -2.115269
+[16:57:10.158]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:10.158]  If point is visible? -0.104475, -0.520351, -2.132324
+[16:57:10.158]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:10.158] add key frame
+[16:57:10.158] init seeds
+[16:57:10.158] update seed
+[16:57:10.158] init seeds
+[16:57:10.161] DepthFilter: Initialized 16 new seeds
+[16:57:10.164] DepthFilter: Initialized 87 new seeds
+[16:57:10.342] add new frame
+[16:57:10.342] update seed
+[16:57:10.342]  If point is visible? -0.210671, -1.189585, -1.805557
+[16:57:10.342]  If point is visible? -0.195922, -1.167021, -1.823488
+[16:57:10.342]  If point is visible? -0.110055, -0.579468, -2.119308
+[16:57:10.342] add key frame
+[16:57:10.342]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:10.342] init seeds
+[16:57:10.342] update seed
+[16:57:10.342] init seeds
+[16:57:10.346] DepthFilter: Initialized 13 new seeds
+[16:57:10.348] DepthFilter: Initialized 103 new seeds
+[16:57:10.522] add new frame
+[16:57:10.522] update seed
+[16:57:10.522]  If point is visible? -0.211787, -1.189585, -1.809065
+[16:57:10.522]  If point is visible? -0.197038, -1.167021, -1.826996
+[16:57:10.522]  If point is visible? -0.111171, -0.579468, -2.122815
+[16:57:10.522]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:10.522] add key frame
+[16:57:10.522] init seeds
+[16:57:10.522] update seed
+[16:57:10.523] init seeds
+[16:57:10.526] DepthFilter: Initialized 7 new seeds
+[16:57:10.528] DepthFilter: Initialized 98 new seeds
+[16:57:10.892] add new frame
+[16:57:10.892] update seed
+[16:57:10.892]  If point is visible? -0.214452, -1.189585, -1.818033
+[16:57:10.892]  If point is visible? -0.199704, -1.167021, -1.835964
+[16:57:10.892]  If point is visible? -0.113837, -0.579468, -2.131783
+[16:57:10.892]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:10.892] add key frame
+[16:57:10.893] init seeds
+[16:57:10.893] update seed
+[16:57:10.893] init seeds
+[16:57:10.896] DepthFilter: Initialized 8 new seeds
+[16:57:10.898] DepthFilter: Initialized 99 new seeds
+[16:57:11.097] add new frame
+[16:57:11.097] update seed
+[16:57:11.097]  If point is visible? -0.216085, -1.189585, -1.821615
+[16:57:11.097]  If point is visible? -0.201337, -1.167021, -1.839546
+[16:57:11.097] add key frame
+[16:57:11.097]  If point is visible? -0.115470, -0.579468, -2.135365
+[16:57:11.097]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:11.097] init seeds
+[16:57:11.097] update seed
+[16:57:11.097] init seeds
+[16:57:11.100] DepthFilter: Initialized 12 new seeds
+[16:57:11.102] DepthFilter: Initialized 99 new seeds
+[16:57:11.296] add new frame
+[16:57:11.296] add key frame
+[16:57:11.296] update seed
+[16:57:11.296] init seeds
+[16:57:11.296] update seed
+[16:57:11.296] init seeds
+[16:57:11.298] DepthFilter: Initialized 11 new seeds
+[16:57:11.301] DepthFilter: Initialized 111 new seeds
+[16:57:11.512] add new frame
+[16:57:11.512] update seed
+[16:57:11.512]  If point is visible? -0.217935, -1.189585, -1.827810
+[16:57:11.512]  If point is visible? -0.203186, -1.167021, -1.845741
+[16:57:11.512]  If point is visible? -0.117319, -0.579468, -2.141560
+[16:57:11.512]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:11.512] add key frame
+[16:57:11.512] init seeds
+[16:57:11.512] update seed
+[16:57:11.512] init seeds
+[16:57:11.515] DepthFilter: Initialized 4 new seeds
+[16:57:11.517] DepthFilter: Initialized 117 new seeds
+[16:57:11.728] add new frame
+[16:57:11.728] update seed
+[16:57:11.728]  If point is visible? -0.218959, -1.189585, -1.831097
+[16:57:11.728]  If point is visible? -0.204210, -1.167021, -1.849028
+[16:57:11.728]  If point is visible? -0.118343, -0.579468, -2.144847
+[16:57:11.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:11.728] add key frame
+[16:57:11.728] init seeds
+[16:57:11.728] update seed
+[16:57:11.728] init seeds
+[16:57:11.731] DepthFilter: Initialized 4 new seeds
+[16:57:11.733] DepthFilter: Initialized 90 new seeds
+[16:57:12.223] add new frame
+[16:57:12.223] update seed
+[16:57:12.223] add key frame
+[16:57:12.223]  If point is visible? -0.223316, -1.189585, -1.843837
+[16:57:12.223] init seeds
+[16:57:12.223] update seed
+[16:57:12.223] init seeds
+[16:57:12.226] DepthFilter: Initialized 5 new seeds
+[16:57:12.228] DepthFilter: Initialized 105 new seeds
+[16:57:12.911] add new frame
+[16:57:12.911] update seed
+[16:57:12.911]  If point is visible? -0.230395, -1.189585, -1.865398
+[16:57:12.911]  If point is visible? -0.215646, -1.167021, -1.883329
+[16:57:12.911] add key frame
+[16:57:12.911]  If point is visible? -0.129779, -0.579468, -2.179148
+[16:57:12.911]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:12.911] init seeds
+[16:57:12.911] update seed
+[16:57:12.911] init seeds
+[16:57:12.914] DepthFilter: Initialized 5 new seeds
+[16:57:12.917] DepthFilter: Initialized 97 new seeds
+[16:57:13.155] add new frame
+[16:57:13.155] update seed
+[16:57:13.155] add key frame
+[16:57:13.155]  If point is visible? -0.231376, -1.189585, -1.868343
+[16:57:13.155] init seeds
+[16:57:13.155] update seed
+[16:57:13.155] init seeds
+[16:57:13.158] DepthFilter: Initialized 5 new seeds
+[16:57:13.160] DepthFilter: Initialized 98 new seeds
+[16:57:13.932] add new frame
+[16:57:13.932] update seed
+[16:57:13.932]  If point is visible? -0.231325, -1.189585, -1.868780
+[16:57:13.932]  If point is visible? -0.216576, -1.167021, -1.886711
+[16:57:13.932] add key frame
+[16:57:13.932]  If point is visible? -0.130709, -0.579468, -2.182530
+[16:57:13.932]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:13.932] init seeds
+[16:57:13.932] update seed
+[16:57:13.932] init seeds
+[16:57:13.935] DepthFilter: Initialized 3 new seeds
+[16:57:13.937] DepthFilter: Initialized 99 new seeds
+[16:57:14.455] add new frame
+[16:57:14.455] update seed
+[16:57:14.455]  If point is visible? -0.231355, -1.189585, -1.869405
+[16:57:14.455]  If point is visible? -0.216606, -1.167021, -1.887336
+[16:57:14.455]  If point is visible? -0.130739, -0.579468, -2.183155
+[16:57:14.455]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.455]  If point is visible? -0.126438, -0.520351, -2.200211
+[16:57:14.455]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.455] add key frame
+[16:57:14.455] init seeds
+[16:57:14.455] update seed
+[16:57:14.455] init seeds
+[16:57:14.458] DepthFilter: Initialized 1 new seeds
+[16:57:14.460] DepthFilter: Initialized 99 new seeds
+[16:57:14.727] add new frame
+[16:57:14.727] update seed
+[16:57:14.727]  If point is visible? -0.231372, -1.189585, -1.869650
+[16:57:14.727] add key frame
+[16:57:14.727]  If point is visible? -0.216623, -1.167021, -1.887581
+[16:57:14.727] init seeds
+[16:57:14.727] remove key frame
+[16:57:14.728] update seed
+[16:57:14.728]  If point is visible? -0.231372, -1.189585, -1.869650
+[16:57:14.728]  If point is visible? -0.216623, -1.167021, -1.887581
+[16:57:14.728]  If point is visible? -0.130756, -0.579468, -2.183400
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.126455, -0.520351, -2.200456
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? 0.337302, -0.512534, -2.159153
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? 1.125733, -0.442963, -1.807893
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.088277, -0.353963, -2.238474
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.454428, 0.042201, -2.232975
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.454316, 0.046593, -2.232897
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.418744, 0.098568, -2.237559
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.424433, 0.098693, -2.236544
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.430119, 0.098819, -2.235513
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.458504, 0.099476, -2.230107
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.496500, 0.148868, -2.219100
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? 1.219632, 0.185938, -1.784165
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.479242, 0.157244, -2.222114
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.912039, 0.309218, -2.058984
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.450619, 0.403606, -2.192209
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? 0.056132, 0.532170, -2.193617
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? 0.319828, 0.574091, -2.145100
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.912440, 0.680836, -1.952696
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? -0.204914, -1.170822, -1.885828
+[16:57:14.728]  If point is visible? 0.875842, -1.117044, -1.630011
+[16:57:14.728]  If point is visible? 1.109697, -0.523909, -1.794794
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.728]  If point is visible? 1.120391, -0.451542, -1.809554
+[16:57:14.728]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  calculated Z=  0.930841
+[16:57:14.729]  update seeds 
+[16:57:14.729]  If point is visible? 1.131065, -0.442316, -1.803903
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.070672, -0.362530, -2.236969
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.082358, -0.362546, -2.236946
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.352654, -0.279093, -2.204174
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.104931, -0.189051, -2.253177
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 1.224974, 0.149535, -1.783625
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.479556, 0.148437, -2.222739
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.469970, 0.095351, -2.228022
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -1.161451, 0.291846, -1.922196
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -1.171437, 0.292459, -1.915458
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.440600, 0.270999, -2.217281
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.350750, 0.463126, -2.195805
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.362096, 0.463355, -2.194079
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.309311, 0.391844, -2.217058
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.530202, 0.476118, -2.158005
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? -0.853459, 0.530573, -2.033327
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.905902, 0.569725, -1.918018
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.235786, 0.630652, -2.142658
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.016220, -0.895469, -2.056017
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.960112, -0.918253, -1.714817
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.729]  If point is visible? 0.870461, -0.810057, -1.835947
+[16:57:14.729]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? 0.960250, -0.932869, -1.705312
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? 0.429530, -0.686706, -2.079834
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? 0.309856, -1.133419, -1.872389
+[16:57:14.730]  If point is visible? 0.917691, -1.011761, -1.681655
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.047107, -0.379619, -2.233567
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.070498, -0.379682, -2.233727
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.046911, -0.396742, -2.230173
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.070300, -0.396811, -2.230334
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.367115, -0.581611, -2.160888
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? 1.131061, -0.450241, -1.801596
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.067030, -0.566682, -2.188084
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.071232, -0.241867, -2.255439
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.071218, -0.224550, -2.257473
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -1.871118, 0.137130, -1.133086
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -1.162008, 0.283157, -1.923341
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.277284, 0.326334, -1.684005
+[16:57:14.730]  Z inverse min: 1.042875, Z inverse max: 0.323593
+[16:57:14.730]  If point is visible? -0.358584, 0.322203, -2.223226
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.530798, 0.467328, -2.160058
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? 0.851547, 0.611183, -1.934497
+[16:57:14.730]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:14.730]  If point is visible? -0.042559, -0.025568, -0.409253
+[16:57:14.730]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:14.730]  If point is visible? -0.057284, -0.002275, -0.409612
+[16:57:14.730]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:14.730]  If point is visible? -0.129447, 0.008900, -0.395314
+[16:57:14.730]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:14.731]  If point is visible? -0.124918, 0.016753, -0.396405
+[16:57:14.731]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:14.731] init seeds
+[16:57:14.731] DepthFilter: Initialized 0 new seeds
+[16:57:14.733] DepthFilter: Initialized 0 new seeds
+[16:57:15.291] add new frame
+[16:57:15.291] update seed
+[16:57:15.291]  If point is visible? -0.231445, -1.189585, -1.870357
+[16:57:15.291]  If point is visible? -0.216696, -1.167021, -1.888288
+[16:57:15.291]  If point is visible? -0.130829, -0.579468, -2.184107
+[16:57:15.291]  Z inverse min: 0.845768, Z inverse max: 0.155113
+[16:57:15.291] add key frame
+[16:57:15.291] remove key frame
+[16:57:15.291] init seeds
+[16:57:15.291] update seed
+[16:57:15.291]  If point is visible? -0.042632, -0.025568, -0.409959
+[16:57:15.291]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.291]  If point is visible? -0.057357, -0.002275, -0.410319
+[16:57:15.291]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.291]  If point is visible? -0.129520, 0.008900, -0.396021
+[16:57:15.291]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.124991, 0.016753, -0.397112
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.125829, 0.016785, -0.396849
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.130009, 0.016945, -0.395500
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.024549, 0.019519, -0.404517
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.126042, 0.028853, -0.395829
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.229002, 0.046173, -0.336775
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.027254, 0.039910, -0.401908
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.128286, 0.065844, -0.388960
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.129113, 0.065876, -0.388678
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.123147, -0.157030, -0.313457
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.123097, -0.155993, -0.314282
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.000363, -0.168123, -0.357807
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  calculated Z=  0.882540
+[16:57:15.292]  update seeds 
+[16:57:15.292]  If point is visible? 0.077595, -0.171591, -0.331099
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? -0.001451, -0.150694, -0.368910
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.130881, -0.142904, -0.317603
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.135531, -0.133434, -0.320085
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.091381, -0.143385, -0.343244
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.137077, -0.129890, -0.321029
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.137110, -0.130975, -0.320339
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.099213, -0.125314, -0.349127
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.292]  If point is visible? 0.146453, -0.109449, -0.324676
+[16:57:15.292]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.048027, -0.030151, -0.409359
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.016883, 0.031972, -0.404885
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.273685, 0.040636, -0.291215
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.274849, 0.040772, -0.289666
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.016944, 0.033290, -0.404729
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.125004, 0.044917, -0.394094
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.126671, 0.044980, -0.393557
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.126767, 0.043641, -0.393734
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.216345, 0.093565, -0.332637
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.107810, 0.098511, -0.356486
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.109449, 0.097246, -0.356035
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.097965, 0.106130, -0.358809
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.005446, 0.097949, -0.393335
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.130962, -0.145024, -0.316082
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.124706, -0.154645, -0.314056
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.140210, -0.123854, -0.322060
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.130881, -0.142904, -0.317603
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.133953, -0.135887, -0.319794
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.137110, -0.130975, -0.320339
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? -0.112887, -0.092668, -0.386055
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.121591, -0.159407, -0.312823
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.140269, -0.126039, -0.320736
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.293]  If point is visible? 0.093196, -0.144284, -0.341708
+[16:57:15.293]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? 0.105712, -0.112931, -0.351512
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? -0.111074, 0.087310, -0.388275
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? -0.110969, 0.052478, -0.396842
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? -0.114343, 0.052591, -0.395919
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? 0.114475, 0.095913, -0.353562
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? 0.111088, 0.095983, -0.355566
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? -0.005188, 0.100558, -0.392401
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? -0.061731, -0.142829, -0.374140
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294]  If point is visible? -0.062665, -0.142220, -0.374371
+[16:57:15.294]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.294] init seeds
+[16:57:15.294] DepthFilter: Initialized 0 new seeds
+[16:57:15.296] DepthFilter: Initialized 0 new seeds
+[16:57:15.588] add new frame
+[16:57:15.588] update seed
+[16:57:15.588]  If point is visible? -0.042479, -0.025568, -0.410364
+[16:57:15.588]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.588] add key frame
+[16:57:15.588]  If point is visible? -0.057203, -0.002275, -0.410723
+[16:57:15.588]  Z inverse min: 5.408916, Z inverse max: 1.176790
+[16:57:15.588] remove key frame
+[16:57:15.588] init seeds
+[16:57:15.588] update seed
+[16:57:15.588] init seeds
+[16:57:15.591] DepthFilter: Initialized 0 new seeds
+[16:57:15.593] DepthFilter: Initialized 113 new seeds
+[16:57:16.208] add new frame
+[16:57:16.208] update seed
+[16:57:16.208]  If point is visible? -0.093186, -0.162757, -0.524512
+[16:57:16.208]  Z inverse min: 4.329425, Z inverse max: 0.018509
+[16:57:16.208] add key frame
+[16:57:16.208] remove key frame
+[16:57:16.208] init seeds
+[16:57:16.208] update seed
+[16:57:16.208] init seeds
+[16:57:16.211] DepthFilter: Initialized 2 new seeds
+[16:57:16.213] DepthFilter: Initialized 95 new seeds
+[16:57:25.024] DepthFilter stop thread invoked.
+[16:57:25.024] DepthFilter interrupt and join thread 
