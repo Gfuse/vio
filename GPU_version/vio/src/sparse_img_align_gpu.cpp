@@ -52,6 +52,7 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
         features[feature_counter_].z=xyz_ref(2);
         featue_px[feature_counter_].x=(*it)->px(0);
         featue_px[feature_counter_].y=(*it)->px(1);
+      if(feature_counter_>299)break;
         ++feature_counter_;
   }
   if(!feature_counter_) // more than 10
