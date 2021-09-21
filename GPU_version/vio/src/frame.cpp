@@ -171,22 +171,19 @@ void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
   }
 }
 
-bool getSceneDepth(const Frame& frame, double& depth_mean, double& depth_min)
+bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
 {
   vector<double> depth_vec;
   //depth_vec.reserve(frame.fts_.size());
   depth_min = std::numeric_limits<double>::max();
-  for(auto it=frame.fts_.begin(), ite=frame.fts_.end(); it!=ite; ++it)
+  for(auto it=frame->fts_.begin(), ite=frame->fts_.end(); it!=ite; ++it)
   {
     if((*it)->point != NULL)
     {
-      double z = frame.w2f((*it)->point->pos_).z();
-      if(z>0 && z<20.0){
+      double z = frame->w2f((*it)->point->pos_).z();
           depth_vec.push_back(z);
           depth_min = fmin(z, depth_min);
-      }else{
-          (*it)->point.reset();
-      }
+
     }
   }
   if(depth_vec.empty())

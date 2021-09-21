@@ -161,16 +161,17 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   }
   new_frame_->setKeyframe();
   double depth_mean, depth_min;
-  frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
+  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
   depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
-/*  frame_utils::getSceneDepth(*klt_homography_init_->frame_ref_, depth_mean, depth_min);
-  depth_filter_->addKeyframe(klt_homography_init_->frame_ref_, depth_mean, 0.5*depth_min);*/
+  frame_utils::getSceneDepth(klt_homography_init_->frame_ref_, depth_mean, depth_min);
+  depth_filter_->addKeyframe(klt_homography_init_->frame_ref_, depth_mean, 0.5*depth_min);
   // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
   klt_homography_init_->reset();
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size());
+    fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d depth mean:%f min:%f\n",
+                       vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
 #endif
   return RESULT_IS_KEYFRAME;
 }
@@ -225,7 +226,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
             fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
 #endif
-    if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.005 ||
+    if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.05 ||
        fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch())>M_PI_2 || sfba_n_edges_final < Config::qualityMinFts()){
         auto init_f= ukfPtr_.get_location();
         new_frame_->T_f_w_=init_f.second;
@@ -257,7 +258,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   double depth_mean, depth_min;
 
-  frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
+  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
 
   if(!needNewKf(depth_mean))//edited
   {

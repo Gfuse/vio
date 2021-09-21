@@ -212,7 +212,7 @@ namespace vio {
         void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr);
 
 /// Get the average depth of the features in the image.
-        bool getSceneDepth(const Frame& frame, double& depth_mean, double& depth_min);
+        bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min);
 
     } // namespace frame_utils
 } // namespace vio
