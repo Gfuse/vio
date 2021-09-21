@@ -130,13 +130,17 @@ namespace vio {
         fprintf(log_,"[%s] add key frame\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
 
-        if(thread_ != NULL)
+        if(!seeds_.empty())
         {
             new_keyframe_ = frame;
             new_keyframe_set_ = true;
             seeds_updating_halt_ = true;
             frame_queue_cond_.notify_one();
         }else{
+            new_keyframe_ = frame;
+            new_keyframe_set_ = true;
+            seeds_updating_halt_ = true;
+            frame_queue_cond_.notify_one();
             initializeSeeds(frame);
         }
     }
@@ -224,7 +228,7 @@ namespace vio {
                 }
                 else
                 {
-                    frame = frame_queue_.back();
+                    frame = frame_queue_.front();
                     frame_queue_.pop();
                 }
             }
@@ -267,7 +271,9 @@ namespace vio {
             SE3 T_cur_ref(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
             const Vector3d xyz_f(T_cur_ref*(1.0/(*it)->mu * (*it)->ftr->f) );
 #if VIO_DEBUG
-            fprintf(log_,"[%s]  If point is visible? %f, %f, %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),xyz_f.x(),xyz_f.y(),xyz_f.z());
+            fprintf(log_,"[%s]  If point is visible? %f, %f, %f mu:%f unit_bearing:%f %f %f T_cur_ref: x=%f y=%f z=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+                                      xyz_f.x(),xyz_f.y(),xyz_f.z(),(*it)->mu,(*it)->ftr->f.x(),(*it)->ftr->f.y(),(*it)->ftr->f.z(),
+                    T_cur_ref.translation().x(),T_cur_ref.translation().y(),T_cur_ref.translation().z());
 #endif
             if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
                 ++it; // point does not project in image
@@ -302,7 +308,7 @@ namespace vio {
                 continue;
             }
 #if VIO_DEBUG
-            fprintf(log_,"[%s]  update seeds \n",vio::time_in_HH_MM_SS_MMM().c_str());
+            fprintf(log_,"[%s]  update seeds 305\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
             ++n_updates;
 
