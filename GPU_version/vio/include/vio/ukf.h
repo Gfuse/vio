@@ -122,15 +122,24 @@ public:
         delete filter_;
     };
     void UpdateIMU(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
-        if(!start_)return;
         if(abs(x)<1.0)x=pow(x,3);//picked up from your code
         if(abs(y)<1.0)y=pow(y,3);//picked up from your code
+/*        ++imu_syn_count_;
+        if(imu_syn_[imu_syn_count_ % 7]){
+            imu_syn_[imu_syn_count_ % 7]=false;
+        }else{
+            return;
+        }*/
+        if(imu_syn_count_>50)imu_syn_count_=0;
         boost::unique_lock<boost::mutex> lock(ekf_mut_);
         filter_->correct(x,y,theta,1e-9*time.toNSec());
     };
     //IMU frame y front, x right, z up -> left hands (theta counts from y)
     void UpdateCmd(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
-        if(!start_)return;
+        cam_syn_[cmd_syn_count_ % 7]=true;
+        imu_syn_[cmd_syn_count_ % 7]=true;
+        ++cmd_syn_count_;
+        if(cmd_syn_count_>50)cmd_syn_count_=0;
         boost::unique_lock<boost::mutex> lock(ekf_mut_);
         filter_->predict(x,y,theta,1e-9*time.toNSec());
     };
@@ -153,7 +162,10 @@ public:
                 filter_->cov_(2,0),filter_->cov_(2,1),filter_->cov_(2,2);
         return std::pair<Eigen::Matrix<double,3,3>,vio::SE2_5>(cov,vio::SE2_5(filter_->state_(0),filter_->state_(1),-1.0*(filter_->state_(2))));
     }
-    bool start_=false;
+    size_t cmd_syn_count_=0;
+    size_t imu_syn_count_=2;
+    bool cam_syn_[7]={false,false,false,false,false,false,false};
+    bool imu_syn_[7]={false,false,false,false,false,false,false};
 private:
      Base* filter_= nullptr;
     boost::mutex ekf_mut_;

@@ -48,7 +48,6 @@ public:
                 vo_->depthFilter()->startThread();
                 vo_->reset();
             }
-
             imu_the_=new boost::thread(&VioNode::imu_th,this);
             ++trace_id_;
             res.ret=0;
@@ -79,6 +78,7 @@ public:
     };
 private:
     double* imu_;
+    size_t cam_syn_=2;
     ros::Time imu_time_;
     int width;
     int height;
@@ -116,6 +116,13 @@ VioNode::~VioNode()
 
 void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 {
+/*    ++cam_syn_;
+    if(vo_->ukfPtr_.cam_syn_[cam_syn_ % 3]){
+        vo_->ukfPtr_.cam_syn_[cam_syn_ % 3]=false;
+    }else{
+        return;
+    }
+    if(cam_syn_>50)cam_syn_=0;*/
     if(!start_)return;
       try {
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;

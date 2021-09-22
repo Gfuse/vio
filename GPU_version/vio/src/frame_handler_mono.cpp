@@ -99,6 +99,7 @@ FrameHandlerMono::~FrameHandlerMono()
 
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const ros::Time& time)
 {
+
   if(!startFrameProcessingCommon(timestamp)){
       return;
   }
@@ -130,7 +131,6 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
-    ukfPtr_.start_=true;
   if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE){
       return RESULT_NO_KEYFRAME;
   }
