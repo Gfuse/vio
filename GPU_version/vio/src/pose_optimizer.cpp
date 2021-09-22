@@ -125,11 +125,11 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e /= (1<<(*it)->level);
     chi2_vec_final.push_back(e.norm());
-    if(e.norm() > 0.5)
+    if(e.norm() > 0.5/* 2.0 / frame->cam_->errorMultiplier2()*/)
     {
       // we don't need to delete a reference in the point since it was not created yet
-      (*it)->point = NULL;
       ++n_deleted_refs;
+
     }
   }
     num_obs -= n_deleted_refs;

@@ -105,7 +105,6 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   }
 
   // some cleanup from last iteration, can't do before because of visualization
-  //core_kfs_.clear();
   overlap_kfs_.clear();
 
   // create new frame
@@ -123,10 +122,11 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   last_frame_ = new_frame_;
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
-  if(stage_ == STAGE_RELOCALIZING){
-      depthFilter()->stopThread();
-      start();
-  }
+#if VIO_DEBUG
+    fprintf(log_,"[%s] frame process finished the id is: %d the obs is:%d \n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            last_frame_->id_,last_frame_->nObs());
+#endif
+
 }
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
@@ -161,10 +161,10 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   }
   new_frame_->setKeyframe();
   double depth_mean, depth_min;
-  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
-  depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
   frame_utils::getSceneDepth(klt_homography_init_->frame_ref_, depth_mean, depth_min);
   depth_filter_->addKeyframe(klt_homography_init_->frame_ref_, depth_mean, 0.5*depth_min);
+  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
+  depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
   // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
@@ -191,46 +191,40 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 #if VIO_DEBUG
       fprintf(log_,"[%s] Image Alignment failed -1\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
-      new_frame_->T_f_w_=init_f.second;
+      new_frame_=last_frame_;
+      return RESULT_FAILURE;
   }else if(err==0){
 #if VIO_DEBUG
       fprintf(log_,"[%s] Image Alignment failed 0\n",vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
-      new_frame_->T_f_w_=init_f.second;
+      new_frame_=last_frame_;
+      return RESULT_FAILURE;
   }
   reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
 #if VIO_DEBUG
-    fprintf(log_,"[%s] After Reprojection Map nPoint:%d ,nCell:%d ,nMatches:%d ,distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+    fprintf(log_,"[%s] After Reprojection Map nPoint:%d ,nCell:%d ,nMatches:%d ,distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             n_point,
             reprojector_.n_trials_,reprojector_.n_matches_,
-            new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
-            new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
-            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
+            new_frame_->T_f_w_.se2().translation().x()-init_f.second.se2().translation().x(),
+            new_frame_->T_f_w_.se2().translation().y()-init_f.second.se2().translation().y(),
+            fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
-  if( reprojector_.n_trials_ < 10){
-      auto init_f= ukfPtr_.get_location();
-      new_frame_->T_f_w_=init_f.second;
-      new_frame_->Cov_ = init_f.first;
-      return RESULT_FAILURE;
-  }
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), 70, false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
 #if VIO_DEBUG
-    fprintf(log_,"[%s] After pose optimization, distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
-            new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
-            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
+    fprintf(log_,"[%s] After pose optimization, distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            new_frame_->T_f_w_.se2().translation().x()-init_f.second.se2().translation().x(),
+            new_frame_->T_f_w_.se2().translation().y()-init_f.second.se2().translation().y(),
+            fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
-    if((last_frame_->T_f_w_.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.1 ||
-       fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch())>M_PI_2 || sfba_n_edges_final<10){
-        auto init_f= ukfPtr_.get_location();
-        new_frame_->T_f_w_=init_f.second;
-        new_frame_->Cov_ = init_f.first;
+    if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.1 ||
+       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<4){
+        new_frame_=last_frame_;
         return RESULT_FAILURE;
     }
   auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
@@ -238,32 +232,22 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;
 #if VIO_DEBUG
-    fprintf(log_,"[%s] Update EKF and 3D points, distance between two frames x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            new_frame_->T_f_w_.se2().translation().x()-last_frame_->T_f_w_.se2().translation().x(),
-            new_frame_->T_f_w_.se2().translation().y()-last_frame_->T_f_w_.se2().translation().y(),
-            fabs(new_frame_->T_f_w_.pitch()-last_frame_->T_f_w_.pitch()));
+    fprintf(log_,"[%s] Update EKF and 3D points the number of feature in the new frame: %d and number of obs: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            new_frame_->fts_.size(),new_frame_->nObs());
 #endif
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   depth_filter_->addFrame(new_frame_);
-/*  if(sfba_n_edges_final < Config::qualityMinFts()){
-      return RESULT_FAILURE;
-  }*/
 
   // select keyframe
-  //core_kfs_.insert(new_frame_);
-  setTrackingQuality(sfba_n_edges_final);
-  if(tracking_quality_ == TRACKING_INSUFFICIENT || tracking_quality_ == TRACKING_BAD)
+  if(!needNewKf())//edited
   {
-      return RESULT_NO_KEYFRAME;
+        return RESULT_NO_KEYFRAME;
   }
-  double depth_mean, depth_min;
+  double depth_mean=0.0, depth_min=0.0;
 
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
 
-  if(!needNewKf(depth_mean))//edited
-  {
-    return RESULT_NO_KEYFRAME;
-  }
+
   new_frame_->setKeyframe();
 #if VIO_DEBUG
     fprintf(log_,"[%s] Choose frame as a key frame Scene Depth mean:%f ,depth min:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
@@ -292,69 +276,33 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   return RESULT_IS_KEYFRAME;
 }
 
-FrameHandlerMono::UpdateResult FrameHandlerMono::relocalizeFrame(
-    FramePtr ref_keyframe)
-{
-  return RESULT_FAILURE;
-}
-
-bool FrameHandlerMono::relocalizeFrameAtPose(
-    const int keyframe_id,
-    const SE3& T_f_kf,
-    const cv::Mat& img,
-    const double timestamp)
-{
-    /*
-  FramePtr ref_keyframe;
-  if(!map_.getKeyframeById(keyframe_id, ref_keyframe))
-    return false;
-  new_frame_.reset(new Frame(cam_, img.clone(), timestamp));
-  UpdateResult res = relocalizeFrame(T_f_kf, ref_keyframe);
-  if(res != RESULT_FAILURE) {
-    last_frame_ = new_frame_;
-    return true;
-  }*/
-  return false;
-}
 
 void FrameHandlerMono::resetAll()
 {
   resetCommon();
   last_frame_.reset();
   new_frame_.reset();
-  //core_kfs_.clear();
   overlap_kfs_.clear();
   depth_filter_->reset();
 }
-
-void FrameHandlerMono::setFirstFrame(const FramePtr& first_frame)
+bool FrameHandlerMono::needNewKf()
 {
-  resetAll();
-  last_frame_ = first_frame;
-  last_frame_->setKeyframe();
-  map_.addKeyframe(last_frame_);
-  stage_ = STAGE_DEFAULT_FRAME;
-}
-
-bool FrameHandlerMono::needNewKf(double scene_depth_mean)
-{
-  if(scene_depth_mean >10.0)return true;
+    size_t com_obs=0;
+    SE2_5 closest_kfs(0,0,0);
   for(auto&& it:overlap_kfs_)
   {
-    if(fabs(it.first->T_f_w_.pitch()-new_frame_->T_f_w_.pitch())>0.0523599)return true;
-    if(fabs((it.first->T_f_w_.translation()-new_frame_->T_f_w_.translation()).norm()) > Config::kfSelectMinDist())
-        return true;
+      if(it.second>com_obs){
+          com_obs=it.second;
+          closest_kfs=SE2_5(it.first->T_f_w_.se2());
+      }
   }
+#if VIO_DEBUG
+    fprintf(log_,"[%s] key frame check new frame:%f %f %f, key close:%f %f %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            new_frame_->T_f_w_.se2().translation().x(),new_frame_->T_f_w_.se2().translation().y(),new_frame_->T_f_w_.pitch(),
+            closest_kfs.se2().translation().x(),closest_kfs.se2().translation().y(),closest_kfs.pitch());
+#endif
+  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.43 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.2)return true;
   return false;
-}
-
-void FrameHandlerMono::setCoreKfs(size_t n_closest)
-{
-  size_t n = min(n_closest, overlap_kfs_.size()-1);
-  std::partial_sort(overlap_kfs_.begin(), overlap_kfs_.begin()+n, overlap_kfs_.end(),
-                    boost::bind(&pair<FramePtr, size_t>::second, _1) >
-                    boost::bind(&pair<FramePtr, size_t>::second, _2));
-  //std::for_each(overlap_kfs_.begin(), overlap_kfs_.end(), [&](pair<FramePtr,size_t>& i){ core_kfs_.insert(i.first); });
 }
 void FrameHandlerMono::UpdateIMU(double* value,const ros::Time& time){
     if(value== nullptr)return;

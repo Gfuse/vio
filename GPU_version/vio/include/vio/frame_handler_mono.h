@@ -40,28 +40,11 @@ public:
   /// Provide an image.
   void addImage(const cv::Mat& img, double timestamp,const ros::Time& time);
 
-  /// Set the first frame (used for synthetic datasets in benchmark node)
-  void setFirstFrame(const FramePtr& first_frame);
-
-  /// Get the last frame that has been processed.
-  FramePtr lastFrame() { return last_frame_; }
-
-  /// Get the set of spatially closest keyframes of the last frame.
-  const set<FramePtr>& coreKeyframes() { /*return core_kfs_;*/ }
-
-  /// Return the feature track to visualize the KLT tracking during initialization.
-  const vector<cv::Point2f>& initFeatureTrackRefPx() const { return klt_homography_init_->px_ref_; }
-  const vector<cv::Point2f>& initFeatureTrackCurPx() const { return klt_homography_init_->px_cur_; }
 
   /// Access the depth filter.
   DepthFilter* depthFilter() const{ return depth_filter_; }
 
-  /// An external place recognition module may know where to relocalize.
-  bool relocalizeFrameAtPose(
-      const int keyframe_id,
-      const SE3& T_kf_f,
-      const cv::Mat& img,
-      const double timestamp);
+
   void UpdateIMU(double* value,const ros::Time& time);
   void UpdateCmd(double* value,const ros::Time& time);
   UKF ukfPtr_;
@@ -93,17 +76,13 @@ protected:
   /// Processes all frames after the first two keyframes.
   virtual UpdateResult processFrame();
 
-  /// Try relocalizing the frame at relative position to provided keyframe.
-  virtual UpdateResult relocalizeFrame(
-      FramePtr ref_keyframe);
 
   /// Reset the frame handler. Implement in derived class.
   virtual void resetAll();
 
   /// Keyframe selection criterion.
-  virtual bool needNewKf(double scene_depth_mean);
+  virtual bool needNewKf();
 
-  void setCoreKfs(size_t n_closest);
 };
 
 } // namespace vio

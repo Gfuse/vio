@@ -246,7 +246,7 @@ namespace vio {
         lock_t lock(seeds_mut_);
         std::list<std::shared_ptr<Seed>>::iterator it=seeds_.begin();
 #if VIO_DEBUG
-        fprintf(log_,"[%s] update seed\n",vio::time_in_HH_MM_SS_MMM().c_str());
+        fprintf(log_,"[%s] update %d seeds\n",vio::time_in_HH_MM_SS_MMM().c_str(),seeds_.size());
 #endif
         const double focal_length = frame->cam_->errorMultiplier2();
         double px_noise = 1.0;
@@ -254,8 +254,6 @@ namespace vio {
         while( it!=seeds_.end())
         {
             // set this value true when seeds updating should be interrupted
-            if(seeds_updating_halt_)
-                return;
 
             if((*it)->ftr->frame == NULL){
                 it = seeds_.erase(it);
@@ -295,21 +293,21 @@ namespace vio {
                 ++n_failed_matches;
                 continue;
             }
-#if VIO_DEBUG
-            fprintf(log_,"[%s]  calculated Z=  %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z);
-#endif
+
             double tau = computeTau(T_cur_ref.inverse(), (*it)->ftr->f, z, px_error_angle);
             double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
+#if VIO_DEBUG
+            fprintf(log_,"[%s]  calculated Z=  %f tau: %f tau_inv: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z,
+                    tau,tau_inverse);
 
+#endif
             // update the estimate
             if(!updateSeed(1.0/z, tau_inverse*tau_inverse, *it)){
                 ++it;
                 ++n_failed_matches;
                 continue;
             }
-#if VIO_DEBUG
-            fprintf(log_,"[%s]  update seeds 305\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
+
             ++n_updates;
 
             if(frame->isKeyframe())
@@ -334,6 +332,9 @@ namespace vio {
             }
             else
                 ++it;
+#if VIO_DEBUG
+            fprintf(log_,"[%s]  seeds updated\n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
         }
     }
 

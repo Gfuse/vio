@@ -97,7 +97,7 @@ namespace vio {
             cv::Mat descriptors_ref;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
             for (auto &&it_ftr:it_frame.item.first->fts_) {
-                keypoints_kfs.push_back(cv::KeyPoint(it_ftr->px.x(), it_ftr->px.y(), 1));
+                keypoints_kfs.push_back(cv::KeyPoint(it_ftr->px.x(), it_ftr->px.y(), 7));
             }
             extractor->compute(it_frame.item.first->img(), keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
@@ -185,6 +185,7 @@ namespace vio {
                 if(it->pt->type_ == Point::TYPE_CANDIDATE  && it->pt->n_failed_reproj_ > 30)
                     map_.point_candidates_.deleteCandidatePoint(it->pt);
                 it = cell.erase(it);
+               // ++it;
                 continue;
             }
             syn_=false;

@@ -180,9 +180,11 @@ bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
   {
     if((*it)->point != NULL)
     {
-      double z = frame->w2f((*it)->point->pos_).z();
-          depth_vec.push_back(z);
-          depth_min = fmin(z, depth_min);
+        Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
+        if((e /= (1<<(*it)->level)).norm()>0.5)continue;
+        double z = frame->w2f((*it)->point->pos_).z();
+        depth_vec.push_back(z);
+        depth_min = fmin(z, depth_min);
 
     }
   }
