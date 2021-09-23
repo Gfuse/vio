@@ -222,7 +222,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             new_frame_->T_f_w_.se2().translation().y()-init_f.second.se2().translation().y(),
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
-    if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.1 ||
+    if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
        fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<4){
         new_frame_=last_frame_;
         return RESULT_FAILURE;
@@ -301,7 +301,7 @@ bool FrameHandlerMono::needNewKf()
             new_frame_->T_f_w_.se2().translation().x(),new_frame_->T_f_w_.se2().translation().y(),new_frame_->T_f_w_.pitch(),
             closest_kfs.se2().translation().x(),closest_kfs.se2().translation().y(),closest_kfs.pitch());
 #endif
-  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.43 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.2)return true;
+  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.43 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.15)return true;
   return false;
 }
 void FrameHandlerMono::UpdateIMU(double* value,const ros::Time& time){
