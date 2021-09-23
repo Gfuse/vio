@@ -120,7 +120,7 @@ public:
       const double d_estimate,
       const double d_min,
       const double d_max,
-      double& depth);
+      double& depth,FILE* log);
 
   void createPatchFromPatchWithBorder();
 };

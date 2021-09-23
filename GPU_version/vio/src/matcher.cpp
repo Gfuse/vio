@@ -195,7 +195,7 @@ bool Matcher::findEpipolarMatchDirect(
     const double d_estimate,
     const double d_min,
     const double d_max,
-    double& depth)
+    double& depth,FILE* log)
 {
   if(isnan(d_min) || isnan(d_max))return false;
   SE2_5 T_cur_ref(SE2(cur_frame.T_f_w_.so2() * ref_frame.T_f_w_.inverse().so2(),cur_frame.T_f_w_.se2().translation() - ref_frame.T_f_w_.se2().translation()));
@@ -230,7 +230,10 @@ bool Matcher::findEpipolarMatchDirect(
   Vector2d px_A(cur_frame.cam_->world2cam(A));
   Vector2d px_B(cur_frame.cam_->world2cam(B));
   epi_length_ = (px_A-px_B).norm() / (1<<search_level_);
-
+#if VIO_DEBUG
+        fprintf(log,"[%s]  epi_dir x= %f, y=%f: A:%f,%f B:%f,%f epi_length_:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+                            epi_dir_.x(),epi_dir_.y(),A.x(),A.y(),B.x(),B.y(),epi_length_);
+#endif
 
   // Warp reference patch at ref_level
   if(!warp::warpAffine(A_cur_ref_, ref_frame.img_pyr_[ref_ftr.level], ref_ftr.px,

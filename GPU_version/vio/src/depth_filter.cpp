@@ -248,6 +248,7 @@ namespace vio {
 #if VIO_DEBUG
         fprintf(log_,"[%s] update %d seeds\n",vio::time_in_HH_MM_SS_MMM().c_str(),seeds_.size());
 #endif
+        return;
         const double focal_length = frame->cam_->errorMultiplier2();
         double px_noise = 1.0;
         double px_error_angle = atan2(px_noise,(2.0*focal_length))*2.0; // law of chord (sehnensatz)
@@ -260,18 +261,19 @@ namespace vio {
                 continue;
             }
             // check if point is visible in the current image
-            SE2 T(frame->T_f_w_.so2()*(*it)->ftr->frame->T_f_w_.inverse().so2(),frame->T_f_w_.se2().translation()+(*it)->ftr->frame->T_f_w_.inverse().translation());
+            //SE2 T(frame->T_f_w_.so2()*(*it)->ftr->frame->T_f_w_.inverse().so2(),frame->T_f_w_.se2().translation()+(*it)->ftr->frame->T_f_w_.inverse().translation());
+            SE2 T((*it)->ftr->frame->T_f_w_.so2()*frame->T_f_w_.inverse().so2(),frame->T_f_w_.inverse().translation()+(*it)->ftr->frame->T_f_w_.translation());
             ///TODO add 15 degrees roll orientation
             Quaterniond q;
             q = AngleAxisd(-0.122173, Vector3d::UnitX())
                 * AngleAxisd(atan2(T.so2().unit_complex().imag(),T.so2().unit_complex().real()), Vector3d::UnitY())
                 * AngleAxisd(0.0, Vector3d::UnitZ());
-            SE3 T_cur_ref(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
-            const Vector3d xyz_f(T_cur_ref*(1.0/(*it)->mu * (*it)->ftr->f) );
+            SE3 T_ref_cur(q.toRotationMatrix(),Vector3d(T.translation()(0), 0.0,T.translation()(1)));
+            const Vector3d xyz_f(T_ref_cur.inverse()*(1.0/(*it)->mu * (*it)->ftr->f) );
 #if VIO_DEBUG
-            fprintf(log_,"[%s]  If point is visible? %f, %f, %f mu:%f unit_bearing:%f %f %f T_cur_ref: x=%f y=%f z=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            fprintf(log_,"[%s]  If point is visible? %f, %f, %f mu:%f unit_bearing:%f %f %f T_ref_cur: x=%f y=%f z=%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
                                       xyz_f.x(),xyz_f.y(),xyz_f.z(),(*it)->mu,(*it)->ftr->f.x(),(*it)->ftr->f.y(),(*it)->ftr->f.z(),
-                    T_cur_ref.translation().x(),T_cur_ref.translation().y(),T_cur_ref.translation().z());
+                    T_ref_cur.translation().x(),T_ref_cur.translation().y(),T_ref_cur.translation().z());
 #endif
             if(!frame->cam_->isInFrame(frame->f2c(xyz_f).cast<int>())) {
                 ++it; // point does not project in image
@@ -281,12 +283,12 @@ namespace vio {
             float z_min = (*it)->mu + sqrt((*it)->sigma2);
             float z_max = max((*it)->mu - sqrt((*it)->sigma2), 0.00000001f);
 #if VIO_DEBUG
-            fprintf(log_,"[%s]  Z inverse min: %f, Z inverse max: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z_min,z_max);
+            fprintf(log_,"[%s]  Z inverse min: %f, Z inverse max: %f sigma2:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z_min,z_max,(*it)->sigma2);
 #endif
 
             double z;
             if(!matcher_.findEpipolarMatchDirect(
-                    *(*it)->ftr->frame, *frame, *(*it)->ftr, 1.0/(*it)->mu, 1.0/z_min, 1.0/z_max, z))
+                    *(*it)->ftr->frame, *frame, *(*it)->ftr, 1.0/(*it)->mu, 1.0/z_min, 1.0/z_max, z,log_))
             {
                 (*it)->b++; // increase outlier probability when no match was found
                 ++it;
@@ -294,7 +296,7 @@ namespace vio {
                 continue;
             }
 
-            double tau = computeTau(T_cur_ref.inverse(), (*it)->ftr->f, z, px_error_angle);
+            double tau = computeTau(T_ref_cur, (*it)->ftr->f, z, px_error_angle);
             double tau_inverse = 0.5 * (1.0/max(0.0000001, z-tau) - 1.0/(z+tau));
 #if VIO_DEBUG
             fprintf(log_,"[%s]  calculated Z=  %f tau: %f tau_inv: %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),z,
