@@ -122,7 +122,7 @@ namespace vio
             //Todo add 15 roll orientation
             //Camera frame z front, x right, y down -> right hands
             Quaterniond q;
-            q = AngleAxisd(-0.122173, Vector3d::UnitX()) // roll
+            q = AngleAxisd(0.122173, Vector3d::UnitX()) // roll
                 * AngleAxisd(pitch(), Vector3d::UnitY())// pitch
                 * AngleAxisd(0.0, Vector3d::UnitZ()); //yaw
             SE3 tem=SE3(q.toRotationMatrix(),Vector3d(T2_->translation()(0), 0.0,T2_->translation()(1)));

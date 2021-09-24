@@ -249,7 +249,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   for(auto&& it:new_frame_->fts_){
       if(it->point != NULL)it->point->addFrameRef(it);
   }
-  //map_.point_candidates_.addCandidatePointToFrame(new_frame_);
 
   // if limited number of keyframes, remove the one furthest apart
   if(Config::maxNKfs() > 2 && map_.size() >= Config::maxNKfs())

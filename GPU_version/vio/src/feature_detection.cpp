@@ -117,7 +117,7 @@ void FastDetector::detect(
   }
   if(fts.size()<1){
       ROS_ERROR("GPU Driver crash try again!");
-      exit(0);
+      assert(false);
   }
   if(descriptors){
       cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);

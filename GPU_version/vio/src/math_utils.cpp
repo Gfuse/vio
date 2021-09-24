@@ -22,7 +22,7 @@ triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
   Vector3d f2 = R * feature2;
   Vector2d b;
   b[0] = t.dot(feature1);
-  b[1] = t.dot(f2);
+  b[1] = t.dot(f2);//cross(t,R*f2)
   Matrix2d A;
   A(0,0) = feature1.dot(feature1);
   A(1,0) = feature1.dot(f2);
@@ -67,13 +67,13 @@ reprojError(const Vector3d& f1,
 }
 
 double
-computeInliers(const vector<Vector3d>& features1, // c2
-               const vector<Vector3d>& features2, // c1
+computeInliers(const vector<Vector3d>& features2, // c2
+               const vector<Vector3d>& features1, // c1
                const Matrix3d& R,                 // R_c1_to_c2
                const Vector3d& t,                 // T_c1_to_c2
                const double reproj_thresh,
                double error_multiplier2,
-               vector<Vector3d>& xyz_vec,         // in frame c1
+               vector<Vector3d>& xyz_vec,         // 3d point: optimal triangulation is to minimally correct the feature rays
                vector<int>& inliers,
                vector<int>& outliers)
 {
@@ -85,10 +85,10 @@ computeInliers(const vector<Vector3d>& features1, // c2
   for(size_t j=0; j<features1.size(); ++j)
   {
     if(t.z()>0.0){
-        xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j], features2[j] ));
+        xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j]/*refrence*/, features2[j]/*current*/ ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
         double e2 = reprojError(features2[j], R.transpose()*(xyz_vec.back()-t), error_multiplier2);
-        if(e1 > reproj_thresh || e2 > reproj_thresh || xyz_vec.back().z()<0.0)
+        if(e1 > reproj_thresh || e2 > reproj_thresh)
             outliers.push_back(j);
         else
         {

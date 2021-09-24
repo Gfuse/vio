@@ -120,7 +120,7 @@ namespace vio {
                                                                         frame->c2f(px),f.item->f);
                         if(new_point.z()<0.0)break;
                         frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
-                                                                        std::make_shared<Point>(frame->se3()*new_point,f.item),
+                                                                        std::make_shared<Point>(it_frame.item.first->se3()*new_point,f.item),
                                                                                 px,f.item->f,(*point)->level));
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));

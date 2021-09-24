@@ -90,7 +90,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       std::advance(first,id);
       if(frame_cur->cam_->isInFrame(Vector2d(px_cur_.at(id).x,px_cur_.at(id).y).cast<int>(), 10) &&
       frame_ref_->cam_->isInFrame((*first)->px.cast<int>(), 10)){
-          Vector3d pos = frame_cur->se3() * (xyz_in_cur_.at(id)/* *scale */);
+          Vector3d pos = xyz_in_cur_.at(id);//frame_cur->se3() * (xyz_in_cur_.at(id)/* *scale */);
 /*#if VIO_DEBUG
           fprintf(log_,"[%s] inlier: x=%f, y=%f, z=%f pos: x=%f y=%f z=%f\n",
                   vio::time_in_HH_MM_SS_MMM().c_str(),
