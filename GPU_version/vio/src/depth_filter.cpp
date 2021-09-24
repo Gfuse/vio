@@ -67,29 +67,18 @@ namespace vio {
     DepthFilter::~DepthFilter()
     {
         stopThread();
-#if VIO_DEBUG
-        fprintf(log_,"[%s] DepthFilter destructed.\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
     }
 
     void DepthFilter::startThread()
     {
         thread_ = new boost::thread(&DepthFilter::updateSeedsLoop, this);
-#if VIO_DEBUG
-        fprintf(log_,"[%s] init depth filter\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
     }
 
     void DepthFilter::stopThread()
     {
-#if VIO_DEBUG
-        fprintf(log_,"[%s] DepthFilter stop thread invoked.\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
+
         if(thread_ != NULL)
         {
-#if VIO_DEBUG
-            fprintf(log_,"[%s] DepthFilter interrupt and join thread \n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
             seeds_updating_halt_ = true;
             thread_->interrupt();
             usleep(5000);
@@ -322,7 +311,7 @@ namespace vio {
             if(sqrt((*it)->sigma2) < (*it)->z_range/options_.seed_convergence_sigma2_thresh)
             {
                 assert((*it)->ftr->point == NULL); // TODO this should not happen anymore
-                Vector3d xyz_world((*it)->ftr->frame->getSE3Inv() * ((*it)->ftr->f/(*it)->mu));
+                Vector3d xyz_world((*it)->ftr->frame->se3() * ((*it)->ftr->f/(*it)->mu));
                 std::shared_ptr<Point> point = std::make_shared<Point>(xyz_world, (*it)->ftr);
                 (*it)->ftr->point = point;
                 seed_converged_cb_(point, (*it)->sigma2); // put in candidate list

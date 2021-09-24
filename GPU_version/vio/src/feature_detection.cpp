@@ -98,7 +98,7 @@ void FastDetector::detect(
     }
     for(uint i=0;i<count[0];++i)
     {
-      if(fast_corners[i].x<0 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<0){
+      if(fast_corners[i].x<1 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<1){
           continue;
       }
       const int k = static_cast<int>((fast_corners[i].y*scale)/cell_size_)*grid_n_cols_
@@ -114,6 +114,10 @@ void FastDetector::detect(
           if(descriptors)keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 7));
       }
     }
+  }
+  if(fts.size()<1){
+      ROS_ERROR("GPU Driver crash try again!");
+      exit(0);
   }
   if(descriptors){
       cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);

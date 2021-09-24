@@ -64,10 +64,10 @@ reprojError(const Vector3d& f1,
 }
 
 double
-computeInliers(const vector<Vector3d>& features1, // c1
-               const vector<Vector3d>& features2, // c2
-               const Matrix3d& R,                 // R_c1_c2
-               const Vector3d& t,                 // c1_t
+computeInliers(const vector<Vector3d>& features1, // c2
+               const vector<Vector3d>& features2, // c1
+               const Matrix3d& R,                 // R_c1_to_c2
+               const Vector3d& t,                 // T_c1_to_c2
                const double reproj_thresh,
                double error_multiplier2,
                vector<Vector3d>& xyz_vec,         // in frame c1
@@ -81,21 +81,17 @@ computeInliers(const vector<Vector3d>& features1, // c1
   //triangulate all features and compute reprojection errors and inliers
   for(size_t j=0; j<features1.size(); ++j)
   {
-    if(t.z()>0.0){
+    if(t.z()>0.0)
         xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j], features2[j] ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
         double e2 = reprojError(features2[j], R.transpose()*(xyz_vec.back()-t), error_multiplier2);
-        if(e1 > reproj_thresh || e2 > reproj_thresh)
+        if(e1 > reproj_thresh || e2 > reproj_thresh || xyz_vec.back().z()<0.0)
             outliers.push_back(j);
         else
         {
             inliers.push_back(j);
             tot_error += e1+e2;
         }
-    }else{
-        ROS_ERROR("Backward motion is not supported for initialization, the robot needs to start its motion with a forward maneuver");
-    }
-
   }
   return tot_error;
 }

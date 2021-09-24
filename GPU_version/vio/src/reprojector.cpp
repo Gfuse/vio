@@ -116,10 +116,13 @@ namespace vio {
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*point)->px.x(),
                                     (int) (*point)->px.y());
+                        SE3 T_ref_cur=it_frame.item.first->getSE3Inv()*frame->se3();
+                        Vector3d new_point=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
+                                                                        frame->c2f(px),f.item->f);
+                        if(new_point.z()<0.0)break;
                         frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
-                                                                        std::make_shared<Point>(it_frame.item.first->cam_->cam2world(f.item->px.x(), f.item->px.y()),f.item),
-                                px,
-                                it_frame.item.first->cam_->cam2world(f.item->px),(*point)->level));
+                                                                        std::make_shared<Point>(frame->se3()*new_point,f.item),
+                                                                                px,f.item->f,(*point)->level));
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
