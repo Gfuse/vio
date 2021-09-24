@@ -32,9 +32,6 @@ class AbstractCamera;
 
 namespace vio
 {
-class Point;
-class Matcher;
-class DepthFilter;
 
 /// Base class for various VO pipelines. Manages the map and the state machine.
 class FrameHandlerBase : boost::noncopyable
@@ -74,14 +71,8 @@ public:
   /// Get the current stage of the algorithm.
   Stage stage() const { return stage_; }
 
-  /// Get tracking quality.
-  TrackingQuality trackingQuality() const { return tracking_quality_; }
 
-  /// Get the processing time of the previous iteration.
-  //double lastProcessingTime() const { return timer_.getTime(); }
 
-  /// Get the number of feature observations of the last frame.
- // size_t lastNumObservations() const { return num_obs_last_; }
 
 protected:
   Stage stage_;                 //!< Current stage of the algorithm.
@@ -89,7 +80,6 @@ protected:
   bool set_start_;              //!< Flag the user can set to start the system when the next image is received.
   Map map_;                     //!< Map of keyframes created by the slam system.
   size_t num_obs_last_;                         //!< Number of observations in the previous frame.
-  TrackingQuality tracking_quality_;            //!< An estimate of the tracking quality based on the number of tracked features.
 
   /// Before a frame is processed, this function is called.
   bool startFrameProcessingCommon(const double timestamp);
@@ -106,8 +96,6 @@ protected:
   /// Reset the frame handler. Implement in derived class.
   virtual void resetAll() { resetCommon(); }
 
-  /// Set the tracking quality based on the number of tracked features.
-  virtual void setTrackingQuality(const size_t num_observations);
 
   /// Optimize some of the observed 3D points.
   virtual void optimizeStructure(FramePtr frame, size_t max_n_pts, int max_iter);

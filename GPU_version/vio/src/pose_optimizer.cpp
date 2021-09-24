@@ -41,7 +41,7 @@ void optimizeGaussNewton(
   double chi2(0.0);
   vector<double> chi2_vec_init, chi2_vec_final;
   vk::robust_cost::HuberWeightFunction weight_function;
-  SE2_5 T_old(frame->T_f_w_);
+  SE2_5 T_old(frame->T_f_w_.se2());
   Matrix3d A;
   Vector3d b;
 

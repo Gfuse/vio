@@ -23,15 +23,14 @@
 #include <vio/cl_class.h>
 #include <vio/initialization.h>
 #include <vio/vision.h>
+#include <vio/map.h>
+#include <vio/point.h>
 
 namespace vk {
 class AbstractCamera;
 }
 
 namespace vio {
-
-class Map;
-class Point;
 
 /// Project points from the map into the image and find the corresponding
 /// feature (corner). We don't search a match for every point but only for one
@@ -62,9 +61,6 @@ public:
 
   /// Project points from the map into the image. First finds keyframes with
   /// overlapping field of view and projects only those map-points.
-  void reprojectMap(
-      FramePtr frame,
-      std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs);
 
   void reprojectMap2(
       FramePtr frame,
@@ -104,7 +100,6 @@ private:
   void initializeGrid(vk::AbstractCamera* cam);
   void resetGrid();
   bool reprojectCell(Cell& cell, FramePtr frame);
-  bool reprojectPoint(FramePtr frame, std::shared_ptr<Point>  point);
 };
 
 } // namespace vio

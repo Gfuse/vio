@@ -161,7 +161,7 @@ bool Matcher::findMatchDirect(
   warp::getWarpMatrixAffine(
       *ref_ftr_->frame->cam_, *(cur_frame.cam_), ref_ftr_->px, ref_ftr_->f,
       (Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),
-      cur_frame.se3() * ref_ftr_->frame->getSE3Inv(), ref_ftr_->level, A_cur_ref_);
+      cur_frame.se3().inverse() * ref_ftr_->frame->se3(), ref_ftr_->level, A_cur_ref_);
   search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
   if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
                    ref_ftr_->level, search_level_, halfpatch_size_+1, patch_with_border_))return false;
@@ -198,7 +198,7 @@ bool Matcher::findEpipolarMatchDirect(
     double& depth,FILE* log)
 {
   if(isnan(d_min) || isnan(d_max))return false;
-  SE2_5 T_cur_ref(SE2(cur_frame.T_f_w_.so2() * ref_frame.T_f_w_.inverse().so2(),cur_frame.T_f_w_.se2().translation() - ref_frame.T_f_w_.se2().translation()));
+  SE2_5 T_cur_ref(SE2(cur_frame.T_f_w_.inverse() * ref_frame.T_f_w_.se2()));
   int zmssd_best = PatchScore::threshold();
   Vector2d uv_best;
 

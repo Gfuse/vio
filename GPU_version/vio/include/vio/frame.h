@@ -93,7 +93,7 @@ namespace vio {
 
         /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
         inline Vector2d w2c(const Vector3d& xyz_w) const {
-            return cam_->world2cam( T_f_w_.se3()*xyz_w);
+            return cam_->world2cam( T_f_w_.se3().inverse()*xyz_w);
         }
         /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
         inline Vector2d w2px(const Vector3d& xyz_w) const { return cam_->world2cam( xyz_w ); }
@@ -106,13 +106,9 @@ namespace vio {
 
         /// Transforms point coordinates in world-frame (w) to camera-frams (f).
         inline Vector3d w2f(const Vector3d& xyz_w) const {
-            return Vector3d(T_f_w_.se3()*xyz_w);
+            return Vector3d(T_f_w_.se3().inverse()*xyz_w);
         }
 
-        /// Transforms point from frame unit sphere (f) frame to world coordinate frame (w).
-        inline Vector3d f2w(const Vector3d& f) const {
-            return getSE3Inv() * f;
-        }
 
         /// Projects Point from unit sphere (f) in camera pixels (c).
         inline Vector2d f2c(const Vector3d& f) const { return cam_->world2cam( f ); }
@@ -126,18 +122,6 @@ namespace vio {
 
         inline SE3 se3() const{
             return T_f_w_.se3();
-        }
-
-        inline  SE3 getSE3Inv() const{
-            //TODO add 15 degree roll orientation
-            SE2 inv=T_f_w_.inverse();
-            Quaterniond q;
-            q = AngleAxisd(-0.122173, Vector3d::UnitX())
-                * AngleAxisd(atan2(inv.so2().unit_complex().imag(),inv.so2().unit_complex().real()), Vector3d::UnitY())
-                * AngleAxisd(0.0, Vector3d::UnitZ());
-            SE3 out(q.toRotationMatrix(),Vector3d(inv.translation()(0), 0.0,inv.translation()(1)));
-            return out;
-
         }
 
 

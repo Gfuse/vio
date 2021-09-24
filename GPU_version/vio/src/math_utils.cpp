@@ -11,6 +11,9 @@
 namespace vk {
 
 using namespace Eigen;
+/*
+ * R and T are the rotation and translation of the current frames with respect to the refrence frame
+ * */
 
 Vector3d
 triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
@@ -81,7 +84,7 @@ computeInliers(const vector<Vector3d>& features1, // c2
   //triangulate all features and compute reprojection errors and inliers
   for(size_t j=0; j<features1.size(); ++j)
   {
-    if(t.z()>0.0)
+    if(t.z()>0.0){
         xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j], features2[j] ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
         double e2 = reprojError(features2[j], R.transpose()*(xyz_vec.back()-t), error_multiplier2);
@@ -92,6 +95,7 @@ computeInliers(const vector<Vector3d>& features1, // c2
             inliers.push_back(j);
             tot_error += e1+e2;
         }
+    }
   }
   return tot_error;
 }

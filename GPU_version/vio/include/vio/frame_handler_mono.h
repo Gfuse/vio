@@ -25,6 +25,7 @@
 #include <vio/ukf.h>
 #include <vio/cl_class.h>
 #include <vio/sparse_img_align_gpu.h>
+#include <vio/global_optimizer.h>
 
 namespace vio {
 
@@ -42,7 +43,7 @@ public:
 
 
   /// Access the depth filter.
-  DepthFilter* depthFilter() const{ return depth_filter_; }
+  BA_Glob* depthFilter() const{ return ba_glob_; }
 
 
   void UpdateIMU(double* value,const ros::Time& time);
@@ -58,7 +59,7 @@ protected:
   FramePtr last_frame_;                         //!< Last frame, not necessarily a keyframe.
   vector< pair<FramePtr,size_t> > overlap_kfs_; //!< All keyframes with overlapping field of view. the paired number specifies how many common mappoints are observed TODO: why vector!?
   initialization::KltHomographyInit* klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
-  DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
+  BA_Glob* ba_glob_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   opencl* gpu_fast_;
   ros::Time time_;
 

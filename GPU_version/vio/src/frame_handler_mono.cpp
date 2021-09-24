@@ -22,7 +22,7 @@
 #include <vio/point.h>
 #include <vio/pose_optimizer.h>
 #include <vio/sparse_img_align.h>
-#include <vio/depth_filter.h>
+#include <vio/global_optimizer.h>
 #include <vio/for_it.hpp>
 #include <assert.h>
 #if VIO_DEBUG
@@ -34,7 +34,7 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
   FrameHandlerBase(),
   cam_(cam),
   reprojector_(cam_, map_),
-  depth_filter_(NULL),
+  ba_glob_(NULL),
   ukfPtr_(init),
   time_(ros::Time::now())
 {
@@ -87,14 +87,13 @@ void FrameHandlerMono::initialize()
   feature_detection::DetectorPtr feature_detector(
       new feature_detection::FastDetector(
           cam_->width(), cam_->height(), Config::gridSize(),gpu_fast_, Config::nPyrLevels()));
-  DepthFilter::callback_t depth_filter_cb = boost::bind(&MapPointCandidates::newCandidatePoint, &map_.point_candidates_, _1, _2);
-  depth_filter_ = new DepthFilter(feature_detector, depth_filter_cb);
-  depth_filter_->startThread();
+  ba_glob_ = new BA_Glob(map_);
+  ba_glob_->startThread();
 }
 
 FrameHandlerMono::~FrameHandlerMono()
 {
-  delete depth_filter_;
+  delete ba_glob_;
 }
 
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const ros::Time& time)
@@ -103,10 +102,8 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
   if(!startFrameProcessingCommon(timestamp)){
       return;
   }
-
   // some cleanup from last iteration, can't do before because of visualization
   overlap_kfs_.clear();
-
   // create new frame
   new_frame_=std::make_shared<Frame>(cam_, img.clone(), timestamp);
   time_=time;
@@ -118,7 +115,6 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const
     res = processSecondFrame();
   else if(stage_ == STAGE_FIRST_FRAME)
     res = processFirstFrame();
-
   last_frame_ = new_frame_;
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
@@ -161,10 +157,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   }
   new_frame_->setKeyframe();
   double depth_mean, depth_min;
-  frame_utils::getSceneDepth(klt_homography_init_->frame_ref_, depth_mean, depth_min);
-  depth_filter_->addKeyframe(klt_homography_init_->frame_ref_, depth_mean, 0.5*depth_min);
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
-  depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
   // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
@@ -225,7 +218,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
     if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<4){
+       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<5){
         new_frame_=last_frame_;
         return RESULT_FAILURE;
     }
@@ -237,19 +230,15 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     fprintf(log_,"[%s] Update EKF and 3D points the number of feature in the new frame: %d and number of obs: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->fts_.size(),new_frame_->nObs());
 #endif
-  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
-  depth_filter_->addFrame(new_frame_);
-
   // select keyframe
   if(!needNewKf())//edited
   {
         return RESULT_NO_KEYFRAME;
   }
+
+  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   double depth_mean=0.0, depth_min=0.0;
-
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
-
-
   new_frame_->setKeyframe();
 #if VIO_DEBUG
     fprintf(log_,"[%s] Choose frame as a key frame Scene Depth mean:%f ,depth min:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
@@ -260,19 +249,14 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   for(auto&& it:new_frame_->fts_){
       if(it->point != NULL)it->point->addFrameRef(it);
   }
-  map_.point_candidates_.addCandidatePointToFrame(new_frame_);
-
-  // init new depth-filters
-  depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
+  //map_.point_candidates_.addCandidatePointToFrame(new_frame_);
 
   // if limited number of keyframes, remove the one furthest apart
   if(Config::maxNKfs() > 2 && map_.size() >= Config::maxNKfs())
   {
     FramePtr furthest_frame = map_.getFurthestKeyframe(new_frame_->pos());
-    depth_filter_->removeKeyframe(furthest_frame); // TODO this interrupts the mapper thread, maybe we can solve this better
     map_.safeDeleteFrame(furthest_frame);
   }
-
   // add keyframe to map
   map_.addKeyframe(new_frame_);
   return RESULT_IS_KEYFRAME;
@@ -285,7 +269,7 @@ void FrameHandlerMono::resetAll()
   last_frame_.reset();
   new_frame_.reset();
   overlap_kfs_.clear();
-  depth_filter_->reset();
+  ba_glob_->reset();
 }
 bool FrameHandlerMono::needNewKf()
 {
@@ -298,11 +282,6 @@ bool FrameHandlerMono::needNewKf()
           closest_kfs=SE2_5(it.first->T_f_w_.se2());
       }
   }
-#if VIO_DEBUG
-    fprintf(log_,"[%s] key frame check new frame:%f %f %f, key close:%f %f %f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
-            new_frame_->T_f_w_.se2().translation().x(),new_frame_->T_f_w_.se2().translation().y(),new_frame_->T_f_w_.pitch(),
-            closest_kfs.se2().translation().x(),closest_kfs.se2().translation().y(),closest_kfs.pitch());
-#endif
   if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.43 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.15)return true;
   return false;
 }

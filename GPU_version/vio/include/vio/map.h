@@ -21,60 +21,16 @@
 #include <boost/noncopyable.hpp>
 #include <boost/thread.hpp>
 #include <vio/global.h>
+#include <vio/point.h>
 
 namespace vio {
 
-class Point;
-class Feature;
-class Seed;
-
-/// Container for converged 3D points that are not already assigned to two keyframes.
-class MapPointCandidates
-{
-public:
-  typedef pair<std::shared_ptr<Point>, std::shared_ptr<Feature>> PointCandidate;
-  typedef list<PointCandidate> PointCandidateList;
-
-  /// The depth-filter is running in a parallel thread and fills the canidate list.
-  /// This mutex controls concurrent access to point_candidates.
-  boost::mutex mut_;
-
-  /// Candidate points are created from converged seeds.
-  /// Until the next keyframe, these points can be used for reprojection and pose optimization.
-  PointCandidateList candidates_;
-  list< std::shared_ptr<Point> > trash_points_;
-
-  MapPointCandidates();
-  ~MapPointCandidates();
-
-  /// Add a candidate point.
-  void newCandidatePoint(std::shared_ptr<Point>  point, double depth_sigma2);
-
-  /// Adds the feature to the frame and deletes candidate from list.
-  void addCandidatePointToFrame(FramePtr frame);
-
-  /// Remove a candidate point from the list of candidates.
-  bool deleteCandidatePoint(std::shared_ptr<Point> point);
-
-  /// Remove all candidates that belong to a frame.
-  void removeFrameCandidates(FramePtr frame);
-
-  /// Reset the candidate list, remove and delete all points.
-  void reset();
-
-  void deleteCandidate(PointCandidate& c);
-
-  void emptyTrash();
-};
-static bool syn_=false;
 /// Map object which saves all keyframes which are in a map.
 class Map : boost::noncopyable
 {
 public:
   list< FramePtr > keyframes_;          //!< List of keyframes in the map.
   list< std::shared_ptr<Point> > trash_points_;         //!< A deleted point is moved to the trash bin. Now and then this is cleaned. One reason is that the visualizer must remove the points also.
-  MapPointCandidates point_candidates_;
-
 
   Map();
   ~Map();
@@ -100,24 +56,14 @@ public:
   /// Given a frame, return all keyframes which have an overlapping field of view.
   void getCloseKeyframes(const FramePtr& frame, list< pair<FramePtr,double> >& close_kfs) const;
 
-  /// Return the keyframe which is spatially closest and has overlapping field of view.
-  FramePtr getClosestKeyframe(const FramePtr& frame) const;
-
   /// Return the keyframe which is furthest apart from pos.
   FramePtr getFurthestKeyframe(const Vector2d& pos) const;
-
-  bool getKeyframeById(const int id, FramePtr& frame) const;
-
-  /// Transform the whole map with rotation R, translation t and scale s.
-  void transform(const Matrix2d& R, const Vector2d& t, const double& s);
 
   /// Empty trash bin of deleted keyframes and map points. We don't delete the
   /// points immediately to ensure proper cleanup and to provide the visualizer
   /// a list of objects which must be removed.
   void emptyTrash();
 
-  /// Return the keyframe which was last inserted in the map.
-  inline FramePtr lastKeyframe() { return keyframes_.back(); }
 
   /// Return the number of keyframes in the map
   inline size_t size() const { return keyframes_.size(); }
@@ -126,8 +72,6 @@ public:
 /// A collection of debug functions to check the data consistency.
 namespace map_debug {
 
-void mapStatistics(Map* map);
-void mapValidation(Map* map, int id);
 void frameValidation(FramePtr frame, int id);
 void pointValidation(std::shared_ptr<Point> point, int id);
 

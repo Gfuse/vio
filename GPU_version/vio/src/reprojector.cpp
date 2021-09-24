@@ -36,7 +36,7 @@
 
 namespace vio {
 
-    Reprojector::Reprojector(vk::AbstractCamera *cam, Map &map) :
+    Reprojector::Reprojector(vk::AbstractCamera *cam, Map& map) :
             map_(map) {
         initializeGrid(cam);
     }
@@ -89,7 +89,6 @@ namespace vio {
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
         overlap_kfs.reserve(options_.max_n_kfs);
-        boost::unique_lock<boost::mutex> lock(map_.point_candidates_.mut_);
         for (auto &&it_frame:_for(close_kfs)) {
             if (it_frame.index > options_.max_n_kfs)continue;
             std::vector<cv::KeyPoint> keypoints_kfs;
@@ -116,7 +115,7 @@ namespace vio {
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*point)->px.x(),
                                     (int) (*point)->px.y());
-                        SE3 T_ref_cur=it_frame.item.first->getSE3Inv()*frame->se3();
+                        SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
                         Vector3d new_point=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
                                                                         frame->c2f(px),f.item->f);
                         if(new_point.z()<0.0)break;
@@ -177,21 +176,19 @@ namespace vio {
                 it = cell.erase(it);
                 continue;
             }
-
-            syn_=true;
+///TODO check point candidate handling
 
             if(!matcher_.findMatchDirect(*it->pt, *frame, it->px))
             {
                 it->pt->n_failed_reproj_++;
-                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)
+/*                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)
                     map_.safeDeletePoint(it->pt);
                 if(it->pt->type_ == Point::TYPE_CANDIDATE  && it->pt->n_failed_reproj_ > 30)
-                    map_.point_candidates_.deleteCandidatePoint(it->pt);
+                    map_.point_candidates_.deleteCandidatePoint(it->pt);*/
                 it = cell.erase(it);
-               // ++it;
                 continue;
             }
-            syn_=false;
+
             it->pt->n_succeeded_reproj_++;
             if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
                 it->pt->type_ = Point::TYPE_GOOD;
@@ -222,17 +219,4 @@ namespace vio {
         return false;
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO original implementation
-    bool Reprojector::reprojectPoint(FramePtr frame, std::shared_ptr<Point> point) {
-        Vector2d px(frame->w2c(point->pos_));
-        if (frame->cam_->isInFrame(px.cast<int>(), 8)) // 8px is the patch size in the matcher
-        {
-            const int k = static_cast<int>(px[1] / grid_.cell_size) * grid_.grid_n_cols
-                          + static_cast<int>(px[0] / grid_.cell_size);
-            grid_.cells.at(k)->push_back(Candidate(point, px));
-            return true;
-        }
-        return false;
-    }
 }

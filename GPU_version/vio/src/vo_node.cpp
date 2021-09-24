@@ -18,7 +18,7 @@
 #include <vio/getOdom.h>
 #include <vio/start.h>
 #include <vio/stop.h>
-#include <vio/depth_filter.h>
+#include <vio/global_optimizer.h>
 #include <ros/callback_queue.h>
 #if VIO_DEBUG
 #include <vio/visualizer.h>

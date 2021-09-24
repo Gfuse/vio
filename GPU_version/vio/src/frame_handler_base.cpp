@@ -35,8 +35,7 @@ FrameHandlerBase::FrameHandlerBase() :
   stage_(STAGE_PAUSED),
   set_reset_(false),
   set_start_(false),
-  num_obs_last_(0),
-  tracking_quality_(TRACKING_INSUFFICIENT)
+  num_obs_last_(0)
 {
 }
 
@@ -54,7 +53,6 @@ bool FrameHandlerBase::startFrameProcessingCommon(const double timestamp)
 
   if(stage_ == STAGE_PAUSED)
     return false;
-
 
   // some cleanup from last iteration, can't do before because of visualization
   map_.emptyTrash();
@@ -74,7 +72,6 @@ int FrameHandlerBase::finishFrameProcessingCommon(
       (stage_ == STAGE_DEFAULT_FRAME || stage_ == STAGE_RELOCALIZING ))
   {
     //stage_ = STAGE_RELOCALIZING;
-    tracking_quality_ = TRACKING_INSUFFICIENT;
   }
   if(set_reset_)
     resetAll();
@@ -88,24 +85,7 @@ void FrameHandlerBase::resetCommon()
   stage_ = STAGE_PAUSED;
   set_reset_ = false;
   set_start_ = false;
-  tracking_quality_ = TRACKING_INSUFFICIENT;
   num_obs_last_ = 0;
-}
-
-void FrameHandlerBase::setTrackingQuality(const size_t num_observations)
-{
-  tracking_quality_ = TRACKING_GOOD;
-  if(num_observations < Config::qualityMinFts())
-  {
-    //SVO_WARN_STREAM_THROTTLE(0.5, "Tracking less than "<< Config::qualityMinFts() <<" features!");
-    tracking_quality_ = TRACKING_INSUFFICIENT;
-  }
-  const int feature_drop = static_cast<int>(std::min(num_obs_last_, Config::maxFts())) - num_observations;
-  if(feature_drop > Config::qualityMaxFtsDrop())
-  {
-    //SVO_WARN_STREAM("Lost "<< feature_drop <<" features!");
-    tracking_quality_ = TRACKING_INSUFFICIENT;
-  }
 }
 
 bool ptLastOptimComparator(Point* lhs, Point* rhs)
