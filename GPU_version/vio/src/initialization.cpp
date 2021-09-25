@@ -132,11 +132,11 @@ void detectFeatures(
     Features& new_features,
     opencl* gpu_fast)
 {
-  feature_detection_mut_.lock();
+
   feature_detection::FastDetector detector(
       frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
   detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), new_features);
-  feature_detection_mut_.unlock();
+
   // now for all maximum corners, initialize a new seed
   px_vec.clear();
   for(auto&& ftr:new_features){

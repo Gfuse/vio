@@ -179,9 +179,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->Cov_ = init_f.first;
   // sparse image align
   SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-  feature_detection_mut_.lock();
   size_t err=img_align.run(last_frame_, new_frame_, log_);
-  feature_detection_mut_.unlock();
   if(err==-1){
 #if VIO_DEBUG
       fprintf(log_,"[%s] Image Alignment failed -1\n",vio::time_in_HH_MM_SS_MMM().c_str());
@@ -211,6 +209,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), 70, false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
+  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
 #if VIO_DEBUG
     fprintf(log_,"[%s] After pose optimization, distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->T_f_w_.se2().translation().x()-init_f.second.se2().translation().x(),
@@ -218,7 +217,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
     if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<5){
+       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<10){
         new_frame_=last_frame_;
         return RESULT_FAILURE;
     }
@@ -236,7 +235,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
         return RESULT_NO_KEYFRAME;
   }
 
-  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   double depth_mean=0.0, depth_min=0.0;
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
   new_frame_->setKeyframe();
@@ -268,7 +266,6 @@ void FrameHandlerMono::resetAll()
   last_frame_.reset();
   new_frame_.reset();
   overlap_kfs_.clear();
-  ba_glob_->reset();
 }
 bool FrameHandlerMono::needNewKf()
 {

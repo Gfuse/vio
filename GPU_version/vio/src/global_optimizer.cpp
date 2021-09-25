@@ -66,19 +66,6 @@ namespace vio {
 #endif
     }
 
-
-    void BA_Glob::reset()
-    {
-        seeds_updating_halt_ = true;
-        {
-        }
-        seeds_updating_halt_ = false;
-
-#if VIO_DEBUG
-        fprintf(log_,"[%s] DepthFilter: RESET.\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
-    }
-
     void BA_Glob::updateLoop()
     {
         while(!boost::this_thread::interruption_requested())

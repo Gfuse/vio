@@ -59,7 +59,7 @@ Point::~Point()
 
 void Point::addFrameRef(std::shared_ptr<Feature> ftr)
 {
-
+    boost::unique_lock<boost::mutex> lock(point_mut_);
   obs_.push_front(ftr);
   ++n_obs_;
 }
@@ -138,6 +138,7 @@ bool Point::getCloseViewObs(const Vector2d& framepos, std::shared_ptr<Feature>& 
 
 void Point::optimize(const size_t n_iter)
 {
+  boost::unique_lock<boost::mutex> lock(point_mut_);
   Vector3d old_point = pos_;
   double chi2 = 0.0;
   Matrix3d A;
@@ -167,33 +168,21 @@ void Point::optimize(const size_t n_iter)
     // check if error increased
     if((i > 0 && new_chi2 > chi2) || (bool) std::isnan((double)dp[0]))
     {
-#ifdef POINT_OPTIMIZER_DEBUG
-      cout << "it " << i
-           << "\t FAILURE \t new_chi2 = " << new_chi2 << endl;
-#endif
+
       pos_ = old_point; // roll-back
       break;
     }
-
     // update the model
     Vector3d new_point = pos_ + dp;
     old_point = pos_;
     pos_ = new_point;
     chi2 = new_chi2;
-#ifdef POINT_OPTIMIZER_DEBUG
-    cout << "it " << i
-         << "\t Success \t new_chi2 = " << new_chi2
-         << "\t norm(b) = " << vk::norm_max(b)
-         << endl;
-#endif
 
     // stop when converged
     if(vk::norm_max(dp) <= EPS)
       break;
   }
-#ifdef POINT_OPTIMIZER_DEBUG
-  cout << endl;
-#endif
+
 }
 
 } // namespace vio

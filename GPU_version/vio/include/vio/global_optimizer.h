@@ -45,10 +45,6 @@ public:
   void stopThread();
 
 
-  /// If the map is reset, call this function such that we don't have pointers
-  /// to old frames.
-  void reset();
-
 protected:
   bool seeds_updating_halt_;            //!< Set this value to true when seeds updating should be interrupted.
   boost::thread* thread_;

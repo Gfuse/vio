@@ -49,7 +49,6 @@ namespace vio
     const double EPS = 0.0000000001;
     const double PI = 3.14159265;
 
-    static boost::mutex feature_detection_mut_;
     static std::string time_in_HH_MM_SS_MMM()
     {
         using namespace std::chrono;
