@@ -216,6 +216,7 @@ bool align2D(
 
     if(isnan(u) || isnan(v)) {
         // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+        std::cerr<<"if is nan"<<std::endl;
       return false;
     }
 

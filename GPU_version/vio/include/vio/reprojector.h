@@ -66,7 +66,8 @@ public:
       FramePtr frame,
       FramePtr last_frame,
       std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs,
-      opencl* gpu_fast_);
+      opencl* gpu_fast_,
+      FILE* log_);
 
 
 private:
@@ -99,7 +100,7 @@ private:
   static bool pointQualityComparator(Candidate& lhs, Candidate& rhs);
   void initializeGrid(vk::AbstractCamera* cam);
   void resetGrid();
-  bool reprojectCell(Cell& cell, FramePtr frame);
+  bool reprojectCell(Cell& cell, FramePtr frame, FILE* log_);
 };
 
 } // namespace vio

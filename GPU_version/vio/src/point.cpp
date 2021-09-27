@@ -155,7 +155,8 @@ void Point::optimize(const size_t n_iter)
     {
       Matrix23d J;
       const Vector3d p_in_f((*it)->frame->se3()*pos_);
-      Point::jacobian_xyz2uv(p_in_f, (*it)->frame->se3().rotation_matrix(), J);
+      //Point::jacobian_xyz2uv(p_in_f, (*it)->frame->se3().rotation_matrix(), J);
+      Point::jacobian_xyz2uv_(p_in_f, (*it)->frame->se3().rotation_matrix(), J, (*it)->frame->cam_->params(), (*it)->frame->T_f_w_);
       const Vector2d e(vk::project2d((*it)->f) - vk::project2d(p_in_f));
       new_chi2 += e.squaredNorm();
       A.noalias() += J.transpose() * J;
