@@ -123,6 +123,19 @@ public:
       double& depth,FILE* log);
 
   void createPatchFromPatchWithBorder();
+  uint i=0;
+  void debug(cv::Mat ref,cv::Mat cur, Vector2d ref_px,Vector2d cur_px_in,Vector2d cur_px_out,bool res){
+      cv::Mat Ref,Cur;
+      cv::cvtColor(cur,Cur,cv::COLOR_GRAY2RGB);
+      cv::cvtColor(ref,Ref,cv::COLOR_GRAY2RGB);
+      cv::circle(Ref, cv::Point(ref_px.x(),ref_px.y() ), 2, cv::Scalar(0, 0,255),2);
+      cv::circle(Cur, cv::Point(cur_px_in.x(),cur_px_in.y() ), 2, cv::Scalar(0, 0,255),2);
+      cv::circle(Cur, cv::Point(cur_px_out.x(),cur_px_out.y() ), 2, cv::Scalar(0, 255,0),2);
+      cv::putText(Cur,res? "Accept": "reject",cv::Point(10,10),cv::FONT_HERSHEY_COMPLEX_SMALL,1.0,cv::Scalar(0,255,0),1,cv:: LINE_AA);
+      cv::imwrite(std::string(PROJECT_DIR)+"/Ref"+std::to_string(i)+".png",Ref);
+      cv::imwrite(std::string(PROJECT_DIR)+"/Cur"+std::to_string(i)+".png",Cur);
+      ++i;
+  }
 };
 
 } // namespace vio

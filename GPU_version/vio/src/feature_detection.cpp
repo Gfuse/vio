@@ -120,7 +120,7 @@ void FastDetector::detect(
       assert(false);
   }
   if(descriptors){
-      cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
+      cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 500);
       extractor->compute(frame->img(), keypoints, *descriptors);
   }
   resetGrid();

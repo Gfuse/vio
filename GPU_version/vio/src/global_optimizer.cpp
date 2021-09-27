@@ -231,6 +231,7 @@ namespace vio {
        e->setVertex(1, (g2o::OptimizableGraph::Vertex*)(v_frame).get());
        e->setMeasurement(f_up);
        e->information() = weight * Eigen::Matrix2d::Identity(2,2);
+
        e->setRobustKernel(new g2o::RobustKernelHuber());
        e->setParameterId(0, 0); //old: e->setId(v_point->id());
        return e;

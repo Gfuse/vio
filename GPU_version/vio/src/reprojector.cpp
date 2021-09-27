@@ -75,8 +75,8 @@ namespace vio {
         resetGrid();
         cv::Mat descriptors_cur;
         Features keypoints_cur;
-        cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
-        cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING, true);
+        cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 500);
+        cv::Ptr<cv::DescriptorMatcher> matcher = cv::DescriptorMatcher::create("BruteForce");
         feature_detection::FastDetector detector(
                 frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
         detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints_cur,&descriptors_cur);
@@ -95,10 +95,19 @@ namespace vio {
             cv::Mat descriptors_ref;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
             for (auto &&it_ftr:it_frame.item.first->fts_) {
-                keypoints_kfs.push_back(cv::KeyPoint(it_ftr->px.x(), it_ftr->px.y(), 7));
+                keypoints_kfs.push_back(cv::KeyPoint(it_ftr->px.x(), it_ftr->px.y(), 1));
             }
-            extractor->compute(it_frame.item.first->img(), keypoints_kfs, descriptors_ref);
+            std::vector<cv::KeyPoint> keypoints_cu;
+            for (auto &&f:keypoints_cur) {
+                keypoints_cu.push_back(cv::KeyPoint(f->px.x(), f->px.y(), 1));
+            }
+            extractor->compute(it_frame.item.first->img_pyr_[0], keypoints_kfs, descriptors_ref);
             matcher->match(descriptors_ref, descriptors_cur, matches);
+            cv::Mat imgMatch;
+            cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cu,matches, imgMatch);
+            cv::imshow("img",imgMatch);
+            cv::waitKey();
+            exit(0);
             for (auto &&f: _for(it_frame.item.first->fts_)) {
                 for (auto &&match:matches) {
                     if (match.queryIdx != f.index)continue;
@@ -198,7 +207,7 @@ namespace vio {
             bool res = matcher_.findMatchDirect(*it->pt, *frame, it->px);
             Vector2d uva(it->px.x(), it->px.y());
 #if VIO_DEBUG
-            fprintf(log_,"%f  %f  %s %f\n", it->px.x(), it->px.y(), (res?" TRUE":" FALSE"), (uvb - uva).squaredNorm());
+            fprintf(log_,"%f  %f  %s %f\n", it->px.x(), it->px.y(), (res?" TRUE":" FALSE"), (uvb - uva).norm());
 #endif
             //std::cerr<<it->px.x()<<" "<<it->px.y()<<(res?" TRUE":" FALSE")<<std::endl;
             //cv::Point pointa(it->px.x(), it->px.y());
