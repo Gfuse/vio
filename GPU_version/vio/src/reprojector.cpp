@@ -69,7 +69,8 @@ namespace vio {
             FramePtr frame,
             FramePtr last_frame,
             std::vector<std::pair<FramePtr, std::size_t> > &overlap_kfs,
-            opencl* gpu_fast_) {
+            opencl* gpu_fast_,
+            FILE* log_) {
         if(frame->id_<1)return;
         resetGrid();
         cv::Mat descriptors_cur;
@@ -142,13 +143,22 @@ namespace vio {
             }
         }
         {
+            int cl = 0;
             for (auto&& cell : grid_.cells) {
-                if (reprojectCell(*cell, frame))
+#if VIO_DEBUG
+                if(cell->size()>=1) {
+                    fprintf(log_, "[%s] %d-%d/%d : \n", vio::time_in_HH_MM_SS_MMM().c_str(), frame->id_, ++cl,
+                            grid_.cells.size());
+                }
+#endif
+                //std::cerr<<frame->id_<<"-"<<++cl<<"/"<<grid_.cells.size()<<" : ";
+                if (reprojectCell(*cell, frame, log_))
                     ++n_matches_;
                 if (n_matches_ > (size_t) Config::maxFts())
                     break;
             }
         }
+        //std::exit(154);
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,8 +168,11 @@ namespace vio {
         return false;
     }
 
-    bool Reprojector::reprojectCell(Cell &cell, FramePtr frame) {
-        if(cell.size()<1)return false;
+    bool Reprojector::reprojectCell(Cell &cell, FramePtr frame, FILE* log_) {
+        //cv::Mat image = frame->img();
+        if(cell.size()<1){
+            return false;
+        }
         cell.sort(boost::bind(&Reprojector::pointQualityComparator, _1, _2));
         Cell::iterator it=cell.begin();
         while(it!=cell.end())
@@ -175,8 +188,22 @@ namespace vio {
                 continue;
             }
 ///TODO check point candidate handling
-
-            if(!matcher_.findMatchDirect(*it->pt, *frame, it->px))
+            //cv::Point pointb(it->px.x(), it->px.y());
+            //cv::circle(image, pointb,1,(255, 0, 0), 1);
+            Vector2d uvb(it->px.x(), it->px.y());
+#if VIO_DEBUG
+            fprintf(log_,"befor : %f  %f  after : ", it->px.x(), it->px.y());
+#endif
+            //std::cerr<<"before : "<<it->px.x()<<" "<<it->px.y()<<" after : ";
+            bool res = matcher_.findMatchDirect(*it->pt, *frame, it->px);
+            Vector2d uva(it->px.x(), it->px.y());
+#if VIO_DEBUG
+            fprintf(log_,"%f  %f  %s %f\n", it->px.x(), it->px.y(), (res?" TRUE":" FALSE"), (uvb - uva).squaredNorm());
+#endif
+            //std::cerr<<it->px.x()<<" "<<it->px.y()<<(res?" TRUE":" FALSE")<<std::endl;
+            //cv::Point pointa(it->px.x(), it->px.y());
+            //cv::circle(image, pointa,1,(0, 255, 0), 1);
+            if(!res)
             {
                 it->pt->n_failed_reproj_++;
 /*                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)
@@ -214,6 +241,8 @@ namespace vio {
             // Maximum one point per cell.
             return true;
         }
+        //cv::imwrite("/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/image.png", image);
+        //std::exit(223);
         return false;
     }
 

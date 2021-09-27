@@ -41,7 +41,7 @@ void getWarpMatrixAffine(
     Matrix2d& A_cur_ref)
 {
   // Compute affine warp matrix A_ref_cur
-  const int halfpatch_size = 5;
+  const int halfpatch_size = 4;
   const Vector3d xyz_ref(f_ref*depth_ref);
   Vector3d xyz_du_ref(cam_ref.cam2world(px_ref + Vector2d(halfpatch_size,0)*(1<<level_ref)));
   Vector3d xyz_dv_ref(cam_ref.cam2world(px_ref + Vector2d(0,halfpatch_size)*(1<<level_ref)));
@@ -160,7 +160,7 @@ bool Matcher::findMatchDirect(
   // warp affine
   warp::getWarpMatrixAffine(
       *ref_ftr_->frame->cam_, *(cur_frame.cam_), ref_ftr_->px, ref_ftr_->f,
-      (Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),
+      (ref_ftr_->frame->se3().inverse()*pt.pos_).norm(),/*(Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),*/
       cur_frame.se3().inverse() * ref_ftr_->frame->se3(), ref_ftr_->level, A_cur_ref_);
   search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
   if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,

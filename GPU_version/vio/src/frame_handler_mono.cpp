@@ -193,7 +193,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
       new_frame_=last_frame_;
       return RESULT_FAILURE;
   }
-  reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_);
+  reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_, log_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
 #if VIO_DEBUG

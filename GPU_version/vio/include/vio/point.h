@@ -104,6 +104,45 @@ public:
     point_jac(1, 2) = -p_in_f[1] * z_inv_sq;
     point_jac = - point_jac * R_f_w;
   }
+
+    void jacobian_xyz2uv_(
+            const Vector3d& p_in_f,
+            const Matrix3d& R_f_w,
+            Matrix23d& point_jac,
+            double * cam_params,
+            SE2_5 fram_t_f_w)
+    {
+        double fx = cam_params[0];
+        double fy = cam_params[1];
+        double s = cam_params[4];
+        double r = cam_params[5];
+        double x_n = p_in_f.x();
+        double y_n = p_in_f.y();
+        double z_n = p_in_f.z();
+        double x_c =  fram_t_f_w.se3().translation().x();
+        double z_c = fram_t_f_w.se3().translation().y();
+        double theta = fram_t_f_w.pitch();
+
+        double alpha = (fx*(theta/r))-(fx*((x_n*x_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fx*x_n*x_n)/(r*r));
+        double beta  =               -(fx*((x_n*y_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fx*x_n*y_n)/(r*r));
+        double gamma =               -(fy*((x_n*y_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fy*x_n*y_n)/(r*r));
+        double lamda = (fy*(theta/r))-(fy*((y_n*y_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fy*y_n*y_n)/(r*r));
+
+        double Xf_Xc = x_n - x_c;
+        double Zf_Zc = z_n - z_c;
+        double n1 = -1*sin(theta)*Xf_Xc + cos(theta)*Zf_Zc;
+        double n2 = -1*cos(theta)*Xf_Xc - sin(theta)*Zf_Zc;
+
+        point_jac(0, 0) = ((cos(theta)/z_n)*alpha)+(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*sin(theta));
+        point_jac(0, 1) = ((sin(theta)/z_n)*alpha)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*cos(theta));
+        point_jac(0, 2) = ((1/z_n)*alpha*n1)-(((x_n/(z_n*z_n))*alpha + (y_n/(z_n*z_n))*beta)*n2);
+
+        point_jac(1, 0) = ((cos(theta)/z_n)*gamma)+(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*sin(theta));
+        point_jac(1, 1) = ((sin(theta)/z_n)*gamma)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*cos(theta));
+        point_jac(1, 2) = ((1/z_n)*gamma*n1)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
+        //point_jac = - point_jac * R_f_w;
+    }
+
 };
 
 } // namespace vio
