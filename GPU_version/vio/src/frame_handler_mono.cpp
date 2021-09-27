@@ -168,6 +168,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 #endif
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
+    ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
 
@@ -209,7 +210,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   pose_optimizer::optimizeGaussNewton(
             Config::poseOptimThresh(), 70, false,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
-  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
 #if VIO_DEBUG
     fprintf(log_,"[%s] After pose optimization, distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->T_f_w_.se2().translation().x()-init_f.second.se2().translation().x(),
@@ -229,6 +229,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     fprintf(log_,"[%s] Update EKF and 3D points the number of feature in the new frame: %d and number of obs: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->fts_.size(),new_frame_->nObs());
 #endif
+
+  optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe
   if(!needNewKf())//edited
   {
@@ -256,6 +258,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   // add keyframe to map
   map_.addKeyframe(new_frame_);
+  ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
 

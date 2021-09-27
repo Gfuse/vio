@@ -22,11 +22,8 @@
 #include <vio/abstract_camera.h>
 #include <boost/noncopyable.hpp>
 #include <vio/global.h>
+#include <g2o/types/sba/types_six_dof_expmap.h>
 
-namespace g2o {
-    class VertexSE3Expmap;
-}
-typedef g2o::VertexSE3Expmap g2oFrameSE3;
 
 namespace vio {
 
@@ -53,7 +50,7 @@ namespace vio {
         Features                      fts_;                   //!< List of features in the image.
         vector<std::shared_ptr<Feature>>  key_pts_;               //!< Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
         bool                          is_keyframe_;           //!< Was this frames selected as keyframe?
-        g2oFrameSE3*                  v_kf_;                  //!< Temporary pointer to the g2o node object of the keyframe.
+        std::shared_ptr<g2o::VertexSE3Expmap>    v_kf_;                  //!< Temporary pointer to the g2o node object of the keyframe.
         int                           last_published_ts_;     //!< Timestamp of last publishing.
 
         Frame(vk::AbstractCamera* cam, const cv::Mat& img, double timestamp);

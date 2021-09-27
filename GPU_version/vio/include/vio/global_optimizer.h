@@ -24,15 +24,23 @@
 #include <vio/feature_detection.h>
 #include <vio/matcher.h>
 #include <vio/map.h>
+#include <g2o/types/sba/types_six_dof_expmap.h>
+#include <g2o/core/sparse_optimizer.h>
+#include <g2o/core/block_solver.h>
+#include <g2o/core/solver.h>
+#include <g2o/core/robust_kernel_impl.h>
+#include <g2o/core/optimization_algorithm_levenberg.h>
+#include <g2o/solvers/cholmod/linear_solver_cholmod.h>
+#include <g2o/solvers/csparse/linear_solver_csparse.h>
+#include <g2o/solvers/dense/linear_solver_dense.h>
+#include <g2o/solvers/structure_only/structure_only_solver.h>
+
 
 namespace vio {
 
 class BA_Glob
 {
 public:
-  EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-
-  typedef boost::unique_lock<boost::mutex> lock_;
 
   BA_Glob(Map& map);
 
@@ -44,18 +52,62 @@ public:
   /// Stop the parallel thread that is running.
   void stopThread();
 
-
+  void new_key_frame(){
+      boost::unique_lock< boost::mutex > lk( mtx_);
+      new_keyframe_=true;
+      cond_.notify_one();
+#if VIO_DEBUG
+      fprintf(log_,"[%s] New key frame \n",
+              vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
+  }
 protected:
-  bool seeds_updating_halt_;            //!< Set this value to true when seeds updating should be interrupted.
+  bool new_keyframe_=false;
+  std::shared_ptr<g2o::OptimizationAlgorithmLevenberg> Levenberg_;
+  std::shared_ptr<g2o::SparseOptimizer> optimizer_;
+  boost::condition_variable cond_;
+  boost::mutex mtx_;
   boost::thread* thread_;
   Map& map_;
 
 #if VIO_DEBUG
   FILE* log_=nullptr;
 #endif
+        /// Temporary container to hold the g2o edge with reference to frame and point.
+        struct EdgeContainerSE3{
+            std::shared_ptr<g2o::EdgeProjectXYZ2UV>     edge;
+            std::shared_ptr<Frame>          frame;
+            std::shared_ptr<Feature>        feature;
+        };
 
+/// Initialize g2o with solver type, optimization strategy and camera model.
+        void setupG2o();
+        /// Run the optimization on the provided graph.
+        void runSparseBAOptimizer(
+                unsigned int num_iter,
+                double& init_error,
+                double& final_error);
 
+/// Create a g2o vertice from a keyframe object.
+        std::shared_ptr<g2o::VertexSE3Expmap> createG2oFrameSE3(
+                FramePtr kf,
+                size_t id,
+                bool fixed);
+    /// Creates a g2o vertice from a mappoint object.
+        std::shared_ptr<g2o::VertexPointXYZ> createG2oPoint(
+                Vector3d pos,
+                size_t id,
+                bool fixed);
+  /// Creates a g2o edge between a g2o keyframe and mappoint vertice with the provided measurement.
+        std::shared_ptr<g2o::EdgeProjectXYZ2UV> createG2oEdgeSE3(
+                std::shared_ptr<g2o::VertexSE3Expmap> v_kf,
+                std::shared_ptr<g2o::VertexPointXYZ> v_mp,
+                const Vector2d& f_up,
+                bool robust_kernel,
+                double huber_width,
+                double weight = 1);
   /// A thread that is continuously optimizing the map.
+  /// Global bundle adjustment.
   void updateLoop();
 };
 

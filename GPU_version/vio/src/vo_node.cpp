@@ -3,13 +3,13 @@
 #include <ros/ros.h>
 #include <string>
 #include <chrono>
+#include <boost/thread.hpp>
 #include <vio/frame_handler_mono.h>
 #include <vio/params_helper.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/Imu.h>
 #include <geometry_msgs/Twist.h>
 #include <image_transport/image_transport.h>
-#include <boost/thread.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <Eigen/Core>
 #include <vio/abstract_camera.h>

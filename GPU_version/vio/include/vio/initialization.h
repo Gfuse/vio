@@ -84,12 +84,12 @@ protected:
         vector<int> outliers_hom, inlier_hom;
         vector<int> outliers_ekf,inlier_ekf;
         assert(ukf_!= nullptr);
-#if VIO_DEBUG
+/*#if VIO_DEBUG
         for(int i=0;i<f_cur.size();++i)fprintf(log_,"[%s] cur: x=%f, y=%f, z=%f ref: x=%f y=%f z=%f\n",
               vio::time_in_HH_MM_SS_MMM().c_str(),
               f_cur.at(i).x(),f_cur.at(i).y(),f_cur.at(i).z(),
               f_ref.at(i).x(),f_ref.at(i).y(),f_ref.at(i).z());
-#endif
+#endif*/
         vk::computeInliers(f_cur, f_ref,
                            Homography.T_c2_from_c1.rotation_matrix(), Homography.T_c2_from_c1.translation(),
                            reprojection_threshold, focal_length,

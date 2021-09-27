@@ -21,12 +21,8 @@
 #include <vio/global.h>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
-
+#include <g2o/types/sba/types_six_dof_expmap.h>
 static boost::mutex point_mut_;
-namespace g2o {
-  class VertexSBAPointXYZ;
-}
-typedef g2o::VertexSBAPointXYZ g2oPoint;
 
 namespace vio {
 
@@ -55,7 +51,7 @@ public:
   bool                        normal_set_;              //!< Flag whether the surface normal was estimated or not.
   list<std::shared_ptr<Feature>>              obs_;                     //!< References to keyframes which observe the point.
   size_t                      n_obs_;                   //!< Number of obervations: Keyframes AND successful reprojections in intermediate frames.
-  g2oPoint*                   v_pt_;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
+  std::shared_ptr<g2o::VertexPointXYZ>     v_pt_;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
   int                         last_published_ts_;       //!< Timestamp of last publishing.
   int                         last_frame_overlap_id_;    //!< Flag for the reprojection: don't reproject a pt twice.
   PointType                   type_;                    //!< Quality of the point.
