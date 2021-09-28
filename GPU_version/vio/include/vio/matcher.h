@@ -126,7 +126,6 @@ public:
   uint i=0;
   void debug(cv::Mat ref,cv::Mat cur, Vector2d ref_px,Vector2d cur_px_in,Vector2d cur_px_out,bool res){
       cv::Mat Ref,Cur;
-      if(!res)return;
       cv::cvtColor(cur,Cur,cv::COLOR_GRAY2RGB);
       cv::cvtColor(ref,Ref,cv::COLOR_GRAY2RGB);
       cv::circle(Ref, cv::Point(ref_px.x(),ref_px.y() ), 2, cv::Scalar(0, 0,255),2);
