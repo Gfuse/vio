@@ -91,19 +91,14 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       if(frame_cur->cam_->isInFrame(Vector2d(px_cur_.at(id).x,px_cur_.at(id).y).cast<int>(), 10) &&
       frame_ref_->cam_->isInFrame((*first)->px.cast<int>(), 10)){
           Vector3d pos = xyz_in_cur_.at(id);//frame_cur->se3() * (xyz_in_cur_.at(id)/* *scale */);
-/*#if VIO_DEBUG
-          fprintf(log_,"[%s] inlier: x=%f, y=%f, z=%f pos: x=%f y=%f z=%f\n",
-                  vio::time_in_HH_MM_SS_MMM().c_str(),
-                  xyz_in_cur_.at(id).x(),xyz_in_cur_.at(id).y(),xyz_in_cur_.at(id).z(),
-                  pos.x(),pos.y(),pos.z());
-#endif*/
+
           std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
           std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, Vector2d(px_cur_.at(id).x,px_cur_.at(id).y),
-                                                                     frame_cur->c2f(px_cur_.at(id).x,px_cur_.at(id).y), (*first)->level);
+                                                                     frame_cur->c2f(px_cur_.at(id).x,px_cur_.at(id).y), (*first)->score,(*first)->level,(*first)->descriptor);
           frame_cur->addFeature(ftr_cur);
           new_point->addFrameRef(ftr_cur);
 
-          std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, (*first)->px, (*first)->f, (*first)->level);
+          std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, (*first)->px, (*first)->f, (*first)->score,(*first)->level,(*first)->descriptor);
           frame_ref_->addFeature(ftr_ref);
           new_point->addFrameRef(ftr_ref);
       }

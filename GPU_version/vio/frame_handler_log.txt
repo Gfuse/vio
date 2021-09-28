@@ -1,0 +1,249 @@
+[19:03:41.830] frame process finished the id is: 0 the obs is:0 
+[19:03:41.919] frame process finished the id is: 1 the obs is:0 
+[19:03:42.009] frame process finished the id is: 2 the obs is:0 
+[19:03:42.112] frame process finished the id is: 3 the obs is:0 
+[19:03:42.209] frame process finished the id is: 4 the obs is:0 
+[19:03:42.308] frame process finished the id is: 5 the obs is:0 
+[19:03:42.408] frame process finished the id is: 6 the obs is:0 
+[19:03:42.508] frame process finished the id is: 7 the obs is:0 
+[19:03:42.607] frame process finished the id is: 8 the obs is:0 
+[19:03:42.709] frame process finished the id is: 9 the obs is:0 
+[19:03:42.746] Odometry x=0.000000, y=0.000000, theta=-0.000000
+[19:03:42.815] frame process finished the id is: 10 the obs is:0 
+[19:03:42.835] Odometry x=0.000000, y=0.000000, theta=-0.000000
+[19:03:42.908] frame process finished the id is: 11 the obs is:0 
+[19:03:42.933] Odometry x=0.000000, y=0.000035, theta=-0.014739
+[19:03:43.008] frame process finished the id is: 12 the obs is:0 
+[19:03:43.032] Odometry x=-0.000016, y=-0.000458, theta=-0.029702
+[19:03:43.108] frame process finished the id is: 13 the obs is:0 
+[19:03:43.136] Odometry x=-0.000030, y=0.000053, theta=-0.040488
+[19:03:43.208] frame process finished the id is: 14 the obs is:0 
+[19:03:43.234] Odometry x=-0.000002, y=0.000114, theta=-0.067076
+[19:03:43.308] frame process finished the id is: 15 the obs is:0 
+[19:03:43.333] Odometry x=0.000002, y=0.000144, theta=-0.072754
+[19:03:43.408] frame process finished the id is: 16 the obs is:0 
+[19:03:43.432] Odometry x=0.000199, y=0.000115, theta=-0.093481
+[19:03:43.517] frame process finished the id is: 17 the obs is:0 
+[19:03:43.533] Odometry x=0.000439, y=0.000166, theta=-0.108529
+[19:03:43.608] frame process finished the id is: 18 the obs is:0 
+[19:03:43.634] Odometry x=0.000517, y=0.000660, theta=-0.136896
+[19:03:43.708] frame process finished the id is: 19 the obs is:0 
+[19:03:43.734] Odometry x=0.000513, y=0.000632, theta=-0.156055
+[19:03:43.808] frame process finished the id is: 20 the obs is:0 
+[19:03:43.835] Odometry x=0.000528, y=0.000706, theta=-0.171952
+[19:03:43.909] frame process finished the id is: 21 the obs is:0 
+[19:03:43.937] Odometry x=0.000633, y=0.001607, theta=-0.186130
+[19:03:44.010] frame process finished the id is: 22 the obs is:0 
+[19:03:44.031] Odometry x=0.000712, y=0.001578, theta=-0.213187
+[19:03:44.113] frame process finished the id is: 23 the obs is:0 
+[19:03:44.135] Odometry x=0.000723, y=0.001702, theta=-0.238404
+[19:03:44.210] Init: frame zero: 0.000000, 0.000000 0.000000
+[19:03:44.210] Init: Selected first frame. 
+[19:03:44.210] frame process finished the id is: 24 the obs is:0 
+[19:03:44.229] Odometry x=0.000725, y=0.001732, theta=-0.250716
+[19:03:44.310] Init: Homography RANSAC (inlier) is:20 ,While 30 inliers minimum required.  px average disparity is:14.526801 ,While minimum is: 10.000000  KLT tracked: 128
+[19:03:44.310] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[19:03:44.310] frame process finished the id is: 25 the obs is:0 
+[19:03:44.332] Odometry x=0.000949, y=0.001734, theta=-0.279430
+[19:03:44.408] Init finished: Homography RANSAC (inlier) is:32 ,While 30 inliers minimum required.  px average disparity is:26.256217 ,While minimum is: 10.000000  KLT tracked: 128
+[19:03:44.408] Init: distance between the first and current frame is x:0.000966 ,z=0.001920,angle between two frames: -0.296072 
+[19:03:44.408] Init: Selected Second frame. 	 The number of features: 32 depth mean:0.005307 min:0.002690
+[19:03:44.408] frame process finished the id is: 26 the obs is:32 
+[19:03:44.435] Odometry x=0.000966, y=0.001920, theta=-0.296072
+[19:03:44.531] Odometry x=0.000975, y=0.001961, theta=-0.317395
+[19:03:44.633] Odometry x=0.001046, y=0.002359, theta=-0.336592
+[19:03:44.732] Odometry x=0.001104, y=0.002685, theta=-0.355629
+[19:03:44.834] Odometry x=0.001159, y=0.002986, theta=-0.377720
+[19:03:44.932] Odometry x=0.001584, y=0.002417, theta=-0.401479
+[19:03:45.032] Odometry x=0.001610, y=0.002432, theta=-0.416364
+[19:03:45.132] Odometry x=0.001706, y=0.002866, theta=-0.436506
+[19:03:45.232] Odometry x=0.002272, y=0.002762, theta=-0.461576
+[19:03:45.334] Odometry x=0.002354, y=0.003092, theta=-0.480614
+[19:03:45.434] Odometry x=0.002441, y=0.003028, theta=-0.500689
+[19:03:45.536] Odometry x=0.002518, y=0.002993, theta=-0.523179
+[19:03:45.636] Odometry x=0.002620, y=0.003166, theta=-0.544427
+[19:03:45.733] Odometry x=0.002642, y=0.003191, theta=-0.560905
+[19:03:45.833] Odometry x=0.002756, y=0.003916, theta=-0.581583
+[19:03:45.934] Odometry x=0.002788, y=0.004004, theta=-0.600291
+[19:03:46.034] Odometry x=0.003736, y=0.003123, theta=-0.625975
+[19:03:46.132] Odometry x=0.003734, y=0.003124, theta=-0.638540
+[19:03:46.234] Odometry x=0.003737, y=0.003125, theta=-0.656723
+[19:03:46.328] Odometry x=0.003808, y=0.003306, theta=-0.679839
+[19:03:46.424] Odometry x=0.003845, y=0.003391, theta=-0.693880
+[19:03:46.526] Odometry x=0.004147, y=0.004122, theta=-0.715479
+[19:03:46.628] Odometry x=0.004188, y=0.004159, theta=-0.740028
+[19:03:46.734] Odometry x=0.004320, y=0.004462, theta=-0.751417
+[19:03:46.828] Odometry x=0.004689, y=0.004159, theta=-0.776666
+[19:03:46.925] Odometry x=0.004845, y=0.003863, theta=-0.798853
+[19:03:47.025] Odometry x=0.004982, y=0.003988, theta=-0.811391
+[19:03:47.131] Odometry x=0.004986, y=0.003990, theta=-0.826543
+[19:03:47.227] Odometry x=0.005416, y=0.004450, theta=-0.859956
+[19:03:47.325] Odometry x=0.005503, y=0.004525, theta=-0.880350
+[19:03:47.425] Odometry x=0.005598, y=0.004628, theta=-0.899165
+[19:03:47.529] Odometry x=0.005898, y=0.004681, theta=-0.916101
+[19:03:47.629] Odometry x=0.006133, y=0.004716, theta=-0.938758
+[19:03:47.729] Odometry x=0.006647, y=0.005388, theta=-0.960163
+[19:03:47.829] Odometry x=0.006661, y=0.005367, theta=-0.980779
+[19:03:47.925] Odometry x=0.006784, y=0.005512, theta=-0.998739
+[19:03:48.028] Odometry x=0.007789, y=0.006762, theta=-1.014226
+[19:03:48.130] Odometry x=0.008178, y=0.007550, theta=-1.031749
+[19:03:48.225] Odometry x=0.008186, y=0.007549, theta=-1.050436
+[19:03:48.325] Odometry x=0.008208, y=0.007527, theta=-1.070095
+[19:03:48.425] Odometry x=0.008229, y=0.007454, theta=-1.092333
+[19:03:48.525] Odometry x=0.008394, y=0.007627, theta=-1.112394
+[19:03:48.626] Odometry x=0.008490, y=0.007914, theta=-1.127474
+[19:03:48.727] Odometry x=0.008507, y=0.007920, theta=-1.151183
+[19:03:48.829] Odometry x=0.008551, y=0.007974, theta=-1.176545
+[19:03:48.935] Odometry x=0.008610, y=0.007789, theta=-1.193454
+[19:03:49.033] Odometry x=0.008623, y=0.007737, theta=-1.208680
+[19:03:49.129] Odometry x=0.008761, y=0.007959, theta=-1.235255
+[19:03:49.231] Odometry x=0.008825, y=0.007868, theta=-1.257892
+[19:03:49.335] Odometry x=0.008851, y=0.007808, theta=-1.286898
+[19:03:49.428] Odometry x=0.008761, y=0.007739, theta=-1.287849
+[19:03:49.529] Odometry x=0.008803, y=0.007764, theta=-1.307717
+[19:03:49.631] Odometry x=0.009279, y=0.007995, theta=-1.341373
+[19:03:49.726] Odometry x=0.009278, y=0.007995, theta=-1.345607
+[19:03:49.825] Odometry x=0.009493, y=0.006214, theta=-1.377549
+[19:03:49.926] Odometry x=0.009491, y=0.006213, theta=-1.387627
+[19:03:50.030] Odometry x=0.009506, y=0.006066, theta=-1.422065
+[19:03:50.132] Odometry x=0.009511, y=0.005999, theta=-1.442972
+[19:03:50.229] Odometry x=0.009511, y=0.005998, theta=-1.460928
+[19:03:50.326] Odometry x=0.009603, y=0.004593, theta=-1.490979
+[19:03:50.431] Odometry x=0.009603, y=0.004587, theta=-1.485082
+[19:03:50.529] Odometry x=0.009655, y=0.004310, theta=-1.508717
+[19:03:50.626] Odometry x=0.009730, y=0.004140, theta=-1.528381
+[19:03:50.731] Odometry x=0.010140, y=0.002926, theta=-1.551244
+[19:03:50.826] Odometry x=0.010168, y=0.002738, theta=-1.567563
+[19:03:50.931] Odometry x=0.011157, y=0.001043, theta=-1.591306
+[19:03:51.028] Odometry x=0.011442, y=0.000775, theta=-1.625367
+[19:03:51.131] Odometry x=0.011494, y=0.000718, theta=-1.635808
+[19:03:51.228] Odometry x=0.011406, y=0.000731, theta=-1.646737
+[19:03:51.326] Odometry x=0.011459, y=0.000726, theta=-1.664412
+[19:03:51.431] Odometry x=0.011455, y=0.000553, theta=-1.687280
+[19:03:51.527] Odometry x=0.011507, y=0.000545, theta=-1.704368
+[19:03:51.627] Odometry x=0.011572, y=0.000527, theta=-1.726423
+[19:03:51.736] Odometry x=0.011790, y=0.000435, theta=-1.747009
+[19:03:51.829] Odometry x=0.011833, y=0.000382, theta=-1.773826
+[19:03:51.930] Odometry x=0.012100, y=0.000249, theta=-1.789493
+[19:03:52.032] Odometry x=0.012885, y=-0.000437, theta=-1.809109
+[19:03:52.133] Odometry x=0.012946, y=-0.002033, theta=-1.831527
+[19:03:52.232] Odometry x=0.012954, y=-0.002035, theta=-1.846979
+[19:03:52.330] Odometry x=0.012956, y=-0.002037, theta=-1.868389
+[19:03:52.426] Odometry x=0.013007, y=-0.001713, theta=-1.885884
+[19:03:52.533] Odometry x=0.013007, y=-0.001713, theta=-1.927876
+[19:03:52.630] Odometry x=0.013023, y=-0.002070, theta=-1.928569
+[19:03:52.726] Odometry x=0.012664, y=-0.001853, theta=-1.950556
+[19:03:52.832] Odometry x=0.012648, y=-0.001941, theta=-1.971663
+[19:03:52.934] Odometry x=0.012652, y=-0.001967, theta=-1.992112
+[19:03:53.031] Odometry x=0.012734, y=-0.002040, theta=-2.013194
+[19:03:53.134] Odometry x=0.013053, y=-0.002340, theta=-2.041808
+[19:03:53.231] Odometry x=0.012848, y=-0.002407, theta=-2.055036
+[19:03:53.334] Odometry x=0.012812, y=-0.003671, theta=-2.075133
+[19:03:53.431] Odometry x=0.012815, y=-0.003675, theta=-2.094489
+[19:03:53.534] Odometry x=0.013023, y=-0.003912, theta=-2.118870
+[19:03:53.631] Odometry x=0.013076, y=-0.003965, theta=-2.134809
+[19:03:53.726] Odometry x=0.013136, y=-0.004042, theta=-2.154602
+[19:03:53.833] Odometry x=0.013188, y=-0.004123, theta=-2.171104
+[19:03:53.930] Odometry x=0.012887, y=-0.005014, theta=-2.198842
+[19:03:54.031] Odometry x=0.012882, y=-0.005036, theta=-2.222160
+[19:03:54.131] Odometry x=0.012881, y=-0.005038, theta=-2.238859
+[19:03:54.226] Odometry x=0.012881, y=-0.005039, theta=-2.256346
+[19:03:54.332] Odometry x=0.012910, y=-0.005085, theta=-2.278863
+[19:03:54.432] Odometry x=0.012609, y=-0.005084, theta=-2.295296
+[19:03:54.536] Odometry x=0.012549, y=-0.006042, theta=-2.325994
+[19:03:54.632] Odometry x=0.012478, y=-0.006188, theta=-2.336751
+[19:03:54.733] Odometry x=0.012664, y=-0.005981, theta=-2.362241
+[19:03:54.835] Odometry x=0.012083, y=-0.009130, theta=-2.380840
+[19:03:54.931] Odometry x=0.012084, y=-0.009157, theta=-2.401395
+[19:03:55.026] Odometry x=0.010170, y=-0.012687, theta=-2.426134
+[19:03:55.131] Odometry x=0.009932, y=-0.013095, theta=-2.441288
+[19:03:55.234] Odometry x=0.009926, y=-0.013179, theta=-2.459024
+[19:03:55.335] Odometry x=0.008940, y=-0.014067, theta=-2.480464
+[19:03:55.425] Odometry x=0.008955, y=-0.014154, theta=-2.502435
+[19:03:55.532] Odometry x=0.008929, y=-0.014190, theta=-2.519539
+[19:03:55.628] Odometry x=0.009107, y=-0.014691, theta=-2.536558
+[19:03:55.727] Odometry x=0.008473, y=-0.014609, theta=-2.561450
+[19:03:55.834] Odometry x=0.008448, y=-0.014656, theta=-2.581408
+[19:03:55.930] Odometry x=0.008504, y=-0.014871, theta=-2.607664
+[19:03:56.031] Odometry x=0.008514, y=-0.014904, theta=-2.628230
+[19:03:56.127] Odometry x=0.008498, y=-0.014898, theta=-2.644026
+[19:03:56.234] Odometry x=0.008660, y=-0.015495, theta=-2.665277
+[19:03:56.336] Odometry x=0.008834, y=-0.015391, theta=-2.674092
+[19:03:56.433] Odometry x=0.008803, y=-0.015431, theta=-2.710954
+[19:03:56.533] Odometry x=0.008780, y=-0.015329, theta=-2.722390
+[19:03:56.635] Odometry x=0.008781, y=-0.015351, theta=-2.737733
+[19:03:56.729] Odometry x=0.008777, y=-0.015355, theta=-2.763386
+[19:03:56.836] Odometry x=0.008776, y=-0.015351, theta=-2.784200
+[19:03:56.927] Odometry x=0.008822, y=-0.015319, theta=-2.801707
+[19:03:57.030] Odometry x=0.008791, y=-0.015302, theta=-2.824509
+[19:03:57.132] Odometry x=0.008785, y=-0.015290, theta=-2.839928
+[19:03:57.230] Odometry x=0.008830, y=-0.015827, theta=-2.860562
+[19:03:57.329] Odometry x=0.008738, y=-0.015895, theta=-2.881298
+[19:03:57.429] Odometry x=0.008739, y=-0.015897, theta=-2.902525
+[19:03:57.527] Odometry x=0.008733, y=-0.015907, theta=-2.917228
+[19:03:57.629] Odometry x=0.008718, y=-0.015918, theta=-2.943145
+[19:03:57.736] Odometry x=0.008713, y=-0.015920, theta=-2.964944
+[19:03:57.833] Odometry x=0.007364, y=-0.016168, theta=-2.982891
+[19:03:57.933] Odometry x=0.007335, y=-0.016174, theta=-2.998146
+[19:03:58.029] Odometry x=0.007346, y=-0.016186, theta=-3.024654
+[19:03:58.132] Odometry x=0.007419, y=-0.017356, theta=-3.039007
+[19:03:58.230] Odometry x=0.007430, y=-0.017456, theta=-3.059337
+[19:03:58.331] Odometry x=0.007551, y=-0.017429, theta=-3.078037
+[19:03:58.433] Odometry x=0.007552, y=-0.017453, theta=-3.096738
+[19:03:58.530] Odometry x=0.007567, y=-0.018106, theta=-3.118657
+[19:03:58.631] Odometry x=0.007568, y=-0.018106, theta=-3.137664
+[19:03:58.731] Odometry x=0.007570, y=-0.018102, theta=3.127204
+[19:03:58.826] Odometry x=0.007495, y=-0.017425, theta=3.104639
+[19:03:58.926] Odometry x=0.007501, y=-0.017425, theta=3.089735
+[19:03:59.028] Odometry x=0.007501, y=-0.017424, theta=3.067425
+[19:03:59.128] Odometry x=0.007502, y=-0.017425, theta=3.048360
+[19:03:59.224] Odometry x=0.007499, y=-0.017488, theta=3.027172
+[19:03:59.328] Odometry x=0.007504, y=-0.017553, theta=3.010471
+[19:03:59.435] Odometry x=0.007496, y=-0.017542, theta=2.991329
+[19:03:59.528] Odometry x=0.008968, y=-0.017968, theta=2.962129
+[19:03:59.629] Odometry x=0.008960, y=-0.018059, theta=2.942655
+[19:03:59.725] Odometry x=0.008926, y=-0.018060, theta=2.931529
+[19:03:59.833] Odometry x=0.008942, y=-0.018064, theta=2.908479
+[19:03:59.929] Odometry x=0.008928, y=-0.018184, theta=2.888073
+[19:04:00.025] Odometry x=0.008920, y=-0.018240, theta=2.869678
+[19:04:00.126] Odometry x=0.008974, y=-0.018269, theta=2.843394
+[19:04:00.231] Odometry x=0.009053, y=-0.018319, theta=2.827975
+[19:04:00.330] Odometry x=0.008876, y=-0.019114, theta=2.809267
+[19:04:00.428] Odometry x=0.008893, y=-0.019109, theta=2.784339
+[19:04:00.531] Odometry x=0.009001, y=-0.019189, theta=2.761568
+[19:04:00.632] Odometry x=0.009011, y=-0.019196, theta=2.739901
+[19:04:00.728] Odometry x=0.009014, y=-0.019204, theta=2.720543
+[19:04:00.835] Odometry x=0.008974, y=-0.019382, theta=2.706724
+[19:04:00.932] Odometry x=0.008849, y=-0.019886, theta=2.688520
+[19:04:01.031] Odometry x=0.008965, y=-0.019993, theta=2.667348
+[19:04:01.131] Odometry x=0.008965, y=-0.019992, theta=2.644108
+[19:04:01.228] Odometry x=0.008959, y=-0.020017, theta=2.627208
+[19:04:01.335] Odometry x=0.008941, y=-0.020082, theta=2.604776
+[19:04:01.436] Odometry x=0.008923, y=-0.020110, theta=2.587249
+[19:04:01.532] Odometry x=0.008963, y=-0.019989, theta=2.575068
+[19:04:01.634] Odometry x=0.008968, y=-0.019995, theta=2.551009
+[19:04:01.737] Odometry x=0.009010, y=-0.020033, theta=2.537524
+[19:04:01.833] Odometry x=0.008602, y=-0.019470, theta=2.514726
+[19:04:01.933] Odometry x=0.008673, y=-0.019627, theta=2.488872
+[19:04:02.032] Odometry x=0.008504, y=-0.019354, theta=2.471651
+[19:04:02.131] Odometry x=0.008467, y=-0.019444, theta=2.455800
+[19:04:02.228] Odometry x=0.008463, y=-0.019448, theta=2.434341
+[19:04:02.336] Odometry x=0.008491, y=-0.019426, theta=2.412975
+[19:04:02.436] Odometry x=0.008141, y=-0.020016, theta=2.391785
+[19:04:02.532] Odometry x=0.008128, y=-0.020043, theta=2.371354
+[19:04:02.637] Odometry x=0.008126, y=-0.020038, theta=2.350333
+[19:04:02.730] Odometry x=0.008055, y=-0.020178, theta=2.334459
+[19:04:02.834] Odometry x=0.007819, y=-0.021943, theta=2.313763
+[19:04:02.932] Odometry x=0.007909, y=-0.022144, theta=2.292213
+[19:04:03.027] Odometry x=0.007905, y=-0.022139, theta=2.275083
+[19:04:03.134] Odometry x=0.007509, y=-0.022709, theta=2.254945
+[19:04:03.230] Odometry x=0.007436, y=-0.022965, theta=2.241917
+[19:04:03.330] Odometry x=0.007229, y=-0.023300, theta=2.215787
+[19:04:03.431] Odometry x=0.007214, y=-0.023319, theta=2.196995
+[19:04:03.526] Odometry x=0.007153, y=-0.023402, theta=2.180305
+[19:04:03.627] Odometry x=0.007195, y=-0.023549, theta=2.158489
+[19:04:03.731] Odometry x=0.007050, y=-0.023255, theta=2.137535
+[19:04:03.835] Odometry x=0.006992, y=-0.023071, theta=2.117542
+[19:04:03.930] Odometry x=0.006981, y=-0.023039, theta=2.098960
+[19:04:04.031] Odometry x=0.006274, y=-0.020648, theta=2.077011
+[19:04:04.126] Odometry

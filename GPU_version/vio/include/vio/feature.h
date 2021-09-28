@@ -38,6 +38,8 @@ struct Feature
   int level;            //!< Image pyramid level where feature was extracted.
   std::shared_ptr<Point> point;         //!< Pointer to 3D point which corresponds to the feature.
   Vector2d grad;        //!< Dominant gradient direction for edglets, normalized.
+  float score=0.0;
+  uint8_t descriptor[64]={0}; //!< descriptor of the feature in the frame in which the feature was detected.
 
   Feature(std::shared_ptr<Frame> _frame, const Vector2d& _px, int _level) :
     type(CORNER),
@@ -66,6 +68,29 @@ struct Feature
     point(_point),
     grad(1.0,0.0)
   {}
+  Feature(std::shared_ptr<Frame> _frame, std::shared_ptr<Point> _point, const Vector2d& _px, const Vector3d& _f, const float _score ,int _level,uint8_t* _descriptor) :
+    type(CORNER),
+    frame(_frame),
+    px(_px),
+    f(_f),
+    level(_level),
+    point(_point),
+    score(_score),
+    grad(1.0,0.0)
+  {
+      memcpy(descriptor,_descriptor, sizeof(uint8_t)*64);
+  }
+  Feature(std::shared_ptr<Frame> _frame, const Vector2d& _px, const float _score ,int _level,uint8_t* _descriptor) :
+    type(CORNER),
+    frame(_frame),
+    px(_px),
+    f(frame->cam_->cam2world(px)),
+    level(_level),
+    score(_score),
+    grad(1.0,0.0)
+  {
+      memcpy(descriptor,_descriptor, sizeof(uint8_t)*64);
+  }
 };
 
 } // namespace vio

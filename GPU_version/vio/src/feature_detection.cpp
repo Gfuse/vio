@@ -17,6 +17,7 @@
 #include <vio/feature_detection.h>
 #include <vio/feature.h>
 #include <vio/vision.h>
+#include <vio/for_it.hpp>
 
 namespace vio {
 namespace feature_detection {
@@ -69,8 +70,7 @@ void FastDetector::detect(
     std::shared_ptr<Frame> frame,
     const ImgPyr& img_pyr,
     const double detection_threshold,
-    list<shared_ptr<Feature>>& fts,
-    cv::Mat* descriptors){
+    list<shared_ptr<Feature>>& fts){
   Corners corners(grid_n_cols_*grid_n_rows_, Corner(0,0,0.0,0,0.0f));
   std::vector<cv::KeyPoint> keypoints;
   fts.clear();
@@ -91,7 +91,7 @@ void FastDetector::detect(
     cl_int count[1]={0};
     gpu_fast_->read(0,2,1,count);
     cl_int2 fast_corners[350000]={0};
-    gpu_fast_->read(0,1,count[0],fast_corners);
+    gpu_fast_->read(0,1,350000,fast_corners);
     if(count[0]<1 ){
           ROS_ERROR("Can not communicate with GPU");
           exit(0);
@@ -110,19 +110,18 @@ void FastDetector::detect(
       const float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
       if(score > corners.at(k).score){
           corners.at(k) = Corner(fast_corners[i].x, fast_corners[i].y, score, L, 0.0f);
-          fts.push_back(make_shared<Feature>(frame, Vector2d(corners.at(k).x, corners.at(k).y)*scale, corners.at(k).level));
-          if(descriptors)keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 7));
+          keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 7.f,-1,score));
       }
     }
   }
-  if(fts.size()<1){
+  if(keypoints.size()<1){
       ROS_ERROR("GPU Driver crash try again!");
       assert(false);
   }
-  if(descriptors){
-      cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 500);
-      extractor->compute(frame->img(), keypoints, *descriptors);
-  }
+  cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 50);
+  cv::Mat descriptor;
+  extractor->compute(frame->img(), keypoints, descriptor);
+  for(auto&& p:_for(keypoints))fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));
   resetGrid();
 };
 

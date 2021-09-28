@@ -73,13 +73,11 @@ namespace vio {
             FILE* log_) {
         if(frame->id_<1)return;
         resetGrid();
-        cv::Mat descriptors_cur;
-        Features keypoints_cur;
-        cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 500);
-        cv::Ptr<cv::DescriptorMatcher> matcher = cv::DescriptorMatcher::create("BruteForce");
+        Features keypoints;
+        cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING2,false);
         feature_detection::FastDetector detector(
                 frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
-        detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints_cur,&descriptors_cur);
+        detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints);
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
         if (!last_frame->fts_.empty())
@@ -91,27 +89,35 @@ namespace vio {
         for (auto &&it_frame:_for(close_kfs)) {
             if (it_frame.index > options_.max_n_kfs)continue;
             std::vector<cv::KeyPoint> keypoints_kfs;
-            std::vector<cv::DMatch> matches;
-            cv::Mat descriptors_ref;
+            std::vector<cv::KeyPoint> keypoints_cur;
+            std::vector<cv::DMatch>  matches;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
-            for (auto &&it_ftr:it_frame.item.first->fts_) {
-                keypoints_kfs.push_back(cv::KeyPoint(it_ftr->px.x(), it_ftr->px.y(), 1));
+            cv::Mat ref_des=cv::Mat(it_frame.item.first->fts_.size(),64,CV_8UC1);
+            for (auto &&it_ftr:_for(it_frame.item.first->fts_)) {
+                keypoints_kfs.push_back(cv::KeyPoint(it_ftr.item->px.x(), it_ftr.item->px.y(), 7.f,it_ftr.item->score));
+                memcpy(ref_des.data+(it_ftr.index*64),it_ftr.item->descriptor,sizeof(uint8_t)*64);
             }
-            std::vector<cv::KeyPoint> keypoints_cu;
-            for (auto &&f:keypoints_cur) {
-                keypoints_cu.push_back(cv::KeyPoint(f->px.x(), f->px.y(), 1));
+            cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
+            for (auto &&f:_for(keypoints)) {
+                keypoints_cur.push_back(cv::KeyPoint(f.item->px.x(), f.item->px.y(), 7.f,f.item->score));
+                memcpy(cur_des.data+(f.index*64),f.item->descriptor,sizeof(uint8_t)*64);
             }
-            extractor->compute(it_frame.item.first->img_pyr_[0], keypoints_kfs, descriptors_ref);
-            matcher->match(descriptors_ref, descriptors_cur, matches);
-            cv::Mat imgMatch;
-            cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cu,matches, imgMatch);
+            matcher->match(ref_des, cur_des, matches);
+/*            cv::Mat imgMatch,key_point_ref,key_point_cur;
+            cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
+            cv::drawKeypoints(it_frame.item.first->img_pyr_[0],keypoints_kfs,key_point_ref);
+            cv::drawKeypoints(frame->img_pyr_[0],keypoints_cur,key_point_cur);
             cv::imshow("img",imgMatch);
+            cv::imshow("key_point_ref",key_point_ref);
+            cv::imshow("key_point_current",key_point_cur);
             cv::waitKey();
             exit(0);
+            std::cerr<<it_frame.item.first->fts_.size()<<","<<keypoints_kfs.size()<<'\n';*/
             for (auto &&f: _for(it_frame.item.first->fts_)) {
-                for (auto &&match:matches) {
+                for (auto &&match:matches.at(f.index)) {
                     if (match.queryIdx != f.index)continue;
                     if(keypoints_cur.size() < match.trainIdx)continue;
+                    if(match.distance > 30.0 )continue;
                     list<std::shared_ptr<Feature>>::iterator point=keypoints_cur.begin();
                     std::advance(point,match.trainIdx);
                     if(!(*point))continue;
@@ -126,14 +132,14 @@ namespace vio {
                         SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
                         Vector3d new_point=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
                                                                         frame->c2f(px),f.item->f);
-                        if(new_point.z()<0.0)break;
+                        if(new_point.z()<0.0)continue;
                         frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
                                                                         std::make_shared<Point>(it_frame.item.first->se3()*new_point,f.item),
                                                                                 px,f.item->f,(*point)->level));
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
-                        break;
+                        //break;
                     }else{
                         if (f.item->point->last_frame_overlap_id_ == frame->id_)continue;
                         f.item->point->last_frame_overlap_id_ = frame->id_;
@@ -146,28 +152,19 @@ namespace vio {
                                     (int) (*point)->px.y());
                         grid_.cells.at(k)->push_back(Candidate(f.item->point, px));
                         overlap_kfs.back().second++;
-                        break;
+                        //break;
                     }
                 }
             }
         }
         {
-            int cl = 0;
             for (auto&& cell : grid_.cells) {
-#if VIO_DEBUG
-                if(cell->size()>=1) {
-                    fprintf(log_, "[%s] %d-%d/%d : \n", vio::time_in_HH_MM_SS_MMM().c_str(), frame->id_, ++cl,
-                            grid_.cells.size());
-                }
-#endif
-                //std::cerr<<frame->id_<<"-"<<++cl<<"/"<<grid_.cells.size()<<" : ";
                 if (reprojectCell(*cell, frame, log_))
                     ++n_matches_;
                 if (n_matches_ > (size_t) Config::maxFts())
                     break;
             }
         }
-        //std::exit(154);
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +175,6 @@ namespace vio {
     }
 
     bool Reprojector::reprojectCell(Cell &cell, FramePtr frame, FILE* log_) {
-        //cv::Mat image = frame->img();
         if(cell.size()<1){
             return false;
         }
@@ -201,7 +197,7 @@ namespace vio {
             //cv::circle(image, pointb,1,(255, 0, 0), 1);
             Vector2d uvb(it->px.x(), it->px.y());
 #if VIO_DEBUG
-            fprintf(log_,"befor : %f  %f  after : ", it->px.x(), it->px.y());
+            fprintf(log_,"before : %f  %f  after : ", it->px.x(), it->px.y());
 #endif
             //std::cerr<<"before : "<<it->px.x()<<" "<<it->px.y()<<" after : ";
             bool res = matcher_.findMatchDirect(*it->pt, *frame, it->px);

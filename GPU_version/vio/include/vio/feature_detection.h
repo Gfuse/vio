@@ -60,8 +60,7 @@ public:
           std::shared_ptr<Frame> frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
-      Features& fts,
-      cv::Mat* descriptors= nullptr) = 0;
+      Features& fts) = 0;
 
   /// Flag the grid cell as occupied
   void setGridOccpuancy(const Vector2d& px);
@@ -104,8 +103,7 @@ public:
       std::shared_ptr<Frame> frame,
       const ImgPyr& img_pyr,
       const double detection_threshold,
-      list<shared_ptr<Feature>>& fts,
-      cv::Mat* descriptors= nullptr);
+      list<shared_ptr<Feature>>& fts);
   opencl* gpu_fast_;
 };
 

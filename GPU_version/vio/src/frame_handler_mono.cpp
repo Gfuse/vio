@@ -168,7 +168,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 #endif
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
-    ba_glob_->new_key_frame();
+  ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
 

@@ -31,7 +31,6 @@ FIND_PACKAGE(OpenCL REQUIRED)
 FIND_PACKAGE(G2O REQUIRED)
 #FIND_PACKAGE(SuiteSparse)
 
-
 FIND_PACKAGE(catkin REQUIRED COMPONENTS roscpp roslib cmake_modules image_transport cv_bridge tf geometry_msgs message_generation)
 
 add_service_files(FILES
