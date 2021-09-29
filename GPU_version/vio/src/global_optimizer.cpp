@@ -33,6 +33,7 @@ namespace vio {
 
     BA_Glob::BA_Glob(Map& map) :map_(map),thread_(NULL)
     {
+        setupG2o();
 #if VIO_DEBUG
         log_ =fopen((std::string(PROJECT_DIR)+"/depth_filter_log.txt").c_str(),"w+");
         assert(log_);
@@ -76,14 +77,14 @@ namespace vio {
                     vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
             new_keyframe_=false;
-            std::cerr<<"here\n";
+            std::cerr<<"here\t";
             // init g2o
-            setupG2o();
             list<EdgeContainerSE3> edges;
             list< pair<FramePtr,std::shared_ptr<Feature>> > incorrect_edges;
             // Go through all Keyframes
             size_t v_id = 0;
             point_mut_.lock();
+            std::cerr<<"78\t";
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end(); ++it_kf)
             {
@@ -125,6 +126,7 @@ namespace vio {
                     }
                 }
             }
+            std::cerr<<"129\t";
 
             // Optimization
             double init_error=0.0, final_error=0.0;
@@ -149,6 +151,7 @@ namespace vio {
                     mp->v_pt_ = NULL;
                 }
             }
+            std::cerr<<"154\t";
 
             // Remove Measurements with too large reprojection error
             for(list< pair<FramePtr,std::shared_ptr<Feature>> >::iterator it=incorrect_edges.begin();
@@ -162,7 +165,8 @@ namespace vio {
                     map_.removePtFrameRef(it->frame, it->feature);
                 }
             }
-            //Levenberg_.reset();
+            std::cerr<<"168\n";
+            optimizer_->clear();
             point_mut_.unlock();
         }
     }

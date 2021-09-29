@@ -147,7 +147,7 @@ bool Matcher::findMatchDirect(
   if(ref_ftr_->frame== nullptr)return false;
   if(ref_ftr_->frame->cam_== nullptr)return false;
   Vector2i pxi=ref_ftr_->px.cast<int>();
-  if(ref_ftr_->level==NULL){
+  if(ref_ftr_->level==NULL || ref_ftr_->level > 5){
       if(!ref_ftr_->frame->cam_->isInFrame(pxi, 6))return false;
       ref_ftr_->level=0;
   }else {
@@ -156,12 +156,15 @@ bool Matcher::findMatchDirect(
           return false;
   }
   if(ref_ftr_->frame->img_pyr_.empty())return false;
+  if(cur_frame.img_pyr_.empty())return false;
   if(ref_ftr_->frame->img_pyr_[ref_ftr_->level].empty())return false;
+  if(cur_frame.img_pyr_[ref_ftr_->level].empty())return false;
   // warp affine
   warp::getWarpMatrixAffine(
       *ref_ftr_->frame->cam_, *(cur_frame.cam_), ref_ftr_->px, ref_ftr_->f,
       (ref_ftr_->frame->se3().inverse()*pt.pos_).norm(),/*(Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),*/
       cur_frame.se3().inverse() * ref_ftr_->frame->se3(), ref_ftr_->level, A_cur_ref_);
+
   //search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
   if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
                    ref_ftr_->level, ref_ftr_->level, halfpatch_size_+1, patch_with_border_))return false;

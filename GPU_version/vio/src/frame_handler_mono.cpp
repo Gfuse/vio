@@ -260,7 +260,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  std::cerr<<"BA run\n";
+  //std::cerr<<"BA run\n";
   ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
