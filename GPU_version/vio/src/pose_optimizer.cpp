@@ -125,14 +125,15 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e /= (1<<(*it)->level);
     chi2_vec_final.push_back(e.norm());
-    if(e.norm() > 0.5/* 2.0 / frame->cam_->errorMultiplier2()*/)
+    if(e.norm() >  2.0 / frame->cam_->errorMultiplier2())
     {
       // we don't need to delete a reference in the point since it was not created yet
+      (*it)->point.reset();
       ++n_deleted_refs;
 
     }
   }
-    num_obs -= n_deleted_refs;
+  num_obs -= n_deleted_refs;
 #if VIO_DEBUG
     error_init=0.0;
     error_final=0.0;
@@ -140,7 +141,7 @@ void optimizeGaussNewton(
         error_init /=chi2_vec_init.size();
     if(!chi2_vec_final.empty())for(auto&& i:chi2_vec_final)error_final+=i;
         error_final /= chi2_vec_final.size();
-    fprintf(log,"[%s] n deleted obs = %d \t n obs with reprojection error less than 0.5 px =%d \t error init =%f \t error end=%f\n",
+    fprintf(log,"[%s] n deleted obs = %d \t n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =%d \t error init =%f \t error end=%f\n",
             vio::time_in_HH_MM_SS_MMM().c_str(),n_deleted_refs,num_obs,error_init,error_final);
 #endif
 }

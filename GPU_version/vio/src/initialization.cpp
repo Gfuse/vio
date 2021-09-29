@@ -84,23 +84,25 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       return NO_KEYFRAME;
   }
     frame_cur->T_f_w_ = T_cur_from_ref_;
-  // For each inlier create 3D point and add feature in both frames
-  for(auto&& id:inliers_){
-      Features::iterator first=features_ref_.begin();
-      std::advance(first,id);
-      if(frame_cur->cam_->isInFrame(Vector2d(px_cur_.at(id).x,px_cur_.at(id).y).cast<int>(), 10) &&
-      frame_ref_->cam_->isInFrame((*first)->px.cast<int>(), 10)){
-          Vector3d pos = xyz_in_cur_.at(id);//frame_cur->se3() * (xyz_in_cur_.at(id)/* *scale */);
+  // For each inlier create 3D point and add feature in both frames, and add all feature into the refrence frame.
+  for(auto&& f:_for(features_ref_)){
+      if(std::find(inliers_.begin(),inliers_.end(),f.index)!=inliers_.end()){
+          if(frame_cur->cam_->isInFrame(Vector2d(px_cur_.at(f.index).x,px_cur_.at(f.index).y).cast<int>(), 10) &&
+             frame_ref_->cam_->isInFrame(f.item->px.cast<int>(), 10)){
+              Vector3d pos = xyz_in_cur_.at(f.index);
 
-          std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
-          std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, Vector2d(px_cur_.at(id).x,px_cur_.at(id).y),
-                                                                     frame_cur->c2f(px_cur_.at(id).x,px_cur_.at(id).y), (*first)->score,(*first)->level,(*first)->descriptor);
-          frame_cur->addFeature(ftr_cur);
-          new_point->addFrameRef(ftr_cur);
+              std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
+              std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, Vector2d(px_cur_.at(f.index).x,px_cur_.at(f.index).y),
+                                                                         frame_cur->c2f(px_cur_.at(f.index).x,px_cur_.at(f.index).y), f.item->score,f.item->level,f.item->descriptor);
+              frame_cur->addFeature(ftr_cur);
+              new_point->addFrameRef(ftr_cur);
 
-          std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, (*first)->px, (*first)->f, (*first)->score,(*first)->level,(*first)->descriptor);
-          frame_ref_->addFeature(ftr_ref);
-          new_point->addFrameRef(ftr_ref);
+              std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, f.item->px, f.item->f, f.item->score,f.item->level,f.item->descriptor);
+              frame_ref_->addFeature(ftr_ref);
+              new_point->addFrameRef(ftr_ref);
+          }
+      }else{
+          frame_ref_->addFeature(f.item);
       }
   }
 #if VIO_DEBUG

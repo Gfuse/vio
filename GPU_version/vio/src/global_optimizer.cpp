@@ -76,6 +76,7 @@ namespace vio {
                     vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
             new_keyframe_=false;
+            std::cerr<<"here\n";
             // init g2o
             setupG2o();
             list<EdgeContainerSE3> edges;
@@ -161,7 +162,7 @@ namespace vio {
                     map_.removePtFrameRef(it->frame, it->feature);
                 }
             }
-            Levenberg_.reset();
+            //Levenberg_.reset();
             point_mut_.unlock();
         }
     }

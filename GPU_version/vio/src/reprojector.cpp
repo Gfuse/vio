@@ -94,6 +94,7 @@ namespace vio {
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
         overlap_kfs.reserve(options_.max_n_kfs);
+        std::vector<int> added_keypoints;
         for (auto &&it_frame:_for(close_kfs)) {
             if (it_frame.index > options_.max_n_kfs)continue;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
@@ -117,18 +118,19 @@ namespace vio {
                         Vector2d px((int) (*it_cur)->px.x(),
                                     (int) (*it_cur)->px.y());
                         SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
-                        Vector3d new_point=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
+                        Vector3d pos=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
                                                                         frame->c2f(px),(*it_ref)->f);
-                        if(new_point.z()<0.0)continue;
-                        frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
-                                                                        std::make_shared<Point>(it_frame.item.first->se3()*new_point,(*it_ref)),
-                                                                        px,(*it_ref)->f,(*it_cur)->level));
+                        if(pos.z()<0.0)continue;
+                        std::shared_ptr<Point> new_point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
+                        frame->addFeature(std::make_shared<Feature>(frame,
+                                                                    new_point,
+                                                                    px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
+                        new_point->addFrameRef(frame->fts_.back());
+                        added_keypoints.push_back(match.trainIdx);
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
-                        //break;
                     }else{
-                        if ((*it_ref)->point->last_frame_overlap_id_ == frame->id_)continue;
                         (*it_ref)->point->last_frame_overlap_id_ = frame->id_;
                         const int k = static_cast<int>((*it_cur)->px.y()/ grid_.cell_size) *
                                       grid_.grid_n_cols
@@ -137,18 +139,20 @@ namespace vio {
                         assert(grid_.cells.at(k) != nullptr);
                         Vector2d px((int) (*it_cur)->px.x(),
                                     (int) (*it_cur)->px.y());
+                        frame->addFeature(std::make_shared<Feature>(frame,
+                                                                    (*it_ref)->point,
+                                                                    px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
+                        added_keypoints.push_back(match.trainIdx);
                         grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
                         overlap_kfs.back().second++;
-                        //break;
                     }
                 }
-                cv::Mat imgMatch,key_point_ref,key_point_cur;
+/*                cv::Mat imgMatch,key_point_ref,key_point_cur;
                 cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
                 cv::imshow("img",imgMatch);
-                cv::waitKey();
+                cv::waitKey();*/
                 ++it_ref;
             }
-            //exit(0);
         }
         {
             for (auto&& cell : grid_.cells) {
@@ -185,15 +189,11 @@ namespace vio {
                 it = cell.erase(it);
                 continue;
             }
-///TODO check point candidate handling
             bool res = matcher_.findMatchDirect(*it->pt, *frame, it->px);
             if(!res)
             {
                 it->pt->n_failed_reproj_++;
-/*                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)
-                    map_.safeDeletePoint(it->pt);
-                if(it->pt->type_ == Point::TYPE_CANDIDATE  && it->pt->n_failed_reproj_ > 30)
-                    map_.point_candidates_.deleteCandidatePoint(it->pt);*/
+                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)it->pt.reset();
                 it = cell.erase(it);
                 continue;
             }
@@ -202,24 +202,6 @@ namespace vio {
             if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
                 it->pt->type_ = Point::TYPE_GOOD;
 
-            std::shared_ptr<Feature> new_feature = std::make_shared<Feature>(frame, it->px, matcher_.search_level_);
-            frame->addFeature(new_feature);
-            // Here we add a reference in the feature to the 3D point, the other way
-            // round is only done if this frame is selected as keyframe.
-            new_feature->point = it->pt;
-            if(matcher_.ref_ftr_== nullptr){
-                cell.erase(it);
-                return true;
-            }
-            assert(matcher_.ref_ftr_!= nullptr);
-            if(matcher_.ref_ftr_->type == Feature::EDGELET)
-            {
-                new_feature->type = Feature::EDGELET;
-                new_feature->grad = matcher_.A_cur_ref_*matcher_.ref_ftr_->grad;
-                new_feature->grad.normalize();
-            }
-            // If the keyframe is selected and we reproject the rest, we don't have to
-            // check this point anymore.
             cell.erase(it);
 
             // Maximum one point per cell.

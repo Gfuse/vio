@@ -163,9 +163,9 @@ bool align2D(
     return align2D_NEON(cur_img, ref_patch_with_border, ref_patch, n_iter, cur_px_estimate);
 #endif
 
-  const int halfpatch_size_ = 4;
-  const int patch_size_ = 8;
-  const int patch_area_ = 64;
+  const int halfpatch_size_ = 8;
+  const int patch_size_ = 16;
+  const int patch_area_ = 256;
   bool converged=false;
 
   // compute derivative of template and prepare inverse compositional
@@ -202,7 +202,7 @@ bool align2D(
   bool sign=true;// +
 
   // termination condition
-  const float min_update_squared = 0.01;//0.001
+  const float min_update_squared = 1.0;//0.001
   const int cur_step = cur_img.step.p[0];
 //  float chi2 = 0;
   Vector3f update; update.setZero();
@@ -337,7 +337,7 @@ bool align2D_SSE2(
   float v = cur_px_estimate.y();
 
   // termination condition
-  const float min_update_squared = 0.01;
+  const float min_update_squared = 0.001;
   const int cur_step = cur_img.step.p[0];
   const float Dinv = 1.0f/(A11*A22 - A12*A12); // we are missing an extra factor 16
   float chi2 = 0;
@@ -502,7 +502,7 @@ bool align2D_NEON (
   float v = cur_px_estimate.y();
 
   // termination condition
-  const float min_update_squared = 0.01;
+  const float min_update_squared = 0.001;
   const int cur_step = cur_img.step.p[0];
   Vector3f update;
   Vector3f Jres;

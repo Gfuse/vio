@@ -80,6 +80,18 @@ struct Feature
   {
       memcpy(descriptor,_descriptor, sizeof(uint8_t)*64);
   }
+  Feature(std::shared_ptr<Frame> _frame, std::shared_ptr<Point> _point, const Vector2d& _px, const float _score ,int _level,uint8_t* _descriptor) :
+            type(CORNER),
+            frame(_frame),
+            px(_px),
+            f(frame->cam_->cam2world(px)),
+            level(_level),
+            point(_point),
+            score(_score),
+            grad(1.0,0.0)
+  {
+        memcpy(descriptor,_descriptor, sizeof(uint8_t)*64);
+  }
   Feature(std::shared_ptr<Frame> _frame, const Vector2d& _px, const float _score ,int _level,uint8_t* _descriptor) :
     type(CORNER),
     frame(_frame),

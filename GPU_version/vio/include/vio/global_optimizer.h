@@ -56,6 +56,7 @@ public:
       boost::unique_lock< boost::mutex > lk( mtx_);
       new_keyframe_=true;
       cond_.notify_one();
+      std::cerr<<"new_key_frame\n";
 #if VIO_DEBUG
       fprintf(log_,"[%s] New key frame \n",
               vio::time_in_HH_MM_SS_MMM().c_str());

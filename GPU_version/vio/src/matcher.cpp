@@ -162,12 +162,12 @@ bool Matcher::findMatchDirect(
       *ref_ftr_->frame->cam_, *(cur_frame.cam_), ref_ftr_->px, ref_ftr_->f,
       (ref_ftr_->frame->se3().inverse()*pt.pos_).norm(),/*(Vector3d(ref_ftr_->frame->pos()(0),0.0,ref_ftr_->frame->pos()(1)) - pt.pos_).norm(),*/
       cur_frame.se3().inverse() * ref_ftr_->frame->se3(), ref_ftr_->level, A_cur_ref_);
-  search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
+  //search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
   if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
-                   ref_ftr_->level, search_level_, halfpatch_size_+1, patch_with_border_))return false;
+                   ref_ftr_->level, ref_ftr_->level, halfpatch_size_+1, patch_with_border_))return false;
   createPatchFromPatchWithBorder();
   // px_cur should be set
-  Vector2d px_scaled(px_cur/(1<<search_level_));
+  Vector2d px_scaled(px_cur);
 
   bool success = false;
   if(ref_ftr_->type == Feature::EDGELET)
@@ -175,18 +175,18 @@ bool Matcher::findMatchDirect(
     Vector2d dir_cur(A_cur_ref_*ref_ftr_->grad);
     dir_cur.normalize();
     success = feature_alignment::align1D(
-          cur_frame.img_pyr_[search_level_], dir_cur.cast<float>(),
+          cur_frame.img_pyr_[ref_ftr_->level], dir_cur.cast<float>(),
           patch_with_border_, patch_, options_.align_max_iter, px_scaled, h_inv_);
   }
   else
   {
     success = feature_alignment::align2D(
-      cur_frame.img_pyr_[search_level_], patch_with_border_, patch_,
+      cur_frame.img_pyr_[ref_ftr_->level], patch_with_border_, patch_,
       options_.align_max_iter, px_scaled);
   }
-  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[search_level_],ref_ftr_->px,
-        px_cur,px_scaled * (1<<search_level_),success,patch_,patch_with_border_);
-  px_cur = px_scaled * (1<<search_level_);
+/*  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[ref_ftr_->level],ref_ftr_->px,
+        px_cur,px_scaled ,success,patch_,patch_with_border_);*/
+  px_cur = px_scaled;
   return success;
 }
 
