@@ -118,7 +118,7 @@ void FastDetector::detect(
       ROS_ERROR("GPU Driver crash try again!");
       assert(false);
   }
-  cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 50);
+  cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 4);
   cv::Mat descriptor;
   extractor->compute(frame->img(), keypoints, descriptor);
   for(auto&& p:_for(keypoints))fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));

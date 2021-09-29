@@ -78,6 +78,14 @@ namespace vio {
         feature_detection::FastDetector detector(
                 frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
         detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints);
+        std::vector<cv::KeyPoint> keypoints_cur;
+        list<std::shared_ptr<Feature>>::iterator it_cur=keypoints.begin();
+        cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
+        for (int i=0;i<keypoints.size() && it_cur !=keypoints.end();++i) {
+            keypoints_cur.push_back(cv::KeyPoint((*it_cur)->px.x(), (*it_cur)->px.y(), 7.f,(*it_cur)->score));
+            memcpy(cur_des.data+(i*64),(*it_cur)->descriptor,sizeof(uint8_t)*64);
+            ++it_cur;
+        }
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
         if (!last_frame->fts_.empty())
@@ -88,84 +96,59 @@ namespace vio {
         overlap_kfs.reserve(options_.max_n_kfs);
         for (auto &&it_frame:_for(close_kfs)) {
             if (it_frame.index > options_.max_n_kfs)continue;
-            std::vector<cv::KeyPoint> keypoints_kfs;
-            std::vector<cv::KeyPoint> keypoints_cur;
-            std::vector<cv::DMatch>  matches;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
-            cv::Mat ref_des=cv::Mat(it_frame.item.first->fts_.size(),64,CV_8UC1);
-/*            for (auto &&it_ftr:_for(it_frame.item.first->fts_)) {
-                keypoints_kfs.push_back(cv::KeyPoint(it_ftr.item->px.x(), it_ftr.item->px.y(), 7.f,it_ftr.item->score));
-                memcpy(ref_des.data+(it_ftr.index*64),it_ftr.item->descriptor,sizeof(uint8_t)*64);
-            }
-            cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
-            for (auto &&f:_for(keypoints)) {
-                keypoints_cur.push_back(cv::KeyPoint(f.item->px.x(), f.item->px.y(), 7.f,f.item->score));
-                memcpy(cur_des.data+(f.index*64),f.item->descriptor,sizeof(uint8_t)*64);
-            }*/
             list<std::shared_ptr<Feature>>::iterator it_ref=it_frame.item.first->fts_.begin();
             for (int i=0;i<it_frame.item.first->fts_.size() && it_ref !=it_frame.item.first->fts_.end();++i) {
+                std::vector<cv::KeyPoint> keypoints_kfs;
+                std::vector<std::vector<cv::DMatch>>  matches;
                 keypoints_kfs.push_back(cv::KeyPoint((*it_ref)->px.x(), (*it_ref)->px.y(), 7.f,(*it_ref)->score));
-                memcpy(ref_des.data+(i*64),(*it_ref)->descriptor,sizeof(uint8_t)*64);
-                ++it_ref;
-            }
-            list<std::shared_ptr<Feature>>::iterator it_cur=keypoints.begin();
-            cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
-            for (int i=0;i<keypoints.size() && it_cur !=keypoints.end();++i) {
-                keypoints_cur.push_back(cv::KeyPoint((*it_cur)->px.x(), (*it_cur)->px.y(), 7.f,(*it_cur)->score));
-                memcpy(cur_des.data+(i*64),(*it_cur)->descriptor,sizeof(uint8_t)*64);
-                ++it_cur;
-            }
-            matcher->match(ref_des, cur_des, matches);
-/*            cv::Mat imgMatch,key_point_ref,key_point_cur;
-            cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
-            cv::drawKeypoints(it_frame.item.first->img_pyr_[0],keypoints_kfs,key_point_ref);
-            cv::drawKeypoints(frame->img_pyr_[0],keypoints_cur,key_point_cur);
-            cv::imshow("img",imgMatch);
-            cv::imshow("key_point_ref",key_point_ref);
-            cv::imshow("key_point_current",key_point_cur);
-            cv::waitKey();
-            exit(0);*/
-            for (auto &&m: matches) {
-                it_cur=keypoints.begin();
-                it_ref=it_frame.item.first->fts_.begin();
-                std::advance(it_ref,m.queryIdx);
-                std::advance(it_cur,m.trainIdx);
-                if(!(*it_ref))continue;
-                if(!(*it_cur))continue;
-                if ((*it_ref)->point == NULL){
-                    const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
-                            grid_.grid_n_cols
-                            + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
-                    if(k>grid_.cells.size()-1)continue;
-                    assert(grid_.cells.at(k) != nullptr);
-                    Vector2d px((int) (*it_cur)->px.x(),
-                                (int) (*it_cur)->px.y());
-                    SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
-                    Vector3d new_point=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
-                                                                        frame->c2f(px),(*it_ref)->f);
-                    if(new_point.z()<0.0)continue;
-                    frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
-                                                                        std::make_shared<Point>(it_frame.item.first->se3()*new_point,(*it_ref)),
-                                                                                px,(*it_ref)->f,(*it_cur)->level));
-                    frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
-                    grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
-                    overlap_kfs.back().second++;
-                        //break;
-                }else{
-                    if ((*it_ref)->point->last_frame_overlap_id_ == frame->id_)continue;
-                    (*it_ref)->point->last_frame_overlap_id_ = frame->id_;
-                    const int k = static_cast<int>((*it_cur)->px.y()/ grid_.cell_size) *
+                cv::Mat ref_des=cv::Mat(1,64,CV_8UC1,(*it_ref)->descriptor);
+                matcher->knnMatch(ref_des, cur_des, matches,1);
+                for(auto&& match:matches.back()){
+                    it_cur=keypoints.begin();
+                    std::advance(it_cur,match.trainIdx);
+                    if(!(*it_cur))continue;
+                    if ((*it_ref)->point == NULL){
+                        const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
                                       grid_.grid_n_cols
                                       + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
-                    if(k>grid_.cells.size()-1)continue;
-                    assert(grid_.cells.at(k) != nullptr);
-                    Vector2d px((int) (*it_cur)->px.x(),
+                        if(k>grid_.cells.size()-1)continue;
+                        assert(grid_.cells.at(k) != nullptr);
+                        Vector2d px((int) (*it_cur)->px.x(),
                                     (int) (*it_cur)->px.y());
-                    grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
-                    overlap_kfs.back().second++;
+                        SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
+                        Vector3d new_point=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
+                                                                        frame->c2f(px),(*it_ref)->f);
+                        if(new_point.z()<0.0)continue;
+                        frame->fts_.push_back(std::make_shared<Feature>(it_frame.item.first,
+                                                                        std::make_shared<Point>(it_frame.item.first->se3()*new_point,(*it_ref)),
+                                                                        px,(*it_ref)->f,(*it_cur)->level));
+                        frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
+                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
+                        overlap_kfs.back().second++;
                         //break;
+                    }else{
+                        if ((*it_ref)->point->last_frame_overlap_id_ == frame->id_)continue;
+                        (*it_ref)->point->last_frame_overlap_id_ = frame->id_;
+                        const int k = static_cast<int>((*it_cur)->px.y()/ grid_.cell_size) *
+                                      grid_.grid_n_cols
+                                      + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
+                        if(k>grid_.cells.size()-1)continue;
+                        assert(grid_.cells.at(k) != nullptr);
+                        Vector2d px((int) (*it_cur)->px.x(),
+                                    (int) (*it_cur)->px.y());
+                        grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
+                        overlap_kfs.back().second++;
+                        //break;
+                    }
                 }
+                cv::Mat imgMatch,key_point_ref,key_point_cur;
+                cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
+                cv::imshow("img",imgMatch);
+                cv::waitKey();
+                ++it_ref;
             }
+            //exit(0);
         }
         {
             for (auto&& cell : grid_.cells) {

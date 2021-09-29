@@ -184,7 +184,8 @@ bool Matcher::findMatchDirect(
       cur_frame.img_pyr_[search_level_], patch_with_border_, patch_,
       options_.align_max_iter, px_scaled);
   }
-  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[search_level_],ref_ftr_->px,px_cur,px_scaled * (1<<search_level_),success);
+  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[search_level_],ref_ftr_->px,
+        px_cur,px_scaled * (1<<search_level_),success,patch_,patch_with_border_);
   px_cur = px_scaled * (1<<search_level_);
   return success;
 }

@@ -66,8 +66,8 @@ class Matcher
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-  static const int halfpatch_size_ = 4;
-  static const int patch_size_ = 8;
+  static const int halfpatch_size_ = 8;
+  static const int patch_size_ = 16;
 
   typedef vk::patch_score::ZMSSD<halfpatch_size_> PatchScore;
 
@@ -124,8 +124,10 @@ public:
 
   void createPatchFromPatchWithBorder();
   uint i=0;
-  void debug(cv::Mat ref,cv::Mat cur, Vector2d ref_px,Vector2d cur_px_in,Vector2d cur_px_out,bool res){
-      cv::Mat Ref,Cur;
+  void debug(cv::Mat ref,cv::Mat cur, Vector2d ref_px,Vector2d cur_px_in,Vector2d cur_px_out,bool res,uint8_t* patch,uint8_t* patch_border){
+      cv::Mat Ref,Cur,Patch,Patch_b;
+      cv::cvtColor(cv::Mat(patch_size_,patch_size_,CV_8UC1,patch),Patch,cv::COLOR_GRAY2RGB);
+      cv::cvtColor(cv::Mat(patch_size_+2,patch_size_+2,CV_8UC1,patch_border),Patch_b,cv::COLOR_GRAY2RGB);
       cv::cvtColor(cur,Cur,cv::COLOR_GRAY2RGB);
       cv::cvtColor(ref,Ref,cv::COLOR_GRAY2RGB);
       cv::circle(Ref, cv::Point(ref_px.x(),ref_px.y() ), 2, cv::Scalar(0, 0,255),2);
@@ -134,6 +136,8 @@ public:
       cv::putText(Cur,res? "Accept": "reject",cv::Point(10,10),cv::FONT_HERSHEY_COMPLEX_SMALL,1.0,cv::Scalar(0,255,0),1,cv:: LINE_AA);
       cv::imwrite(std::string(PROJECT_DIR)+"/Ref"+std::to_string(i)+".png",Ref);
       cv::imwrite(std::string(PROJECT_DIR)+"/Cur"+std::to_string(i)+".png",Cur);
+      cv::imwrite(std::string(PROJECT_DIR)+"/patch"+std::to_string(i)+".png",Patch);
+      cv::imwrite(std::string(PROJECT_DIR)+"/patch_b"+std::to_string(i)+".png",Patch_b);
       ++i;
   }
 };
