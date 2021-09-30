@@ -167,7 +167,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
                        vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
 #endif
   //std::cerr<<"run BA\n";
-  //ba_glob_->new_key_frame();
+  ba_glob_->new_key_frame();
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
   return RESULT_IS_KEYFRAME;
@@ -217,10 +217,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             new_frame_->T_f_w_.se2().translation().y()-init_f.second.se2().translation().y(),
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
-/*    fclose(log_);
-    exit(0);*/
-    if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.5 ||
-       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.25*M_PI_2 || sfba_n_edges_final<10){
+    if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.2 ||
+       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.02 || sfba_n_edges_final<10){
         new_frame_=last_frame_;
         return RESULT_FAILURE;
     }
@@ -238,7 +236,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   {
         return RESULT_NO_KEYFRAME;
   }
-    std::cerr<<"241\n";
   double depth_mean=0.0, depth_min=0.0;
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
   new_frame_->setKeyframe();
@@ -260,8 +257,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  //std::cerr<<"BA run\n";
-  //ba_glob_->new_key_frame();
+  std::cerr<<"BA run\n";
+  ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
 

@@ -184,7 +184,7 @@ void Point::optimize(const size_t n_iter)
       break;
   }
 
-    for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
+/*    for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
             Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * (*it)->point->pos_));
             //e /= (1 << (*it)->level);
 //            std::cerr<<"error - point.h : "<<e.norm()<<std::endl;
@@ -193,7 +193,7 @@ void Point::optimize(const size_t n_iter)
                 (*it)->point->n_failed_reproj_++;
 //            } else
 //                it++;
-    }
+    }*/
 
 }
 

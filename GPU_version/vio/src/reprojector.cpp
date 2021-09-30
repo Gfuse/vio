@@ -130,30 +130,15 @@ namespace vio {
                 std::vector<std::vector<cv::DMatch>>  matches;
                 keypoints_kfs.push_back(cv::KeyPoint((*it_ref)->px.x(), (*it_ref)->px.y(), 7.f,(*it_ref)->score));
 
-
-//                std::cerr<<"135"<<std::endl;
                 cv::Mat ref_des=cv::Mat(1,64,CV_8UC1,(*it_ref)->descriptor);
-//                std::cerr<<"136"<<std::endl;
-                //std::cerr<<maskup.size<<" "<<maskdown.size<<" "<<cur_des.size<<std::endl;
-//                cv::Mat mup, mdown;
-//                cv::cvtColor(maskup, mup, cv::COLOR_GRAY2RGB);
-//                cv::imwrite("/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/maskup.png", mup);
-//                cv::cvtColor(maskdown, mdown, cv::COLOR_GRAY2RGB);
-//                cv::imwrite("/root/Projects/ROS_p_33_dev/src/p_33_vio/GPU_version/vio/maskdown.png", mdown);
-//                std::cerr<<"137"<<std::endl;
+
                 if ((*it_ref)->px.y() < frame->img().rows/2) {
-                    std::cerr<<"if"<<std::endl;
                     matcher->knnMatch(ref_des, cur_des, matches, 1, cv::InputArray(maskup));
                 }
                 else{
-                    std::cerr<<"else"<<std::endl;
                     matcher->knnMatch(ref_des, cur_des, matches, 1, cv::InputArray(maskdown));
                 }
-//                std::cerr<<"144"<<std::endl;
                 //matcher->knnMatch(ref_des, cur_des, matches, 1);
-
-
-
 
                 for(auto&& match:matches.back()){
                     it_cur=keypoints.begin();
@@ -204,6 +189,7 @@ namespace vio {
                 ++it_ref;
             }
         }
+        //exit(0);
         {
             for (auto&& cell : grid_.cells) {
                 if (reprojectCell(*cell, frame, log_))

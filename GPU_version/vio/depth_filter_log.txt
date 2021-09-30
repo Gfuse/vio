@@ -1,2 +1,6 @@
-[15:02:36.165] New key frame 
-[15:02:36.165] BA loop 
+[17:12:03.647] New key frame 
+[17:12:03.647] BA loop 
+[17:12:44.004] New key frame 
+[17:12:44.004] BA loop 
+[17:12:44.192] New key frame 
+[17:12:44.192] BA loop 
