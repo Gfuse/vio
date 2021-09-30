@@ -81,18 +81,10 @@ namespace vio {
         std::vector<cv::KeyPoint> keypoints_cur;
         list<std::shared_ptr<Feature>>::iterator it_cur=keypoints.begin();
         cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
-//        std::cerr<<"84"<<std::endl;
-        //cv::Mat maskup = cv::Mat(keypoints.size(),64,CV_8UC1);
-        //cv::Mat maskdown = cv::Mat(keypoints.size(),64,CV_8UC1);
+
         cv::Mat maskup = cv::Mat_<uchar>(1, keypoints.size());
         cv::Mat maskdown = cv::Mat_<uchar>(1, keypoints.size());
-//        std::cerr<<"88"<<std::endl;
-////        uint8_t one[64] = {255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
-////                           255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
-////                           255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
-////                           255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255};
-////        uint8_t zero[64] = {0};
-//        std::cerr<<"94"<<std::endl;
+
 
         for (int i=0;i<keypoints.size() && it_cur !=keypoints.end();++i) {
             keypoints_cur.push_back(cv::KeyPoint((*it_cur)->px.x(), (*it_cur)->px.y(), 7.f, (*it_cur)->score));
@@ -100,18 +92,13 @@ namespace vio {
             if ((*it_cur)->px.y() < frame->img().rows/2) {
                 maskup.at<uchar>(0, i) = 1;
                 maskdown.at<uchar>(0, i) = 0;
-                //memcpy(maskup.data + (i * 64), one, sizeof(uint8_t) * 64);
-                //memcpy(maskdown.data + (i * 64), zero, sizeof(uint8_t) * 64);
             }
             else{
                 maskup.at<uchar>(0, i) = 0;
                 maskdown.at<uchar>(0, i) = 1;
-                //memcpy(maskup.data + (i * 64), zero, sizeof(uint8_t) * 64);
-                //memcpy(maskdown.data + (i * 64), one, sizeof(uint8_t) * 64);
             }
             ++it_cur;
         }
-//        std::cerr<<"114"<<std::endl;
         list<pair<FramePtr, double> > close_kfs;
         map_.getCloseKeyframes(frame, close_kfs);
         if (!last_frame->fts_.empty())

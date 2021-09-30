@@ -23,14 +23,14 @@ public:
     virtual ~Base(){
     };
     void predict(double dx,double dy,double dpitch,double time){
-        double dt=time-t_cmd;
-        if(t_cmd==0.0){
+        double dt=0.1;
+        /*if(t_cmd==0.0){
             t_cmd=time;
             return;
-        }
+        }*/
         t_cmd=time;
         state_h_(2)=state_(2)+dt*dpitch;
-        state_h_(1)=state_(1)+dt*2.0*(dy*cos(state_(2))-dx*sin(state_(2)));
+        state_h_(1)=state_(1)+dt*/*2.0**/(dy*cos(state_(2))-dx*sin(state_(2)));
         state_h_(0)=state_(0)+dt*(dx*cos(state_(2))+dy*sin(state_(2)));
         state_h_(3)=dpitch;
         Eigen::Matrix<double,4,4> R;
@@ -40,28 +40,28 @@ public:
            0,0,0,vio::Config::Cmd_Cov();
         Eigen::Matrix<double,4,4> G;
         G<<1.0,0,dt*(-dx*sin(state_(2))+dy*cos(state_(2))),0.0,
-           0,1.0,dt*2.0*(-dy*sin(state_(2))-dx*cos(state_(2))),0.0,
+           0,1.0,dt*/*2.0**/(-dy*sin(state_(2))-dx*cos(state_(2))),0.0,
            0,0,1.0,dt,
            0,0,0,1.0;
         cov_h_=G*cov_*G.transpose()+R;
     }
     void correct(double ddx, double ddy, double dpitch, double time){
-        double dt=time-t_imu;
-        if(t_imu==0.0){
+        double dt=0.005;
+        /*if(t_imu==0.0){
             t_imu=time;
             return;
-        }
+        }*/
         t_imu=time;
         Eigen::Matrix<double,4,4> H;
         Eigen::Matrix<double,4,4> Q;
         Eigen::Matrix<double,4,1> E;
         Eigen::Matrix<double,4,4> k;
         E(0)=state_(0)+pow(dt,2)*(ddx*cos(state_(2))+ddy*sin(state_(2)))-state_h_(0);
-        E(1)=state_(1)+2.0*pow(dt,2)*(ddy*cos(state_(2))-ddx*sin(state_(2)))-state_h_(1);
+        E(1)=state_(1)+/*2.0**/pow(dt,2)*(ddy*cos(state_(2))-ddx*sin(state_(2)))-state_h_(1);
         E(2)=state_(2)+dt*state_(3)-state_h_(2);
         E(3)=dpitch-state_h_(3);
         H<<1.0,0,pow(dt,2)*(ddy*cos(state_(2))-ddx*sin(state_(2))),0.0,
-           0,1.0,-2.0*pow(dt,2)*(ddx*cos(state_(2))+ddy*sin(state_(2))),0.0,
+           0,1.0,-/*2.0**/pow(dt,2)*(ddx*cos(state_(2))+ddy*sin(state_(2))),0.0,
            0,0,1.0,dt,
            0,0,0,1.0;
         Q<<vio::Config::ACC_Noise(),0,0,0,
@@ -72,7 +72,7 @@ public:
         state_=state_h_+k*E;
         cov_=(Eigen::MatrixXd::Identity(4,4)-k*H)*cov_h_;
         state_h_(2)=state_(2)+dt*state_(3);
-        state_h_(1)=state_(1)+2.0*pow(dt,2)*(ddy*cos(state_(2))-ddx*sin(state_(2)));
+        state_h_(1)=state_(1)+/*2.0**/pow(dt,2)*(ddy*cos(state_(2))-ddx*sin(state_(2)));
         state_h_(0)=state_(0)+pow(dt,2)*(ddx*cos(state_(2))+ddy*sin(state_(2)));
         state_h_(3)=state_(3);
         Eigen::Matrix<double,4,4> R;
@@ -82,7 +82,7 @@ public:
                 0,0,0,vio::Config::GYO_Noise();
         Eigen::Matrix<double,4,4> G;
         G<<1.0,0,pow(dt,2)*(ddy*cos(state_(2))-ddx*sin(state_(2))),0,
-           0,1.0,2.0*pow(dt,2)*(ddx*cos(state_(2))+ddy*sin(state_(2))),0,
+           0,1.0,/*2.0**/pow(dt,2)*(ddx*cos(state_(2))+ddy*sin(state_(2))),0,
            0,0,1.0,dt,
            0,0,0,1.0;
         cov_h_=G*cov_*G.transpose()+R;
@@ -122,8 +122,8 @@ public:
         delete filter_;
     };
     void UpdateIMU(double x/*in imu frame*/,double y/*in imu frame*/,double theta/*in imu frame*/,const ros::Time& time) {
-        if(abs(x)<1.0)x=pow(x,3);//picked up from your code
-        if(abs(y)<1.0)y=pow(y,3);//picked up from your code
+       /* if(abs(x)<1.0)x=pow(x,3);//picked up from your code
+        if(abs(y)<1.0)y=pow(y,3);//picked up from your code*/
         ++imu_syn_count_;
         if(imu_syn_[imu_syn_count_ % 7]){
             imu_syn_[imu_syn_count_ % 7]=false;

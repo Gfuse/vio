@@ -276,12 +276,17 @@ bool FrameHandlerMono::needNewKf()
     SE2_5 closest_kfs(0,0,0);
   for(auto&& it:overlap_kfs_)
   {
+      if(it.first->id_==last_frame_->id_)continue;
       if(it.second>com_obs){
           com_obs=it.second;
           closest_kfs=SE2_5(it.first->T_f_w_.se2());
       }
   }
-  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.43 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.15)return true;
+#if VIO_DEBUG
+    fprintf(log_,"[%s] need key frame pitch dis: %f translation dif:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()),(closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm());
+#endif
+  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.2 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.1)return true;
   return false;
 }
 void FrameHandlerMono::UpdateIMU(double* value,const ros::Time& time){
