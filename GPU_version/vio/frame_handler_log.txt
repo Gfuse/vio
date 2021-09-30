@@ -1,212 +1,966 @@
-[18:28:02.505] Init: frame zero: 0.000000, 0.000000 0.000000
-[18:28:02.505] Init: Selected first frame. 
-[18:28:02.505] frame process finished the id is: 0 the obs is:0 
-[18:28:02.519] Init: px average disparity is:0.197090 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:02.519] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:02.519] frame process finished the id is: 1 the obs is:0 
-[18:28:02.622] Init: px average disparity is:0.231461 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:02.622] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:02.622] frame process finished the id is: 2 the obs is:0 
-[18:28:02.723] Init: px average disparity is:0.249074 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:02.723] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:02.723] frame process finished the id is: 3 the obs is:0 
-[18:28:02.825] Init: px average disparity is:0.245644 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:02.825] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:02.825] frame process finished the id is: 4 the obs is:0 
-[18:28:02.923] Init: px average disparity is:0.250400 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:02.923] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:02.923] frame process finished the id is: 5 the obs is:0 
-[18:28:03.024] Init: px average disparity is:0.234691 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.024] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.024] frame process finished the id is: 6 the obs is:0 
-[18:28:03.127] Init: px average disparity is:0.240224 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.127] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.127] frame process finished the id is: 7 the obs is:0 
-[18:28:03.226] Init: px average disparity is:0.239245 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.226] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.227] frame process finished the id is: 8 the obs is:0 
-[18:28:03.322] Init: px average disparity is:0.267733 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.322] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.322] frame process finished the id is: 9 the obs is:0 
-[18:28:03.422] Init: px average disparity is:0.241786 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.422] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.422] frame process finished the id is: 10 the obs is:0 
-[18:28:03.523] Init: px average disparity is:0.244610 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.523] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.523] frame process finished the id is: 11 the obs is:0 
-[18:28:03.623] Init: px average disparity is:0.259375 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.623] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.623] frame process finished the id is: 12 the obs is:0 
-[18:28:03.723] Init: px average disparity is:0.244493 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.723] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.723] frame process finished the id is: 13 the obs is:0 
-[18:28:03.822] Init: px average disparity is:0.247162 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.823] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.823] frame process finished the id is: 14 the obs is:0 
-[18:28:03.922] Init: px average disparity is:0.235326 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:03.922] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:03.922] frame process finished the id is: 15 the obs is:0 
-[18:28:04.022] Init: px average disparity is:0.253053 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.022] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.022] frame process finished the id is: 16 the obs is:0 
-[18:28:04.123] Init: px average disparity is:0.270201 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.123] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.123] frame process finished the id is: 17 the obs is:0 
-[18:28:04.222] Init: px average disparity is:0.251625 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.222] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.222] frame process finished the id is: 18 the obs is:0 
-[18:28:04.323] Init: px average disparity is:0.238201 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.323] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.323] frame process finished the id is: 19 the obs is:0 
-[18:28:04.423] Init: px average disparity is:0.235124 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.423] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.423] frame process finished the id is: 20 the obs is:0 
-[18:28:04.514] Init: px average disparity is:0.264161 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.514] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.514] frame process finished the id is: 21 the obs is:0 
-[18:28:04.614] Init: px average disparity is:0.267489 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.614] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.614] frame process finished the id is: 22 the obs is:0 
-[18:28:04.723] Init: px average disparity is:0.238925 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.723] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.723] frame process finished the id is: 23 the obs is:0 
-[18:28:04.821] Init: px average disparity is:0.238865 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.821] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.822] frame process finished the id is: 24 the obs is:0 
-[18:28:04.912] Init: px average disparity is:0.270427 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:04.912] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:04.913] frame process finished the id is: 25 the obs is:0 
-[18:28:05.025] Init: px average disparity is:0.256237 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.025] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.025] frame process finished the id is: 26 the obs is:0 
-[18:28:05.129] Init: px average disparity is:0.216764 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.129] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.129] frame process finished the id is: 27 the obs is:0 
-[18:28:05.216] Init: px average disparity is:0.277987 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.216] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.216] frame process finished the id is: 28 the obs is:0 
-[18:28:05.315] Init: px average disparity is:0.230108 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.315] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.315] frame process finished the id is: 29 the obs is:0 
-[18:28:05.362] Odometry x=0.000000, y=0.000000, theta=-0.000000
-[18:28:05.414] Init: px average disparity is:0.237735 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.414] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.414] frame process finished the id is: 30 the obs is:0 
-[18:28:05.457] Odometry x=0.000000, y=0.000000, theta=-0.000000
-[18:28:05.514] Init: px average disparity is:0.218215 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.514] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.514] frame process finished the id is: 31 the obs is:0 
-[18:28:05.558] Odometry x=0.000040, y=0.006144, theta=-0.001157
-[18:28:05.614] Init: px average disparity is:1.712327 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.614] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.614] frame process finished the id is: 32 the obs is:0 
-[18:28:05.659] Odometry x=0.000170, y=0.013148, theta=-0.000448
-[18:28:05.715] Init: px average disparity is:5.987677 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.715] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.715] frame process finished the id is: 33 the obs is:0 
-[18:28:05.760] Odometry x=0.000258, y=0.019764, theta=-0.010322
-[18:28:05.824] Init: px average disparity is:7.661083 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.824] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.824] frame process finished the id is: 34 the obs is:0 
-[18:28:05.861] Odometry x=0.000338, y=0.025878, theta=-0.003238
-[18:28:05.917] Init: px average disparity is:4.968104 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:05.917] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:05.917] frame process finished the id is: 35 the obs is:0 
-[18:28:05.958] Odometry x=0.003378, y=0.032417, theta=-0.002440
-[18:28:06.014] Init: px average disparity is:5.353786 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.014] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.014] frame process finished the id is: 36 the obs is:0 
-[18:28:06.065] Odometry x=0.003912, y=0.038428, theta=-0.006393
-[18:28:06.115] Init: px average disparity is:4.237338 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.115] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.115] frame process finished the id is: 37 the obs is:0 
-[18:28:06.162] Odometry x=0.003835, y=0.042872, theta=-0.012875
-[18:28:06.215] Init: px average disparity is:5.731940 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.215] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.215] frame process finished the id is: 38 the obs is:0 
-[18:28:06.259] Odometry x=0.004051, y=0.049578, theta=-0.000691
-[18:28:06.315] Init: px average disparity is:4.180975 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.315] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.315] frame process finished the id is: 39 the obs is:0 
-[18:28:06.361] Odometry x=0.004110, y=0.054252, theta=-0.026867
-[18:28:06.415] Init: px average disparity is:6.100350 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.415] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.415] frame process finished the id is: 40 the obs is:0 
-[18:28:06.459] Odometry x=0.004212, y=0.060117, theta=-0.017781
-[18:28:06.515] Init: px average disparity is:7.244833 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.515] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.515] frame process finished the id is: 41 the obs is:0 
-[18:28:06.563] Odometry x=0.004257, y=0.063659, theta=-0.012887
-[18:28:06.623] Init: px average disparity is:8.958573 ,While minimum is: 10.000000  KLT tracked : 131
-[18:28:06.623] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.623] frame process finished the id is: 42 the obs is:0 
-[18:28:06.663] Odometry x=0.004357, y=0.071317, theta=-0.013456
-[18:28:06.763] Odometry x=0.004522, y=0.076936, theta=-0.025164
-[18:28:06.794] Init: Homography RANSAC (inlier) is:0 ,While 30 inliers minimum required.  px average disparity is:12.266455 ,While minimum is: 10.000000  KLT tracked: 131
-[18:28:06.794] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.794] frame process finished the id is: 43 the obs is:0 
-[18:28:06.863] Odometry x=0.004839, y=0.083127, theta=-0.013441
-[18:28:06.877] Init: Homography RANSAC (inlier) is:20 ,While 30 inliers minimum required.  px average disparity is:15.024849 ,While minimum is: 10.000000  KLT tracked: 131
-[18:28:06.877] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.878] frame process finished the id is: 44 the obs is:0 
-[18:28:06.962] Odometry x=0.004825, y=0.088371, theta=-0.011639
-[18:28:06.978] Init: Homography RANSAC (inlier) is:21 ,While 30 inliers minimum required.  px average disparity is:13.151287 ,While minimum is: 10.000000  KLT tracked: 131
-[18:28:06.978] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:06.978] frame process finished the id is: 45 the obs is:0 
-[18:28:07.058] Odometry x=0.004983, y=0.096203, theta=-0.010491
-[18:28:07.089] Init: Homography RANSAC (inlier) is:21 ,While 30 inliers minimum required.  px average disparity is:13.062843 ,While minimum is: 10.000000  KLT tracked: 131
-[18:28:07.089] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.089] frame process finished the id is: 46 the obs is:0 
-[18:28:07.162] Odometry x=0.007213, y=0.101610, theta=-0.004462
-[18:28:07.178] Init: Homography RANSAC (inlier) is:21 ,While 30 inliers minimum required.  px average disparity is:11.528166 ,While minimum is: 10.000000  KLT tracked: 131
-[18:28:07.178] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.178] frame process finished the id is: 47 the obs is:0 
-[18:28:07.260] Odometry x=0.007410, y=0.107276, theta=-0.003474
-[18:28:07.278] Init: Homography RANSAC (inlier) is:28 ,While 30 inliers minimum required.  px average disparity is:13.324742 ,While minimum is: 10.000000  KLT tracked: 131
-[18:28:07.278] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.278] frame process finished the id is: 48 the obs is:0 
-[18:28:07.363] Odometry x=0.007641, y=0.124522, theta=-0.004625
-[18:28:07.378] Init: Homography RANSAC (inlier) is:26 ,While 30 inliers minimum required.  px average disparity is:13.410493 ,While minimum is: 10.000000  KLT tracked: 130
-[18:28:07.378] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.378] frame process finished the id is: 49 the obs is:0 
-[18:28:07.472] Odometry x=0.009022, y=0.133285, theta=0.000549
-[18:28:07.480] Init: Homography RANSAC (inlier) is:26 ,While 30 inliers minimum required.  px average disparity is:19.576334 ,While minimum is: 10.000000  KLT tracked: 130
-[18:28:07.480] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.480] frame process finished the id is: 50 the obs is:0 
-[18:28:07.560] Odometry x=0.012895, y=0.139349, theta=-0.015426
-[18:28:07.578] Init: Homography RANSAC (inlier) is:18 ,While 30 inliers minimum required.  px average disparity is:13.856049 ,While minimum is: 10.000000  KLT tracked: 130
-[18:28:07.578] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.578] frame process finished the id is: 51 the obs is:0 
-[18:28:07.664] Odometry x=0.012890, y=0.155111, theta=-0.014808
-[18:28:07.677] Init: Homography RANSAC (inlier) is:11 ,While 30 inliers minimum required.  px average disparity is:13.536742 ,While minimum is: 10.000000  KLT tracked: 130
-[18:28:07.677] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.677] frame process finished the id is: 52 the obs is:0 
-[18:28:07.716] Init: px average disparity is:8.407667 ,While minimum is: 10.000000  KLT tracked : 130
-[18:28:07.716] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.716] frame process finished the id is: 53 the obs is:0 
-[18:28:07.761] Odometry x=0.014538, y=0.160252, theta=-0.006813
-[18:28:07.823] Init: px average disparity is:8.928041 ,While minimum is: 10.000000  KLT tracked : 130
-[18:28:07.823] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.823] frame process finished the id is: 54 the obs is:0 
-[18:28:07.858] Odometry x=0.014969, y=0.165578, theta=-0.017024
-[18:28:07.923] Init: px average disparity is:8.519840 ,While minimum is: 10.000000  KLT tracked : 129
-[18:28:07.923] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:07.923] frame process finished the id is: 55 the obs is:0 
-[18:28:07.964] Odometry x=0.016254, y=0.170745, theta=-0.016508
-[18:28:08.024] Init: px average disparity is:9.417081 ,While minimum is: 10.000000  KLT tracked : 129
-[18:28:08.024] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:08.024] frame process finished the id is: 56 the obs is:0 
-[18:28:08.064] Odometry x=0.016414, y=0.176273, theta=-0.014725
-[18:28:08.165] Odometry x=0.022732, y=0.181561, theta=-0.011214
-[18:28:08.193] Init: Homography RANSAC (inlier) is:12 ,While 30 inliers minimum required.  px average disparity is:10.308725 ,While minimum is: 10.000000  KLT tracked: 129
-[18:28:08.193] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:08.193] frame process finished the id is: 57 the obs is:0 
-[18:28:08.215] Init: px average disparity is:8.129985 ,While minimum is: 10.000000  KLT tracked : 129
-[18:28:08.215] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:08.215] frame process finished the id is: 58 the obs is:0 
-[18:28:08.266] Odometry x=0.022748, y=0.187362, theta=0.001457
-[18:28:08.366] Odometry x=0.022879, y=0.192814, theta=-0.012806
-[18:28:08.394] Init: Homography RANSAC (inlier) is:26 ,While 30 inliers minimum required.  px average disparity is:10.681360 ,While minimum is: 10.000000  KLT tracked: 129
-[18:28:08.394] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[18:28:08.394] frame process finished the id is: 59 the obs is:0 
-[18:28:08.463] Odometry x=0.022908
+[14:34:41.318] Init: frame zero: 0.000000, 0.000000 0.000000
+[14:34:41.318] Init: Selected first frame. 
+[14:34:41.318] frame process finished the id is: 0 the obs is:0 
+[14:34:41.353] Init: px average disparity is:0.201870 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.353] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.353] frame process finished the id is: 1 the obs is:0 
+[14:34:41.458] Init: px average disparity is:0.235763 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.458] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.458] frame process finished the id is: 2 the obs is:0 
+[14:34:41.559] Init: px average disparity is:0.253975 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.559] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.559] frame process finished the id is: 3 the obs is:0 
+[14:34:41.664] Init: px average disparity is:0.251757 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.664] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.664] frame process finished the id is: 4 the obs is:0 
+[14:34:41.760] Init: px average disparity is:0.247308 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.760] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.760] frame process finished the id is: 5 the obs is:0 
+[14:34:41.859] Init: px average disparity is:0.244166 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.859] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.859] frame process finished the id is: 6 the obs is:0 
+[14:34:41.965] Init: px average disparity is:0.251078 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:41.965] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:41.965] frame process finished the id is: 7 the obs is:0 
+[14:34:42.064] Init: px average disparity is:0.231787 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.064] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.064] frame process finished the id is: 8 the obs is:0 
+[14:34:42.159] Init: px average disparity is:0.260209 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.159] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.159] frame process finished the id is: 9 the obs is:0 
+[14:34:42.258] Init: px average disparity is:0.240296 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.258] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.258] frame process finished the id is: 10 the obs is:0 
+[14:34:42.360] Init: px average disparity is:0.248580 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.360] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.360] frame process finished the id is: 11 the obs is:0 
+[14:34:42.458] Init: px average disparity is:0.258905 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.458] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.458] frame process finished the id is: 12 the obs is:0 
+[14:34:42.558] Init: px average disparity is:0.246382 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.559] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.559] frame process finished the id is: 13 the obs is:0 
+[14:34:42.657] Init: px average disparity is:0.247992 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.658] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.658] frame process finished the id is: 14 the obs is:0 
+[14:34:42.757] Init: px average disparity is:0.237397 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.757] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.757] frame process finished the id is: 15 the obs is:0 
+[14:34:42.857] Init: px average disparity is:0.251326 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.857] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.857] frame process finished the id is: 16 the obs is:0 
+[14:34:42.959] Init: px average disparity is:0.277640 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:42.959] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:42.959] frame process finished the id is: 17 the obs is:0 
+[14:34:43.059] Init: px average disparity is:0.246569 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.059] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.059] frame process finished the id is: 18 the obs is:0 
+[14:34:43.159] Init: px average disparity is:0.243728 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.159] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.159] frame process finished the id is: 19 the obs is:0 
+[14:34:43.260] Init: px average disparity is:0.239680 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.260] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.260] frame process finished the id is: 20 the obs is:0 
+[14:34:43.360] Init: px average disparity is:0.258502 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.360] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.360] frame process finished the id is: 21 the obs is:0 
+[14:34:43.460] Init: px average disparity is:0.267150 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.461] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.461] frame process finished the id is: 22 the obs is:0 
+[14:34:43.558] Init: px average disparity is:0.241248 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.558] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.558] frame process finished the id is: 23 the obs is:0 
+[14:34:43.658] Init: px average disparity is:0.233374 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.658] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.658] frame process finished the id is: 24 the obs is:0 
+[14:34:43.758] Init: px average disparity is:0.273961 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.758] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.758] frame process finished the id is: 25 the obs is:0 
+[14:34:43.862] Init: px average disparity is:0.259759 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.862] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.862] frame process finished the id is: 26 the obs is:0 
+[14:34:43.958] Init: px average disparity is:0.230434 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:43.958] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:43.958] frame process finished the id is: 27 the obs is:0 
+[14:34:44.060] Init: px average disparity is:0.274519 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.061] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.061] frame process finished the id is: 28 the obs is:0 
+[14:34:44.159] Init: px average disparity is:0.237630 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.159] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.159] frame process finished the id is: 29 the obs is:0 
+[14:34:44.196] Odometry x=0.000000, y=0.000000, theta=-0.000000
+[14:34:44.259] Init: px average disparity is:0.237869 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.260] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.260] frame process finished the id is: 30 the obs is:0 
+[14:34:44.294] Odometry x=0.000000, y=0.000000, theta=-0.000000
+[14:34:44.358] Init: px average disparity is:0.219188 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.359] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.359] frame process finished the id is: 31 the obs is:0 
+[14:34:44.395] Odometry x=0.000037, y=0.006144, theta=-0.001122
+[14:34:44.460] Init: px average disparity is:1.780859 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.461] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.461] frame process finished the id is: 32 the obs is:0 
+[14:34:44.496] Odometry x=0.000129, y=0.012020, theta=-0.000993
+[14:34:44.559] Init: px average disparity is:6.042441 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.559] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.559] frame process finished the id is: 33 the obs is:0 
+[14:34:44.595] Odometry x=0.000216, y=0.019102, theta=-0.008383
+[14:34:44.660] Init: px average disparity is:7.685535 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.660] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.660] frame process finished the id is: 34 the obs is:0 
+[14:34:44.698] Odometry x=0.000451, y=0.025712, theta=-0.002271
+[14:34:44.759] Init: px average disparity is:5.010287 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.760] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.760] frame process finished the id is: 35 the obs is:0 
+[14:34:44.796] Odometry x=0.000458, y=0.032160, theta=-0.002608
+[14:34:44.859] Init: px average disparity is:5.373467 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.859] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.859] frame process finished the id is: 36 the obs is:0 
+[14:34:44.899] Odometry x=0.000544, y=0.037573, theta=-0.006361
+[14:34:44.947] Init: px average disparity is:4.266374 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:44.947] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:44.947] frame process finished the id is: 37 the obs is:0 
+[14:34:44.997] Odometry x=0.000611, y=0.042715, theta=-0.007241
+[14:34:45.060] Init: px average disparity is:5.727360 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:45.060] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.060] frame process finished the id is: 38 the obs is:0 
+[14:34:45.095] Odometry x=0.000836, y=0.049345, theta=0.000573
+[14:34:45.159] Init: px average disparity is:4.119609 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:45.159] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.159] frame process finished the id is: 39 the obs is:0 
+[14:34:45.198] Odometry x=0.000911, y=0.051147, theta=-0.024614
+[14:34:45.253] Init: px average disparity is:5.954193 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:45.253] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.253] frame process finished the id is: 40 the obs is:0 
+[14:34:45.294] Odometry x=0.001008, y=0.057011, theta=-0.012458
+[14:34:45.360] Init: px average disparity is:6.993505 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:45.360] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.360] frame process finished the id is: 41 the obs is:0 
+[14:34:45.399] Odometry x=0.001038, y=0.062364, theta=-0.006768
+[14:34:45.460] Init: px average disparity is:8.833857 ,While minimum is: 10.000000  KLT tracked : 122
+[14:34:45.460] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.460] frame process finished the id is: 42 the obs is:0 
+[14:34:45.501] Odometry x=0.001167, y=0.068231, theta=-0.010268
+[14:34:45.594] Odometry x=0.001234, y=0.073663, theta=-0.023707
+[14:34:45.655] Init: Homography RANSAC (inlier) is:0 ,While 30 inliers minimum required.  px average disparity is:12.060619 ,While minimum is: 10.000000  KLT tracked: 122
+[14:34:45.655] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.655] frame process finished the id is: 43 the obs is:0 
+[14:34:45.699] Odometry x=0.001694, y=0.079405, theta=-0.012849
+[14:34:45.717] Init: Homography RANSAC (inlier) is:28 ,While 30 inliers minimum required.  px average disparity is:14.865715 ,While minimum is: 10.000000  KLT tracked: 122
+[14:34:45.717] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.717] frame process finished the id is: 44 the obs is:0 
+[14:34:45.791] Init: Homography RANSAC (inlier) is:27 ,While 30 inliers minimum required.  px average disparity is:12.955273 ,While minimum is: 10.000000  KLT tracked: 122
+[14:34:45.791] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.791] frame process finished the id is: 45 the obs is:0 
+[14:34:45.798] Odometry x=0.001710, y=0.084775, theta=-0.008808
+[14:34:45.887] Init: Homography RANSAC (inlier) is:27 ,While 30 inliers minimum required.  px average disparity is:12.899217 ,While minimum is: 10.000000  KLT tracked: 122
+[14:34:45.887] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.887] frame process finished the id is: 46 the obs is:0 
+[14:34:45.898] Odometry x=0.001988, y=0.090922, theta=-0.006851
+[14:34:45.986] Init: Homography RANSAC (inlier) is:27 ,While 30 inliers minimum required.  px average disparity is:11.433650 ,While minimum is: 10.000000  KLT tracked: 122
+[14:34:45.986] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:45.986] frame process finished the id is: 47 the obs is:0 
+[14:34:45.995] Odometry x=0.001990, y=0.096438, theta=-0.003317
+[14:34:46.087] Init: Homography RANSAC (inlier) is:27 ,While 30 inliers minimum required.  px average disparity is:13.661948 ,While minimum is: 10.000000  KLT tracked: 122
+[14:34:46.087] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[14:34:46.087] frame process finished the id is: 48 the obs is:0 
+[14:34:46.096] Odometry x=0.002197, y=0.102286, theta=-0.001748
+[14:34:46.197] Odometry x=0.002658, y=0.107656, theta=-0.010700
+[14:34:46.202] Init finished: Homography RANSAC (inlier) is:30 ,While 30 inliers minimum required.  px average disparity is:13.643162 ,While minimum is: 10.000000  KLT tracked: 121
+[14:34:46.202] Init: distance between the first and current frame is x:0.002658 ,z=0.107656,angle between two frames: -0.010700 
+[14:34:46.203] Init: Selected Second frame. 	 The number of features: 30 depth mean:-0.006171 min:-0.512314
+[14:34:46.203] frame process finished the id is: 49 the obs is:30 
+[14:34:46.305] Odometry x=0.003318, y=0.114597, theta=-0.002615
+[14:34:46.325] After Reprojection Map nPoint:30 ,nCell:12 ,nMatches:10 ,distance between ekf and vo x:0.001119 ,z=-0.000103,angle between two frames:0.005753
+[14:34:46.325] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =28 	 error init =0.000395 	 error end=0.000147
+[14:34:46.325] After pose optimization, distance between ekf and vo x:-0.002957 ,z=-0.003791,angle between two frames:0.002475
+[14:34:46.325] Update EKF and 3D points the number of feature in the new frame: 28 and number of obs: 28
+[14:34:46.326] frame process finished the id is: 50 the obs is:28 
+[14:34:46.397] Odometry x=0.003860, y=0.118107, theta=-0.004336
+[14:34:46.455] After Reprojection Map nPoint:28 ,nCell:13 ,nMatches:8 ,distance between ekf and vo x:-0.001811 ,z=0.000283,angle between two frames:0.004549
+[14:34:46.455] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =25 	 error init =0.000532 	 error end=0.000532
+[14:34:46.455] After pose optimization, distance between ekf and vo x:-0.001811 ,z=0.000283,angle between two frames:0.004549
+[14:34:46.455] Update EKF and 3D points the number of feature in the new frame: 25 and number of obs: 25
+[14:34:46.456] frame process finished the id is: 51 the obs is:25 
+[14:34:46.495] Odometry x=0.002158, y=0.119716, theta=-0.008469
+[14:34:46.532] After Reprojection Map nPoint:25 ,nCell:12 ,nMatches:4 ,distance between ekf and vo x:-0.000835 ,z=0.000230,angle between two frames:0.001512
+[14:34:46.533] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000511 	 error end=0.000452
+[14:34:46.533] After pose optimization, distance between ekf and vo x:-0.002233 ,z=0.003060,angle between two frames:0.002320
+[14:34:46.533] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:46.533] frame process finished the id is: 52 the obs is:17 
+[14:34:46.598] Odometry x=0.000364, y=0.122939, theta=-0.006014
+[14:34:46.634] After Reprojection Map nPoint:17 ,nCell:7 ,nMatches:3 ,distance between ekf and vo x:-0.001402 ,z=-0.000470,angle between two frames:0.000827
+[14:34:46.634] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000025 	 error end=0.000025
+[14:34:46.634] After pose optimization, distance between ekf and vo x:-0.002276 ,z=-0.000544,angle between two frames:0.003589
+[14:34:46.634] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:46.634] frame process finished the id is: 53 the obs is:17 
+[14:34:46.693] Odometry x=-0.001666, y=0.122836, theta=-0.008934
+[14:34:46.729] After Reprojection Map nPoint:17 ,nCell:7 ,nMatches:3 ,distance between ekf and vo x:0.000609 ,z=-0.000391,angle between two frames:0.004689
+[14:34:46.729] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000182 	 error end=0.000178
+[14:34:46.729] After pose optimization, distance between ekf and vo x:-0.002681 ,z=-0.000594,angle between two frames:0.005571
+[14:34:46.729] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:46.730] frame process finished the id is: 54 the obs is:17 
+[14:34:46.797] Odometry x=-0.003980, y=0.122646, theta=-0.013595
+[14:34:46.829] After Reprojection Map nPoint:17 ,nCell:7 ,nMatches:3 ,distance between ekf and vo x:0.000823 ,z=-0.000497,angle between two frames:0.004795
+[14:34:46.830] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000154 	 error end=0.000151
+[14:34:46.830] After pose optimization, distance between ekf and vo x:-0.000580 ,z=-0.000454,angle between two frames:0.000033
+[14:34:46.830] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:46.830] frame process finished the id is: 55 the obs is:17 
+[14:34:46.902] Odometry x=-0.004506, y=0.122591, theta=-0.012758
+[14:34:46.939] After Reprojection Map nPoint:17 ,nCell:6 ,nMatches:3 ,distance between ekf and vo x:0.000390 ,z=-0.000161,angle between two frames:0.002898
+[14:34:46.940] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000140 	 error end=0.000136
+[14:34:46.940] After pose optimization, distance between ekf and vo x:0.000765 ,z=-0.000056,angle between two frames:0.004364
+[14:34:46.940] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:46.940] frame process finished the id is: 56 the obs is:17 
+[14:34:47.001] Odometry x=-0.002604, y=0.122892, theta=-0.007993
+[14:34:47.088] After Reprojection Map nPoint:17 ,nCell:3 ,nMatches:2 ,distance between ekf and vo x:-0.002400 ,z=-0.000201,angle between two frames:0.002793
+[14:34:47.088] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000001 	 error end=0.000001
+[14:34:47.088] After pose optimization, distance between ekf and vo x:-0.002400 ,z=-0.000201,angle between two frames:0.002793
+[14:34:47.088] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:47.089] frame process finished the id is: 57 the obs is:17 
+[14:34:47.098] Odometry x=-0.004867, y=0.123077, theta=-0.005550
+[14:34:47.172] After Reprojection Map nPoint:17 ,nCell:4 ,nMatches:2 ,distance between ekf and vo x:-0.001821 ,z=0.000030,angle between two frames:0.001543
+[14:34:47.172] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000027 	 error end=0.000027
+[14:34:47.172] After pose optimization, distance between ekf and vo x:-0.001821 ,z=0.000030,angle between two frames:0.001543
+[14:34:47.172] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:47.172] frame process finished the id is: 58 the obs is:17 
+[14:34:47.204] Odometry x=-0.006543, y=0.123483, theta=-0.007411
+[14:34:47.223] After Reprojection Map nPoint:17 ,nCell:4 ,nMatches:2 ,distance between ekf and vo x:-0.001241 ,z=-0.000178,angle between two frames:0.000609
+[14:34:47.223] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.000086 	 error end=0.000086
+[14:34:47.223] After pose optimization, distance between ekf and vo x:-0.001241 ,z=-0.000178,angle between two frames:0.000609
+[14:34:47.223] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
+[14:34:47.224] frame process finished the id is: 59 the obs is:17 
+[14:34:47.296] After Reprojection Map nPoint:17 ,nCell:4 ,nMatches:2 ,distance between ekf and vo x:-0.001829 ,z=-0.000140,angle between two frames:0.002927
+[14:34:47.296] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000002 	 error end=0.000002
+[14:34:47.296] After pose optimization, distance between ekf and vo x:-0.001829 ,z=-0.000140,angle between two frames:0.002927
+[14:34:47.296] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:47.297] frame process finished the id is: 60 the obs is:12 
+[14:34:47.302] Odometry x=-0.009036, y=0.132707, theta=-0.011002
+[14:34:47.399] Odometry x=-0.007412, y=0.139673, theta=-0.018823
+[14:34:47.451] After Reprojection Map nPoint:12 ,nCell:3 ,nMatches:1 ,distance between ekf and vo x:0.000115 ,z=-0.000079,angle between two frames:0.000819
+[14:34:47.451] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:47.451] After pose optimization, distance between ekf and vo x:0.000115 ,z=-0.000079,angle between two frames:0.000819
+[14:34:47.451] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:47.452] frame process finished the id is: 61 the obs is:12 
+[14:34:47.496] Odometry x=-0.007301, y=0.139963, theta=-0.017596
+[14:34:47.529] After Reprojection Map nPoint:12 ,nCell:3 ,nMatches:1 ,distance between ekf and vo x:-0.000060 ,z=-0.000115,angle between two frames:0.000950
+[14:34:47.529] n deleted obs = 1 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =1 	 error init =0.005837 	 error end=0.005822
+[14:34:47.529] After pose optimization, distance between ekf and vo x:-0.000255 ,z=-0.000127,angle between two frames:0.000596
+[14:34:47.529] frame process finished the id is: 61 the obs is:12 
+[14:34:47.598] Odometry x=-0.007188, y=0.146382, theta=-0.021186
+[14:34:47.638] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.002508 ,z=-0.002412,angle between two frames:0.005520
+[14:34:47.638] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:47.638] After pose optimization, distance between ekf and vo x:-0.002508 ,z=-0.002412,angle between two frames:0.005520
+[14:34:47.638] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:47.638] frame process finished the id is: 63 the obs is:12 
+[14:34:47.696] Odometry x=-0.009556, y=0.144459, theta=-0.015731
+[14:34:47.758] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000106 ,z=-0.000004,angle between two frames:0.000739
+[14:34:47.759] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:47.759] After pose optimization, distance between ekf and vo x:-0.000107 ,z=-0.000004,angle between two frames:0.000739
+[14:34:47.759] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:47.759] frame process finished the id is: 64 the obs is:12 
+[14:34:47.799] Odometry x=-0.009604, y=0.144863, theta=-0.014790
+[14:34:47.821] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000326 ,z=-0.000109,angle between two frames:0.000593
+[14:34:47.822] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:47.822] After pose optimization, distance between ekf and vo x:-0.000326 ,z=-0.000109,angle between two frames:0.000593
+[14:34:47.822] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:47.823] frame process finished the id is: 65 the obs is:12 
+[14:34:47.898] Odometry x=-0.009906, y=0.145133, theta=-0.013823
+[14:34:47.972] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.003507 ,z=-0.002520,angle between two frames:0.007264
+[14:34:47.973] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000003 	 error end=0.000003
+[14:34:47.973] After pose optimization, distance between ekf and vo x:-0.003510 ,z=-0.002521,angle between two frames:0.007269
+[14:34:47.973] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:47.973] frame process finished the id is: 66 the obs is:12 
+[14:34:48.001] Odometry x=-0.013194, y=0.143580, theta=-0.020895
+[14:34:48.080] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000166 ,z=-0.000159,angle between two frames:0.000748
+[14:34:48.080] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000013 	 error end=0.000013
+[14:34:48.080] After pose optimization, distance between ekf and vo x:-0.000166 ,z=-0.000159,angle between two frames:0.000748
+[14:34:48.080] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.081] frame process finished the id is: 67 the obs is:12 
+[14:34:48.100] Odometry x=-0.013450, y=0.144029, theta=-0.021587
+[14:34:48.141] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000659 ,z=-0.001182,angle between two frames:0.001824
+[14:34:48.141] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000003 	 error end=0.000003
+[14:34:48.141] After pose optimization, distance between ekf and vo x:0.000659 ,z=-0.001182,angle between two frames:0.001824
+[14:34:48.141] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.142] frame process finished the id is: 68 the obs is:12 
+[14:34:48.197] Odometry x=-0.012820, y=0.143712, theta=-0.023122
+[14:34:48.200] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000446 ,z=-0.001189,angle between two frames:0.003359
+[14:34:48.200] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:48.200] After pose optimization, distance between ekf and vo x:0.000446 ,z=-0.001189,angle between two frames:0.003359
+[14:34:48.200] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.200] frame process finished the id is: 69 the obs is:12 
+[14:34:48.298] Odometry x=-0.012149, y=0.150258, theta=-0.026409
+[14:34:48.362] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.001521 ,z=-0.001612,angle between two frames:0.000338
+[14:34:48.362] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000001 	 error end=0.000001
+[14:34:48.362] After pose optimization, distance between ekf and vo x:0.001521 ,z=-0.001612,angle between two frames:0.000338
+[14:34:48.362] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.363] frame process finished the id is: 70 the obs is:12 
+[14:34:48.396] Odometry x=-0.010621, y=0.149064, theta=-0.026380
+[14:34:48.417] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000054 ,z=-0.000118,angle between two frames:0.000077
+[14:34:48.418] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000005 	 error end=0.000005
+[14:34:48.418] After pose optimization, distance between ekf and vo x:0.000051 ,z=-0.000111,angle between two frames:0.000072
+[14:34:48.418] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.418] frame process finished the id is: 71 the obs is:12 
+[14:34:48.498] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000173 ,z=-0.002325,angle between two frames:0.002335
+[14:34:48.498] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:48.498] After pose optimization, distance between ekf and vo x:0.000173 ,z=-0.002325,angle between two frames:0.002335
+[14:34:48.498] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.498] frame process finished the id is: 72 the obs is:12 
+[14:34:48.499] Odometry x=-0.010198, y=0.154863, theta=-0.030334
+[14:34:48.597] Odometry x=-0.010984, y=0.162228, theta=-0.027402
+[14:34:48.606] After Reprojection Map nPoint:12 ,nCell:3 ,nMatches:1 ,distance between ekf and vo x:-0.000362 ,z=-0.001265,angle between two frames:0.003412
+[14:34:48.606] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:48.606] After pose optimization, distance between ekf and vo x:-0.000362 ,z=-0.001262,angle between two frames:0.003413
+[14:34:48.606] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.606] frame process finished the id is: 73 the obs is:12 
+[14:34:48.695] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000528 ,z=0.008422,angle between two frames:0.000779
+[14:34:48.696] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000032 	 error end=0.000032
+[14:34:48.696] After pose optimization, distance between ekf and vo x:-0.000485 ,z=0.008394,angle between two frames:0.000285
+[14:34:48.696] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.696] frame process finished the id is: 74 the obs is:12 
+[14:34:48.700] Odometry x=-0.011603, y=0.175270, theta=-0.037352
+[14:34:48.797] Odometry x=-0.011450, y=0.182751, theta=-0.038616
+[14:34:48.800] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000054 ,z=0.001632,angle between two frames:0.000528
+[14:34:48.800] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.004205 	 error end=0.003888
+[14:34:48.800] After pose optimization, distance between ekf and vo x:0.002028 ,z=-0.025801,angle between two frames:0.039833
+[14:34:48.800] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.800] frame process finished the id is: 75 the obs is:12 
+[14:34:48.894] Odometry x=-0.009878, y=0.170460, theta=-0.074805
+[14:34:48.897] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000498 ,z=0.000107,angle between two frames:0.001053
+[14:34:48.898] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:48.898] After pose optimization, distance between ekf and vo x:-0.000498 ,z=0.000107,angle between two frames:0.001053
+[14:34:48.898] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:48.898] frame process finished the id is: 76 the obs is:12 
+[14:34:48.996] Odometry x=-0.011728, y=0.182837, theta=-0.072676
+[14:34:49.017] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000201 ,z=0.000686,angle between two frames:0.000005
+[14:34:49.018] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000036 	 error end=0.000036
+[14:34:49.018] After pose optimization, distance between ekf and vo x:-0.000181 ,z=0.000391,angle between two frames:0.000304
+[14:34:49.018] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.018] frame process finished the id is: 77 the obs is:12 
+[14:34:49.091] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000243 ,z=0.000984,angle between two frames:0.000017
+[14:34:49.091] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000001 	 error end=0.000001
+[14:34:49.091] After pose optimization, distance between ekf and vo x:-0.000243 ,z=0.000980,angle between two frames:0.000012
+[14:34:49.091] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.091] frame process finished the id is: 78 the obs is:12 
+[14:34:49.095] Odometry x=-0.012091, y=0.184763, theta=-0.073013
+[14:34:49.186] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000329 ,z=0.001074,angle between two frames:0.000018
+[14:34:49.186] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:49.186] After pose optimization, distance between ekf and vo x:-0.000329 ,z=0.001074,angle between two frames:0.000018
+[14:34:49.186] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.187] frame process finished the id is: 79 the obs is:12 
+[14:34:49.198] Odometry x=-0.012123, y=0.193524, theta=-0.064362
+[14:34:49.297] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000305 ,z=-0.000054,angle between two frames:0.000879
+[14:34:49.297] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000001 	 error end=0.000001
+[14:34:49.297] After pose optimization, distance between ekf and vo x:-0.000304 ,z=-0.000061,angle between two frames:0.000888
+[14:34:49.297] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.297] frame process finished the id is: 80 the obs is:12 
+[14:34:49.301] Odometry x=-0.012172, y=0.199406, theta=-0.071964
+[14:34:49.386] After Reprojection Map nPoint:12 ,nCell:9 ,nMatches:1 ,distance between ekf and vo x:-0.000332 ,z=0.000996,angle between two frames:0.000000
+[14:34:49.386] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000004 	 error end=0.000004
+[14:34:49.386] After pose optimization, distance between ekf and vo x:-0.000327 ,z=0.000967,angle between two frames:0.000046
+[14:34:49.386] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.387] frame process finished the id is: 81 the obs is:12 
+[14:34:49.398] Odometry x=-0.012184, y=0.208371, theta=-0.058791
+[14:34:49.494] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:-0.000541 ,z=0.000911,angle between two frames:0.000811
+[14:34:49.494] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:49.494] After pose optimization, distance between ekf and vo x:-0.000541 ,z=0.000910,angle between two frames:0.000812
+[14:34:49.494] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.494] frame process finished the id is: 82 the obs is:12 
+[14:34:49.496] Odometry x=-0.012501, y=0.215717, theta=-0.070131
+[14:34:49.594] Odometry x=-0.011868, y=0.237625, theta=-0.055985
+[14:34:49.599] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000374 ,z=0.000240,angle between two frames:0.000955
+[14:34:49.600] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:49.600] After pose optimization, distance between ekf and vo x:-0.000374 ,z=0.000240,angle between two frames:0.000955
+[14:34:49.600] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.600] frame process finished the id is: 83 the obs is:12 
+[14:34:49.696] Odometry x=-0.011652, y=0.243656, theta=-0.071029
+[14:34:49.703] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000973 ,z=-0.006598,angle between two frames:0.005890
+[14:34:49.703] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000278 	 error end=0.000278
+[14:34:49.703] After pose optimization, distance between ekf and vo x:-0.000897 ,z=-0.007831,angle between two frames:0.006907
+[14:34:49.703] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.704] frame process finished the id is: 84 the obs is:12 
+[14:34:49.794] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:0.000033 ,z=-0.001337,angle between two frames:0.001340
+[14:34:49.794] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:49.794] After pose optimization, distance between ekf and vo x:0.000033 ,z=-0.001337,angle between two frames:0.001340
+[14:34:49.794] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.795] frame process finished the id is: 85 the obs is:12 
+[14:34:49.798] Odometry x=-0.014225, y=0.243402, theta=-0.058933
+[14:34:49.900] Odometry x=-0.011952, y=0.247844, theta=-0.078035
+[14:34:49.905] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000039 ,z=-0.001783,angle between two frames:0.002219
+[14:34:49.905] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000031 	 error end=0.000031
+[14:34:49.905] After pose optimization, distance between ekf and vo x:-0.000030 ,z=-0.001906,angle between two frames:0.002318
+[14:34:49.905] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.906] frame process finished the id is: 86 the obs is:12 
+[14:34:49.994] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000027 ,z=-0.000731,angle between two frames:0.000931
+[14:34:49.994] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000001 	 error end=0.000001
+[14:34:49.994] After pose optimization, distance between ekf and vo x:-0.000027 ,z=-0.000731,angle between two frames:0.000931
+[14:34:49.994] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:49.995] frame process finished the id is: 87 the obs is:12 
+[14:34:49.999] Odometry x=-0.011563, y=0.256891, theta=-0.083916
+[14:34:50.094] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000012 ,z=-0.000687,angle between two frames:0.000835
+[14:34:50.094] n deleted obs = 1 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =0 	 error init =0.006413 	 error end=0.006413
+[14:34:50.094] After pose optimization, distance between ekf and vo x:-0.000012 ,z=-0.000687,angle between two frames:0.000835
+[14:34:50.094] frame process finished the id is: 87 the obs is:12 
+[14:34:50.097] Odometry x=-0.009421, y=0.260110, theta=-0.074921
+[14:34:50.201] Odometry x=-0.005793, y=0.270525, theta=-0.097075
+[14:34:50.209] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000142 ,z=-0.001659,angle between two frames:0.001685
+[14:34:50.209] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000818 	 error end=0.000818
+[14:34:50.209] After pose optimization, distance between ekf and vo x:-0.000142 ,z=-0.001659,angle between two frames:0.001685
+[14:34:50.209] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:50.209] frame process finished the id is: 89 the obs is:12 
+[14:34:50.298] Odometry x=-0.005585, y=0.275416, theta=-0.107370
+[14:34:50.303] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000114 ,z=-0.001513,angle between two frames:0.001953
+[14:34:50.303] n deleted obs = 1 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =0 	 error init =0.009425 	 error end=0.009425
+[14:34:50.303] After pose optimization, distance between ekf and vo x:-0.000114 ,z=-0.001513,angle between two frames:0.001953
+[14:34:50.304] frame process finished the id is: 89 the obs is:12 
+[14:34:50.397] Odometry x=-0.004345, y=0.291849, theta=-0.105549
+[14:34:50.402] After Reprojection Map nPoint:12 ,nCell:6 ,nMatches:1 ,distance between ekf and vo x:-0.000409 ,z=-0.002148,angle between two frames:0.002516
+[14:34:50.402] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:50.402] After pose optimization, distance between ekf and vo x:-0.000409 ,z=-0.002148,angle between two frames:0.002516
+[14:34:50.402] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:50.402] frame process finished the id is: 91 the obs is:12 
+[14:34:50.495] After Reprojection Map nPoint:12 ,nCell:6 ,nMatches:1 ,distance between ekf and vo x:-0.000017 ,z=-0.000300,angle between two frames:0.000398
+[14:34:50.495] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000006 	 error end=0.000006
+[14:34:50.495] After pose optimization, distance between ekf and vo x:-0.000017 ,z=-0.000300,angle between two frames:0.000398
+[14:34:50.495] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:50.495] frame process finished the id is: 92 the obs is:12 
+[14:34:50.502] Odometry x=-0.004427, y=0.293568, theta=-0.130647
+[14:34:50.597] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000026 ,z=-0.000436,angle between two frames:0.000567
+[14:34:50.597] n deleted obs = 7 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =5 	 error init =0.006265 	 error end=0.006265
+[14:34:50.597] After pose optimization, distance between ekf and vo x:-0.000026 ,z=-0.000436,angle between two frames:0.000567
+[14:34:50.597] frame process finished the id is: 92 the obs is:12 
+[14:34:50.599] Odometry x=-0.003889, y=0.301204, theta=-0.118477
+[14:34:50.701] Odometry x=-0.003184, y=0.305198, theta=-0.127845
+[14:34:50.710] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000092 ,z=-0.001133,angle between two frames:0.001809
+[14:34:50.710] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:50.710] After pose optimization, distance between ekf and vo x:-0.000092 ,z=-0.001133,angle between two frames:0.001809
+[14:34:50.710] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:50.710] frame process finished the id is: 94 the obs is:12 
+[14:34:50.797] Odometry x=-0.002876, y=0.310014, theta=-0.137962
+[14:34:50.827] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000063 ,z=-0.001007,angle between two frames:0.001294
+[14:34:50.827] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:50.827] After pose optimization, distance between ekf and vo x:-0.000063 ,z=-0.001007,angle between two frames:0.001294
+[14:34:50.827] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:50.827] frame process finished the id is: 95 the obs is:12 
+[14:34:50.892] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:-0.000025 ,z=-0.000418,angle between two frames:0.000596
+[14:34:50.893] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:50.893] After pose optimization, distance between ekf and vo x:-0.000025 ,z=-0.000418,angle between two frames:0.000596
+[14:34:50.893] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:50.893] frame process finished the id is: 96 the obs is:12 
+[14:34:50.896] Odometry x=-0.002047, y=0.328525, theta=-0.132757
+[14:34:51.002] Odometry x=-0.001586, y=0.335353, theta=-0.141287
+[14:34:51.016] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:-0.000053 ,z=-0.000584,angle between two frames:0.000865
+[14:34:51.016] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:51.016] After pose optimization, distance between ekf and vo x:-0.000053 ,z=-0.000585,angle between two frames:0.000865
+[14:34:51.016] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.017] frame process finished the id is: 97 the obs is:12 
+[14:34:51.095] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:0.000008 ,z=-0.000316,angle between two frames:0.000454
+[14:34:51.095] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.001234 	 error end=0.001234
+[14:34:51.095] After pose optimization, distance between ekf and vo x:0.000008 ,z=-0.000316,angle between two frames:0.000454
+[14:34:51.095] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.095] frame process finished the id is: 98 the obs is:12 
+[14:34:51.101] Odometry x=-0.005411, y=0.351192, theta=-0.143648
+[14:34:51.198] Odometry x=-0.004945, y=0.357622, theta=-0.142346
+[14:34:51.203] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:0.000156 ,z=-0.001686,angle between two frames:0.003272
+[14:34:51.203] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:51.203] After pose optimization, distance between ekf and vo x:0.000156 ,z=-0.001686,angle between two frames:0.003272
+[14:34:51.203] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.203] frame process finished the id is: 99 the obs is:12 
+[14:34:51.300] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:0.000055 ,z=-0.000204,angle between two frames:0.000402
+[14:34:51.300] After pose optimization, distance between ekf and vo x:0.000055 ,z=-0.000204,angle between two frames:0.000402
+[14:34:51.300] frame process finished the id is: 99 the obs is:12 
+[14:34:51.300] Odometry x=-0.013196, y=0.376994, theta=-0.144112
+[14:34:51.400] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:0.000081 ,z=-0.000541,angle between two frames:0.000894
+[14:34:51.400] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:51.400] After pose optimization, distance between ekf and vo x:0.000081 ,z=-0.000541,angle between two frames:0.000894
+[14:34:51.400] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.400] frame process finished the id is: 101 the obs is:12 
+[14:34:51.400] Odometry x=-0.012484, y=0.381974, theta=-0.146976
+[14:34:51.501] Odometry x=-0.011914, y=0.391217, theta=-0.147131
+[14:34:51.508] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:0.000310 ,z=-0.001603,angle between two frames:0.003273
+[14:34:51.508] After pose optimization, distance between ekf and vo x:0.000310 ,z=-0.001603,angle between two frames:0.003273
+[14:34:51.508] frame process finished the id is: 101 the obs is:12 
+[14:34:51.597] Odometry x=-0.011414, y=0.396587, theta=-0.148267
+[14:34:51.600] After Reprojection Map nPoint:12 ,nCell:12 ,nMatches:0 ,distance between ekf and vo x:0.000055 ,z=-0.000193,angle between two frames:0.000345
+[14:34:51.600] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:51.600] After pose optimization, distance between ekf and vo x:0.000055 ,z=-0.000193,angle between two frames:0.000345
+[14:34:51.600] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.600] frame process finished the id is: 103 the obs is:12 
+[14:34:51.699] After Reprojection Map nPoint:12 ,nCell:6 ,nMatches:1 ,distance between ekf and vo x:0.000063 ,z=-0.000246,angle between two frames:0.000486
+[14:34:51.699] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:51.699] After pose optimization, distance between ekf and vo x:0.000063 ,z=-0.000246,angle between two frames:0.000486
+[14:34:51.699] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.699] frame process finished the id is: 104 the obs is:12 
+[14:34:51.702] Odometry x=-0.009818, y=0.403628, theta=-0.141589
+[14:34:51.799] Odometry x=-0.009328, y=0.410047, theta=-0.145824
+[14:34:51.803] After Reprojection Map nPoint:12 ,nCell:6 ,nMatches:1 ,distance between ekf and vo x:0.000130 ,z=-0.000952,angle between two frames:0.001910
+[14:34:51.803] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.003286 	 error end=0.003286
+[14:34:51.803] After pose optimization, distance between ekf and vo x:0.000130 ,z=-0.000952,angle between two frames:0.001910
+[14:34:51.803] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.804] frame process finished the id is: 105 the obs is:12 
+[14:34:51.891] After Reprojection Map nPoint:12 ,nCell:9 ,nMatches:1 ,distance between ekf and vo x:0.000042 ,z=-0.000215,angle between two frames:0.000337
+[14:34:51.891] n deleted obs = 3 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =4 	 error init =0.006905 	 error end=0.006196
+[14:34:51.891] After pose optimization, distance between ekf and vo x:0.002122 ,z=-0.001673,angle between two frames:0.010570
+[14:34:51.891] frame process finished the id is: 105 the obs is:12 
+[14:34:51.897] Odometry x=-0.008133, y=0.415792, theta=-0.147007
+[14:34:51.997] Odometry x=-0.006995, y=0.431714, theta=-0.148288
+[14:34:51.998] After Reprojection Map nPoint:12 ,nCell:4 ,nMatches:1 ,distance between ekf and vo x:0.000069 ,z=-0.000309,angle between two frames:0.000561
+[14:34:51.998] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000001 	 error end=0.000001
+[14:34:51.998] After pose optimization, distance between ekf and vo x:0.000069 ,z=-0.000309,angle between two frames:0.000561
+[14:34:51.998] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:51.998] frame process finished the id is: 107 the obs is:12 
+[14:34:52.100] Odometry x=-0.006452, y=0.438051, theta=-0.144044
+[14:34:52.102] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000227 ,z=-0.000488,angle between two frames:0.001178
+[14:34:52.102] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.001397 	 error end=0.001397
+[14:34:52.102] After pose optimization, distance between ekf and vo x:0.000227 ,z=-0.000488,angle between two frames:0.001178
+[14:34:52.102] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.102] frame process finished the id is: 108 the obs is:12 
+[14:34:52.198] Odometry x=-0.005884, y=0.443646, theta=-0.155716
+[14:34:52.221] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000094 ,z=-0.000383,angle between two frames:0.000633
+[14:34:52.221] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:52.221] After pose optimization, distance between ekf and vo x:0.000094 ,z=-0.000383,angle between two frames:0.000633
+[14:34:52.221] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.221] frame process finished the id is: 109 the obs is:12 
+[14:34:52.299] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000137 ,z=-0.000440,angle between two frames:0.000801
+[14:34:52.300] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000006 	 error end=0.000006
+[14:34:52.300] After pose optimization, distance between ekf and vo x:0.000137 ,z=-0.000440,angle between two frames:0.000801
+[14:34:52.300] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.300] frame process finished the id is: 110 the obs is:12 
+[14:34:52.300] Odometry x=-0.005484, y=0.443391, theta=-0.156094
+[14:34:52.398] Odometry x=-0.005250, y=0.450796, theta=-0.160644
+[14:34:52.400] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000173 ,z=-0.000650,angle between two frames:0.001142
+[14:34:52.400] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000050 	 error end=0.000050
+[14:34:52.400] After pose optimization, distance between ekf and vo x:0.000173 ,z=-0.000650,angle between two frames:0.001142
+[14:34:52.400] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.401] frame process finished the id is: 111 the obs is:12 
+[14:34:52.496] Odometry x=-0.004619, y=0.456529, theta=-0.167109
+[14:34:52.503] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000206 ,z=-0.000582,angle between two frames:0.001241
+[14:34:52.503] After pose optimization, distance between ekf and vo x:0.000206 ,z=-0.000582,angle between two frames:0.001241
+[14:34:52.503] frame process finished the id is: 111 the obs is:12 
+[14:34:52.596] Odometry x=-0.004426, y=0.462386, theta=-0.165991
+[14:34:52.604] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000076 ,z=-0.000311,angle between two frames:0.000474
+[14:34:52.604] After pose optimization, distance between ekf and vo x:0.000076 ,z=-0.000311,angle between two frames:0.000474
+[14:34:52.604] frame process finished the id is: 111 the obs is:12 
+[14:34:52.699] Odometry x=-0.003010, y=0.471922, theta=-0.169223
+[14:34:52.706] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000233 ,z=-0.000897,angle between two frames:0.001571
+[14:34:52.706] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:52.706] After pose optimization, distance between ekf and vo x:0.000233 ,z=-0.000897,angle between two frames:0.001571
+[14:34:52.706] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.706] frame process finished the id is: 114 the obs is:12 
+[14:34:52.796] Odometry x=-0.004246, y=0.454959, theta=-0.170201
+[14:34:52.803] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000081 ,z=-0.000685,angle between two frames:0.000850
+[14:34:52.803] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:52.803] After pose optimization, distance between ekf and vo x:0.000081 ,z=-0.000685,angle between two frames:0.000850
+[14:34:52.803] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.803] frame process finished the id is: 115 the obs is:12 
+[14:34:52.899] Odometry x=-0.003293, y=0.463548, theta=-0.179426
+[14:34:52.904] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000202 ,z=-0.000414,angle between two frames:0.000926
+[14:34:52.904] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000063 	 error end=0.000063
+[14:34:52.904] After pose optimization, distance between ekf and vo x:0.000202 ,z=-0.000414,angle between two frames:0.000926
+[14:34:52.904] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:52.904] frame process finished the id is: 116 the obs is:12 
+[14:34:52.996] Odometry x=0.000935, y=0.453014, theta=-0.171704
+[14:34:53.002] After Reprojection Map nPoint:12 ,nCell:4 ,nMatches:1 ,distance between ekf and vo x:0.000056 ,z=-0.000532,angle between two frames:0.000636
+[14:34:53.002] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:53.002] After pose optimization, distance between ekf and vo x:0.000056 ,z=-0.000532,angle between two frames:0.000636
+[14:34:53.002] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.002] frame process finished the id is: 117 the obs is:12 
+[14:34:53.097] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000191 ,z=-0.000525,angle between two frames:0.001166
+[14:34:53.097] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000009 	 error end=0.000009
+[14:34:53.097] After pose optimization, distance between ekf and vo x:0.000191 ,z=-0.000525,angle between two frames:0.001166
+[14:34:53.097] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.097] frame process finished the id is: 118 the obs is:12 
+[14:34:53.098] Odometry x=0.003670, y=0.460002, theta=-0.173896
+[14:34:53.196] Odometry x=0.004964, y=0.466474, theta=-0.167186
+[14:34:53.201] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000090 ,z=-0.000181,angle between two frames:0.000393
+[14:34:53.201] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000019 	 error end=0.000019
+[14:34:53.201] After pose optimization, distance between ekf and vo x:0.000090 ,z=-0.000181,angle between two frames:0.000393
+[14:34:53.201] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.201] frame process finished the id is: 119 the obs is:12 
+[14:34:53.298] Odometry x=0.006877, y=0.474587, theta=-0.167662
+[14:34:53.309] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000336 ,z=-0.001569,angle between two frames:0.002864
+[14:34:53.309] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000269 	 error end=0.000269
+[14:34:53.309] After pose optimization, distance between ekf and vo x:0.000336 ,z=-0.001569,angle between two frames:0.002864
+[14:34:53.309] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.310] frame process finished the id is: 120 the obs is:12 
+[14:34:53.396] Odometry x=0.007284, y=0.474302, theta=-0.170634
+[14:34:53.396] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000043 ,z=-0.000438,angle between two frames:0.000641
+[14:34:53.396] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000033 	 error end=0.000033
+[14:34:53.396] After pose optimization, distance between ekf and vo x:0.000043 ,z=-0.000438,angle between two frames:0.000641
+[14:34:53.396] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.396] frame process finished the id is: 121 the obs is:12 
+[14:34:53.495] Odometry x=0.008626, y=0.482881, theta=-0.164664
+[14:34:53.497] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:-0.000263 ,z=-0.000860,angle between two frames:0.001472
+[14:34:53.497] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:53.497] After pose optimization, distance between ekf and vo x:-0.000263 ,z=-0.000860,angle between two frames:0.001472
+[14:34:53.497] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.497] frame process finished the id is: 122 the obs is:12 
+[14:34:53.597] Odometry x=0.008952, y=0.489931, theta=-0.178696
+[14:34:53.606] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000099 ,z=-0.000409,angle between two frames:0.000752
+[14:34:53.606] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000724 	 error end=0.000724
+[14:34:53.606] After pose optimization, distance between ekf and vo x:0.000099 ,z=-0.000409,angle between two frames:0.000752
+[14:34:53.606] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.606] frame process finished the id is: 123 the obs is:12 
+[14:34:53.693] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:0.000085 ,z=-0.000422,angle between two frames:0.000741
+[14:34:53.693] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000011 	 error end=0.000011
+[14:34:53.693] After pose optimization, distance between ekf and vo x:0.000085 ,z=-0.000422,angle between two frames:0.000741
+[14:34:53.693] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.693] frame process finished the id is: 124 the obs is:12 
+[14:34:53.700] Odometry x=0.009721, y=0.495139, theta=-0.180487
+[14:34:53.799] Odometry x=0.014102, y=0.500206, theta=-0.193238
+[14:34:53.808] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000128 ,z=-0.000462,angle between two frames:0.000655
+[14:34:53.808] n deleted obs = 2 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =3 	 error init =0.006692 	 error end=0.006692
+[14:34:53.808] After pose optimization, distance between ekf and vo x:0.000128 ,z=-0.000462,angle between two frames:0.000655
+[14:34:53.808] frame process finished the id is: 124 the obs is:12 
+[14:34:53.896] Odometry x=0.014881, y=0.505521, theta=-0.183700
+[14:34:53.904] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000217 ,z=-0.000473,angle between two frames:0.000918
+[14:34:53.904] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000012 	 error end=0.000012
+[14:34:53.904] After pose optimization, distance between ekf and vo x:0.000217 ,z=-0.000473,angle between two frames:0.000918
+[14:34:53.904] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:53.904] frame process finished the id is: 126 the obs is:12 
+[14:34:53.999] Odometry x=0.015075, y=0.505371, theta=-0.184359
+[14:34:54.006] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000285 ,z=-0.000177,angle between two frames:0.000747
+[14:34:54.006] After pose optimization, distance between ekf and vo x:0.000285 ,z=-0.000177,angle between two frames:0.000747
+[14:34:54.006] frame process finished the id is: 126 the obs is:12 
+[14:34:54.096] Odometry x=0.015920, y=0.512183, theta=-0.185472
+[14:34:54.101] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000362 ,z=-0.000215,angle between two frames:0.000945
+[14:34:54.101] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:54.101] After pose optimization, distance between ekf and vo x:0.000362 ,z=-0.000215,angle between two frames:0.000945
+[14:34:54.101] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.101] frame process finished the id is: 128 the obs is:12 
+[14:34:54.200] Odometry x=0.016779, y=0.519071, theta=-0.167990
+[14:34:54.210] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000819 ,z=-0.000528,angle between two frames:0.002099
+[14:34:54.210] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:54.210] After pose optimization, distance between ekf and vo x:0.000819 ,z=-0.000528,angle between two frames:0.002099
+[14:34:54.210] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.211] frame process finished the id is: 129 the obs is:12 
+[14:34:54.297] Odometry x=0.018153, y=0.524578, theta=-0.174679
+[14:34:54.299] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000213 ,z=-0.000377,angle between two frames:0.000666
+[14:34:54.299] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000710 	 error end=0.000710
+[14:34:54.299] After pose optimization, distance between ekf and vo x:0.000213 ,z=-0.000377,angle between two frames:0.000666
+[14:34:54.299] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.299] frame process finished the id is: 130 the obs is:12 
+[14:34:54.393] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000072 ,z=-0.000198,angle between two frames:0.000273
+[14:34:54.393] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.002813 	 error end=0.002813
+[14:34:54.393] After pose optimization, distance between ekf and vo x:0.000072 ,z=-0.000198,angle between two frames:0.000273
+[14:34:54.393] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.393] frame process finished the id is: 131 the obs is:12 
+[14:34:54.396] Odometry x=0.018908, y=0.529965, theta=-0.160965
+[14:34:54.493] Odometry x=0.019446, y=0.536016, theta=-0.173174
+[14:34:54.514] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000231 ,z=-0.000563,angle between two frames:0.000853
+[14:34:54.514] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000005 	 error end=0.000005
+[14:34:54.514] After pose optimization, distance between ekf and vo x:0.000231 ,z=-0.000563,angle between two frames:0.000853
+[14:34:54.514] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.514] frame process finished the id is: 132 the obs is:12 
+[14:34:54.595] Odometry x=0.020223, y=0.541523, theta=-0.173518
+[14:34:54.603] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000206 ,z=-0.000406,angle between two frames:0.000653
+[14:34:54.603] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000001 	 error end=0.000001
+[14:34:54.603] After pose optimization, distance between ekf and vo x:0.000206 ,z=-0.000406,angle between two frames:0.000653
+[14:34:54.603] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.603] frame process finished the id is: 133 the obs is:12 
+[14:34:54.703] Odometry x=0.020845, y=0.547080, theta=-0.175028
+[14:34:54.705] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000470 ,z=-0.000840,angle between two frames:0.001673
+[14:34:54.705] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:54.705] After pose optimization, distance between ekf and vo x:0.000470 ,z=-0.000840,angle between two frames:0.001673
+[14:34:54.705] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.705] frame process finished the id is: 134 the obs is:12 
+[14:34:54.799] Odometry x=0.021748, y=0.552737, theta=-0.184422
+[14:34:54.800] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000156 ,z=-0.000497,angle between two frames:0.000644
+[14:34:54.800] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:54.800] After pose optimization, distance between ekf and vo x:0.000156 ,z=-0.000497,angle between two frames:0.000644
+[14:34:54.800] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.800] frame process finished the id is: 135 the obs is:12 
+[14:34:54.898] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000283 ,z=-0.000586,angle between two frames:0.000960
+[14:34:54.898] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:54.898] After pose optimization, distance between ekf and vo x:0.000283 ,z=-0.000586,angle between two frames:0.000960
+[14:34:54.898] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:54.898] frame process finished the id is: 136 the obs is:12 
+[14:34:54.901] Odometry x=0.022870, y=0.559890, theta=-0.179005
+[14:34:54.998] Odometry x=0.023592, y=0.566513, theta=-0.183340
+[14:34:55.007] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000176 ,z=-0.001514,angle between two frames:0.001303
+[14:34:55.007] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000146 	 error end=0.000146
+[14:34:55.007] After pose optimization, distance between ekf and vo x:0.000176 ,z=-0.001514,angle between two frames:0.001303
+[14:34:55.007] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.007] frame process finished the id is: 137 the obs is:12 
+[14:34:55.097] Odometry x=0.017135, y=0.577331, theta=-0.182361
+[14:34:55.098] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000187 ,z=-0.000385,angle between two frames:0.000573
+[14:34:55.098] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.098] After pose optimization, distance between ekf and vo x:0.000187 ,z=-0.000385,angle between two frames:0.000573
+[14:34:55.098] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.098] frame process finished the id is: 138 the obs is:12 
+[14:34:55.197] Odometry x=0.019496, y=0.582700, theta=-0.167637
+[14:34:55.215] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000173 ,z=-0.000544,angle between two frames:0.000616
+[14:34:55.215] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.215] After pose optimization, distance between ekf and vo x:0.000173 ,z=-0.000544,angle between two frames:0.000616
+[14:34:55.215] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.215] frame process finished the id is: 139 the obs is:12 
+[14:34:55.296] Odometry x=0.018713, y=0.588757, theta=-0.175279
+[14:34:55.297] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000247 ,z=-0.000425,angle between two frames:0.000821
+[14:34:55.297] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000131 	 error end=0.000131
+[14:34:55.297] After pose optimization, distance between ekf and vo x:0.000247 ,z=-0.000425,angle between two frames:0.000821
+[14:34:55.297] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.297] frame process finished the id is: 140 the obs is:12 
+[14:34:55.396] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000132 ,z=-0.000193,angle between two frames:0.000416
+[14:34:55.396] n deleted obs = 1 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =0 	 error init =0.009035 	 error end=0.009035
+[14:34:55.396] After pose optimization, distance between ekf and vo x:0.000132 ,z=-0.000193,angle between two frames:0.000416
+[14:34:55.396] frame process finished the id is: 140 the obs is:12 
+[14:34:55.399] Odometry x=0.019784, y=0.594312, theta=-0.175896
+[14:34:55.496] Odometry x=0.020646, y=0.599701, theta=-0.184304
+[14:34:55.513] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000366 ,z=-0.001141,angle between two frames:0.001369
+[14:34:55.513] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.513] After pose optimization, distance between ekf and vo x:0.000366 ,z=-0.001141,angle between two frames:0.001369
+[14:34:55.513] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.514] frame process finished the id is: 142 the obs is:12 
+[14:34:55.596] Odometry x=0.022360, y=0.604392, theta=-0.183857
+[14:34:55.598] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000061 ,z=-0.000284,angle between two frames:0.000232
+[14:34:55.598] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.598] After pose optimization, distance between ekf and vo x:0.000061 ,z=-0.000284,angle between two frames:0.000232
+[14:34:55.598] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.599] frame process finished the id is: 143 the obs is:12 
+[14:34:55.698] Odometry x=0.022948, y=0.610051, theta=-0.184336
+[14:34:55.708] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000322 ,z=-0.000840,angle between two frames:0.001113
+[14:34:55.708] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.708] After pose optimization, distance between ekf and vo x:0.000322 ,z=-0.000840,angle between two frames:0.001113
+[14:34:55.708] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.709] frame process finished the id is: 144 the obs is:12 
+[14:34:55.796] Odometry x=0.023784, y=0.615528, theta=-0.197531
+[14:34:55.819] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000061 ,z=-0.000602,angle between two frames:0.000316
+[14:34:55.820] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.820] After pose optimization, distance between ekf and vo x:0.000061 ,z=-0.000602,angle between two frames:0.000316
+[14:34:55.820] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.820] frame process finished the id is: 145 the obs is:12 
+[14:34:55.898] Odometry x=0.023883, y=0.615260, theta=-0.197446
+[14:34:55.906] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000421 ,z=-0.000766,angle between two frames:0.001195
+[14:34:55.906] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.906] After pose optimization, distance between ekf and vo x:0.000421 ,z=-0.000766,angle between two frames:0.001195
+[14:34:55.906] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.906] frame process finished the id is: 146 the obs is:12 
+[14:34:55.995] Odometry x=0.025250, y=0.622864, theta=-0.209822
+[14:34:55.998] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000086 ,z=-0.000072,angle between two frames:0.000192
+[14:34:55.998] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:55.998] After pose optimization, distance between ekf and vo x:0.000086 ,z=-0.000072,angle between two frames:0.000192
+[14:34:55.998] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:55.998] frame process finished the id is: 147 the obs is:12 
+[14:34:56.096] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000095 ,z=-0.000140,angle between two frames:0.000241
+[14:34:56.096] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000012 	 error end=0.000012
+[14:34:56.096] After pose optimization, distance between ekf and vo x:0.000095 ,z=-0.000140,angle between two frames:0.000241
+[14:34:56.096] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.097] frame process finished the id is: 148 the obs is:12 
+[14:34:56.097] Odometry x=0.026008, y=0.628411, theta=-0.209012
+[14:34:56.198] Odometry x=0.026661, y=0.634670, theta=-0.222699
+[14:34:56.201] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000119 ,z=-0.000276,angle between two frames:0.000388
+[14:34:56.201] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000209 	 error end=0.000209
+[14:34:56.201] After pose optimization, distance between ekf and vo x:0.000119 ,z=-0.000276,angle between two frames:0.000388
+[14:34:56.201] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.202] frame process finished the id is: 149 the obs is:12 
+[14:34:56.295] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000029 ,z=-0.000207,angle between two frames:0.000137
+[14:34:56.295] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000220 	 error end=0.000220
+[14:34:56.295] After pose optimization, distance between ekf and vo x:0.000029 ,z=-0.000207,angle between two frames:0.000137
+[14:34:56.295] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.295] frame process finished the id is: 150 the obs is:12 
+[14:34:56.297] Odometry x=0.027901, y=0.640944, theta=-0.218088
+[14:34:56.396] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000023 ,z=-0.000127,angle between two frames:0.000076
+[14:34:56.396] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:56.396] After pose optimization, distance between ekf and vo x:0.000023 ,z=-0.000127,angle between two frames:0.000076
+[14:34:56.396] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.396] frame process finished the id is: 151 the obs is:12 
+[14:34:56.399] Odometry x=0.028586, y=0.648429, theta=-0.221627
+[14:34:56.492] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000009 ,z=-0.000042,angle between two frames:0.000009
+[14:34:56.492] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000003 	 error end=0.000003
+[14:34:56.492] After pose optimization, distance between ekf and vo x:-0.000009 ,z=-0.000042,angle between two frames:0.000009
+[14:34:56.492] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.493] frame process finished the id is: 152 the obs is:12 
+[14:34:56.496] Odometry x=0.029329, y=0.654719, theta=-0.224640
+[14:34:56.598] Odometry x=0.029369, y=0.667427, theta=-0.216206
+[14:34:56.603] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000045 ,z=-0.000121,angle between two frames:0.000130
+[14:34:56.603] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000014 	 error end=0.000014
+[14:34:56.603] After pose optimization, distance between ekf and vo x:0.000045 ,z=-0.000121,angle between two frames:0.000130
+[14:34:56.603] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.603] frame process finished the id is: 153 the obs is:12 
+[14:34:56.696] Odometry x=0.030052, y=0.673211, theta=-0.218249
+[14:34:56.701] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000053 ,z=-0.000218,angle between two frames:0.000192
+[14:34:56.701] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000476 	 error end=0.000476
+[14:34:56.701] After pose optimization, distance between ekf and vo x:0.000053 ,z=-0.000218,angle between two frames:0.000192
+[14:34:56.701] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.701] frame process finished the id is: 154 the obs is:12 
+[14:34:56.800] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000033 ,z=-0.000155,angle between two frames:0.000111
+[14:34:56.800] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000027 	 error end=0.000027
+[14:34:56.800] After pose optimization, distance between ekf and vo x:0.000033 ,z=-0.000155,angle between two frames:0.000111
+[14:34:56.800] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.800] Odometry x=0.030201, y=0.673423, theta=-0.218456
+[14:34:56.800] frame process finished the id is: 155 the obs is:12 
+[14:34:56.897] Odometry x=0.030908, y=0.679798, theta=-0.224643
+[14:34:56.903] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000360 ,z=-0.000663,angle between two frames:0.001049
+[14:34:56.903] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:56.903] After pose optimization, distance between ekf and vo x:0.000360 ,z=-0.000663,angle between two frames:0.001049
+[14:34:56.903] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.904] frame process finished the id is: 156 the obs is:12 
+[14:34:56.995] Odometry x=0.032017, y=0.687914, theta=-0.218103
+[14:34:56.996] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000013 ,z=-0.000118,angle between two frames:0.000015
+[14:34:56.996] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:56.996] After pose optimization, distance between ekf and vo x:-0.000013 ,z=-0.000118,angle between two frames:0.000015
+[14:34:56.996] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:56.996] frame process finished the id is: 157 the obs is:12 
+[14:34:57.098] Odometry x=0.032716, y=0.694232, theta=-0.216169
+[14:34:57.098] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000002 ,z=-0.000120,angle between two frames:0.000003
+[14:34:57.098] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000012 	 error end=0.000012
+[14:34:57.098] After pose optimization, distance between ekf and vo x:-0.000002 ,z=-0.000120,angle between two frames:0.000003
+[14:34:57.098] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.099] frame process finished the id is: 158 the obs is:12 
+[14:34:57.197] Odometry x=0.033003, y=0.703515, theta=-0.212668
+[14:34:57.203] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000028 ,z=-0.000320,angle between two frames:0.000059
+[14:34:57.203] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:57.203] After pose optimization, distance between ekf and vo x:-0.000028 ,z=-0.000320,angle between two frames:0.000059
+[14:34:57.203] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.203] frame process finished the id is: 159 the obs is:12 
+[14:34:57.286] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000008 ,z=-0.000025,angle between two frames:0.000027
+[14:34:57.286] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:57.286] After pose optimization, distance between ekf and vo x:-0.000008 ,z=-0.000025,angle between two frames:0.000027
+[14:34:57.286] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.286] frame process finished the id is: 160 the obs is:12 
+[14:34:57.300] Odometry x=0.033615, y=0.709179, theta=-0.212203
+[14:34:57.388] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000005 ,z=-0.000094,angle between two frames:0.000027
+[14:34:57.389] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:57.389] After pose optimization, distance between ekf and vo x:-0.000005 ,z=-0.000094,angle between two frames:0.000027
+[14:34:57.389] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.389] frame process finished the id is: 161 the obs is:12 
+[14:34:57.413] Odometry x=0.034516, y=0.717482, theta=-0.207741
+[14:34:57.496] Odometry x=0.035255, y=0.724479, theta=-0.214395
+[14:34:57.501] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000028 ,z=-0.000159,angle between two frames:0.000001
+[14:34:57.501] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:57.501] After pose optimization, distance between ekf and vo x:-0.000028 ,z=-0.000159,angle between two frames:0.000001
+[14:34:57.501] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.501] frame process finished the id is: 162 the obs is:12 
+[14:34:57.603] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000140 ,z=-0.000444,angle between two frames:0.000087
+[14:34:57.603] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000058 	 error end=0.000058
+[14:34:57.603] After pose optimization, distance between ekf and vo x:-0.000140 ,z=-0.000444,angle between two frames:0.000087
+[14:34:57.603] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.603] frame process finished the id is: 163 the obs is:12 
+[14:34:57.608] Odometry x=0.035698, y=0.729354, theta=-0.216079
+[14:34:57.702] Odometry x=0.036502, y=0.736654, theta=-0.218960
+[14:34:57.703] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000164 ,z=-0.000506,angle between two frames:0.000097
+[14:34:57.703] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:57.703] After pose optimization, distance between ekf and vo x:-0.000164 ,z=-0.000506,angle between two frames:0.000097
+[14:34:57.703] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.703] frame process finished the id is: 164 the obs is:12 
+[14:34:57.800] Odometry x=0.037042, y=0.742063, theta=-0.219086
+[14:34:57.833] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000014 ,z=-0.000050,angle between two frames:0.000010
+[14:34:57.833] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000008 	 error end=0.000008
+[14:34:57.833] After pose optimization, distance between ekf and vo x:-0.000014 ,z=-0.000050,angle between two frames:0.000010
+[14:34:57.833] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.833] frame process finished the id is: 165 the obs is:12 
+[14:34:57.894] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000050 ,z=-0.000175,angle between two frames:0.000047
+[14:34:57.894] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000133 	 error end=0.000133
+[14:34:57.894] After pose optimization, distance between ekf and vo x:-0.000050 ,z=-0.000175,angle between two frames:0.000047
+[14:34:57.895] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:57.895] frame process finished the id is: 166 the obs is:12 
+[14:34:57.898] Odometry x=0.037046, y=0.742422, theta=-0.218872
+[14:34:57.997] Odometry x=0.037742, y=0.748780, theta=-0.222678
+[14:34:58.009] After Reprojection Map nPoint:12 ,nCell:2 ,nMatches:1 ,distance between ekf and vo x:-0.000005 ,z=-0.000102,angle between two frames:0.000050
+[14:34:58.009] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.009] After pose optimization, distance between ekf and vo x:-0.000005 ,z=-0.000102,angle between two frames:0.000050
+[14:34:58.009] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.010] frame process finished the id is: 167 the obs is:12 
+[14:34:58.094] Odometry x=0.037796, y=0.749193, theta=-0.221959
+[14:34:58.098] After Reprojection Map nPoint:12 ,nCell:5 ,nMatches:1 ,distance between ekf and vo x:-0.000119 ,z=-0.000402,angle between two frames:0.000142
+[14:34:58.098] After pose optimization, distance between ekf and vo x:-0.000119 ,z=-0.000402,angle between two frames:0.000142
+[14:34:58.098] frame process finished the id is: 167 the obs is:12 
+[14:34:58.188] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000013 ,z=-0.000056,angle between two frames:0.000016
+[14:34:58.189] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.189] After pose optimization, distance between ekf and vo x:-0.000013 ,z=-0.000056,angle between two frames:0.000016
+[14:34:58.189] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.189] frame process finished the id is: 169 the obs is:12 
+[14:34:58.198] Odometry x=0.038448, y=0.755037, theta=-0.222141
+[14:34:58.297] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000025 ,z=-0.000085,angle between two frames:0.000007
+[14:34:58.297] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.297] After pose optimization, distance between ekf and vo x:-0.000025 ,z=-0.000085,angle between two frames:0.000007
+[14:34:58.297] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.297] frame process finished the id is: 170 the obs is:12 
+[14:34:58.298] Odometry x=0.039409, y=0.763297, theta=-0.213572
+[14:34:58.392] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000012 ,z=-0.000047,angle between two frames:0.000008
+[14:34:58.392] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.392] After pose optimization, distance between ekf and vo x:-0.000012 ,z=-0.000047,angle between two frames:0.000008
+[14:34:58.392] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.393] frame process finished the id is: 171 the obs is:12 
+[14:34:58.399] Odometry x=0.040211, y=0.770761, theta=-0.214175
+[14:34:58.499] Odometry x=0.040892, y=0.776907, theta=-0.213857
+[14:34:58.502] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000014 ,z=-0.000059,angle between two frames:0.000014
+[14:34:58.502] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.502] After pose optimization, distance between ekf and vo x:-0.000014 ,z=-0.000059,angle between two frames:0.000014
+[14:34:58.502] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.502] frame process finished the id is: 172 the obs is:12 
+[14:34:58.587] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000009 ,z=-0.000040,angle between two frames:0.000017
+[14:34:58.587] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000010 	 error end=0.000010
+[14:34:58.587] After pose optimization, distance between ekf and vo x:-0.000009 ,z=-0.000040,angle between two frames:0.000017
+[14:34:58.587] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.588] frame process finished the id is: 173 the obs is:12 
+[14:34:58.598] Odometry x=0.041564, y=0.783091, theta=-0.210255
+[14:34:58.700] Odometry x=0.042358, y=0.790435, theta=-0.212535
+[14:34:58.712] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000195 ,z=-0.000719,angle between two frames:0.000521
+[14:34:58.712] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.712] After pose optimization, distance between ekf and vo x:0.000195 ,z=-0.000719,angle between two frames:0.000521
+[14:34:58.712] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.712] frame process finished the id is: 174 the obs is:12 
+[14:34:58.786] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000005 ,z=-0.000022,angle between two frames:0.000008
+[14:34:58.786] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.786] After pose optimization, distance between ekf and vo x:-0.000005 ,z=-0.000022,angle between two frames:0.000008
+[14:34:58.786] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.786] frame process finished the id is: 175 the obs is:12 
+[14:34:58.798] Odometry x=0.042600, y=0.790441, theta=-0.213336
+[14:34:58.898] Odometry x=0.043432, y=0.798083, theta=-0.209337
+[14:34:58.918] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000205 ,z=-0.000784,angle between two frames:0.000628
+[14:34:58.918] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:58.918] After pose optimization, distance between ekf and vo x:0.000205 ,z=-0.000784,angle between two frames:0.000628
+[14:34:58.918] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.919] frame process finished the id is: 176 the obs is:12 
+[14:34:58.987] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000066 ,z=-0.000055,angle between two frames:0.000121
+[14:34:58.987] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000297 	 error end=0.000297
+[14:34:58.987] After pose optimization, distance between ekf and vo x:-0.000066 ,z=-0.000055,angle between two frames:0.000121
+[14:34:58.987] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:58.987] frame process finished the id is: 177 the obs is:12 
+[14:34:58.997] Odometry x=0.044137, y=0.803346, theta=-0.205331
+[14:34:59.096] Odometry x=0.045002, y=0.811666, theta=-0.207105
+[14:34:59.106] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000077 ,z=-0.000723,angle between two frames:0.000432
+[14:34:59.106] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:59.106] After pose optimization, distance between ekf and vo x:0.000077 ,z=-0.000723,angle between two frames:0.000432
+[14:34:59.106] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:59.107] frame process finished the id is: 178 the obs is:12 
+[14:34:59.189] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000017 ,z=-0.000066,angle between two frames:0.000024
+[14:34:59.189] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:59.189] After pose optimization, distance between ekf and vo x:-0.000017 ,z=-0.000066,angle between two frames:0.000024
+[14:34:59.189] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:59.189] frame process finished the id is: 179 the obs is:12 
+[14:34:59.198] Odometry x=0.045721, y=0.817329, theta=-0.207052
+[14:34:59.297] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:0.000098 ,z=-0.001188,angle between two frames:0.000768
+[14:34:59.297] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:59.297] After pose optimization, distance between ekf and vo x:0.000098 ,z=-0.001188,angle between two frames:0.000768
+[14:34:59.297] Odometry x=0.046496, y=0.824657, theta=-0.208537
+[14:34:59.297] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:59.297] frame process finished the id is: 180 the obs is:12 
+[14:34:59.396] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000072 ,z=-0.000267,angle between two frames:0.000010
+[14:34:59.397] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =12 	 error init =0.000000 	 error end=0.000000
+[14:34:59.397] After pose optimization, distance between ekf and vo x:-0.000072 ,z=-0.000267,angle between two frames:0.000010
+[14:34:59.397] Update EKF and 3D points the number of feature in the new frame: 12 and number of obs: 12
+[14:34:59.397] frame process finished the id is: 181 the obs is:12 
+[14:34:59.397] Odometry x=0.047123, y=0.829368, theta=-0.217054
+[14:34:59.496] After Reprojection Map nPoint:12 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000107 ,z=-0.000661,angle between two frames:0.000015
+[14:34:59.496] n deleted obs = 1 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =11 	 error init =0.005281 	 error end=0.005281
+[14:34:59.496] After pose optimization, distance between ekf and vo x:-0.000107 ,z=-0.000661,angle between two frames:0.000015
+[14:34:59.496] Update EKF and 3D points the number of feature in the new frame: 11 and number of obs: 11
+[14:34:59.496] frame process finished the id is: 182 the obs is:11 
+[14:34:59.498] Odometry x=0.047743, y=0.835075, theta=-0.214120
+[14:34:59.601] Odometry x=0.048422, y=0.841310, theta=-0.216892
+[14:34:59.602] After Reprojection Map nPoint:11 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000031 ,z=-0.001016,angle between two frames:0.000477
+[14:34:59.602] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =11 	 error init =0.000087 	 error end=0.000087
+[14:34:59.602] After pose optimization, distance between ekf and vo x:-0.000031 ,z=-0.001016,angle between two frames:0.000477
+[14:34:59.602] Update EKF and 3D points the number of feature in the new frame: 11 and number of obs: 11
+[14:34:59.602] frame process finished the id is: 183 the obs is:11 
+[14:34:59.686] After Reprojection Map nPoint:11 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000032 ,z=-0.000092,angle between two frames:0.000013
+[14:34:59.686] n deleted obs = 0 	 n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =11 	 error init =0.000000 	 error end=0.000000
+[14:34:59.686] After pose optimization, distance between ekf and vo x:-0.000032 ,z=-0.000092,angle between two frames:0.000013
+[14:34:59.686] Update EKF and 3D points the number of feature in the new frame: 11 and number of obs: 11
+[14:34:59.686] frame process finished the id is: 184 the obs is:11 
+[14:34:59.698] Odometry x=0.049065, y=0.846594, theta=-0.224229
+[14:34:59.796] Odometry x=0.049778, y=0.852740, theta=-0.223256
+[14:34:59.820] After Reprojection Map nPoint:11 ,nCell:1 ,nMatches:1 ,distance between ekf and vo x:-0.000151 ,z=-0.000449,angle between two frames:0.000193
+[14:34:59.820] n deleted obs = 0 	 n obs with reprojection err

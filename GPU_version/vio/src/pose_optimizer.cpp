@@ -47,7 +47,7 @@ void optimizeGaussNewton(
 
   // compute the scale of the error for robust estimation
   std::vector<float> errors;
-  for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
+  for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
     if((*it)->point == NULL)
       continue;
@@ -55,8 +55,14 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f)
                - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e *= 1.0 / (1<<(*it)->level);
+    //std::cerr<<"pose optimizer - error : "<<e.norm()<<std::endl;
+    if(e.norm() > 0.01){
+        it = frame->fts_.erase(it);
+        continue;
+    }
     chi2_vec_init.push_back(e.norm()); // just for debug
     errors.push_back(e.norm());
+    it++;
   }
 
   if(errors.empty())
@@ -118,20 +124,34 @@ void optimizeGaussNewton(
   }
 
   size_t n_deleted_refs = 0;
-  for(Features::iterator it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
+  //for(Features::iterator it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
+  for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
-    if((*it)->point == NULL)
-      continue;
+    //std::cerr<<"123 - pose optimizer - frame->fts_.size() : "<<frame->fts_.size()<<std::endl;
+    //std::cerr<<"124 - pose optimizer - (*it)->point : "<<(*it)->point<<std::endl;
+    if((*it)->point == NULL) {
+        it++;
+        //std::cerr<<"126 - pose optimizer - (*it)->point == NULL : "<<std::endl;
+        continue;
+    }
+    //std::cerr<<"129 - pose optimizer "<<(*it)->f.x()<<" "<<(*it)->f.y()<<" "<<(*it)->f.z()<<"\t"<<(*it)->point->pos_.x()<<" "<<(*it)->point->pos_.y()<<" "<<(*it)->point->pos_.z()<<std::endl;
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
+    //std::cerr<<"131 - pose optimizer"<<std::endl;
     e /= (1<<(*it)->level);
+    //std::cerr<<"133 - pose optimizer"<<std::endl;
     chi2_vec_final.push_back(e.norm());
+    //std::cerr<<"135 - pose optimizer"<<std::endl;
     if(e.norm() >  2.0 / frame->cam_->errorMultiplier2())
     {
       // we don't need to delete a reference in the point since it was not created yet
       (*it)->point.reset();
+      //std::cerr<<"befor erase 140 pose optimizer"<<std::endl;
+      it = frame->fts_.erase(it);
+      //std::cerr<<"after erase 142 pose optimizer"<<std::endl;
       ++n_deleted_refs;
-
     }
+    else
+        it++;
   }
   num_obs -= n_deleted_refs;
 #if VIO_DEBUG
