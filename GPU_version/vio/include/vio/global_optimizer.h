@@ -34,6 +34,11 @@
 #include <g2o/solvers/csparse/linear_solver_csparse.h>
 #include <g2o/solvers/dense/linear_solver_dense.h>
 #include <g2o/solvers/structure_only/structure_only_solver.h>
+#include <g2o/core/optimization_algorithm_factory.h>
+#include <g2o/stuff/sampler.h>
+#include <memory>
+
+G2O_USE_OPTIMIZATION_LIBRARY(cholmod)
 
 
 namespace vio {
@@ -76,7 +81,7 @@ protected:
 #endif
         /// Temporary container to hold the g2o edge with reference to frame and point.
         struct EdgeContainerSE3{
-            std::shared_ptr<g2o::EdgeProjectXYZ2UV>     edge;
+            g2o::EdgeProjectXYZ2UV*     edge;
             std::shared_ptr<Frame>          frame;
             std::shared_ptr<Feature>        feature;
         };
@@ -90,19 +95,19 @@ protected:
                 double& final_error);
 
 /// Create a g2o vertice from a keyframe object.
-        std::shared_ptr<g2o::VertexSE3Expmap> createG2oFrameSE3(
+        g2o::VertexSE3Expmap* createG2oFrameSE3(
                 FramePtr kf,
                 size_t id,
                 bool fixed);
     /// Creates a g2o vertice from a mappoint object.
-        std::shared_ptr<g2o::VertexPointXYZ> createG2oPoint(
+        g2o::VertexSBAPointXYZ* createG2oPoint(
                 Vector3d pos,
                 size_t id,
                 bool fixed);
   /// Creates a g2o edge between a g2o keyframe and mappoint vertice with the provided measurement.
-        std::shared_ptr<g2o::EdgeProjectXYZ2UV> createG2oEdgeSE3(
-                std::shared_ptr<g2o::VertexSE3Expmap> v_kf,
-                std::shared_ptr<g2o::VertexPointXYZ> v_mp,
+        g2o::EdgeProjectXYZ2UV* createG2oEdgeSE3(
+                g2o::VertexSE3Expmap* v_kf,
+                g2o::VertexSBAPointXYZ* v_mp,
                 const Vector2d& f_up,
                 bool robust_kernel,
                 double huber_width,

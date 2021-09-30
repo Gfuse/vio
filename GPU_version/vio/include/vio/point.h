@@ -51,7 +51,7 @@ public:
   bool                        normal_set_;              //!< Flag whether the surface normal was estimated or not.
   list<std::shared_ptr<Feature>>              obs_;                     //!< References to keyframes which observe the point.
   size_t                      n_obs_;                   //!< Number of obervations: Keyframes AND successful reprojections in intermediate frames.
-  std::shared_ptr<g2o::VertexPointXYZ>     v_pt_;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
+  g2o::VertexSBAPointXYZ*     v_pt_=nullptr;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
   int                         last_published_ts_;       //!< Timestamp of last publishing.
   int                         last_frame_overlap_id_;    //!< Flag for the reprojection: don't reproject a pt twice.
   PointType                   type_;                    //!< Quality of the point.
