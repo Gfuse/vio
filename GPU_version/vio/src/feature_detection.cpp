@@ -76,6 +76,7 @@ void FastDetector::detect(
   fts.clear();
   for(int L=0; L<n_pyr_levels_; ++L)
   {
+    if(L>img_pyr.size())return;
     const int scale = (1<<L);
     cv::Mat img=img_pyr.at(L);
     if(!gpu_fast_->reload_buf(0,0,img)){
@@ -98,6 +99,7 @@ void FastDetector::detect(
     }
     for(uint i=0;i<count[0];++i)
     {
+      if(fast_corners==NULL)return;
       if(fast_corners[i].x<1 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<1){
           continue;
       }
