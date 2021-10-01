@@ -12,25 +12,25 @@ namespace vk {
 
 using namespace Eigen;
 /*
- * R and T are the rotation and translation of the current frames with respect to the refrence frame, T from ref to current
+ * R and T are the rotation and translation of the current frames with respect to the reference frame, T from ref to current
  * */
-
+///TODO we need to add the restriction of the movement here
 Vector3d
 triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
                          const Vector3d& feature1, const Vector3d& feature2 )
 {
-  Vector3d f2 = R * feature2;
+  Vector3d R_F2 = R * feature2;
   Vector2d b;
   b[0] = t.dot(feature1);
-  b[1] = t.dot(f2);//cross(t,R*f2)
+  b[1] = t.dot(R_F2);//cross(t,R*f2)
   Matrix2d A;
   A(0,0) = feature1.dot(feature1);
-  A(1,0) = feature1.dot(f2);
+  A(1,0) = feature1.dot(R_F2);
   A(0,1) = -A(1,0);
-  A(1,1) = -f2.dot(f2);
+  A(1,1) = -R_F2.dot(R_F2);
   Vector2d lambda = A.inverse() * b;
   Vector3d xm = lambda[0] * feature1;
-  Vector3d xn = t + lambda[1] * f2;
+  Vector3d xn = t + lambda[1] * R_F2;
   return ( xm + xn )/2;
 }
 
@@ -73,7 +73,7 @@ computeInliers(const vector<Vector3d>& features2, // c2
                const Vector3d& t,                 // T_c1_to_c2
                const double reproj_thresh,
                double error_multiplier2,
-               vector<Vector3d>& xyz_vec,         // 3d point: optimal triangulation is to minimally correct the feature rays
+               vector<Vector3d>& xyz_vec,         // 3d point: with respect to the reference frame
                vector<int>& inliers,
                vector<int>& outliers)
 {
@@ -85,7 +85,7 @@ computeInliers(const vector<Vector3d>& features2, // c2
   for(size_t j=0; j<features1.size(); ++j)
   {
     if(t.z()>0.0){
-        xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j]/*refrence*/, features2[j]/*current*/ ));
+        xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j]/*reference*/, features2[j]/*current*/ ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
         double e2 = reprojError(features2[j], R.transpose()*(xyz_vec.back()-t), error_multiplier2);
         if(e1 > reproj_thresh || e2 > reproj_thresh)

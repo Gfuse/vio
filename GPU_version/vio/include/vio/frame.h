@@ -93,7 +93,7 @@ namespace vio {
             return cam_->world2cam( T_f_w_.se3().inverse()*xyz_w);
         }
         /// Transforms point coordinates in world-frame (w) to camera pixel coordinates (c).
-        inline Vector2d w2px(const Vector3d& xyz_w) const { return cam_->world2cam( xyz_w ); }
+        inline Vector2d w2px(const Vector3d& xyz_w) const { return cam_->world2cam( w2f(xyz_w) ); }
 
         /// Transforms pixel coordinates (c) to frame unit sphere coordinates (f).
         inline Vector3d c2f(const Vector2d& px) const { return cam_->cam2world(px[0], px[1]); }

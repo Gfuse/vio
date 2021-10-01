@@ -139,9 +139,10 @@ namespace vio {
                         Vector2d px((int) (*it_cur)->px.x(),
                                     (int) (*it_cur)->px.y());
                         SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
+                        // pose with respect to reference frame
                         Vector3d pos=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
                                                                         frame->c2f(px),(*it_ref)->f);
-                        if(pos.z()<0.0)continue;
+                        // point in world frame
                         std::shared_ptr<Point> new_point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
                         frame->addFeature(std::make_shared<Feature>(frame,
                                                                     new_point,
@@ -149,6 +150,7 @@ namespace vio {
                         new_point->addFrameRef(frame->fts_.back());
                         added_keypoints.push_back(match.trainIdx);
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
+                        ///TODO number of cell is not reflecting the number of point, check K value
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
                     }else{
@@ -164,6 +166,7 @@ namespace vio {
                                                                     (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
                         added_keypoints.push_back(match.trainIdx);
+                        ///TODO number of cell is not reflecting the number of point, check K value
                         grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
                         overlap_kfs.back().second++;
                     }
@@ -216,7 +219,7 @@ namespace vio {
             }
 
             it->pt->n_succeeded_reproj_++;
-            if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_succeeded_reproj_ > 10)
+            if(it->pt->n_succeeded_reproj_ > 10)
                 it->pt->type_ = Point::TYPE_GOOD;
 
             cell.erase(it);
