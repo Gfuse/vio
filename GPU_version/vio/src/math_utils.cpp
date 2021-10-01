@@ -12,7 +12,7 @@ namespace vk {
 
 using namespace Eigen;
 /*
- * R and T are the rotation and translation of the current frames with respect to the refrence frame
+ * R and T are the rotation and translation of the current frames with respect to the refrence frame, T from ref to current
  * */
 
 Vector3d

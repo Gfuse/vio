@@ -73,7 +73,7 @@ namespace vio {
             while(map_.keyframes_.empty() || new_keyframe_ == false)
                 cond_.wait(lk);
 #if VIO_DEBUG
-            fprintf(log_,"[%s] BA loop \n",
+            fprintf(log_,"[%s] BA loop run \n",
                     vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
             new_keyframe_=false;
@@ -115,7 +115,7 @@ namespace vio {
                     if(v_mp == NULL)
                     {
                         // mappoint-vertex doesn't exist yet. create a new one:
-                        v_mp = createG2oPoint(mp->pos_, v_id++, false);
+                        v_mp = createG2oPoint(mp->pos_, v_id++, true);
                         mp->v_pt_ = v_mp;
                         optimizer.addVertex(v_mp);
                     }
@@ -141,10 +141,19 @@ namespace vio {
             }
 
             // Optimization
-            double init_error=0.0, final_error=0.0;
-            if(Config::lobaNumIter() > 0)
-                runSparseBAOptimizer( Config::lobaNumIter(), init_error, final_error);
 
+            point_mut_.lock();
+            optimizer.initializeOptimization();
+            optimizer.computeActiveErrors();
+#if VIO_DEBUG
+            fprintf(log_,"[%s] init error: %f \n",
+                    vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
+#endif
+            optimizer.optimize(vio::Config::lobaNumIter());
+#if VIO_DEBUG
+            fprintf(log_,"[%s] end error: %f \n",
+                    vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
+#endif
             // Update Keyframe and MapPoint Positions
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end(); ++it_kf)
@@ -163,6 +172,7 @@ namespace vio {
                     mp->v_pt_ = NULL;
                 }
             }
+            point_mut_.unlock();
 
             // Remove Measurements with too large reprojection error
             for(list< pair<FramePtr,std::shared_ptr<Feature>> >::iterator it=incorrect_edges.begin();
@@ -178,36 +188,6 @@ namespace vio {
             }
         }
     }
-
-   void BA_Glob::setupG2o()
-   {
-       // TODO: What's happening with all this HEAP stuff? Memory Leak?
-/*       optimizer_=std::make_shared<g2o::SparseOptimizer>();
-       optimizer_->setVerbose(false);
-       auto linearSolver = g2o::make_unique<g2o::LinearSolverCholmod<g2o::BlockSolver_6_3::PoseMatrixType>>();
-       g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(
-               g2o::make_unique<g2o::BlockSolver_6_3>(std::move(linearSolver)));
-
-       optimizer_->setAlgorithm(solver);
-
-       // setup camera
-       std::shared_ptr<g2o::CameraParameters> cam_params = std::make_shared<g2o::CameraParameters>(1.0, Vector2d(0.,0.), 0.);
-       cam_params->setId(0);
-       if (!optimizer_->addParameter(cam_params.get())) {
-           assert(false);*/
-      // }
-   }
-
-   void
-   BA_Glob::runSparseBAOptimizer(unsigned int num_iter,
-                        double& init_error, double& final_error)
-   {
-       optimizer_->initializeOptimization();
-       optimizer_->computeActiveErrors();
-       init_error = optimizer_->activeChi2();
-       optimizer_->optimize(num_iter);
-       final_error = optimizer_->activeChi2();
-   }
 
    g2o::VertexSE3Expmap*
    BA_Glob::createG2oFrameSE3(FramePtr frame, size_t id, bool fixed)
@@ -226,7 +206,7 @@ namespace vio {
    {
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
        v->setId(id);
-       v->setFixed(fixed);
+       v->setMarginalized(fixed);
        v->setEstimate(pos);
        return v;
 
@@ -242,8 +222,7 @@ namespace vio {
        g2o::EdgeProjectXYZ2UV* e= new g2o::EdgeProjectXYZ2UV;
        e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_point));
        e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_frame));
-       e->setMeasurement(Vector2d(static_cast<int>(g2o::Sampler::uniformRand(0, 640)),
-                                  static_cast<int>(g2o::Sampler::uniformRand(0, 480))));
+       e->setMeasurement(f_up);
        e->information() = Eigen::Matrix2d::Identity();
        g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
        rk->setDelta(huber_width);

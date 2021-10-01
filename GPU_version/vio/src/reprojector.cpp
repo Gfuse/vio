@@ -75,9 +75,9 @@ namespace vio {
         resetGrid();
         Features keypoints;
         cv::Ptr<cv::BFMatcher> matcher = cv::BFMatcher::create(cv::NORM_HAMMING2,false);
-        feature_detection::FastDetector detector(
+        std::unique_ptr<feature_detection::FastDetector> detector=std::make_unique<feature_detection::FastDetector>(
                 frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
-        detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints);
+        detector->detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), keypoints);
         std::vector<cv::KeyPoint> keypoints_cur;
         list<std::shared_ptr<Feature>>::iterator it_cur=keypoints.begin();
         cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
@@ -125,7 +125,6 @@ namespace vio {
                 else{
                     matcher->knnMatch(ref_des, cur_des, matches, 1, cv::InputArray(maskdown));
                 }
-                //matcher->knnMatch(ref_des, cur_des, matches, 1);
 
                 for(auto&& match:matches.back()){
                     it_cur=keypoints.begin();
@@ -169,14 +168,9 @@ namespace vio {
                         overlap_kfs.back().second++;
                     }
                 }
-/*                cv::Mat imgMatch,key_point_ref,key_point_cur;
-                cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
-                cv::imshow("img",imgMatch);
-                cv::waitKey();*/
                 ++it_ref;
             }
         }
-        //exit(0);
         {
             for (auto&& cell : grid_.cells) {
                 if (reprojectCell(*cell, frame, log_))
@@ -216,7 +210,7 @@ namespace vio {
             if(!res)
             {
                 it->pt->n_failed_reproj_++;
-                if(it->pt->type_ == Point::TYPE_UNKNOWN && it->pt->n_failed_reproj_ > 15)it->pt.reset();
+                if(it->pt->n_failed_reproj_ > 15)it->pt.reset();
                 it = cell.erase(it);
                 continue;
             }

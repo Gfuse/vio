@@ -61,7 +61,6 @@ public:
       boost::unique_lock< boost::mutex > lk( mtx_);
       new_keyframe_=true;
       cond_.notify_one();
-      std::cerr<<"new_key_frame\n";
 #if VIO_DEBUG
       fprintf(log_,"[%s] New key frame \n",
               vio::time_in_HH_MM_SS_MMM().c_str());
@@ -69,8 +68,6 @@ public:
   }
 protected:
   bool new_keyframe_=false;
-  std::shared_ptr<g2o::OptimizationAlgorithmLevenberg> Levenberg_;
-  std::shared_ptr<g2o::SparseOptimizer> optimizer_;
   boost::condition_variable cond_;
   boost::mutex mtx_;
   boost::thread* thread_;
@@ -85,14 +82,6 @@ protected:
             std::shared_ptr<Frame>          frame;
             std::shared_ptr<Feature>        feature;
         };
-
-/// Initialize g2o with solver type, optimization strategy and camera model.
-        void setupG2o();
-        /// Run the optimization on the provided graph.
-        void runSparseBAOptimizer(
-                unsigned int num_iter,
-                double& init_error,
-                double& final_error);
 
 /// Create a g2o vertice from a keyframe object.
         g2o::VertexSE3Expmap* createG2oFrameSE3(

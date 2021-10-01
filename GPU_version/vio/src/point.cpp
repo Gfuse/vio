@@ -184,7 +184,8 @@ void Point::optimize(const size_t n_iter)
   }
   for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
             Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * pos_));
-            if (e.norm() > 0.3)
+            e /= (1<<(*it)->level);
+            if (e.norm() > 3.0/ (*it)->frame->cam_->errorMultiplier2())
                 n_failed_reproj_++;
   }
 

@@ -166,7 +166,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
     fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d depth mean:%f min:%f\n",
                        vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
 #endif
-  //std::cerr<<"run BA\n";
   ba_glob_->new_key_frame();
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
@@ -257,7 +256,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  std::cerr<<"BA run\n";
   ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
