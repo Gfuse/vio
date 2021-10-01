@@ -143,7 +143,6 @@ void Point::optimize(const size_t n_iter)
   double chi2 = 0.0;
   Matrix3d A;
   Vector3d b;
-
   for(size_t i=0; i<n_iter; i++)
   {
     A.setZero();
@@ -183,12 +182,12 @@ void Point::optimize(const size_t n_iter)
     if(vk::norm_max(dp) <= EPS)
       break;
   }
+  for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
+            Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * pos_));
+            if (e.norm() > 0.3)
+                n_failed_reproj_++;
+  }
 
-    for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
-            Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * (*it)->point->pos_));
-            if (e.norm() > 1.0)
-                (*it)->point->n_failed_reproj_++;
-    }
 
 }
 

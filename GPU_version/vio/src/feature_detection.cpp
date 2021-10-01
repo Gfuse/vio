@@ -77,7 +77,7 @@ void FastDetector::detect(
   for(int L=0; L<n_pyr_levels_; ++L)
   {
     if(L>img_pyr.size())return;
-    const int scale = (1<<L);
+    int scale = (1<<L);
     cv::Mat img=img_pyr.at(L);
     if(!gpu_fast_->reload_buf(0,0,img)){
         ROS_ERROR("Failed to write into GPU goodbye :)");
@@ -97,35 +97,26 @@ void FastDetector::detect(
           ROS_ERROR("Can not communicate with GPU");
           exit(0);
     }
-    for(uint i=0;i<count[0];++i)
+    int size=count[0];
+    for(uint i=0;i<size;++i)
     {
-      if(fast_corners==NULL)return;
       if(fast_corners[i].x<1 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<1){
           continue;
       }
-      const int k = static_cast<int>((fast_corners[i].y*scale)/cell_size_)*grid_n_cols_
-                  + static_cast<int>((fast_corners[i].x*scale)/cell_size_);
-
-      if(grid_occupancy_[k] || k > corners.size()){
-          continue;
-      }
-      const float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
-      if(score > corners.at(k).score){
-          corners.at(k) = Corner(fast_corners[i].x, fast_corners[i].y, score, L, 0.0f);
-          keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 7.f,-1,score));
-      }
+      float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
+      keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 7.f,-1,score));
     }
   }
   if(keypoints.size()<1){
       ROS_ERROR("GPU Driver crash try again!");
-      assert(false);
+      assert(0);
   }
   cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 50.0f, 4);
   cv::Mat descriptor;
   extractor->compute(frame->img(), keypoints, descriptor);
   for(auto&& p:_for(keypoints))fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));
   resetGrid();
-};
+}
 
 } // namespace feature_detection
 } // namespace vio

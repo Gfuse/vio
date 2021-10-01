@@ -72,10 +72,10 @@ public:
 protected:
 
   static const int border_ = 8; //!< no feature should be within 8px of border.
-  const int cell_size_;
-  const int n_pyr_levels_;
-  const int grid_n_cols_;
-  const int grid_n_rows_;
+  int cell_size_;
+  int n_pyr_levels_;
+  int grid_n_cols_;
+  int grid_n_rows_;
   vector<bool> grid_occupancy_;
 
   inline int getCellIndex(int x, int y, int level)

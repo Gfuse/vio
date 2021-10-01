@@ -98,7 +98,6 @@ namespace vio {
             list< pair<FramePtr,std::shared_ptr<Feature>> > incorrect_edges;
             // Go through all Keyframes
             size_t v_id = 0;
-            point_mut_.lock();
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end(); ++it_kf)
             {
@@ -177,7 +176,6 @@ namespace vio {
                     map_.removePtFrameRef(it->frame, it->feature);
                 }
             }
-            point_mut_.unlock();
         }
     }
 

@@ -54,6 +54,12 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       ukf_->UpdateSvo(0.0,0.0,0.0);
       return NO_KEYFRAME;
   }
+  if(disparities_.size() < 20){
+#if VIO_DEBUG
+      fprintf(log_,"[%s] VIO can not be initialized goodbye :)\n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
+      assert(0);
+  }
   double min,max;
   double disparity = vk::getMean(disparities_,min,max);
     if(disparity < Config::initMinDisparity()){
@@ -130,9 +136,9 @@ void detectFeatures(
     opencl* gpu_fast)
 {
 
-  feature_detection::FastDetector detector(
+  std::unique_ptr<feature_detection::FastDetector> detector=std::make_unique<feature_detection::FastDetector>(
       frame->img().cols, frame->img().rows, Config::gridSize(), gpu_fast,Config::nPyrLevels());
-  detector.detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), new_features);
+  detector->detect(frame, frame->img_pyr_, Config::triangMinCornerScore(), new_features);
 
   // now for all maximum corners, initialize a new seed
   px_vec.clear();

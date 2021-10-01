@@ -62,6 +62,7 @@ bool Map::safeDeleteFrame(FramePtr frame)
 
 void Map::removePtFrameRef(FramePtr frame, std::shared_ptr<Feature> ftr)
 {
+  boost::unique_lock<boost::mutex> lock(point_mut_);
   if(ftr->point == NULL)
     return; // mappoint may have been deleted in a previous ref. removal
   if(ftr->point->obs_.size() <= 2)
@@ -80,10 +81,10 @@ void Map::safeDeletePoint(std::shared_ptr<Point> pt)
   if(pt->obs_.size()>1){
       for(auto&& ftr:pt->obs_){
           if(ftr->frame)ftr->frame->removeKeyPoint(ftr);
-          ftr->point.reset();
+          if(ftr->point!=nullptr)ftr->point.reset();
       }
   }else{
-      pt->obs_.back()->point.reset();
+      if(!pt->obs_.empty())if(pt->obs_.back()->point!=nullptr)pt->obs_.back()->point.reset();
   }
   pt->obs_.clear();
   // Delete mappoint
