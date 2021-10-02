@@ -111,6 +111,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
           frame_ref_->addFeature(f.item);
       }
   }
+  //debug(frame_ref_,frame_cur);
 #if VIO_DEBUG
     fprintf(log_,"[%s] Init finished: Homography RANSAC (inlier) is:%d ,While %d inliers minimum required.  px average disparity is:%f ,While minimum is: %f  KLT tracked: %d\n",
             vio::time_in_HH_MM_SS_MMM().c_str(),

@@ -96,6 +96,7 @@ namespace vio {
             // init g2o
             list<EdgeContainerSE3> edges;
             list< pair<FramePtr,std::shared_ptr<Feature>> > incorrect_edges;
+            ba_mux_.lock();
             // Go through all Keyframes
             size_t v_id = 0;
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
@@ -107,10 +108,9 @@ namespace vio {
                 optimizer.addVertex(v_kf);
                 for(auto&& it_ftr:(*it_kf)->fts_)
                 {
+                    if(it_ftr->point==NULL)continue;
                     // for each keyframe add edges to all observed mapoints
                     std::shared_ptr<Point> mp = it_ftr->point;
-                    if(mp == NULL)
-                        continue;
                     g2o::VertexSBAPointXYZ* v_mp = mp->v_pt_;
                     if(v_mp == NULL)
                     {
@@ -139,10 +139,7 @@ namespace vio {
                     }
                 }
             }
-
             // Optimization
-
-            point_mut_.lock();
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
 #if VIO_DEBUG
@@ -156,23 +153,22 @@ namespace vio {
 #endif
             // Update Keyframe and MapPoint Positions
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
-                it_kf != map_.keyframes_.end(); ++it_kf)
+                it_kf != map_.keyframes_.end();++it_kf)
             {
-                (*it_kf)->T_f_w_ = SE3( (*it_kf)->v_kf_->estimate().rotation(),
-                                        (*it_kf)->v_kf_->estimate().translation());
+                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation(),
+                                        (*it_kf)->v_kf_->estimate().translation()));
                 (*it_kf)->v_kf_ = NULL;
                 for(Features::iterator it_ftr=(*it_kf)->fts_.begin(); it_ftr!=(*it_kf)->fts_.end(); ++it_ftr)
                 {
-                    std::shared_ptr<Point> mp = (*it_ftr)->point;
-                    if(mp == NULL)
+                    if((*it_ftr)->point == NULL)
                         continue;
+                    std::shared_ptr<Point> mp = (*it_ftr)->point;
                     if(mp->v_pt_ == NULL)
                         continue;       // mp was updated before
                     mp->pos_ = mp->v_pt_->estimate();
                     mp->v_pt_ = NULL;
                 }
             }
-            point_mut_.unlock();
 
             // Remove Measurements with too large reprojection error
             for(list< pair<FramePtr,std::shared_ptr<Feature>> >::iterator it=incorrect_edges.begin();
@@ -186,6 +182,7 @@ namespace vio {
                     map_.removePtFrameRef(it->frame, it->feature);
                 }
             }
+            ba_mux_.unlock();
         }
     }
 

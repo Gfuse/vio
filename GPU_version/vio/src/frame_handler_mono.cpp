@@ -205,6 +205,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             new_frame_->T_f_w_.se2().translation().y()-init_f.second.se2().translation().y(),
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
+  boost::unique_lock< boost::mutex > lock(ba_glob_->ba_mux_);
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
@@ -256,6 +257,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   // add keyframe to map
   map_.addKeyframe(new_frame_);
+  map_.checkKeyFrames();
   ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }

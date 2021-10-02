@@ -111,6 +111,17 @@ protected:
         }
 
     }
+    void debug(FramePtr ref,FramePtr cur){
+        cv::Mat reference,current;
+        cv::cvtColor(ref->img(),reference,cv::COLOR_GRAY2RGB);
+        cv::cvtColor(cur->img(),current,cv::COLOR_GRAY2RGB);
+        for(auto&& f:ref->fts_)cv::circle(reference, cv::Point(f->px.x(),f->px.y() ), 2, cv::Scalar(0, 255,0),2);
+        for(auto&& f:cur->fts_)cv::circle(current, cv::Point(f->px.x(),f->px.y() ), 2, cv::Scalar(0, 255,0),2);
+        cv::imshow("Reference",reference);
+        cv::imshow("Current",current);
+        cv::waitKey();
+        exit(0);
+    }
 };
 
 /// Detect Fast corners in the image.

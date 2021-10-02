@@ -56,10 +56,10 @@ void optimizeGaussNewton(
                - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e *= 1.0 / (1<<(*it)->level);
     //std::cerr<<"pose optimizer - error : "<<e.norm()<<std::endl;
-    if(e.norm() > 0.01){
+/*    if(e.norm() > 0.01){
         it = frame->fts_.erase(it);
         continue;
-    }
+    }*/
     chi2_vec_init.push_back(e.norm()); // just for debug
     errors.push_back(e.norm());
     it++;
@@ -122,7 +122,7 @@ void optimizeGaussNewton(
     if(vk::norm_max(dT) <= EPS)
       break;
   }
-
+  point_mut_.lock();
   size_t n_deleted_refs = 0;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
@@ -142,6 +142,7 @@ void optimizeGaussNewton(
     else
         it++;
   }
+  point_mut_.unlock();
   num_obs -= n_deleted_refs;
 #if VIO_DEBUG
     error_init=0.0;

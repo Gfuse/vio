@@ -66,6 +66,7 @@ public:
               vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
   }
+ boost::mutex ba_mux_;
 protected:
   bool new_keyframe_=false;
   boost::condition_variable cond_;

@@ -125,19 +125,23 @@ namespace vio {
                 else{
                     matcher->knnMatch(ref_des, cur_des, matches, 1, cv::InputArray(maskdown));
                 }
-
+                /*cv::Mat imgMatch,key_point_ref,key_point_cur;
+                cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
+                cv::imshow("img",imgMatch);
+                cv::waitKey();*/
                 for(auto&& match:matches.back()){
                     it_cur=keypoints.begin();
                     std::advance(it_cur,match.trainIdx);
                     if(!(*it_cur))continue;
+                    const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
+                                  grid_.grid_n_cols
+                                  + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
+                    if(k>grid_.cells.size()-1)continue;
+                    assert(grid_.cells.at(k) != nullptr);
+                    if(grid_.cells.at(k)->size()> Config::gridSize()-1)continue;
+                    Vector2d px((int) (*it_cur)->px.x(),
+                                (int) (*it_cur)->px.y());
                     if ((*it_ref)->point == NULL){
-                        const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
-                                      grid_.grid_n_cols
-                                      + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
-                        if(k>grid_.cells.size()-1)continue;
-                        assert(grid_.cells.at(k) != nullptr);
-                        Vector2d px((int) (*it_cur)->px.x(),
-                                    (int) (*it_cur)->px.y());
                         SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
                         // pose with respect to reference frame
                         Vector3d pos=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
@@ -155,13 +159,6 @@ namespace vio {
                         overlap_kfs.back().second++;
                     }else{
                         (*it_ref)->point->last_frame_overlap_id_ = frame->id_;
-                        const int k = static_cast<int>((*it_cur)->px.y()/ grid_.cell_size) *
-                                      grid_.grid_n_cols
-                                      + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
-                        if(k>grid_.cells.size()-1)continue;
-                        assert(grid_.cells.at(k) != nullptr);
-                        Vector2d px((int) (*it_cur)->px.x(),
-                                    (int) (*it_cur)->px.y());
                         frame->addFeature(std::make_shared<Feature>(frame,
                                                                     (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));

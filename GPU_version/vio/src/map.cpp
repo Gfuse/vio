@@ -39,6 +39,7 @@ void Map::reset()
 
 bool Map::safeDeleteFrame(FramePtr frame)
 {
+  //boost::unique_lock<boost::mutex> lock(point_mut_);
   bool found = false;
   size_t position;
   for(auto&& keyframe:_for(keyframes_)){
@@ -62,7 +63,6 @@ bool Map::safeDeleteFrame(FramePtr frame)
 
 void Map::removePtFrameRef(FramePtr frame, std::shared_ptr<Feature> ftr)
 {
-  boost::unique_lock<boost::mutex> lock(point_mut_);
   if(ftr->point == NULL)
     return; // mappoint may have been deleted in a previous ref. removal
   if(ftr->point->obs_.size() <= 2)
@@ -77,6 +77,7 @@ void Map::removePtFrameRef(FramePtr frame, std::shared_ptr<Feature> ftr)
 
 void Map::safeDeletePoint(std::shared_ptr<Point> pt)
 {
+  boost::unique_lock<boost::mutex> lock(point_mut_);
   // Delete references to mappoints in all keyframes
   if(pt->obs_.size()>1){
       for(auto&& ftr:pt->obs_){
@@ -126,17 +127,21 @@ void Map::getCloseKeyframes(
 }
 
 
-FramePtr Map::getFurthestKeyframe(const Vector2d& pos) const
+FramePtr Map::getFurthestKeyframe(const Vector2d& pos)
 {
   FramePtr furthest_kf;
   double maxdist = 0.0;
-  for(auto it=keyframes_.begin(), ite=keyframes_.end(); it!=ite; ++it)
+  for(auto it=keyframes_.begin(); it!=keyframes_.end(); )
   {
+      if((*it)->T_f_w_.empty()){
+          it=keyframes_.erase(it);
+      }
     double dist = ((*it)->pos()-pos).norm();
     if(dist > maxdist) {
       maxdist = dist;
       furthest_kf = *it;
     }
+      ++it;
   }
   return furthest_kf;
 }
@@ -147,6 +152,17 @@ void Map::emptyTrash()
   if(trash_points_.empty())return;
   for(auto&& t:trash_points_)t.reset();
   trash_points_.clear();
+}
+bool Map::checkKeyFrames() {
+    for(auto it=keyframes_.begin();it!=keyframes_.end();){
+        if((*it)->T_f_w_.empty()){
+            for(auto&& fts:(*it)->fts_)removePtFrameRef(*it, fts);
+            it=keyframes_.erase(it);
+        }
+        ++it;
+    }
+    if(keyframes_.size()>0)return true;
+    return false;
 }
 
 

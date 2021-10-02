@@ -23,7 +23,7 @@ public:
     virtual ~Base(){
     };
     void predict(double dx,double dy,double dpitch,double time){
-        double dt=0.1;
+        double dt=0.2;
         /*if(t_cmd==0.0){
             t_cmd=time;
             return;
@@ -46,7 +46,7 @@ public:
         cov_h_=G*cov_*G.transpose()+R;
     }
     void correct(double ddx, double ddy, double dpitch, double time){
-        double dt=0.005;
+        double dt=0.01;
         /*if(t_imu==0.0){
             t_imu=time;
             return;

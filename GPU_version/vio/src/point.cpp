@@ -59,7 +59,6 @@ Point::~Point()
 
 void Point::addFrameRef(std::shared_ptr<Feature> ftr)
 {
-    boost::unique_lock<boost::mutex> lock(point_mut_);
   obs_.push_front(ftr);
   ++n_obs_;
 }

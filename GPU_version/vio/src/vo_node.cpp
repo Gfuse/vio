@@ -116,13 +116,7 @@ VioNode::~VioNode()
 
 void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 {
-/*    ++cam_syn_;
-    if(vo_->ukfPtr_.cam_syn_[cam_syn_ % 3]){
-        vo_->ukfPtr_.cam_syn_[cam_syn_ % 3]=false;
-    }else{
-        return;
-    }
-    if(cam_syn_>50)cam_syn_=0;*/
+
     if(!start_)return;
       try {
           cv::Mat img=cv_bridge::toCvShare(msg, "mono8")->image;
@@ -150,9 +144,12 @@ void VioNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
 void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     if(!start_)return;
     double imu_in[3];
-    imu_in[0] = imu->linear_acceleration.x;
-    imu_in[1] = imu->linear_acceleration.y;
-    imu_in[2] = imu->angular_velocity.z;
+    imu_in[0] = 0.2*imu_[0]+0.8*imu->linear_acceleration.x;
+    imu_in[1] = 0.2*imu_[1]+0.8*imu->linear_acceleration.y;
+    imu_in[2] = 0.2*imu_[2]+0.8*imu->angular_velocity.z;
+    if(fabs(imu_in[2])>0.4)return;
+    if(fabs(imu_in[1])>1.0)return;
+    if(fabs(imu_in[0])>1.0)return;
     memcpy(imu_, imu_in, static_cast<std::size_t>(3*sizeof(double)));
     vo_->UpdateIMU(imu_in,imu->header.stamp);
     imu_time_=imu->header.stamp;

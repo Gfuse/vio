@@ -57,12 +57,14 @@ public:
   void getCloseKeyframes(const FramePtr& frame, list< pair<FramePtr,double> >& close_kfs) const;
 
   /// Return the keyframe which is furthest apart from pos.
-  FramePtr getFurthestKeyframe(const Vector2d& pos) const;
+  FramePtr getFurthestKeyframe(const Vector2d& pos);
 
   /// Empty trash bin of deleted keyframes and map points. We don't delete the
   /// points immediately to ensure proper cleanup and to provide the visualizer
   /// a list of objects which must be removed.
   void emptyTrash();
+
+  bool checkKeyFrames();
 
 
   /// Return the number of keyframes in the map
