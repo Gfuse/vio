@@ -145,7 +145,7 @@ namespace vio {
                         SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
                         // pose with respect to reference frame
                         Vector3d pos=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
-                                                                        frame->c2f(px),(*it_ref)->f);
+                                                                  (*it_ref)->f,frame->c2f(px));
                         // point in world frame
                         std::shared_ptr<Point> new_point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
                         frame->addFeature(std::make_shared<Feature>(frame,

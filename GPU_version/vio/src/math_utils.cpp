@@ -19,15 +19,32 @@ Vector3d
 triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
                          const Vector3d& feature1, const Vector3d& feature2 )
 {
-  Vector3d R_F2 = R * feature2;
+  Vector3d R_F2 = R * feature2;//T*A=R*A+t
   Vector2d b;
+  /*
+   * b=cross(t,f1)
+   *   corss(t,Rf2)
+   * */
   b[0] = t.dot(feature1);
   b[1] = t.dot(R_F2);//cross(t,R*f2)
   Matrix2d A;
+  /**
+   * A<< cross(f1,f1), -z
+   *     z           , -corss(R*f2,R*f2)
+   *
+   * det(A)= -corss(R*f2,R*f2)*cross(f1,f1) + pow(z,2)
+   */
   A(0,0) = feature1.dot(feature1);
-  A(1,0) = feature1.dot(R_F2);
+  A(1,0) = feature1.dot(R_F2);//z
   A(0,1) = -A(1,0);
   A(1,1) = -R_F2.dot(R_F2);
+  /*
+   * A_inv<< cross(f1,f1)/det(A) , z/det(A)
+   *         -z/det(A)           , -corss(R*f2,R*f2)/det(A)
+   *
+   * lambda[0]= cross(t,f1)*cross(f1,f1)/det(A) + corss(t,Rf2)*z/det(A)
+   * lambda[1]= -cross(t,f1)*z/det(A) -   corss(t,Rf2) * corss(R*f2,R*f2)/det(A)
+   * */
   Vector2d lambda = A.inverse() * b;
   Vector3d xm = lambda[0] * feature1;
   Vector3d xn = t + lambda[1] * R_F2;
