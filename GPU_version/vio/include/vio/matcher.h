@@ -124,7 +124,7 @@ public:
 
   void createPatchFromPatchWithBorder();
   uint i=0;
-  void debug(cv::Mat ref,cv::Mat cur, Vector2d ref_px,Vector2d cur_px_in,Vector2d cur_px_out,bool res,uint8_t* patch,uint8_t* patch_border){
+  void debug(cv::Mat ref,cv::Mat cur, Vector2d ref_px,Vector2d cur_px_in,Vector2d cur_px_out,bool res,uint8_t* patch,uint8_t* patch_border, double depth){
       cv::Mat Ref,Cur,Patch,Patch_b;
       cv::cvtColor(cv::Mat(patch_size_,patch_size_,CV_8UC1,patch),Patch,cv::COLOR_GRAY2RGB);
       cv::cvtColor(cv::Mat(patch_size_+2,patch_size_+2,CV_8UC1,patch_border),Patch_b,cv::COLOR_GRAY2RGB);
@@ -133,7 +133,8 @@ public:
       cv::circle(Ref, cv::Point(ref_px.x(),ref_px.y() ), 2, cv::Scalar(0, 0,255),2);
       cv::circle(Cur, cv::Point(cur_px_in.x(),cur_px_in.y() ), 2, cv::Scalar(0, 0,255),2);
       cv::circle(Cur, cv::Point(cur_px_out.x(),cur_px_out.y() ), 2, cv::Scalar(0, 255,0),2);
-      cv::putText(Cur,res? "Accept": "reject",cv::Point(10,10),cv::FONT_HERSHEY_COMPLEX_SMALL,1.0,cv::Scalar(0,255,0),1,cv:: LINE_AA);
+      cv::putText(Cur,res? "Accept": "reject",cv::Point(10,30),cv::FONT_HERSHEY_COMPLEX_SMALL,1.0,cv::Scalar(0,255,0),1,cv:: LINE_AA);
+      cv::putText(Cur,std::to_string(depth),cv::Point(100,30),cv::FONT_HERSHEY_COMPLEX_SMALL,1.0,cv::Scalar(0,255,0),1,cv:: LINE_AA);
       cv::imwrite(std::string(PROJECT_DIR)+"/Ref"+std::to_string(i)+".png",Ref);
       cv::imwrite(std::string(PROJECT_DIR)+"/Cur"+std::to_string(i)+".png",Cur);
       cv::imwrite(std::string(PROJECT_DIR)+"/patch"+std::to_string(i)+".png",Patch);

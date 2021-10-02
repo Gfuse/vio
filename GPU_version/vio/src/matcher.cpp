@@ -41,7 +41,7 @@ void getWarpMatrixAffine(
     Matrix2d& A_cur_ref)
 {
   // Compute affine warp matrix A_ref_cur
-  const int halfpatch_size = 4;
+  const int halfpatch_size = 8;
   const Vector3d xyz_ref(f_ref*depth_ref);
   Vector3d xyz_du_ref(cam_ref.cam2world(px_ref + Vector2d(halfpatch_size,0)*(1<<level_ref)));
   Vector3d xyz_dv_ref(cam_ref.cam2world(px_ref + Vector2d(0,halfpatch_size)*(1<<level_ref)));
@@ -166,6 +166,7 @@ bool Matcher::findMatchDirect(
       cur_frame.se3().inverse() * ref_ftr_->frame->se3(), ref_ftr_->level, A_cur_ref_);
 
   //search_level_ = warp::getBestSearchLevel(A_cur_ref_, Config::nPyrLevels()-1);
+  /// TODO paches will be mirrored while robot is rotating around it self
   if(!warp::warpAffine(A_cur_ref_, ref_ftr_->frame->img_pyr_[ref_ftr_->level], ref_ftr_->px,
                    ref_ftr_->level, ref_ftr_->level, halfpatch_size_+1, patch_with_border_))return false;
   createPatchFromPatchWithBorder();
@@ -187,8 +188,8 @@ bool Matcher::findMatchDirect(
       cur_frame.img_pyr_[ref_ftr_->level], patch_with_border_, patch_,
       options_.align_max_iter, px_scaled);
   }
-/*  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[ref_ftr_->level],ref_ftr_->px,
-        px_cur,px_scaled ,success,patch_,patch_with_border_);*/
+  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[ref_ftr_->level],ref_ftr_->px,
+        px_cur,px_scaled ,success,patch_,patch_with_border_,(ref_ftr_->frame->se3().inverse()*pt.pos_).norm());
   px_cur = px_scaled;
   return success;
 }
