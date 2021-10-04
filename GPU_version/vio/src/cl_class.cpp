@@ -20,6 +20,7 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
         std::cout << " No devices found. Check OpenCL installation!\n";
         exit(1);
     }
+
     device = new cl::Device(all_devices[0]);
     std::cout << "CL_DEVICE_NAME: " << device->getInfo<CL_DEVICE_NAME>() <<'\n'
               << "CL_DRIVER_VERSION: " <<device->getInfo<CL_DRIVER_VERSION>()<<'\n'
@@ -51,12 +52,10 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
     queue=new cl::CommandQueue(*context,*device,CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,NULL);
 }
 opencl::~opencl() {
+    clear_buf();
+    queue->finish();
+    delete program;
     delete context;
     delete device;
-}
-void opencl::clear_buf() {
-    queue->finish();
-    _kernels.clear();
-    delete program;
 }
 

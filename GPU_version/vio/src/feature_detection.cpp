@@ -70,51 +70,54 @@ void FastDetector::detect(
     std::shared_ptr<Frame> frame,
     const ImgPyr& img_pyr,
     const double detection_threshold,
-    list<shared_ptr<Feature>>& fts){
+    list<shared_ptr<Feature>>& fts)
+    {
   Corners corners(grid_n_cols_*grid_n_rows_, Corner(0,0,0.0,0,0.0f));
   std::vector<cv::KeyPoint> keypoints;
-  fts.clear();
   for(int L=0; L<n_pyr_levels_; ++L)
   {
     if(L>img_pyr.size())return;
     int scale = (1<<L);
     cv::Mat img=img_pyr.at(L);
-    if(!gpu_fast_->reload_buf(0,0,img)){
-        ROS_ERROR("Failed to write into GPU goodbye :)");
-        exit(0);
-    };
+    gpu_fast_->load(0,0,img);
+    cl_int2 fast_corner[1000]={0};
+    gpu_fast_->load(0,1,1000,fast_corner);
     cl_int icorner[1]={0};
-    if(!gpu_fast_->reload_buf(0,2,icorner)){
-          ROS_ERROR("Failed to write into GPU goodbye :)");
-          exit(0);
-      };
+    gpu_fast_->load(0,2,1,icorner);
     gpu_fast_->run(0,img.cols,img.rows);
-    cl_int count[1]={0};
+    cl_int count[1];
     gpu_fast_->read(0,2,1,count);
-    cl_int2 fast_corners[350000]={0};
-    gpu_fast_->read(0,1,350000,fast_corners);
     if(count[0]<1 ){
-          ROS_ERROR("Can not communicate with GPU");
-          exit(0);
+        ROS_ERROR("Can not communicate with GPU");
+        exit(0);
     }
     int size=count[0];
+    cl_int2 fast_corners[size];
+    gpu_fast_->read(0,1,size,fast_corners);
     for(uint i=0;i<size;++i)
     {
-      if(fast_corners[i].x<1 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<1){
+      if(fast_corners[i].x<5 || fast_corners[i].x>img_pyr[L].cols-5 || fast_corners[i].y>img_pyr[L].rows-5 || fast_corners[i].y<5){
           continue;
       }
       float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
       keypoints.push_back(cv::KeyPoint(fast_corners[i].x*scale, fast_corners[i].y*scale, 7.f,-1,score));
     }
+    gpu_fast_->release(0,0);
+    gpu_fast_->release(0,1);
+    gpu_fast_->release(0,2);
   }
   if(keypoints.size()<1){
       ROS_ERROR("GPU Driver crash try again!");
       assert(0);
   }
+  std::cerr<<keypoints.size()<<'\n';
   cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
   cv::Mat descriptor;
   extractor->compute(frame->img(), keypoints, descriptor);
-  for(auto&& p:_for(keypoints))fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));
+  fts.clear();
+  for(auto&& p:_for(keypoints)){
+      fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));
+  }
   resetGrid();
 }
 

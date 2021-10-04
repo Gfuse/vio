@@ -40,37 +40,7 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
 {
     gpu_fast_= new opencl(cam_);
     gpu_fast_->make_kernel("fast_gray");
-    cv::Mat img=cv::Mat(cv::Size(700, 500),CV_8UC1);
-    std::vector<bool> errors;
-    errors.push_back(gpu_fast_->write_buf(0,0,img));
-    cl_int2 corners_[350000]={0};
-    errors.push_back(gpu_fast_->write_buf(0,1,350000,corners_));
-    cl_int icorner[1]={0};
-    errors.push_back(gpu_fast_->write_buf(0,2,1,icorner));
     gpu_fast_->make_kernel("compute_residual");
-    errors.push_back(gpu_fast_->write_buf(1,0,img));
-    errors.push_back(gpu_fast_->write_buf(1,1,img));
-    cl_float3 pose[1]={0.0};
-    errors.push_back(gpu_fast_->write_buf(1,2,3,pose));
-    errors.push_back(gpu_fast_->write_buf(1,3,3,pose));
-    cl_float3 f[300]={0};
-    errors.push_back(gpu_fast_->write_buf(1,4,300,f));
-    cl_float2 px[300]={0};
-    errors.push_back(gpu_fast_->write_buf(1,5,300,px));
-    cl_float  e[300]={0};
-    errors.push_back(gpu_fast_->write_buf(1,7,300,e));
-    cl_float H[9*300]={0};
-    errors.push_back(gpu_fast_->write_buf(1,8,9*300,H));
-    cl_float3 J[300];
-    errors.push_back(gpu_fast_->write_buf(1,9,300,J));
-    cl_float chi2[300]={0.01};
-    errors.push_back(gpu_fast_->write_buf(1,10,300,chi2));
-    for(auto e:errors){
-        if(e!=true){
-            std::cerr<<"Failed to write into GPU goodbye :) "<<'\n';
-            exit(0);
-        }
-    }
     initialize();
 #if VIO_DEBUG
     log_ =fopen((std::string(PROJECT_DIR)+"/frame_handler_log.txt").c_str(),"w+");
@@ -84,9 +54,6 @@ FrameHandlerMono::FrameHandlerMono(vk::AbstractCamera* cam,Eigen::Matrix<double,
 
 void FrameHandlerMono::initialize()
 {
-  feature_detection::DetectorPtr feature_detector(
-      new feature_detection::FastDetector(
-          cam_->width(), cam_->height(), Config::gridSize(),gpu_fast_, Config::nPyrLevels()));
   ba_glob_ = new BA_Glob(map_);
   ba_glob_->startThread();
 }
