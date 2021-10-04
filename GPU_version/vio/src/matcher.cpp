@@ -42,12 +42,9 @@ void getWarpMatrixAffine(
 {
   // Compute affine warp matrix A_ref_cur
   const int halfpatch_size = 8;
-  const Vector3d xyz_ref(f_ref*depth_ref);
   Vector3d xyz_du_ref(cam_ref.cam2world(px_ref + Vector2d(halfpatch_size,0)*(1<<level_ref)));
   Vector3d xyz_dv_ref(cam_ref.cam2world(px_ref + Vector2d(0,halfpatch_size)*(1<<level_ref)));
-  xyz_du_ref *= xyz_ref[2]/xyz_du_ref[2];
-  xyz_dv_ref *= xyz_ref[2]/xyz_dv_ref[2];
-  const Vector2d px_cur(cam_cur.world2cam(T_cur_ref*(xyz_ref)));
+  const Vector2d px_cur(cam_cur.world2cam(T_cur_ref*(f_ref)));
   const Vector2d px_du(cam_cur.world2cam(T_cur_ref*(xyz_du_ref)));
   const Vector2d px_dv(cam_cur.world2cam(T_cur_ref*(xyz_dv_ref)));
   A_cur_ref.col(0) = (px_du - px_cur)/halfpatch_size;
@@ -81,11 +78,6 @@ bool warpAffine(
   if(patch==NULL || img_ref.empty())return false;
   const int patch_size = halfpatch_size*2 ;
   const Matrix2f A_ref_cur = A_cur_ref.inverse().cast<float>();
-  if(isnan(A_ref_cur(0,0)))
-  {
-    printf("Affine warp is NaN, probably camera has no translation\n"); // TODO
-    return false;
-  }
   // Perform the warp on a larger patch.
   uint8_t* patch_ptr = patch;
   const Vector2f px_ref_pyr = px_ref.cast<float>() / (1<<level_ref);
@@ -188,8 +180,8 @@ bool Matcher::findMatchDirect(
       cur_frame.img_pyr_[ref_ftr_->level], patch_with_border_, patch_,
       options_.align_max_iter, px_scaled);
   }
-  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[ref_ftr_->level],ref_ftr_->px,
-        px_cur,px_scaled ,success,patch_,patch_with_border_,(ref_ftr_->frame->se3().inverse()*pt.pos_).norm());
+/*  debug(ref_ftr_->frame->img_pyr_[ref_ftr_->level],cur_frame.img_pyr_[ref_ftr_->level],ref_ftr_->px,
+        px_cur,px_scaled ,success,patch_,patch_with_border_,(ref_ftr_->frame->se3().inverse()*pt.pos_).z());*/
   px_cur = px_scaled;
   return success;
 }

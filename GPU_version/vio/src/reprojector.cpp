@@ -133,12 +133,12 @@ namespace vio {
                     it_cur=keypoints.begin();
                     std::advance(it_cur,match.trainIdx);
                     if(!(*it_cur))continue;
-                    const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
+/*                    const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
                                   grid_.grid_n_cols
                                   + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
                     if(k>grid_.cells.size()-1)continue;
                     assert(grid_.cells.at(k) != nullptr);
-                    if(grid_.cells.at(k)->size()> Config::gridSize()-1)continue;
+                    if(grid_.cells.at(k)->size()> Config::gridSize()-1)continue;*/
                     Vector2d px((int) (*it_cur)->px.x(),
                                 (int) (*it_cur)->px.y());
                     if ((*it_ref)->point == NULL){
@@ -148,6 +148,9 @@ namespace vio {
                                                                   (*it_ref)->f,frame->c2f(px));
                         // point in world frame
                         std::shared_ptr<Point> new_point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
+
+                        if(!matcher_.findMatchDirect(*new_point, *frame, px))continue;
+
                         frame->addFeature(std::make_shared<Feature>(frame,
                                                                     new_point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
@@ -155,31 +158,33 @@ namespace vio {
                         added_keypoints.push_back(match.trainIdx);
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         ///TODO number of cell is not reflecting the number of point, check K value
-                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
+                        //grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
                     }else{
+                        if(!matcher_.findMatchDirect(*(*it_ref)->point, *frame, px))continue;
+
                         (*it_ref)->point->last_frame_overlap_id_ = frame->id_;
                         frame->addFeature(std::make_shared<Feature>(frame,
                                                                     (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
                         added_keypoints.push_back(match.trainIdx);
                         ///TODO number of cell is not reflecting the number of point, check K value
-                        grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
+                        //grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
                         overlap_kfs.back().second++;
                     }
                 }
                 ++it_ref;
             }
         }
-        {
+        /*{
             for (auto&& cell : grid_.cells) {
                 if (reprojectCell(*cell, frame, log_))
                     ++n_matches_;
                 if (n_matches_ > (size_t) Config::maxFts())
                     break;
             }
-        }
-        exit(0);
+        }*/
+        //exit(0);
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

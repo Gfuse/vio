@@ -7,6 +7,7 @@
 
 #include <vio/math_utils.h>
 #include <ros/ros.h>
+#include <Eigen/SVD>
 
 namespace vk {
 
@@ -49,13 +50,32 @@ triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
   Vector3d xm = lambda[0] * feature1;
   Vector3d xn = t + lambda[1] * R_F2;
   return ( xm + xn )/2;*/
-        Vector3d R_F2 = R * feature2;//T*A=R*A+t
+/*        Vector3d R_F2 = R * feature2;//T*A=R*A+t
         Vector3d z = feature1.cross(R_F2);
         Vector3d b0 = t.cross(feature1);
         Vector3d b1 = t.cross(R_F2);
 
         Vector3d xm = ((z.dot(b1)/pow(z.norm(), 2))*(feature1));
         Vector3d xn = t + ((z.dot(b0)/pow(z.norm(), 2))*R_F2);
+        return ( xm + xn )/2;*/
+        Vector3d m0_hat = R * feature2;//T*A=R*A+t
+        Vector3d m1_hat = feature1;
+        Eigen::Matrix<double,3,2> x;
+        x<<m0_hat,m1_hat;
+        Eigen::Matrix<double,2,3> svd_in = x.transpose() * (Eigen::Matrix3d::Identity() - (t/t.norm())*(t/t.norm()).transpose());
+        Eigen::JacobiSVD<MatrixXd> svd( svd_in, ComputeFullU | ComputeFullV);
+        Vector3d n_p_hat = svd.matrixV().col(1);
+        Vector3d m0_p = m0_hat - (m0_hat.dot(n_p_hat)) * n_p_hat;
+        Vector3d m1_p = m1_hat - (m1_hat.dot(n_p_hat)) * n_p_hat;
+        Vector3d R_F2_p = m0_p;
+        Vector3d f1_p = m1_p;
+        Vector3d z = f1_p.cross(R_F2_p);
+        Vector3d b0 = t.cross(f1_p);
+        Vector3d b1 = t.cross(R_F2_p);
+        double lamda0 = z.dot(b0)/pow(z.norm(), 2);
+        double lamda1 = z.dot(b1)/pow(z.norm(), 2);
+        Vector3d xm =  lamda1 * f1_p;
+        Vector3d xn = t + lamda0 * R_F2_p;
         return ( xm + xn )/2;
 }
 
@@ -112,7 +132,7 @@ computeInliers(const vector<Vector3d>& features2, // c2
     if(t.z()>0.0){
         xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j]/*reference*/, features2[j]/*current*/ ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
-        double e2 = reprojError(features2[j], R.transpose()*(xyz_vec.back()-t), error_multiplier2);
+        double e2 = reprojError(features2[j], SE3(R,t).inverse()*xyz_vec.back(), error_multiplier2);
         if(e1 > reproj_thresh || e2 > reproj_thresh)
             outliers.push_back(j);
         else

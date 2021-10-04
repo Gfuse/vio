@@ -4,12 +4,12 @@ svo:
   loba_num_iter: 10         #Number of iterations in the local bundle adjustment.
   quality_min_fts: 10      #If the number of tracked features drops below this threshold. Tracking quality is bad.
   quality_max_drop_fts: 90 #If within one frame, this amount of features are dropped. Tracking quality is bad.
-  init_min_tracked: 100
+  init_min_tracked: 120
   init_min_disparity: 10
   structureoptim_max_pts: 50
   kfselect_mindist: 0.01
   poseoptim_thresh: 8.0
-  init_min_inliers: 30
+  init_min_inliers: 50
   ACC_noise: 0.5          #acc white noise in continuous in EKF
   GYO_noise: 0.5         #gyro white noise in continuous in EKF
   svo_ekf: 0.1              #Svo noise that will be devided by number of Reprojected points after opmization in EKF
