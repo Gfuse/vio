@@ -80,12 +80,12 @@ void FastDetector::detect(
     int scale = (1<<L);
     cv::Mat img=img_pyr.at(L);
     gpu_fast_->load(0,0,img);
-    cl_int2 fast_corner[1000];
+    cl_int2 fast_corner[1000]={0};
     gpu_fast_->load(0,1,1000,fast_corner);
-    cl_int icorner[1];
+    cl_int icorner[1]={0};
     gpu_fast_->load(0,2,1,icorner);
     gpu_fast_->run(0,img.cols,img.rows);
-    cl_int count[1]={0};
+    cl_int count[1];
     gpu_fast_->read(0,2,1,count);
     if(count[0]<1 ){
         ROS_ERROR("Can not communicate with GPU");
@@ -93,11 +93,10 @@ void FastDetector::detect(
     }
     int size=count[0];
     cl_int2 fast_corners[size];
-    std::cerr<<size<<"\n";
     gpu_fast_->read(0,1,size,fast_corners);
     for(uint i=0;i<size;++i)
     {
-      if(fast_corners[i].x<5 || fast_corners[i].x>img_pyr[L].cols || fast_corners[i].y>img_pyr[L].rows || fast_corners[i].y<5){
+      if(fast_corners[i].x<5 || fast_corners[i].x>img_pyr[L].cols-5 || fast_corners[i].y>img_pyr[L].rows-5 || fast_corners[i].y<5){
           continue;
       }
       float score = vk::shiTomasiScore(img_pyr[L], fast_corners[i].x, fast_corners[i].y);
@@ -116,15 +115,9 @@ void FastDetector::detect(
   cv::Mat descriptor;
   extractor->compute(frame->img(), keypoints, descriptor);
   fts.clear();
-  cv::Mat debug1,debug;
- debug1=frame->img().clone();
-  cv::cvtColor(debug1,debug,cv::COLOR_GRAY2RGB);
   for(auto&& p:_for(keypoints)){
-      cv::circle(debug, cv::Point(p.item.pt.x, p.item.pt.y ), 2, cv::Scalar(0, 255,0),2);
       fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));
   }
-  cv::imwrite(std::string(PROJECT_DIR)+"/test.png",debug);
-  //cv::waitKey();
   resetGrid();
 }
 

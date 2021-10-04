@@ -34,12 +34,6 @@ public:
         cl_int error;
         _buffers.push_back(std::pair<std::shared_ptr<cl::Buffer>,size_t>(std::make_shared<cl::Buffer>(*context, CL_MEM_READ_WRITE | CL_MEM_USE_HOST_PTR, sizeof(T) * buf_size,buf,&error),id));
         assert(error == CL_SUCCESS);
-        cl::Event event;
-        T* Map_buf=(T*)queue->enqueueMapBuffer(*_buffers.back().first,CL_NON_BLOCKING,CL_MAP_WRITE,0,sizeof(T) * buf_size,NULL,&event,&error);
-        event.wait();
-        memcpy(Map_buf,buf,sizeof(T) * buf_size);
-        assert(queue->enqueueUnmapMemObject(*_buffers.back().first,Map_buf,NULL,&event)==CL_SUCCESS);
-        event.wait();
         cl_int err=_kernel->setArg(id,*_buffers.back().first);
         assert(err == CL_SUCCESS);
 
@@ -60,6 +54,7 @@ public:
     void release(size_t id/*buffer ID*/){
         for(auto it=_buffers.begin();it!=_buffers.end();++it){
             if((*it).second==id){
+                (*it).first->setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
                 (*it).first.reset();
                 _buffers.erase(it);
                 return;
@@ -67,6 +62,7 @@ public:
         }
         for(auto it=_images.begin();it!=_images.end();++it){
             if((*it).second==id){
+                (*it).first->setDestructorCallback((void (*)(_cl_mem *, void *))notify, NULL);
                 (*it).first.reset();
                 _images.erase(it);
                 return;
