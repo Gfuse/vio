@@ -65,7 +65,7 @@ namespace vio {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TODO - second reimplementation
-    void Reprojector::reprojectMap2(
+    void Reprojector::reprojectMap(
             FramePtr frame,
             FramePtr last_frame,
             std::vector<std::pair<FramePtr, std::size_t> > &overlap_kfs,
@@ -116,31 +116,23 @@ namespace vio {
                 std::vector<cv::KeyPoint> keypoints_kfs;
                 std::vector<std::vector<cv::DMatch>>  matches;
                 keypoints_kfs.push_back(cv::KeyPoint((*it_ref)->px.x(), (*it_ref)->px.y(), 7.f,(*it_ref)->score));
-
                 cv::Mat ref_des=cv::Mat(1,64,CV_8UC1,(*it_ref)->descriptor);
-
                 if ((*it_ref)->px.y() < frame->img().rows/2) {
                     matcher->knnMatch(ref_des, cur_des, matches, 1, cv::InputArray(maskup));
                 }
                 else{
                     matcher->knnMatch(ref_des, cur_des, matches, 1, cv::InputArray(maskdown));
                 }
-                /*cv::Mat imgMatch,key_point_ref,key_point_cur;
-                cv::drawMatches( it_frame.item.first->img_pyr_[0], keypoints_kfs, frame->img_pyr_[0], keypoints_cur,matches, imgMatch);
-                cv::imshow("img",imgMatch);
-                cv::waitKey();*/
                 for(auto&& match:matches.back()){
                     it_cur=keypoints.begin();
                     std::advance(it_cur,match.trainIdx);
                     if(!(*it_cur))continue;
-/*                    const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
-                                  grid_.grid_n_cols
-                                  + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
-                    if(k>grid_.cells.size()-1)continue;
-                    assert(grid_.cells.at(k) != nullptr);
-                    if(grid_.cells.at(k)->size()> Config::gridSize()-1)continue;*/
                     Vector2d px((int) (*it_cur)->px.x(),
                                 (int) (*it_cur)->px.y());
+                    const int k = static_cast<int>((*it_cur)->px.y() / grid_.cell_size) *
+                                  grid_.grid_n_cols
+                                  + static_cast<int>((*it_cur)->px.x() / grid_.cell_size);
+                    if(grid_.cells.at(k)->size()> Config::gridSize()-1)continue;
                     if ((*it_ref)->point == NULL){
                         SE3 T_ref_cur=it_frame.item.first->se3().inverse()*frame->se3();
                         // pose with respect to reference frame
@@ -157,8 +149,7 @@ namespace vio {
                         new_point->addFrameRef(frame->fts_.back());
                         added_keypoints.push_back(match.trainIdx);
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
-                        ///TODO number of cell is not reflecting the number of point, check K value
-                        //grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
+                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
                     }else{
                         if(!matcher_.findMatchDirect(*(*it_ref)->point, *frame, px))continue;
@@ -168,70 +159,13 @@ namespace vio {
                                                                     (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
                         added_keypoints.push_back(match.trainIdx);
-                        ///TODO number of cell is not reflecting the number of point, check K value
-                        //grid_.cells.at(k)->push_back(Candidate((*it_ref)->point, px));
+                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
                     }
                 }
                 ++it_ref;
             }
         }
-        /*{
-            for (auto&& cell : grid_.cells) {
-                if (reprojectCell(*cell, frame, log_))
-                    ++n_matches_;
-                if (n_matches_ > (size_t) Config::maxFts())
-                    break;
-            }
-        }*/
-        //exit(0);
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    bool Reprojector::pointQualityComparator(Candidate &lhs, Candidate &rhs) {
-        if (lhs.pt->type_ > rhs.pt->type_)
-            return true;
-        return false;
-    }
-
-    bool Reprojector::reprojectCell(Cell &cell, FramePtr frame, FILE* log_) {
-        if(cell.size()<1){
-            return false;
-        }
-        cell.sort(boost::bind(&Reprojector::pointQualityComparator, _1, _2));
-        Cell::iterator it=cell.begin();
-        while(it!=cell.end())
-        {
-            ++n_trials_;
-            if( it->pt ==NULL){
-                it = cell.erase(it);
-                continue;
-            }
-            if(it->pt->type_ == Point::TYPE_DELETED)
-            {
-                it = cell.erase(it);
-                continue;
-            }
-            bool res = matcher_.findMatchDirect(*it->pt, *frame, it->px);
-            if(!res)
-            {
-                it->pt->n_failed_reproj_++;
-                if(it->pt->n_failed_reproj_ > 15)it->pt.reset();
-                it = cell.erase(it);
-                continue;
-            }
-
-            it->pt->n_succeeded_reproj_++;
-            if(it->pt->n_succeeded_reproj_ > 10)
-                it->pt->type_ = Point::TYPE_GOOD;
-
-            cell.erase(it);
-
-            // Maximum one point per cell.
-            return true;
-        }
-
-        return false;
     }
 
 }

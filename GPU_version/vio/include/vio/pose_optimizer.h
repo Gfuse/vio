@@ -18,6 +18,7 @@
 #define SVO_POSE_OPTIMIZER_H_
 
 #include <vio/global.h>
+#include <vio/map.h>
 
 namespace vio {
 
@@ -35,14 +36,13 @@ class Point;
 namespace pose_optimizer {
 
 void optimizeGaussNewton(
-    const double reproj_thresh,
     const size_t n_iter,
-    const bool verbose,
     FramePtr& frame,
     double& estimated_scale,
     double& error_init,
     double& error_final,
     size_t& num_obs,
+    vio::Map& map,
     FILE* log);
 
 } // namespace pose_optimizer

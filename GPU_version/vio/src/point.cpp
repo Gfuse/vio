@@ -27,28 +27,22 @@ int Point::point_counter_ = 0;
 Point::Point(const Vector3d& pos) :
   id_(point_counter_++),
   pos_(pos),
-  normal_set_(false),
   n_obs_(0),
   v_pt_(NULL),
-  last_published_ts_(0),
   last_frame_overlap_id_(-10),
   type_(TYPE_UNKNOWN),
   n_failed_reproj_(0),
-  n_succeeded_reproj_(0),
   last_structure_optim_(0)
 {}
 
 Point::Point(const Vector3d& pos, std::shared_ptr<Feature> ftr) :
   id_(point_counter_++),
   pos_(pos),
-  normal_set_(false),
   n_obs_(1),
   v_pt_(NULL),
-  last_published_ts_(0),
   last_frame_overlap_id_(-10),
   type_(TYPE_UNKNOWN),
   n_failed_reproj_(0),
-  n_succeeded_reproj_(0),
   last_structure_optim_(0)
 {
   obs_.push_front(ftr);
@@ -88,17 +82,6 @@ bool Point::deleteFrameRef(FramePtr frame)
     }
   }
   return false;
-}
-
-void Point::initNormal()
-{
-  assert(!obs_.empty());
-  const std::shared_ptr<Feature> ftr = obs_.back();
-  assert(ftr->frame != NULL);
-  normal_ = ftr->frame->se3().rotation_matrix().transpose()*(-ftr->f);
-  double x=pow(20/(pos_-Vector3d(ftr->frame->pos()(0),0.0,ftr->frame->pos()(1))).norm(),2);
-  normal_information_ = DiagonalMatrix<double,3,3>(x, 1.0, 1.0);
-  normal_set_ = true;
 }
 
 bool Point::getCloseViewObs(const Vector2d& framepos, std::shared_ptr<Feature>& ftr,int id) const
@@ -153,7 +136,6 @@ void Point::optimize(const size_t n_iter)
     {
       Matrix23d J;
       const Vector3d p_in_f((*it)->frame->se3()*pos_);
-      //Point::jacobian_xyz2uv(p_in_f, (*it)->frame->se3().rotation_matrix(), J);
       Point::jacobian_xyz2uv_(p_in_f, (*it)->frame->se3().rotation_matrix(), J, (*it)->frame->cam_->params(), (*it)->frame->T_f_w_);
       const Vector2d e(vk::project2d((*it)->f) - vk::project2d(p_in_f));
       new_chi2 += e.squaredNorm();

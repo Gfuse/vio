@@ -27,14 +27,13 @@ namespace vio {
 namespace pose_optimizer {
 
 void optimizeGaussNewton(
-    const double reproj_thresh,
     const size_t n_iter,
-    const bool verbose,
     FramePtr& frame,
     double& estimated_scale,
     double& error_init,
     double& error_final,
     size_t& num_obs,
+    vio::Map& map,
     FILE* log)
 {
   // init
@@ -55,11 +54,6 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f)
                - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e *= 1.0 / (1<<(*it)->level);
-    //std::cerr<<"pose optimizer - error : "<<e.norm()<<std::endl;
-/*    if(e.norm() > 0.01){
-        it = frame->fts_.erase(it);
-        continue;
-    }*/
     chi2_vec_init.push_back(e.norm()); // just for debug
     errors.push_back(e.norm());
     it++;
@@ -69,9 +63,6 @@ void optimizeGaussNewton(
     return;
   vk::robust_cost::MADScaleEstimator scale_estimator;
   estimated_scale = scale_estimator.compute(errors);
-//#if VIO_DEBUG
-//    fprintf(log,"[%s] Init estimate scale:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),estimated_scale);
-//#endif
 
   num_obs = errors.size();
   double scale = estimated_scale;
@@ -122,7 +113,7 @@ void optimizeGaussNewton(
     if(vk::norm_max(dT) <= EPS)
       break;
   }
-  point_mut_.lock();
+  //point_mut_.lock();
   size_t n_deleted_refs = 0;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
@@ -135,14 +126,14 @@ void optimizeGaussNewton(
     chi2_vec_final.push_back(e.norm());
     if(e.norm() >  1.0 / frame->cam_->errorMultiplier2())
     {
-      (*it)->point.reset();
+      map.safeDeletePoint((*it)->point);
       it = frame->fts_.erase(it);
       ++n_deleted_refs;
     }
     else
         it++;
   }
-  point_mut_.unlock();
+  //point_mut_.unlock();
   num_obs -= n_deleted_refs;
 #if VIO_DEBUG
     error_init=0.0;

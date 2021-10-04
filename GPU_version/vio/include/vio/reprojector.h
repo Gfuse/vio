@@ -61,8 +61,7 @@ public:
 
   /// Project points from the map into the image. First finds keyframes with
   /// overlapping field of view and projects only those map-points.
-
-  void reprojectMap2(
+  void reprojectMap(
       FramePtr frame,
       FramePtr last_frame,
       std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs,
@@ -97,10 +96,8 @@ private:
   Matcher matcher_;
   Map& map_;
 
-  static bool pointQualityComparator(Candidate& lhs, Candidate& rhs);
   void initializeGrid(vk::AbstractCamera* cam);
   void resetGrid();
-  bool reprojectCell(Cell& cell, FramePtr frame, FILE* log_);
 };
 
 } // namespace vio

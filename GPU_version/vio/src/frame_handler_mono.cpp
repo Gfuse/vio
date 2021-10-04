@@ -194,13 +194,12 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
       new_frame_=last_frame_;
       return RESULT_FAILURE;
   }
-  reprojector_.reprojectMap2(new_frame_, last_frame_,overlap_kfs_, gpu_fast_, log_);
+  reprojector_.reprojectMap(new_frame_, last_frame_,overlap_kfs_, gpu_fast_, log_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;
 #if VIO_DEBUG
-    fprintf(log_,"[%s] After Reprojection Map nPoint:%d ,nCell:%d ,nMatches:%d ,distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+    fprintf(log_,"[%s] After Reprojection Map nMatches:%d ,distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             n_point,
-            reprojector_.n_trials_,reprojector_.n_matches_,
             new_frame_->T_f_w_.se2().translation().x()-init_f.second.se2().translation().x(),
             new_frame_->T_f_w_.se2().translation().y()-init_f.second.se2().translation().y(),
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
@@ -209,8 +208,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
-            Config::poseOptimThresh(), 70, false,
-            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,log_);
+            Config::poseOptimThresh(),
+            new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,map_,log_);
 #if VIO_DEBUG
     fprintf(log_,"[%s] After pose optimization, distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->T_f_w_.se2().translation().x()-init_f.second.se2().translation().x(),
@@ -218,7 +217,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch()));
 #endif
     if((init_f.second.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm()>0.2 ||
-       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.02 || sfba_n_edges_final<10){
+       fabs(new_frame_->T_f_w_.pitch()-init_f.second.pitch())>0.2 || sfba_n_edges_final<10){
         new_frame_=last_frame_;
         return RESULT_FAILURE;
     }
