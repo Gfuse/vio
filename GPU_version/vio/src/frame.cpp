@@ -145,7 +145,7 @@ bool Frame::isVisible(const Vector3d& xyz_w) const
 {
     if(!id_)return false;
     assert(!xyz_w.hasNaN());
-  Vector3d xyz_f = this->se3().inverse()*xyz_w;
+  Vector3d xyz_f = this->T_f_w_.se3().inverse()*xyz_w;
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera
   Vector2d px = f2c(xyz_f);
@@ -172,15 +172,12 @@ void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
 bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
 {
   vector<double> depth_vec;
-  //depth_vec.reserve(frame.fts_.size());
-  depth_min = std::numeric_limits<double>::max();
   for(auto it=frame->fts_.begin(), ite=frame->fts_.end(); it!=ite; ++it)
   {
     if((*it)->point != NULL)
     {
         double z = frame->w2f((*it)->point->pos_).z();
         depth_vec.push_back(z);
-        depth_min = fmin(z, depth_min);
 
     }
   }
@@ -188,8 +185,8 @@ bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
   {
     return false;
   }
-  double min,max;
-  depth_mean = vk::getMean(depth_vec,min,max);
+  double max;
+  depth_mean = vk::getMean(depth_vec,depth_min,max);
   return true;
 }
 

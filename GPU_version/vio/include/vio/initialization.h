@@ -73,6 +73,8 @@ protected:
         vector<Vector2d> uv_cur(features_ref.size());
         vector<Vector3d> f_ref(features_ref.size());
         vector<Vector3d> f_cur(features_ref.size());
+        vector<Vector3d> xyz_in_hom(features_ref.size());
+        vector<Vector3d> xyz_in_ekf(features_ref.size());
         for(auto&& ftr:_for(features_ref)){
             uv_ref.at(ftr.index) = ftr.item->px;
             uv_cur.at(ftr.index) = Vector2d(px_cur_.at(ftr.index).x,px_cur_.at(ftr.index).y);
@@ -84,30 +86,42 @@ protected:
         vector<int> outliers_hom, inlier_hom;
         vector<int> outliers_ekf,inlier_ekf;
         assert(ukf_!= nullptr);
-/*#if VIO_DEBUG
-        for(int i=0;i<f_cur.size();++i)fprintf(log_,"[%s] cur: x=%f, y=%f, z=%f ref: x=%f y=%f z=%f\n",
-              vio::time_in_HH_MM_SS_MMM().c_str(),
-              f_cur.at(i).x(),f_cur.at(i).y(),f_cur.at(i).z(),
-              f_ref.at(i).x(),f_ref.at(i).y(),f_ref.at(i).z());
-#endif*/
         vk::computeInliers(f_cur, f_ref,
                            Homography.T_c2_from_c1.rotation_matrix(), Homography.T_c2_from_c1.translation(),
                            reprojection_threshold, focal_length,
-                           xyz_in_cur, inlier_hom, outliers_hom);
+                           xyz_in_hom, inlier_hom, outliers_hom);
+/*        std::cerr<<xyz_in_hom.size()<<'\n';*/
+/*#if VIO_DEBUG
+      for(int i=0;i<f_cur.size();++i)fprintf(log_,"[%s] curhomog: x=%f, y=%f, z=%f ref: x=%f y=%f z=%f, inlier: %f, %f, %f\n",
+                                             vio::time_in_HH_MM_SS_MMM().c_str(),
+                                             f_cur.at(i).x(),f_cur.at(i).y(),f_cur.at(i).z(),
+                                             f_ref.at(i).x(),f_ref.at(i).y(),f_ref.at(i).z(),
+                                             xyz_in_hom.at(i).x(),xyz_in_hom.at(i).y(),xyz_in_hom.at(i).z());
+#endif*/
         auto res=ukf_->get_location();
         vk::computeInliers(f_cur, f_ref,
                            res.second.se3().rotation_matrix(), res.second.se3().translation(),
                                reprojection_threshold, focal_length,
-                               xyz_in_cur, inlier_ekf, outliers_ekf);
+                           xyz_in_ekf, inlier_ekf, outliers_ekf);
 
+/*      std::cerr<<xyz_in_ekf.size()<<'\n';*/
+/*#if VIO_DEBUG
+      for(int i=0;i<f_cur.size();++i)fprintf(log_,"[%s] cur ukf: x=%f, y=%f, z=%f ref: x=%f y=%f z=%f inlier: %f, %f, %f\n",
+                                             vio::time_in_HH_MM_SS_MMM().c_str(),
+                                             f_cur.at(i).x(),f_cur.at(i).y(),f_cur.at(i).z(),
+                                             f_ref.at(i).x(),f_ref.at(i).y(),f_ref.at(i).z(),
+                                             xyz_in_ekf.at(i).x(),xyz_in_ekf.at(i).y(),xyz_in_ekf.at(i).z());
+#endif*/
         if(inlier_ekf.size()>inlier_hom.size()){
             T_cur_from_ref=res.second;
             inliers=inlier_ekf;
+            xyz_in_cur=xyz_in_hom;
         }else if((Homography.T_c2_from_c1.translation()-res.second.se3().translation()).norm()<0.1 && inlier_ekf.size()<inlier_hom.size()){
             auto euler =Homography.T_c2_from_c1.unit_quaternion().normalized().toRotationMatrix().eulerAngles(0,1,2);
             res=ukf_->UpdateSvo(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
             T_cur_from_ref=res.second;
             inliers=inlier_hom;
+            xyz_in_cur=xyz_in_ekf;
         }
 
     }

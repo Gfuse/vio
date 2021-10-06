@@ -104,12 +104,16 @@ namespace vio
             assert(T2_!= nullptr);
             return *T2_;
         }
-        SE2 inverse() const{
+/*        SE2 inverse() const{
             assert(T2_!= nullptr);
             double pitch=atan2(T2_->so2().unit_complex().imag(),T2_->so2().unit_complex().real());
             SE2 tem=SE2(pitch+M_PI,-1.0*T2_->translation());
             return tem;
-        }
+        }*/
+/*        SE2_5 inverse_h() const{
+            assert(T2_!= nullptr);
+            return SE2_5(T2_->inverse());
+        }*/
         // Rotation around y
         double pitch()const{
             assert(T2_!= nullptr);
