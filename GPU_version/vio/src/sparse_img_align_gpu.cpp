@@ -38,31 +38,25 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   reset();
   cl_float3 ref_pos[1]={(float)ref_frame->pos()(0),(float)ref_frame->pos()(1),(float)ref_frame->T_f_w_.pitch()};
   cl_float3 cur_pos[1]={(float)cur_frame->pos()(0),(float)cur_frame->pos()(1),(float)cur_frame->T_f_w_.pitch()};
-  cl_float3 features[ref_frame->fts_.size()];
-  cl_float2 featue_px[ref_frame->fts_.size()];
+  cl_float3* features=(cl_float3*)calloc(ref_frame->fts_.size(), sizeof(cl_float3));
+  cl_float2* featue_px=(cl_float2*)calloc(ref_frame->fts_.size(), sizeof(cl_float2));
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
-  for(auto it:_for(ref_frame->fts_)){
-      if(it.item->point == nullptr){
-          features[it.index].x=0.f;
-          features[it.index].y=0.f;
-          features[it.index].z=0.f;
-          featue_px[it.index].x=0.f;
-          featue_px[it.index].y=0.f;
-          continue;
-      }
-        Vector3d xyz_ref=it.item->f*(ref_frame->se3().inverse()*it.item->point->pos_).norm();
-        features[it.index].x=xyz_ref(0);
-        features[it.index].y=xyz_ref(1);
-        features[it.index].z=xyz_ref(2);
-        featue_px[it.index].x=it.item->px(0);
-        featue_px[it.index].y=it.item->px(1);
+  for(auto it=ref_frame->fts_.begin();it!=ref_frame->fts_.end();++it){
+        if((*it)->point == nullptr)continue;
+        Vector3d xyz_ref=(*it)->f*(ref_frame->se3().inverse()*(*it)->point->pos_).norm();
+        features[feature_counter_].x=xyz_ref(0);
+        features[feature_counter_].y=xyz_ref(1);
+        features[feature_counter_].z=xyz_ref(2);
+        featue_px[feature_counter_].x=(*it)->px(0);
+        featue_px[feature_counter_].y=(*it)->px(1);
         ++feature_counter_;
   }
   if(!feature_counter_) // more than 10
   {
+      free(featue_px);
+      free(features);
       return 0;
   }
-  feature_counter_=ref_frame->fts_.size();
   residual_->load(1,2,1,cur_pos);
   residual_->load(1,3,1,ref_pos);
   residual_->load(1,4,feature_counter_,features);
@@ -102,7 +96,9 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   free(H);
   free(J);
   free(chi2_);
-  if(isnan(pos[0].x) || isnan(pos[0].y) || isnan(pos[0].z))return 1;
+  free(featue_px);
+  free(features);
+  if(isnan(pos[0].x) || isnan(pos[0].y) || isnan(pos[0].z) || fabs(pos[0].z-cur_pos[0].z)>M_PI_2)return 1;
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;
 }

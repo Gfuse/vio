@@ -21,7 +21,6 @@
 #include <vio/feature.h>
 #include <vio/point.h>
 #include <vio/pose_optimizer.h>
-#include <vio/sparse_img_align.h>
 #include <vio/global_optimizer.h>
 #include <vio/for_it.hpp>
 #include <assert.h>
@@ -145,22 +144,6 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   auto init_f= ukfPtr_.get_location();
   new_frame_->T_f_w_=init_f.second;
   new_frame_->Cov_ = init_f.first;
-  // sparse image align
-  std::unique_ptr<SparseImgAlignGpu> img_align=std::make_unique<SparseImgAlignGpu>(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-  size_t err=img_align->run(last_frame_, new_frame_, log_);
-  if(err==-1){
-#if VIO_DEBUG
-      fprintf(log_,"[%s] Image Alignment failed -1\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
-      new_frame_=last_frame_;
-      return RESULT_FAILURE;
-  }else if(err==0){
-#if VIO_DEBUG
-      fprintf(log_,"[%s] Image Alignment failed 0\n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
-      new_frame_=last_frame_;
-      return RESULT_FAILURE;
-  }
   reprojector_.reprojectMap(new_frame_, last_frame_,overlap_kfs_, gpu_fast_, log_);
   int n_point=0;
   for(auto i:overlap_kfs_)n_point+=i.second;

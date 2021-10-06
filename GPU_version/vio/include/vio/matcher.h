@@ -93,6 +93,7 @@ public:
 
   uint8_t patch_[patch_size_*patch_size_] __attribute__ ((aligned (16)));
   uint8_t patch_with_border_[(patch_size_+2)*(patch_size_+2)] __attribute__ ((aligned (16)));
+  uint8_t patch_with_border_cur_[(patch_size_+2)*(patch_size_+2)] __attribute__ ((aligned (16)));
   Matrix2d A_cur_ref_;          //!< affine warp matrix
   Vector2d epi_dir_;
   double epi_length_;           //!< length of epipolar line segment in pixels (only used for epipolar search)

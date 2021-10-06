@@ -22,6 +22,8 @@
 #include <boost/thread.hpp>
 #include <vio/global.h>
 #include <vio/point.h>
+#include <vio/frame.h>
+#include <vio/feature.h>
 
 namespace vio {
 
@@ -54,7 +56,25 @@ public:
   void addKeyframe(FramePtr new_keyframe);
 
   /// Given a frame, return all keyframes which have an overlapping field of view.
-  void getCloseKeyframes(const FramePtr& frame, list< pair<FramePtr,double> >& close_kfs) const;
+  void getCloseKeyframes(const FramePtr& frame, list< pair<FramePtr,double> >& close_kfs){
+      for(auto kf : keyframes_)
+      {
+          // check if kf has overlaping field of view with frame, use therefore KeyPoints
+          for(auto keypoint : kf->key_pts_)
+          {
+              if(keypoint == nullptr)
+                  continue;
+              if(keypoint->point==NULL)continue;
+              if(frame->isVisible(keypoint->point->pos_))
+              {
+                  close_kfs.push_back(
+                          std::make_pair(
+                                  kf, (frame->T_f_w_.se2().translation()-kf->T_f_w_.se2().translation()).norm()));
+                  break; // this keyframe has an overlapping field of view -> add to close_kfs
+              }
+          }
+      }
+  }
 
   /// Return the keyframe which is furthest apart from pos.
   FramePtr getFurthestKeyframe(const Vector2d& pos);

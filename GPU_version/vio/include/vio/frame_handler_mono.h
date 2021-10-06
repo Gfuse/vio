@@ -24,7 +24,6 @@
 #include <vio/initialization.h>
 #include <vio/ukf.h>
 #include <vio/cl_class.h>
-#include <vio/sparse_img_align_gpu.h>
 #include <vio/global_optimizer.h>
 
 namespace vio {

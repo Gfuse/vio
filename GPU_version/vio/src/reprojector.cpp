@@ -29,7 +29,7 @@
 #include <vio/timer.h>
 #include <fstream>
 #include <vio/feature_detection.h>
-
+#include <vio/sparse_img_align_gpu.h>
 #include <opencv2/xfeatures2d.hpp>
 #include <opencv2/features2d.hpp>
 #include <vio/for_it.hpp>
@@ -81,11 +81,8 @@ namespace vio {
         std::vector<cv::KeyPoint> keypoints_cur;
         list<std::shared_ptr<Feature>>::iterator it_cur=keypoints.begin();
         cv::Mat cur_des=cv::Mat(keypoints.size(),64,CV_8UC1);
-
         cv::Mat maskup = cv::Mat_<uchar>(1, keypoints.size());
         cv::Mat maskdown = cv::Mat_<uchar>(1, keypoints.size());
-
-
         for (int i=0;i<keypoints.size() && it_cur !=keypoints.end();++i) {
             keypoints_cur.push_back(cv::KeyPoint((*it_cur)->px.x(), (*it_cur)->px.y(), 7.f, (*it_cur)->score));
             memcpy(cur_des.data+(i*64),(*it_cur)->descriptor,sizeof(uint8_t)*64);
@@ -106,6 +103,10 @@ namespace vio {
                                                                     last_frame->T_f_w_.se2().translation()).norm()));
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
+        std::unique_ptr<SparseImgAlignGpu> img_align=std::make_unique<SparseImgAlignGpu>(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
+        for (auto &&it_frame:_for(close_kfs)) {
+            img_align->run(it_frame.item.first, frame, log_);
+        }
         overlap_kfs.reserve(options_.max_n_kfs);
         std::vector<int> added_keypoints;
         for (auto &&it_frame:_for(close_kfs)) {
@@ -166,6 +167,8 @@ namespace vio {
                 ++it_ref;
             }
         }
+/*        std::cerr<<"here\n";
+        exit(0);*/
     }
 
 }
