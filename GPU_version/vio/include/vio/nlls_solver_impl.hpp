@@ -37,7 +37,7 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
     if(!solve())
     {
       // matrix was singular and could not be computed
-      if(verbose_)std::cout << "Matrix is close to singular! Stop Optimizing." << std::endl;
+      if(verbose_)std::cerr << "Matrix is close to singular! Stop Optimizing." << std::endl;
       stop_ = true;
     }
     // check if error increased since last optimization
@@ -45,7 +45,7 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
     {
       if(verbose_)
       {
-        std::cout << "It. " << iter_
+        std::cerr << "It. " << iter_
                   << "\t Failure"
                   << "\t new_chi2 = " << new_chi2
                   << "\t Error increased. Stop optimizing.\n";
@@ -57,7 +57,7 @@ void vk::NLLSSolver<D, T>::optimizeGaussNewton()
     chi2_ = new_chi2;
     if(verbose_)
     {
-      std::cout << "It. " << iter_
+      std::cerr << "It. " << iter_
                 << "\t Success"
                 << "\t new_chi2 = " << new_chi2
                 << "\t x_norm = " << vk::norm_max(x_)<<'\n';

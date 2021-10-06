@@ -51,6 +51,21 @@ public:
         cl_int err=_kernel->setArg(id,*_images.back().first);
         assert(err == CL_SUCCESS);
     };
+    template<typename T>
+    void reload(size_t id,T* buf,cl::CommandQueue* queue,size_t size){
+        assert(buf);
+        cl_int error;
+        for(auto&& i:_buffers)if(i.second==id){
+                cl::Event event;
+                T* Map_buf=(T*)queue->enqueueMapBuffer(*i.first,CL_NON_BLOCKING,CL_MAP_WRITE,0,sizeof(T) * size,NULL,&event,&error);
+                event.wait();
+                memcpy(Map_buf,buf,sizeof(T) * size);
+                assert(queue->enqueueUnmapMemObject(*i.first,Map_buf,NULL,&event)==CL_SUCCESS);
+                event.wait();
+
+            }
+        assert(error == CL_SUCCESS);
+    };
     void release(size_t id/*buffer ID*/){
         for(auto it=_buffers.begin();it!=_buffers.end();++it){
             if((*it).second==id){
@@ -87,7 +102,7 @@ private:
 class read_cl{
 public:
     read_cl(std::string path){
-        src_str=(char *)malloc(0x100000);
+        src_str=(char *)calloc(0x100000, sizeof(char));
         FILE *fp;
         fp = fopen(path.c_str(), "r");
         size = fread(src_str, 1, 0x100000, fp);
@@ -114,6 +129,10 @@ public:
     template<typename T>
     void load(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/,T&& value){
         _kernels.at(id1)._kernel->setArg(id2,value);
+    };
+    template<typename T>
+    void reload(size_t id1/*kernal ID*/,size_t id2/*buffer ID*/, size_t size,T* buf){
+        _kernels.at(id1).reload(id2,buf,queue,size);
     };
     cl_int run(size_t id1/*kernal ID*/,std::size_t  x=1,std::size_t y=1,std::size_t z=1) {
         cl_int err=0;

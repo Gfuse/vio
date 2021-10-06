@@ -80,8 +80,8 @@ void FastDetector::detect(
     int scale = (1<<L);
     cv::Mat img=img_pyr.at(L);
     gpu_fast_->load(0,0,img);
-    cl_int2 fast_corner[1000]={0};
-    gpu_fast_->load(0,1,1000,fast_corner);
+    cl_int2* fast_corner=(cl_int2*)calloc(2000, sizeof(cl_int2));
+    gpu_fast_->load(0,1,2000,fast_corner);
     cl_int icorner[1]={0};
     gpu_fast_->load(0,2,1,icorner);
     gpu_fast_->run(0,img.cols,img.rows);
@@ -92,7 +92,7 @@ void FastDetector::detect(
         exit(0);
     }
     int size=count[0];
-    cl_int2 fast_corners[size];
+    cl_int2* fast_corners=(cl_int2*)calloc(size, sizeof(cl_int2));
     gpu_fast_->read(0,1,size,fast_corners);
     for(uint i=0;i<size;++i)
     {
@@ -105,12 +105,13 @@ void FastDetector::detect(
     gpu_fast_->release(0,0);
     gpu_fast_->release(0,1);
     gpu_fast_->release(0,2);
+    free(fast_corner);
+    free(fast_corners);
   }
   if(keypoints.size()<1){
       ROS_ERROR("GPU Driver crash try again!");
       assert(0);
   }
-  std::cerr<<keypoints.size()<<'\n';
   cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
   cv::Mat descriptor;
   extractor->compute(frame->img(), keypoints, descriptor);

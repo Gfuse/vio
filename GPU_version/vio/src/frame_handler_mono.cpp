@@ -146,8 +146,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_=init_f.second;
   new_frame_->Cov_ = init_f.first;
   // sparse image align
-  SparseImgAlignGpu img_align(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-  size_t err=img_align.run(last_frame_, new_frame_, log_);
+  std::unique_ptr<SparseImgAlignGpu> img_align=std::make_unique<SparseImgAlignGpu>(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
+  size_t err=img_align->run(last_frame_, new_frame_, log_);
   if(err==-1){
 #if VIO_DEBUG
       fprintf(log_,"[%s] Image Alignment failed -1\n",vio::time_in_HH_MM_SS_MMM().c_str());
