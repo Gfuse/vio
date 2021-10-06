@@ -145,7 +145,7 @@ bool Frame::isVisible(const Vector3d& xyz_w) const
 {
     if(!id_)return false;
     assert(!xyz_w.hasNaN());
-  Vector3d xyz_f = this->T_f_w_.se3().inverse()*xyz_w;
+  Vector3d xyz_f = this->se3().inverse()*xyz_w;
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera
   Vector2d px = f2c(xyz_f);

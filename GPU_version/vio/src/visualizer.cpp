@@ -55,7 +55,7 @@ void Visualizer::publishMinimal(
     //Rviz frame z up, x  right, y forward -> right hands (yaw counts from y)
     //Camera frame z front, x right, y down -> right hands (pitch counts from z)
     //IMU frame y front, x right, z up -> left hands (theta counts from y)
-    Quaterniond q(AngleAxisd(-1.0*(odom.second.pitch()-M_PI_2), Vector3d::UnitZ()));
+    Quaterniond q(AngleAxisd((odom.second.pitch()+M_PI_2), Vector3d::UnitZ()));
     geometry_msgs::PoseWithCovarianceStampedPtr msg_pose_with_cov(new geometry_msgs::PoseWithCovarianceStamped);
       msg_pose_with_cov->header = header_msg;
       msg_pose_with_cov->pose.pose.position.x = odom.second.se2().translation()(0);

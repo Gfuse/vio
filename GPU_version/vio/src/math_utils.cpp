@@ -36,11 +36,11 @@ triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
         Vector3d b1 = t.cross(R_F2_p);
         double lamda0 = z.dot(b0)/pow(z.norm(), 2);
         double lamda1 = z.dot(b1)/pow(z.norm(), 2);
+        //if (lamda0 <= 0 || lamda1 <= 0)return Vector3d(0.0,0.0,0.0);
+        if (max(m0_hat.dot(R_F2_p), feature1.dot(f1_p)) > 1.1781)return Vector3d(0.0,0.0,0.0);
+        if(R_F2_p.dot(f1_p) < 0.005)return Vector3d(0.0,0.0,0.0);
         Vector3d xm =  lamda1 * f1_p;
         Vector3d xn = t + lamda0 * R_F2_p;
-        if(xm.z()<0.f && xn.z()<0.f)return Vector3d(1e9,1e9,1e9);
-        if(xm.z()>0.f && xn.z()<0.f)return xm;
-        if(xm.z()<0.f && xn.z()>0.f)return xn;
         return ( xm + xn )/2;
 }
 
@@ -97,7 +97,7 @@ computeInliers(const vector<Vector3d>& features2, // c2
         xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j]/*reference*/, features2[j]/*current*/ ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
         double e2 = reprojError(features2[j], SE3(R,t).inverse()*xyz_vec.back(), error_multiplier2);
-        if(e1 > reproj_thresh || e2 > reproj_thresh || xyz_vec.back().z()<0.f)
+        if(e1 > reproj_thresh || e2 > reproj_thresh || xyz_vec.back().norm()==0.0)
             outliers.push_back(j);
         else
         {
