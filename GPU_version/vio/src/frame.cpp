@@ -143,8 +143,8 @@ void Frame::removeKeyPoint(std::shared_ptr<Feature> ftr)
 
 bool Frame::isVisible(const Vector3d& xyz_w) const
 {
-    if(!id_)return false;
-    assert(!xyz_w.hasNaN());
+  if(!id_)return false;
+  if(xyz_w.hasNaN())return false;
   Vector3d xyz_f = this->se3().inverse()*xyz_w;
   if(xyz_f.z() < 0.0)
     return false; // point is behind the camera

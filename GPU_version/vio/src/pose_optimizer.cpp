@@ -53,6 +53,10 @@ void optimizeGaussNewton(
     //Reprojection error
     Vector2d e = vk::project2d((*it)->f)
                - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
+    if(std::isnan(e.norm())){
+        map.safeDeletePoint((*it)->point);
+        it = frame->fts_.erase(it);
+    }
     e *= 1.0 / (1<<(*it)->level);
     chi2_vec_init.push_back(e.norm()); // just for debug
     errors.push_back(e.norm());

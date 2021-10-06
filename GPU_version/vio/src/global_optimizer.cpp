@@ -139,6 +139,7 @@ namespace vio {
                     }
                 }
             }
+            if(optimizer.vertices().size()<1)continue;
             // Optimization
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
@@ -146,7 +147,7 @@ namespace vio {
             fprintf(log_,"[%s] init error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
 #endif
-            optimizer.optimize(vio::Config::lobaNumIter());
+            if(optimizer.optimize(vio::Config::lobaNumIter())<1)continue;
 #if VIO_DEBUG
             fprintf(log_,"[%s] end error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
