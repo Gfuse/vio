@@ -163,9 +163,9 @@ bool align2D(
     return align2D_NEON(cur_img, ref_patch_with_border, ref_patch, n_iter, cur_px_estimate);
 #endif
 
-  const int halfpatch_size_ = 8;
-  const int patch_size_ = 16;
-  const int patch_area_ = 256;
+  const int halfpatch_size_ = 4;
+  const int patch_size_ = 8;
+  const int patch_area_ = 64;
   bool converged=false;
 
   // compute derivative of template and prepare inverse compositional

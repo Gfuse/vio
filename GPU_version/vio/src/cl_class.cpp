@@ -38,7 +38,7 @@ opencl::opencl(vk::AbstractCamera* cam):cam(cam) {
     sources.push_back({ compute_residual.src_str, compute_residual.size });
     program=new cl::Program(*context, sources);
     double* camera=cam->params();
-    std::string options="-DFAST_THRESH=40 -DPATCH_SIZE=2 -DPATCH_HALFSIZE=1 -DF_X="+ std::to_string(camera[0]) +
+    std::string options="-DFAST_THRESH=40 -DPATCH_SIZE=8 -DPATCH_HALFSIZE=4 -DF_X="+ std::to_string(camera[0]) +
                         " -DF_Y="+std::to_string(camera[1])+
                         " -DC_X="+std::to_string(camera[2])+
                         " -DC_Y="+std::to_string(camera[3])+

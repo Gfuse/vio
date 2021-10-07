@@ -161,7 +161,7 @@ Vector3d SO3
           two_atan_nbyw_by_n = -M_PI/n;
         }
       }
-      two_atan_nbyw_by_n = 2*atan(n/w)/n;
+      two_atan_nbyw_by_n = 2*atan2(n,w)/n;
     }
 
     *theta = two_atan_nbyw_by_n*n;

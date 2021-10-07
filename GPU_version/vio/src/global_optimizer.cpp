@@ -164,9 +164,6 @@ namespace vio {
                     if((*it_ftr)->point == NULL)
                         continue;
                     std::shared_ptr<Point> mp = (*it_ftr)->point;
-                    if(mp->v_pt_ == NULL)
-                        continue;       // mp was updated before
-                    mp->pos_ = mp->v_pt_->estimate();
                     mp->v_pt_ = NULL;
                 }
             }
@@ -192,7 +189,7 @@ namespace vio {
    {
        g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
        v->setId(id);
-       v->setFixed(fixed);
+       v->setFixed(false);
        v->setEstimate(g2o::SE3Quat(frame->T_f_w_.se3().unit_quaternion(), frame->T_f_w_.se3().translation()));
        return v;
    }
@@ -204,7 +201,8 @@ namespace vio {
    {
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
        v->setId(id);
-       v->setMarginalized(fixed);
+       v->setFixed(fixed);
+       v->setMarginalized(true);
        v->setEstimate(pos);
        return v;
 
@@ -221,7 +219,7 @@ namespace vio {
        e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_point));
        e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_frame));
        e->setMeasurement(f_up);
-       e->information() = Eigen::Matrix2d::Identity();
+       e->information() = weight*Eigen::Matrix2d::Identity();
        g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
        rk->setDelta(huber_width);
        e->setRobustKernel(rk);

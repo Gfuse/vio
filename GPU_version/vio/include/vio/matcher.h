@@ -66,8 +66,8 @@ class Matcher
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-  static const int halfpatch_size_ = 8;
-  static const int patch_size_ = 16;
+  static const int halfpatch_size_ = 4;
+  static const int patch_size_ = 8;
 
   typedef vk::patch_score::ZMSSD<halfpatch_size_> PatchScore;
 

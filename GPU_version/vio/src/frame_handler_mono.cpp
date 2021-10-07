@@ -179,14 +179,18 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     fprintf(log_,"[%s] Update EKF and 3D points the number of feature in the new frame: %d and number of obs: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->fts_.size(),new_frame_->nObs());
 #endif
+  double depth_mean=0.0, depth_min=0.0;
+  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
+  if(depth_mean>10.0)return RESULT_NO_KEYFRAME;
+
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe
+
   if(!needNewKf())//edited
   {
         return RESULT_NO_KEYFRAME;
   }
-  double depth_mean=0.0, depth_min=0.0;
-  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
+
   new_frame_->setKeyframe();
 #if VIO_DEBUG
     fprintf(log_,"[%s] Choose frame as a key frame Scene Depth mean:%f ,depth min:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),

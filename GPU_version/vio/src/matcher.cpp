@@ -41,7 +41,7 @@ void getWarpMatrixAffine(
     Matrix2d& A_cur_ref)
 {
   // Compute affine warp matrix A_ref_cur
-  const int halfpatch_size = 8;
+  const int halfpatch_size = 4;
   Vector3d xyz_du_ref(cam_ref.cam2world(px_ref + Vector2d(halfpatch_size,0)*(1<<level_ref)));
   Vector3d xyz_dv_ref(cam_ref.cam2world(px_ref + Vector2d(0,halfpatch_size)*(1<<level_ref)));
   const Vector2d px_cur(cam_cur.world2cam(T_cur_ref*(f_ref)));
@@ -206,7 +206,7 @@ bool Matcher::findMatchDirect(
   cv::Mat Patch_ref = cv::Mat(patch_size_+2, patch_size_+2, CV_8UC1, patch_with_border_);
   cv::Mat Patch_cur = cv::Mat(patch_size_+2, patch_size_+2, CV_8UC1, patch_with_border_cur_);
   cv::Scalar res = getMSSIM(Patch_cur, Patch_ref);
-  if(res[0] >= 0.75)
+  if(res[0] >= 0.85)
         success = true;
   else
         success = false;

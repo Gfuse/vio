@@ -178,7 +178,6 @@ bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
     {
         double z = frame->w2f((*it)->point->pos_).z();
         depth_vec.push_back(z);
-
     }
   }
   if(depth_vec.empty())

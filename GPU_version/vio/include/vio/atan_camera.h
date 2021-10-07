@@ -43,8 +43,12 @@ private:
   {
     if(r < 0.001 || s_ == 0.0)
       return 1.0;
-    else
-      return (s_inv_* atan(r * tans_) / r);
+    else{
+        float y=2*r*sin(0.5 * (float)s_);
+        float x=cos(0.5 * (float)s_);
+        return (atan2(y,x) / (r * (float)s_));
+        //return (s_inv_* atan(r * tans_) / r);
+    }
   };
 
   //! Inverse radial distortion: returns un-distorted radius from distorted.
