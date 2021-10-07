@@ -51,7 +51,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
   trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, features_ref_, disparities_);
   if(disparities_.size() < 1){
-      ukf_->UpdateSvo(0.0,0.0,0.0);
+      ukf_->UpdateVO(0.0,0.0,0.0);
       return NO_KEYFRAME;
   }
   if(disparities_.size() < 20){
@@ -64,7 +64,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   double disparity = vk::getMean(disparities_,min,max);
     if(disparity < Config::initMinDisparity()){
         auto result=ukf_->get_location();
-        if(fabs(result.second.se2().translation().x())>0.2 || fabs(result.second.pitch())>0.0698132)ukf_->UpdateSvo(0.0,result.second.se2().translation().y(),0.0);
+        if(fabs(result.second.se2().translation().x())>0.2 || fabs(result.second.pitch())>0.0698132)ukf_->UpdateVO(0.0,result.second.se2().translation().y(),0.0);
 #if VIO_DEBUG
         fprintf(log_,"[%s] Init: px average disparity is:%f ,While minimum is: %f  KLT tracked : %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
                 disparity,

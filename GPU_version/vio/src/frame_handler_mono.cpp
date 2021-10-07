@@ -64,7 +64,7 @@ FrameHandlerMono::~FrameHandlerMono()
 
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp,const ros::Time& time)
 {
-
+    ukfPtr_.setImuTime();
   if(!startFrameProcessingCommon(timestamp)){
       return;
   }
@@ -171,7 +171,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
         new_frame_=last_frame_;
         return RESULT_FAILURE;
     }
-  auto result=ukfPtr_.UpdateSvo(new_frame_->T_f_w_.se2().translation()(0),
+  auto result=ukfPtr_.UpdateVO(new_frame_->T_f_w_.se2().translation()(0),
                                 new_frame_->T_f_w_.se2().translation()(1),new_frame_->T_f_w_.pitch());
   new_frame_->T_f_w_ =result.second;
   new_frame_->Cov_ = result.first;

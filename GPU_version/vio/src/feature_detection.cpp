@@ -72,8 +72,8 @@ void FastDetector::detect(
     const double detection_threshold,
     list<shared_ptr<Feature>>& fts)
     {
-  Corners corners(grid_n_cols_*grid_n_rows_, Corner(0,0,0.0,0,0.0f));
   std::vector<cv::KeyPoint> keypoints;
+  fts.clear();
   for(int L=0; L<n_pyr_levels_; ++L)
   {
     if(L>img_pyr.size())return;
@@ -85,13 +85,20 @@ void FastDetector::detect(
     cl_int icorner[1]={0};
     gpu_fast_->load(0,2,1,icorner);
     gpu_fast_->run(0,img.cols,img.rows);
-    cl_int count[1];
+    cl_int count[1]={0};
     gpu_fast_->read(0,2,1,count);
     if(count[0]<1 ){
         ROS_ERROR("Can not communicate with GPU");
         exit(0);
     }
-    int size=count[0];
+    const int size=count[0];
+    if(size<1 || size > 2000){
+        gpu_fast_->release(0,0);
+        gpu_fast_->release(0,1);
+        gpu_fast_->release(0,2);
+        free(fast_corner);
+        return;
+    }
     cl_int2* fast_corners=(cl_int2*)calloc(size, sizeof(cl_int2));
     gpu_fast_->read(0,1,size,fast_corners);
     for(uint i=0;i<size;++i)
@@ -115,11 +122,9 @@ void FastDetector::detect(
   cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
   cv::Mat descriptor;
   extractor->compute(frame->img(), keypoints, descriptor);
-  fts.clear();
   for(auto&& p:_for(keypoints)){
       fts.push_back(make_shared<Feature>(frame, Vector2d(p.item.pt.x, p.item.pt.y), p.item.response ,0,descriptor.data+(p.index*64)));
   }
-  resetGrid();
 }
 
 } // namespace feature_detection

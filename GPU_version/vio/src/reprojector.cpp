@@ -109,6 +109,7 @@ namespace vio {
         }
         overlap_kfs.reserve(options_.max_n_kfs);
         std::vector<int> added_keypoints;
+        int points_count=0;
         for (auto &&it_frame:_for(close_kfs)) {
             if (it_frame.index > options_.max_n_kfs)continue;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
@@ -153,6 +154,7 @@ namespace vio {
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
+                        ++points_count;
                     }else{
                         if(!matcher_.findMatchDirect(*(*it_ref)->point, *frame, px))continue;
 
@@ -163,10 +165,12 @@ namespace vio {
                         added_keypoints.push_back(match.trainIdx);
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
+                        ++points_count;
                     }
                 }
                 ++it_ref;
             }
+            if(points_count>300)return;
         }
 /*        std::cerr<<"here\n";
         exit(0);*/

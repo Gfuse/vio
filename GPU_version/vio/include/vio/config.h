@@ -124,21 +124,10 @@ public:
 
   /// Gro white noise in continuous.
   static double& GYO_Noise() { return getInstance().GYO_noise; }
-  /// integration uncertainty continuous
-  static double& IUC() { return getInstance().iuc; }
-    /// acc bias in continuous
-  static double& ABC() { return getInstance().abc; }
-    /// gyro bias in continuous
-  static double& GBC() { return getInstance().gbc; }
-    /// error in the bias used for preintegration
-  static double& EBP() { return getInstance().ebp; }
-    /// the noise used for projection
-  static double& NRP() { return getInstance().nrp; }
-  static double& Svo_Ekf() { return getInstance().svo_ekf; }
-  static double& X_off() { return getInstance().acc_x_off; }
-  static double& Y_off() { return getInstance().acc_y_off; }
-  static double& Teta_off() { return getInstance().gyr_z_off; }
-  static double& Cmd_Cov() { return getInstance().cmd_cov; }
+  static double& VO_ekf_t() { return getInstance().vo_ekf_t; }
+  static double& VO_ekf_o() { return getInstance().vo_ekf_o; }
+  static double& Cmd_ekf_t() { return getInstance().cmd_ekf_t; }
+  static double& Cmd_ekf_o() { return getInstance().cmd_ekf_o; }
 
 
 private:
@@ -174,7 +163,7 @@ private:
   size_t max_fts;
   size_t quality_min_fts;
   int quality_max_drop_fts;
-  double nrp,ebp,gbc,abc,iuc,ACC_noise,GYO_noise,svo_ekf,acc_x_off,acc_y_off,gyr_z_off,cmd_cov;
+  double ACC_noise,GYO_noise,vo_ekf_t,vo_ekf_o,cmd_ekf_t,cmd_ekf_o;
 };
 
 } // namespace vio
