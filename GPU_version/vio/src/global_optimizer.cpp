@@ -104,7 +104,7 @@ namespace vio {
                 it_kf != map_.keyframes_.end(); ++it_kf)
             {
                 // New Keyframe Vertex
-               g2o::VertexCam* v_kf = createG2oFrameSE3(*it_kf, v_id++, false);
+               g2o::VertexSE3Expmap* v_kf = createG2oFrameSE3(*it_kf, v_id++, false);
                 (*it_kf)->v_kf_ = v_kf;
                 optimizer.addVertex(v_kf);
                 for(auto&& it_ftr:(*it_kf)->fts_)
@@ -200,17 +200,17 @@ namespace vio {
         }
     }
 
-   g2o::VertexCam*
+   g2o::VertexSE3Expmap*
    BA_Glob::createG2oFrameSE3(FramePtr frame, size_t id, bool fixed)
    {
-        if(frame->id_==0 || frame->id_==1){
-            g2o::VertexCam* v= new g2o::VertexCam();
+/*        if(frame->id_==0 || frame->id_==1){
+            g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
             v->setId(id);
             v->setToOrigin();
             v->setFixed(true);
             v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
-        }
-       g2o::VertexCam* v= new g2o::VertexCam();
+        }*/
+       g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
        v->setId(id);
        v->setFixed(false);
        v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
@@ -224,14 +224,14 @@ namespace vio {
    {
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
        v->setId(id);
-       v->setFixed(fixed);
+       //v->setFixed(fixed);
        v->setMarginalized(true);
        v->setEstimate(pos);
        return v;
 
    }
 
-    g2o::EdgeProjectXYZ2UV* BA_Glob::createG2oEdgeSE3( g2o::VertexCam* v_frame,
+    g2o::EdgeProjectXYZ2UV* BA_Glob::createG2oEdgeSE3( g2o::VertexSE3Expmap* v_frame,
                      g2o::VertexSBAPointXYZ* v_point,
                      const Vector2d& f_up,
                      bool robust_kernel,

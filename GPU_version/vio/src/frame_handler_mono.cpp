@@ -132,7 +132,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
     fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d depth mean:%f min:%f\n",
                        vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
 #endif
-  //ba_glob_->new_key_frame();
+  ba_glob_->new_key_frame();
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
   return RESULT_IS_KEYFRAME;
