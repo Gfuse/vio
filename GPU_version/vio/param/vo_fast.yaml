@@ -11,8 +11,8 @@ vio:
   poseoptim_thresh: 8.0
   init_min_inliers: 40
   ACC_ekf: 0.2          #acc white noise in continuous in EKF
-  GYO_ekf: 0.1         #gyro white noise in continuous in EKF
+  GYO_ekf: 0.5         #gyro white noise in continuous in EKF
   VO_ekf_translation: 1.0              #VO noise  in EKF
-  VO_ekf_orientation: 3.0              #VO noise  in EKF
+  VO_ekf_orientation: 0.05              #VO noise  in EKF
   CMD_ekf_translation: 0.1  #control vector noise in EKF
   CMD_ekf_orientation: 0.01  #control vector noise in EKF

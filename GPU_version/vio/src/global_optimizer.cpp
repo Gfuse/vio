@@ -130,7 +130,7 @@ namespace vio {
                     else
                     {
                         g2o::Edge_XYZ_VSC e1;
-                        g2o::EdgeProjectP2MC* e = createG2oEdgeSE3(v_kf, v_mp, vk::project2d(it_ftr->f),
+                        g2o::EdgeProjectXYZ2UV* e = createG2oEdgeSE3(v_kf, v_mp, vk::project2d(it_ftr->f),
                                                                          true,
                                                                          Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth());
                         EdgeContainerSE3 edge;
@@ -147,7 +147,7 @@ namespace vio {
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
 
-            g2o::StructureOnlySolver<3> structure_only_ba;
+/*            g2o::StructureOnlySolver<3> structure_only_ba;
             g2o::OptimizableGraph::VertexContainer points;
             for (g2o::OptimizableGraph::VertexIDMap::const_iterator it = optimizer.vertices().begin(); it != optimizer.vertices().end(); ++it) {
                 g2o::OptimizableGraph::Vertex* v = static_cast<g2o::OptimizableGraph::Vertex*>(it->second);
@@ -155,8 +155,7 @@ namespace vio {
                     points.push_back(v);
             }
 
-            structure_only_ba.calc(points, 10);
-/*
+            structure_only_ba.calc(points, 10);*/
 #if VIO_DEBUG
             fprintf(log_,"[%s] init error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
@@ -165,7 +164,7 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s] end error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
-#endif*/
+#endif
             // Update Keyframe and MapPoint Positions
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end();++it_kf)
@@ -225,21 +224,21 @@ namespace vio {
    {
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
        v->setId(id);
-       //v->setFixed(fixed);
+       v->setFixed(fixed);
        v->setMarginalized(true);
        v->setEstimate(pos);
        return v;
 
    }
 
-    g2o::EdgeProjectP2MC* BA_Glob::createG2oEdgeSE3( g2o::VertexCam* v_frame,
+    g2o::EdgeProjectXYZ2UV* BA_Glob::createG2oEdgeSE3( g2o::VertexCam* v_frame,
                      g2o::VertexSBAPointXYZ* v_point,
                      const Vector2d& f_up,
                      bool robust_kernel,
                      double huber_width,
                      double weight)
    {
-       g2o::EdgeProjectP2MC* e= new g2o::EdgeProjectP2MC;
+       g2o::EdgeProjectXYZ2UV* e= new g2o::EdgeProjectXYZ2UV;
        e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_point));
        e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_frame));
        e->setMeasurement(f_up);

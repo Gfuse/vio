@@ -78,7 +78,7 @@ protected:
 #endif
         /// Temporary container to hold the g2o edge with reference to frame and point.
         struct EdgeContainerSE3{
-            EdgeProjectP2MC*     edge;
+            g2o::EdgeProjectXYZ2UV*     edge;
             std::shared_ptr<Frame>          frame;
             std::shared_ptr<Feature>        feature;
         };
@@ -94,7 +94,7 @@ protected:
                 size_t id,
                 bool fixed);
   /// Creates a g2o edge between a g2o keyframe and mappoint vertice with the provided measurement.
-        g2o::EdgeProjectP2MC* createG2oEdgeSE3(
+        g2o::EdgeProjectXYZ2UV* createG2oEdgeSE3(
                 g2o::VertexCam* v_kf,
                 g2o::VertexSBAPointXYZ* v_mp,
                 const Vector2d& f_up,

@@ -37,7 +37,7 @@ triangulateFeatureNonLin(const Matrix3d& R,  const Vector3d& t,
         double lamda0 = z.dot(b0)/pow(z.norm(), 2);
         double lamda1 = z.dot(b1)/pow(z.norm(), 2);
         if (lamda0 <= 0 || lamda1 <= 0)return Vector3d(0.0,0.0,0.0);
-        if (max(m0_hat.dot(R_F2_p), feature1.dot(f1_p)) > 0.70*M_PI_2)return Vector3d(0.0,0.0,0.0);
+        if (max(m0_hat.dot(R_F2_p), feature1.dot(f1_p)) > M_PI_2)return Vector3d(0.0,0.0,0.0);
         if(R_F2_p.dot(f1_p) < 0.01)return Vector3d(0.0,0.0,0.0);
         Vector3d xm =  lamda1 * f1_p;
         Vector3d xn = t + lamda0 * R_F2_p;

@@ -239,7 +239,7 @@ bool FrameHandlerMono::needNewKf()
     fprintf(log_,"[%s] need key frame pitch dis: %f translation dif:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()),(closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm());
 #endif
-  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.05 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.05)return true;
+  if(fabs(closest_kfs.pitch()-new_frame_->T_f_w_.pitch()) > 0.1 || fabs((closest_kfs.se2().translation()-new_frame_->T_f_w_.se2().translation()).norm())>0.1)return true;
   return false;
 }
 void FrameHandlerMono::UpdateIMU(double* value,const ros::Time& time){
