@@ -15,7 +15,7 @@ namespace g2o {
 
 namespace vio {
 
-    typedef g2o::EdgeProjectXYZ2UV g2oEdgeSE3;
+    typedef EdgeProjectP2MC g2oEdgeSE3;
     typedef g2o::VertexSE2Expmap g2oFrameSE2;
     typedef g2o::VertexSBAPointXYZ g2oPoint;
 

@@ -31,10 +31,9 @@
 #include <g2o/core/robust_kernel_impl.h>
 #include <g2o/core/optimization_algorithm_levenberg.h>
 #include <g2o/solvers/cholmod/linear_solver_cholmod.h>
-#include <g2o/solvers/csparse/linear_solver_csparse.h>
-#include <g2o/solvers/dense/linear_solver_dense.h>
 #include <g2o/solvers/structure_only/structure_only_solver.h>
 #include <g2o/core/optimization_algorithm_factory.h>
+#include <g2o/types/icp/types_icp.h>
 #include <g2o/stuff/sampler.h>
 #include <memory>
 
@@ -79,13 +78,13 @@ protected:
 #endif
         /// Temporary container to hold the g2o edge with reference to frame and point.
         struct EdgeContainerSE3{
-            g2o::EdgeProjectXYZ2UV*     edge;
+            EdgeProjectP2MC*     edge;
             std::shared_ptr<Frame>          frame;
             std::shared_ptr<Feature>        feature;
         };
 
 /// Create a g2o vertice from a keyframe object.
-        g2o::VertexSE3Expmap* createG2oFrameSE3(
+        g2o::VertexCam* createG2oFrameSE3(
                 FramePtr kf,
                 size_t id,
                 bool fixed);
@@ -95,8 +94,8 @@ protected:
                 size_t id,
                 bool fixed);
   /// Creates a g2o edge between a g2o keyframe and mappoint vertice with the provided measurement.
-        g2o::EdgeProjectXYZ2UV* createG2oEdgeSE3(
-                g2o::VertexSE3Expmap* v_kf,
+        g2o::EdgeProjectP2MC* createG2oEdgeSE3(
+                g2o::VertexCam* v_kf,
                 g2o::VertexSBAPointXYZ* v_mp,
                 const Vector2d& f_up,
                 bool robust_kernel,

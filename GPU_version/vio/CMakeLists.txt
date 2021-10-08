@@ -68,6 +68,7 @@ LIST(APPEND LINK_LIBS
   ${G2O_SOLVER_PCG}
   ${G2O_TYPES_SBA}
   ${G2O_TYPES_SLAM3D}
+  ${G2O_TYPES_ICP}
   cholmod cxsparse
 )
 

@@ -24,6 +24,7 @@
 #include <vio/point.h>
 #include <vio/feature.h>
 #include <vio/config.h>
+#include <g2o/solvers/structure_only/structure_only_solver.h>
 #if VIO_DEBUG
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -103,7 +104,7 @@ namespace vio {
                 it_kf != map_.keyframes_.end(); ++it_kf)
             {
                 // New Keyframe Vertex
-               g2o::VertexSE3Expmap* v_kf = createG2oFrameSE3(*it_kf, v_id++, false);
+               g2o::VertexCam* v_kf = createG2oFrameSE3(*it_kf, v_id++, false);
                 (*it_kf)->v_kf_ = v_kf;
                 optimizer.addVertex(v_kf);
                 for(auto&& it_ftr:(*it_kf)->fts_)
@@ -111,6 +112,7 @@ namespace vio {
                     if(it_ftr->point==NULL)continue;
                     // for each keyframe add edges to all observed mapoints
                     std::shared_ptr<Point> mp = it_ftr->point;
+                    if(mp->pos_.hasNaN())continue;
                     g2o::VertexSBAPointXYZ* v_mp = mp->v_pt_;
                     if(v_mp == NULL)
                     {
@@ -127,7 +129,8 @@ namespace vio {
                         incorrect_edges.push_back(pair<FramePtr,std::shared_ptr<Feature>>(*it_kf, it_ftr));
                     else
                     {
-                        g2o::EdgeProjectXYZ2UV* e = createG2oEdgeSE3(v_kf, v_mp, vk::project2d(it_ftr->f),
+                        g2o::Edge_XYZ_VSC e1;
+                        g2o::EdgeProjectP2MC* e = createG2oEdgeSE3(v_kf, v_mp, vk::project2d(it_ftr->f),
                                                                          true,
                                                                          Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth());
                         EdgeContainerSE3 edge;
@@ -143,6 +146,17 @@ namespace vio {
             // Optimization
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
+
+            g2o::StructureOnlySolver<3> structure_only_ba;
+            g2o::OptimizableGraph::VertexContainer points;
+            for (g2o::OptimizableGraph::VertexIDMap::const_iterator it = optimizer.vertices().begin(); it != optimizer.vertices().end(); ++it) {
+                g2o::OptimizableGraph::Vertex* v = static_cast<g2o::OptimizableGraph::Vertex*>(it->second);
+                if (v->dimension() == 3)
+                    points.push_back(v);
+            }
+
+            structure_only_ba.calc(points, 10);
+/*
 #if VIO_DEBUG
             fprintf(log_,"[%s] init error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
@@ -151,7 +165,7 @@ namespace vio {
 #if VIO_DEBUG
             fprintf(log_,"[%s] end error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
-#endif
+#endif*/
             // Update Keyframe and MapPoint Positions
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end();++it_kf)
@@ -161,9 +175,12 @@ namespace vio {
                 (*it_kf)->v_kf_ = NULL;
                 for(Features::iterator it_ftr=(*it_kf)->fts_.begin(); it_ftr!=(*it_kf)->fts_.end(); ++it_ftr)
                 {
-                    if((*it_ftr)->point == NULL)
-                        continue;
                     std::shared_ptr<Point> mp = (*it_ftr)->point;
+                    if(mp == NULL)
+                        continue;
+                    if(mp->v_pt_ == NULL)
+                        continue;       // mp was updated before
+                    mp->pos_ = mp->v_pt_->estimate();
                     mp->v_pt_ = NULL;
                 }
             }
@@ -184,13 +201,20 @@ namespace vio {
         }
     }
 
-   g2o::VertexSE3Expmap*
+   g2o::VertexCam*
    BA_Glob::createG2oFrameSE3(FramePtr frame, size_t id, bool fixed)
    {
-       g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
+        if(frame->id_==0 || frame->id_==1){
+            g2o::VertexCam* v= new g2o::VertexCam();
+            v->setId(id);
+            v->setToOrigin();
+            v->setFixed(true);
+            v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
+        }
+       g2o::VertexCam* v= new g2o::VertexCam();
        v->setId(id);
        v->setFixed(false);
-       v->setEstimate(g2o::SE3Quat(frame->T_f_w_.se3().unit_quaternion(), frame->T_f_w_.se3().translation()));
+       v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
        return v;
    }
 
@@ -201,25 +225,25 @@ namespace vio {
    {
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
        v->setId(id);
-       v->setFixed(fixed);
+       //v->setFixed(fixed);
        v->setMarginalized(true);
        v->setEstimate(pos);
        return v;
 
    }
 
-   g2o::EdgeProjectXYZ2UV* BA_Glob::createG2oEdgeSE3( g2o::VertexSE3Expmap* v_frame,
+    g2o::EdgeProjectP2MC* BA_Glob::createG2oEdgeSE3( g2o::VertexCam* v_frame,
                      g2o::VertexSBAPointXYZ* v_point,
                      const Vector2d& f_up,
                      bool robust_kernel,
                      double huber_width,
                      double weight)
    {
-       g2o::EdgeProjectXYZ2UV* e= new g2o::EdgeProjectXYZ2UV;
+       g2o::EdgeProjectP2MC* e= new g2o::EdgeProjectP2MC;
        e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_point));
        e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_frame));
        e->setMeasurement(f_up);
-       e->information() = weight*Eigen::Matrix2d::Identity();
+       e->information() = Eigen::Matrix2d::Identity();
        g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
        rk->setDelta(huber_width);
        e->setRobustKernel(rk);
