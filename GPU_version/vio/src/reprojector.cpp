@@ -140,7 +140,7 @@ namespace vio {
                         // pose with respect to reference frame
                         Vector3d pos=vk::triangulateFeatureNonLin(T_ref_cur.rotation_matrix(),T_ref_cur.translation(),
                                                                   (*it_ref)->f,frame->c2f(px));
-                        if(pos.norm()==0.0)continue;
+                        if(pos.norm()==0.)continue;
                         // point in world frame
                         std::shared_ptr<Point> new_point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
 
@@ -170,7 +170,7 @@ namespace vio {
                 }
                 ++it_ref;
             }
-            if(points_count>300)return;
+            //if(points_count>300)return;
         }
 /*        std::cerr<<"here\n";
         exit(0);*/

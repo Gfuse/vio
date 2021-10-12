@@ -100,7 +100,11 @@ void FrameHandlerBase::optimizeStructure(
 {
   deque<std::shared_ptr<Point>> pts;
   for(auto&& it:frame->fts_){
-      if(it->point!=NULL)pts.push_back(it->point);
+      if(it->point!=NULL && !it->point->pos_.hasNaN() && it->point->pos_.norm() !=0.){
+          pts.push_back(it->point);
+      }else{
+          map_.safeDeletePoint(it->point);
+      }
   }
   //max_n_pts = min(max_n_pts, pts.size());
   //nth_element(pts.begin(), pts.begin() + max_n_pts, pts.end(), ptLastOptimComparator);

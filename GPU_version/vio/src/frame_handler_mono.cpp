@@ -199,7 +199,11 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 #endif
   // new keyframe selected
   for(auto&& it:new_frame_->fts_){
-      if(it->point != NULL)it->point->addFrameRef(it);
+      if(it->point != NULL && !it->point->pos_.hasNaN() && it->point->pos_.norm() !=0.){
+          it->point->addFrameRef(it);
+      }else{
+          map_.safeDeletePoint(it->point);
+      }
   }
 
   // if limited number of keyframes, remove the one furthest apart

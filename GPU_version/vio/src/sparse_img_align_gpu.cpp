@@ -43,6 +43,8 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   feature_counter_ = 0; // is used to compute the index of the cached jacobian
   for(auto it=ref_frame->fts_.begin();it!=ref_frame->fts_.end();++it){
         if((*it)->point == nullptr)continue;
+        if((*it)->point->pos_.hasNaN())continue;
+        if((*it)->point->pos_.norm()==0.)continue;
         Vector3d xyz_ref=(*it)->f*(ref_frame->se3().inverse()*(*it)->point->pos_).norm();
         features[feature_counter_].x=xyz_ref(0);
         features[feature_counter_].y=xyz_ref(1);

@@ -87,9 +87,9 @@ namespace vio {
             g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(solver_ptr);
 
             optimizer.setAlgorithm(solver);
-
+            double* pam=map_.keyframes_.back()->cam_->params();
             // setup camera
-            g2o::CameraParameters* cam_params = new g2o::CameraParameters(1.0, Vector2d(0.,0.), 0.);
+            g2o::CameraParameters* cam_params = new g2o::CameraParameters(0.5*(pam[0]+pam[1]), Vector2d(pam[2],pam[3]), 0.);
             cam_params->setId(0);
             if (!optimizer.addParameter(cam_params)) {
                 assert(false);
@@ -113,6 +113,7 @@ namespace vio {
                     // for each keyframe add edges to all observed mapoints
                     std::shared_ptr<Point> mp = it_ftr->point;
                     if(mp->pos_.hasNaN())continue;
+                    if(mp->pos_.norm()==0.)continue;
                     g2o::VertexSBAPointXYZ* v_mp = mp->v_pt_;
                     if(v_mp == NULL)
                     {
@@ -124,12 +125,11 @@ namespace vio {
 
                     // Due to merging of mappoints it is possible that references in kfs suddenly
                     // have a very large reprojection error which may result in distorted results.
-                    Vector2d error = vk::project2d(it_ftr->f) - vk::project2d((*it_kf)->w2f(mp->pos_));
+                 /*   Vector2d error = vk::project2d(it_ftr->f) - vk::project2d((*it_kf)->w2f(mp->pos_));
                     if(error.squaredNorm() > pow(2,Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()))
                         incorrect_edges.push_back(pair<FramePtr,std::shared_ptr<Feature>>(*it_kf, it_ftr));
                     else
-                    {
-                        g2o::Edge_XYZ_VSC e1;
+                    {*/
                         g2o::EdgeProjectXYZ2UV* e = createG2oEdgeSE3(v_kf, v_mp, vk::project2d(it_ftr->f),
                                                                          true,
                                                                          Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth());
@@ -139,7 +139,7 @@ namespace vio {
                         edge.feature=it_ftr;
                         edges.push_back(edge);
                         optimizer.addEdge(e);
-                    }
+                    /*}*/
                 }
             }
             if(optimizer.vertices().size()<1)continue;
@@ -242,10 +242,11 @@ namespace vio {
        e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_point));
        e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(v_frame));
        e->setMeasurement(f_up);
-       e->information() = Eigen::Matrix2d::Identity();
+       e->information() = weight*Eigen::Matrix2d::Identity();
        g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
        rk->setDelta(huber_width);
        e->setRobustKernel(rk);
+
        e->setParameterId(0, 0); //old: e->setId(v_point->id());
        return e;
    }
