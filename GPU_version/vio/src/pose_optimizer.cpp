@@ -48,14 +48,18 @@ void optimizeGaussNewton(
   std::vector<float> errors;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
-    if((*it)->point == NULL)
-      continue;
+      if((*it)->point == NULL || (*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.) {
+          map.safeDeletePoint((*it)->point);
+          it = frame->fts_.erase(it);
+          continue;
+      }
     //Reprojection error
     Vector2d e = vk::project2d((*it)->f)
                - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     if(std::isnan(e.norm())){
         map.safeDeletePoint((*it)->point);
         it = frame->fts_.erase(it);
+        continue;
     }
     e *= 1.0 / (1<<(*it)->level);
     chi2_vec_init.push_back(e.norm()); // just for debug
@@ -82,7 +86,7 @@ void optimizeGaussNewton(
     // compute residual
     for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
     {
-      if((*it)->point == NULL)
+      if((*it)->point == NULL || (*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.)
         continue;
       Matrix23d J;
       Vector3d xyz_f(Vector3d(frame->se3()*(*it)->point->pos_));
@@ -121,8 +125,10 @@ void optimizeGaussNewton(
   size_t n_deleted_refs = 0;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
-    if((*it)->point == NULL) {
-        it++;
+    if((*it)->point == NULL || (*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.) {
+        map.safeDeletePoint((*it)->point);
+        it = frame->fts_.erase(it);
+        ++n_deleted_refs;
         continue;
     }
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
