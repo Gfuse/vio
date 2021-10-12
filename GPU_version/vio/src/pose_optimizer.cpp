@@ -48,9 +48,18 @@ void optimizeGaussNewton(
   std::vector<float> errors;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
-      if((*it)->point == NULL || (*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.) {
+      if((*it)->point == NULL) {
           map.safeDeletePoint((*it)->point);
           it = frame->fts_.erase(it);
+          continue;
+      }
+      if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.){
+          map.safeDeletePoint((*it)->point);
+          it = frame->fts_.erase(it);
+          continue;
+      }
+      if((*it)->point->type_==vio::Point::TYPE_UNKNOWN){
+          it++;
           continue;
       }
     //Reprojection error
@@ -86,7 +95,8 @@ void optimizeGaussNewton(
     // compute residual
     for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
     {
-      if((*it)->point == NULL || (*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.)
+      if((*it)->point == NULL)continue;
+      if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0. || (*it)->point->type_==vio::Point::TYPE_UNKNOWN)
         continue;
       Matrix23d J;
       Vector3d xyz_f(Vector3d(frame->se3()*(*it)->point->pos_));
@@ -125,11 +135,16 @@ void optimizeGaussNewton(
   size_t n_deleted_refs = 0;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
-    if((*it)->point == NULL || (*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.) {
+    if((*it)->point == NULL) {
         map.safeDeletePoint((*it)->point);
         it = frame->fts_.erase(it);
         ++n_deleted_refs;
         continue;
+    }
+    if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.){
+          map.safeDeletePoint((*it)->point);
+          it = frame->fts_.erase(it);
+          continue;
     }
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e /= (1<<(*it)->level);
@@ -139,9 +154,11 @@ void optimizeGaussNewton(
       map.safeDeletePoint((*it)->point);
       it = frame->fts_.erase(it);
       ++n_deleted_refs;
-    }
-    else
+    }else{
+        (*it)->point->type_=vio::Point::TYPE_CANDIDATE;
         it++;
+    }
+
   }
   //point_mut_.unlock();
   num_obs -= n_deleted_refs;

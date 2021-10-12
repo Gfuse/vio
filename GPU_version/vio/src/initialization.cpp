@@ -102,6 +102,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
                                                                          frame_cur->c2f(px_cur_.at(f.index).x,px_cur_.at(f.index).y), f.item->score,f.item->level,f.item->descriptor);
               frame_cur->addFeature(ftr_cur);
               new_point->addFrameRef(ftr_cur);
+              new_point->type_=vio::Point::TYPE_GOOD;
 
               std::shared_ptr<Feature> ftr_ref=std::make_shared<Feature>(frame_ref_, new_point, f.item->px, f.item->f, f.item->score,f.item->level,f.item->descriptor);
               frame_ref_->addFeature(ftr_ref);

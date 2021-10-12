@@ -152,16 +152,17 @@ namespace vio {
                         new_point->addFrameRef(frame->fts_.back());
                         added_keypoints.push_back(match.trainIdx);
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
+                        frame->fts_.back()->point->type_=vio::Point::TYPE_UNKNOWN;
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;
                         ++points_count;
                     }else{
                         if(!matcher_.findMatchDirect(*(*it_ref)->point, *frame, px))continue;
-
                         (*it_ref)->point->last_frame_overlap_id_ = frame->id_;
                         frame->addFeature(std::make_shared<Feature>(frame,
                                                                     (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
+                        (*it_ref)->point->type_=vio::Point::TYPE_CANDIDATE;
                         added_keypoints.push_back(match.trainIdx);
                         grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
                         overlap_kfs.back().second++;

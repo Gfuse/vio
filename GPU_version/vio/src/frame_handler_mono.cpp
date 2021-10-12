@@ -181,7 +181,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 #endif
   double depth_mean=0.0, depth_min=0.0;
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
-  if(depth_mean>10.0)return RESULT_NO_KEYFRAME;
+  if(depth_mean>20.0)return RESULT_NO_KEYFRAME;
 
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
   // select keyframe
@@ -215,7 +215,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // add keyframe to map
   map_.addKeyframe(new_frame_);
   map_.checkKeyFrames();
-  //ba_glob_->new_key_frame();
+  ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
 
