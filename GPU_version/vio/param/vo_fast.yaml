@@ -8,7 +8,7 @@ vio:
   init_min_disparity: 10
   structureoptim_max_pts: 50
   kfselect_mindist: 0.01
-  poseoptim_thresh: 8.0
+  poseoptim_thresh: 1.75
   init_min_inliers: 40
   ACC_ekf: 0.2          #acc white noise in continuous in EKF
   GYO_ekf: 0.5         #gyro white noise in continuous in EKF

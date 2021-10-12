@@ -132,7 +132,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
     fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d depth mean:%f min:%f\n",
                        vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
 #endif
-  ba_glob_->new_key_frame();
+  //ba_glob_->new_key_frame();
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
   return RESULT_IS_KEYFRAME;
@@ -158,7 +158,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   size_t sfba_n_edges_final=0;
   double sfba_thresh, sfba_error_init, sfba_error_final;
   pose_optimizer::optimizeGaussNewton(
-            Config::poseOptimThresh(),
+            10,
             new_frame_, sfba_thresh, sfba_error_init, sfba_error_final, sfba_n_edges_final,map_,log_);
 #if VIO_DEBUG
     fprintf(log_,"[%s] After pose optimization, distance between ekf and vo x:%f ,z=%f,angle between two frames:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),

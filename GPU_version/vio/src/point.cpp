@@ -19,6 +19,7 @@
 #include <vio/point.h>
 #include <vio/frame.h>
 #include <vio/feature.h>
+#include <vio/config.h>
  
 namespace vio {
 
@@ -166,10 +167,10 @@ void Point::optimize(const size_t n_iter)
   for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
             Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * pos_));
             e /= (1<<(*it)->level);
-            if (e.norm() > 4.0/ (*it)->frame->cam_->errorMultiplier2())
+            if (e.norm() > vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
                 n_failed_reproj_++;
   }
-  if(n_failed_reproj_<0.75*obs_.size())
+  if(n_failed_reproj_<0.70*obs_.size())
       type_=TYPE_GOOD;
 }
 

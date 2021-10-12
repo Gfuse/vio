@@ -126,7 +126,7 @@ namespace vio {
 
                     // Due to merging of mappoints it is possible that references in kfs suddenly
                     // have a very large reprojection error which may result in distorted results.
-                 /*   Vector2d error = vk::project2d(it_ftr->f) - vk::project2d((*it_kf)->w2f(mp->pos_));
+/*                    Vector2d error = vk::project2d(it_ftr->f) - vk::project2d((*it_kf)->w2f(mp->pos_));
                     if(error.squaredNorm() > pow(2,Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()))
                         incorrect_edges.push_back(pair<FramePtr,std::shared_ptr<Feature>>(*it_kf, it_ftr));
                     else
@@ -140,10 +140,13 @@ namespace vio {
                         edge.feature=it_ftr;
                         edges.push_back(edge);
                         optimizer.addEdge(e);
-                    /*}*/
+                   // }
                 }
             }
-            if(optimizer.vertices().size()<1)continue;
+            if(optimizer.vertices().empty()){
+                ba_mux_.unlock();
+                continue;
+            }
             // Optimization
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
@@ -161,7 +164,10 @@ namespace vio {
             fprintf(log_,"[%s] init error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
 #endif
-            if(optimizer.optimize(vio::Config::lobaNumIter())<1)continue;
+            if(optimizer.optimize(vio::Config::lobaNumIter())<1){
+                ba_mux_.unlock();
+                continue;
+            }
 #if VIO_DEBUG
             fprintf(log_,"[%s] end error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());

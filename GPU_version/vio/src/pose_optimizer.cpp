@@ -22,6 +22,7 @@
 #include <vio/robust_cost.h>
 #include <vio/math_utils.h>
 #include <sophus/se2.h>
+#include <vio/config.h>
 
 namespace vio {
 namespace pose_optimizer {
@@ -81,7 +82,6 @@ void optimizeGaussNewton(
   vk::robust_cost::MADScaleEstimator scale_estimator;
   estimated_scale = scale_estimator.compute(errors);
 
-  num_obs = errors.size();
   double scale = estimated_scale;
   for(size_t iter=0; iter<n_iter; iter++)
   {
@@ -132,13 +132,12 @@ void optimizeGaussNewton(
       break;
   }
   //point_mut_.lock();
-  size_t n_deleted_refs = 0;
+  num_obs=0;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
     if((*it)->point == NULL) {
         map.safeDeletePoint((*it)->point);
         it = frame->fts_.erase(it);
-        ++n_deleted_refs;
         continue;
     }
     if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.){
@@ -149,19 +148,18 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e /= (1<<(*it)->level);
     chi2_vec_final.push_back(e.norm());
-    if(e.norm() >  1.0 / frame->cam_->errorMultiplier2())
+    if(e.norm() >  0.5*vio::Config::poseOptimThresh() / frame->cam_->errorMultiplier2())
     {
       map.safeDeletePoint((*it)->point);
       it = frame->fts_.erase(it);
-      ++n_deleted_refs;
     }else{
         (*it)->point->type_=vio::Point::TYPE_CANDIDATE;
+        ++num_obs;
         it++;
     }
 
   }
   //point_mut_.unlock();
-  num_obs -= n_deleted_refs;
 #if VIO_DEBUG
     error_init=0.0;
     error_final=0.0;
@@ -169,8 +167,8 @@ void optimizeGaussNewton(
         error_init /=chi2_vec_init.size();
     if(!chi2_vec_final.empty())for(auto&& i:chi2_vec_final)error_final+=i;
         error_final /= chi2_vec_final.size();
-    fprintf(log,"[%s] n deleted obs = %d \t n obs with reprojection error less than 2.0 / frame->cam_->errorMultiplier2() =%d \t error init =%f \t error end=%f\n",
-            vio::time_in_HH_MM_SS_MMM().c_str(),n_deleted_refs,num_obs,error_init,error_final);
+    fprintf(log,"[%s]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =%d \t error init =%f \t error end=%f\n",
+            vio::time_in_HH_MM_SS_MMM().c_str(),num_obs,error_init,error_final);
 #endif
 }
 

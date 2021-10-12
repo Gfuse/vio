@@ -147,9 +147,6 @@ void VioNode::imuCb(const sensor_msgs::ImuPtr &imu) {
     imu_in[0] = 0.2*imu_[0]+0.8*imu->linear_acceleration.x;
     imu_in[1] = 0.2*imu_[1]+0.8*imu->linear_acceleration.y;
     imu_in[2] = 0.2*imu_[2]+0.8*imu->angular_velocity.z;
-    if(fabs(imu_in[2])>0.4)return;
-    if(fabs(imu_in[1])>1.0)return;
-    if(fabs(imu_in[0])>1.0)return;
     memcpy(imu_, imu_in, static_cast<std::size_t>(3*sizeof(double)));
     vo_->UpdateIMU(imu_in,imu->header.stamp);
     imu_time_=imu->header.stamp;
