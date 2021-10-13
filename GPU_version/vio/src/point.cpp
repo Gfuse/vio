@@ -136,9 +136,9 @@ void Point::optimize(const size_t n_iter)
     for(auto it=obs_.begin(); it!=obs_.end(); ++it)
     {
       Matrix23d J;
-      const Vector3d p_in_f((*it)->frame->se3()*pos_);
-      //jacobian_xyz2uv_(p_in_f, (*it)->frame->se3().rotation_matrix(), J, (*it)->frame->cam_->params(), (*it)->frame->T_f_w_);
-      jacobian_xyz2uv(p_in_f,(*it)->frame->se3().rotation_matrix(),J);
+      const Vector3d p_in_f((*it)->frame->w2f(pos_));
+      jacobian_xyz2uv_(p_in_f, (*it)->frame->se3().rotation_matrix(), J, (*it)->frame->cam_->params(), (*it)->frame->T_f_w_);
+      //jacobian_xyz2uv(p_in_f,(*it)->frame->se3().rotation_matrix(),J);
       const Vector2d e=vk::project2d((*it)->f) - vk::project2d(p_in_f)/(1<<(*it)->level);
       new_chi2 += e.norm();
       A.noalias() += J.transpose() * J;
@@ -167,9 +167,9 @@ void Point::optimize(const size_t n_iter)
   }
 
   for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
-            Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * pos_));
+            Vector2d e = vk::project2d((*it)->f) - vk::project2d((*it)->frame->w2f(pos_));
             e /= (1<<(*it)->level);
-            if (e.squaredNorm() > 2.0*vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
+            if (e.squaredNorm() > 8.0*vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
                 n_failed_reproj_++;
   }
   if(n_failed_reproj_<0.50*obs_.size())

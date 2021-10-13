@@ -191,7 +191,7 @@ namespace vio {
                 }
             }
 
-            // Remove Measurements with too large reprojection error
+            /*// Remove Measurements with too large reprojection error
             for(list< pair<FramePtr,std::shared_ptr<Feature>> >::iterator it=incorrect_edges.begin();
                 it!=incorrect_edges.end(); ++it)
                 map_.removePtFrameRef(it->first, it->second);
@@ -202,7 +202,7 @@ namespace vio {
                 {
                     map_.removePtFrameRef(it->frame, it->feature);
                 }
-            }
+            }*/
             ba_mux_.unlock();
         }
     }

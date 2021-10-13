@@ -129,7 +129,6 @@ void optimizeGaussNewton(
     if(vk::norm_max(dT) <= EPS)
       break;
   }
-  //point_mut_.lock();
   num_obs=0;
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
@@ -143,7 +142,7 @@ void optimizeGaussNewton(
           it = frame->fts_.erase(it);
           continue;
     }
-    Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
+    Vector2d e = vk::project2d((*it)->f) - vk::project2d(frame->w2f((*it)->point->pos_));
     e /= (1<<(*it)->level);
     chi2_vec_final.push_back(e.norm());
     if(e.norm() >  vio::Config::poseOptimThresh() / frame->cam_->errorMultiplier2())
@@ -157,7 +156,6 @@ void optimizeGaussNewton(
     }
 
   }
-  //point_mut_.unlock();
 #if VIO_DEBUG
     error_init=0.0;
     error_final=0.0;

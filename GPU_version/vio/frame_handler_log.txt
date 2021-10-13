@@ -1,789 +1,368 @@
-[19:53:42.017] Init: frame zero: 0.000000, 0.000000 0.000000
-[19:53:42.017] Init: Selected first frame. 
-[19:53:42.017] frame process finished the id is: 0 the obs is:0 
-[19:53:42.029] Init: px average disparity is:0.028000 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.029] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.029] frame process finished the id is: 1 the obs is:0 
-[19:53:42.152] Init: px average disparity is:0.028622 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.152] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.152] frame process finished the id is: 2 the obs is:0 
-[19:53:42.254] Init: px average disparity is:0.030451 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.254] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.254] frame process finished the id is: 3 the obs is:0 
-[19:53:42.353] Init: px average disparity is:0.032691 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.353] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.353] frame process finished the id is: 4 the obs is:0 
-[19:53:42.454] Init: px average disparity is:0.024697 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.454] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.454] frame process finished the id is: 5 the obs is:0 
-[19:53:42.549] Init: px average disparity is:0.038583 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.549] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.549] frame process finished the id is: 6 the obs is:0 
-[19:53:42.654] Init: px average disparity is:0.028484 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.654] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.654] frame process finished the id is: 7 the obs is:0 
-[19:53:42.756] Init: px average disparity is:0.035371 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.756] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.756] frame process finished the id is: 8 the obs is:0 
-[19:53:42.827] Init: px average disparity is:0.033589 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.827] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.827] frame process finished the id is: 9 the obs is:0 
-[19:53:42.926] Init: px average disparity is:0.034850 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:42.926] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:42.927] frame process finished the id is: 10 the obs is:0 
-[19:53:43.028] Init: px average disparity is:0.040350 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.028] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.028] frame process finished the id is: 11 the obs is:0 
-[19:53:43.152] Init: px average disparity is:0.032975 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.152] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.152] frame process finished the id is: 12 the obs is:0 
-[19:53:43.253] Init: px average disparity is:0.031391 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.253] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.253] frame process finished the id is: 13 the obs is:0 
-[19:53:43.327] Init: px average disparity is:0.039691 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.327] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.327] frame process finished the id is: 14 the obs is:0 
-[19:53:43.406] Odometry x=0.000000, y=0.000000, theta=-0.000000
-[19:53:43.461] Init: px average disparity is:0.042275 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.461] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.461] frame process finished the id is: 15 the obs is:0 
-[19:53:43.548] Init: px average disparity is:0.031575 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.548] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.548] frame process finished the id is: 16 the obs is:0 
-[19:53:43.629] Odometry x=0.000003, y=0.019225, theta=0.000001
-[19:53:43.631] Init: px average disparity is:0.146645 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.631] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.631] frame process finished the id is: 17 the obs is:0 
-[19:53:43.753] Init: px average disparity is:6.448189 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.753] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.753] frame process finished the id is: 18 the obs is:0 
-[19:53:43.858] Init: px average disparity is:4.621130 ,While minimum is: 10.000000  KLT tracked : 910
-[19:53:43.858] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.858] frame process finished the id is: 19 the obs is:0 
-[19:53:43.897] Odometry x=-0.000092, y=0.051809, theta=0.000771
-[19:53:43.938] Init: px average disparity is:4.932254 ,While minimum is: 10.000000  KLT tracked : 909
-[19:53:43.938] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:43.938] frame process finished the id is: 20 the obs is:0 
-[19:53:44.030] Init: px average disparity is:9.764128 ,While minimum is: 10.000000  KLT tracked : 908
-[19:53:44.030] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.030] frame process finished the id is: 21 the obs is:0 
-[19:53:44.170] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:12.609737 ,While minimum is: 10.000000  KLT tracked: 908
-[19:53:44.170] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.170] frame process finished the id is: 22 the obs is:0 
-[19:53:44.173] Odometry x=-0.000101, y=0.082559, theta=-0.000075
-[19:53:44.265] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:15.638974 ,While minimum is: 10.000000  KLT tracked: 900
-[19:53:44.265] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.265] frame process finished the id is: 23 the obs is:0 
-[19:53:44.366] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:19.774255 ,While minimum is: 10.000000  KLT tracked: 900
-[19:53:44.366] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.366] frame process finished the id is: 24 the obs is:0 
-[19:53:44.381] Odometry x=0.000130, y=0.112161, theta=0.001377
-[19:53:44.485] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:29.046910 ,While minimum is: 10.000000  KLT tracked: 900
-[19:53:44.485] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.485] frame process finished the id is: 25 the obs is:0 
-[19:53:44.625] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:27.210892 ,While minimum is: 10.000000  KLT tracked: 900
-[19:53:44.625] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.625] frame process finished the id is: 26 the obs is:0 
-[19:53:44.686] Odometry x=-0.000008, y=0.141273, theta=0.004602
-[19:53:44.735] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:28.408077 ,While minimum is: 10.000000  KLT tracked: 899
-[19:53:44.735] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.735] frame process finished the id is: 27 the obs is:0 
-[19:53:44.840] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:33.824593 ,While minimum is: 10.000000  KLT tracked: 899
-[19:53:44.840] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.840] frame process finished the id is: 28 the obs is:0 
-[19:53:44.913] Odometry x=-0.000266, y=0.170356, theta=0.007911
-[19:53:44.943] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:40.868326 ,While minimum is: 10.000000  KLT tracked: 896
-[19:53:44.943] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:44.943] frame process finished the id is: 29 the obs is:0 
-[19:53:45.048] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:45.785459 ,While minimum is: 10.000000  KLT tracked: 892
-[19:53:45.048] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.048] frame process finished the id is: 30 the obs is:0 
-[19:53:45.150] Odometry x=-0.000572, y=0.199392, theta=0.011219
-[19:53:45.156] Init: Homography RANSAC (inlier) is:10 ,While 40 inliers minimum required.  px average disparity is:45.251712 ,While minimum is: 10.000000  KLT tracked: 839
-[19:53:45.156] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.156] frame process finished the id is: 31 the obs is:0 
-[19:53:45.261] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:42.530751 ,While minimum is: 10.000000  KLT tracked: 795
-[19:53:45.261] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.261] frame process finished the id is: 32 the obs is:0 
-[19:53:45.364] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:46.245754 ,While minimum is: 10.000000  KLT tracked: 770
-[19:53:45.364] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.364] frame process finished the id is: 33 the obs is:0 
-[19:53:45.408] Odometry x=-0.001473, y=0.228017, theta=0.024417
-[19:53:45.469] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:44.117241 ,While minimum is: 10.000000  KLT tracked: 765
-[19:53:45.469] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.469] frame process finished the id is: 34 the obs is:0 
-[19:53:45.574] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:48.767037 ,While minimum is: 10.000000  KLT tracked: 764
-[19:53:45.574] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.574] frame process finished the id is: 35 the obs is:0 
-[19:53:45.635] Odometry x=-0.001329, y=0.256007, theta=0.024560
-[19:53:45.679] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:54.185746 ,While minimum is: 10.000000  KLT tracked: 759
-[19:53:45.679] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.679] frame process finished the id is: 36 the obs is:0 
-[19:53:45.787] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:50.618221 ,While minimum is: 10.000000  KLT tracked: 749
-[19:53:45.787] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.787] frame process finished the id is: 37 the obs is:0 
-[19:53:45.869] Odometry x=-0.001662, y=0.283749, theta=0.011710
-[19:53:45.896] Init: Homography RANSAC (inlier) is:4 ,While 40 inliers minimum required.  px average disparity is:44.350941 ,While minimum is: 10.000000  KLT tracked: 749
-[19:53:45.896] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:45.896] frame process finished the id is: 38 the obs is:0 
-[19:53:46.006] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:42.390484 ,While minimum is: 10.000000  KLT tracked: 748
-[19:53:46.006] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.006] frame process finished the id is: 39 the obs is:0 
-[19:53:46.124] Odometry x=-0.002297, y=0.308635, theta=0.025254
-[19:53:46.136] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:84.230419 ,While minimum is: 10.000000  KLT tracked: 735
-[19:53:46.136] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.136] frame process finished the id is: 40 the obs is:0 
-[19:53:46.250] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:41.707467 ,While minimum is: 10.000000  KLT tracked: 713
-[19:53:46.250] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.250] frame process finished the id is: 41 the obs is:0 
-[19:53:46.358] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:42.089481 ,While minimum is: 10.000000  KLT tracked: 710
-[19:53:46.358] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.358] frame process finished the id is: 42 the obs is:0 
-[19:53:46.378] Odometry x=-0.002487, y=0.334917, theta=0.011840
-[19:53:46.470] Init: Homography RANSAC (inlier) is:1 ,While 40 inliers minimum required.  px average disparity is:49.899346 ,While minimum is: 10.000000  KLT tracked: 710
-[19:53:46.470] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.470] frame process finished the id is: 43 the obs is:0 
-[19:53:46.577] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:50.357369 ,While minimum is: 10.000000  KLT tracked: 710
-[19:53:46.577] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.577] frame process finished the id is: 44 the obs is:0 
-[19:53:46.683] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:55.648550 ,While minimum is: 10.000000  KLT tracked: 710
-[19:53:46.683] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.683] frame process finished the id is: 45 the obs is:0 
-[19:53:46.710] Odometry x=-0.002165, y=0.359237, theta=0.011599
-[19:53:46.790] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:55.862091 ,While minimum is: 10.000000  KLT tracked: 710
-[19:53:46.790] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.790] frame process finished the id is: 46 the obs is:0 
-[19:53:46.881] Odometry x=-0.002504, y=0.382744, theta=0.007416
-[19:53:46.895] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:54.817682 ,While minimum is: 10.000000  KLT tracked: 708
-[19:53:46.895] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:46.895] frame process finished the id is: 47 the obs is:0 
-[19:53:47.001] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:59.291706 ,While minimum is: 10.000000  KLT tracked: 701
-[19:53:47.001] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:47.001] frame process finished the id is: 48 the obs is:0 
-[19:53:47.106] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:58.876963 ,While minimum is: 10.000000  KLT tracked: 701
-[19:53:47.106] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:47.106] frame process finished the id is: 49 the obs is:0 
-[19:53:47.130] Odometry x=-0.002622, y=0.407840, theta=0.005155
-[19:53:47.211] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:63.030309 ,While minimum is: 10.000000  KLT tracked: 697
-[19:53:47.211] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:47.211] frame process finished the id is: 50 the obs is:0 
-[19:53:47.316] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:63.590793 ,While minimum is: 10.000000  KLT tracked: 696
-[19:53:47.316] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:47.316] frame process finished the id is: 51 the obs is:0 
-[19:53:47.373] Odometry x=-0.001734, y=0.432328, theta=-0.000861
-[19:53:47.421] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:61.474338 ,While minimum is: 10.000000  KLT tracked: 696
-[19:53:47.421] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
-[19:53:47.421] frame process finished the id is: 52 the obs is:0 
-[19:53:47.528] Init finished: Homography RANSAC (inlier) is:45 ,While 40 inliers minimum required.  px average disparity is:63.498958 ,While minimum is: 10.000000  KLT tracked: 696
-[19:53:47.528] Init: distance between the first and current frame is x:-0.001677 ,z=0.434533,angle between two frames: 0.003893 
-[19:53:47.528] Init: Selected Second frame. 	 The number of features: 42 depth mean:0.505450 min:0.378758
-[19:53:47.528] frame process finished the id is: 53 the obs is:42 
-[19:53:47.625] After Reprojection Map nMatches:33 ,distance between ekf and vo x:0.001928 ,z=-0.001162,angle between two frames:0.000678
-[19:53:47.626]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =32 	 error init =0.011111 	 error end=0.011111
-[19:53:47.626] After pose optimization, distance between ekf and vo x:0.001928 ,z=-0.001162,angle between two frames:0.000678
-[19:53:47.626] Update EKF and 3D points the number of feature in the new frame: 32 and number of obs: 32
-[19:53:47.626] frame Scene Depth mean:0.495325 ,depth min:0.346213
-[19:53:47.626] need key frame pitch dis: 0.005647 translation dif:0.451299
-[19:53:47.626] Choose frame as a key frame Scene Depth mean:0.495325 ,depth min:0.346213
-[19:53:47.626] frame process finished the id is: 54 the obs is:32 
-[19:53:47.653] Odometry x=-0.001915, y=0.451295, theta=0.005647
-[19:53:47.759] After Reprojection Map nMatches:28 ,distance between ekf and vo x:-0.001983 ,z=0.002730,angle between two frames:0.000429
-[19:53:47.759]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =28 	 error init =0.000134 	 error end=0.000134
-[19:53:47.759] After pose optimization, distance between ekf and vo x:-0.001983 ,z=0.002730,angle between two frames:0.000429
-[19:53:47.760] Update EKF and 3D points the number of feature in the new frame: 28 and number of obs: 28
-[19:53:47.760] frame Scene Depth mean:0.490052 ,depth min:0.318553
-[19:53:47.760] need key frame pitch dis: 0.011633 translation dif:0.462876
-[19:53:47.760] Choose frame as a key frame Scene Depth mean:0.490052 ,depth min:0.318553
-[19:53:47.760] frame process finished the id is: 55 the obs is:28 
-[19:53:47.876] After Reprojection Map nMatches:28 ,distance between ekf and vo x:-0.000856 ,z=0.001431,angle between two frames:0.000404
-[19:53:47.877]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =21 	 error init =0.094595 	 error end=0.100474
-[19:53:47.877] After pose optimization, distance between ekf and vo x:0.097626 ,z=-0.142111,angle between two frames:0.005048
-[19:53:47.877] Update EKF and 3D points the number of feature in the new frame: 21 and number of obs: 21
-[19:53:47.877] frame Scene Depth mean:0.231883 ,depth min:0.172648
-[19:53:47.877] need key frame pitch dis: 0.016294 translation dif:0.430703
-[19:53:47.877] Choose frame as a key frame Scene Depth mean:0.231883 ,depth min:0.172648
-[19:53:47.877] frame process finished the id is: 56 the obs is:21 
-[19:53:47.881] Odometry x=0.020737, y=0.430203, theta=0.016294
-[19:53:47.967] After Reprojection Map nMatches:20 ,distance between ekf and vo x:-0.000021 ,z=-0.000012,angle between two frames:0.000003
-[19:53:47.967]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =19 	 error init =0.008482 	 error end=0.008421
-[19:53:47.967] After pose optimization, distance between ekf and vo x:0.138790 ,z=-0.094399,angle between two frames:0.021473
-[19:53:47.967] Update EKF and 3D points the number of feature in the new frame: 19 and number of obs: 19
-[19:53:47.967] frame Scene Depth mean:3.696341 ,depth min:0.202831
-[19:53:47.967] need key frame pitch dis: 0.011444 translation dif:0.419939
-[19:53:47.967] Choose frame as a key frame Scene Depth mean:3.696341 ,depth min:0.202831
-[19:53:47.967] frame process finished the id is: 57 the obs is:19 
-[19:53:48.053] After Reprojection Map nMatches:19 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.053]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =9 	 error init =0.023758 	 error end=0.023892
-[19:53:48.053] After pose optimization, distance between ekf and vo x:0.184997 ,z=-0.126571,angle between two frames:0.004102
-[19:53:48.053] frame process finished the id is: 57 the obs is:19 
-[19:53:48.137] Odometry x=0.054910, y=0.416334, theta=0.011444
-[19:53:48.140] After Reprojection Map nMatches:9 ,distance between ekf and vo x:-0.000106 ,z=0.000253,angle between two frames:0.000003
-[19:53:48.140]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =9 	 error init =0.000117 	 error end=0.000117
-[19:53:48.140] After pose optimization, distance between ekf and vo x:-0.000106 ,z=0.000253,angle between two frames:0.000003
-[19:53:48.140] frame process finished the id is: 57 the obs is:19 
-[19:53:48.227] After Reprojection Map nMatches:9 ,distance between ekf and vo x:-0.000105 ,z=0.000252,angle between two frames:0.000003
-[19:53:48.227]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =9 	 error init =0.000208 	 error end=0.000208
-[19:53:48.227] After pose optimization, distance between ekf and vo x:-0.000105 ,z=0.000252,angle between two frames:0.000003
-[19:53:48.227] frame process finished the id is: 57 the obs is:19 
-[19:53:48.316] After Reprojection Map nMatches:9 ,distance between ekf and vo x:-0.000084 ,z=0.000203,angle between two frames:0.000002
-[19:53:48.316]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =6 	 error init =0.021454 	 error end=0.021454
-[19:53:48.316] After pose optimization, distance between ekf and vo x:-0.000084 ,z=0.000203,angle between two frames:0.000002
-[19:53:48.316] frame process finished the id is: 57 the obs is:19 
-[19:53:48.389] Odometry x=0.055562, y=0.429489, theta=0.009846
-[19:53:48.433] After Reprojection Map nMatches:17 ,distance between ekf and vo x:0.000815 ,z=-0.001740,angle between two frames:0.000118
-[19:53:48.433]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =17 	 error init =0.001111 	 error end=0.000912
-[19:53:48.433] After pose optimization, distance between ekf and vo x:0.133070 ,z=-0.116898,angle between two frames:0.011807
-[19:53:48.433] Update EKF and 3D points the number of feature in the new frame: 17 and number of obs: 17
-[19:53:48.433] frame Scene Depth mean:2.400674 ,depth min:0.079777
-[19:53:48.433] need key frame pitch dis: 2.869024 translation dif:1.892841
-[19:53:48.433] Choose frame as a key frame Scene Depth mean:2.400674 ,depth min:0.079777
-[19:53:48.433] frame process finished the id is: 62 the obs is:17 
-[19:53:48.549] After Reprojection Map nMatches:21 ,distance between ekf and vo x:-0.001315 ,z=0.002814,angle between two frames:0.000064
-[19:53:48.549]  n obs with reprojection error less than 1.0 / frame->cam_->errorMultiplier2() =16 	 error init =0.044568 	 error end=0.023603
-[19:53:48.549] After pose optimization, distance between ekf and vo x:-0.001315 ,z=0.002814,angle between two frames:0.000064
-[19:53:48.549] Update EKF and 3D points the number of feature in the new frame: 16 and number of obs: 16
-[19:53:48.549] frame Scene Depth mean:7.954864 ,depth min:0.607079
-[19:53:48.549] need key frame pitch dis: 0.439479 translation dif:2.672412
-[19:53:48.549] Choose frame as a key frame Scene Depth mean:7.954864 ,depth min:0.607079
-[19:53:48.549] frame process finished the id is: 63 the obs is:16 
-[19:53:48.656] After Reprojection Map nMatches:31 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.656] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.656] frame process finished the id is: 63 the obs is:16 
-[19:53:48.693] Odometry x=0.062329, y=0.441239, theta=0.026792
-[19:53:48.735] After Reprojection Map nMatches:0 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.735] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.735] frame process finished the id is: 63 the obs is:16 
-[19:53:48.816] After Reprojection Map nMatches:0 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.816] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.816] frame process finished the id is: 63 the obs is:16 
-[19:53:48.866] Odometry x=0.062036, y=0.456979, theta=0.039525
-[19:53:48.897] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.897] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.897] frame process finished the id is: 63 the obs is:16 
-[19:53:48.996] After Reprojection Map nMatches:16 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.996] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:48.996] frame process finished the id is: 63 the obs is:16 
-[19:53:49.058] After Reprojection Map nMatches:16 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.058] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.058] frame process finished the id is: 63 the obs is:16 
-[19:53:49.153] Odometry x=0.061343, y=0.474962, theta=0.002203
-[19:53:49.187] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.187] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.187] frame process finished the id is: 63 the obs is:16 
-[19:53:49.261] After Reprojection Map nMatches:16 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.261] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.261] frame process finished the id is: 63 the obs is:16 
-[19:53:49.364] Odometry x=0.061417, y=0.493410, theta=-0.004594
-[19:53:49.383] After Reprojection Map nMatches:16 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.383] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.383] frame process finished the id is: 63 the obs is:16 
-[19:53:49.462] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.462] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.462] frame process finished the id is: 63 the obs is:16 
-[19:53:49.588] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.588] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.588] frame process finished the id is: 63 the obs is:16 
-[19:53:49.624] Odometry x=0.061488, y=0.511974, theta=-0.007840
-[19:53:49.658] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.658] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.658] frame process finished the id is: 63 the obs is:16 
-[19:53:49.785] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.785] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.785] frame process finished the id is: 63 the obs is:16 
-[19:53:49.859] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.859] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.859] frame process finished the id is: 63 the obs is:16 
-[19:53:49.889] Odometry x=0.061538, y=0.530295, theta=0.003510
-[19:53:49.988] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.988] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:49.988] frame process finished the id is: 63 the obs is:16 
-[19:53:50.066] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.066] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.066] frame process finished the id is: 63 the obs is:16 
-[19:53:50.118] Odometry x=0.061348, y=0.548464, theta=0.005058
-[19:53:50.180] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.180] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.180] frame process finished the id is: 63 the obs is:16 
-[19:53:50.278] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.278] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.278] frame process finished the id is: 63 the obs is:16 
-[19:53:50.360] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.360] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.360] frame process finished the id is: 63 the obs is:16 
-[19:53:50.370] Odometry x=0.061446, y=0.567336, theta=0.016643
-[19:53:50.493] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.493] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.493] frame process finished the id is: 63 the obs is:16 
-[19:53:50.558] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.558] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.558] frame process finished the id is: 63 the obs is:16 
-[19:53:50.678] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.678] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.678] frame process finished the id is: 63 the obs is:16 
-[19:53:50.701] Odometry x=0.061333, y=0.586014, theta=0.018897
-[19:53:50.780] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.780] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.780] frame process finished the id is: 63 the obs is:16 
-[19:53:50.864] Odometry x=0.060728, y=0.605181, theta=0.017901
-[19:53:50.867] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.867] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.867] frame process finished the id is: 63 the obs is:16 
-[19:53:50.987] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.987] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:50.987] frame process finished the id is: 63 the obs is:16 
-[19:53:51.059] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.059] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.059] frame process finished the id is: 63 the obs is:16 
-[19:53:51.170] Odometry x=0.060349, y=0.623889, theta=0.026733
-[19:53:51.186] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.186] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.186] frame process finished the id is: 63 the obs is:16 
-[19:53:51.260] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.260] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.260] frame process finished the id is: 63 the obs is:16 
-[19:53:51.370] Odometry x=0.059555, y=0.643102, theta=0.033009
-[19:53:51.384] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.384] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.384] frame process finished the id is: 63 the obs is:16 
-[19:53:51.467] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.467] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.467] frame process finished the id is: 63 the obs is:16 
-[19:53:51.584] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.584] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.584] frame process finished the id is: 63 the obs is:16 
-[19:53:51.622] Odometry x=0.058747, y=0.662239, theta=0.037407
-[19:53:51.689] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.689] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.689] frame process finished the id is: 63 the obs is:16 
-[19:53:51.762] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.762] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.762] frame process finished the id is: 63 the obs is:16 
-[19:53:51.874] Odometry x=0.058130, y=0.681286, theta=0.032238
-[19:53:51.886] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.886] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.886] frame process finished the id is: 63 the obs is:16 
-[19:53:51.989] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.989] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:51.989] frame process finished the id is: 63 the obs is:16 
-[19:53:52.065] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.065] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.065] frame process finished the id is: 63 the obs is:16 
-[19:53:52.105] Odometry x=0.057446, y=0.702052, theta=0.040838
-[19:53:52.188] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.188] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.188] frame process finished the id is: 63 the obs is:16 
-[19:53:52.260] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.260] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.260] frame process finished the id is: 63 the obs is:16 
-[19:53:52.359] Odometry x=0.056418, y=0.721066, theta=0.050360
-[19:53:52.388] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.388] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.388] frame process finished the id is: 63 the obs is:16 
-[19:53:52.462] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.462] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.462] frame process finished the id is: 63 the obs is:16 
-[19:53:52.582] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.582] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.582] frame process finished the id is: 63 the obs is:16 
-[19:53:52.666] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.666] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.666] frame process finished the id is: 63 the obs is:16 
-[19:53:52.791] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.791] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.791] frame process finished the id is: 63 the obs is:16 
-[19:53:52.858] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.858] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.858] frame process finished the id is: 63 the obs is:16 
-[19:53:52.984] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.984] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:52.984] frame process finished the id is: 63 the obs is:16 
-[19:53:53.067] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.067] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.067] frame process finished the id is: 63 the obs is:16 
-[19:53:53.183] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.183] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.183] frame process finished the id is: 63 the obs is:16 
-[19:53:53.264] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.264] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.264] frame process finished the id is: 63 the obs is:16 
-[19:53:53.381] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.381] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.381] frame process finished the id is: 63 the obs is:16 
-[19:53:53.489] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.489] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.489] frame process finished the id is: 63 the obs is:16 
-[19:53:53.560] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.560] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.560] frame process finished the id is: 63 the obs is:16 
-[19:53:53.690] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.690] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.690] frame process finished the id is: 63 the obs is:16 
-[19:53:53.760] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.760] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.760] frame process finished the id is: 63 the obs is:16 
-[19:53:53.885] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.885] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.885] frame process finished the id is: 63 the obs is:16 
-[19:53:53.963] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.963] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:53.963] frame process finished the id is: 63 the obs is:16 
-[19:53:54.068] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.068] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.068] frame process finished the id is: 63 the obs is:16 
-[19:53:54.136] Odometry x=0.056150, y=0.721218, theta=0.045889
-[19:53:54.182] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.182] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.182] frame process finished the id is: 63 the obs is:16 
-[19:53:54.267] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.267] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.267] frame process finished the id is: 63 the obs is:16 
-[19:53:54.375] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.375] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.375] frame process finished the id is: 63 the obs is:16 
-[19:53:54.391] Odometry x=0.056138, y=0.721252, theta=0.035390
-[19:53:54.475] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.475] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.475] frame process finished the id is: 63 the obs is:16 
-[19:53:54.574] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.574] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.574] frame process finished the id is: 63 the obs is:16 
-[19:53:54.682] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.682] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.682] frame process finished the id is: 63 the obs is:16 
-[19:53:54.696] Odometry x=0.056105, y=0.721263, theta=-0.020410
-[19:53:54.779] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.779] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.779] frame process finished the id is: 63 the obs is:16 
-[19:53:54.863] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.863] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.863] frame process finished the id is: 63 the obs is:16 
-[19:53:54.887] Odometry x=0.056524, y=0.721591, theta=-0.159038
-[19:53:54.983] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.983] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:54.983] frame process finished the id is: 63 the obs is:16 
-[19:53:55.059] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.059] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.059] frame process finished the id is: 63 the obs is:16 
-[19:53:55.130] Odometry x=0.056518, y=0.721593, theta=-0.292506
-[19:53:55.193] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.193] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.193] frame process finished the id is: 63 the obs is:16 
-[19:53:55.278] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.278] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.278] frame process finished the id is: 63 the obs is:16 
-[19:53:55.367] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.367] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.367] frame process finished the id is: 63 the obs is:16 
-[19:53:55.481] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.481] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.481] frame process finished the id is: 63 the obs is:16 
-[19:53:55.571] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.571] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.571] frame process finished the id is: 63 the obs is:16 
-[19:53:55.680] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.680] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.680] frame process finished the id is: 63 the obs is:16 
-[19:53:55.797] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.797] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.797] frame process finished the id is: 63 the obs is:16 
-[19:53:55.865] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.865] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.865] frame process finished the id is: 63 the obs is:16 
-[19:53:55.982] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.982] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:55.982] frame process finished the id is: 63 the obs is:16 
-[19:53:56.066] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.066] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.066] frame process finished the id is: 63 the obs is:16 
-[19:53:56.183] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.183] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.183] frame process finished the id is: 63 the obs is:16 
-[19:53:56.265] After Reprojection Map nMatches:12 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.265] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.265] frame process finished the id is: 63 the obs is:16 
-[19:53:56.375] Odometry x=0.056481, y=0.721791, theta=-0.335362
-[19:53:56.385] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.385] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.385] frame process finished the id is: 63 the obs is:16 
-[19:53:56.465] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.465] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.465] frame process finished the id is: 63 the obs is:16 
-[19:53:56.595] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.595] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.595] frame process finished the id is: 63 the obs is:16 
-[19:53:56.669] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.669] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.669] frame process finished the id is: 63 the obs is:16 
-[19:53:56.690] Odometry x=0.056869, y=0.722787, theta=-0.334398
-[19:53:56.782] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.782] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.782] frame process finished the id is: 63 the obs is:16 
-[19:53:56.864] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.864] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.864] frame process finished the id is: 63 the obs is:16 
-[19:53:56.904] Odometry x=0.059600, y=0.730762, theta=-0.327862
-[19:53:56.995] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.995] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:56.995] frame process finished the id is: 63 the obs is:16 
-[19:53:57.065] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.065] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.065] frame process finished the id is: 63 the obs is:16 
-[19:53:57.129] Odometry x=0.064276, y=0.743676, theta=-0.325352
-[19:53:57.193] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.193] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.193] frame process finished the id is: 63 the obs is:16 
-[19:53:57.319] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.319] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.319] frame process finished the id is: 63 the obs is:16 
-[19:53:57.372] Odometry x=0.068529, y=0.756255, theta=-0.326000
-[19:53:57.408] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.408] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.408] frame process finished the id is: 63 the obs is:16 
-[19:53:57.562] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.562] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.562] frame process finished the id is: 63 the obs is:16 
-[19:53:57.638] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.638] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.638] frame process finished the id is: 63 the obs is:16 
-[19:53:57.665] Odometry x=0.072789, y=0.769040, theta=-0.323849
-[19:53:57.751] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.751] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.751] frame process finished the id is: 63 the obs is:16 
-[19:53:57.842] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.842] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.842] frame process finished the id is: 63 the obs is:16 
-[19:53:57.885] Odometry x=0.077107, y=0.781917, theta=-0.321532
-[19:53:57.939] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.939] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:57.939] frame process finished the id is: 63 the obs is:16 
-[19:53:58.049] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.049] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.049] frame process finished the id is: 63 the obs is:16 
-[19:53:58.138] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.138] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.138] frame process finished the id is: 63 the obs is:16 
-[19:53:58.170] Odometry x=0.081066, y=0.795090, theta=-0.315147
-[19:53:58.251] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.251] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.251] frame process finished the id is: 63 the obs is:16 
-[19:53:58.330] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.330] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.330] frame process finished the id is: 63 the obs is:16 
-[19:53:58.398] Odometry x=0.085411, y=0.808059, theta=-0.324032
-[19:53:58.454] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.454] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.454] frame process finished the id is: 63 the obs is:16 
-[19:53:58.534] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.534] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.534] frame process finished the id is: 63 the obs is:16 
-[19:53:58.632] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.632] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.632] frame process finished the id is: 63 the obs is:16 
-[19:53:58.704] Odometry x=0.089362, y=0.821161, theta=-0.327843
-[19:53:58.756] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.756] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.756] frame process finished the id is: 63 the obs is:16 
-[19:53:58.841] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.841] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.841] frame process finished the id is: 63 the obs is:16 
-[19:53:58.865] Odometry x=0.094147, y=0.834355, theta=-0.339901
-[19:53:58.942] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.942] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:58.942] frame process finished the id is: 63 the obs is:16 
-[19:53:59.040] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.040] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.040] frame process finished the id is: 63 the obs is:16 
-[19:53:59.120] Odometry x=0.098773, y=0.847312, theta=-0.322400
-[19:53:59.149] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.149] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.149] frame process finished the id is: 63 the obs is:16 
-[19:53:59.245] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.245] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.245] frame process finished the id is: 63 the obs is:16 
-[19:53:59.343] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.343] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.343] frame process finished the id is: 63 the obs is:16 
-[19:53:59.408] Odometry x=0.104202, y=0.860964, theta=-0.320785
-[19:53:59.449] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.449] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.449] frame process finished the id is: 63 the obs is:16 
-[19:53:59.536] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.536] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.536] frame process finished the id is: 63 the obs is:16 
-[19:53:59.635] Odometry x=0.108851, y=0.874117, theta=-0.308216
-[19:53:59.644] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.644] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.644] frame process finished the id is: 63 the obs is:16 
-[19:53:59.743] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.743] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.743] frame process finished the id is: 63 the obs is:16 
-[19:53:59.847] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.847] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.847] frame process finished the id is: 63 the obs is:16 
-[19:53:59.885] Odometry x=0.112867, y=0.887172, theta=-0.310539
-[19:53:59.932] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.932] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:53:59.932] frame process finished the id is: 63 the obs is:16 
-[19:54:00.032] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.032] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.032] frame process finished the id is: 63 the obs is:16 
-[19:54:00.130] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.130] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.130] frame process finished the id is: 63 the obs is:16 
-[19:54:00.130] Odometry x=0.117452, y=0.899968, theta=-0.322215
-[19:54:00.264] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.264] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.264] frame process finished the id is: 63 the obs is:16 
-[19:54:00.330] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.330] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.330] frame process finished the id is: 63 the obs is:16 
-[19:54:00.377] Odometry x=0.122257, y=0.913763, theta=-0.339195
-[19:54:00.455] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.455] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.455] frame process finished the id is: 63 the obs is:16 
-[19:54:00.532] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.532] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.532] frame process finished the id is: 63 the obs is:16 
-[19:54:00.647] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.647] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.647] frame process finished the id is: 63 the obs is:16 
-[19:54:00.670] Odometry x=0.126800, y=0.926748, theta=-0.339036
-[19:54:00.738] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.738] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.738] frame process finished the id is: 63 the obs is:16 
-[19:54:00.845] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.845] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.845] frame process finished the id is: 63 the obs is:16 
-[19:54:00.902] Odometry x=0.131246, y=0.939691, theta=-0.329242
-[19:54:00.931] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.931] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:00.931] frame process finished the id is: 63 the obs is:16 
-[19:54:01.057] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.057] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.057] frame process finished the id is: 63 the obs is:16 
-[19:54:01.131] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.131] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.131] frame process finished the id is: 63 the obs is:16 
-[19:54:01.131] Odometry x=0.136301, y=0.952162, theta=-0.325555
-[19:54:01.244] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.244] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.244] frame process finished the id is: 63 the obs is:16 
-[19:54:01.339] After Reprojection Map nMatches:12 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.339] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.339] frame process finished the id is: 63 the obs is:16 
-[19:54:01.363] Odometry x=0.139695, y=0.966654, theta=-0.311442
-[19:54:01.443] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.443] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.443] frame process finished the id is: 63 the obs is:16 
-[19:54:01.569] After Reprojection Map nMatches:8 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.569] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.569] frame process finished the id is: 63 the obs is:16 
-[19:54:01.630] Odometry x=0.143748, y=0.979907, theta=-0.311578
-[19:54:01.630] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.630] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.630] frame process finished the id is: 63 the obs is:16 
-[19:54:01.758] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.758] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.758] frame process finished the id is: 63 the obs is:16 
-[19:54:01.833] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.833] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.833] frame process finished the id is: 63 the obs is:16 
-[19:54:01.886] Odometry x=0.148158, y=0.993837, theta=-0.285544
-[19:54:01.945] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.945] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:01.945] frame process finished the id is: 63 the obs is:16 
-[19:54:02.046] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.046] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.046] frame process finished the id is: 63 the obs is:16 
-[19:54:02.137] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.137] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.137] frame process finished the id is: 63 the obs is:16 
-[19:54:02.137] Odometry x=0.152180, y=1.007310, theta=-0.290343
-[19:54:02.250] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.250] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.250] frame process finished the id is: 63 the obs is:16 
-[19:54:02.336] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.336] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.336] frame process finished the id is: 63 the obs is:16 
-[19:54:02.359] Odometry x=0.156649, y=1.021242, theta=-0.291140
-[19:54:02.447] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.447] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.447] frame process finished the id is: 63 the obs is:16 
-[19:54:02.535] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.535] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.535] frame process finished the id is: 63 the obs is:16 
-[19:54:02.660] After Reprojection Map nMatches:8 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.660] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.660] frame process finished the id is: 63 the obs is:16 
-[19:54:02.722] Odometry x=0.160638, y=1.035019, theta=-0.281520
-[19:54:02.804] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.804] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.804] frame process finished the id is: 63 the obs is:16 
-[19:54:02.848] After Reprojection Map nMatches:8 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.848] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.848] frame process finished the id is: 63 the obs is:16 
-[19:54:02.897] Odometry x=0.164568, y=1.048972, theta=-0.274258
-[19:54:02.936] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.936] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:02.936] frame process finished the id is: 63 the obs is:16 
-[19:54:03.051] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.051] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.051] frame process finished the id is: 63 the obs is:16 
-[19:54:03.132] After Reprojection Map nMatches:12 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.132] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.132] frame process finished the id is: 63 the obs is:16 
-[19:54:03.134] Odometry x=0.168502, y=1.063247, theta=-0.264891
-[19:54:03.233] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.233] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.233] frame process finished the id is: 63 the obs is:16 
-[19:54:03.330] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.330] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.330] frame process finished the id is: 63 the obs is:16 
-[19:54:03.371] Odometry x=0.172848, y=1.077286, theta=-0.272480
-[19:54:03.437] After Reprojection Map nMatches:10 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.437] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.437] frame process finished the id is: 63 the obs is:16 
-[19:54:03.537] After Reprojection Map nMatches:8 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.537] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.537] frame process finished the id is: 63 the obs is:16 
-[19:54:03.621] Odometry x=0.176755, y=1.091547, theta=-0.267185
-[19:54:03.633] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.633] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.633] frame process finished the id is: 63 the obs is:16 
-[19:54:03.739] After Reprojection Map nMatches:8 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.739] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.739] frame process finished the id is: 63 the obs is:16 
-[19:54:03.880] Odometry x=0.180597, y=1.105835, theta=-0.262072
-[19:54:03.895] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.895] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.895] frame process finished the id is: 63 the obs is:16 
-[19:54:03.988] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.988] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:03.988] frame process finished the id is: 63 the obs is:16 
-[19:54:04.077] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.077] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.077] frame process finished the id is: 63 the obs is:16 
-[19:54:04.135] Odometry x=0.184411, y=1.120122, theta=-0.260848
-[19:54:04.175] After Reprojection Map nMatches:15 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.175] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.175] frame process finished the id is: 63 the obs is:16 
-[19:54:04.282] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.282] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.282] frame process finished the id is: 63 the obs is:16 
-[19:54:04.365] Odometry x=0.188218, y=1.134363, theta=-0.266944
-[19:54:04.379] After Reprojection Map nMatches:9 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.379] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.379] frame process finished the id is: 63 the obs is:16 
-[19:54:04.475] After Reprojection Map nMatches:4 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.475] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.475] frame process finished the id is: 63 the obs is:16 
-[19:54:04.578] After Reprojection Map nMatches:14 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.578] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.578] frame process finished the id is: 63 the obs is:16 
-[19:54:04.676] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.676] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.676] frame process finished the id is: 63 the obs is:16 
-[19:54:04.702] Odometry x=0.192506, y=1.148871, theta=-0.279185
-[19:54:04.779] After Reprojection Map nMatches:13 ,distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.779] After pose optimization, distance between ekf and vo x:0.000000 ,z=0.000000,angle between two frames:0.000000
-[19:54:04.779] frame process finished the id is: 63 the obs is:16 
+[20:59:41.200] Init: frame zero: 0.000000, 0.000000 0.000000
+[20:59:41.200] Init: Selected first frame. 
+[20:59:41.200] frame process finished the id is: 0 the obs is:0 
+[20:59:41.220] Init: px average disparity is:0.032512 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.220] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.221] frame process finished the id is: 1 the obs is:0 
+[20:59:41.316] Init: px average disparity is:0.031284 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.316] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.316] frame process finished the id is: 2 the obs is:0 
+[20:59:41.419] Init: px average disparity is:0.036556 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.419] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.419] frame process finished the id is: 3 the obs is:0 
+[20:59:41.523] Init: px average disparity is:0.032202 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.523] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.523] frame process finished the id is: 4 the obs is:0 
+[20:59:41.622] Init: px average disparity is:0.041515 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.622] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.623] frame process finished the id is: 5 the obs is:0 
+[20:59:41.723] Init: px average disparity is:0.030973 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.723] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.723] frame process finished the id is: 6 the obs is:0 
+[20:59:41.815] Init: px average disparity is:0.031908 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.815] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.815] frame process finished the id is: 7 the obs is:0 
+[20:59:41.921] Init: px average disparity is:0.035828 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:41.921] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:41.921] frame process finished the id is: 8 the obs is:0 
+[20:59:42.023] Init: px average disparity is:0.031084 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.023] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.023] frame process finished the id is: 9 the obs is:0 
+[20:59:42.124] Init: px average disparity is:0.040163 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.124] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.124] frame process finished the id is: 10 the obs is:0 
+[20:59:42.219] Init: px average disparity is:0.036231 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.219] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.219] frame process finished the id is: 11 the obs is:0 
+[20:59:42.323] Init: px average disparity is:0.032094 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.323] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.323] frame process finished the id is: 12 the obs is:0 
+[20:59:42.423] Init: px average disparity is:0.039061 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.423] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.423] frame process finished the id is: 13 the obs is:0 
+[20:59:42.480] Odometry x=0.000000, y=0.000000, theta=-0.000000
+[20:59:42.536] Init: px average disparity is:0.039995 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.536] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.536] frame process finished the id is: 14 the obs is:0 
+[20:59:42.623] Init: px average disparity is:0.032783 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.623] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.623] frame process finished the id is: 15 the obs is:0 
+[20:59:42.709] Odometry x=0.000000, y=0.019164, theta=0.000001
+[20:59:42.729] Init: px average disparity is:0.152070 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.729] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.729] frame process finished the id is: 16 the obs is:0 
+[20:59:42.827] Init: px average disparity is:6.438189 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.827] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.827] frame process finished the id is: 17 the obs is:0 
+[20:59:42.932] Init: px average disparity is:4.621185 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:42.932] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:42.932] frame process finished the id is: 18 the obs is:0 
+[20:59:42.968] Odometry x=-0.000049, y=0.050897, theta=0.000596
+[20:59:43.035] Init: px average disparity is:4.962524 ,While minimum is: 10.000000  KLT tracked : 896
+[20:59:43.035] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.035] frame process finished the id is: 19 the obs is:0 
+[20:59:43.134] Init: px average disparity is:9.757717 ,While minimum is: 10.000000  KLT tracked : 895
+[20:59:43.134] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.134] frame process finished the id is: 20 the obs is:0 
+[20:59:43.248] Odometry x=-0.000045, y=0.081683, theta=-0.000248
+[20:59:43.335] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:12.627500 ,While minimum is: 10.000000  KLT tracked: 895
+[20:59:43.335] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.335] frame process finished the id is: 21 the obs is:0 
+[20:59:43.432] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:15.604936 ,While minimum is: 10.000000  KLT tracked: 888
+[20:59:43.432] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.432] frame process finished the id is: 22 the obs is:0 
+[20:59:43.456] Odometry x=0.000369, y=0.111522, theta=0.001108
+[20:59:43.528] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:19.846154 ,While minimum is: 10.000000  KLT tracked: 888
+[20:59:43.528] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.528] frame process finished the id is: 23 the obs is:0 
+[20:59:43.626] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:29.051805 ,While minimum is: 10.000000  KLT tracked: 888
+[20:59:43.626] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.626] frame process finished the id is: 24 the obs is:0 
+[20:59:43.725] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:27.308837 ,While minimum is: 10.000000  KLT tracked: 888
+[20:59:43.725] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.725] frame process finished the id is: 25 the obs is:0 
+[20:59:43.761] Odometry x=-0.000053, y=0.140555, theta=0.004094
+[20:59:43.826] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:28.646685 ,While minimum is: 10.000000  KLT tracked: 887
+[20:59:43.826] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.826] frame process finished the id is: 26 the obs is:0 
+[20:59:43.928] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:34.191057 ,While minimum is: 10.000000  KLT tracked: 887
+[20:59:43.928] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:43.928] frame process finished the id is: 27 the obs is:0 
+[20:59:43.988] Odometry x=-0.000307, y=0.169644, theta=0.007380
+[20:59:44.032] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:41.345493 ,While minimum is: 10.000000  KLT tracked: 883
+[20:59:44.032] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.032] frame process finished the id is: 28 the obs is:0 
+[20:59:44.138] Init: Homography RANSAC (inlier) is:0 ,While 40 inliers minimum required.  px average disparity is:46.447236 ,While minimum is: 10.000000  KLT tracked: 881
+[20:59:44.138] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.138] frame process finished the id is: 29 the obs is:0 
+[20:59:44.224] Odometry x=-0.000596, y=0.198681, theta=0.010682
+[20:59:44.247] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:45.750816 ,While minimum is: 10.000000  KLT tracked: 831
+[20:59:44.247] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.247] frame process finished the id is: 30 the obs is:0 
+[20:59:44.353] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:43.552221 ,While minimum is: 10.000000  KLT tracked: 786
+[20:59:44.353] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.353] frame process finished the id is: 31 the obs is:0 
+[20:59:44.457] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:47.016770 ,While minimum is: 10.000000  KLT tracked: 760
+[20:59:44.457] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.457] frame process finished the id is: 32 the obs is:0 
+[20:59:44.483] Odometry x=-0.001484, y=0.250616, theta=0.023782
+[20:59:44.562] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:44.933862 ,While minimum is: 10.000000  KLT tracked: 753
+[20:59:44.562] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.562] frame process finished the id is: 33 the obs is:0 
+[20:59:44.666] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:49.476380 ,While minimum is: 10.000000  KLT tracked: 751
+[20:59:44.666] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.666] frame process finished the id is: 34 the obs is:0 
+[20:59:44.709] Odometry x=-0.001328, y=0.278609, theta=0.023926
+[20:59:44.771] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:54.306628 ,While minimum is: 10.000000  KLT tracked: 746
+[20:59:44.771] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.771] frame process finished the id is: 35 the obs is:0 
+[20:59:44.878] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:50.945457 ,While minimum is: 10.000000  KLT tracked: 737
+[20:59:44.878] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.878] frame process finished the id is: 36 the obs is:0 
+[20:59:44.944] Odometry x=-0.001213, y=0.308548, theta=0.011258
+[20:59:44.986] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:45.043536 ,While minimum is: 10.000000  KLT tracked: 737
+[20:59:44.986] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:44.986] frame process finished the id is: 37 the obs is:0 
+[20:59:45.095] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:42.854775 ,While minimum is: 10.000000  KLT tracked: 734
+[20:59:45.095] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.095] frame process finished the id is: 38 the obs is:0 
+[20:59:45.198] Odometry x=-0.002072, y=0.333820, theta=0.024360
+[20:59:45.213] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:84.759293 ,While minimum is: 10.000000  KLT tracked: 718
+[20:59:45.213] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.213] frame process finished the id is: 39 the obs is:0 
+[20:59:45.326] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:41.534768 ,While minimum is: 10.000000  KLT tracked: 698
+[20:59:45.326] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.326] frame process finished the id is: 40 the obs is:0 
+[20:59:45.433] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:41.889906 ,While minimum is: 10.000000  KLT tracked: 694
+[20:59:45.433] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.433] frame process finished the id is: 41 the obs is:0 
+[20:59:45.453] Odometry x=-0.002253, y=0.360101, theta=0.011172
+[20:59:45.542] Init: Homography RANSAC (inlier) is:32 ,While 40 inliers minimum required.  px average disparity is:50.036638 ,While minimum is: 10.000000  KLT tracked: 694
+[20:59:45.542] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.542] frame process finished the id is: 42 the obs is:0 
+[20:59:45.649] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:50.460985 ,While minimum is: 10.000000  KLT tracked: 694
+[20:59:45.649] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.649] frame process finished the id is: 43 the obs is:0 
+[20:59:45.758] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:55.866772 ,While minimum is: 10.000000  KLT tracked: 694
+[20:59:45.758] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.758] frame process finished the id is: 44 the obs is:0 
+[20:59:45.785] Odometry x=-0.001042, y=0.386127, theta=0.011214
+[20:59:45.864] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:55.873501 ,While minimum is: 10.000000  KLT tracked: 694
+[20:59:45.864] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.864] frame process finished the id is: 45 the obs is:0 
+[20:59:45.956] Odometry x=-0.000287, y=0.410124, theta=0.006623
+[20:59:45.968] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:54.897315 ,While minimum is: 10.000000  KLT tracked: 692
+[20:59:45.968] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:45.968] frame process finished the id is: 46 the obs is:0 
+[20:59:46.073] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:59.465025 ,While minimum is: 10.000000  KLT tracked: 687
+[20:59:46.073] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.073] frame process finished the id is: 47 the obs is:0 
+[20:59:46.179] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:59.022030 ,While minimum is: 10.000000  KLT tracked: 686
+[20:59:46.179] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.179] frame process finished the id is: 48 the obs is:0 
+[20:59:46.205] Odometry x=-0.000386, y=0.435204, theta=0.004388
+[20:59:46.286] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:63.374556 ,While minimum is: 10.000000  KLT tracked: 683
+[20:59:46.286] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.286] frame process finished the id is: 49 the obs is:0 
+[20:59:46.391] Init: Homography RANSAC (inlier) is:2 ,While 40 inliers minimum required.  px average disparity is:64.334451 ,While minimum is: 10.000000  KLT tracked: 682
+[20:59:46.391] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.391] frame process finished the id is: 50 the obs is:0 
+[20:59:46.447] Odometry x=0.000878, y=0.459736, theta=-0.001481
+[20:59:46.498] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:61.895825 ,While minimum is: 10.000000  KLT tracked: 681
+[20:59:46.498] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.498] frame process finished the id is: 51 the obs is:0 
+[20:59:46.609] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:63.964495 ,While minimum is: 10.000000  KLT tracked: 681
+[20:59:46.609] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.609] frame process finished the id is: 52 the obs is:0 
+[20:59:46.717] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:64.060496 ,While minimum is: 10.000000  KLT tracked: 678
+[20:59:46.717] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.717] frame process finished the id is: 53 the obs is:0 
+[20:59:46.724] Odometry x=0.000522, y=0.483958, theta=0.005361
+[20:59:46.828] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:61.026794 ,While minimum is: 10.000000  KLT tracked: 567
+[20:59:46.828] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.828] frame process finished the id is: 54 the obs is:0 
+[20:59:46.929] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:62.652202 ,While minimum is: 10.000000  KLT tracked: 552
+[20:59:46.929] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:46.929] frame process finished the id is: 55 the obs is:0 
+[20:59:46.950] Odometry x=0.001158, y=0.500506, theta=0.014885
+[20:59:47.029] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:66.216808 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.029] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.030] frame process finished the id is: 56 the obs is:0 
+[20:59:47.133] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:67.095333 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.133] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.133] frame process finished the id is: 57 the obs is:0 
+[20:59:47.211] Odometry x=0.000828, y=0.517343, theta=0.020606
+[20:59:47.234] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:62.105342 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.234] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.234] frame process finished the id is: 58 the obs is:0 
+[20:59:47.334] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:59.361358 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.334] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.334] frame process finished the id is: 59 the obs is:0 
+[20:59:47.440] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:57.242799 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.440] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.440] frame process finished the id is: 60 the obs is:0 
+[20:59:47.463] Odometry x=0.000523, y=0.535071, theta=0.016437
+[20:59:47.542] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:56.919300 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.542] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.542] frame process finished the id is: 61 the obs is:0 
+[20:59:47.643] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:57.749513 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.643] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.643] frame process finished the id is: 62 the obs is:0 
+[20:59:47.762] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:59.171288 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.762] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.762] frame process finished the id is: 63 the obs is:0 
+[20:59:47.767] Odometry x=-0.000452, y=0.555249, theta=0.033309
+[20:59:47.877] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:60.963264 ,While minimum is: 10.000000  KLT tracked: 540
+[20:59:47.877] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.877] frame process finished the id is: 64 the obs is:0 
+[20:59:47.941] Odometry x=-0.001558, y=0.576194, theta=0.052975
+[20:59:47.994] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:66.259249 ,While minimum is: 10.000000  KLT tracked: 538
+[20:59:47.994] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:47.994] frame process finished the id is: 65 the obs is:0 
+[20:59:48.108] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:59.705313 ,While minimum is: 10.000000  KLT tracked: 538
+[20:59:48.108] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.108] frame process finished the id is: 66 the obs is:0 
+[20:59:48.228] Odometry x=-0.002029, y=0.596025, theta=0.027023
+[20:59:48.228] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:57.804091 ,While minimum is: 10.000000  KLT tracked: 538
+[20:59:48.228] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.228] frame process finished the id is: 67 the obs is:0 
+[20:59:48.345] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:56.110385 ,While minimum is: 10.000000  KLT tracked: 538
+[20:59:48.345] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.345] frame process finished the id is: 68 the obs is:0 
+[20:59:48.438] Odometry x=-0.002441, y=0.614741, theta=0.023518
+[20:59:48.473] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:57.525923 ,While minimum is: 10.000000  KLT tracked: 537
+[20:59:48.473] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.473] frame process finished the id is: 69 the obs is:0 
+[20:59:48.578] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:60.403320 ,While minimum is: 10.000000  KLT tracked: 537
+[20:59:48.578] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.578] frame process finished the id is: 70 the obs is:0 
+[20:59:48.680] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:61.333775 ,While minimum is: 10.000000  KLT tracked: 537
+[20:59:48.680] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.680] frame process finished the id is: 71 the obs is:0 
+[20:59:48.698] Odometry x=-0.002885, y=0.632989, theta=0.024849
+[20:59:48.786] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:63.285518 ,While minimum is: 10.000000  KLT tracked: 537
+[20:59:48.786] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.786] frame process finished the id is: 72 the obs is:0 
+[20:59:48.888] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:66.753727 ,While minimum is: 10.000000  KLT tracked: 534
+[20:59:48.888] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.888] frame process finished the id is: 73 the obs is:0 
+[20:59:48.962] Odometry x=-0.003600, y=0.651097, theta=0.033926
+[20:59:48.993] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:68.826489 ,While minimum is: 10.000000  KLT tracked: 534
+[20:59:48.993] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:48.993] frame process finished the id is: 74 the obs is:0 
+[20:59:49.095] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:67.023881 ,While minimum is: 10.000000  KLT tracked: 534
+[20:59:49.095] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.095] frame process finished the id is: 75 the obs is:0 
+[20:59:49.193] Odometry x=-0.004135, y=0.669519, theta=0.029026
+[20:59:49.196] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:68.416211 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.196] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.196] frame process finished the id is: 76 the obs is:0 
+[20:59:49.296] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:68.593343 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.296] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.296] frame process finished the id is: 77 the obs is:0 
+[20:59:49.404] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:69.750114 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.404] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.404] frame process finished the id is: 78 the obs is:0 
+[20:59:49.444] Odometry x=-0.004375, y=0.689199, theta=0.040049
+[20:59:49.504] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:69.363790 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.504] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.504] frame process finished the id is: 79 the obs is:0 
+[20:59:49.604] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:74.502749 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.604] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.604] frame process finished the id is: 80 the obs is:0 
+[20:59:49.707] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:71.887872 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.707] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.707] frame process finished the id is: 81 the obs is:0 
+[20:59:49.775] Odometry x=-0.004919, y=0.707863, theta=0.041984
+[20:59:49.807] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:72.958960 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.807] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.807] frame process finished the id is: 82 the obs is:0 
+[20:59:49.907] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:70.288384 ,While minimum is: 10.000000  KLT tracked: 533
+[20:59:49.907] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:49.907] frame process finished the id is: 83 the obs is:0 
+[20:59:49.939] Odometry x=-0.005825, y=0.726924, theta=0.041088
+[20:59:50.022] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:73.831372 ,While minimum is: 10.000000  KLT tracked: 532
+[20:59:50.022] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.022] frame process finished the id is: 84 the obs is:0 
+[20:59:50.143] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:78.138672 ,While minimum is: 10.000000  KLT tracked: 531
+[20:59:50.143] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.143] frame process finished the id is: 85 the obs is:0 
+[20:59:50.244] Odometry x=-0.006640, y=0.745641, theta=0.049084
+[20:59:50.255] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:79.292985 ,While minimum is: 10.000000  KLT tracked: 529
+[20:59:50.255] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.255] frame process finished the id is: 86 the obs is:0 
+[20:59:50.368] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:87.951645 ,While minimum is: 10.000000  KLT tracked: 508
+[20:59:50.368] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.368] frame process finished the id is: 87 the obs is:0 
+[20:59:50.444] Odometry x=-0.007909, y=0.764565, theta=0.056387
+[20:59:50.489] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:89.482305 ,While minimum is: 10.000000  KLT tracked: 503
+[20:59:50.489] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.489] frame process finished the id is: 88 the obs is:0 
+[20:59:50.603] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:92.195888 ,While minimum is: 10.000000  KLT tracked: 501
+[20:59:50.603] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.603] frame process finished the id is: 89 the obs is:0 
+[20:59:50.696] Odometry x=-0.007940, y=0.783335, theta=0.065751
+[20:59:50.705] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:85.512781 ,While minimum is: 10.000000  KLT tracked: 493
+[20:59:50.706] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.706] frame process finished the id is: 90 the obs is:0 
+[20:59:50.803] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.916612 ,While minimum is: 10.000000  KLT tracked: 493
+[20:59:50.803] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.803] frame process finished the id is: 91 the obs is:0 
+[20:59:50.901] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:85.663762 ,While minimum is: 10.000000  KLT tracked: 493
+[20:59:50.901] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:50.901] frame process finished the id is: 92 the obs is:0 
+[20:59:50.948] Odometry x=-0.009113, y=0.802385, theta=0.058102
+[20:59:51.002] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.625409 ,While minimum is: 10.000000  KLT tracked: 493
+[20:59:51.002] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.002] frame process finished the id is: 93 the obs is:0 
+[20:59:51.101] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:81.878540 ,While minimum is: 10.000000  KLT tracked: 493
+[20:59:51.101] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.101] frame process finished the id is: 94 the obs is:0 
+[20:59:51.183] Odometry x=-0.010188, y=0.821675, theta=0.060139
+[20:59:51.205] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.492903 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.205] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.205] frame process finished the id is: 95 the obs is:0 
+[20:59:51.314] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.222369 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.314] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.314] frame process finished the id is: 96 the obs is:0 
+[20:59:51.413] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:84.077374 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.413] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.413] frame process finished the id is: 97 the obs is:0 
+[20:59:51.434] Odometry x=-0.011003, y=0.840321, theta=0.055294
+[20:59:51.538] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:78.813112 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.538] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.538] frame process finished the id is: 98 the obs is:0 
+[20:59:51.660] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:77.476877 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.660] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.660] frame process finished the id is: 99 the obs is:0 
+[20:59:51.771] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.159398 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.771] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.771] frame process finished the id is: 100 the obs is:0 
+[20:59:51.882] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.494992 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.882] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.882] frame process finished the id is: 101 the obs is:0 
+[20:59:51.992] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:83.349696 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:51.992] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:51.992] frame process finished the id is: 102 the obs is:0 
+[20:59:52.110] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.904192 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.110] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.110] frame process finished the id is: 103 the obs is:0 
+[20:59:52.218] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.951187 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.218] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.218] frame process finished the id is: 104 the obs is:0 
+[20:59:52.322] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.967818 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.322] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.322] frame process finished the id is: 105 the obs is:0 
+[20:59:52.423] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.936799 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.423] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.423] frame process finished the id is: 106 the obs is:0 
+[20:59:52.522] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.877396 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.522] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.522] frame process finished the id is: 107 the obs is:0 
+[20:59:52.621] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.960521 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.621] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.621] frame process finished the id is: 108 the obs is:0 
+[20:59:52.720] Init: Homography RANSAC (inlier) is:9 ,While 40 inliers minimum required.  px average disparity is:82.921847 ,While minimum is: 10.000000  KLT tracked: 492
+[20:59:52.720] Init: distance between the first and current frame is x:0.000000 ,z=0.000000,angle between two frames: 0.000000 
+[20:59:52.720] frame process finished the id is: 109 the obs is:0 
+[20:59:5
