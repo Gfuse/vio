@@ -118,7 +118,7 @@ bool Point::getCloseViewObs(const Vector2d& framepos, std::shared_ptr<Feature>& 
   if(ftr== nullptr)return false;
   return true;
 }
-
+///TODO look at point optimization needs to be better
 void Point::optimize(const size_t n_iter)
 {
   boost::unique_lock<boost::mutex> lock(point_mut_);
@@ -137,9 +137,10 @@ void Point::optimize(const size_t n_iter)
     {
       Matrix23d J;
       const Vector3d p_in_f((*it)->frame->se3()*pos_);
-      Point::jacobian_xyz2uv_(p_in_f, (*it)->frame->se3().rotation_matrix(), J, (*it)->frame->cam_->params(), (*it)->frame->T_f_w_);
-      const Vector2d e(vk::project2d((*it)->f) - vk::project2d(p_in_f));
-      new_chi2 += e.squaredNorm();
+      //jacobian_xyz2uv_(p_in_f, (*it)->frame->se3().rotation_matrix(), J, (*it)->frame->cam_->params(), (*it)->frame->T_f_w_);
+      jacobian_xyz2uv(p_in_f,(*it)->frame->se3().rotation_matrix(),J);
+      const Vector2d e=vk::project2d((*it)->f) - vk::project2d(p_in_f)/(1<<(*it)->level);
+      new_chi2 += e.norm();
       A.noalias() += J.transpose() * J;
       b.noalias() -= J.transpose() * e;
     }
@@ -164,14 +165,15 @@ void Point::optimize(const size_t n_iter)
     if(vk::norm_max(dp) <= EPS)
       break;
   }
+
   for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
             Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d((*it)->frame->se3() * pos_));
             e /= (1<<(*it)->level);
-            if (e.norm() > vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
+            if (e.squaredNorm() > 2.0*vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
                 n_failed_reproj_++;
   }
-  if(n_failed_reproj_<0.70*obs_.size())
-      type_=TYPE_GOOD;
+/*  if(n_failed_reproj_<0.50*obs_.size())
+      type_=TYPE_GOOD;*/
 }
 
 } // namespace vio

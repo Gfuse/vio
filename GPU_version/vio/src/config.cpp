@@ -36,7 +36,7 @@ Config::Config() :
     poseoptim_thresh(vk::getParam<double>("vio/poseoptim_thresh", 2.0)),
     poseoptim_num_iter(vk::getParam<int>("vio/poseoptim_num_iter", 10)),
     structureoptim_max_pts(vk::getParam<int>("vio/structureoptim_max_pts", 20)),
-    structureoptim_num_iter(vk::getParam<int>("vio/structureoptim_num_iter", 5)),
+    structureoptim_num_iter(vk::getParam<int>("vio/structureoptim_num_iter", 10)),
     loba_thresh(vk::getParam<double>("vio/loba_thresh", 2.0)),
     loba_robust_huber_width(vk::getParam<double>("vio/loba_robust_huber_width", 1.0)),
     loba_num_iter(vk::getParam<int>("vio/loba_num_iter", 0)),

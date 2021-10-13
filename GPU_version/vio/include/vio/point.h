@@ -92,8 +92,8 @@ public:
         double x_n = p_in_f.x();
         double y_n = p_in_f.y();
         double z_n = p_in_f.z();
-        double x_c =  fram_t_f_w.se3().translation().x();
-        double z_c = fram_t_f_w.se3().translation().y();
+        double x_c =  fram_t_f_w.se2().translation()(0);
+        double z_c = fram_t_f_w.se2().translation()(1);
         double theta = fram_t_f_w.pitch();
 
         double alpha = (fx*(theta/r))-(fx*((x_n*x_n)/(r*r))*theta)+((1+3*s*theta*theta)/((r*r)+1))*((fx*x_n*x_n)/(r*r));
@@ -114,6 +114,21 @@ public:
         point_jac(1, 1) = ((sin(theta)/z_n)*gamma)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*cos(theta));
         point_jac(1, 2) = ((1/z_n)*gamma*n1)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
         //point_jac = - point_jac * R_f_w;
+    }
+    void jacobian_xyz2uv(
+            const Vector3d& p_in_f,
+            const Matrix3d& R_f_w,
+            Matrix23d& point_jac)
+    {
+        const double z_inv = 1.0/p_in_f[2];
+        const double z_inv_sq = z_inv*z_inv;
+        point_jac(0, 0) = z_inv;
+        point_jac(0, 1) = 0.0;
+        point_jac(0, 2) = -p_in_f[0] * z_inv_sq;
+        point_jac(1, 0) = 0.0;
+        point_jac(1, 1) = z_inv;
+        point_jac(1, 2) = -p_in_f[1] * z_inv_sq;
+        point_jac = - point_jac * R_f_w;
     }
 
 };

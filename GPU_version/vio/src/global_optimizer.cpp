@@ -89,7 +89,7 @@ namespace vio {
             optimizer.setAlgorithm(solver);
             double* pam=map_.keyframes_.back()->cam_->params();
             // setup camera
-            g2o::CameraParameters* cam_params = new g2o::CameraParameters(0.5*(pam[0]+pam[1]), Vector2d(pam[2],pam[3]), 0.);
+            g2o::CameraParameters* cam_params = new g2o::CameraParameters(1.0, Vector2d(0.,0.), 0.);
             cam_params->setId(0);
             if (!optimizer.addParameter(cam_params)) {
                 assert(false);
@@ -110,7 +110,7 @@ namespace vio {
                 for(auto&& it_ftr:(*it_kf)->fts_)
                 {
                     if(it_ftr->point==NULL)continue;
-                    if(it_ftr->point->type_ != vio::Point::TYPE_GOOD)continue;
+                    if(it_ftr->point->type_ == vio::Point::TYPE_UNKNOWN)continue;
                     // for each keyframe add edges to all observed mapoints
                     std::shared_ptr<Point> mp = it_ftr->point;
                     if(mp->pos_.hasNaN())continue;

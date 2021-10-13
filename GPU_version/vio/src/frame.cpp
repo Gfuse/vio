@@ -172,12 +172,11 @@ void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
 bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
 {
   vector<double> depth_vec;
-  for(auto it=frame->fts_.begin(), ite=frame->fts_.end(); it!=ite; ++it)
+  for(auto&& it:frame->fts_)
   {
-    if((*it)->point != NULL)
+    if(it->point != NULL)
     {
-        double z = frame->w2f((*it)->point->pos_).z();
-        depth_vec.push_back(z);
+        depth_vec.push_back(frame->w2f(it->point->pos_).z());
     }
   }
   if(depth_vec.empty())

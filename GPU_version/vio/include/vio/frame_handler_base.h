@@ -99,6 +99,7 @@ protected:
 
   /// Optimize some of the observed 3D points.
   virtual void optimizeStructure(FramePtr frame, size_t max_n_pts, int max_iter);
+  virtual void posEdit(FramePtr frame);
 };
 
 } // namespace nslam

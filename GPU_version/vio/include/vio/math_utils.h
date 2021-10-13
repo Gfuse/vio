@@ -133,7 +133,7 @@ template<class T>
 T getMean(vector<T>& data_vec,T& min=0,T& max=0)
 {
     assert(!data_vec.empty());
-    T sum=0;
+    T sum=0.0;
     min=std::numeric_limits<T>::max();
     max=std::numeric_limits<T>::min();
     for(auto&& i:data_vec){

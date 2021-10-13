@@ -100,19 +100,41 @@ void FrameHandlerBase::optimizeStructure(
 {
   deque<std::shared_ptr<Point>> pts;
   for(auto&& it:frame->fts_){
-      if(it->point!=NULL && !it->point->pos_.hasNaN() && it->point->pos_.norm() !=0.){
-          pts.push_back(it->point);
-      }else{
-          map_.safeDeletePoint(it->point);
+      if(it->point->obs_.size()<2){
+          it->point->last_frame_overlap_id_= frame->id_;
+          continue;
       }
+      it->point->optimize(max_iter);
+      it->point->last_frame_overlap_id_= frame->id_;
   }
   //max_n_pts = min(max_n_pts, pts.size());
   //nth_element(pts.begin(), pts.begin() + max_n_pts, pts.end(), ptLastOptimComparator);
-  for(auto&& pt:pts){
-      pt->optimize(max_iter);
-      pt->last_frame_overlap_id_= frame->id_;
-  }
-}
 
+}
+void FrameHandlerBase::posEdit(
+            FramePtr frame)
+    {
+        for(auto&& it:frame->fts_){
+            if(it->point!=NULL && !it->point->pos_.hasNaN() && it->point->pos_.norm() !=0.){
+                if(it->point->obs_.size()==2){
+                    Eigen::Matrix<double,4,4> A,frame_a,frame_b;
+                    frame_a=it->point->obs_.front()->frame->se3().matrix();
+                    frame_b=it->point->obs_.back()->frame->se3().matrix();
+                    A.row(0) = it->point->obs_.front()->f(0) * frame_a.row(2) - it->point->obs_.front()->f(2) * frame_a.row(0);
+                    A.row(1) = it->point->obs_.front()->f(1) * frame_a.row(2) - it->point->obs_.front()->f(2) * frame_a.row(1);
+                    A.row(2) = it->point->obs_.back()->f(0) * frame_b.row(2) - it->point->obs_.back()->f(2) * frame_b.row(0);
+                    A.row(3) = it->point->obs_.back()->f(1) * frame_b.row(2) - it->point->obs_.back()->f(2) * frame_b.row(1);
+                    // Aを特異値分解する (A = U S Vt)
+                    // https://eigen.tuxfamily.org/dox/classEigen_1_1JacobiSVD.html
+                    Eigen::JacobiSVD<Eigen::Matrix<double,4,4>> svd(A, Eigen::ComputeFullU | Eigen::ComputeFullV);
+                    const Eigen::Matrix<double,4,1> singular_vector = svd.matrixV().block<4, 1>(0, 3);
+                    it->point->pos_=singular_vector.block<3, 1>(0, 0) / singular_vector(3);
+                }
+                if(frame->w2f(it->point->pos_).z()<1e-9)map_.safeDeletePoint(it->point);
+            }else{
+                map_.safeDeletePoint(it->point);
+            }
+        }
+    }
 
 } // namespace vio

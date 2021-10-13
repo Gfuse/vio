@@ -132,7 +132,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
     fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d depth mean:%f min:%f\n",
                        vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
 #endif
-  //ba_glob_->new_key_frame();
+  ba_glob_->new_key_frame();
   ROS_INFO("VIO initialized :)");
   ROS_INFO("Running ...");
   return RESULT_IS_KEYFRAME;
@@ -179,11 +179,17 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     fprintf(log_,"[%s] Update EKF and 3D points the number of feature in the new frame: %d and number of obs: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->fts_.size(),new_frame_->nObs());
 #endif
+  posEdit(new_frame_);
   double depth_mean=0.0, depth_min=0.0;
   frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
-  if(depth_mean>20.0)return RESULT_NO_KEYFRAME;
-
+#if VIO_DEBUG
+    fprintf(log_,"[%s] frame Scene Depth mean:%f ,depth min:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
+            depth_mean,
+            depth_min);
+#endif
+  if(depth_mean>20.0 || depth_mean<-20.)return RESULT_NO_KEYFRAME;
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
+
   // select keyframe
 
   if(!needNewKf())//edited
