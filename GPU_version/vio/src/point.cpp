@@ -172,8 +172,8 @@ void Point::optimize(const size_t n_iter)
             if (e.squaredNorm() > 2.0*vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
                 n_failed_reproj_++;
   }
-/*  if(n_failed_reproj_<0.50*obs_.size())
-      type_=TYPE_GOOD;*/
+  if(n_failed_reproj_<0.50*obs_.size())
+      type_=TYPE_GOOD;
 }
 
 } // namespace vio

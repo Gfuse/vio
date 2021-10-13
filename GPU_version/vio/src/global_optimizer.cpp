@@ -110,7 +110,7 @@ namespace vio {
                 for(auto&& it_ftr:(*it_kf)->fts_)
                 {
                     if(it_ftr->point==NULL)continue;
-                    if(it_ftr->point->type_ == vio::Point::TYPE_UNKNOWN)continue;
+                    if(it_ftr->point->type_ != vio::Point::TYPE_GOOD)continue;
                     // for each keyframe add edges to all observed mapoints
                     std::shared_ptr<Point> mp = it_ftr->point;
                     if(mp->pos_.hasNaN())continue;

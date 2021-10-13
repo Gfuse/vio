@@ -123,7 +123,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   }
   new_frame_->setKeyframe();
   double depth_mean, depth_min;
-  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
+  new_frame_->getSceneDepth(map_, depth_mean, depth_min);
   // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
@@ -179,15 +179,14 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     fprintf(log_,"[%s] Update EKF and 3D points the number of feature in the new frame: %d and number of obs: %d\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             new_frame_->fts_.size(),new_frame_->nObs());
 #endif
-  posEdit(new_frame_);
+  //posEdit(new_frame_);
   double depth_mean=0.0, depth_min=0.0;
-  frame_utils::getSceneDepth(new_frame_, depth_mean, depth_min);
+    new_frame_->getSceneDepth(map_, depth_mean, depth_min);
 #if VIO_DEBUG
     fprintf(log_,"[%s] frame Scene Depth mean:%f ,depth min:%f\n",vio::time_in_HH_MM_SS_MMM().c_str(),
             depth_mean,
             depth_min);
 #endif
-  if(depth_mean>20.0 || depth_mean<-20.)return RESULT_NO_KEYFRAME;
   optimizeStructure(new_frame_, Config::structureOptimMaxPts(), Config::structureOptimNumIter());
 
   // select keyframe

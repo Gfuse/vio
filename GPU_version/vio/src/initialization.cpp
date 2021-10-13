@@ -96,7 +96,6 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
           if(frame_cur->cam_->isInFrame(Vector2d(px_cur_.at(f.index).x,px_cur_.at(f.index).y).cast<int>(), 10) &&
              frame_ref_->cam_->isInFrame(f.item->px.cast<int>(), 10)){
               Vector3d pos = xyz_in_cur_.at(f.index);
-
               std::shared_ptr<Point> new_point = std::make_shared<Point>(pos);
               std::shared_ptr<Feature> ftr_cur=std::make_shared<Feature>(frame_cur, new_point, Vector2d(px_cur_.at(f.index).x,px_cur_.at(f.index).y),
                                                                          frame_cur->c2f(px_cur_.at(f.index).x,px_cur_.at(f.index).y), f.item->score,f.item->level,f.item->descriptor);

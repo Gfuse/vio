@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdexcept>
+#include <vio/map.h>
 #include <vio/frame.h>
 #include <vio/feature.h>
 #include <vio/point.h>
@@ -53,7 +54,7 @@ void Frame::initFrame(const cv::Mat& img)
   for(auto&& ftr:key_pts_)ftr.reset();
 
   // Build Image Pyramid
-  frame_utils::createImgPyramid(img, max(Config::nPyrLevels(), Config::kltMaxLevel()+1), img_pyr_);
+   createImgPyramid(img, max(Config::nPyrLevels(), Config::kltMaxLevel()+1), img_pyr_);
 }
 
 void Frame::setKeyframe()
@@ -154,11 +155,7 @@ bool Frame::isVisible(const Vector3d& xyz_w) const
   return false;
 }
 
-
-/// Utility functions for the Frame class
-namespace frame_utils {
-
-void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
+void Frame::createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
 {
   pyr.resize(n_levels);
   pyr[0] = img_level_0;
@@ -169,14 +166,20 @@ void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr)
   }
 }
 
-bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
+bool Frame::getSceneDepth(vio::Map& map, double& depth_mean, double& depth_min)
 {
   vector<double> depth_vec;
-  for(auto&& it:frame->fts_)
+  for(auto it=fts_.begin(); it!=fts_.end();)
   {
-    if(it->point != NULL)
+    if((*it)->point != NULL)
     {
-        depth_vec.push_back(frame->w2f(it->point->pos_).z());
+        double z=w2f((*it)->point->pos_).z();
+        if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0. || z<0.05 || z > 20.0){
+            map.safeDeletePoint((*it)->point);
+            it = fts_.erase(it);
+            continue;
+        }
+        depth_vec.push_back(z);
     }
   }
   if(depth_vec.empty())
@@ -188,5 +191,4 @@ bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min)
   return true;
 }
 
-} // namespace frame_utils
 } // namespace vio

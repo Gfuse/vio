@@ -115,13 +115,13 @@ protected:
         if(inlier_ekf.size()>inlier_hom.size()){
             T_cur_from_ref=res.second;
             inliers=inlier_ekf;
-            xyz_in_cur=xyz_in_hom;
+            xyz_in_cur=xyz_in_ekf;
         }else if((Homography.T_c2_from_c1.translation()-res.second.se3().translation()).norm()<0.1 && inlier_ekf.size()<inlier_hom.size()){
             auto euler =Homography.T_c2_from_c1.unit_quaternion().normalized().toRotationMatrix().eulerAngles(0,1,2);
             res=ukf_->UpdateVO(Homography.T_c2_from_c1.translation().x(),Homography.T_c2_from_c1.translation().z(),euler(1));
             T_cur_from_ref=res.second;
             inliers=inlier_hom;
-            xyz_in_cur=xyz_in_ekf;
+            xyz_in_cur=xyz_in_hom;
         }
 
     }

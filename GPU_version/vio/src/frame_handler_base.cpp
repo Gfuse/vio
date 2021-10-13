@@ -116,6 +116,7 @@ void FrameHandlerBase::posEdit(
     {
         for(auto&& it:frame->fts_){
             if(it->point!=NULL && !it->point->pos_.hasNaN() && it->point->pos_.norm() !=0.){
+                std::cerr<<frame->w2f(it->point->pos_).z()<<'\n';
                 if(it->point->obs_.size()==2){
                     Eigen::Matrix<double,4,4> A,frame_a,frame_b;
                     frame_a=it->point->obs_.front()->frame->se3().matrix();
@@ -130,7 +131,7 @@ void FrameHandlerBase::posEdit(
                     const Eigen::Matrix<double,4,1> singular_vector = svd.matrixV().block<4, 1>(0, 3);
                     it->point->pos_=singular_vector.block<3, 1>(0, 0) / singular_vector(3);
                 }
-                if(frame->w2f(it->point->pos_).z()<1e-9)map_.safeDeletePoint(it->point);
+                //if(frame->w2f(it->point->pos_).z()<1e-9)map_.safeDeletePoint(it->point);
             }else{
                 map_.safeDeletePoint(it->point);
             }

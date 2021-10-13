@@ -54,7 +54,8 @@ void optimizeGaussNewton(
           it = frame->fts_.erase(it);
           continue;
       }
-      if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.){
+      double z=frame->w2f((*it)->point->pos_).z();
+      if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0. || z<0.05 || z > 20.0){
           map.safeDeletePoint((*it)->point);
           it = frame->fts_.erase(it);
           continue;
@@ -95,13 +96,10 @@ void optimizeGaussNewton(
     // compute residual
     for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
     {
-      if((*it)->point == NULL)continue;
-      if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0. || (*it)->point->type_==vio::Point::TYPE_UNKNOWN)
-        continue;
+      if((*it)->point->type_==vio::Point::TYPE_UNKNOWN)continue;
       Matrix23d J;
-      Vector3d xyz_f(Vector3d(frame->se3()*(*it)->point->pos_));
       frame->jacobian_xyz2uv_((*it)->f,(*it)->point->pos_,J);
-      Vector2d e = vk::project2d((*it)->f) - vk::project2d(xyz_f);
+      Vector2d e = vk::project2d((*it)->f) - vk::project2d(frame->w2f((*it)->point->pos_));
       double sqrt_inv_cov = 1.0 / (1<<(*it)->level);
       e *= sqrt_inv_cov;
       J *= sqrt_inv_cov;
@@ -148,7 +146,7 @@ void optimizeGaussNewton(
     Vector2d e = vk::project2d((*it)->f) - vk::project2d(Vector3d(frame->se3()*(*it)->point->pos_));
     e /= (1<<(*it)->level);
     chi2_vec_final.push_back(e.norm());
-    if(e.norm() >  0.5*vio::Config::poseOptimThresh() / frame->cam_->errorMultiplier2())
+    if(e.norm() >  vio::Config::poseOptimThresh() / frame->cam_->errorMultiplier2())
     {
       map.safeDeletePoint((*it)->point);
       it = frame->fts_.erase(it);

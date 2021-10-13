@@ -25,9 +25,11 @@
 #include <g2o/types/sba/types_six_dof_expmap.h>
 
 
+
 namespace vio {
 
     class Point;
+    class Map;
     struct Feature;
 
     typedef list<std::shared_ptr<Feature>> Features;
@@ -183,19 +185,14 @@ namespace vio {
 //            J(1,1) = 0;
 //            J(1,2) = ((sin(theta)/z_n)*gamma)-((cos(theta)/z_n)*lamda)-(((x_n/(z_n*z_n))*gamma + (y_n/(z_n*z_n))*lamda)*n2);
         }
+        /// Creates an image pyramid of half-sampled images.
+        void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr);
+
+        /// Get the average depth of the features in the image.
+        bool getSceneDepth(vio::Map& map, double& depth_mean, double& depth_min);
     };
 
 
-/// Some helper functions for the frame object.
-    namespace frame_utils {
-
-/// Creates an image pyramid of half-sampled images.
-        void createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& pyr);
-
-/// Get the average depth of the features in the image.
-        bool getSceneDepth(const FramePtr frame, double& depth_mean, double& depth_min);
-
-    } // namespace frame_utils
 } // namespace vio
 
 #endif // SVO_FRAME_H_

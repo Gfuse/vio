@@ -97,7 +97,7 @@ computeInliers(const vector<Vector3d>& features2, // c2
         xyz_vec.push_back(triangulateFeatureNonLin(R, t, features1[j]/*reference*/, features2[j]/*current*/ ));
         double e1 = reprojError(features1[j], xyz_vec.back(), error_multiplier2);
         double e2 = reprojError(features2[j], SE3(R,t).inverse()*xyz_vec.back(), error_multiplier2);
-        if(e1 > reproj_thresh || e2 > reproj_thresh || xyz_vec.back().norm()==0.0)
+        if(e1 > reproj_thresh || e2 > reproj_thresh || xyz_vec.back().norm()==0.0 ||xyz_vec.back().z()==0. ||xyz_vec.back().hasNaN())
             outliers.push_back(j);
         else
         {
