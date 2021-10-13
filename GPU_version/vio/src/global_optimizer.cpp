@@ -143,7 +143,7 @@ namespace vio {
                    // }
                 }
             }
-            if(optimizer.vertices().empty()){
+            if(optimizer.vertices().empty() || optimizer.vertices().size()<1){
                 ba_mux_.unlock();
                 continue;
             }
