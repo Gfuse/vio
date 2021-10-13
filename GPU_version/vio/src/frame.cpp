@@ -15,13 +15,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdexcept>
-#include <vio/map.h>
 #include <vio/frame.h>
 #include <vio/feature.h>
 #include <vio/point.h>
 #include <vio/config.h>
 #include <vio/math_utils.h>
 #include <vio/vision.h>
+#include <vio/map.h>
 
 namespace vio {
 
@@ -166,7 +166,7 @@ void Frame::createImgPyramid(const cv::Mat& img_level_0, int n_levels, ImgPyr& p
   }
 }
 
-bool Frame::getSceneDepth(vio::Map& map, double& depth_mean, double& depth_min)
+bool Frame::getSceneDepth(vio::Map& map,double& depth_mean, double& depth_min)
 {
   vector<double> depth_vec;
   for(auto it=fts_.begin(); it!=fts_.end();)
@@ -180,7 +180,9 @@ bool Frame::getSceneDepth(vio::Map& map, double& depth_mean, double& depth_min)
             continue;
         }
         depth_vec.push_back(z);
+        ++it;
     }
+    ++it;
   }
   if(depth_vec.empty())
   {

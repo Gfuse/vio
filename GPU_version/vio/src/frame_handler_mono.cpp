@@ -122,12 +122,12 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
       return RESULT_FAILURE;
   }
   new_frame_->setKeyframe();
-  double depth_mean, depth_min;
-  new_frame_->getSceneDepth(map_, depth_mean, depth_min);
-  // add frame to map
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_DEFAULT_FRAME;
   klt_homography_init_->reset();
+  double depth_mean, depth_min;
+  new_frame_->getSceneDepth(map_,depth_mean, depth_min);
+  // add frame to map
 #if VIO_DEBUG
     fprintf(log_,"[%s] Init: Selected Second frame. \t The number of features: %d depth mean:%f min:%f\n",
                        vio::time_in_HH_MM_SS_MMM().c_str(),new_frame_->fts_.size(),depth_mean,depth_min);
