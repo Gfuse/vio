@@ -219,7 +219,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   // add keyframe to map
   map_.addKeyframe(new_frame_);
   map_.checkKeyFrames();
-  //ba_glob_->new_key_frame();
+  ba_glob_->new_key_frame();
   return RESULT_IS_KEYFRAME;
 }
 
