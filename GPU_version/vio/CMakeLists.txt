@@ -41,7 +41,7 @@ add_service_files(FILES
 generate_messages(DEPENDENCIES std_msgs)
 catkin_package(
         DEPENDS Eigen OpenCV Boost
-        CATKIN_DEPENDS roscpp roslib image_transport cv_bridge tf geometry_msgs message_runtime
+        CATKIN_DEPENDS roscpp roslib image_transport cv_bridge tf geometry_msgs message_runtime getOdom stop start
         INCLUDE_DIRS include
 )
 # Include dirs

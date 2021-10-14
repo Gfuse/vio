@@ -165,11 +165,11 @@ void Point::optimize(const size_t n_iter)
     if(vk::norm_max(dp) <= EPS)
       break;
   }
-
+  n_failed_reproj_=0;
   for(auto it=obs_.begin(); it!=obs_.end(); ++it) {
             Vector2d e = vk::project2d((*it)->f) - vk::project2d((*it)->frame->w2f(pos_));
             e /= (1<<(*it)->level);
-            if (e.squaredNorm() > 8.0*vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
+            if (e.squaredNorm() > 2.0*vio::Config::poseOptimThresh()/ (*it)->frame->cam_->errorMultiplier2())
                 n_failed_reproj_++;
   }
   if(n_failed_reproj_<0.50*obs_.size())

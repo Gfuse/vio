@@ -75,7 +75,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
     }
   computeHomography(frame_cur,
        features_ref_, px_cur_,
-      frame_ref_->cam_->errorMultiplier2(), Config::poseOptimThresh(),
+      frame_ref_->cam_->errorMultiplier2(), 3.0*Config::poseOptimThresh(),
       inliers_, xyz_in_cur_, T_cur_from_ref_);
   if(inliers_.size() < Config::initMinInliers()){
 #if VIO_DEBUG
