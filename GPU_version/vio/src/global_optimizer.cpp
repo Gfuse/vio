@@ -81,7 +81,8 @@ namespace vio {
             g2o::SparseOptimizer optimizer;
             optimizer.setVerbose(false);
 
-            g2o::BlockSolver_6_3::LinearSolverType * linearSolver=new g2o::LinearSolverCholmod<g2o::BlockSolver_6_3::PoseMatrixType>();
+            /*g2o::BlockSolver_6_3::LinearSolverType * linearSolver=new g2o::LinearSolverCholmod<g2o::BlockSolver_6_3::PoseMatrixType>();*/
+            g2o::BlockSolver_6_3::LinearSolverType * linearSolver=new g2o::LinearSolverCSparse<g2o::BlockSolver_6_3::PoseMatrixType>();
             g2o::BlockSolver_6_3 * solver_ptr= new g2o::BlockSolver_6_3(linearSolver);
 
             g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(solver_ptr);
@@ -95,53 +96,39 @@ namespace vio {
                 assert(false);
             }
             // init g2o
-            list<EdgeContainerSE3> edges;
             list< pair<FramePtr,std::shared_ptr<Feature>> > incorrect_edges;
             ba_mux_.lock();
+            g2o::OptimizableGraph::VertexContainer points;
             // Go through all Keyframes
             size_t v_id = 0;
-            for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
-                it_kf != map_.keyframes_.end(); ++it_kf)
+            for(auto&& it_kf : map_.keyframes_)
             {
                 // New Keyframe Vertex
-               g2o::VertexSE3Expmap* v_kf = createG2oFrameSE3(*it_kf, v_id++, false);
-                (*it_kf)->v_kf_ = v_kf;
-                optimizer.addVertex(v_kf);
-                for(auto&& it_ftr:(*it_kf)->fts_)
+                it_kf->v_kf_ = createG2oFrameSE3(it_kf, v_id++, false);
+                for(auto&& it_ftr:it_kf->fts_)
                 {
                     if(it_ftr->point==NULL)continue;
                     if(it_ftr->point->type_ != vio::Point::TYPE_GOOD)continue;
                     // for each keyframe add edges to all observed mapoints
-                    std::shared_ptr<Point> mp = it_ftr->point;
-                    if(mp->pos_.hasNaN())continue;
-                    if(mp->pos_.norm()==0.)continue;
-                    g2o::VertexSBAPointXYZ* v_mp = mp->v_pt_;
-                    if(v_mp == NULL)
+                    if(it_ftr->point->pos_.hasNaN())continue;
+                    if(it_ftr->point->pos_.norm()==0.)continue;
+                    if(it_ftr->point->v_pt_.first == NULL)
                     {
                         // mappoint-vertex doesn't exist yet. create a new one:
-                        v_mp = createG2oPoint(mp->pos_, v_id++, true);
-                        mp->v_pt_ = v_mp;
-                        optimizer.addVertex(v_mp);
+                        it_ftr->point->v_pt_.first = createG2oPoint(it_ftr->point->pos_, v_id++, true);
                     }
-
-                    // Due to merging of mappoints it is possible that references in kfs suddenly
-                    // have a very large reprojection error which may result in distorted results.
-/*                    Vector2d error = vk::project2d(it_ftr->f) - vk::project2d((*it_kf)->w2f(mp->pos_));
-                    if(error.squaredNorm() > pow(2,Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()))
-                        incorrect_edges.push_back(pair<FramePtr,std::shared_ptr<Feature>>(*it_kf, it_ftr));
-                    else
-                    {*/
-                        g2o::EdgeProjectXYZ2UV* e = createG2oEdgeSE3(v_kf, v_mp, vk::project2d(it_ftr->f),
+                    it_ftr->point->v_pt_.second.push_back(createG2oEdgeSE3(it_kf->v_kf_, it_ftr->point->v_pt_.first, vk::project2d(it_ftr->f),
                                                                          true,
-                                                                         Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth());
-                        EdgeContainerSE3 edge;
-                        edge.frame=(*it_kf);
-                        edge.edge=e;
-                        edge.feature=it_ftr;
-                        edges.push_back(edge);
-                        optimizer.addEdge(e);
-                   // }
+                                                                         Config::poseOptimThresh()/it_kf->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth()));
                 }
+            }
+            for(auto&& it:map_.keyframes_){
+                optimizer.addVertex(it->v_kf_);
+                for(auto&& p:it->fts_)if(p->point->v_pt_.second.size()>1){
+                        optimizer.addVertex(p->point->v_pt_.first);
+                        for(auto&& e:p->point->v_pt_.second)optimizer.addEdge(e);
+                }
+                if(it->v_kf_->edges().size()>1)points.push_back(it->v_kf_);
             }
             if(optimizer.vertices().empty() || optimizer.vertices().size()<1){
                 ba_mux_.unlock();
@@ -150,16 +137,8 @@ namespace vio {
             // Optimization
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
-
-/*            g2o::StructureOnlySolver<3> structure_only_ba;
-            g2o::OptimizableGraph::VertexContainer points;
-            for (g2o::OptimizableGraph::VertexIDMap::const_iterator it = optimizer.vertices().begin(); it != optimizer.vertices().end(); ++it) {
-                g2o::OptimizableGraph::Vertex* v = static_cast<g2o::OptimizableGraph::Vertex*>(it->second);
-                if (v->dimension() == 3)
-                    points.push_back(v);
-            }
-
-            structure_only_ba.calc(points, 10);*/
+            g2o::StructureOnlySolver<3> structure_only_ba;
+            structure_only_ba.calc(points, vio::Config::lobaNumIter());
 #if VIO_DEBUG
             fprintf(log_,"[%s] init error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
@@ -181,28 +160,15 @@ namespace vio {
                 (*it_kf)->v_kf_ = NULL;
                 for(Features::iterator it_ftr=(*it_kf)->fts_.begin(); it_ftr!=(*it_kf)->fts_.end(); ++it_ftr)
                 {
-                    std::shared_ptr<Point> mp = (*it_ftr)->point;
-                    if(mp == NULL)
+                    if((*it_ftr)->point == NULL)
                         continue;
-                    if(mp->v_pt_ == NULL)
+                    if((*it_ftr)->point->v_pt_.first == NULL)
                         continue;       // mp was updated before
-                    mp->pos_ = mp->v_pt_->estimate();
-                    mp->v_pt_ = NULL;
+                    (*it_ftr)->point->pos_ = (*it_ftr)->point->v_pt_.first->estimate();
+                    (*it_ftr)->point->v_pt_ = std::make_pair<g2o::VertexSBAPointXYZ*,std::vector<g2o::EdgeProjectXYZ2UV*>>(NULL,
+                            std::vector<g2o::EdgeProjectXYZ2UV*>());
                 }
             }
-
-            /*// Remove Measurements with too large reprojection error
-            for(list< pair<FramePtr,std::shared_ptr<Feature>> >::iterator it=incorrect_edges.begin();
-                it!=incorrect_edges.end(); ++it)
-                map_.removePtFrameRef(it->first, it->second);
-
-            for(list<EdgeContainerSE3>::iterator it = edges.begin(); it != edges.end(); ++it)
-            {
-                if(it->edge->chi2() > 0.001)
-                {
-                    map_.removePtFrameRef(it->frame, it->feature);
-                }
-            }*/
             ba_mux_.unlock();
         }
     }
@@ -217,6 +183,7 @@ namespace vio {
             v->setFixed(true);
             v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
         }*/
+/*std::cerr<<frame->se3().unit_quaternion().matrix()<<'\n'<<frame->se3().translation()<<'\n';*/
        g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
        v->setId(id);
        v->setFixed(false);
@@ -231,7 +198,7 @@ namespace vio {
    {
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
        v->setId(id);
-       //v->setFixed(fixed);
+       v->setFixed(false);
        v->setMarginalized(true);
        v->setEstimate(pos);
        return v;

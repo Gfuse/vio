@@ -30,14 +30,18 @@
 #include <g2o/core/solver.h>
 #include <g2o/core/robust_kernel_impl.h>
 #include <g2o/core/optimization_algorithm_levenberg.h>
+/*#if defined G2O_HAVE_CHOLMOD
 #include <g2o/solvers/cholmod/linear_solver_cholmod.h>
+#elif defined G2O_HAVE_CSPARSE*/
+#include <g2o/solvers/csparse/linear_solver_csparse.h>
+/*#endif*/
 #include <g2o/solvers/structure_only/structure_only_solver.h>
 #include <g2o/core/optimization_algorithm_factory.h>
 #include <g2o/types/icp/types_icp.h>
 #include <g2o/stuff/sampler.h>
 #include <memory>
 
-G2O_USE_OPTIMIZATION_LIBRARY(cholmod)
+G2O_USE_OPTIMIZATION_LIBRARY(csparse)
 
 
 namespace vio {
@@ -79,8 +83,8 @@ protected:
         /// Temporary container to hold the g2o edge with reference to frame and point.
         struct EdgeContainerSE3{
             g2o::EdgeProjectXYZ2UV*     edge;
-            std::shared_ptr<Frame>          frame;
-            std::shared_ptr<Feature>        feature;
+            g2o::VertexSE3Expmap*       expmap;
+            g2o::VertexSBAPointXYZ*     point;
         };
 
 /// Create a g2o vertice from a keyframe object.

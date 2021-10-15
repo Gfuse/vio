@@ -98,7 +98,6 @@ void FrameHandlerBase::optimizeStructure(
     size_t max_n_pts,
     int max_iter)
 {
-  deque<std::shared_ptr<Point>> pts;
   for(auto&& it:frame->fts_){
       if(it->point->obs_.size()<2){
           it->point->last_frame_overlap_id_= frame->id_;
@@ -107,9 +106,6 @@ void FrameHandlerBase::optimizeStructure(
       it->point->optimize(max_iter);
       it->point->last_frame_overlap_id_= frame->id_;
   }
-  //max_n_pts = min(max_n_pts, pts.size());
-  //nth_element(pts.begin(), pts.begin() + max_n_pts, pts.end(), ptLastOptimComparator);
-
 }
 void FrameHandlerBase::posEdit(
             FramePtr frame)
