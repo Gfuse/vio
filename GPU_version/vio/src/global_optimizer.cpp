@@ -78,6 +78,32 @@ namespace vio {
                     vio::time_in_HH_MM_SS_MMM().c_str());
 #endif
             new_keyframe_=false;
+
+            ba_mux_.lock();
+            // Go through all Keyframes
+            v_id_ = 0;
+            for(auto it_kf=map_.keyframes_.begin();it_kf!=map_.keyframes_.end();++it_kf)
+            {
+                // New Keyframe Vertex
+                (*it_kf)->v_kf_ = createG2oFrameSE3(*it_kf);
+                for(auto&& it_ftr:(*it_kf)->fts_)
+                {
+                    if(it_ftr->point==NULL)continue;
+                    if(it_ftr->point->type_ != vio::Point::TYPE_GOOD)continue;
+                    // for each keyframe add edges to all observed mapoints
+                    if(it_ftr->point->pos_.hasNaN())continue;
+                    if(it_ftr->point->pos_.norm()==0.)continue;
+                    if(it_ftr->point->v_pt_.first == NULL)
+                    {
+                        // mappoint-vertex doesn't exist yet. create a new one:
+                        it_ftr->point->v_pt_.first = createG2oPoint(it_ftr->point->pos_);
+                    }
+                    it_ftr->point->v_pt_.second.push_back(createG2oEdgeSE3((*it_kf)->v_kf_, it_ftr->point->v_pt_.first, vk::project2d(it_ftr->f),
+                                                                         true,
+                                                                         Config::poseOptimThresh()/(*it_kf)->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth()));
+                }
+            }
+            ba_mux_.unlock();
             g2o::SparseOptimizer optimizer;
             optimizer.setVerbose(false);
 
@@ -97,44 +123,35 @@ namespace vio {
             }
             // init g2o
             list< pair<FramePtr,std::shared_ptr<Feature>> > incorrect_edges;
-            ba_mux_.lock();
             g2o::OptimizableGraph::VertexContainer points;
-            // Go through all Keyframes
-            size_t v_id = 0;
-            for(auto&& it_kf : map_.keyframes_)
-            {
-                // New Keyframe Vertex
-                it_kf->v_kf_ = createG2oFrameSE3(it_kf, v_id++, false);
-                for(auto&& it_ftr:it_kf->fts_)
-                {
-                    if(it_ftr->point==NULL)continue;
-                    if(it_ftr->point->type_ != vio::Point::TYPE_GOOD)continue;
-                    // for each keyframe add edges to all observed mapoints
-                    if(it_ftr->point->pos_.hasNaN())continue;
-                    if(it_ftr->point->pos_.norm()==0.)continue;
-                    if(it_ftr->point->v_pt_.first == NULL)
-                    {
-                        // mappoint-vertex doesn't exist yet. create a new one:
-                        it_ftr->point->v_pt_.first = createG2oPoint(it_ftr->point->pos_, v_id++, true);
+            auto end=map_.keyframes_.end();
+            auto end_1=end--;
+            for(auto it=map_.keyframes_.begin(); it!=map_.keyframes_.end();++it){
+                optimizer.addVertex((*it)->v_kf_);
+                for(auto&& p:(*it)->fts_){
+                    if(p->point == NULL)continue;
+                    if(p->point->v_pt_.first == NULL)continue;
+                    if(!p->point->v_pt_.second.empty()){
+                        if(p->point->v_pt_.second.size()>1){
+                            optimizer.addVertex(p->point->v_pt_.first);///TODO
+                            if(p->point->v_pt_.first->dimension() == 3)points.push_back(p->point->v_pt_.first);
+                            for(auto&& e:p->point->v_pt_.second)optimizer.addEdge(e);
+                            p->point->v_pt_.second.clear();
+                        }
                     }
-                    it_ftr->point->v_pt_.second.push_back(createG2oEdgeSE3(it_kf->v_kf_, it_ftr->point->v_pt_.first, vk::project2d(it_ftr->f),
-                                                                         true,
-                                                                         Config::poseOptimThresh()/it_kf->cam_->errorMultiplier2()*Config::lobaRobustHuberWidth()));
                 }
-            }
-            for(auto&& it:map_.keyframes_){
-                optimizer.addVertex(it->v_kf_);
-                for(auto&& p:it->fts_)if(p->point->v_pt_.second.size()>1){
-                        optimizer.addVertex(p->point->v_pt_.first);
-                        for(auto&& e:p->point->v_pt_.second)optimizer.addEdge(e);
+                if(!(*it)->v_kf_->edges().empty()){
+                    if((*it)->v_kf_->edges().size()>1 && (*it)->v_kf_->dimension()==3)points.push_back((*it)->v_kf_);
+                    if(it == end_1-- || it ==end || it==map_.keyframes_.end()) (*it)->v_kf_->setFixed(false);
+                }else{
+                    optimizer.removeVertex((*it)->v_kf_);
                 }
-                if(it->v_kf_->edges().size()>1)points.push_back(it->v_kf_);
-            }
-            if(optimizer.vertices().empty() || optimizer.vertices().size()<1){
-                ba_mux_.unlock();
-                continue;
             }
             // Optimization
+            if(points.empty()){
+                optimizer.clear();
+                continue;
+            }
             optimizer.initializeOptimization();
             optimizer.computeActiveErrors();
             g2o::StructureOnlySolver<3> structure_only_ba;
@@ -144,18 +161,19 @@ namespace vio {
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
 #endif
             if(optimizer.optimize(vio::Config::lobaNumIter())<1){
-                ba_mux_.unlock();
+                optimizer.clear();
                 continue;
             }
 #if VIO_DEBUG
             fprintf(log_,"[%s] end error: %f \n",
                     vio::time_in_HH_MM_SS_MMM().c_str(),optimizer.activeChi2());
 #endif
+            ba_mux_.lock();
             // Update Keyframe and MapPoint Positions
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end();++it_kf)
             {
-                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation(),
+                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation().toRotationMatrix(),
                                         (*it_kf)->v_kf_->estimate().translation()));
                 (*it_kf)->v_kf_ = NULL;
                 for(Features::iterator it_ftr=(*it_kf)->fts_.begin(); it_ftr!=(*it_kf)->fts_.end(); ++it_ftr)
@@ -170,34 +188,27 @@ namespace vio {
                 }
             }
             ba_mux_.unlock();
+            optimizer.clear();
         }
     }
 
    g2o::VertexSE3Expmap*
-   BA_Glob::createG2oFrameSE3(FramePtr frame, size_t id, bool fixed)
+   BA_Glob::createG2oFrameSE3(FramePtr frame)
    {
-/*        if(frame->id_==0 || frame->id_==1){
-            g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
-            v->setId(id);
-            v->setToOrigin();
-            v->setFixed(true);
-            v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
-        }*/
-/*std::cerr<<frame->se3().unit_quaternion().matrix()<<'\n'<<frame->se3().translation()<<'\n';*/
        g2o::VertexSE3Expmap* v= new g2o::VertexSE3Expmap();
-       v->setId(id);
-       v->setFixed(false);
+       ++v_id_;
+       v->setId(v_id_);
+       v->setFixed(true);
        v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
        return v;
    }
 
    g2o::VertexSBAPointXYZ*
-   BA_Glob::createG2oPoint(Vector3d pos,
-                  size_t id,
-                  bool fixed)
+   BA_Glob::createG2oPoint(Vector3d pos)
    {
+       ++v_id_;
        g2o::VertexSBAPointXYZ* v =new g2o::VertexSBAPointXYZ();
-       v->setId(id);
+       v->setId(v_id_);
        v->setFixed(false);
        v->setMarginalized(true);
        v->setEstimate(pos);
