@@ -153,7 +153,7 @@ namespace vio {
                         added_keypoints.push_back(match.trainIdx);
                         frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
                         frame->fts_.back()->point->type_=vio::Point::TYPE_UNKNOWN;
-                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
+                        grid_.cells.at(k)->push_back(Candidate( px));
                         overlap_kfs.back().second++;
                         ++points_count;
                     }else{
@@ -164,7 +164,7 @@ namespace vio {
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
                         (*it_ref)->point->type_=vio::Point::TYPE_CANDIDATE;
                         added_keypoints.push_back(match.trainIdx);
-                        grid_.cells.at(k)->push_back(Candidate(frame->fts_.back()->point, px));
+                        grid_.cells.at(k)->push_back(Candidate( px));
                         overlap_kfs.back().second++;
                         ++points_count;
                     }

@@ -49,8 +49,7 @@ public:
   Vector3d                    pos_;                     //!< 3d pos of the point in the world coordinate frame.
   list<std::shared_ptr<Feature>>              obs_;                     //!< References to keyframes which observe the point.
   size_t                      n_obs_;                   //!< Number of obervations: Keyframes AND successful reprojections in intermediate frames.
-  std::pair<g2o::VertexSBAPointXYZ*,std::vector<g2o::EdgeProjectXYZ2UV*>>   v_pt_=std::make_pair<g2o::VertexSBAPointXYZ*,std::vector<g2o::EdgeProjectXYZ2UV*>>(NULL,
-          std::vector<g2o::EdgeProjectXYZ2UV*>());                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
+  std::shared_ptr<g2o::VertexPointXYZ>     v_pt_=NULL;                    //!< Temporary pointer to the point-vertex in g2o during bundle adjustment.
   int                         last_frame_overlap_id_;    //!< Flag for the reprojection: don't reproject a pt twice.
   PointType                   type_;                    //!< Quality of the point.
   int                         n_failed_reproj_;         //!< Number of failed reprojections. Used to assess the quality of the point.

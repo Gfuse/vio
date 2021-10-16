@@ -54,7 +54,6 @@ bool FrameHandlerBase::startFrameProcessingCommon(const double timestamp)
   if(stage_ == STAGE_PAUSED)
     return false;
 
-  // some cleanup from last iteration, can't do before because of visualization
   map_.emptyTrash();
   return true;
 }

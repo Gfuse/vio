@@ -77,27 +77,23 @@ protected:
   boost::thread* thread_;
   Map& map_;
   size_t v_id_ = 0;
+  std::unique_ptr<g2o::SparseOptimizer> optimizer_=NULL;
+  std::shared_ptr<g2o::CameraParameters> cam_params_=NULL;
 
 #if VIO_DEBUG
   FILE* log_=nullptr;
 #endif
-        /// Temporary container to hold the g2o edge with reference to frame and point.
-        struct EdgeContainerSE3{
-            g2o::EdgeProjectXYZ2UV*     edge;
-            g2o::VertexSE3Expmap*       expmap;
-            g2o::VertexSBAPointXYZ*     point;
-        };
 
 /// Create a g2o vertice from a keyframe object.
-        g2o::VertexSE3Expmap* createG2oFrameSE3(
+        std::shared_ptr<g2o::VertexSE3Expmap> createG2oFrameSE3(
                 FramePtr kf);
     /// Creates a g2o vertice from a mappoint object.
-        g2o::VertexSBAPointXYZ* createG2oPoint(
+        std::shared_ptr<g2o::VertexPointXYZ> createG2oPoint(
                 Vector3d pos);
   /// Creates a g2o edge between a g2o keyframe and mappoint vertice with the provided measurement.
-        g2o::EdgeProjectXYZ2UV* createG2oEdgeSE3(
-                g2o::VertexSE3Expmap* v_kf,
-                g2o::VertexSBAPointXYZ* v_mp,
+  std::shared_ptr<g2o::EdgeProjectXYZ2UV> createG2oEdgeSE3(
+          std::shared_ptr<g2o::VertexSE3Expmap> v_kf,
+          std::shared_ptr<g2o::VertexPointXYZ>v_mp,
                 const Vector2d& f_up,
                 bool robust_kernel,
                 double huber_width,
@@ -105,6 +101,7 @@ protected:
   /// A thread that is continuously optimizing the map.
   /// Global bundle adjustment.
   void updateLoop();
+  void reset_map();
 };
 
 } // namespace vio

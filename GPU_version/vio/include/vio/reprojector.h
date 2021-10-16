@@ -75,9 +75,8 @@ private:
   /// will search a maching feature in the image.
   struct Candidate {
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    std::shared_ptr<Point> pt;       //!< 3D point.
     Vector2d px;     //!< projected 2D pixel location.
-    Candidate(std::shared_ptr<Point> pt, Vector2d& px) : pt(pt), px(px) {}
+    Candidate(Vector2d& px) : px(px) {}
   };
   typedef std::list<Candidate > Cell;
   typedef std::vector<Cell*> CandidateGrid;
