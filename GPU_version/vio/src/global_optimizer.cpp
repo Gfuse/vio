@@ -86,7 +86,7 @@ namespace vio {
             {
                 // New Keyframe Vertex
                 (*it_kf)->v_kf_ = createG2oFrameSE3(*it_kf);
-                for(auto&& it_ftr:(*it_kf)->fts_)
+                for(auto& it_ftr:(*it_kf)->fts_)
                 {
                     if(it_ftr->point==NULL)continue;
                     if(it_ftr->point->type_ != vio::Point::TYPE_GOOD)continue;
@@ -119,36 +119,29 @@ namespace vio {
             g2o::CameraParameters* cam_params = new g2o::CameraParameters(1.0, Vector2d(0.,0.), 0.);
             cam_params->setId(0);
             if (!optimizer.addParameter(cam_params)) {
-                assert(false);
+                assert(false && "Camera initialization in BA");
             }
             // init g2o
-            list< pair<FramePtr,std::shared_ptr<Feature>> > incorrect_edges;
             g2o::OptimizableGraph::VertexContainer points;
             auto end=map_.keyframes_.end();
             auto end_1=end--;
             for(auto it=map_.keyframes_.begin(); it!=map_.keyframes_.end();++it){
                 optimizer.addVertex((*it)->v_kf_);
-                for(auto&& p:(*it)->fts_){
+                for(auto& p:(*it)->fts_){
                     if(p->point == NULL)continue;
-                    if(p->point->v_pt_.first == NULL)continue;
-                    if(!p->point->v_pt_.second.empty()){
-                        if(p->point->v_pt_.second.size()>1){
-                            optimizer.addVertex(p->point->v_pt_.first);///TODO
-                            if(p->point->v_pt_.first->dimension() == 3)points.push_back(p->point->v_pt_.first);
-                            for(auto&& e:p->point->v_pt_.second)optimizer.addEdge(e);
-                            p->point->v_pt_.second.clear();
-                        }
+                    if(p->point->v_pt_.first == NULL || p->point->v_pt_.second.empty())continue;
+                    if(p->point->v_pt_.second.size()>1){
+                        optimizer.addVertex(p->point->v_pt_.first);///TODO
+                        points.push_back(p->point->v_pt_.first);
+                        for(auto&& e:p->point->v_pt_.second)optimizer.addEdge(e);
+                        p->point->v_pt_.second.clear();
                     }
                 }
-                if(!(*it)->v_kf_->edges().empty()){
-                    if((*it)->v_kf_->edges().size()>1 && (*it)->v_kf_->dimension()==3)points.push_back((*it)->v_kf_);
-                    if(it == end_1-- || it ==end || it==map_.keyframes_.end()) (*it)->v_kf_->setFixed(false);
-                }else{
-                    optimizer.removeVertex((*it)->v_kf_);
-                }
+                if(it == end_1-- || it ==end || it==map_.keyframes_.end()) (*it)->v_kf_->setFixed(false);
+                if((*it)->v_kf_->dimension()==3)points.push_back((*it)->v_kf_);
             }
             // Optimization
-            if(points.empty()){
+            if(points.empty() || optimizer.vertices().empty()){
                 optimizer.clear();
                 continue;
             }
