@@ -1,3 +1,6 @@
+# build g2o with -DG2O_HAVE_OPENGL=ON -DBUILD_WITH_MARCH_NATIVE=ON
+# G2o version => https://github.com/RainerKuemmerle/g2o/tree/memory_management
+
 SET(PROJECT_NAME vio)
 PROJECT(${PROJECT_NAME})
 CMAKE_MINIMUM_REQUIRED (VERSION 2.8.3)

@@ -95,10 +95,16 @@ namespace vio {
             ba_mux_.lock();
             // Go through all Keyframes
             v_id_ = 0;
+            auto end=map_.keyframes_.end();
+            auto end_1=end--;
             for(auto it_kf=map_.keyframes_.begin();it_kf!=map_.keyframes_.end();++it_kf)
             {
                 // New Keyframe Vertex
-                (*it_kf)->v_kf_ = createG2oFrameSE3(*it_kf);
+                if(it_kf !=map_.keyframes_.end() && it_kf !=end && it_kf !=end_1){
+                    (*it_kf)->v_kf_ = createG2oFrameSE3(*it_kf,true);
+                }else{
+                    (*it_kf)->v_kf_ = createG2oFrameSE3(*it_kf,false);
+                }
                 optimizer_->addVertex((*it_kf)->v_kf_);
                 for(auto& it_ftr:(*it_kf)->fts_)
                 {
@@ -151,8 +157,8 @@ namespace vio {
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end();++it_kf)
             {
-                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation().toRotationMatrix(),
-                                        (*it_kf)->v_kf_->estimate().translation()));
+/*                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation().toRotationMatrix(),
+                                        (*it_kf)->v_kf_->estimate().translation()));*/
                 for(Features::iterator it_ftr=(*it_kf)->fts_.begin(); it_ftr!=(*it_kf)->fts_.end(); ++it_ftr)
                 {
                     if((*it_ftr)->point == NULL)
@@ -169,12 +175,13 @@ namespace vio {
     }
 
    std::shared_ptr<g2o::VertexSE3Expmap>
-   BA_Glob::createG2oFrameSE3(FramePtr frame)
+   BA_Glob::createG2oFrameSE3(FramePtr frame, bool state)
    {
        std::shared_ptr<g2o::VertexSE3Expmap> v= std::make_shared<g2o::VertexSE3Expmap>();
        ++v_id_;
        v->setId(v_id_);
-       v->setFixed(false);
+       // not all frames are fixed
+       v->setFixed(state);
        v->setEstimate(g2o::SE3Quat(frame->se3().unit_quaternion(), frame->se3().translation()));
        return v;
    }

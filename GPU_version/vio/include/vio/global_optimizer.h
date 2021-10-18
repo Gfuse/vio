@@ -86,7 +86,7 @@ protected:
 
 /// Create a g2o vertice from a keyframe object.
         std::shared_ptr<g2o::VertexSE3Expmap> createG2oFrameSE3(
-                FramePtr kf);
+                FramePtr kf, bool state);
     /// Creates a g2o vertice from a mappoint object.
         std::shared_ptr<g2o::VertexPointXYZ> createG2oPoint(
                 Vector3d pos);
