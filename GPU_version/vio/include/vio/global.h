@@ -1,21 +1,21 @@
-// This file is part of SVO - Semi-direct Visual Odometry.
+// This file is part of VIO - Semi-direct Visual Odometry.
 //
 // Copyright (C) 2014 Christian Forster <forster at ifi dot uzh dot ch>
 // (Robotics and Perception Group, University of Zurich, Switzerland).
 //
-// SVO is free software: you can redistribute it and/or modify it under the
+// VIO is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 3 of the License, or any later version.
 //
-// SVO is distributed in the hope that it will be useful, but WITHOUT ANY
+// VIO is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef SVO_GLOBAL_H_
-#define SVO_GLOBAL_H_
+#ifndef VIO_GLOBAL_H_
+#define VIO_GLOBAL_H_
 
 #include <list>
 #include <vector>
@@ -30,8 +30,8 @@
 #include <sophus/se3.h>
 #include <boost/shared_ptr.hpp>
 #include<Eigen/StdVector>
-#ifndef RPG_SVO_VIKIT_IS_VECTOR_SPECIALIZED //Guard for rpg_vikit
-#define RPG_SVO_VIKIT_IS_VECTOR_SPECIALIZED
+#ifndef RPG_VIO_VIKIT_IS_VECTOR_SPECIALIZED //Guard for rpg_vikit
+#define RPG_VIO_VIKIT_IS_VECTOR_SPECIALIZED
 EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Eigen::Vector3d)
 EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Eigen::Vector2d)
 #endif
@@ -143,4 +143,4 @@ namespace vio
     typedef std::shared_ptr<Frame> FramePtr;
 } // namespace vio
 
-#endif // SVO_GLOBAL_H_
+#endif // VIO_GLOBAL_H_

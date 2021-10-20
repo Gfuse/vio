@@ -1,13 +1,13 @@
-// This file is part of SVO - Semi-direct Visual Odometry.
+// This file is part of VIO - Semi-direct Visual Odometry.
 //
 // Copyright (C) 2014 Christian Forster <forster at ifi dot uzh dot ch>
 // (Robotics and Perception Group, University of Zurich, Switzerland).
 //
-// SVO is free software: you can redistribute it and/or modify it under the
+// VIO is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 3 of the License, or any later version.
 //
-// SVO is distributed in the hope that it will be useful, but WITHOUT ANY
+// VIO is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
@@ -57,7 +57,7 @@ bool Map::safeDeleteFrame(FramePtr frame)
   if(found)
     return true;
 
-  //SVO_ERROR_STREAM("Tried to delete Keyframe in map which was not there.");
+  //VIO_ERROR_STREAM("Tried to delete Keyframe in map which was not there.");
   return false;
 }
 
@@ -79,15 +79,24 @@ void Map::safeDeletePoint(std::shared_ptr<Point> pt)
 {
   boost::unique_lock<boost::mutex> lock(point_mut_);
   // Delete references to mappoints in all keyframes
+  if(pt == NULL)return;
   if(pt->obs_.size()>1){
       for(auto&& ftr:pt->obs_){
-          if(ftr->frame)ftr->frame->removeKeyPoint(ftr);
+          if(ftr->frame!=nullptr){
+              if(ftr->frame->is_keyframe_){
+                  ftr->frame->removeKeyPoint(ftr);
+              }
+          }
           if(ftr->point!=nullptr)ftr->point.reset();
       }
   }else{
-      if(!pt->obs_.empty())if(pt->obs_.back()->point!=nullptr)pt->obs_.back()->point.reset();
+      if(!pt->obs_.empty()){
+          if(pt->obs_.front()->point!=nullptr){
+              pt->obs_.back()->point.reset();
+          }
+      }
   }
-  pt->obs_.clear();
+  if(!pt->obs_.empty())pt->obs_.clear();
   // Delete mappoint
   deletePoint(pt);
 }

@@ -1,13 +1,13 @@
-// This file is part of SVO - Semi-direct Visual Odometry.
+// This file is part of VIO - Semi-direct Visual Odometry.
 //
 // Copyright (C) 2014 Christian Forster <forster at ifi dot uzh dot ch>
 // (Robotics and Perception Group, University of Zurich, Switzerland).
 //
-// SVO is free software: you can redistribute it and/or modify it under the
+// VIO is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 3 of the License, or any later version.
 //
-// SVO is distributed in the hope that it will be useful, but WITHOUT ANY
+// VIO is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
@@ -55,6 +55,9 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   }
   if(!feature_counter_) // more than 10
   {
+#if VIO_DEBUG
+      fprintf(log,"[%s] residual zero points \n",vio::time_in_HH_MM_SS_MMM().c_str());
+#endif
       free(featue_px);
       free(features);
       return 0;
@@ -100,6 +103,9 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   free(chi2_);
   free(featue_px);
   free(features);
+#if VIO_DEBUG
+    fprintf(log,"[%s] residual out:%f %f %f \n",vio::time_in_HH_MM_SS_MMM().c_str(),pos[0].x,pos[0].y,pos[0].z);
+#endif
   if(isnan(pos[0].x) || isnan(pos[0].y) || isnan(pos[0].z) || fabs(pos[0].z-cur_pos[0].z)>M_PI_2)return 1;
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;

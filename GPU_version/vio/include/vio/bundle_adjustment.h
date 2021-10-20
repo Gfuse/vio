@@ -54,7 +54,7 @@ namespace vio {
             double& final_error);
 
 /// Global bundle adjustment.
-/// Optimizes the whole map. Is currently not used in SVO.
+/// Optimizes the whole map. Is currently not used in VIO.
     void globalBA(Map* map);
 
 /// Initialize g2o with solver type, optimization strategy and camera model.
@@ -88,7 +88,7 @@ namespace vio {
             double huber_width,
             double weight = 1);
 
-} // namespace svo
+} // namespace VIO
 
 
 #endif //VIO_BUNDLE_ADJUSTMENT_H

@@ -1,13 +1,13 @@
-// This file is part of SVO - Semi-direct Visual Odometry.
+// This file is part of VIO - Semi-direct Visual Odometry.
 //
 // Copyright (C) 2014 Christian Forster <forster at ifi dot uzh dot ch>
 // (Robotics and Perception Group, University of Zurich, Switzerland).
 //
-// SVO is free software: you can redistribute it and/or modify it under the
+// VIO is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 3 of the License, or any later version.
 //
-// SVO is distributed in the hope that it will be useful, but WITHOUT ANY
+// VIO is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
@@ -103,14 +103,11 @@ namespace vio {
                                                                     last_frame->T_f_w_.se2().translation()).norm()));
         close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                        boost::bind(&std::pair<FramePtr, double>::second, _2));
-        std::unique_ptr<SparseImgAlignGpu> img_align=std::make_unique<SparseImgAlignGpu>(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
-        for (auto &&it_frame:_for(close_kfs)) {
-            img_align->run(it_frame.item.first, frame, log_);
-        }
         overlap_kfs.reserve(options_.max_n_kfs);
+        std::unique_ptr<SparseImgAlignGpu> img_align=std::make_unique<SparseImgAlignGpu>(Config::kltMaxLevel(), Config::kltMinLevel(),30, SparseImgAlignGpu::GaussNewton, false,gpu_fast_);
         std::vector<int> added_keypoints;
-        int points_count=0;
         for (auto &&it_frame:_for(close_kfs)) {
+            int points_count=0;
             if (it_frame.index > options_.max_n_kfs)continue;
             overlap_kfs.push_back(pair<FramePtr, size_t>(it_frame.item.first, 0));
             list<std::shared_ptr<Feature>>::iterator it_ref=it_frame.item.first->fts_.begin();
@@ -142,17 +139,19 @@ namespace vio {
                                                                   (*it_ref)->f,frame->c2f(px));
                         if(pos.norm()==0. || pos.hasNaN() || pos.z() < 0.01)continue;
                         // point in world frame
-                        std::shared_ptr<Point> new_point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
+                        (*it_ref)->point=std::make_shared<Point>(it_frame.item.first->se3()*pos,(*it_ref));
 
-                        if(!matcher_.findMatchDirect(*new_point, *frame, px))continue;
-
+                        if(!matcher_.findMatchDirect(*(*it_ref)->point, *frame, px)){
+                            (*it_ref)->point.reset();
+                            continue;
+                        }
                         frame->addFeature(std::make_shared<Feature>(frame,
-                                                                    new_point,
+                                                                    (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
-                        new_point->addFrameRef(frame->fts_.back());
+                        (*it_ref)->point->addFrameRef(frame->fts_.back());
                         added_keypoints.push_back(match.trainIdx);
-                        frame->fts_.back()->point->last_frame_overlap_id_=it_frame.item.first->id_;
-                        frame->fts_.back()->point->type_=vio::Point::TYPE_UNKNOWN;
+                        (*it_ref)->point->last_frame_overlap_id_=it_frame.item.first->id_;
+                        (*it_ref)->point->type_=vio::Point::TYPE_UNKNOWN;
                         grid_.cells.at(k)->push_back(Candidate( px));
                         overlap_kfs.back().second++;
                         ++points_count;
@@ -162,6 +161,8 @@ namespace vio {
                         frame->addFeature(std::make_shared<Feature>(frame,
                                                                     (*it_ref)->point,
                                                                     px,(*it_cur)->level,(*it_cur)->score,(*it_cur)->descriptor));
+
+                        (*it_ref)->point->addFrameRef(frame->fts_.back());
                         (*it_ref)->point->type_=vio::Point::TYPE_CANDIDATE;
                         added_keypoints.push_back(match.trainIdx);
                         grid_.cells.at(k)->push_back(Candidate( px));
@@ -171,7 +172,7 @@ namespace vio {
                 }
                 ++it_ref;
             }
-            //if(points_count>300)return;
+            if(points_count>10)img_align->run(it_frame.item.first, frame, log_);
         }
 /*        std::cerr<<"here\n";
         exit(0);*/

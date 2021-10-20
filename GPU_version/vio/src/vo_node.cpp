@@ -216,6 +216,6 @@ int main(int argc, char **argv)
   {
       Q.callOne(ros::WallDuration(30,0.0));
   }
-  printf("SVO terminated.\n");
+  printf("VIO terminated.\n");
   return 0;
 }

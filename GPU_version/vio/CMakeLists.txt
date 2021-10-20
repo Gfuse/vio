@@ -12,8 +12,8 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 17)
 
 # Set definitions
-ADD_DEFINITIONS(-DSVO_TRACE)
-ADD_DEFINITIONS(-DSVO_USE_ROS)
+ADD_DEFINITIONS(-DVIO_TRACE)
+ADD_DEFINITIONS(-DVIO_USE_ROS)
 
 
 # Set build flags, set ARM_ARCHITECTURE environment variable on Odroid
@@ -79,7 +79,7 @@ file(GLOB SRC  CONFIGURE_DEPENDS "src/*.cpp" "include/sophus/*.cpp")
 
 
 
-# Create svo library
+# Create VIO library
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LINK_LIBS})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)

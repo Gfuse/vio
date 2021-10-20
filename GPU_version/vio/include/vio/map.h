@@ -1,21 +1,21 @@
-// This file is part of SVO - Semi-direct Visual Odometry.
+// This file is part of VIO - Semi-direct Visual Odometry.
 //
 // Copyright (C) 2014 Christian Forster <forster at ifi dot uzh dot ch>
 // (Robotics and Perception Group, University of Zurich, Switzerland).
 //
-// SVO is free software: you can redistribute it and/or modify it under the
+// VIO is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 3 of the License, or any later version.
 //
-// SVO is distributed in the hope that it will be useful, but WITHOUT ANY
+// VIO is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef SVO_MAP_H_
-#define SVO_MAP_H_
+#ifndef VIO_MAP_H_
+#define VIO_MAP_H_
 
 #include <queue>
 #include <boost/noncopyable.hpp>
@@ -28,7 +28,7 @@
 namespace vio {
 
 /// Map object which saves all keyframes which are in a map.
-class Map : boost::noncopyable
+class Map
 {
 public:
   list< FramePtr > keyframes_;          //!< List of keyframes in the map.
@@ -100,4 +100,4 @@ void pointValidation(std::shared_ptr<Point> point, int id);
 } // namespace map_debug
 } // namespace vio
 
-#endif // SVO_MAP_H_
+#endif // VIO_MAP_H_

@@ -1,21 +1,21 @@
-// This file is part of SVO - Semi-direct Visual Odometry.
+// This file is part of VIO - Semi-direct Visual Odometry.
 //
 // Copyright (C) 2014 Christian Forster <forster at ifi dot uzh dot ch>
 // (Robotics and Perception Group, University of Zurich, Switzerland).
 //
-// SVO is free software: you can redistribute it and/or modify it under the
+// VIO is free software: you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the Free Software
 // Foundation, either version 3 of the License, or any later version.
 //
-// SVO is distributed in the hope that it will be useful, but WITHOUT ANY
+// VIO is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef SVO_FRAME_HANDLER_BASE_H_
-#define SVO_FRAME_HANDLER_BASE_H_
+#ifndef VIO_FRAME_HANDLER_BASE_H_
+#define VIO_FRAME_HANDLER_BASE_H_
 
 #include <queue>
 #include <boost/noncopyable.hpp>
@@ -34,7 +34,7 @@ namespace vio
 {
 
 /// Base class for various VO pipelines. Manages the map and the state machine.
-class FrameHandlerBase : boost::noncopyable
+class FrameHandlerBase
 {
 public:
   enum Stage {
@@ -104,4 +104,4 @@ protected:
 
 } // namespace nslam
 
-#endif // SVO_FRAME_HANDLER_BASE_H_
+#endif // VIO_FRAME_HANDLER_BASE_H_
