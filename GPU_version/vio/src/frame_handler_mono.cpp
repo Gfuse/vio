@@ -96,9 +96,9 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
   if(klt_homography_init_->addFirstFrame(new_frame_) == initialization::FAILURE){
       return RESULT_NO_KEYFRAME;
   }
-  new_frame_->setKeyframe();
-  map_.reset();
-  map_.addKeyframe(new_frame_);
+  //new_frame_->setKeyframe();
+  //map_.reset();
+  //map_.addKeyframe(new_frame_);
   stage_ = STAGE_SECOND_FRAME;
 #if VIO_DEBUG
     fprintf(log_,"[%s] Init: Selected first frame. \n",vio::time_in_HH_MM_SS_MMM().c_str());
@@ -218,9 +218,14 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   }
   // add keyframe to map
   map_.addKeyframe(new_frame_);
-  map_.checkKeyFrames();
-  ba_glob_->new_key_frame();
-  return RESULT_IS_KEYFRAME;
+  if(map_.checkKeyFrames()){
+      ba_glob_->new_key_frame();
+      std::unique_ptr<feature_detection::FastDetector> detector=std::make_unique<feature_detection::FastDetector>(
+              new_frame_->img().cols, new_frame_->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
+      detector->detect(new_frame_, new_frame_->img_pyr_, Config::triangMinCornerScore(), new_frame_->fts_);
+      return RESULT_IS_KEYFRAME;
+  }
+  return RESULT_FAILURE;
 }
 
 

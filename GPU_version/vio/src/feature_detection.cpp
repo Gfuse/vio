@@ -73,7 +73,6 @@ void FastDetector::detect(
     list<shared_ptr<Feature>>& fts)
     {
   std::vector<cv::KeyPoint> keypoints;
-  fts.clear();
   for(int L=0; L<n_pyr_levels_; ++L)
   {
     if(L>img_pyr.size())return;

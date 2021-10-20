@@ -55,9 +55,9 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   }
   if(!feature_counter_) // more than 10
   {
-#if VIO_DEBUG
+/*#if VIO_DEBUG
       fprintf(log,"[%s] residual zero points \n",vio::time_in_HH_MM_SS_MMM().c_str());
-#endif
+#endif*/
       free(featue_px);
       free(features);
       return 0;
@@ -103,9 +103,9 @@ size_t SparseImgAlignGpu::run(FramePtr ref_frame, FramePtr cur_frame, FILE* log)
   free(chi2_);
   free(featue_px);
   free(features);
-#if VIO_DEBUG
+/*#if VIO_DEBUG
     fprintf(log,"[%s] residual out:%f %f %f \n",vio::time_in_HH_MM_SS_MMM().c_str(),pos[0].x,pos[0].y,pos[0].z);
-#endif
+#endif*/
   if(isnan(pos[0].x) || isnan(pos[0].y) || isnan(pos[0].z) || fabs(pos[0].z-cur_pos[0].z)>M_PI_2)return 1;
   cur_frame->T_f_w_ = SE2_5(pos[0].x,pos[0].y,pos[0].z);
   return 1;

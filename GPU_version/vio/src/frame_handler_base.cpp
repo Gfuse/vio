@@ -98,6 +98,7 @@ void FrameHandlerBase::optimizeStructure(
     int max_iter)
 {
   for(auto&& it:frame->fts_){
+      if(it->point==NULL)continue;
       if(it->point->obs_.size()<2){
           it->point->last_frame_overlap_id_= frame->id_;
           continue;
@@ -111,7 +112,6 @@ void FrameHandlerBase::posEdit(
     {
         for(auto&& it:frame->fts_){
             if(it->point!=NULL && !it->point->pos_.hasNaN() && it->point->pos_.norm() !=0.){
-                std::cerr<<frame->w2f(it->point->pos_).z()<<'\n';
                 if(it->point->obs_.size()==2){
                     Eigen::Matrix<double,4,4> A,frame_a,frame_b;
                     frame_a=it->point->obs_.front()->frame->se3().matrix();
