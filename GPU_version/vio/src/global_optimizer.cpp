@@ -130,7 +130,7 @@ namespace vio {
                 if (v->dimension() == 3 && v->edges().size()>2) points.push_back(v);
             }
             // Optimization
-            if(points.empty() || optimizer_->vertices().empty()){
+            if(points.empty()){
                 optimizer_->clear();
                 ba_mux_.unlock();
                 continue;
@@ -157,8 +157,8 @@ namespace vio {
             for(list<FramePtr>::iterator it_kf = map_.keyframes_.begin();
                 it_kf != map_.keyframes_.end();++it_kf)
             {
-/*                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation().toRotationMatrix(),
-                                        (*it_kf)->v_kf_->estimate().translation()));*/
+                (*it_kf)->T_f_w_ = SE2_5(SE3((*it_kf)->v_kf_->estimate().rotation().toRotationMatrix(),
+                                        (*it_kf)->v_kf_->estimate().translation()));
                 for(Features::iterator it_ftr=(*it_kf)->fts_.begin(); it_ftr!=(*it_kf)->fts_.end(); ++it_ftr)
                 {
                     if((*it_ftr)->point == NULL)

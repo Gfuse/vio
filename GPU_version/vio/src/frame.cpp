@@ -171,6 +171,10 @@ bool Frame::getSceneDepth(vio::Map& map,double& depth_mean, double& depth_min)
   vector<double> depth_vec;
   for(auto it=fts_.begin(); it!=fts_.end();)
   {
+      if((*it)->point==NULL){
+          ++it;
+          continue;
+      }
       double z=w2f((*it)->point->pos_).z();
       if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0. || z<0.05 || z > 20.0){
           map.safeDeletePoint((*it)->point);
