@@ -17,9 +17,7 @@ You can edit the algorithm parameters in the follwoing file, please look at the 
 
 CPU_version/vio/param/vo_fast.yaml
 
-# the GPU_version
-
-The dependencies are:
+# The dependencies:
 1. OpenCV 4
 2. Eigen
 3. G2o  # build g2o with -DG2O_HAVE_OPENGL=ON -DBUILD_WITH_MARCH_NATIVE=ON
