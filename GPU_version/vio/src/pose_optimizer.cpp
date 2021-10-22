@@ -50,7 +50,7 @@ void optimizeGaussNewton(
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
       if((*it)->point == NULL) {
-          it = frame->fts_.erase(it);
+          it++;// = frame->fts_.erase(it);
           continue;
       }
       double z=frame->w2f((*it)->point->pos_).z();
@@ -95,6 +95,7 @@ void optimizeGaussNewton(
     // compute residual
     for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); ++it)
     {
+      if((*it)->point==NULL)continue;
       if((*it)->point->type_==vio::Point::TYPE_UNKNOWN)continue;
       Matrix23d J;
       frame->jacobian_xyz2uv_((*it)->f,(*it)->point->pos_,J);
@@ -132,7 +133,7 @@ void optimizeGaussNewton(
   for(auto it=frame->fts_.begin(); it!=frame->fts_.end(); /*++it*/)
   {
     if((*it)->point == NULL) {
-        it = frame->fts_.erase(it);
+        it++;// = frame->fts_.erase(it);
         continue;
     }
     if((*it)->point->pos_.hasNaN() || (*it)->point->pos_.norm()==0.){

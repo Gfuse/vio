@@ -220,9 +220,9 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   map_.addKeyframe(new_frame_);
   if(map_.checkKeyFrames()){
       ba_glob_->new_key_frame();
-      std::unique_ptr<feature_detection::FastDetector> detector=std::make_unique<feature_detection::FastDetector>(
+/*      std::unique_ptr<feature_detection::FastDetector> detector=std::make_unique<feature_detection::FastDetector>(
               new_frame_->img().cols, new_frame_->img().rows, Config::gridSize(), gpu_fast_,Config::nPyrLevels());
-      detector->detect(new_frame_, new_frame_->img_pyr_, Config::triangMinCornerScore(), new_frame_->fts_);
+      detector->detect(new_frame_, new_frame_->img_pyr_, Config::triangMinCornerScore(), new_frame_->fts_);*/
       return RESULT_IS_KEYFRAME;
   }
   return RESULT_FAILURE;

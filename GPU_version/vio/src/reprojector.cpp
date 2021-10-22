@@ -174,6 +174,15 @@ namespace vio {
             }
             if(points_count>10)img_align->run(it_frame.item.first, frame, log_);
         }
+        for(auto&& p:keypoints){
+            int k = static_cast<int>(p->px.y() / grid_.cell_size) *
+                          grid_.grid_n_cols
+                          + static_cast<int>(p->px.x() / grid_.cell_size);
+            if(grid_.cells.at(k)->size()<0.5*Config::gridSize()) {
+                frame->addFeature(std::make_shared<Feature>(frame, p->px, p->level, p->score, p->descriptor));
+                grid_.cells.at(k)->push_back(Candidate( p->px));
+            }
+        }
 /*        std::cerr<<"here\n";
         exit(0);*/
     }

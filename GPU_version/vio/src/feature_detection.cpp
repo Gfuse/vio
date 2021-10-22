@@ -115,8 +115,7 @@ void FastDetector::detect(
     free(fast_corners);
   }
   if(keypoints.size()<1){
-      ROS_ERROR("GPU Driver crash try again!");
-      assert(0);
+      assert(0 && "GPU Driver crash try again!");
   }
   cv::Ptr<cv::xfeatures2d::FREAK> extractor = cv::xfeatures2d::FREAK::create(true, true, 22.0f, 4);
   cv::Mat descriptor;
