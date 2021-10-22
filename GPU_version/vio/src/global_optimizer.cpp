@@ -48,9 +48,9 @@ namespace vio {
             assert(false && "Camera initialization in BA");
         }
 #if VIO_DEBUG
-        log_ =fopen((std::string(PROJECT_DIR)+"/depth_filter_log.txt").c_str(),"w+");
+        log_ =fopen((std::string(PROJECT_DIR)+"/loop_closure_log.txt").c_str(),"w+");
         assert(log_);
-        chmod((std::string(PROJECT_DIR)+"/depth_filter_log.txt").c_str(), ACCESSPERMS);
+        chmod((std::string(PROJECT_DIR)+"/loop_closure_log.txt").c_str(), ACCESSPERMS);
 #endif
     }
 
