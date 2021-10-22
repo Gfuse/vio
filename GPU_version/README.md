@@ -32,7 +32,7 @@ The dependencies are:
     2. There is a scale map issue in the algorithm 
     3. The number of matched points are increasing a lot we need to limit them in a way that will not cause some error in the estimated odometry
     
-# Log fiels
+# Log files
 log files will be written in the project folder, you can change the path in the cmake files as well as activating debug mode or not
 https://github.com/Gfuse/vio_svo/blob/d3c857fd06bfe5c6180e6bc914a4a36a649c4292/GPU_version/vio/CMakeLists.txt#L89
 
