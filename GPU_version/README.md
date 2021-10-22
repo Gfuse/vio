@@ -1,69 +1,40 @@
-SVO
+VIO
 ===
 
-This code implements a semi-direct monocular visual odometry pipeline which has been integrated with GTSAM to infused IMU as well. The feature extraction part is implemented in OpenCL to take advantage of GPU.
+This code implements a semi-direct monocular visual odometry pipeline which has been integrated with a EKF to infused IMU and CMD as well. The feature extraction and image alignment part are implemented in OpenCL to take advantage of GPU.
 
-
-Paper svo: http://rpg.ifi.uzh.ch/docs/ICRA14_Forster.pdf
-Paper Svo+GTSAM: https://arxiv.org/abs/1512.02363
-
-
-#### Disclaimer
-
-SVO has been tested under ROS Groovy, Hydro and Indigo with Ubuntu 12.04, 13.04 and 14.04. This is research code, any fitness for a particular purpose is disclaimed.
-
-
-#### Licence
-
-The source code is released under a GPLv3 licence. A closed-source professional edition is available for commercial purposes. In this case, please contact the authors for further info.
-
-
-#### Citing
-
-If you use SVO in an academic context, please cite the following publication:
-
-    @inproceedings{Forster2014ICRA,
-      author = {Forster, Christian and Pizzoli, Matia and Scaramuzza, Davide},
-      title = {{SVO}: Fast Semi-Direct Monocular Visual Odometry},
-      booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
-      year = {2014}
-    }
-    
     
 #### Documentation
 OpenCL documentation
 
-The API is documented here: http://uzh-rpg.github.io/rpg_svo/doc/
-
-The GTSAM documentation  https://gtsam.org/tutorials/
-
 #### Instructions
 Please be sure that you have the OpenCL driver installed
-
-First install gtsam library => https://github.com/borglab/gtsam
-
-Then follow the SVO instalation
-
-See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki and https://gtsam.org/get_started/
 
 
 ## Setting
 
 You can edit the algorithm parameters in the follwoing file, please look at the config file to underestand the meaning of the parameters (CPU_version/svo/include/svo/config.h)
 
-CPU_version/vio_svo/param/vo_fast.yaml
+CPU_version/vio/param/vo_fast.yaml
 
 # the GPU_version
 
-Dose not have dependency with GTSAM, the dependencies are:
-1. OpenCV 3
+The dependencies are:
+1. OpenCV 4
 2. Eigen
-3. Sophus     https://github.com/strasdat/Sophus.git
+3. G2o  # build g2o with -DG2O_HAVE_OPENGL=ON -DBUILD_WITH_MARCH_NATIVE=ON
+        # G2o version => https://github.com/RainerKuemmerle/g2o/tree/memory_management
 4. Boost
 5. OpenCL
 
-if make fails in the build of Sophus with the error lvalue required as left operand of assignment in so2.cpp, see this issue: https://github.com/uzh-rpg/rpg_svo/issues/237
-
+# known issues
+    1. The estimated oriantetion is not accurate 
+    2. There is a scale map issue in the algorithm 
+    3. The number of matched points are increasing a lot we need to limit them in a way that will not cause some error in the estimated odometry
+    
+# Log fiels
+log files will be written in the project folder, you can change the path in the cmake files as well as activating debug mode or not
+https://github.com/Gfuse/vio_svo/blob/d3c857fd06bfe5c6180e6bc914a4a36a649c4292/GPU_version/vio/CMakeLists.txt#L89
 
 
 
